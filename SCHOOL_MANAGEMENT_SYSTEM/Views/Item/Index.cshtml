@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SCHOOL_MANAGEMENT_SYSTEM.Models.Item>
+
+@{
+    ViewBag.Title = "Manage Item";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+
+            <button onclick="AddNewItemAction()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#ItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Item</button>
+            <button onclick="AddItemChargeAction()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#AddItemChargeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Item Charge</button>
+            <h5 class="modal-title" style="color:aliceblue">Manage Item</h5>
+        </div>
+        <div class="panel-body">
+            <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableItem">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Name Khmer</th>
+                        <th>Price</th>
+                        <th>Remark</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@Html.Partial("_Item")
+
+@section scripts{
+    @Scripts.Render("~/Scripts/Functions/item.js")
+    @Scripts.Render("~/Scripts/moment.min.js")
+}
+
+

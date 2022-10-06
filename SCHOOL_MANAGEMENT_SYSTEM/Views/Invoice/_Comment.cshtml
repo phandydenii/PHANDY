@@ -1,0 +1,56 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="commentModel" tabindex="-1" role="dialog" aria-labelledby="commentModel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <b class="modal-title" style="color:darkblue">សេចក្តីពិពណ៌នាពីកញ្ចប់អីវ៉ាន់</b>
+                <button type="button"  class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+            <div class="modal-body">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input id="cid" name="cid" type="text" value="" class="form-control input-sm hidden" placeholder="Enter ID" />
+                            <input id="cinvoiceid" name="cinvoiceid" type="text" value="" class="form-control input-sm hidden" placeholder="Enter ID" />
+                            <label for="ccomment">មតិយោបល់</label>
+                            <input id="ccomment" name="ccomment" type="text"​  value="" class="form-control input-sm" />
+                            @*<select class="form-control input-sm selectpicker" id="ccomment" data-style="btn-dark" data-hide-disabled="true" data-live-search="true">
+                                <option>ខលអត់ចូល</option>
+                                <option>ខលមិនលើក</option>
+                                <option>ទំនិញខុស</option>
+                                <option>ផ្សេងៗ</option>
+                            </select>*@
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <br />
+                        <button type="button" id="btnComment" onclick="CommentAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="commentTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <td>មតិយោបល់</td>
+                                    <td>អ្នកផ្តល់មតិ</td>
+                                    <td>សកម្មភាព</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,256 @@
+﻿@using SCHOOL_MANAGEMENT_SYSTEM.Models
+@model  SCHOOL_MANAGEMENT_SYSTEM.Models.CountModel
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layoutlte.cshtml";
+}
+<!-- Carousel
+    ================================================== -->
+<!-- /.carousel -->
+<div class="container-fluid">
+    <div class="pos_relative ">
+        <h4 class="text-center">Welcome Admin Dashboard</h4>
+        <br />
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <section class="panel panel-featured-left panel-featured-primary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-primary">
+                                        <i class="fa fa-life-ring"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <img class="img-circle" src="~/Images/invoice.png" alt="Generic placeholder image" width="120" height="120">
+                                        <p class="title">សរុបចំនួនវិក្ក័យបត្រ</p>
+                                        <div class="info">
+                                            <strong class="amount">@Model.TotalInvoice</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        @if (User.IsInRole("Manage Student"))
+                                        {@Html.ActionLink("Manage Invoice", "Index", "Invoice")
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <section class="panel panel-featured-left panel-featured-primary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-primary">
+                                        <i class="fa fa-life-ring"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <img class="img-circle" src="~/Images/customer.png" alt="Generic placeholder image" width="120" height="120">
+                                        <p class="title">សរុបចំនួនអតិថិជន</p>
+                                        <div class="info">
+                                            <strong class="amount">@Model.TotalCustomer</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        @if (User.IsInRole("Manage Student"))
+                                        {@Html.ActionLink("Manage Customer", "Index", "Customer")
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <section class="panel panel-featured-left panel-featured-primary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-primary">
+                                        <i class="fa fa-life-ring"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <img class="img-circle" src="~/Images/employee.png" alt="Generic placeholder image" width="120" height="120">
+                                        <p class="title">សរុបចំនួនបុគ្គលិក</p>
+                                        <div class="info">
+                                            <strong class="amount">@Model.TotalEmployee</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        @if (User.IsInRole("Manage Student"))
+                                        {@Html.ActionLink("Manage Employee", "Index", "Employee")
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <section class="panel panel-featured-left panel-featured-primary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-primary">
+                                        <i class="fa fa-life-ring"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <img class="img-circle" src="~/Images/user.png" alt="Generic placeholder image" width="120" height="120">
+                                        <p class="title">សរុបចំនួនអ្នកប្រើប្រាស់</p>
+                                        <div class="info">
+                                            <strong class="amount">@Model.TotalUser</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        @if (User.IsInRole("Manage Users"))
+                                        {@Html.ActionLink("Manage Users", "Index", "UserRoles")
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <section class="panel panel-featured-left panel-featured-primary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-primary">
+                                        <i class="fa fa-life-ring"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <img class="img-circle" src="~/Images/bonus.jpg" alt="Generic placeholder image" width="120" height="120">
+                                        <p class="title">រង្វាន់ ខ្ចី ចុងសប្តាហ៌</p>
+                                        <div class="info">
+                                            <strong class="amount">@Model.TotalBonus</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        @if (User.IsInRole("Manage Student"))
+                                        {@Html.ActionLink("Manage Bonus", "Index", "Bonus")
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <section class="panel panel-featured-left panel-featured-primary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-primary">
+                                        <i class="fa fa-life-ring"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <img class="img-circle" src="~/Images/expend.png" alt="Generic placeholder image" width="120" height="120">
+                                        <p class="title">ចំណាយផ្សេងៗ</p>
+                                        <div class="info">
+                                            <strong class="amount">@Model.TotalExpense</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        @if (User.IsInRole("Manage Student"))
+                                        {@Html.ActionLink("Manage OtherExpense", "Index", "OtherExpense")
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <section class="panel panel-featured-left panel-featured-primary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-primary">
+                                        <i class="fa fa-life-ring"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <img class="img-circle" src="~/Images/money.jpg" alt="Generic placeholder image" width="120" height="120">
+                                        <p class="title">ដកប្រាក់ចេញពីកេស</p>
+                                        <div class="info">
+                                            <strong class="amount">@Model.TotalTransfer</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        @if (User.IsInRole("Manage Student"))
+                                        {@Html.ActionLink("Manage Transfer", "Index", "Transfer")
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="col-md-3 col-lg-3 col-xl-3">
+                    <section class="panel panel-featured-left panel-featured-primary">
+                        <div class="panel-body">
+                            <div class="widget-summary">
+                                <div class="widget-summary-col widget-summary-col-icon">
+                                    <div class="summary-icon bg-primary">
+                                        <i class="fa fa-life-ring"></i>
+                                    </div>
+                                </div>
+                                <div class="widget-summary-col">
+                                    <div class="summary">
+                                        <img class="img-circle" src="~/Images/balance.jpg" alt="Generic placeholder image" width="120" height="120">
+                                        <p class="title">បិទបញ្ជីរប្រចាំថ្ងៃ</p>
+                                        <div class="info">
+                                            <strong class="amount">@Model.TotalBalance  </strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-footer">
+                                        @if (User.IsInRole("Manage Users"))
+                                        {@Html.ActionLink("Manage Balance", "Index", "UserRoles")
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

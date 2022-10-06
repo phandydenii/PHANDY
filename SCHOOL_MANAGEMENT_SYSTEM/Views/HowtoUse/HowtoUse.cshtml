@@ -1,0 +1,54 @@
+﻿
+<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="HowtoUseModel" tabindex="-1" role="dialog" aria-labelledby="HowtoUseModel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color:darkblue">របៀបប្រើ</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            @*<img class="center img-responsive img-thumbnail" id="image" src="~/Images/no_image.png" />*@
+                        </div>
+                        <div class="form-group">
+                            <input type="file" id="files" name="files" /><br />
+                            @*<label for="myfile">Select a file:</label>
+                             <input type="file" id="myfile" name="myfile" onchange="readURLHowtoUse(this);">*@
+                            <input type="hidden" value="" id="file_old" />
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" hidden value="" />
+                        <input id="id" name="id" type="text" value="" class="form-control input-sm hidden" placeholder="Enter employeeId" />
+
+                        <div class="form-group">
+                            <label for="note">Note</label>
+                            <input id="note" name="note" type="text" value="" class="form-control input-sm" placeholder="Enter Note" />
+
+                        </div>
+                        <div class="form-group">
+                            <label for="employeeid">Employee</label>
+                            <select class="form-control input-sm" id="employeeid">
+                                @foreach (var employee in Model)
+                                {
+                                    <option value=@employee.Id>@employee.name</option>
+                                }
+                            </select>
+                        </div>
+                        </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" id="btnSaveHowtoUse" onclick="HowtoUseAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                        </div>
+                    </div>
+                    <hr />
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

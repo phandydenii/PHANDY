@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Manage Students";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layoutlte.cshtml";
+}
+<div id="loadingGif"></div>
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#shiftModel"><span class="glyphicon glyphicon-cog"></span> Manage Shift</button>
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#gradeModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> Manage Grade</button>
+            <button onclick="ClickAddnewStudent()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#studentModel" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Student</button>
+            <h5 class="modal-title">Manage Students</h5>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <label for="displaybranch">All Students by Branch:</label>
+                        <select class="form-control" id="displaybranch">
+                            <option>---Select Branch----</option>
+                            @foreach (var branch in Model.Branchs)
+                            {
+                                <option value="@branch.Id">@branch.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="overflow:auto">
+                <div class="col-md-12">
+                    <table id="tableStudent" class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                @*<th>ID</th>*@
+                                <th>Student ID</th>
+                                @*<th>branchid</th>
+                                <th>surname</th>
+                                <th>firstname</th>*@
+                                <th>English Name</th>
+                                <th>Khmer Name</th>
+                                <th>Gender</th>
+                                <th>DateOfBirth</th>
+                                <th>PlaceOfBirth</th>
+                                @*<th>nationality</th>
+                                <th>nativelanguage</th>
+                                <th>othersoken</th>
+                                <th>schoolyear</th>
+                                <th>photo</th>
+                                <th>shiftid</th>
+                                <th>gradeid</th>*@
+                                <th>Stauts</th>
+                                <th>Action</th>
+                                <th>More Action</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+@Html.Partial("_Shift")
+@Html.Partial("_Grade")
+@Html.Partial("_Student")
+@Html.Partial("_Emergency")
+@Html.Partial("_Parrentstudent")
+@Html.Partial("_Appropriate")
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/moment.min.js")
+    @Scripts.Render("~/Scripts/Functions/shift.js")
+    @Scripts.Render("~/Scripts/Functions/grade.js")
+    @Scripts.Render("~/Scripts/Functions/student.js")
+    @Scripts.Render("~/Scripts/Functions/emergency.js")
+    @Scripts.Render("~/Scripts/Functions/parrentstudent.js")
+    @Scripts.Render("~/Scripts/Functions/appropriate.js")
+}

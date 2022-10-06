@@ -1,0 +1,218 @@
+﻿@*@using NSPC.Models
+    @model  NSPC.Models.CountModel*@
+@{
+    ViewBag.Title = "ROSELANY";
+}
+
+<div class="container-fluid">
+    <div class="pos_relative ">
+        <h4 class="text-center"><b>Welcome Admin Dashboard</b></h4>
+        <br />
+        <div class="col-md-12">
+            <div class="row">
+                @if (User.IsInRole("MANAGE GUEST"))
+                {
+                    <div class="col-md-3 col-lg-3 col-xl-3" style="margin-bottom:10px">
+                        <section class="panel panel-featured-left panel-featured-primary">
+                            <div class="panel-body" style="background-color:gainsboro">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col text-center">
+                                        <div class="summary">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <img class="img-circle" src="~/Images/guest.png" alt="Generic placeholder image" width="120" height="120">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="title"><b>សរុបចំនួនភ្ញៀវ</b></p>
+                                                    <p class="title"><b>@Model.TotalGuest</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "Guest")';">គ្រប់គ្រងភ្ញៀវ</button>
+                        </section>
+                    </div>
+                }
+
+                @if (User.IsInRole("MANAGE EMPLOYEE"))
+                {
+                    <div class="col-md-3 col-lg-3 col-xl-3" style="margin-bottom:10px">
+                        <section class="panel panel-featured-left panel-featured-primary">
+                            <div class="panel-body" style="background-color:gainsboro">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col text-center">
+                                        <div class="summary">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <img class="img-circle" src="~/Images/employee.png" alt="Generic placeholder image" width="120" height="120">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="title"><b>សរុបចំនួនបុគ្គលិក</b></p>
+                                                    <p class="title"><b>@Model.TotalStaff</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "Staff")';">គ្រប់គ្រងបុគ្គលិក</button>
+                        </section>
+                    </div>
+                }
+                @if (User.IsInRole("MANAGE ROOM"))
+                {
+                    <div class="col-md-3 col-lg-3 col-xl-3" style="margin-bottom:10px">
+                        <section class="panel panel-featured-left panel-featured-primary">
+                            <div class="panel-body" style="background-color:gainsboro">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col text-center">
+                                        <div class="summary">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <img class="img-circle" src="~/Images/room.png" alt="Generic placeholder image" width="120" height="120">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="title"><b>សរុបចំនួនបន្ទប់</b></p>
+                                                    <p class="title"><b>10</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "Room")';">គ្រប់គ្រងបន្ទប់</button>
+                        </section>
+                    </div>
+                }
+                @if (User.IsInRole("MANAGE UTILITIES"))
+                {
+                    <div class="col-md-3 col-lg-3 col-xl-3" style="margin-bottom:10px">
+                        <section class="panel panel-featured-left panel-featured-primary">
+                            <div class="panel-body" style="background-color:gainsboro">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col text-center">
+                                        <div class="summary">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <img class="img-circle" src="~/Images/utility.png" alt="Generic placeholder image" width="120" height="120">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="title"><b>សរុបចំនូនសម្ភារៈប្រើប្រាស់</b></p>
+                                                    <p class="title"><b>@Model.TotalItem</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "Item")';">គ្រប់គ្រងសម្ភារៈប្រើប្រាស់</button>
+                        </section>
+                    </div>
+                }
+                @if (User.IsInRole("MANAGE BOOKING"))
+                {
+                    <div class="col-md-3 col-lg-3 col-xl-3" style="margin-top:10px">
+                        <section class="panel panel-featured-left panel-featured-primary">
+                            <div class="panel-body" style="background-color:gainsboro">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col text-center">
+                                        <div class="summary">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <img class="img-circle" src="~/Images/booking.png" alt="Generic placeholder image" width="120" height="120">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="title"><b>សរុបចំនួនកក់</b></p>
+                                                    <p class="title"><b>@Model.TotalEmployee</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary col-md-12">គ្រប់គ្រងការកក់</button>
+                        </section>
+                    </div>
+                }
+                @if (User.IsInRole("MANAGE EXPEND"))
+                {
+                    <div class="col-md-3 col-lg-3 col-xl-3" style="margin-top:10px">
+                        <section class="panel panel-featured-left panel-featured-primary">
+                            <div class="panel-body" style="background-color:gainsboro">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col text-center">
+                                        <div class="summary">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <img class="img-circle" src="~/Images/expends.png" alt="Generic placeholder image" width="120" height="120">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="title"><b>សរុបការជួល</b></p>
+                                                    <p class="title"><b>10</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "CheckIn")';">គ្រប់គ្រងការជួល</button>
+                        </section>
+                    </div>
+                }
+                @if (User.IsInRole("MANAGE PAYMENT"))
+                {
+                    <div class="col-md-3 col-lg-3 col-xl-3" style="margin-top:10px">
+                        <section class="panel panel-featured-left panel-featured-primary">
+                            <div class="panel-body" style="background-color:gainsboro">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col text-center">
+                                        <div class="summary">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <img class="img-circle" src="~/Images/receipt.png" alt="Generic placeholder image" width="120" height="120">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="title"><b>បង់ប្រាក់ប្រចាំខែ</b></p>
+                                                    <p class="title"><b>10</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary col-md-12">គ្រប់គ្រងការបង់ប្រាក់ប្រចាំខែ</button>
+                        </section>
+                    </div>
+                }
+                
+                @if (User.IsInRole("MANAGE REPORT"))
+                {
+                    <div class="col-md-3 col-lg-3 col-xl-3" style="margin-top:10px">
+                        <section class="panel panel-featured-left panel-featured-primary">
+                            <div class="panel-body" style="background-color:gainsboro">
+                                <div class="widget-summary">
+                                    <div class="widget-summary-col text-center">
+                                        <div class="summary">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <img class="img-circle" src="~/Images/report.png" alt="Generic placeholder image" width="120" height="120">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <p class="title"><b>របាយការណ៍</b></p>
+                                                    <p class="title"><b>10</b></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary col-md-12">គ្រប់គ្រងរបាយការណ៍</button>
+                        </section>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

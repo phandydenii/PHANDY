@@ -1,0 +1,84 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="emergencyModel" tabindex="-1" role="dialog" aria-labelledby="emergencyModel" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color:darkblue">Manage Emergency</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" hidden value="" />
+                            <input id="emerid" name="emerid" type="text" value="" class="form-control input-sm hidden" placeholder="Enter EmerId" />
+                            <input id="emerstudentid" name="emerstudentid" type="text" value="" class="form-control input-sm hidden" placeholder="Enter StudentID" />
+
+                            <label for="name1">Contact Person 1</label>
+                            <input id="name1" name="name1" type="text" value="" class="form-control input-sm" placeholder="Enter Contact Person 1" />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactnumber1">Contact Number 1</label>
+                            <input id="contactnumber1" name="contactnumber1" type="text" value="" class="form-control input-sm" placeholder="Enter Contact Number" />
+                        </div>
+                        <div class="form-group">
+                            <label for="relationship1">Relationship 1</label>
+                            <input id="relationship1" name="relationship1" type="text" value="" class="form-control input-sm" placeholder="Enter Relationship 1" />
+                        </div>
+                       
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" hidden value="" />
+                            <label for="name2">Contact Person 2</label>
+                            <input id="name2" name="name2" type="text" value="" class="form-control input-sm" placeholder="Enter Contact Person 2" />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactnumber2">Contact Number 2</label>
+                            <input id="contactnumber2" name="contactnumber2" type="text" value="" class="form-control input-sm" placeholder="Enter Contact Number 2" />
+                        </div>
+                        <div class="form-group">
+                            <label for="relationship2">Relationship 2</label>
+                            <input id="relationship2" name="relationship2" type="text" value="" class="form-control input-sm" placeholder="Enter Relationship 2" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnEmergency" onclick="EmergencyAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row" style="overflow:auto">
+                    <div class="col-md-12">
+                        <table id="emergencyTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    @*<td>emerid</td>
+                                    <td>emerstuentid</td>*@
+                                    <td>Contact1</td>
+                                    <td>Phone1</td>
+                                    <td>Relation1</td>
+                                    <td>Contact2</td>
+                                    <td>Phone2</td>
+                                    <td>Relation2</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

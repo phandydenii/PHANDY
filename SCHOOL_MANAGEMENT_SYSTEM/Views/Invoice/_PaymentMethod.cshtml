@@ -1,0 +1,68 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="paymentmethodModel" tabindex="-1" role="dialog" aria-labelledby="paybyModel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <b class="modal-title" style="color:darkblue">Pay By</b>
+                <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <input id="cid" name="cid" type="text" value="" class="form-control input-sm hidden" placeholder="Enter ID" />
+                        <input id="paymentMethodid" name="paymentMethodid" type="text" value="" class="form-control input-sm hidden" placeholder="Enter ID" />
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="paymentmethodname">Payment Method</label>
+                                <select class="form-control input-sm selectpicker" id="paymentmethod" data-style="btn-dark" data-hide-disabled="true" data-live-search="false">
+                                    <option>ABA Bank</option>
+                                    <option>ACleda Bank</option>
+                                    <option>PPC Bank</option>
+                                    <option>Sathapana Bank</option>
+                                    <option>CAB Bank</option>
+                                    <option>AMK</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="accnumber">Account Number</label>
+                            <input id="accnumber" name="accnumber" type="text" ​ value="" class="form-control input-sm" />
+                        </div>
+                        <div class="col-md-12">
+                            <label for="accname">Account Name</label>
+                            <input id="accname" name="accname" type="text" ​ value="" class="form-control input-sm" />
+                            <br />
+                            <button type="button" id="btnpaymentMethod" onclick="paymentMethodAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">                    
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">  
+                    <table id="paymentmethodTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <td>Method Name</td>
+                                <td>Account Number</td>
+                                <td>Account Name</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+

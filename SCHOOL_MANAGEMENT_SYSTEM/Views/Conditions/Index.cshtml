@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Manage Condition";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="loadingGif"></div>
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            @*<button class="btn btn-primary btn-sm" onclick="sendMsgTelegram();">Send Telegram Message Testing</button>*@
+
+            <button onclick="ClickAddnewCondition()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#ConditionModel" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> បង្កើតលក្ខខ័ណ្ឌថ្មី</button>
+            <h5 class="modal-title">Manage Condition</h5>
+        </div>
+        <div class="panel-body">
+
+            <div class="row" style="overflow:auto">
+                <div class="col-md-12">
+                    <table id="tableCondition" class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>លេខ</th>
+                                <th>លក្ខខណ្ឌ</th>
+                                <th>បង្កើតដោយ</th>
+                                <th>កាលបរិច្ឆេទ</th>
+                                <th>បុគ្គលិក</th>
+                                <th>សកម្មភាព</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@Html.Partial("_Condition")
+@section scripts
+{
+    @Scripts.Render("~/Scripts/moment.min.js")
+    @Scripts.Render("~/Scripts/Functions/condition.js")
+}

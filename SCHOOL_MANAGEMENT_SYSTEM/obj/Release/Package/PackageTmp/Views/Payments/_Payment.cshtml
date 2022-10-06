@@ -1,0 +1,193 @@
+﻿<form id="employees" method="post" enctype="multipart/form-data">
+
+    <div class="modal fade" data-backdrop="static" data-keyboard="fale" id="paymentModel" tabindex="-1" role="dialog" aria-labelledby="paymentModel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div id="loadingGif"></div>
+                <div class="modal-header">
+                    <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button class="btn btn-success btn-xs pull-right" style="margin-right:5px;" data-toggle="modal" data-target="#courseListModal" onclick="openModelCourse()">Add Course</button>
+
+                    <b class="modal-title" style="color:darkblue">Manage Payment</b>
+                </div>
+                <div class="modal-body">
+                    <div class="panel-body">
+
+                        @*<table id="tablePaymentDetail" class="table table-hover table-bordered table-condensed table-striped " width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>Paymentid</th>
+                                        <th>courseid</th>
+                                        <th>coursename</th>
+                                        <th>Quantity</th>
+                                        <th>turtionfee</th>
+                                        <th>discount</th>
+                                        <th>Total</th>
+                                        //<th>status</th>
+                                        //<th>Active</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>*@
+                        <div id="demo2" style="width:100%; height:180px; overflow:scroll"></div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input type="text" hidden value="" />
+                                <input id="paymentid" name="paymentid" type="text" value="" class="form-control input-sm hidden" placeholder="Enter Id" />
+
+                                <div class="form-group">
+                                    <label for="paymentno">InvoiceNo</label>
+                                    <input id="paymentno" name="paymentno" type="text" value="" class="form-control input-sm hidden" placeholder="Enter Invoice No" />
+                                    <input id="paymentnoformat" name="paymentnoformat" type="text" value="" class="form-control input-sm" placeholder="Enter Invoice No" />
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="paymentdate">Payment Date</label>
+                                    <input id="paymentdate" name="paymentdate" type="date" value="" class="form-control input-sm" placeholder="Enter Payment Date" />
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="studentidpayment">Student</label>
+                                    <select class="form-control input-sm selectpicker"  id="studentidpayment" data-style = "btn-dark"  data-hide-disabled = "true" data-live-search = "true"> 
+                                        @foreach (var stu in Model.students)
+                                        {
+                                            <option value=@stu.id>@stu.fullnamekh</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="enrolldate">Enroll Date</label>
+                                    <input id="enrolldate" name="enrolldate" type="date" value="" class="form-control input-sm" placeholder="Enter EnrollDate" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="adminfee">Admin Fee</label>
+                                    <input id="adminfee" name="adminfee" type="text" value="0" class="form-control input-sm" placeholder="Enter Admin Fee" />
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+                                    <label for="food">Paid For Food</label>
+                                    <input id="food" name="food" type="checkbox" value="" class="form-control-new input-sm" placeholder="Food" />
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="duration">Duration</label>
+                                    <input id="duration" name="duration" type="text" value="" class="form-control input-sm" placeholder="3 Month" />
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="expireddate">Expired Date</label>
+                                    <input id="expireddate" name="expireddate" type="date" value="" class="form-control input-sm" placeholder="Enter Expired Date" />
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="dayextend">Day Extend</label>
+                                    <input id="dayextend" name="dayextend" type="text" value="0" class="form-control input-sm" placeholder="Enter Day Extend" />
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="paymentstatus">Payment Status</label>
+                                    <select class="form-control input-sm" id="paymentstatus">
+                                        <option>ACTIVE</option>
+                                        <option>IN ACTIVE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+
+                                <div class="form-group">
+                                    <label for="overdate">Over Date</label>
+                                    <input id="overdate" name="overdate" type="text" value="0" class="form-control input-sm" placeholder="0" />
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="gradeid">Grade</label>
+                                    <select class="form-control input-sm" id="gradeid">
+                                        @foreach (var grade in Model.Grades)
+                                        {
+                                            <option value=@grade.gradeid>@grade.gradename</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="shiftid">Shift</label>
+                                    <select class="form-control input-sm" id="shiftid">
+                                        @foreach (var shift in Model.Shifts)
+                                        {
+                                            <option value=@shift.shiftid>@shift.shiftname</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="note">Note</label>
+                                    <textarea id="note" name="note" rows="2" cols="25" placeholder="Enter Note"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <span>Exchange Rate</span> : 1 <span>$</span> = <label id="lblrate"></label><span> R</span>
+                                    <input type="hidden" id="txtrate"/>
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="totalamount">Total Amount Dollar:</label>
+                                    <input id="totalamount" type="text" value="" class="form-control input-sm" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="discount">Discount % :</label>
+                                    <input id="discount" type="text" value="" class="form-control input-sm" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="deposit">Total Deposit Dollar :</label>
+                                    <input id="deposit" type="text" value="" class="form-control input-sm" disabled>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="depositr">Total Deposit Real :</label>
+                                    <input id="depositr" type="text" value="" class="form-control input-sm" disabled>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <button type="button" id="btnPayment" onclick="PaymentAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                                </div>
+
+                                @*<div class="form-group">
+                                        <div class="col-md-6">
+                                            <button class="btn  btn-success float-right  btn-lg" onclick="OrderProcessing()">Submit Now</button>
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+

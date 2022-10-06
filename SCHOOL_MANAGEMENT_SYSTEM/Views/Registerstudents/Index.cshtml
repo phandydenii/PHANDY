@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Manage Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layoutlte.cshtml";
+}
+<div id="loadingGif"></div>
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#studylanguageModel"><span class="glyphicon glyphicon-cog"></span> Study Language</button>
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#studyperiodModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> Study Period</button>
+            <button onclick="ClickAddnewRegister()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#registerModel" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Register</button>
+            <h5 class="modal-title">Manage Register</h5>
+        </div>
+        <div class="panel-body">
+            @*<div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <label for="displaybranch">All Students by Branch:</label>
+                        <select class="form-control" id="displaybranch">
+                            <option>---Select Branch----</option>
+                            @foreach (var branch in Model.Branchs)
+                            {
+                                <option value="@branch.Id">@branch.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>*@
+
+            <div class="row" style="overflow:auto">
+                <div class="col-md-12">
+                    <table id="tableRegister" class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                @*<th>ID</th>*@
+                                <th>RegisterID</th>
+                                <th>Register Date</th>
+                                @*<th>userid</th>*@
+                                <th>Student Name</th>
+                                <th>Shift</th>
+                                <th>Language</th>
+                                <th>Period</th>
+                                <th>Grade</th>
+                                <th>Attach</th>
+                                <th>Action</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+@Html.Partial("_Studylanguage")
+@Html.Partial("_Studyperiod")
+@Html.Partial("_Register")
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/moment.min.js")
+    @Scripts.Render("~/Scripts/Functions/studylanguage.js")
+    @Scripts.Render("~/Scripts/Functions/studyperiod.js")
+    @Scripts.Render("~/Scripts/Functions/register.js")
+}
+
+

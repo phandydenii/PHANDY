@@ -1,0 +1,70 @@
+﻿
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="RoomTypeModal" tabindex="-1" role="dialog" aria-labelledby="RoomTypeModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;">RoomType</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input id="RoomTypeid" name="RoomTypeid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+
+                        <div class="form-group">
+                            <label for="roomtype">Room Type Name</label>
+                            <input id="roomtypename" name="roomtypename" placeholder="Enter Room Type" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="RoomTypeid" name="RoomTypeid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+
+                        <div class="form-group">
+                            <label for="roomtype">Room Type Name Khmer</label>
+                            <input id="roomtypenamekh" name="roomtypenamekh" placeholder="Enter Room Type" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="note">Note</label>
+                                <textarea name="note" id="note" rows="1" style="min-width:100%; max-width:100%" class="form-control input-sm" value=""></textarea>
+                            </div>
+                        </div>
+                   
+                </div>
+
+                <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" id="btnSaveRoomType" onclick="RoomTypeAction()" class="btn btn-info btn-block btn-sm">Add New</button>
+                        </div>
+                    
+                </div>
+                <hr />
+                <div class="row">
+                        <div class="col-md-12">
+                            <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableRoomType">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Room Type</th>
+                                        <th>Room Type Khmer</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                   
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+

@@ -1,0 +1,97 @@
+﻿
+<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="parrentModel" tabindex="-1" role="dialog" aria-labelledby="parrentModel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color:darkblue">Manage Parrent</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" hidden value="" />
+                            <input id="parrentId" name="parrentId" type="text" value="" class="form-control input-sm hidden" placeholder="Enter ParrentId" />
+                            <label for="fatherName">Father Name</label>
+                            <input id="fatherName" name="fatherName" type="text" value="" class="form-control input-sm" placeholder="Enter Fater's Name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fatherJob">Father job</label>
+                            <input id="fatherJob" name="fatherJob" type="text" value="" class="form-control input-sm" placeholder="Enter Fater's Job" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="motherName">Mother Name</label>
+                            <input id="motherName" name="motherName" type="text" value="" class="form-control input-sm" placeholder="Enter Mother's Name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="motherJob">Mother Job</label>
+                            <input id="motherJob" name="motherJob" type="text" value="" class="form-control input-sm" placeholder="Enter Mother's Job" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @*<label for="employeeId">Employee</label>*@
+                            <input id="parrentEmpId" name="parrentEmpId" type="text" value="" class="form-control input-sm hidden" placeholder="Employee" />
+                            <label for="parrentPhone">Phone</label>
+                            <input id="parrentPhone" name="parentPhone" type="text" value="" class="form-control input-sm" placeholder="Phone" />
+                        </div>
+                        <div class="form-group">
+                            <label for="parrentAddress">Address</label>
+                            <input id="parrentAddress" name="address" type="text" value="" class="form-control input-sm" placeholder="address" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="contactPerson">Contact Person</label>
+                            <input id="contactPerson" name="contactPerson" type="text" value="" class="form-control input-sm" placeholder="Enter Contact Person" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contactPhone">Contact Phone</label>
+                            <input id="contactPhone" name="contactPhone" type="text" value="" class="form-control input-sm" placeholder="Enter Contact Phone" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnParrent" onclick="ParrentAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row" style="overflow:auto">
+                    <div class="col-md-12">
+                        <table id="parrentTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                   
+                                    @*<td>Id</td>
+                                    <td>Parrent Id</td>*@
+                                    <td>Father Name</td>
+                                    <td>Father Job</td>
+                                    <td>Mother Name</td>
+                                    <td>Mother Job</td>
+                                    <td>Phone</td>
+                                    <td>Address</td>
+                                    <td>Contact Person</td>
+                                    <td>Contact Phone</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

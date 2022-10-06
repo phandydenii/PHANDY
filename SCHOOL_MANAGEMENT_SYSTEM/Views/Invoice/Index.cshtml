@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Manage Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layoutlte.cshtml";
+}
+<div id="loadingGif"></div>
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <button class="btn-warning btn-xs pull-right" type="button" data-toggle="modal" data-target="#notyetpaidModel" style="margin-left:5px;"><span class="glyphicon glyphicon-cog"></span> បុងសល់ម្សិលមិញ</button>
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#exchangeModel"><span class="glyphicon glyphicon-cog"></span> អត្រាប្តូរប្រាក់</button>
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#locationModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> គ្រប់គ្រង់ទីតាំង</button>
+            @*<button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#productModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> គ្រប់គ្រង់ទំនិញ</button>*@
+            <button onclick="ClickAddnewInvoice()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> បង្កើតវិក្ក័យបត្រថ្មី</button>
+            <h5 class="modal-title">Manage Invoice</h5>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="fromdate">ស្វែងរកវិក្ក័យប័ត្រតាមថ្ងៃខែ</label>
+                    <input id="fromdate" name="fromdate" type="date" value="" class="form-control js-date input-sm " />
+                </div>
+                <hr />
+            </div>
+            <div class="row" style="overflow:auto">
+                <div class="col-md-12">
+                    <table id="tableInvoice" class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                @*<th>ID</th>*@
+                                <th>លេខវិក្ក័យបត្រ</th>
+                                <th>ថ្ងៃខែ</th>
+                                <th>អតិថិជន</th>
+                                <th>សាខា</th>
+                                <th>ប្រាក់ទទួលបាន</th>
+                                <th>សេវាឡាន</th>
+                                <th>សេវាដឹក</th>
+                                <th>ប្រាក់ទូរទាត់រួច</th>
+                                @*<th>Status</th>
+                                    <th>Createby</th>
+                                    <th>CreateDte</th>*@
+                                <th>សកម្មភាព</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@Html.Partial("_Invoice")
+@Html.Partial("_Location")
+@Html.Partial("_Showroom")
+@Html.Partial("_ExchageRate")
+@Html.Partial("_InvoiceDetail")
+@Html.Partial("_notyetpaid")
+@Html.Partial("_Comment")
+@Html.Partial("_Payby")
+@Html.Partial("_PaymentMethod")
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/moment.min.js")
+    @Scripts.Render("~/Scripts/Functions/invoice.js")
+    @Scripts.Render("~/Scripts/Functions/location.js")
+    @Scripts.Render("~/Scripts/Functions/showroom.js")
+    @Scripts.Render("~/Scripts/Functions/exchageRate.js")
+
+}
+
+
+
+
+
+
+
+

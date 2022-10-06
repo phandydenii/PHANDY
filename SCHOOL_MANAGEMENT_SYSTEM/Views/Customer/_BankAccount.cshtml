@@ -1,0 +1,75 @@
+﻿    <div class="modal fade" data-backdrop="static" data-keyboard="fale" id="BankAccountModel" tabindex="-1" role="dialog" aria-labelledby="BankAccountModel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id="loadingGif"></div>
+                <div class="modal-header">
+                    <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <b class="modal-title" style="color:darkblue">គណនីធនាគារ</b>
+                </div>
+                <div class="modal-body">
+                    <input id="customeridtemp" name="customeridtemp" type="text" value="0" class="form-control input-sm hidden" placeholder="Enter employeeId" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input id="id" name="id" type="text" value="" class="form-control input-sm hidden" placeholder="Enter employeeId" />
+
+                            <div class="form-group">
+                                <label for="bdate">Date</label>
+                                <input id="bdate" name="bdate" type="date" value="" class="form-control input-sm" placeholder="Enter Date" />
+
+                            </div>
+                            <div class="form-group">
+                                <label for="customerid">Customer</label>
+                                <select class="form-control input-sm" id="customerid">
+                                    @foreach (var customer in Model.Customers)
+                                    {
+                                        <option value=@customer.Id>@customer.name</option>
+                                    }
+                                </select>
+                                @*<input id="employeeid" name="employeeid" type="text" value="" class="form-control input-sm" />*@
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="abaname">ABA Name</label>
+                                <input id="abaname" name="abaname" type="text" value="" class="form-control input-sm" />
+
+                            </div>
+                            <div class="form-group">
+                                <label for="abanumber">ABA Number</label>
+                                <input id="abanumber" name="abanumber" type="text" value="" class="form-control input-sm" />
+
+                            </div>
+
+                        </div>
+
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" id="btnSaveBankAccount" onclick="BankAccountAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="col-md-12">
+                            <table id="tblBankAccount" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>កាលបរិច្ឆេទ</th>
+                                        <th>អតិថិជន</th>
+                                        <th>លេខ ABA</th>
+                                        <th>ឈ្មោះ ABA</th>
+                                        <th>សកម្មភាព</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+

@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "Manage Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="loadingGif"></div>
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <button class="btn btn-primary btn-sm" onclick="sendMsgTelegram();">Send Telegram Message Testing</button>
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#branchModel"><span class="glyphicon glyphicon-cog"></span> Manage Branch</button>
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#departmentModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> Manage Department</button>
+            <button onclick="ClickAddnewEmployee()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#employeeModel" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Employee</button>
+            <h5 class="modal-title">Manage Employees</h5>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <label for="displaydepartment">All Employee by Depatment:</label>
+                        <select class="form-control" id="displaydepartment">
+                            <option>---Select Department----</option>
+                            @foreach (var depart in Model.Departments)
+                            {
+                                <option value="@depart.Id">@depart.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="overflow:auto">
+                <div class="col-md-12">
+                    <table id="tableEmployee" class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>English Name</th>
+                                <th>Khmer Name</th>
+                                <th>Gender</th>
+                                <th>Phone</th>
+
+                                @*<th>Branch</th>
+                                <th>Department</th>*@
+
+                                @*<th>Status</th>*@
+                                @*<th>Email</th>*@
+                                <th>Address</th>
+                                @*<th>Image</th>*@
+                                <th>DateOfBirht</th>
+                                @*<th>PlaceOfBirth</th>*@
+                                @*<th>Active</th>
+                                <th>CreateBy</th>
+                                <th>CreateDate</th>*@
+                                <th>Action</th>
+                                <th>More Information</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+
+
+
+@Html.Partial("_Employee")
+@Html.Partial("_Branch")
+@Html.Partial("_Department")
+@Html.Partial("_Parrent")
+@Html.Partial("_Education")
+@Html.Partial("_Salary")
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/Functions/employee.js")
+    @Scripts.Render("~/Scripts/Functions/branch.js")
+    @Scripts.Render("~/Scripts/Functions/department.js")
+    @Scripts.Render("~/Scripts/Functions/parrent.js")
+    @Scripts.Render("~/Scripts/Functions/education.js")
+    @Scripts.Render("~/Scripts/Functions/salary.js")
+    @Scripts.Render("~/Scripts/moment.min.js")
+
+    <script>
+        function sendMsgTelegram() {
+            $.ajax({
+                url: "https://api.telegram.org/1990420788:AAGOlKTMPXzBBxDASveTp0sBBhNX91aMRuE/sendMessage?chat_id=-SOSAVANN&text=" + "Hello sir" + "&parse_mode=html",                type: "GET",                contentType: "application/json;charset=utf-8",                dataType: "json",                success: function (result) {
+                    toastr.success("Successfully sent to Telegram", "Success");
+                },                erorr: function (result) {
+                    toastr.error('Cannot send to telegram.');
+                }
+            });
+        }
+    </script>
+}

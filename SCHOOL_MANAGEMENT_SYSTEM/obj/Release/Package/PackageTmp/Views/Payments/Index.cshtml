@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "Manage Payment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Layout = "~/Views/Shared/_Layoutlte.cshtml";
+}
+<div id="loadingGif"></div>
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#exchangeModel"><span class="glyphicon glyphicon-cog"></span> Exchange Rate</button>
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#courseModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> Manage Course</button>
+            <button onclick="ClickAddnewPayment()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal"  style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> New Payment</button>
+            <h5 class="modal-title">Manage Payment</h5>
+        </div>
+        <div class="panel-body">
+            <div class="row" style="overflow:auto">
+                <div class="col-md-12">
+                    <table id="tablePayment" class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                @*<th>ID</th>*@
+                                <th>InvoiceNo</th>
+                                <th>Paid Date</th>
+                                @*<th>Student ID</th>*@
+                                <th>Fullname</th>
+                                <th>Name Khmer</th>
+                                <th>Shift</th>
+                                <th>Grade</th>
+                                <th>Enrolldate</th>
+                                @*<th>Admin Fee</th>
+                                <th>Food</th>
+                                <th>Duration</th>*@
+                                <th>ExpiredDate</th>
+                                @*<th>Day Extend</th>
+                                <th>PaymentStatus</th>
+                                <th>OverDate</th>
+                                <th>Note</th>
+                                <th>Userid</th>
+                                <th>Shiftid</th>
+                                <th>Gradeid</th>
+                                <th>Createby</th>
+                                <th>CreateDte</th>*@
+                                <th>Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@Html.Partial("_Payment")
+@Html.Partial("_Course")
+@Html.Partial("_CourseList")
+@Html.Partial("_ExchageRate")
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/moment.min.js")
+    @Scripts.Render("~/Scripts/Functions/payment.js")
+    @Scripts.Render("~/Scripts/Functions/course.js")
+    @Scripts.Render("~/Scripts/Functions/exchageRate.js")
+}
+
+
+
+
+
+
+
+

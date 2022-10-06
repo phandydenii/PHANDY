@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#StaffModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> បន្ថែមបុគ្គលិក</button>
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#PositionModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> គ្រប់គ្រងតួនាទី</button>
+            <h5 class="modal-title" style="color:aliceblue">គ្រប់គ្រងភ្ញៀវ</h5>
+        </div>
+        <div class="panel-body">
+            <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableGuest">
+                <thead>
+                    <tr>
+                        <th>លេខ</th>
+                        <th>ឈ្មោះជាភាសាអង់គ្លេស</th>
+                        <th>ឈ្មោះជាភាសាខ្មែរ</th>
+                        <th>ភេទ</th>
+                        <th>ថ្ងៃខែឆ្នាំកំណើត</th>
+                        <th>អាស័យដ្ឋាន</th>
+                        <th>លេខទូរសព្ទ</th>
+                        <th>អ៊ីម៉ែល</th>
+                        <th>ស្ថានភាព</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/Functions/guest.js")
+
+    @Scripts.Render("~/Scripts/moment.min.js")
+}

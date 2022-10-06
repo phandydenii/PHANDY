@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Manage Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="loadingGif"></div>
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#categoryModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> ប្រភេទទំនិញ</button>
+            <button onclick="ClickAddnewProduct()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#productModel" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> បង្កើតទំនិញថ្មី</button>
+            <h5 class="modal-title">Manage Product</h5>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <label for="displayshowroom">ជ្រើសរើសសាខា:</label>
+                        <select class="form-control" id="displayshowroom">
+                            <option>---Select Showroom----</option>
+                            @foreach (var depart in Model.Showrooms)
+                            {
+                                <option value="@depart.id">@depart.name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="overflow:auto">
+                <div class="col-md-12">
+                    <table id="tableProduct" class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                @*<th>ID</th>*@
+                                <th>ឈ្មោះទំនិញ</th>
+                                @*<th>ប្រភេទទំនិញ</th>*@
+                                <th>ចំនួនក្នុងស្តុក</th>
+                                <td>រូបថត</td>
+                                @*<th>សាខា</th>*@
+                                <th>ស្ថានភាព</th>
+                                <th>សកម្មភាព</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+
+
+@Html.Partial("_Category")
+@Html.Partial("_Product")
+@Html.Partial("_Showroom")
+@section scripts
+{
+    @Scripts.Render("~/Scripts/Functions/category.js")
+    @Scripts.Render("~/Scripts/Functions/showroom.js")
+    @Scripts.Render("~/Scripts/Functions/product.js")
+    @Scripts.Render("~/Scripts/moment.min.js")
+}

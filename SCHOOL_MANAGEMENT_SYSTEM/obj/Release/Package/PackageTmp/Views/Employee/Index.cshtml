@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Manage Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="loadingGif"></div>
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            @*<button class="btn btn-primary btn-sm" onclick="sendMsgTelegram();">Send Telegram Message Testing</button>*@
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#positionModel"><span class="glyphicon glyphicon-cog"></span> គ្រប់គ្រងមុខតំណែង</button>
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#departmentModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> គ្រប់គ្រងផ្នែក</button>
+            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#showroomModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> គ្រប់គ្រង់សាខា</button>
+            <button onclick="ClickAddnewEmployee()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#employeeModel" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> បង្កើតបុគ្គលិកថ្មី</button>
+            <h5 class="modal-title">Manage Employee</h5>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <label for="displaydepartment">បុគ្គលិកគ្រប់ផ្នែក:</label>
+                        <select class="form-control" id="displaydepartment">
+                            <option>---Select Department----</option>
+                            @foreach (var depart in Model.Department)
+                            {
+                                <option value="@depart.Id">@depart.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="overflow:auto">
+                <div class="col-md-12">
+                    <table id="tableEmployee" class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                @*<th>ID</th>*@
+                                <th>ឈ្មោះអង់គ្លេស</th>
+                                <th>ឈ្មោះជាភាសារខ្មែរ</th>
+                                <th>ភេទ</th>
+                                <th>លេខទូរសព្ទ</th>
+                                @*<th>DateOfBirth</th>*@
+                                <th>អាស័យដ្ឋាន</th>
+                                @*<th>Email</th>*@
+                                @*<th>IdentityNo</th>*@
+                                @*<th>Positionid</th>
+                                    <th>Departmentid</th>*@
+                                @*<th>Photo</th>*@
+                                @*<th>ShipperType</th>
+                                    <th>Vehiracle</th>
+                                    <th>Plateno</th>*@
+                                @*<th>Showrromid</th>*@
+                                <th>ថ្លៃកាត</th>
+                                <th>សាំង</th>
+                                <th>កុងស្យុងយក</th>
+                                <th>កុងស្យុងដឹក</th>
+                                @*<th>CreateBy</th>
+                                    <th>CreateDate</th>*@
+                                <th>សកម្មភាព</th>
+                                @*<th>More Information</th>*@
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@Html.Partial("_Employee")
+@Html.Partial("_Department")
+@Html.Partial("_Position")
+@Html.Partial("_Showroom")
+@Html.Partial("_Bonus")
+@Html.Partial("_Salary")
+@section scripts
+{
+    @Scripts.Render("~/Scripts/Functions/salary.js")
+    @Scripts.Render("~/Scripts/Functions/employee.js")
+    @Scripts.Render("~/Scripts/Functions/department.js")
+    @Scripts.Render("~/Scripts/Functions/position.js")
+    @Scripts.Render("~/Scripts/Functions/showroom.js")
+    @Scripts.Render("~/Scripts/Functions/bonus.js")
+    @Scripts.Render("~/Scripts/moment.min.js")
+
+
+<script>
+        function sendMsgTelegram() {
+
+            $.ajax({
+                url: "https://api.telegram.org/bot1990420788:AAGOlKTMPXzBBxDASveTp0sBBhNX91aMRuE/sendMessage?chat_id=390957773&text=" + "Hello sir" + "&parse_mode=html",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    toastr.success("Successfully sent to Telegram", "Success");
+                },
+                erorr: function (result) {
+                    toastr.error('Cannot send to telegram.');
+                }
+            });
+        }
+</script>
+}

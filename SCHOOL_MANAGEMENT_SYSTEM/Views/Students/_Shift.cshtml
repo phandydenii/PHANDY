@@ -1,0 +1,52 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="shiftModel" tabindex="-1" role="dialog" aria-labelledby="shiftModel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color:darkblue">Manage Shift</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" hidden value="" />
+                            <input id="shiftid" name="shiftid" type="text" value="" class="form-control input-sm hidden" placeholder="Enter ShiftId" />
+                            <label for="shiftname">Shift Name</label>
+                            <input id="shiftname" name="shiftname" type="text" value="" class="form-control input-sm" placeholder="Enter Shift" />
+                        </div>
+                        <div class="form-group">
+                            <label for="shiftstatus">Shift Status</label>
+                            <input id="shiftstatus" name="shiftstatus" type="text" value="" class="form-control input-sm hidden" placeholder="Enter Status" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnShift" onclick="ShiftAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="shiftTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    @*<td>Shift Id</td>*@
+                                    <td>Shift Name</td>
+                                    @*<td>Shift Status</td>*@
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

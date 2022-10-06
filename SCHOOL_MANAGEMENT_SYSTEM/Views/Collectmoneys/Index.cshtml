@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Manage Collect Money From Shipper";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="loadingGif"></div>
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            @*<button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#transferModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> ប្រភេទចំណាយ</button>*@
+            <button onclick="ClickAddnewCollectmoney()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#collectmoneyModel" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> បង្កើតថ្មី</button>
+            <h5 class="modal-title">Manage Colloect Money</h5>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-inline">
+                        <label for="displayemployee">ជ្រើសរើសបុគ្គលិកដឹក:</label>
+                        <select class="form-control" id="displayemployee">
+                            <option>---អ្នកដឹកទាំងអស់----</option>
+                            @foreach (var depart in Model.Employee)
+                            {
+                                <option value="@depart.Id">@depart.namekh</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="overflow:auto">
+                <div class="col-md-12">
+                    <table id="tableCollectmoney" class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                @*<th>ID</th>*@
+                                <th>ថ្ងៃខែ</th>
+                                <th>អ្នកដឹក</th>
+                                <th>ចំនួនប្រាក់</th>
+                                <td>សរុបប្រាក់យក</td>
+                                <th>សរុបប្រាក់ដឹក</th>
+                                <th>ប្រាក់បន្ថែម</th>
+                                <td>បានទូរទាត់</td>
+                                @*<th>createby</th>
+                                <th>createdate</th>*@
+                                <th>សកម្មភាព</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+@Html.Partial("_Collectmoney")
+@section scripts
+{
+
+    @Scripts.Render("~/Scripts/Functions/collectmoney.js")
+    @Scripts.Render("~/Scripts/moment.min.js")
+}

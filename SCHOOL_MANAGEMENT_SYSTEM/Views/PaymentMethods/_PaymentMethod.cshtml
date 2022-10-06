@@ -1,0 +1,48 @@
+﻿
+<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="PaymentMethodModel" tabindex="-1" role="dialog" aria-labelledby="PaymentMethodModel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id="loadingGif"></div>
+                <div class="modal-header">
+                    <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <b class="modal-title" style="color:darkblue">វិធីបង់ប្រាក់</b>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <input id="id" name="id" type="text" value="" class="form-control input-sm hidden" placeholder="Enter employeeId" />
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="methodName">Method Name</label>
+                                <input id="methodName" name="methodName" type="text" value="" class="form-control input-sm" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="accountNo">Account Number</label>
+                                <input id="accountNo" name="accountNo" type="text" value="" class="form-control input-sm" />
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="accountName">Account Name</label>
+                                <input id="accountName" name="accountName" type="text" value="" class="form-control input-sm" />
+                            </div>
+                        </div>
+                    </div>                       
+
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" id="btnSavePaymentMethod" onclick="PaymentMethodAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+

@@ -1,0 +1,179 @@
+﻿
+<div class="modal fade " data-backdrop="static" data-keyboard="false" id="RoomDetailModal" tabindex="-1" role="dialog" aria-labelledby="RoomDetailModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" id="btnCloseRoomDetail" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;" id="lblRoom"></b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input id="RoomDetailid" name="RoomDetailid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                    <input id="roomid" name="roomid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <h5><b>Room</b></h5>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <hr />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button OnClick='OnEditRoom' class='btn btn-warning btn-xs' style='margin-right:5px'>Edit</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul class="list-group" id="listroom">
+                                            <li class="list-group-item">
+                                                <span class="badge" id="rmno"></span>
+                                               Room No
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="roomtype"></span>
+                                                Room Type
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="flno"></span>
+                                                Floor No
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <span class="badge" id="sc"></span>
+                                                Service Charge
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="roomprice"></span>
+                                                Room Price
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="rmky"></span>
+                                                Room Key
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <h5><b>Item</b></h5>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <hr />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button OnClick='OnEditRoom' class='btn btn-warning btn-xs' style='margin-right:5px'>Edit</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <ul id="itlist" class="list-group"></ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6"> 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <h5><b>Guest</b></h5>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <hr />
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button OnClick='OnEditRoom' class='btn btn-warning btn-xs' style='margin-right:5px'>Edit</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul class="list-group" id="listroom">
+                                            <li class="list-group-item">
+                                                <span class="badge" id="guestnname"></span>
+                                                Name
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="guestnamekh"></span>
+                                                Name Khmer
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="gender"></span>
+                                                Gender
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="phone"></span>
+                                                Phone
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="men"></span>
+                                                Men
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="women"></span>
+                                                Women
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="child"></span>
+                                                Child
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <span class="badge" id="checkindate"></span>
+                                                Check In Date
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="startdate"></span>
+                                                Start Date
+                                            </li>
+                                            <li class="list-group-item">
+                                                <span class="badge" id="enddate"></span>
+                                                End Date
+                                            </li>
+                                            
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <div class="col-md-3" id="hidebook">
+                    <button type="button" id="btnBook" onclick="OnBookAction()" class="btn btn-success btn-block btn-sm">Book</button>
+                </div>
+                <div class="col-md-3" id="hidecheckin">
+                    <button type="button" id="btnCheckIn" onclick="OnCheckInAction()" class="btn btn-primary btn-block btn-sm">Check In</button>
+                </div>
+                <div class="col-md-3" id="hidecheckout">
+                    <button type="button" id="btnCheckOut" onclick="OnCHeckOutAction()" class="btn btn-info btn-block btn-sm">Check Out</button>
+                </div>
+                <div class="col-md-3" id="hidepayment">
+                    <button type="button" id="btnPayment" onclick="OnPaymentAction()" class="btn btn-info btn-block btn-sm">Payment</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+

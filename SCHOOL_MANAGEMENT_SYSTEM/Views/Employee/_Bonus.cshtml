@@ -1,0 +1,74 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="bonusModel" tabindex="-1" role="dialog" aria-labelledby="bonusModel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color:darkblue">គ្រប់គ្រងប្រាក់រង្វាន់ ការខ្ចី ចុងសប្តាហ៌</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input id="employeeid" name="employeeid" type="text" value="" class="form-control input-sm hidden" placeholder="Enter DepartmentId" />
+                            <input id="bonusid" name="bonusid" type="number" value="0.00" class="form-control input-sm hidden" />
+                            <label for="date">ថ្ងៃខែ</label>
+                            <input id="date" name="date" type="date" value="" class="form-control js-date input-sm" placeholder=" Date" />
+                        </div>
+                        <div class="form-group">
+                            <label for="type">ប្រភេទ</label>
+                            <select class="form-control input-sm" id="type">
+                                <option>ប្រាក់រង្វាន់</option>
+                                <option>ប្រាក់ចុងសប្តាហ៌</option>
+                                <option>ខ្ចីប្រាក់</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="amount">ទឹកប្រាក់</label>
+                            <input id="amount" name="amount" type="number" value="0.00" class="form-control input-sm" />
+                        </div>
+                        <div class="form-group">
+                            <label for="note">បរិយាយ</label>
+                            <input id="note" name="note" type="text" value="" class="form-control input-sm" />
+                        </div>
+                    </div>
+                 </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnBonus" onclick="BonusAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="bonusTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    @*<td>Id</td>*@
+                                    <td>ថ្ងៃខែ</td>
+                                    <td>ប្រភេទ</td>
+                                    @*<td>Employeeid</td>*@
+                                    <td>ទឹកប្រាក់</td>
+                                    <td>បរិយាកាស</td>
+                                    <td>សកម្មភាព</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

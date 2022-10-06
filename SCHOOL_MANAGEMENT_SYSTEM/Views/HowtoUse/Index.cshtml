@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Manage HowtoUse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="loadingGif"></div>
+
+<div class="container-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading clearfix">
+            @*<button class="btn btn-primary btn-sm" onclick="sendMsgTelegram();">Send Telegram Message Testing</button>*@
+
+            <button onclick="ClickAddnewHowtoUse()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#HowtoUseModel" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> បង្កើតរបៀបប្រើ</button>
+            <h5 class="modal-title">Manage HowtoUse</h5>
+        </div>
+        <div class="panel-body">
+
+            <div class="row" style="overflow:auto">
+                <div class="col-md-12">
+                    <table id="tableHowtoUse" class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>លេខ</th>
+                                <th>កំណត់ចំណាំ</th>
+                                <th>បុគ្គលិក</th>
+                                <th>ឯកសារភ្ជាប់</th>
+                                <th>សកម្មភាព</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@Html.Partial("HowtoUse")
+
+@section scripts
+{
+    @Scripts.Render("~/Scripts/moment.min.js")
+    @Scripts.Render("~/Scripts/Functions/howtoUse.js")
+}

@@ -1,0 +1,101 @@
+﻿@using SCHOOL_MANAGEMENT_SYSTEM.ViewModels
+    @{
+        ViewBag.Title = "Manage Room";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    
+
+<div class="container-fluid" >
+    <div class="pos_relative ">
+        <div class="row">
+            <div class="col-md-12">
+                <span class="label label-primary">Free @Model.TotalFree</span>
+                <span class="label label-success">Booking @Model.TotalBook</span>
+               @* <span class="label label-info">Block</span>*@
+                <span class="label label-warning">Chek In @Model.TotalCheckIn</span>
+                <span class="label label-danger">Block @Model.TotalBlock</span>
+
+                <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Floor</button>
+                <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomTypeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room Type</button>
+                <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room</button>
+                <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#AddRoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Item To Room</button>
+            </div>
+        </div>
+        
+        <div class="row">
+            @{ string c = "";}
+            @foreach (var item in Model.Rooms)
+            {
+                if (item.status == "FREE")
+                {
+                    c = "btn-block btn btn-primary";
+                }
+                else if (item.status == "BLOCK")
+                {
+                    c = "btn-block btn btn-danger";
+                }
+                else if (item.status == "CHECK IN")
+                {
+                    c = "btn-block btn btn-warning";
+                }
+                else if (item.status == "BOOKING")
+                {
+                    c = "btn-block btn btn-success";
+                }
+
+                var b = @item.id;
+                <div class="col-md-1 col-lg-1 col-xl-1">
+                    <button onclick='OnClickRoom(@b)' type="button" class="@c"  style="height:60px;margin-top:10px" id="btnRoom'+@b+'"><span style="font-weight:bold" >@item.room_no</span></button>
+                </div>
+            }
+            <br />
+        </div>
+        
+    </div>
+</div>
+    
+@Html.Partial("_Floor")
+@Html.Partial("_RoomType")
+@Html.Partial("_Room")
+@Html.Partial("_RoomDetail")
+@Html.Partial("_Building")
+          
+
+@section scripts{
+    @Scripts.Render("~/Scripts/Functions/floor.js")
+    @Scripts.Render("~/Scripts/Functions/roomtypes.js")
+    @Scripts.Render("~/Scripts/Functions/building.js")
+    @Scripts.Render("~/Scripts/Functions/room.js")
+    @Scripts.Render("~/Scripts/Functions/roomdetail.js")
+
+    @Scripts.Render("~/Scripts/moment.min.js")
+}
+
+@*<script>
+    function OnClickRoom(b) {
+        $("#RoomDetailModal").modal('show');
+        document.getElementById('lblRoom').innerText = "Room " + b;
+        $("#roomid").val(b);
+       
+        $.ajax({
+            url: "/api/roomdetails/0/" + b,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            datatype: "json",
+            success: function (result) {
+                $.each(result, function (key,value) {
+                    //$("#itemname").append(result[index].itemnamekh);
+                    //$('#exampleid').append("<tr>\<td>" + value.itemnamekh + "</td>\</tr>");
+                    $('#itlist').append("<li class='list-group-item'>"+"<span class='badge'>1</span>"+value.itemnamekh +" "+value.itemname+"</li>");  
+                });
+            },
+            error: function (errormessage) {
+                toastr.error("No Record Select!", "Service Response");
+            }
+        });
+
+    }
+
+   
+</script>*@

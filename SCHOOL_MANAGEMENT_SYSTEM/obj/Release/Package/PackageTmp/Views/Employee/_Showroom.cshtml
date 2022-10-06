@@ -1,0 +1,66 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="showroomModel" tabindex="-1" role="dialog" aria-labelledby="showroomModel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color:darkblue">គ្រប់គ្រងសាខា</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" hidden value="" />
+                            <input id="id" name="id" type="text" value="" class="form-control input-sm hidden" placeholder="Enter ShowroomID" />
+
+                            <label for="name">សាខា</label>
+                            <input id="name" name="name" type="text" value="" class="form-control input-sm" placeholder="Enter Showroom Name" />
+
+                            <label for="address">អាស័យដ្ឋាន</label>
+                            <input id="address" name="address" type="text" value="" class="form-control input-sm" placeholder="Enter Address" />
+
+                            <label for="owner">អ្នកគ្រប់គ្រង</label>
+                            <input id="owner" name="owner" type="text" value="" class="form-control input-sm" placeholder="Enter Owner Name" />
+
+                            <label for="phonenumber">លេខទូរស័ព្ទ</label>
+                            <input id="phonenumber" name="phonenumber" type="text" value="" class="form-control input-sm" placeholder="Enter Phone Number" />
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnShowroom" onclick="ShowroomAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="showroomTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    @*<td>Showroom Id</td>*@
+                                    <td>ការិយាល័យ</td>
+                                    <td>អាស័យដ្ឋាន</td>
+                                    <td>អ្នកគ្រប់គ្រង</td>
+                                    <td>លេខទូរសព្ទ</td>
+                                    <td>សកម្មភាព</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

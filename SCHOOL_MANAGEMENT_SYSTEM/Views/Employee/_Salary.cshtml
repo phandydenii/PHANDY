@@ -1,0 +1,65 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="salaryModel" tabindex="-1" role="dialog" aria-labelledby="salaryModel" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color:darkblue">Manage Salary</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="salaryDate">Salary Date</label>
+                            <input id="salaryDate" name="salaryDate" type="date" value="" class="form-control js-date input-sm" placeholder="Salary Date" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" hidden value="" />
+                            <input id="salaryId" name="salaryId" type="text" value="" class="form-control input-sm hidden" placeholder="Enter salaryId" />
+                            <label for="salaryAmount">Salary Amount</label>
+                            <input id="salaryAmount" name="salaryAmount" type="text" value="" class="form-control input-sm" placeholder="Enter Amount" />
+                        </div>
+                        <div class="form-group">
+                            <label for="salaryNote">Note</label>
+                            <input id="salaryNote" name="salaryNote" type="text" value="" class="form-control input-sm" placeholder="Enter Note" />
+                        </div>
+                        <div class="form-group">
+                            <input id="empid" name="empid" type="text" value="" class="form-control input-sm hidden" placeholder="empid" />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnSalary" onclick="SalaryAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row" style="overflow:auto">
+                    <div class="col-md-12">
+                        <table id="salaryTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    @*<td>SalaryId</td>
+                                    <td>SalaryEmpid</td>*@
+                                    <td>Salary Date</td>
+                                    <td>SalaryAmount</td>
+                                    <td>Note</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

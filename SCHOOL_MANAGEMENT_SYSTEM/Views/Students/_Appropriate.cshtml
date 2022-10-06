@@ -1,0 +1,205 @@
+﻿
+<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="appropriateModel" tabindex="-1" role="dialog" aria-labelledby="appropriateModel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color:darkblue">Manage Appropriate By Student</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" hidden value="" />
+                            <input id="appid" name="appid" type="text" value="" class="form-control input-sm hidden" placeholder="Enter AppropriateID" />
+                            <input id="appstudentid" name="appstudentid" type="text" value="" class="form-control input-sm hidden" placeholder="StudentID" />
+                            <label for="livewith">livewith Name</label>
+                            <input id="livewith" name="livewith" type="text" value="" class="form-control input-sm" placeholder="Enter Live with's Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="speakhome">Language Speak at home</label>
+                            <input id="speakhome" name="speakhome" type="text" value="" class="form-control input-sm" placeholder="Enter Speak at home" />
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <input id="speakenglish" name="speakenglish" type="checkbox" value="" class="form-control-new input-sm" placeholder="Speak English" />
+                                </div>
+                                <div class="col-sm-10" style="padding-top:7px;">
+                                    <label for="speakenglish">Can Speak English</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <input id="speakchinese" name="speakchinese" type="checkbox" value="" class="form-control-new input-sm" placeholder="Speak Chinese" />
+                                </div>
+                                <div class="col-sm-10" style="padding-top:7px;">
+                                    <label for="speakchinese">Can speak Chinese</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <input id="usetostudy" name="usetostudy" type="checkbox" value="" class="form-control-new input-sm" placeholder="Use to Study" />
+                                </div>
+                                <div class="col-sm-10" style="padding-top:7px;">
+                                    <label for="usetostudy">Use to Study ?</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                @*<label for="usetostudynote">Use to Study Note</label>*@
+                                <input id="usetostudynote" name="usetostudynote" type="text" value="" class="form-control input-sm" placeholder="Use to Study Note" />
+                            </div>
+                        </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <input id="toilattrained" name="toilattrained" type="checkbox" value="" class="form-control-new input-sm" placeholder="Toilat Trained" />
+                                </div>
+                                <div class="col-sm-10" style="padding-top:7px;">
+                                    <label for="toilattrained">Toilet Trained</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <input id="illness" name="illness" type="checkbox" value="" class="form-control-new input-sm" placeholder="Enter illness" />
+                                </div>
+                                <div class="col-sm-10" style="padding-top:7px;">
+                                    <label for="illness">illness</label>
+                                </div>
+                            </div>
+                        </div>
+                            
+                            <div class="form-group">
+                                @*<label for="illnessnote">illness Note</label>*@
+                                <input id="illnessnote" name="illnessnote" type="text" value="" class="form-control input-sm" placeholder="Enter illness Note" />
+                            </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <input id="allergies" name="allergies" type="checkbox" value="" class="form-control-new input-sm" placeholder="Use to Allergies" />
+                                </div>
+                                <div class="col-sm-10" style="padding-top:7px;">
+                                    <label for="allergies">Allergies ?</label>
+                                </div>
+                            </div>
+                        </div>
+
+                            <div class="form-group">
+                                <label for="allergiesnote">Allergies Note</label>
+                                <input id="allergiesnote" name="allergiesnote" type="text" value="" class="form-control input-sm" placeholder="Use to Study Note" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="sufferinfor">Suffer Information</label>
+                                <input id="sufferinfor" name="sufferinfor" type="text" value="" class="form-control input-sm" placeholder="Enter Sufferinformation" />
+                            </div>
+                        </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <input id="fears" name="fears" type="checkbox" value="" class="form-control-new input-sm" placeholder="Use to Fears" />
+                                </div>
+                                <div class="col-sm-10" style="padding-top:7px;">
+                                    <label for="fears">Fears</label>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                @*<label for="fearsnote">Fears Note</label>*@
+                                <input id="fearsnote" name="fearsnote" type="text" value="" class="form-control input-sm" placeholder="Enter Fears Note" />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="othernote">Other Note</label>
+                                <input id="othernote" name="othernote" type="text" value="" class="form-control input-sm" placeholder="Other Note" />
+                            </div>
+
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <input id="playsport" name="playsport" type="checkbox" value="" class="form-control-new input-sm" placeholder="Use to Playsport" />
+                                </div>
+                                <div class="col-sm-10" style="padding-top:7px;">
+                                    <label for="playsport">Use to Playsport</label>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="form-group">
+                                @*<label for="playsportnote">Play Sport Note</label>*@
+                                <input id="playsportnote" name="playsportnote" type="text" value="" class="form-control input-sm" placeholder="Enter Play Sport Note" />
+                            </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <input id="allowphoto" name="allowphoto" type="checkbox" value="" class="form-control-new input-sm" placeholder="Enter Allow Photo" />
+                                </div>
+                                <div class="col-sm-10" style="padding-top:7px;">
+                                    <label for="allowphoto">Allow Photo</label>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+
+                <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" id="btnAppropriate" onclick="appropriateAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                        </div>
+                </div>
+
+                <hr />
+
+                <div class="row" style="overflow:auto">
+                        <div class="col-md-12">
+                            <table id="appropriateTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        @*<td>Id</td>
+                                        <td>StudentID</td>*@
+                                        <td>Livewith</td>
+                                        <td>Speakhome</td>
+                                        @*<td>Speak English</td>
+                                        <td>Speak Chinese</td>*@
+                                        @*<td>Use to Study</td>*@
+                                        <td>Use to Study Note</td>
+                                        @*<td>Toilat Trained</td>*@
+                                        @*<td>Illness</td>*@
+                                        <td>Illness Note</td>
+                                        @*<td>Allergies</td>*@
+                                        <td>Allergies Note</td>
+                                        @*<td>Fears</td>*@
+                                        <td>Fears Note</td>
+                                        <td>Suffer Infor</td>
+                                        <td>Other Note</td>
+                                        @*<td>Play Sport</td>*@
+                                        <td>Play Sport Note</td>
+                                        @*<td>Allow Photo</td>*@
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+

@@ -1,0 +1,403 @@
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x64\msvcr120.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x86\msvcr120.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\csc.exe
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CodeAnalysis.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CSharp.Core.targets
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.VisualBasic.Core.targets
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\System.Collections.Immutable.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\System.Reflection.Metadata.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\vbc.exe
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\VBCSCompiler.exe
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\VBCSCompiler.exe.config
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SCHOOL_MANAGEMENT_SYSTEM.dll.config
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SCHOOL_MANAGEMENT_SYSTEM.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SCHOOL_MANAGEMENT_SYSTEM.pdb
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Antlr3.Runtime.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\AutoMapper.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.SqlServer.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Core.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Owin.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.Edm.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.OData.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Host.SystemWeb.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Cookies.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Facebook.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Google.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.OAuth.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Twitter.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.ReportViewer.Common.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.SqlServer.Types.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Web.Infrastructure.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Newtonsoft.Json.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Owin.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ReportViewerForMvc.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Net.Http.Formatting.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Spatial.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Helpers.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.OData.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.WebHost.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Mvc.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Optimization.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Razor.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Deployment.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Razor.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\WebGrease.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EnvDTE.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EnvDTE80.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\stdole.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.VisualStudio.VSHelp.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.VisualStudio.ComponentModelHost.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Build.Tasks.Core.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\VSLangProj.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\VSLangProj80.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.VisualStudio.GraphModel.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.MSXML.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Build.Utilities.Core.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Build.Framework.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\VSLangProj2.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\AutoMapper.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.Edm.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.OData.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Net.Http.Formatting.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Spatial.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Helpers.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.OData.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.WebHost.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Mvc.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Razor.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Deployment.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Razor.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Optimization.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Antlr3.Runtime.pdb
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Newtonsoft.Json.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.SqlServer.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Core.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Owin.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Host.SystemWeb.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Facebook.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Cookies.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.OAuth.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Google.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Twitter.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ja\Microsoft.Data.Edm.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\it\Microsoft.Data.Edm.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ru\Microsoft.Data.Edm.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\de\Microsoft.Data.Edm.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ko\Microsoft.Data.Edm.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\fr\Microsoft.Data.Edm.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\es\Microsoft.Data.Edm.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ja\Microsoft.Data.OData.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\it\Microsoft.Data.OData.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ru\Microsoft.Data.OData.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\de\Microsoft.Data.OData.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ko\Microsoft.Data.OData.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\fr\Microsoft.Data.OData.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\es\Microsoft.Data.OData.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hans\System.Spatial.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hant\System.Spatial.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ja\System.Spatial.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\it\System.Spatial.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ru\System.Spatial.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\de\System.Spatial.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ko\System.Spatial.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\fr\System.Spatial.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\es\System.Spatial.resources.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\RdlCompile.cache
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\RdlCompile.compiled
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\SCHOOL_MANAGEMENT_SYSTEM.dll
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\SCHOOL_MANAGEMENT_SYSTEM.pdb
+\\Mac\Home\Desktop\SYSTEM\Delivery Express\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\DELIVERY_MANAGEMENT_SYSTEM.csprojResolveAssemblyReference.cache
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x64\msvcr120.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x86\msvcr120.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\csc.exe
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\System.Collections.Immutable.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\System.Reflection.Metadata.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\vbc.exe
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\VBCSCompiler.exe
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\VBCSCompiler.exe.config
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SCHOOL_MANAGEMENT_SYSTEM.dll.config
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SCHOOL_MANAGEMENT_SYSTEM.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SCHOOL_MANAGEMENT_SYSTEM.pdb
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Antlr3.Runtime.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\AutoMapper.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.SqlServer.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.Edm.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.OData.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Google.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Twitter.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.ReportViewer.Common.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.SqlServer.Types.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Web.Infrastructure.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Newtonsoft.Json.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Owin.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ReportViewerForMvc.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Net.Http.Formatting.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Spatial.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Helpers.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.OData.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.WebHost.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Mvc.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Optimization.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Razor.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Deployment.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Razor.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\WebGrease.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\AutoMapper.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.Edm.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.OData.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Net.Http.Formatting.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Spatial.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Helpers.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.OData.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.WebHost.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Mvc.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Razor.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Deployment.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Razor.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Optimization.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Antlr3.Runtime.pdb
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Newtonsoft.Json.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.SqlServer.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Google.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Twitter.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\de\Microsoft.Data.Edm.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\es\Microsoft.Data.Edm.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\fr\Microsoft.Data.Edm.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\it\Microsoft.Data.Edm.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ja\Microsoft.Data.Edm.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ko\Microsoft.Data.Edm.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ru\Microsoft.Data.Edm.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\de\Microsoft.Data.OData.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\es\Microsoft.Data.OData.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\fr\Microsoft.Data.OData.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\it\Microsoft.Data.OData.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ja\Microsoft.Data.OData.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ko\Microsoft.Data.OData.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ru\Microsoft.Data.OData.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\de\System.Spatial.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\es\System.Spatial.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\fr\System.Spatial.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\it\System.Spatial.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ja\System.Spatial.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ko\System.Spatial.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ru\System.Spatial.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hans\System.Spatial.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hant\System.Spatial.resources.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\DELIVERY_MANAGEMENT_SYSTEM.csprojAssemblyReference.cache
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\RdlCompile.cache
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\RdlCompile.compiled
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\DELIVERY_MANAGEMENT_SYSTEM.csproj.CoreCompileInputs.cache
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\DELIVERY_MANAGEMENT_SYSTEM.csproj.CopyComplete
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\SCHOOL_MANAGEMENT_SYSTEM.dll
+D:\Project\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\SCHOOL_MANAGEMENT_SYSTEM.pdb
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x64\msvcr120.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x86\msvcr120.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\csc.exe
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\System.Collections.Immutable.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\System.Reflection.Metadata.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\vbc.exe
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\VBCSCompiler.exe
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\roslyn\VBCSCompiler.exe.config
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SCHOOL_MANAGEMENT_SYSTEM.dll.config
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SCHOOL_MANAGEMENT_SYSTEM.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\SCHOOL_MANAGEMENT_SYSTEM.pdb
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Antlr3.Runtime.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\AutoMapper.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.SqlServer.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Core.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.Edm.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.OData.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Cookies.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Facebook.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Google.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.OAuth.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Twitter.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.ReportViewer.Common.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.SqlServer.Types.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Web.Infrastructure.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Newtonsoft.Json.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Owin.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ReportViewerForMvc.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Net.Http.Formatting.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Spatial.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Helpers.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.OData.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.WebHost.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Mvc.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Optimization.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Razor.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Deployment.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Razor.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\WebGrease.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EnvDTE.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EnvDTE80.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\stdole.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.VisualStudio.VSHelp.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.VisualStudio.ComponentModelHost.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.VisualStudio.TemplateWizardInterface.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Build.Tasks.Core.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\VSLangProj.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\VSLangProj80.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.VisualStudio.GraphModel.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.MSXML.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Build.Utilities.Core.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Build.Framework.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\VSLangProj2.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\AutoMapper.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.Edm.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Data.OData.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Net.Http.Formatting.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Spatial.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Helpers.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.OData.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Http.WebHost.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Mvc.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Razor.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Deployment.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.WebPages.Razor.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\System.Web.Optimization.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Antlr3.Runtime.pdb
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Newtonsoft.Json.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EntityFramework.SqlServer.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Core.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Facebook.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Cookies.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.OAuth.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Google.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.Twitter.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EnvDTE.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\EnvDTE80.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\Microsoft.VisualStudio.TemplateWizardInterface.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\VSLangProj.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\VSLangProj80.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\VSLangProj2.xml
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\de\Microsoft.Data.Edm.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\es\Microsoft.Data.Edm.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\fr\Microsoft.Data.Edm.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\it\Microsoft.Data.Edm.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ja\Microsoft.Data.Edm.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ko\Microsoft.Data.Edm.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ru\Microsoft.Data.Edm.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\de\Microsoft.Data.OData.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\es\Microsoft.Data.OData.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\fr\Microsoft.Data.OData.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\it\Microsoft.Data.OData.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ja\Microsoft.Data.OData.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ko\Microsoft.Data.OData.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ru\Microsoft.Data.OData.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\de\System.Spatial.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\es\System.Spatial.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\fr\System.Spatial.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\it\System.Spatial.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ja\System.Spatial.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ko\System.Spatial.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\ru\System.Spatial.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hans\System.Spatial.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\bin\zh-Hant\System.Spatial.resources.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\RdlCompile.cache
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\RdlCompile.compiled
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\SCHOOL_MANAGEMENT_SYSTEM.dll
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\SCHOOL_MANAGEMENT_SYSTEM.pdb
+C:\DELIVERY_SYSTEM\SCHOOL_MANAGEMENT_SYSTEM\obj\Debug\DELIVERY_MANAGEMENT_SYSTEM.csprojResolveAssemblyReference.cache

@@ -1,0 +1,51 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="branchModel" tabindex="-1" role="dialog" aria-labelledby="branchModel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color:darkblue">Manage Branch</b>
+            </div>
+            <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="text" hidden value="" />
+                                <input id="branchId" name="branchId" type="text" value="" class="form-control input-sm hidden" placeholder="Enter BranchId" />
+                                <label for="Branch">Branch Name</label>
+                                <input id="branchName" name="branchName" type="text" value="" class="form-control input-sm" placeholder="Enter BranchName" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" id="btnBranch" onclick="BranchAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                        </div>
+                    </div>
+                    
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="branchTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        @*<td>Branch Id</td>*@
+                                        <td>Branch Name</td>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                
+            </div>
+        </div>
+    </div>
+</div>

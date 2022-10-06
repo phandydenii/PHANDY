@@ -1,0 +1,85 @@
+﻿@model SCHOOL_MANAGEMENT_SYSTEM.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary" style="margin-top: 10px;">
+                <div class="panel-heading">
+                    @Html.ActionLink("<Back", "Index", "UserRoles", null, new { @class = "btn btn-success btn-xs pull-right" })
+                    <h5 class="modal-title">Edit User</h5>
+                </div>
+                <div class="panel-body">
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.LabelFor(m => m.FullName)
+                                </div>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control input-sm", @placeholder = "Enter Fullname" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.LabelFor(m => m.Sex)
+                                </div>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(m => m.Sex, new { @class = "form-control input-sm", @placeholder = "Enter Sex" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    @Html.LabelFor(m => m.Email)
+                                </div>
+                                <div class="col-md-12">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-sm", @placeholder = "Enter Email" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+
+                    @Html.HiddenFor(m => m.Password, new { Value = "M'Lop@!@##$$&@*#@#23782" })
+                    @Html.HiddenFor(m => m.ConfirmPassword, new { Value = "M'Lop@!@##$$&@*#@#23782" })
+                    @Html.HiddenFor(m => m.Id)
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @if (Model.Id == null)
+                            {
+                                <input type="submit" class="btn btn-primary pull-right" value="Register" />
+                            }
+                            else
+                            {
+                                <input type="submit" class="btn btn-primary pull-right" value="Update" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

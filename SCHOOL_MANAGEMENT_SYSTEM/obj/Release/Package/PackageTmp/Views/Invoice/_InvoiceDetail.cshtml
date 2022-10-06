@@ -1,0 +1,149 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="invoicedetailModel" tabindex="-1" role="dialog" aria-labelledby="invoicedetailModel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <b class="modal-title" style="color:darkblue">ពត៌មានលំអិតក្នុងវិក្ក័យបត្រ</b>
+                <b class="modal-title" style="color:darkmagenta"><span>អត្រាប្តូរប្រាក់</span> : 1 <span>$</span> = <label id="exchangeamount"></label><span> រៀល</span></b>
+                <input type="hidden" id="exchangeid" />
+                <input id="rateforcal" name="rateforcal" class="form-control input-sm" type="hidden" />
+                <button type="button" onclick="CloseForm();" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <input id="id" name="id" type="text" value="" class="form-control input-sm hidden" placeholder="Enter ID" />
+                        <input id="invoiceid" name="invoiceid" type="text" value="" class="form-control input-sm hidden" placeholder="Enter InvoiceID" />
+                        
+
+                        <div class="form-group">
+                            <label for="locationid">ទីតាំង</label>
+                            <select class="form-control input-sm selectpicker" id="locationid" data-style="btn-dark" data-hide-disabled="true" data-live-search="true">
+                                @foreach (var stu in Model.Locations)
+                                {
+                                    <option value=@stu.id>@stu.location</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="productid">ទំនិញ</label>
+                            <select class="form-control input-sm selectpicker" id="productid" data-style="btn-dark" data-hide-disabled="true" data-live-search="true">
+                                @foreach (var stu in Model.Products)
+                                {
+                                    <option value=@stu.id>@stu.productname</option>
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="employeeid">អ្នកដឹក</label>
+                            <select class="form-control input-sm selectpicker" id="employeeid" data-style="btn-dark" data-hide-disabled="true" data-live-search="true">
+                                @foreach (var stu in Model.Employees)
+                                {
+                                <option value=@stu.Id>@stu.namekh</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="deliverytype">ស្ថានភាព</label>
+                            <select class="form-control input-sm selectpicker" id="deliverytype" data-style="btn-dark" data-hide-disabled="true" data-live-search="true">
+                                <option>កំពុងដឹក</option>
+                                <option>ដឹករួច</option>
+                                <option>ត្រឡប់</option>
+                                <option>ដឹកបន្ត</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="paidtype">ប្រភេទតំលៃ</label>
+                            <input id="paidtype" name="paidtype"  type="checkbox" value="" class="form-control-new input-sm" onchange="PaidType();" onpaste="this.onchange();" onkeyup="this.onchange()"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">តំលៃជាដុល្លា</label>
+                            @*<input id="price" name="price" type="number" value="0.00" class="form-control input-sm" />*@
+                            <input id="price" name="price" type="number" value="0.00" class="form-control input-sm" onchange="PaidDollar();" onpaste="this.onchange();" onkeyup="this.onchange()" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="carprice">សេវាឡាន</label>
+                            <input id="carprice" name="carprice" type="number" value="0.00" class="form-control input-sm" />
+                        </div>
+                        <div class="form-group">
+                            <label for="shipprice">សេវាដឹក</label>
+                            <input id="shipprice" name="shipprice" type="number" value="0.00" class="form-control input-sm" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="status">ប្រភេទដឹក</label>
+                            <select class="form-control input-sm selectpicker" id="status" data-style="btn-dark" data-hide-disabled="true" data-live-search="true">
+                                <option>ដឹក</option>
+                                <option>យក</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="receiverphone">ទូរស័ព្ទអ្នកទទួល</label>
+                            <input id="receiverphone" name="receiverphone" type="text" value="" class="form-control input-sm" placeholder="000 000 000" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="pricekh">តម្លៃជារៀល</label>
+                            @*<input id="pricekhmer" name="pricekhmer" type="number" value="0.00" class="form-control input-sm" />*@
+                            <input id="pricekh" name="pricekh" type="number" value="0.00" class="form-control input-sm" onchange="PaidKhmer();" onpaste="this.onchange();" onkeyup="this.onchange()" />
+                        </div>
+                    </div>
+                        <div class="col-md-3">
+                            <br />
+                            <button type="button" id="btnInvoiceDetail" onclick="InvoiceDetailAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                        </div>
+                    </div>
+
+                <hr />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="invoicedetailTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+                                    @*<td>Id</td>
+                                        <td>InvoiceID</td>*@
+                                    <td>ទីតាំង</td>
+                                    <td>ទំនិញ</td>
+                                    <td>អ្នកដឹក</td>
+                                    <td>លេខទូរស័ព្ទ</td>
+                                    <td>តម្លៃ$</td>
+                                    <td>តម្លៃ៛</td>
+                                    <td>សេវាឡាន</td>
+                                    <td>សេវាដឹក</td>
+                                    <td>ប្រភេទដឹក</td>
+                                    <td>ស្ថានភាព</td>
+                                    <td>សកម្មភាព</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

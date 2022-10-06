@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title-Managment System</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Styles", false)
+
+</head>
+<body>
+    @Html.Partial("_Navbar")
+    <div class="container-fluid body-content" style="margin-top: 20px">
+        @RenderBody()
+    </div>
+    <footer id="footer">
+        <div class="container-fluid">
+            <span>រក្សាសិទ្ធិ &copy; @DateTime.Now.Year - ប្រព័ន្ធគ្រប់គ្រង រ៉ូសឡានី អាផាតិម៉ិន</span>
+            <span class="pull-right">រៀបចំដោយ ក្រុមនិស្សិតសាកលវិទ្យាល័យបៀលប្រាយ</span>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/lib")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

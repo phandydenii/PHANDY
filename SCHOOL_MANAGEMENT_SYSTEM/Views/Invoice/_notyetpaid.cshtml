@@ -1,0 +1,46 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="false" id="notyetpaidModel" tabindex="-1" role="dialog" aria-labelledby="notyetpaidModel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="LoadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color: darkblue">Manage Invoie Not Paid</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="button" id="btnNotyetpaid" onclick="NotyetpaidAction();" class="btn btn-warning btn-block btn-sm">Load</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="button" id="btnNotyetpaid" onclick="NotyetpaidAction();" class="btn btn-success btn-block btn-sm">Move All</button>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="tableNotyetpaid" class="table table-hover table-bordered table-condensed table-striped" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    @*<th>ID</th>*@
+                                    <th>លេខវិក្ក័យបត្រ</th>
+                                    <th>ថ្ងៃខែ</th>
+                                    <th>អតិថិជន</th>
+                                    @*<th>សាខា</th>
+                                    <th>ប្រាក់ទទួលបាន</th>
+                                    <th>សេវាឡាន</th>
+                                    <th>សេវាដឹក</th>
+                                    <th>ប្រាក់ទូរទាត់រួច</th>*@
+                                    @*<th>Status</th>
+                                        <th>Createby</th>
+                                        <th>CreateDte</th>*@
+                                    <th>សកម្មភាព</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

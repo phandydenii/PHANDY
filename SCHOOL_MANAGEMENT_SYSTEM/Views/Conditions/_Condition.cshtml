@@ -1,0 +1,60 @@
+﻿<form id="employee" method="post" enctype="multipart/form-data">
+
+    <div class="modal fade" data-backdrop="static" data-keyboard="fale" id="ConditionModel" tabindex="-1" role="dialog" aria-labelledby="ConditionModel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id="loadingGif"></div>
+                <div class="modal-header">
+                    <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <b class="modal-title" style="color:darkblue">លក្ខខ័ណ្ឌ</b>
+                </div>
+                <div class="modal-body">
+                    <div class="row">                        
+                        <div class="col-md-6">
+                            <input id="id" name="id" type="text" value="" class="form-control input-sm hidden" placeholder="Enter employeeId" />
+
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input id="date" name="date" type="date" value="" class="form-control input-sm" placeholder="Enter Date" />
+
+                            </div>
+                            <div class="form-group">
+                                <label for="employeeid">Employee</label>
+                                <select class="form-control input-sm" id="employeeid">
+                                    @foreach (var employee in Model)
+                                    {
+                                        <option value=@employee.Id>@employee.name</option>
+                                    }
+                                </select>
+                                @*<input id="employeeid" name="employeeid" type="text" value="" class="form-control input-sm" />*@
+
+                            </div>                            
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="conditionnote">Condition Note</label>
+                                <input id="conditionnote" name="conditionnote" type="text" value="" class="form-control input-sm" />
+
+                             </div>
+                            <div class="form-group">
+                                <label> </label>
+                                <button type="button" id="btnSaveCondition" onclick="ConditionAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                            </div>
+                            
+                        </div>
+                        
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-12">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

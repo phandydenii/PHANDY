@@ -1,0 +1,60 @@
+﻿
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="PositionModal" tabindex="-1" role="dialog" aria-labelledby="PositionModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;">តួនាទី</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input id="positionid" name="positionid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <div class="form-group">
+                            <label for="positionname">Position​</label>
+                            <input id="positionname" name="positionname" placeholder="Enter Position" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="positionnamekh">Position Khmer</label>
+                            <input id="positionnamekh" name="positionnamekh" placeholder="Enter Position Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group"​​ hidden="hidden">
+                            <label for="status" >Status</label>
+                            <select id="status" name="status" class="form-control input-sm" style="min-width: 100%">
+                                <option>True</option>
+                                <option>False</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <label>&nbsp;</label>
+                        <button type="button" id="btnPosition" onclick="PositionAction()" class="btn btn-info btn-block btn-sm">Add New</button>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="positionTable">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Position</th>
+                                    <th>Position Khmer</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

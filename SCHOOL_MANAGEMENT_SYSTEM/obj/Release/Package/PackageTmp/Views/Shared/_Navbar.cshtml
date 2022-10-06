@@ -1,0 +1,128 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("ដាយម៉ិនអេចប្រេស", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                @if (User.IsInRole("Manage Employee"))
+                {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            តម្លើង
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("បុគ្គលិក", "Index", "Employee")</li>
+                            <li>@Html.ActionLink("អតិថិជន", "Index", "Customer")</li>
+                            <li>@Html.ActionLink("ទំនិញ", "Index", "Product")</li>
+                        </ul>
+                    </li>
+                }
+                @if (User.IsInRole("Manage Employee"))
+                {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            ប្រតិបត្តិការណ៌
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("វិក្ក័យបត្រ", "Index", "Invoice")</li>
+                            <li>@Html.ActionLink("ប្រមូលប្រាក់ពីអ្នកដឹក", "Index", "CollectMoneys")</li>
+                        </ul>
+                    </li>
+                }
+                @if (User.IsInRole("Manage Employee"))
+                {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            គណនេយ្យ
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("រង្វាន់ ខ្ចី ចុងសប្តាហ៌", "Index", "Employee")</li>
+                            <li>@Html.ActionLink("ចំណាយផ្សេងៗ", "Index", "OtherExpense")</li>
+                            <li>@Html.ActionLink("ដកប្រាក់", "Index", "Transfer")</li>
+                            <li>@Html.ActionLink("បិទបញ្ចី", "Index", "Employee")</li>
+                        </ul>
+                    </li>
+                }
+
+
+
+
+
+                @*@if (User.IsInRole("Manage Employee"))
+                {
+                    <li>@Html.ActionLink("Employees", "Index", "Employees")</li>
+                }*@
+                @*@if (User.IsInRole("Manage Student"))
+                {
+                    <li>@Html.ActionLink("Students", "Index", "Students")</li>
+                }@if (User.IsInRole("Manage Register"))
+                {
+                    <li>@Html.ActionLink("Register", "Index", "Registerstudents")</li>
+                }
+                @if (User.IsInRole("Manage Payment"))
+                {
+                    <li>@Html.ActionLink("Manage Payment", "Index", "Payments")</li>
+                }*@
+                @if (User.IsInRole("Manage Users"))
+                { 
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            គ្រប់គ្រង់អ្នកប្រើប្រាស់
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("អ្នកប្រើប្រាស់", "Index", "UserRoles")</li>
+                            <li>@Html.ActionLink("បង្កើតថ្មី", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        </ul>
+                    </li>
+                }
+                
+               
+                @if (User.IsInRole("Manage Reports"))
+                {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            របាយការណ៌
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><b>@Html.ActionLink("តម្លើង", "", "")</b></li>
+                            <li>@Html.ActionLink("-បញ្ជីបុគ្គលិក", "", "employee-list")</li>
+                            <li>@Html.ActionLink("-បញ្ជីអតិថិជន", "", "customer-list")</li>
+                            <li>@Html.ActionLink("-ប្រភេទំនិញ", "", "category-list")</li>
+                            <li>@Html.ActionLink("-បញ្ជីទំនិញ", "", "product-list")</li>
+                            <li>@Html.ActionLink("-បញ្ជីផ្នែក", "", "department-list")</li>
+                            <li>@Html.ActionLink("-មុខដំណែង", "", "position-list")</li>
+                            <li>@Html.ActionLink("-បញ្ជីសាខា", "", "showroom-list")</li>
+                            <li>@Html.ActionLink("-បញ្ជីទីតាំងដឹកទំនិញ", "", "location-list")</li>
+                            <li><b>@Html.ActionLink("ប្រត្តិបត្តិការណ៌", "", "")</b></li>
+                            <li>@Html.ActionLink("-វិក្ក័យប័ត្រសង្ខេប", "", "invoice-summary-list")</li>
+                            <li>@Html.ActionLink("-វិក្ក័យប័ត្រលំអិត", "", "invoice-detail-list")</li>
+                            <li>@Html.ActionLink("-ប្រមូលប្រាក់ពីអ្នកដឹក", "", "invoice-money-list")</li>
+                            <li>@Html.ActionLink("-វិក្ក័យប័ត្រត្រឡប់", "", "invoice-return-detail-list")</li>
+                            <li><b>@Html.ActionLink("គណនេយ្យ", "", "")</b></li>
+                            <li>@Html.ActionLink("-ប្រាក់រង្វាន់", "", "student-list")</li>
+                            <li>@Html.ActionLink("-ប្រាក់សប្តាហ៌", "", "student-list")</li>
+                            <li>@Html.ActionLink("-ប្រាក់ខ្ចី", "", "student-list")</li>
+                            <li>@Html.ActionLink("-ចំណាយផ្សេងៗ", "", "appropriate-list")</li>
+                            <li>@Html.ActionLink("-ដកប្រាក់", "", "emergency-list")</li>
+                            <li>@Html.ActionLink("-បើកប្រាក់ខែ", "", "student-parrent-list")</li>
+                            <li>@Html.ActionLink("-បិទបញ្ជី", "", "register-list")</li>
+                        </ul>
+                    </li>
+                }
+            </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+    </div>
+</div>

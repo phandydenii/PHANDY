@@ -1,0 +1,71 @@
+﻿<form id="employee" method="post" enctype="multipart/form-data">
+
+    <div class="modal fade" data-backdrop="static" data-keyboard="fale" id="productModel" tabindex="-1" role="dialog" aria-labelledby="productModel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id="loadingGif"></div>
+                <div class="modal-header">
+                    <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <b class="modal-title" style="color:darkblue">គ្រប់គ្រងទំនិញ</b>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <img class="center img-responsive img-thumbnail" id="photo" src="~/Images/no_product.png" />
+                            </div>
+                            <div class="form-group">
+                                <label>ជ្រើសរើសរូបថត</label>
+                                <input onchange="readURL(this);" type="file" id="file" style="width:100%;" />
+                                <input type="hidden" value="" id="file_old" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" hidden value="" />
+                            <input id="id" name="id" type="text" value="" class="form-control input-sm hidden" placeholder="Enter employeeId" />
+
+                            <div class="form-group">
+                                <label for="productname">ឈ្មោះ</label>
+                                <input id="productname" name="productname" type="text" value="" class="form-control input-sm" placeholder="Enter Product Name" />
+
+                            </div>
+                            <div class="form-group">
+                                <label for="showroomid">សាខា</label>
+                                <select class="form-control input-sm" id="showroomid">
+                                    @foreach (var pos in Model.Showrooms)
+                                    {
+                                        <option value=@pos.id>@pos.name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="categoryid">ប្រភេទ</label>
+                                <select class="form-control input-sm" id="categoryid">
+                                    @foreach (var pos in Model.Categorys)
+                                    {
+                                        <option value=@pos.id>@pos.categoryname</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="qtyonhand">ស្តុក</label>
+                                <input id="qtyonhand" name="qtyonhand" type="number" value="" class="form-control input-sm" />
+
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-8 col-lg-offset-4">
+                                <button type="button" id="btnProduct" onclick="ProductAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                            </div>
+                        </div>
+                </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,75 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="fale" id="educationModel" tabindex="-1" role="dialog" aria-labelledby="educationModel" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div id="loadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color:darkblue">Manage Education</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="text" hidden value="" />
+                            <input id="educationId" name="educationId" type="text" value="" class="form-control input-sm hidden" placeholder="Enter EducationId" />
+                            <label for="educationLevel">Education Level</label>
+                            <input id="educationLevel" name="educationLevel" type="text" value="" class="form-control input-sm" placeholder="Enter Level's Name" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="skill">Skill</label>
+                            <input id="skill" name="skill" type="text" value="" class="form-control input-sm" placeholder="Enter Skill" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fromYear">From Year</label>
+                            <input id="fromYear" name="fromYear" type="text" value="" class="form-control input-sm" placeholder="Enter From Year" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="toYear">To Year</label>
+                            <input id="toYear" name="toYear" type="text" value="" class="form-control input-sm" placeholder="Enter To Year" />
+                        </div>
+
+                        <div class="form-group">
+                            <input id="educationEmpid" name="educationEmpid" type="text" value="" class="form-control input-sm hidden" placeholder="educationEmpid" />
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnEducation" onclick="EducationAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                    </div>
+                </div>
+
+                <hr />
+
+                <div class="row" style="overflow:auto">
+                    <div class="col-md-12">
+                        <table id="educationTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
+                            <thead>
+                                <tr>
+
+                                    @*<td>educationId</td>
+                                    <td>EmpId</td>*@
+                                    <td>Education Level</td>
+                                    <td>Skill</td>
+                                    <td>From Year</td>
+                                    <td>To Year</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

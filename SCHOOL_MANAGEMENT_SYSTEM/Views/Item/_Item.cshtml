@@ -1,0 +1,58 @@
+﻿
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="ItemModal" tabindex="-1" role="dialog" aria-labelledby="ItemModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;">Item</b>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-6">
+                    <input id="Itemid" name="Itemid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                    <div class="form-group">
+                        <label for="itemname">Item Name</label>
+                        <input id="itemname" name="itemname" placeholder="Enter Item Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                    </div>
+                    <div class="form-group">
+                        <label for="itemnamekh">Item Name Khmer</label>
+                        <input id="itemnamekh" name="itemnamekh" placeholder="Enter Item Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                    </div>
+                    
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="prices">Price</label>
+                        <input id="prices" name="prices" placeholder="Enter Price" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                    </div>
+                    <div class="form-group">
+                        <label for="statuss">Status</label>
+                        <select id="statuss" name="statuss" class="form-control input-sm" style="min-width: 100%">
+                            <option>True</option>
+                            <option>False</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="remark">Remark</label>
+                        <textarea name="remark" id="remark" placeholder="Enter remark" rows="1" style="min-width:100%; max-width:100%" class="form-control input-sm" value=""></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-12">
+                            <button type="button" id="btnSaveItem" onclick="OnItemAction()" class="btn btn-info btn-block btn-sm">Add New</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
