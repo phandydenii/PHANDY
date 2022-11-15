@@ -31,11 +31,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet<Floor> Floors { get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
         public DbSet<CheckIn> CheckIns { get; set; }
-        public DbSet<CheckInDetail> CheckInDetails { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Building> Buildings { get; set; }
         public DbSet<RoomDetail> RoomDetails { get; set; }
+        public DbSet<ExchangeRate> Exchanges { get; set; }
+        public DbSet<PowerUsage> PowerUsages { get; set; }
+        public DbSet<WaterUsage> WaterUsages { get; set; }
+
 
 
 
@@ -68,7 +71,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet <payment>Payments { get; set; }
 
         public DbSet<paymentdetail> PaymentDetails { get; set; }
-        public DbSet <ExchangeRate>Exchanges { get; set; }
+        
 
         //New
         public DbSet<Position> Position { get; set; }

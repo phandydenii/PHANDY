@@ -24,3 +24,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public string status { get; set; }
     }
 }
+
+    
+    
+    
+    

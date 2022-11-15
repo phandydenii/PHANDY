@@ -8,21 +8,19 @@ using System.Web;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Models
 {
+    [Table("ExchangeRates")]
     public class ExchangeRate
     {
-        [Key]
-        public int rateid { get; set; }
-        [Required]
+
+        
+        public int id { get; set; }
+       
         public DateTime date { get; set; }
-        [Required]
+       
         public decimal Rate { get; set; }
         public bool Status { get; set; }
 
         public bool IsDeleted { get; set; }
-        public ExchangeRate()
-        {
 
-            IsDeleted = false;
-        }
     }
 }

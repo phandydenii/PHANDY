@@ -45,7 +45,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                buildingid=b.id,
                                buildingname=b.buildingname,
                                servicecharge = r.servicecharge,
-                               price = r.price,
+                               price = rd.price,
                                roomkey = r.roomkey,
                                status = r.status,
                                itemid=i.id,
@@ -57,16 +57,19 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return Ok(getRoom);
 
         }
+
         [HttpGet]
         //Get : api/Rooms
         public IHttpActionResult GetRoomDetailById(int id)
         {
+
             var getRoom = (from rd in _context.RoomDetails
                            join i in _context.Items on rd.itemid equals i.id
                            join r in _context.Rooms on rd.roomid equals r.id
                            join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                            join f in _context.Floors on r.floorid equals f.id
                            join b in _context.Buildings on f.buildingid equals b.id
+                           where rd.id == id
                            select new RoomDetailV
                            {
                                id = rd.id,
@@ -79,21 +82,19 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                buildingid = b.id,
                                buildingname = b.buildingname,
                                servicecharge = r.servicecharge,
-                               price = r.price,
+                               price = rd.price,
                                roomkey = r.roomkey,
                                status = r.status,
                                itemid = i.id,
                                itemname = i.itemname,
                                itemnamekh = i.itemnamekh
-
-                           }).Where(c=>c.id==id).ToList();
-
+                           }).SingleOrDefault();
             return Ok(getRoom);
-
         }
+
         [HttpGet]
         //Get : api/Rooms
-        [Route("api/roomdetails/0/{roomid}")]
+        [Route("api/roomdetails_v/{roomid}")]
         public IHttpActionResult GetRoomDetailByRoomId(int roomid)
         {
             var getRoom = (from rd in _context.RoomDetails
@@ -129,30 +130,27 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
         [HttpPost]
         //Get : api/Rooms
-        public IHttpActionResult CreateRoomDetail(RoomDetailDto RoomDetailDto)
+        public IHttpActionResult CreateRoomDetail(RoomDetailDto RoomDetailDtos)
         {
-
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var RoomDetailInDb = Mapper.Map<RoomDetailDto, RoomDetail>(RoomDetailDto);
+            var RoomDetailInDb = Mapper.Map<RoomDetailDto, RoomDetail>(RoomDetailDtos);
             _context.RoomDetails.Add(RoomDetailInDb);
             _context.SaveChanges();
 
-            RoomDetailInDb.id = RoomDetailInDb.id;
+            RoomDetailDtos.id = RoomDetailInDb.id;
 
-            return Created(new Uri(Request.RequestUri + "/" + RoomDetailDto.id), RoomDetailDto);
-
-
+            return Created(new Uri(Request.RequestUri + "/" + RoomDetailDtos.id), RoomDetailDtos);
         }
         [HttpPut]
-        public IHttpActionResult UpdateRoomDetail(int id, RoomDetailDto RoomDetailDto)
+        public IHttpActionResult UpdateRoomDetail(int id, RoomDetailDto RoomDetailDtos)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
             
             var RoomDetailInDb = _context.RoomDetails.SingleOrDefault(c => c.id == id);
-            Mapper.Map(RoomDetailDto, RoomDetailInDb);
+            Mapper.Map(RoomDetailDtos, RoomDetailInDb);
             _context.SaveChanges();
 
             return Ok(RoomDetailInDb);

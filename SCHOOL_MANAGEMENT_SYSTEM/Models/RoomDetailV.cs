@@ -16,7 +16,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public string floorno { get; set; }
         public int buildingid { get; set; }
         public string buildingname { get; set; }
-        public string servicecharge { get; set; }
+        public decimal servicecharge { get; set; }
         public decimal price { get; set; }
         public string roomkey { get; set; }
         public string status { get; set; }

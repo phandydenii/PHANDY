@@ -1,11 +1,16 @@
 ﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using SCHOOL_MANAGEMENT_SYSTEM.Dtos;
 using SCHOOL_MANAGEMENT_SYSTEM.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
@@ -22,6 +27,58 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             _context.Dispose();
         }
+
+        [HttpGet]
+        [Route("api/guestsmaxid/{id}")]
+        public IHttpActionResult GetMaxID(int id)
+        {
+            //For Get Max PaymentNo +1
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select id from guest_tbl where id='"+id+"'", conx);
+            adp.Fill(ds);
+            string GuestID = ds.Rows[0][0].ToString();
+            return Ok(GuestID);
+
+        }
+
+        [HttpGet]
+        [Route("api/guestsmaxid")]
+        public IHttpActionResult GetMaxID()
+        {
+            //For Get Max PaymentNo +1
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select Max(id)+1 from guest_tbl", conx);
+            adp.Fill(ds);
+            string GuestID = ds.Rows[0][0].ToString();
+            return Ok(GuestID);
+
+        }
+
+        [HttpPut]
+        [Route("api/updategueststatus/{id}/{status}")]
+        public IHttpActionResult GetMaxID(int id, string status)
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+
+            SqlCommand requestcommand = new SqlCommand("Update guest_tbl set status='" + status + "' where id=" + id, conx);
+            try
+            {
+                conx.Open();
+                requestcommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Ok();
+
+        }
+
 
         [HttpGet]
         //Get : api/Buildings
@@ -44,24 +101,82 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpPost]
-        public IHttpActionResult CreateGuest(GuestDto GuestDtos)
+        public IHttpActionResult GUEST_INSERT()
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
 
-            var isExist = _context.Guests.SingleOrDefault(c => c.ssn == GuestDtos.ssn);
-            if (isExist != null)
-                return BadRequest();
+            DataTable ds = new DataTable();
+            DataTable ds1 = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("select max(id) from guest_tbl", conx);
+            
+            var name = HttpContext.Current.Request.Form["name"];
+            var namekh = HttpContext.Current.Request.Form["namekh"];
+            var sex = HttpContext.Current.Request.Form["sex"];
+            var dob = HttpContext.Current.Request.Form["dob"];
+            var address = HttpContext.Current.Request.Form["address"];
+            var nationality = HttpContext.Current.Request.Form["nationality"];
+            var phone = HttpContext.Current.Request.Form["phone"];
+            var email = HttpContext.Current.Request.Form["email"];
+            var ssn = HttpContext.Current.Request.Form["ssn"];
+            var passport = HttpContext.Current.Request.Form["passport"];
+            var status = HttpContext.Current.Request.Form["status"];
+           
 
-            var Guest = Mapper.Map<GuestDto, Guest>(GuestDtos);
 
-            _context.Guests.Add(Guest);
-            _context.SaveChanges();
+            SqlCommand command = new SqlCommand();
+            SqlCommand requestcommand = new SqlCommand();
+            requestcommand.Connection = conx;
+            requestcommand.CommandType = CommandType.StoredProcedure;
+            requestcommand.CommandText = "INSERT_GUEST";
+            requestcommand.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+            requestcommand.Parameters.Add("@namekh", SqlDbType.NVarChar).Value = namekh;
+            requestcommand.Parameters.Add("@sex", SqlDbType.VarChar).Value = sex;
+            requestcommand.Parameters.Add("@dob", SqlDbType.Date).Value = dob;
+            requestcommand.Parameters.Add("@address", SqlDbType.VarChar).Value = address;
+            requestcommand.Parameters.Add("@nationality", SqlDbType.VarChar).Value = nationality;
+            requestcommand.Parameters.Add("@phone", SqlDbType.VarChar).Value = phone;
+            requestcommand.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
+            requestcommand.Parameters.Add("@ssn", SqlDbType.VarChar).Value = ssn;
+            requestcommand.Parameters.Add("@passport", SqlDbType.VarChar).Value = passport;
+            requestcommand.Parameters.Add("@status", SqlDbType.VarChar).Value = status;
+            Int16 GuestMax;
+            try
+            {
+                conx.Open();
+                requestcommand.ExecuteNonQuery();
 
-            GuestDtos.id = Guest.id;
 
-            return Created(new Uri(Request.RequestUri + "/" + GuestDtos.id), GuestDtos);
+                GuestMax = Convert.ToInt16(cmd.ExecuteScalar());
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Ok(GuestMax);
         }
+
+        //[HttpPost]
+        //public IHttpActionResult InsertGuest(GuestDto GuestDto)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest();
+
+        //    //var isExist = _context.Guests.SingleOrDefault(c => c.ssn == GuestDto.ssn);
+        //    //if (isExist != null)
+        //    //    return BadRequest();
+
+        //    var Guest = Mapper.Map<GuestDto, Guest>(GuestDto);
+
+        //    _context.Guests.Add(Guest);
+        //    _context.SaveChanges();
+
+        //    GuestDto.id = Guest.id;
+
+        //    return Created(new Uri(Request.RequestUri + "/" + GuestDto.id), GuestDto);
+        //}
 
         [HttpPut]
         //PUT : /api/Building/{id}

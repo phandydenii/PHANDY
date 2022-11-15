@@ -248,17 +248,18 @@
     <Compile Include="Controllers\Api\BankAccountsController.cs" />
     <Compile Include="Controllers\Api\BonusByEmployeeController.cs" />
     <Compile Include="Controllers\Api\BonusController.cs" />
+    <Compile Include="Controllers\Api\BookingsController.cs" />
     <Compile Include="Controllers\Api\BranchsController.cs" />
     <Compile Include="Controllers\Api\BuildingsController.cs" />
     <Compile Include="Controllers\Api\CategoryController.cs" />
-    <Compile Include="Controllers\Api\CheckInDetailsController.cs" />
     <Compile Include="Controllers\Api\CheckInsController.cs" />
-    <Compile Include="Controllers\Api\CollectMoneyController.cs" />
     <Compile Include="Controllers\Api\ConditionsController.cs" />
     <Compile Include="Controllers\Api\FeedbacksController.cs" />
     <Compile Include="Controllers\Api\FloorsController.cs" />
     <Compile Include="Controllers\Api\GuestsController.cs" />
     <Compile Include="Controllers\Api\HowtoUsesController.cs" />
+    <Compile Include="Controllers\Api\InvoiceDetailsController.cs" />
+    <Compile Include="Controllers\Api\InvoicesController.cs" />
     <Compile Include="Controllers\Api\ItemsController.cs" />
     <Compile Include="Controllers\Api\PayBysController .cs" />
     <Compile Include="Controllers\Api\CommentsController.cs" />
@@ -275,11 +276,6 @@
     <Compile Include="Controllers\Api\ExpenseTypeController.cs" />
     <Compile Include="Controllers\Api\ExperiencesController.cs" />
     <Compile Include="Controllers\Api\GradesController.cs" />
-    <Compile Include="Controllers\Api\InvoiceController.cs" />
-    <Compile Include="Controllers\Api\InvoiceDeleteController.cs" />
-    <Compile Include="Controllers\Api\InvoiceDetailController.cs" />
-    <Compile Include="Controllers\Api\Invoice_MoveController.cs" />
-    <Compile Include="Controllers\Api\LocationController.cs" />
     <Compile Include="Controllers\Api\LoginController.cs" />
     <Compile Include="Controllers\Api\OtherExpenseController.cs" />
     <Compile Include="Controllers\Api\ParentsController.cs" />
@@ -291,6 +287,7 @@
     <Compile Include="Controllers\Api\PaymentMethodsController.cs" />
     <Compile Include="Controllers\Api\PaymentsController.cs" />
     <Compile Include="Controllers\Api\PositionController.cs" />
+    <Compile Include="Controllers\Api\PowerUsageController.cs" />
     <Compile Include="Controllers\Api\PricingsController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\RegisterstudentsController.cs" />
@@ -307,6 +304,8 @@
     <Compile Include="Controllers\Api\StudyperiodsController.cs" />
     <Compile Include="Controllers\Api\TransferController.cs" />
     <Compile Include="Controllers\Api\UserRolesController.cs" />
+    <Compile Include="Controllers\Api\WaterUsageController.cs" />
+    <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CheckInController.cs" />
     <Compile Include="Controllers\CollectmoneysController.cs" />
     <Compile Include="Controllers\ConditionsController.cs" />
@@ -318,6 +317,7 @@
     <Compile Include="Controllers\HowtoUseController.cs" />
     <Compile Include="Controllers\InvoiceController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OtherExpenseController.cs" />
     <Compile Include="Controllers\PaymentMethodsController.cs" />
@@ -338,7 +338,6 @@
     <Compile Include="Dtos\BranchDto.cs" />
     <Compile Include="Dtos\BuildingDto.cs" />
     <Compile Include="Dtos\CategoryDto.cs" />
-    <Compile Include="Dtos\CheckInDetailDto.cs" />
     <Compile Include="Dtos\CheckInDto.cs" />
     <Compile Include="Dtos\CollectmoneyDto.cs" />
     <Compile Include="Dtos\CommentDto.cs" />
@@ -371,12 +370,12 @@
     <Compile Include="Dtos\paymentdetailDto.cs" />
     <Compile Include="Dtos\PaymentMethodDto.cs" />
     <Compile Include="Dtos\PositionDto.cs" />
+    <Compile Include="Dtos\PowerUsageDto.cs" />
     <Compile Include="Dtos\PricingDto.cs" />
     <Compile Include="Dtos\ProductDto.cs" />
     <Compile Include="Dtos\registerstudentDto.cs" />
     <Compile Include="Dtos\RoomDetailDto.cs" />
     <Compile Include="Dtos\RoomDto.cs" />
-    <Compile Include="Dtos\RoomItemDto.cs" />
     <Compile Include="Dtos\RoomTypeDto.cs" />
     <Compile Include="Dtos\SalaryDto.cs" />
     <Compile Include="Dtos\shiftDto.cs" />
@@ -386,6 +385,7 @@
     <Compile Include="Dtos\studylanguageDto.cs" />
     <Compile Include="Dtos\studyperiodDto.cs" />
     <Compile Include="Dtos\TransferDto.cs" />
+    <Compile Include="Dtos\WaterUsageDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -399,8 +399,7 @@
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CheckIn.cs" />
-    <Compile Include="Models\CheckInDetail.cs" />
-    <Compile Include="Models\CheckInDetailV.cs" />
+    <Compile Include="Models\CheckInV.cs" />
     <Compile Include="Models\Collectmoney.cs" />
     <Compile Include="Models\CollectMoneyV.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -410,6 +409,7 @@
     <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\HowtoUse.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\PowerUsage.cs" />
     <Compile Include="Models\Pricing.cs" />
     <Compile Include="Models\Condition.cs" />
     <Compile Include="Models\CountModel.cs" />
@@ -448,7 +448,6 @@
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\RoomDetail.cs" />
     <Compile Include="Models\RoomDetailV.cs" />
-    <Compile Include="Models\RoomItem.cs" />
     <Compile Include="Models\RoomType.cs" />
     <Compile Include="Models\RoomV.cs" />
     <Compile Include="Models\Salary.cs" />
@@ -461,7 +460,13 @@
     <Compile Include="Models\studyperiod.cs" />
     <Compile Include="Models\Telegram.cs" />
     <Compile Include="Models\Transfer.cs" />
+    <Compile Include="Models\WaterUsage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Language1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.resx</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CollectMoneyViewModel.cs" />
@@ -487,6 +492,7 @@
     <Content Include="Content\bootstrap-united.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cambodia-flag.png" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
@@ -644,6 +650,7 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\english-flag.png" />
     <Content Include="Content\loading.gif" />
     <Content Include="Content\select2\css\bootstrap-select.css" />
     <Content Include="Content\select2\css\bootstrap-select.min.css" />
@@ -706,7 +713,7 @@
     <Content Include="Scripts\Functions\booking.js" />
     <Content Include="Scripts\Functions\building.js" />
     <Content Include="Scripts\Functions\category.js" />
-    <Content Include="Scripts\Functions\checkIn.js" />
+    <Content Include="Scripts\Functions\checkin.js" />
     <Content Include="Scripts\Functions\collectmoney.js" />
     <Content Include="Scripts\Functions\bankaccount.js" />
     <Content Include="Scripts\Functions\floor.js" />
@@ -716,6 +723,7 @@
     <Content Include="Scripts\Functions\item.js" />
     <Content Include="Scripts\Functions\items.js" />
     <Content Include="Scripts\Functions\paymentMethod.js" />
+    <Content Include="Scripts\Functions\pirntinvoice.js" />
     <Content Include="Scripts\Functions\pricing.js" />
     <Content Include="Scripts\Functions\condition.js" />
     <Content Include="Scripts\Functions\course.js" />
@@ -735,6 +743,7 @@
     <Content Include="Scripts\Functions\register.js" />
     <Content Include="Scripts\Functions\roomdetail.js" />
     <Content Include="Scripts\Functions\room.js" />
+    <Content Include="Scripts\Functions\roomitems.js" />
     <Content Include="Scripts\Functions\roomtypes.js" />
     <Content Include="Scripts\Functions\salary.js" />
     <Content Include="Scripts\Functions\shift.js" />
@@ -743,6 +752,12 @@
     <Content Include="Scripts\Functions\student.js" />
     <Content Include="Scripts\Functions\studylanguage.js" />
     <Content Include="Scripts\Functions\studyperiod.js" />
+    <EmbeddedResource Include="Resources\Language.km.resx" />
+    <EmbeddedResource Include="Resources\Language.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\Functions\transfer.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
@@ -1069,11 +1084,7 @@
     <Content Include="Views\Product\_Product.cshtml" />
     <Content Include="Views\Product\_Category.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
-    <Content Include="Views\Invoice\_Showroom.cshtml" />
-    <Content Include="Views\Invoice\_Location.cshtml" />
     <Content Include="Views\Invoice\_ExchageRate.cshtml" />
-    <Content Include="Views\Invoice\_Invoice.cshtml" />
-    <Content Include="Views\Invoice\_InvoiceDetail.cshtml" />
     <Content Include="Views\Reports\_invoicerpt.cshtml" />
     <Content Include="Views\Employee\_Bonus.cshtml" />
     <Content Include="Views\OtherExpense\_OtherExpense.cshtml" />
@@ -1089,7 +1100,6 @@
     <Content Include="Views\Reports\_locationrpt.cshtml" />
     <Content Include="Views\Reports\_invoice_summaryrpt.cshtml" />
     <Content Include="Views\Reports\_invoice_detailrpt.cshtml" />
-    <Content Include="Views\Invoice\_notyetpaid.cshtml" />
     <Content Include="Views\Employee\_Salary.cshtml" />
     <Content Include="Views\Collectmoneys\_Collectmoney.cshtml" />
     <Content Include="Views\Collectmoneys\Index.cshtml" />
@@ -1097,9 +1107,6 @@
     <Content Include="Views\Reports\_collect_money_rpt.cshtml" />
     <Content Include="Views\Reports\_paymentreturnrpt.cshtml" />
     <Content Include="Views\Reports\_invoice_return_detailrpt.cshtml" />
-    <Content Include="Views\Invoice\_Comment.cshtml" />
-    <Content Include="Views\Invoice\_Payby.cshtml" />
-    <Content Include="Views\Invoice\_PaymentMethod.cshtml" />
     <Content Include="Views\Conditions\Index.cshtml" />
     <Content Include="Views\Conditions\_Condition.cshtml" />
     <Content Include="Views\Pricings\Index.cshtml" />
@@ -1123,10 +1130,18 @@
     <Content Include="Views\Room\_RoomDetail.cshtml" />
     <Content Include="Views\Guest\Index.cshtml" />
     <Content Include="Views\CheckIn\Index.cshtml" />
+    <Content Include="Views\Room\_AddRoomItem.cshtml" />
+    <Content Include="Views\Room\_Book.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\Room\_Block.cshtml" />
+    <Content Include="Views\Room\_CheckIn.cshtml" />
+    <Content Include="Views\Room\_Payment.cshtml" />
+    <None Include="Views\CheckIn\_PrintNewInvoice.cshtml" />
+    <Content Include="Views\Invoice\_Payment.cshtml" />
+    <Content Include="Views\Invoice\_PrintNewInvoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Resources\" />
     <Folder Include="UploadFile\" />
   </ItemGroup>
   <ItemGroup>
@@ -1144,6 +1159,7 @@
     <EmbeddedResource Include="Reports\Collect_Money_summaryRpt.rdlc" />
     <EmbeddedResource Include="Reports\LocationRpt.rdlc" />
     <EmbeddedResource Include="Reports\Invoice_summaryRpt.rdlc" />
+    <EmbeddedResource Include="Reports\Report1.rdlc" />
     <EmbeddedResource Include="Reports\ShowroomRpt.rdlc" />
     <EmbeddedResource Include="Reports\PositionRpt.rdlc" />
     <EmbeddedResource Include="Reports\CategoryRpt.rdlc" />

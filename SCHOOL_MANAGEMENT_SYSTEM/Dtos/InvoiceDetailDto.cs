@@ -8,36 +8,20 @@ using System.Web;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
 {
-    [Table("invoicedetail_tbl")]
+
     public class InvoiceDetailDto
     {
-        [Key]
         public int id { get; set; }
-        [Required]
-        public int invoiceid { get; set; }
-        public Invoice invoices { get; set; }
 
-        [Required]
-        public int locationid { get; set; }
-        public Location locations { get; set; }
-        [Required]
-        public int productid { get; set; }
-        public Product products { get; set; }
-        [Required]
-        public int employeeid { get; set; }
-        public Employee employees { get; set; }
-        public string deliverytype { get; set; }
-        public string receiverphone { get; set; }
-        public Boolean paidtype { get; set; }
-        public Decimal price { get; set; }
-        public Decimal pricekh { get; set; }
-        public Decimal carprice { get; set; }
-        public Decimal shipprice { get; set; }
-        public string status { get; set; }
-        public string createby { get; set; }
-        public DateTime createdate { get; set; }
-        public string updateby { get; set; }
-        public DateTime updatedate { get; set; }
-        public Boolean alreadymove { get; set; }
+        public int invoiceid { get; set; }
+        public Invoice invoice { get; set; }
+        public int roomid { get; set; }
+        public Room room { get; set; }
+        public int waterusageid { get; set; }
+        public WaterUsage waterusage { get; set; }
+        public int powerusageid { get; set; }
+        public PowerUsage powerusage { get; set; }
+        public decimal paydollar { get; set; }
+        public decimal payriel { get; set; }
     }
 }

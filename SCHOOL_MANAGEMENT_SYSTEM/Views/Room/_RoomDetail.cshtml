@@ -4,13 +4,17 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" id="btnCloseRoomDetail" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;" id="lblRoom"></b>
+                <button type="button" id="btnCloseRoomDetail" class="btn btn-danger btn-xs pull-right" data-dismiss="modal" onclick="OnCloseRoomDetail()">បិទ</button>
+                <b class="modal-title" style="color: darkblue;">Room</b>
+                <b class="modal-title" style="color: darkblue;" id="lblRoomNo"></b>
+                <b class="modal-title" style="color: darkblue;" id="lblRoomStatus"></b>
+                <b class="modal-title" style="color: darkblue;display:none" id="lblRoomId"></b>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <input id="RoomDetailid" name="RoomDetailid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <input id="roomid" name="roomid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                    <input id="guestid" name="guestid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-12">
@@ -21,9 +25,9 @@
                                     <div class="col-md-8">
                                         <hr />
                                     </div>
-                                    <div class="col-md-2">
+                                    @*<div class="col-md-2">
                                         <button OnClick='OnEditRoom' class='btn btn-warning btn-xs' style='margin-right:5px'>Edit</button>
-                                    </div>
+                                    </div>*@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -70,9 +74,9 @@
                                     <div class="col-md-8">
                                         <hr />
                                     </div>
-                                    <div class="col-md-2">
+                                    @*<div class="col-md-2">
                                         <button OnClick='OnEditRoom' class='btn btn-warning btn-xs' style='margin-right:5px'>Edit</button>
-                                    </div>
+                                    </div>*@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -93,87 +97,132 @@
                                     <div class="col-md-8">
                                         <hr />
                                     </div>
-                                    <div class="col-md-2">
+                                    @*<div class="col-md-2">
                                         <button OnClick='OnEditRoom' class='btn btn-warning btn-xs' style='margin-right:5px'>Edit</button>
-                                    </div>
+                                    </div>*@
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <ul class="list-group" id="listroom">
-                                            <li class="list-group-item">
-                                                <span class="badge" id="guestnname"></span>
-                                                Name
-                                            </li>
-                                            <li class="list-group-item">
-                                                <span class="badge" id="guestnamekh"></span>
-                                                Name Khmer
-                                            </li>
-                                            <li class="list-group-item">
-                                                <span class="badge" id="gender"></span>
-                                                Gender
-                                            </li>
-                                            <li class="list-group-item">
-                                                <span class="badge" id="phone"></span>
-                                                Phone
-                                            </li>
-                                            <li class="list-group-item">
-                                                <span class="badge" id="men"></span>
-                                                Men
-                                            </li>
-                                            <li class="list-group-item">
-                                                <span class="badge" id="women"></span>
-                                                Women
-                                            </li>
-                                            <li class="list-group-item">
-                                                <span class="badge" id="child"></span>
-                                                Child
-                                            </li>
+                                    <div class="col-md-12">
+                                        <ul class="list-group" id="guestlist">
+                                           @*code in index*@
                                         </ul>
                                     </div>
-                                    <div class="col-md-6">
-                                        <ul class="list-group">
-                                            <li class="list-group-item">
-                                                <span class="badge" id="checkindate"></span>
-                                                Check In Date
-                                            </li>
-                                            <li class="list-group-item">
-                                                <span class="badge" id="startdate"></span>
-                                                Start Date
-                                            </li>
-                                            <li class="list-group-item">
-                                                <span class="badge" id="enddate"></span>
-                                                End Date
-                                            </li>
-                                            
-                                        </ul>
-                                    </div>
-                                    
                                 </div>
+                               
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnBlock" onclick="OnBlockAction()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Block</button>
+                    <button type="button" id="btnCheckOut" onclick="OnCheckOutAction()" class="btn btn-warning btn-sm pull-right" style="margin-left:10px;width:100px">Check Out</button>
+                    <button type="button" id="btnCheckIn" onclick="OnCheckInAction()" data-toggle="modal" data-target="#CheckInModal" class="btn btn-primary btn-sm pull-right" style="margin-left:10px;width:100px">Check In</button>
+                    <button type="button" id="btnPayment" onclick="OnPaymentAction()" data-toggle="modal" data-target="#PaymentModal" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">Payment</button>           
+                    <button type="button" id="btnBook" onclick="OnBookAction()" data-toggle="modal" data-target="#BookModal" class="btn btn-success  btn-sm pull-right" style="margin-left:10px;width:100px">Book</button>
+
+                </div>
             </div>
             
-            <div class="modal-footer">
-                <div class="col-md-3" id="hidebook">
-                    <button type="button" id="btnBook" onclick="OnBookAction()" class="btn btn-success btn-block btn-sm">Book</button>
-                </div>
-                <div class="col-md-3" id="hidecheckin">
-                    <button type="button" id="btnCheckIn" onclick="OnCheckInAction()" class="btn btn-primary btn-block btn-sm">Check In</button>
-                </div>
-                <div class="col-md-3" id="hidecheckout">
-                    <button type="button" id="btnCheckOut" onclick="OnCHeckOutAction()" class="btn btn-info btn-block btn-sm">Check Out</button>
-                </div>
-                <div class="col-md-3" id="hidepayment">
-                    <button type="button" id="btnPayment" onclick="OnPaymentAction()" class="btn btn-info btn-block btn-sm">Payment</button>
-                </div>
-            </div>
         </div>
-
     </div>
 </div>
 
+@Html.Partial("_Book")
+@Html.Partial("_Block")
+@Html.Partial("_CheckIn")
+@Html.Partial("_Payment")
+<script>
+    
+    function OnCloseRoomDetail() {
+        window.location.reload(true);
+    }
+    function OnBookAction() {
+        var rmid = document.getElementById('lblRoomId').innerText;
+        $("#RoomDetailModal").modal('hide');
+        $("#frmbookroomid").val(rmid);
+        $("#bookroomid").val(rmid);
 
+        ///get bookingno 
+        $.get("/api/bookinginvoiceno", function (data) {
+
+            $('#bookingno').val(data);
+        });
+
+        document.getElementById('frmbookroomid').disabled = true;
+        document.getElementById('bookingno').disabled = true;
+
+        var roomid = document.getElementById('lblRoomId').innerText;
+
+        $("#lblidroom").text(roomid);
+    }
+    
+    function OnCheckInAction() {
+        var rmid = document.getElementById('roomid');
+        var rmname = document.getElementById('lblRoomNo').innerText;
+        var guestid = document.getElementById('guestid').value;
+        $("#checkinroomid").val(rmid.value);
+        $("#guestidchin").val(rmid.value);
+        $("#lblRoomNoCehckIn").text(guestid);
+
+        $.get("/api/invoicemaxid", function (data) {
+            $('#invno').val(data);
+        });
+
+    }
+
+    function OnCheckOutAction() {
+        var rmid = document.getElementById('roomid');
+        var rmname = document.getElementById('lblRoomNo').innerText;
+        $("#roomidblock").val(rmid.value);
+        $("#lblRoomNoBlock").text(rmname);
+
+        $.ajax({
+            type: "PUT",
+            url: "/api/updateroomstatus/" + $("#roomid").val() + "/FREE",
+            contentType: false,
+            processData: false,
+            // data: status,
+            success: function (result) {
+                toastr.success("Room has been unblock successfully.", "Server Response");
+                $("#RoomDetailModal").modal("hide");
+                window.location.reload(true);
+            },
+            error: function (error) {
+                toastr.error("Unblock room fail!", "Server Response");
+            }
+        });
+    }
+    function OnBlockAction() {
+        var rmid = document.getElementById('roomid');
+        var rmname = document.getElementById('lblRoomNo').innerText;
+        $("#roomidblock").val(rmid.value);
+        $("#lblRoomNoBlock").text(rmname);
+        var btnblock = document.getElementById('btnBlock').innerText;
+        var stts;
+        if (btnblock == "Block") {
+            stts="BLOCK"
+        } else {
+            stts="FREE"
+        }
+
+        $.ajax({
+            type: "PUT",
+            url: "/api/updateroomstatus/" + $("#roomid").val() + "/"+stts,
+            contentType: false,
+            processData: false,
+            // data: status,
+            success: function (result) {
+                toastr.success("Room has been unblock successfully.", "Server Response");
+                $("#RoomDetailModal").modal("hide");
+                window.location.reload(true);
+            },
+            error: function (error) {
+                toastr.error("Unblock room fail!", "Server Response");
+            }
+        });
+    }
+
+
+</script>
 
 

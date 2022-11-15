@@ -27,23 +27,23 @@ namespace Camtopjobs.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetLastExchange(int a,int b)
         {
-            var exchageRates = _context.Exchanges.OrderByDescending(c => c.rateid).FirstOrDefault(c => c.IsDeleted == false);
+            var exchageRates = _context.Exchanges.OrderByDescending(c => c.id).FirstOrDefault(c => c.IsDeleted == false);
             return Ok(exchageRates);
         }
 
         [HttpGet]
         public IHttpActionResult Index()
         {
-            var exchageRates = _context.Exchanges.Where(c => c.IsDeleted == false).Select(Mapper.Map<ExchangeRate, ExchangeRateDto>).OrderByDescending(c => c.rateid);
+            var exchageRates = _context.Exchanges.Where(c => c.IsDeleted == false).Select(Mapper.Map<ExchangeRate, ExchangeRateDto>).OrderByDescending(c => c.id);
 
             return Ok(exchageRates);
         }
         // GET api/parent/5
         [HttpGet]
-        public IHttpActionResult GetExchageRateId(int id)
+        public IHttpActionResult GetExchageid(int id)
         {
 
-            var exchageRate = _context.Exchanges.SingleOrDefault(c => c.rateid == id);
+            var exchageRate = _context.Exchanges.SingleOrDefault(c => c.id == id);
             if (exchageRate == null)
                 return NotFound();
 
@@ -61,8 +61,8 @@ namespace Camtopjobs.Controllers.Api
             var exchageRate = Mapper.Map<ExchangeRateDto, ExchangeRate>(exchageRateDto);
             _context.Exchanges.Add(exchageRate);
             _context.SaveChanges();
-            exchageRateDto.rateid = exchageRate.rateid;
-            return Created(new Uri(Request.RequestUri + "/" + exchageRate.rateid), exchageRateDto);
+            exchageRateDto.id = exchageRate.id;
+            return Created(new Uri(Request.RequestUri + "/" + exchageRate.id), exchageRateDto);
         }
 
         // PUT api/parent/5
@@ -71,7 +71,7 @@ namespace Camtopjobs.Controllers.Api
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            var exchageRate = _context.Exchanges.SingleOrDefault(c => c.rateid == id);
+            var exchageRate = _context.Exchanges.SingleOrDefault(c => c.id == id);
             exchageRateDto.date = exchageRate.date;
 
             Mapper.Map(exchageRateDto, exchageRate);
@@ -83,7 +83,7 @@ namespace Camtopjobs.Controllers.Api
         [HttpDelete]
         public IHttpActionResult Delete(int id)
         {
-            var exchageRate = _context.Exchanges.SingleOrDefault(c => c.rateid == id);
+            var exchageRate = _context.Exchanges.SingleOrDefault(c => c.id == id);
             exchageRate.IsDeleted = true;
             _context.SaveChanges();
             return Ok(new { });

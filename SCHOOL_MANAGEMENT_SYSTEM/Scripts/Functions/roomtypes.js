@@ -1,14 +1,6 @@
 ﻿
 $(document).ready(function () {
     $('#RoomTypeModal').on('show.bs.modal', function () {
-        $(document).ajaxStart(function () {
-            Pace.start();
-            $("#loadingGif").addClass('show');
-        }).ajaxStop(function () {
-            Pace.stop();
-            $("#loadingGif").removeClass('show');
-        });
-
         GetRoomType();
     });
 });
@@ -57,7 +49,7 @@ function RoomTypeAction() {
 
     }
     else if (action === "Save") {
-        var res = ValidationForm();
+        var res = ValidationFormRoomType();
         if (res == false) {
             return false;
         }
@@ -198,7 +190,7 @@ function AddRoomTypeAction() {
     ClearControlRoomType();
 }
 
-function ValidationForm() {
+function ValidationFormRoomType() {
     var isValid = true;
     if ($('#roomtypename').val().trim() === "") {
         $('#roomtypename').css('border-color', 'red');

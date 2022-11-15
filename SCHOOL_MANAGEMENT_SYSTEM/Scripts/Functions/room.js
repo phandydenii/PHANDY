@@ -33,7 +33,18 @@ function GetRoom() {
                     data: "floorno"
                 },               
                 {
-                    data: "status", 
+                    data: "status",
+                    render: function (data) {
+                        if (data == "FREE") {
+                            return "<span class='label label-primary'>" + data + "</span>";
+                        } else if (data == "BOOK") {
+                            return "<span class='label label-success'>" + data + "</span>";
+                        } else if (data == "CHECK-IN") {
+                            return "<span class='label label-warning'>" + data + "</span>";
+                        } else if (data == "BLOCK") {
+                            return "<span class='label label-danger'>" + data + "</span>";
+                        }
+                    }
                     
                 },
                 {
@@ -64,12 +75,11 @@ function RoomAction() {
         //$('#Roomdate').val(moment().format('YYYY-MM-DD'));
     }
     else if (action == "Save") {
-        var isValid = ValidationForm();
+        var isValid = ValidationFormRoom();
         if (isValid == false) {
             return false;
         }
 
-        
         var data = {
             room_no: $('#roomno').val(),
             roomtypeid: $('#roomtypeid').val(),
@@ -77,9 +87,7 @@ function RoomAction() {
             servicecharge: $('#servicecharge').val(),
             price: $('#price').val(),
             roomkey: $('#roomkey').val(),
-            status: $('#statuss').val(),
-          
-
+            status: $('#roomstatus').val(),
         };
 
 
@@ -92,7 +100,7 @@ function RoomAction() {
             success: function (result) {
                 toastr.success("New Room has been Created", "Server Respond");
                 $('#tableRoom').DataTable().ajax.reload();
-                $("#RoomModal").modal('hide');
+               
                 window.location.reload(true);
             },
             error: function (errormesage) {
@@ -106,14 +114,13 @@ function RoomAction() {
 
         var data = {
             id: $('#Roomid').val(),
-
             room_no: $('#roomno').val(),
             roomtypeid: $('#roomtypeid').val(),
             floorid: $('#floorid').val(),
             servicecharge: $('#servicecharge').val(),
             price: $('#price').val(),
             roomkey: $('#roomkey').val(),
-            status: $('#statusv').val(),
+            status: $('#roomstatus').val(),
 
         };
 
@@ -127,7 +134,6 @@ function RoomAction() {
             success: function (result) {
                 toastr.success("Room has been Updated", "Server Respond");
                 $('#tableRoom').DataTable().ajax.reload();
-                $("#RoomModal").modal('hide');
                 document.getElementById('btnSaveRoom').innerText = "Add New";
                 DisableControlRoom();
                 ClearControlRoom();
@@ -157,7 +163,7 @@ function OnEditRoom(id) {
             $("#servicecharge").val(result.servicecharge);
             $("#price").val(result.price);
             $("#roomkey").val(result.roomkey);
-            $("#status").val(result.status);
+            $("#roomstatus").val(result.status);
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
@@ -199,6 +205,10 @@ function OnEditRoom(id) {
 //    });
 //}
 
+function OnCloseRoomModal() {
+    window.location.reload(true);
+}
+
 
 function DisableControlRoom() {
     document.getElementById('roomno').disabled = true;
@@ -207,7 +217,7 @@ function DisableControlRoom() {
     document.getElementById('price').disabled = true;
     document.getElementById('servicecharge').disabled = true;
     document.getElementById('roomkey').disabled = true;
-    document.getElementById('status').disabled = true;
+    document.getElementById('roomstatus').disabled = true;
 }
 
 function EnableControlRoom() {
@@ -217,17 +227,17 @@ function EnableControlRoom() {
     document.getElementById('price').disabled = false;
     document.getElementById('servicecharge').disabled = false;
     document.getElementById('roomkey').disabled = false;
-    document.getElementById('status').disabled = false;
+    document.getElementById('roomstatus').disabled = false;
 
 }
 
-//function ClearControlRoom() {
-//    $('#roomno').val('');
-//    $('#price').val('');
-//    $('#servicecharge').val('');
-//    $('#roomkey').val('');
+function ClearControlRoom() {
+    $('#roomno').val('');
+    $('#price').val('');
+    $('#servicecharge').val('');
+    $('#roomkey').val('');
 
-//}
+}
 
 //function AddnewRoomAction() {
 //    document.getElementById('btnSaveRoom').innerText = "Save";
@@ -235,40 +245,41 @@ function EnableControlRoom() {
 //    ClearControlRoom();
 //}
 
-//function ValidationForm() {
-//    var isValid = true;
-//    if ($('#roomno').val().trim() === "") {
-//        $('#roomno').css('border-color', 'red');
-//        $('#roomno').focus();
-//        alert('Please enter room no');
-//        //toastr.info("Please enter room no", "Required");
-//        isValid = false;
-//    }
-//    else {
-//        $('#roomno').css('border-color', '#cccccc');
-//        if ($('#price').val().trim() === "") {
-//            $('#price').css('border-color', 'red');
-//            $('#price').focus();
-//            alert('Please enter your price');
-//            //toastr.info("Please enter your price", "Required");
-//            isValid = false;
-//        }
-//        else {
-//            $('#price').css('border-color', '#cccccc');
-//            if ($('#roomkey').val().trim() === "") {
-//                $('#roomkey').css('border-color', 'red');
-//                $('#roomkey').focus();
-//                alert('Please enter your room key');
-//                //toastr.info("Please enter your room key", "Required");
-//                isValid = false;
-//            }
-//            else {
-//                $('#roomkey').css('border-color', '#cccccc');
-//            }
-//        }
+
+function ValidationFormRoom() {
+    var isValid = true;
+    if ($('#roomno').val().trim() === "") {
+        $('#roomno').css('border-color', 'red');
+        $('#roomno').focus();
+        alert('Please enter room no');
+        //toastr.info("Please enter room no", "Required");
+        isValid = false;
+    }
+    else {
+        $('#roomno').css('border-color', '#cccccc');
+        if ($('#price').val().trim() === "") {
+            $('#price').css('border-color', 'red');
+            $('#price').focus();
+            alert('Please enter your price');
+            //toastr.info("Please enter your price", "Required");
+            isValid = false;
+        }
+        else {
+            $('#price').css('border-color', '#cccccc');
+            if ($('#roomkey').val().trim() === "") {
+                $('#roomkey').css('border-color', 'red');
+                $('#roomkey').focus();
+                alert('Please enter your room key');
+                //toastr.info("Please enter your room key", "Required");
+                isValid = false;
+            }
+            else {
+                $('#roomkey').css('border-color', '#cccccc');
+            }
+        }
            
-//    }
-//    return isValid;
-//}
+    }
+    return isValid;
+}
 
 

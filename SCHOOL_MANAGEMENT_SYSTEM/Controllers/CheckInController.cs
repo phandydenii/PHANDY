@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SCHOOL_MANAGEMENT_SYSTEM.Models;
+using SCHOOL_MANAGEMENT_SYSTEM.ViewModels;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
 {
@@ -25,18 +26,11 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
         // GET: Room
         public ActionResult Index()
         {
-            //var roomViewModel = new RoomViewModel()
-            //{
-            //    RoomTypes = _context.RoomTypes.ToList(),
-            //    Buildings = _context.Buildings.ToList(),
-            //    Floors = _context.Floors.ToList(),
-            //    Rooms = _context.Rooms.ToList(),
-            //    TotalBlock = _context.Rooms.Where(c => c.status == "BLOCK").Count(),
-            //    TotalBook = _context.Rooms.Where(c => c.status == "BOOKING").Count(),
-            //    TotalFree = _context.Rooms.Where(c => c.status == "FREE").Count(),
-            //    Items = _context.Items.ToList(),
-            //};
-            return View();
+            var roomViewModel = new RoomViewModel()
+            {
+                ExchangeRateID = _context.Exchanges.Where(d => d.IsDeleted == false).Max(a => a.id),
+            };
+            return View(roomViewModel);
         }
     }
 }

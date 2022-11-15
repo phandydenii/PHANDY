@@ -23,7 +23,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<RoomDetail, RoomDetailDto>();
             Mapper.CreateMap<Guest, GuestDto>();
             Mapper.CreateMap<CheckIn, CheckInDto>();
-            Mapper.CreateMap<CheckInDetail, CheckInDetailDto>();
+            Mapper.CreateMap<Booking, BookingDto>();
+            Mapper.CreateMap<WaterUsage, WaterUsageDto>();
+            Mapper.CreateMap<PowerUsage, PowerUsageDto>();
 
 
             //-------ROSELANY APARTMENT-----------//
@@ -85,7 +87,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<RoomDetailDto,RoomDetail>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<GuestDto,Guest>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<CheckInDto,CheckIn>().ForMember(c => c.id, opt => opt.Ignore());
-            Mapper.CreateMap<CheckInDetailDto,CheckInDetail>().ForMember(c => c.id, opt => opt.Ignore());
+            Mapper.CreateMap<BookingDto,Booking>().ForMember(c => c.id, opt => opt.Ignore());
+            Mapper.CreateMap<WaterUsageDto,WaterUsage>().ForMember(c => c.id, opt => opt.Ignore());
+            Mapper.CreateMap<PowerUsageDto,PowerUsage>().ForMember(c => c.id, opt => opt.Ignore());
 
             //-------ROSELANY APARTMENT-----------//
 
@@ -117,7 +121,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<courseDto, course>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<paymentDto, payment>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<paymentdetailDto, paymentdetail>().ForMember(c => c.id, opt => opt.Ignore());
-            Mapper.CreateMap<ExchangeRateDto, ExchangeRate>().ForMember(c => c.rateid, opt => opt.Ignore());
+            Mapper.CreateMap<ExchangeRateDto, ExchangeRate>().ForMember(c => c.id, opt => opt.Ignore());
            
             //New
             Mapper.CreateMap<PositionDto, Position>().ForMember(c => c.id, opt => opt.Ignore());

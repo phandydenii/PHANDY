@@ -1,0 +1,234 @@
+﻿
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="CheckInModal" tabindex="-1" role="dialog" aria-labelledby="CheckInModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;">Check IN Roon</b>
+                <b class="modal-title" style="color: darkblue;" id="lblRoomNoCehckIn"></b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                       @* <input id="roomid" name="checkinroomid" type="text" style="display: none;" value="" class="form-control" />*@
+                        
+                        <div class="form-group">
+                            <label for="checkinroomid">លេខបន្ទប់</label>
+                            <select class="form-control input-sm" id="checkinroomid" disabled>
+                                @foreach (var room in Model.ListRoomBook)
+                                {
+                                    <option value=@room.id>@room.room_no</option>
+                                }
+                            </select>
+                            @*<input id="roomidchin" name="roomidchin" disabled type="text" value="roomidchinval" class="form-control input-sm" style="min-width: 100%" />*@
+                        </div>
+                        <div class="form-group">
+                            <label for="guestidchin">លេខរៀងភ្ញៀវ</label>
+                            <select class="form-control input-sm" id="guestidchin" disabled>
+                                @foreach (var room in Model.GuestBook)
+                                {
+                                    <option value=@room.id>@room.name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="man">បុរស</label>
+                            <input id="man" name="man" placeholder="Enter number of man" type="number" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="women">ស្ត្រី</label>
+                            <input id="women" name="women" placeholder="Enter number of women" type="number" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="child">ក្មេងៗ</label>
+                            <input id="child" name="child" placeholder="Enter number of child" type="number" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="endatedate">ថ្ងៃចេញ</label>
+                            <input id="endatedate" name="endatedate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="invno">លេខវិក័យបត្រ</label>
+                            <input id="invno" disabled name="invno" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">លេខកុងទ័រភ្លើង</label>
+                            <div class="input-group">
+                                <input id="powerprerecord" name="powerprerecord" placeholder="Enter current number" type="text" class="form-control input-sm">
+                                <span class="input-group-addon input-sm">KWH</span>
+                            </div>
+                        </div>
+                        <label>តម្លៃ ១​គីឡូវ៉ាត់ម៉ោង = ១៥០០រៀល</label>
+                        <div class="form-group">
+                            <label class="control-label">លេខកុងទ័រទឹក</label>
+                            <div class="input-group">
+                                <input id="waterprerecord" name="waterprerecord" placeholder="Enter current number" type="text" class="form-control input-sm">
+                                <span class="input-group-addon input-sm">m<sup>3</sup></span>
+                            </div>
+                        </div>
+                        <label>តម្លៃ ១​ម៉ែត្រគូប = ២០០០រៀល</label>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button type="button" id="btnSaveCheckIn" onclick="CheckInAction()" class="btn btn-info btn-block btn-sm">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    //Insert Check In
+    function CheckInAction() {
+        var data = {
+            roomid: $('#checkinroomid').val(),
+            guestid: $('#guestidchin').val(),
+            child: $('#child').val(),
+            man: $('#man').val(),
+            women: $('#women').val(),
+            enddate: $('#endatedate').val(),
+        };
+        $.ajax({
+            url: "/api/checkins",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $("#CheckInModal").modal("hide");
+                UpdateRoomStatus();
+                UpdateGuestStatus();
+                InsertPowerUsage(result);
+                InsertWaterUsage(result);
+                CreateInvoice();
+                toastr.success("Check In successfully.", "Server Response");
+            },
+            error: function (errormesage) {
+                toastr.error("This Name Guest is exist in Database", "Server Respond");
+                return false;
+            }
+
+        });
+    }
+
+    function InsertPowerUsage(result) {
+        var data = {
+            guestid: $('#guestidchin').val(),
+            prerecord: $('#powerprerecord').val(),
+            checkinid: result,
+        };
+        $.ajax({
+            url: "/api/powerusage",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Power usage insert faild!", "Server Respond");
+                return false;
+            }
+
+        });
+    }
+
+    function InsertWaterUsage(result) {
+        var data = {
+            guestid: $('#guestidchin').val(),
+            prerecord: $('#waterprerecord').val(),
+            checkinid: result,
+        };
+        $.ajax({
+            url: "/api/waterusage",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Water usage insert faild!", "Server Respond");
+                return false;
+            }
+
+        });
+    }
+
+
+    function UpdateRoomStatus() {
+        var rmid = document.getElementById('roomid');
+        var rmname = document.getElementById('lblRoomNo').innerText;
+        $("#roomidblock").val(rmid.value);
+        $("#lblRoomNoBlock").text(rmname);
+
+        $.ajax({
+            type: "PUT",
+            url: "/api/updateroomstatus/" + $("#roomid").val() + "/CHECK-IN",
+            contentType: false,
+            processData: false,
+            // data: status,
+            success: function (result) {
+                //toastr.success("Room status update successfully.", "Server Response");
+                $("#RoomDetailModal").modal("hide");
+                window.location.reload(true);
+            },
+            error: function (error) {
+                toastr.error("Update room status fail!", "Server Response");
+            }
+        });
+    }
+
+    function UpdateGuestStatus() {
+        $.ajax({
+            type: "PUT",
+            url: "/api/updategueststatus/" + $("#guestidchin").val() + "/CHECK-IN",
+            contentType: false,
+            processData: false,
+            // data: status,
+            success: function (result) {
+                //toastr.success("Room status update successfully.", "Server Response");
+                $("#RoomDetailModal").modal("hide");
+                window.location.reload(true);
+            },
+            error: function (error) {
+                toastr.error("Update room status fail!", "Server Response");
+            }
+        });
+    }
+
+    function CreateInvoice() {
+        var data = {
+            invoiceno: $('#invno').val(),
+            guestid: $('#guestidchin').val(),
+            exchangerateid: @Model.ExchangeRateID,
+        };
+
+        $.ajax({
+            url: "/api/invoices",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                alert('Print Invoice successfully!');
+            },
+            error: function (errormesage) {
+                toastr.error("This Booking ID is exist in Database", "Server Respond");
+            }
+        });
+    }
+</script>
+
+
+

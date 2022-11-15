@@ -27,7 +27,10 @@ function GetStaff() {
                 data: "phone"
             },
             {
-                data: "dob"
+                data: "dob",
+                render: function (data) {
+                    return moment(new Date(data)).format('DD-MMM-YYYY');
+                }
             },
             {
                 data: "address"
@@ -38,7 +41,9 @@ function GetStaff() {
             {
                 data: "identityno"
             },
-            
+            {
+                data: "position.positionnamekh"
+            },
             {
                 data: "id",
                 render: function (data) {

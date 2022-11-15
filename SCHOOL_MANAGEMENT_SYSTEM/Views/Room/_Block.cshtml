@@ -1,0 +1,50 @@
+﻿
+
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="BlockRoomModal" tabindex="-1" role="dialog" aria-labelledby="BlockRoomModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;">Block Roon</b>
+                <b class="modal-title" style="color: darkblue;" id="lblRoomNoBlock"></b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input id="roomidblock" name="roomidblock" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <div class="form-group">
+                            <label for="noteblock">Note</label>
+                            <input id="noteblock" name="noteblock" placeholder="Enter reason" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <button type="button" id="btnSaveBlock" name="btnSaveRoomItem" onclick="OnSaveBlock()" class="btn btn-success btn-sm pull-right">Save</button>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function OnSaveBlock() {
+        var noteblock = document.getElementById('noteblock').innerText;
+        $.ajax({
+            type: "PUT",
+            url: "/api/updateroomnote/" + $("#roomidblock").val(),
+            contentType: false,
+            processData: false,
+            // data: status,
+            success: function (result) {
+                toastr.success("Room has been Block successfully.", "Server Response");
+            },
+            error: function (error) {
+                toastr.error("Block room fail!", "Server Response");
+            }
+        });
+    }
+
+</script>
+
+
+

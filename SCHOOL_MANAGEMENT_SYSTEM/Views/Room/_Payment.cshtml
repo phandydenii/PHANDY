@@ -1,0 +1,151 @@
+﻿
+<div class="modal fade " data-backdrop="static" data-keyboard="false" id="PaymentModal" tabindex="-1" role="dialog" aria-labelledby="PaymentModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" onclick="OnCloseBook()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;">បង់ប្រាក់</b>
+                @*<b class="modal-title" style="color: darkblue;" id="lblidroom">Payment</b>*@
+
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input id="bookid" name="bookid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                    <input id="bookroomid" name="bookroomid" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="guestid" name="guestid" type="text" style="display: none;" value="" class="form-control" />
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="guestname">INVOICE NO</label>
+                                            <input id="guestname" name="guestname" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="gnamekh">GUEST</label>
+                                            <input id="gnamekh" name="gnamekh" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="frmbookroomid">Room</label>
+                                            <select class="form-control input-sm" id="frmbookroomid">
+                                                @foreach (var room in Model.ListRoomFree)
+                                                {
+                                                    <option value=@room.id>@room.room_no</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">TOTAL</label>
+                                            <input id="address" name="address" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">VAT</label>
+                                            <input id="address" name="address" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nationality">DISCOUND</label>
+                                            <input id="nationality" name="nationality" placeholder="Enter Nationality" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        
+                                        <div class="form-group">
+                                            <label for="phonenumber">WATER USAGE</label>
+                                            <input id="phonenumber" name="phonenumber" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">POWER USAGE</label>
+                                            <input id="email" name="email" placeholder="Enter Email" type="email" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="passport">GRAND TOTAL</label>
+                                            <input id="passport" name="passport" placeholder="Enter Passport Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phonenumber">TOTAL DOLLAR</label>
+                                            <input id="phonenumber" name="phonenumber" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">TOTAL RIEL</label>
+                                            <input id="email" name="email" placeholder="Enter Email" type="email" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ssn">NOTE</label>
+                                            <input id="ssn" name="ssn" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="bookingno">PAY DOLLAR</label>
+                                            <input id="bookingno" name="bookingno" placeholder="Enter Book No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="bookingno">PAY RIEL</label>
+                                            <input id="bookingno" name="bookingno" placeholder="Enter Book No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="bookingno">Owe</label>
+                                            <input id="bookingno" name="bookingno" placeholder="Enter Book No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="totalbooking">Owe Reasion</label>
+                                            <input id="totalbooking" name="totalbooking" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="paydollarbooking">Total Return Amount</label>
+                                            <input id="paydollarbooking" name="paydollarbooking" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="payreilbooking">Return Amount</label>
+                                            <input id="payreilbooking" name="payreilbooking" placeholder="000.0" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="checkindate">Description</label>
+                                            <input id="checkindate" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>អត្រាប្តូរប្រាក់ <span style="color:blue">1$=</span></label><label style="color:blue" id="exchagerate">​ 4050 រៀល</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+
+                <div class="col-md-3 col-md-offset-6" id="hidecheckout">
+                    <button type="button" id="btnCheckOut" data-dismiss="modal" class="btn btn-danger btn-block btn-sm">Cancel</button>
+                </div>
+                <div class="col-md-3" id="hidepayment">
+                    <button type="button" id="btnPayment" onclick="OnPayAction()" class="btn btn-info btn-block btn-sm">Pay Now</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    @section scripts{
+
+    }
+</script>

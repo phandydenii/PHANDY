@@ -1,0 +1,346 @@
+﻿
+<div class="modal fade " data-backdrop="static" data-keyboard="false" id="BookModal" tabindex="-1" role="dialog" aria-labelledby="BookModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" onclick="OnCloseBook()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;">បន្ទប់</b>
+                <b class="modal-title" style="color: darkblue;" id="lblidroom">Book</b>
+               
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input id="bookid" name="bookid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                    <input id="bookroomid" name="bookroomid" type="text" style="display: none;"  value="" class="form-control" />
+                    <input id="guestid" name="guestid" type="text" style="display: none;" value="" class="form-control" />
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @*<div class="row">
+                                    <div class="col-md-2">
+                                        <h5><b>Guest</b></h5>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <hr />
+                                    </div>
+                                </div>*@
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="guestname">ឈ្មោះភ្ញៀវ</label>
+                                            <input id="guestname" name="guestname" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="gnamekh">ឈ្មោះភ្ញៀវជាភាសាខ្មែរ</label>
+                                            <input id="gnamekh" name="gnamekh" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="gsex">ភេទ</label>
+                                            <select class="form-control input-sm" id="gsex">
+                                                <option >Male</option>
+                                                <option >Female</option>
+                                            </select>
+                                            @*<input id="gsex" name="gsex" placeholder="Enter Gender" type="text" value="" class="form-control input-sm" style="min-width: 100%" />*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dob">ថ្ងៃខែឆ្នាំកំណើត</label>
+                                            <input id="dob" name="dob" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
+                                            @*<input id="dob" name="dob" placeholder="Enter Date Of Birth" type="text" value="" class="form-control input-sm" style="min-width: 100%" />*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">អាស័យដ្ឋាន</label>
+                                            <input id="address" name="address" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="nationality">សញ្ជាតិ</label>
+                                            <input id="nationality" name="nationality" placeholder="Enter Nationality" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phonenumber">លេខទូរសព្ទ</label>
+                                            <input id="phonenumber" name="phonenumber" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">អ៊ីម៉ែល</label>
+                                            <input id="email" name="email" placeholder="Enter Email" type="email" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="ssn">លេខអត្តសញ្ញាណប័ណ្ណ</label>
+                                            <input id="ssn" name="ssn" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="passport">លិខិតឆ្លងដែន</label>
+                                            <input id="passport" name="passport" placeholder="Enter Passport Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @*<div class="row">
+                                    <div class="col-md-2">
+                                        <h5><b>Pay</b></h5>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <hr />
+                                    </div>
+                                </div>*@
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="bookingno">លេខរៀងកក់</label>
+                                            <input id="bookingno" name="bookingno" placeholder="Enter Book No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="frmbookroomid">លេខបន្ទប់</label>
+                                            <select class="form-control input-sm" id="frmbookroomid">
+                                                @foreach (var room in Model.ListRoomFree)
+                                                {
+                                                    <option value=@room.id>@room.room_no</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="totalbooking">សរុបប្រាក់កក់</label>
+                                            <input id="totalbooking" name="totalbooking" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="paydollarbooking">ប្រាក់ដុល្លា</label>
+                                            <input id="paydollarbooking" name="paydollarbooking" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="payreilbooking">ប្រាក់រៀល</label>
+                                            <input id="payreilbooking" name="payreilbooking" placeholder="000.0" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="checkindate">ថ្ងៃចូលស្នាក់នៅ</label>
+                                            @*<input id="checkindate" name="checkindate" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />*@
+
+                                            <input id="checkindate" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="expiredate">ថ្ងៃផុតកំណត់ចូលស្នាក់នៅ</label>
+
+                                            <input id="expiredate" name="expiredate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
+
+                                            @*<input id="expiredate" name="expiredate" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />*@
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="bookingnote">កត់ត្រា</label>
+                                            <input id="bookingnote" name="bookingnote" placeholder="Note" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label >អត្រាប្តូរប្រាក់ <span style="color:blue">1$=</span></label><label style="color:blue" id="exchagerate">​ 4050 រៀល</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                
+                <div class="col-md-3 col-md-offset-6" id="hidecheckout">
+                    <button type="button" id="btnCheckOut" data-dismiss="modal" class="btn btn-danger btn-block btn-sm">Cancel</button>
+                </div>
+                <div class="col-md-3" id="hidepayment">
+                    <button type="button" id="btnPayment" onclick="OnBookNowAction()" class="btn btn-info btn-block btn-sm">Book Now</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function OnBookNowAction() {
+        try{
+            //insert guest
+            CreateGuest();
+
+            //Update room status after booking
+            UpdateRoomStatus();
+
+            toastr.success("Book successfully!", "Server Respond");
+            $("#BookModal").modal('hide');
+            //window.location.reload(true);
+        }
+        catch (e) {
+            toastr.error(e.toString(), "Server Respond")
+        }
+    }
+
+    ///Insert Guest
+    function CreateGuest(){
+        var data = new FormData();
+        data.append("name", $("#guestname").val());
+        data.append("namekh", $("#gnamekh").val());
+        data.append("sex", $("#gsex").val());
+        data.append("dob", $("#dob").val());
+        data.append("address", $("#address").val());
+        data.append("nationality", $("#nationality").val());
+        data.append("phone", $("#phonenumber").val());
+        data.append("email", $("#email").val());
+        data.append("ssn", $("#ssn").val());
+        data.append("passport", $("#passport").val());
+        data.append("status", 'BOOK');
+        $.ajax({
+            type: "POST",
+            url: "/api/guests",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                //toastr.success("Contract has been created successfully.", "Server Response");
+                //alert(result);
+                InsertBooking(result);
+                UpdateRoomStatusBook();
+            },
+            error: function (error) {
+                //console.log(error);
+                toastr.error("Please check all selected field!.", "Server Response");
+            }
+        });
+
+    }
+
+    //function InsertGuest() {
+    //    var data = {
+    //        name: $('#guestname').val(),
+    //        namekh: $('#gnamekh').val(),
+    //        sex: $('#gsex').val(),
+    //        dob: $('#dob').val(),
+    //        address: $('#address').val(),
+    //        nationality: $('#nationality').val(),
+    //        phone: $('#phonenumber').val(),
+    //        email: $('#email').val(),
+    //        ssn: $('#ssn').val(),
+    //        passport: $('#passport').val(),
+    //        status: 'BOOK',
+    //    };
+    //    $.ajax({
+    //        url: "/api/guests",
+    //        data: JSON.stringify(data),
+    //        type: "POST",
+    //        contentType: "application/json;charset=utf-8",
+    //        dataType: "json",
+    //        success: function (result) {
+    //            //alert('Guest Creted');
+    //        },
+    //        error: function (errormesage) {
+    //            toastr.error("This Name Guest is exist in Database", "Server Respond");
+    //            return false;
+    //        }
+    //    });
+    //}
+    
+    //function getBookingIDMax() {
+    //    $.get("/api/guestsmaxid", function (data) {
+    //        guesmaxid=data;
+    //        alert('Guest Max =' + data);
+    //    });
+    //}
+
+    //Create Booking
+    //function CreateBooking(){
+    //    var data = new FormData();
+    //    data.append("bookingno", $("#bookingno").val());
+    //    data.append("roomid", $("#frmbookroomid").val());
+    //    data.append("total", $("#totalbooking").val());
+    //    data.append("paydollar", $("#paydollarbooking").val());
+    //    data.append("payriel", $("#payrielbooking").val());
+    //    data.append("expiredate", $("#expiredate").val());
+    //    data.append("note", $("#bookingnote").val());     
+    //    $.ajax({
+    //        type: "POST",
+    //        url: "/api/bookings",
+    //        contentType: false,
+    //        processData: false,
+    //        data: data,
+    //        success: function (result) {
+    //            toastr.success("Contract has been created successfully.", "Server Response");
+    //            tableContract.ajax.reload();
+    //            //$('#ContractId').val(result.id);
+    //            //$('#contractModal').modal('hide');
+    //            document.getElementById('btncontract').innerText = "បង្កើតថ្មី​ / Add New";
+    //            DisableControlContracts();
+    //            ClearControlContracts();
+    //        },
+    //        error: function (error) {
+    //            //console.log(error);
+    //            toastr.error("Please check all selected field!.", "Server Response");
+    //        }
+    //    });
+    //}
+
+
+    //Insert Booking
+    function InsertBooking(result) {
+        var data = {
+            bookingno: $('#bookingno').val(),
+            guestid: result,
+            exchangeid:@Model.ExchangeRateID,
+            roomid: $('#frmbookroomid').val(),
+            total: $('#totalbooking').val(),
+            paydollar: $('#paydollarbooking').val(),
+            payriel: $('#payrielbooking').val(),
+            checkindate: $('#checkindate').val(),
+            expiredate: $('#expiredate').val(),
+            status: 'Active',
+            note: $('#bookingnote').val(),
+        };
+
+        $.ajax({
+            url: "/api/bookings",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //alert('Book Creted');
+            },
+            error: function (errormesage) {
+                toastr.error("This Booking ID is exist in Database", "Server Respond");
+                return false;
+            }
+        });
+    }
+   
+    function UpdateRoomStatusBook() {
+        var rmid = document.getElementById('bookroomid');
+        $.ajax({
+            type: "PUT",
+            url: "/api/updateroomstatus/"+$("#roomid").val()+"/BOOK",
+            contentType: false,
+            processData: false,
+            // data: status,
+            success: function (result) {
+                //toastr.success("Room Status has been Update successfully.", "Server Response");
+            },
+            error: function (error) {
+                toastr.error("Update room status fail!", "Server Response");
+            }
+        });
+    }
+</script>
+
+
+
+
+
+
+
+
+
+

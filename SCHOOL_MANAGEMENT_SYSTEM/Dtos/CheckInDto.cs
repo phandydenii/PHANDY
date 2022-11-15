@@ -12,7 +12,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public DateTime? checkindate { get; set; }
         public DateTime? startdate { get; set; }
         public DateTime? enddate { get; set; }
-        public int userid { get; set; }
+        public int roomid { get; set; }
+        public Room room { get; set; }
+        public String userid { get; set; }
         public int guestid { get; set; }
         public Guest guest { get; set; }
         public int child { get; set; }

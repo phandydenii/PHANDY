@@ -8,29 +8,40 @@ using System.Web;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
 {
-    [Table("invoice_tbl")]
     public class InvoiceDto
     {
-        [Key]
+        
         public int id { get; set; }
-        [Required]
-        public int invoiceno { get; set; }
-        public DateTime date { get; set; }
-        [Required]
-        public int customerid { get; set; }
-        public Customer Customers { get; set; }
-        [Required]
-        public int showroomid { get; set; }
-        public Showroom Showrooms { get; set; }
-        [Required]
-        public int exchangeid { get; set; }
-        public Decimal totalamount { get; set; }
-        public Decimal totalcarprice { get; set; }
-        public Decimal totalshipprice { get; set; }
-        public Decimal alreadypaid { get; set; }
-        public Boolean status { get; set; }
+       
+        public String invoiceno { get; set; }
+        public DateTime invoicedate { get; set; }
+        public int checkinid { get; set; }
+        public CheckIn checkin { get; set; }
+        public int powerusageid { get; set; }
+        public PowerUsage powerusage { get; set; }
+        public int waterusageid { get; set; }
+        public WaterUsage waterusage { get; set; }
+        public string userid { get; set; }
+        public int exchangerateid { get; set; }
+        public ExchangeRate exchangerate { get; set; }
+        public decimal grandtotal { get; set; }
+        //public decimal vat { get; set; }
+        public decimal totalriel { get; set; }
+        public decimal totaldollar { get; set; }
+        //public decimal discount { get; set; }
+        public decimal totalother { get; set; }
+        public bool paid { get; set; }
+        public bool printed { get; set; }
         public string createby { get; set; }
         public DateTime createdate { get; set; }
-        public Boolean paid { get; set; }
+        public string updateby { get; set; }
+        public DateTime updatedate { get; set; }
+        public string note { get; set; }
+        public decimal owe { get; set; }
+        public string owereassion { get; set; }
+        public decimal totalreturnamount { get; set; }
+        public decimal returnamount { get; set; }
+        public string returndescription { get; set; }
+        public string status { get; set; }
     }
 }
