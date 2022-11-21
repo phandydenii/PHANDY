@@ -22,7 +22,6 @@
                                     <option value=@room.id>@room.room_no</option>
                                 }
                             </select>
-                            @*<input id="roomidchin" name="roomidchin" disabled type="text" value="roomidchinval" class="form-control input-sm" style="min-width: 100%" />*@
                         </div>
                         <div class="form-group">
                             <label for="guestidchin">លេខរៀងភ្ញៀវ</label>
@@ -35,19 +34,15 @@
                         </div>
                         <div class="form-group">
                             <label for="man">បុរស</label>
-                            <input id="man" name="man" placeholder="Enter number of man" type="number" value="" class="form-control input-sm" style="min-width: 100%" />
+                            <input id="man" name="man" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
                             <label for="women">ស្ត្រី</label>
-                            <input id="women" name="women" placeholder="Enter number of women" type="number" value="" class="form-control input-sm" style="min-width: 100%" />
+                            <input id="women" name="women" placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
                             <label for="child">ក្មេងៗ</label>
-                            <input id="child" name="child" placeholder="Enter number of child" type="number" value="" class="form-control input-sm" style="min-width: 100%" />
-                        </div>
-                        <div class="form-group">
-                            <label for="endatedate">ថ្ងៃចេញ</label>
-                            <input id="endatedate" name="endatedate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
+                            <input id="child" name="child" placeholder="Enter number of child" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -57,20 +52,16 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">លេខកុងទ័រភ្លើង</label>
-                            <div class="input-group">
-                                <input id="powerprerecord" name="powerprerecord" placeholder="Enter current number" type="text" class="form-control input-sm">
-                                <span class="input-group-addon input-sm">KWH</span>
-                            </div>
+                            <input id="powerprerecord" name="powerprerecord" placeholder="Enter current number" value="0" type="text" class="form-control input-sm">
                         </div>
-                        <label>តម្លៃ ១​គីឡូវ៉ាត់ម៉ោង = ១៥០០រៀល</label>
                         <div class="form-group">
                             <label class="control-label">លេខកុងទ័រទឹក</label>
-                            <div class="input-group">
-                                <input id="waterprerecord" name="waterprerecord" placeholder="Enter current number" type="text" class="form-control input-sm">
-                                <span class="input-group-addon input-sm">m<sup>3</sup></span>
-                            </div>
+                            <input id="waterprerecord" name="waterprerecord" placeholder="Enter current number" value="0" type="text" class="form-control input-sm">
                         </div>
-                        <label>តម្លៃ ១​ម៉ែត្រគូប = ២០០០រៀល</label>
+                        <input type="hidden" id="wpid" />
+                        <span >ថ្លៃភ្លើង</span> : 1m<sup>3</sup> = <label id="wprice"></label><span> រៀល</span>
+                        <br />
+                        <span>ថ្លៃទឹក</span> : 1​KWH = <label id="pprice"></label><span> រៀល</span>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
@@ -94,7 +85,6 @@
             child: $('#child').val(),
             man: $('#man').val(),
             women: $('#women').val(),
-            enddate: $('#endatedate').val(),
         };
         $.ajax({
             url: "/api/checkins",
@@ -221,7 +211,7 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                alert('Print Invoice successfully!');
+                //alert('Print Invoice successfully!');
             },
             error: function (errormesage) {
                 toastr.error("This Booking ID is exist in Database", "Server Respond");

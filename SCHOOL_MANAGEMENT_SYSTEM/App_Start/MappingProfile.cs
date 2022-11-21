@@ -26,6 +26,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<Booking, BookingDto>();
             Mapper.CreateMap<WaterUsage, WaterUsageDto>();
             Mapper.CreateMap<PowerUsage, PowerUsageDto>();
+            Mapper.CreateMap<WaterPowerPrice, WaterPowerPriceDto>();
+
 
 
             //-------ROSELANY APARTMENT-----------//
@@ -90,6 +92,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<BookingDto,Booking>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<WaterUsageDto,WaterUsage>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<PowerUsageDto,PowerUsage>().ForMember(c => c.id, opt => opt.Ignore());
+            Mapper.CreateMap<WaterPowerPriceDto, WaterPowerPrice>().ForMember(c => c.id, opt => opt.Ignore());
 
             //-------ROSELANY APARTMENT-----------//
 

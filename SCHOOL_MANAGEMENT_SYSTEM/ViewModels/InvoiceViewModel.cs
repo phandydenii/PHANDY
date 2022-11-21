@@ -16,6 +16,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
         public IEnumerable<Employee> Employees { get; set; }
         public IEnumerable<ExchangeRate> Exchanges { get; set; }
         public int ExchangeRateID { get; set; }
+        public int WaterPowerPriceID { get; set; }
 
         public int id { get; set; }
         public int invoiceno { get; set; }

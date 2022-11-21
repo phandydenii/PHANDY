@@ -28,14 +28,13 @@ function GetInvoice() {
     //alert(selectedDate);
     tableInvoice = $('#InvoiceTable').DataTable({
         ajax: {
-            url: "/api/invoice_v",
+            url: "/api/invoice_v?c=0",
             dataSrc: ""
         },
         columns: [
             {
                 data: "id",
                 render: function (data) {
-
                     return "RL" + ("000000" + data).slice(-6);
                 }
             },
@@ -53,6 +52,9 @@ function GetInvoice() {
             },
             {
                 data: "roomprice",
+                render: function (data) {
+                    return parseFloat(data).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                }
             },
             {
                 data: "wtotal",
@@ -60,7 +62,7 @@ function GetInvoice() {
                     if (data <= 0) {
                         return 0;
                     } else {
-                        return data;
+                        return parseFloat(data).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                     }
                 }
             },
@@ -70,24 +72,33 @@ function GetInvoice() {
                     if (data <= 0) {
                         return 0;
                     } else {
-                        return data;
+                        return parseFloat(data).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                     }
                 }
             },
             {
                 data: "grandtotal",
+                render: function (data) {
+                    return parseFloat(data).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                }
             },
             {
                 data: "totalriel",
+                render: function (data) {
+                    return parseFloat(data).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                }
             },
             {
                 data: "totaldollar",
+                render: function (data) {
+                    return parseFloat(data).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+                }
             },
             {
                 data: "owe",
                 render: function (data) {
                     if (data == 0) {
-                        return data ;
+                        return parseFloat(data).toFixed(2);
                     } else {
                         return "<span class='label label-danger'>" + data + "</span>";
                     }
@@ -96,10 +107,20 @@ function GetInvoice() {
             {
                 data: "paid",
                 render: function (data) {
-                    if (data == 1) {
-                        return "<span class='label label-success'>Pad</span>";
+                    if (data == 0) {
+                        return "<span class='label label-danger'><span class='glyphicon glyphicon-remove'></span> Not Paid</span>";
                     } else {
-                        return "<button OnClick='InvoiceDetail (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-usd'></span> Pay Now</button>";
+                        return "<span class='label label-primary'><span class='glyphicon glyphicon-ok'></span> Paid</span>";
+                    }
+                }
+            },
+            {
+                data: "id",
+                render: function (data) {
+                    if ({ data: "owe" } == 0) {
+                        return "<span class='label label-primary'><span class='glyphicon glyphicon-ok'></span> Paid</span>";
+                    } else {
+                        return "<button OnClick='OnPayment(" + data + ");' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-usd'></span> Pay Now</button>";
                     }
                 }
             },
@@ -114,7 +135,7 @@ function GetInvoice() {
                     return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
                                +"<ul class='dropdown-menu'>"
                                  +"<li>"
-                                    + "<button OnClick='InvoiceDetail (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                                    + "<button OnClick='OnTest ()' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
                                     + "<button OnClick='InvoiceDetail (" + data + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-list-alt'></span> Detail</button>"
                                     + "<button OnClick='InvoiceDetail (" + data + ")' class='btn btn-danger btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-trash'></span> Delete</button>"
                                  +"</li>"
@@ -124,22 +145,54 @@ function GetInvoice() {
                 }
             }
         ],
+        
         destroy: true,
-       
+    });
+}
+
+//function OnTest() {
+//    window.open("/department-list", "_self")
+//}
+
+//function OnTest() {
+//   // var contentOfDiv = document.getElementById("divCon").innerHTML;
+//    var newWin = window.open('http://localhost:2139/department-list', '', 'height=650, width=650');
+//    newWin.document.close();
+//    newWin.print();
+//}
+
+
+
+function OnPayment(id) {
+    //alert(id);
+    $("#PaymentModal").modal('show');
+    $.ajax({
+    url: "/api/invoice_v/"+id,
+    type: "GET",
+    contentType: "application/json;charset=utf-8",
+    datatype: "json",
+    success: function (result) {
+        $('#id').val(result.id);
+        $('#invoiceno').val(result.invoiceno);
+        $("#guestname").val(result.guestname);
+        $("#room").val(result.roomno);
+        $('#roomprice').val(result.roomprice);
+        $('#oldwaterrecord').val(result.wprerecord);
+        $('#newwaterrecord').val(result.wcurrentrecord);
+        $('#totalwaterusage').val(result.wtotal);
+        $('#oldpowerrecord').val(result.pprerecord);
+        $('#newpowerrecord').val(result.pcurrentrecord);
+        $('#totalpowerusage').val(result.ptotal);
+        $('#servicecharge').val(result.servicecharge);
+        $('#totalpayment').val(result.grandtotal);
+        $('#totalpaymentkh').val(result.totalriel);
+        $('#note').val(result.note);
+    },
+    error: function (errormessage) {
+        toastr.error("Load Record Error", "Service Response");
+    }
     });
 
-
-}
-function OnNewInvoice(id) {
-    $("#PrintNewInvoiceModal").modal('show');
-}
-
-function OnPay(id) {
-    $("#PaymentModal").modal('show');
-}
-
-function InvoiceDetail(id) {
-    alert(id);
 }
 
 

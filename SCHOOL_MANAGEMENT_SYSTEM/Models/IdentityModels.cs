@@ -38,6 +38,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet<ExchangeRate> Exchanges { get; set; }
         public DbSet<PowerUsage> PowerUsages { get; set; }
         public DbSet<WaterUsage> WaterUsages { get; set; }
+        public DbSet <WaterPowerPrice> WaterPowerPrices { get; set; }
 
 
 

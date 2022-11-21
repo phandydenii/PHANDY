@@ -42,17 +42,20 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             DataTable ds = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select top 1 id,prerecord from powerusage_tbl where checkinid='" + id + "' order by id desc", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select top 1 id,prerecord,currentrecord from powerusage_tbl where checkinid='" + id + "' order by id desc", conx);
             adp.Fill(ds);
-            string powerrecordid = ds.Rows[0][1].ToString();
-            return Ok(powerrecordid);
-            //var getPowerUsageById = _context.PowerUsages.SingleOrDefault(c => c.checkinid == id);
-
-            //if (getPowerUsageById == null)
-            //    return NotFound();
-
-            //return Ok(Mapper.Map<PowerUsage, PowerUsageDto>(getPowerUsageById));
-
+            string oldrecord = ds.Rows[0][1].ToString();
+            string newrecord = ds.Rows[0][2].ToString();
+            string currenrecrd = "";
+            if (decimal.Parse(newrecord) == 0)
+            {
+                currenrecrd = oldrecord;
+            }
+            else
+            {
+                currenrecrd = newrecord;
+            }
+            return Ok(currenrecrd);
         }
 
         [HttpGet]
@@ -89,13 +92,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpPut]
-        [Route("api/updatepowers/{checkinid}/{currentrecord}")]
-        public IHttpActionResult GetMaxID(int checkinid, decimal currentrecord)
+        [Route("api/updatepowers/{id}/{currentrecord}")]
+        public IHttpActionResult GetMaxID(int id, decimal currentrecord)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            SqlCommand requestcommand = new SqlCommand("update powerusage_tbl set currentrecord='"+ currentrecord + "',currentdate=GETDATE() where checkinid=" + checkinid, conx);
+            SqlCommand requestcommand = new SqlCommand("update powerusage_tbl set currentrecord='"+ currentrecord + "',currentdate=GETDATE() where id=" + id, conx);
             try
             {
                 conx.Open();

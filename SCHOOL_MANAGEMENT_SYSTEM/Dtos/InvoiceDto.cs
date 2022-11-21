@@ -17,6 +17,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public DateTime invoicedate { get; set; }
         public int checkinid { get; set; }
         public CheckIn checkin { get; set; }
+        public int guestid { get; set; }
+        public Guest guest { get; set; }
         public int powerusageid { get; set; }
         public PowerUsage powerusage { get; set; }
         public int waterusageid { get; set; }

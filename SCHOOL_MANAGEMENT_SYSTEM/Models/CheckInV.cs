@@ -22,6 +22,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public string roomkey { get; set; }
         public string roomstatus { get; set; }
 
+        public DateTime? wolddate { get; set; }
+        public DateTime? polddate { get; set; }
+        public decimal woldrecord { get; set; }
+        public decimal poldrecord { get; set; }
+
+        public DateTime? wnewdate { get; set; }
+        public DateTime? pnewdate { get; set; }
+        public decimal wnewrecord { get; set; }
+        public decimal pnewrecord { get; set; }
+
         public int guestid { get; set; }
         public string name { get; set; }
         public string namekh { get; set; }

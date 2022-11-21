@@ -18,24 +18,24 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             return View();
         }
 
-        [Route("student-invoice/{invoiceid}")]        [System.Web.Mvc.HttpGet]        public ActionResult GetInvoiceReport(string invoiceid)        {
+        [Route("student-invoice")]        [System.Web.Mvc.HttpGet]        public ActionResult GetInvoiceReport(string invoiceid)        {
             DataTable ds = new DataTable();
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From payment_v where id=" + invoiceid + "", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From InvoiceV where id=1", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
             //ReportParameter qrCODE = new ReportParameter("qrCODE", base64String);
             //reportViewer.LocalReport.EnableExternalImages = true;
-            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\PaymentRpt.rdlc";
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Report1.rdlc";
             //reportViewer.LocalReport.SetParameters(new ReportParameter[] { staffname, from, to, khmerDate, khmerYear, qrCODE });
-            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_paymentrpt");
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_invoicerpt");
         }
 
         [Route("department-list")]        [System.Web.Mvc.HttpGet]        public ActionResult GetDepartment()        {
             DataTable ds = new DataTable();
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From Departments", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From InvoiceV where id=1", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
             //ReportParameter qrCODE = new ReportParameter("qrCODE", base64String);
             //reportViewer.LocalReport.EnableExternalImages = true;
-            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\DepartmentRpt.rdlc";
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Report1.rdlc";
             //reportViewer.LocalReport.SetParameters(new ReportParameter[] { staffname, from, to, khmerDate, khmerYear, qrCODE });
-            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_departmentrpt");
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_invoicerpt");
         }
 
         [Route("branch-list")]        [System.Web.Mvc.HttpGet]        public ActionResult GetBranch()        {

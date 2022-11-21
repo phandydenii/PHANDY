@@ -116,7 +116,7 @@
                 <div class="modal-footer">
                     <button type="button" id="btnBlock" onclick="OnBlockAction()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Block</button>
                     <button type="button" id="btnCheckOut" onclick="OnCheckOutAction()" class="btn btn-warning btn-sm pull-right" style="margin-left:10px;width:100px">Check Out</button>
-                    <button type="button" id="btnCheckIn" onclick="OnCheckInAction()" data-toggle="modal" data-target="#CheckInModal" class="btn btn-primary btn-sm pull-right" style="margin-left:10px;width:100px">Check In</button>
+                    <button type="button" id="btnCheckIn" onclick="OnCheckInAction()" class="btn btn-primary btn-sm pull-right" style="margin-left:10px;width:100px">Check In Now</button>
                     <button type="button" id="btnPayment" onclick="OnPaymentAction()" data-toggle="modal" data-target="#PaymentModal" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">Payment</button>           
                     <button type="button" id="btnBook" onclick="OnBookAction()" data-toggle="modal" data-target="#BookModal" class="btn btn-success  btn-sm pull-right" style="margin-left:10px;width:100px">Book</button>
 
@@ -130,6 +130,7 @@
 @Html.Partial("_Book")
 @Html.Partial("_Block")
 @Html.Partial("_CheckIn")
+@Html.Partial("_CheckInNow")
 @Html.Partial("_Payment")
 <script>
     
@@ -157,17 +158,33 @@
     }
     
     function OnCheckInAction() {
-        var rmid = document.getElementById('roomid');
-        var rmname = document.getElementById('lblRoomNo').innerText;
-        var guestid = document.getElementById('guestid').value;
-        $("#checkinroomid").val(rmid.value);
-        $("#guestidchin").val(rmid.value);
-        $("#lblRoomNoCehckIn").text(guestid);
+        var btncheckin = document.getElementById('btnCheckIn').innerText;
+        if (btncheckin == "Check In Now") {
+            //alert('hello');
+            $("#CheckInNowModal").modal("show");
+            $.get("/api/ExchangeRates/1/2", function (data) {
+                $("#exid").val(data.id);
+                $("#examount").text(data.rate);
+            });
+            
+        } else {
+            var rmid = document.getElementById('roomid');
+            var rmname = document.getElementById('lblRoomNo').innerText;
+            var guestid = document.getElementById('guestid');
+            $("#checkinroomid").val(rmid.value);
+            $("#guestidchin").val(guestid);
+            $("#lblRoomNoCehckIn").text(guestid);
 
-        $.get("/api/invoicemaxid", function (data) {
-            $('#invno').val(data);
-        });
-
+            $.get("/api/WaterPoserPrice/1/2", function (data) {
+                $("#wpid").val(data.id);
+                $("#wprice").text(data.waterprice);
+                $("#pprice").text(data.powerprice);
+            });
+            $.get("/api/invoicemaxid", function (data) {
+                $('#invno').val(data);
+            });
+            $("#CheckInModal").modal("show");
+        }
     }
 
     function OnCheckOutAction() {
@@ -221,8 +238,6 @@
             }
         });
     }
-
-
 </script>
 
 

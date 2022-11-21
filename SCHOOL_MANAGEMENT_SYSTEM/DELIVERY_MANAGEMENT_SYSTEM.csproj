@@ -66,7 +66,9 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\MicrosoftReportViewerWebForms.11.0.0.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
-      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -74,7 +76,6 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\MicrosoftReportViewerWebForms.11.0.0.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebDesign, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -82,11 +83,9 @@
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\MicrosoftReportViewerWebForms.11.0.0.0\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
-      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportViewer.WinForms.10.0.40219.1\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
@@ -150,6 +149,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -304,6 +304,7 @@
     <Compile Include="Controllers\Api\StudyperiodsController.cs" />
     <Compile Include="Controllers\Api\TransferController.cs" />
     <Compile Include="Controllers\Api\UserRolesController.cs" />
+    <Compile Include="Controllers\Api\WaterPoserPriceController.cs" />
     <Compile Include="Controllers\Api\WaterUsageController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\CheckInController.cs" />
@@ -385,6 +386,7 @@
     <Compile Include="Dtos\studylanguageDto.cs" />
     <Compile Include="Dtos\studyperiodDto.cs" />
     <Compile Include="Dtos\TransferDto.cs" />
+    <Compile Include="Dtos\WaterPowerPriceDto.cs" />
     <Compile Include="Dtos\WaterUsageDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -408,6 +410,7 @@
     <Compile Include="Models\FloorV.cs" />
     <Compile Include="Models\Guest.cs" />
     <Compile Include="Models\HowtoUse.cs" />
+    <Compile Include="Models\InvoiceCheckInV.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\PowerUsage.cs" />
     <Compile Include="Models\Pricing.cs" />
@@ -460,6 +463,7 @@
     <Compile Include="Models\studyperiod.cs" />
     <Compile Include="Models\Telegram.cs" />
     <Compile Include="Models\Transfer.cs" />
+    <Compile Include="Models\WaterPowerPrice.cs" />
     <Compile Include="Models\WaterUsage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Language1.Designer.cs">
@@ -1009,7 +1013,6 @@
     <Content Include="Views\Payments\_Payment.cshtml" />
     <Content Include="Views\Payments\_CourseList.cshtml" />
     <Content Include="Views\Payments\_ExchageRate.cshtml" />
-    <Content Include="Views\Reports\_paymentrpt.cshtml" />
     <Content Include="Scripts\select2\js\bootstrap-select.js.map" />
     <Content Include="Scripts\select2\js\bootstrap-select.min.js.map" />
     <Content Include="Scripts\select2\js\i18n\defaults-am_ET.js.map" />
@@ -1054,23 +1057,6 @@
     <Content Include="Views\UserRoles\EditUser.cshtml" />
     <Content Include="Views\UserRoles\Index.cshtml" />
     <Content Include="Views\ManageUsers\Index.cshtml" />
-    <Content Include="Views\Reports\_departmentrpt.cshtml" />
-    <Content Include="Views\Reports\_branchrpt.cshtml" />
-    <Content Include="Views\Reports\_userrpt.cshtml" />
-    <Content Include="Views\Reports\_employeerpt.cshtml" />
-    <Content Include="Views\Reports\_shiftsrpt.cshtml" />
-    <Content Include="Views\Reports\_gradesrpt.cshtml" />
-    <Content Include="Views\Reports\_coursesrpt.cshtml" />
-    <Content Include="Views\Reports\_studylanguagesrpt.cshtml" />
-    <Content Include="Views\Reports\_studyperiodsrpt.cshtml" />
-    <Content Include="Views\Reports\_exchangeratesrpt.cshtml" />
-    <Content Include="Views\Reports\_studentsrpt.cshtml" />
-    <Content Include="Views\Reports\_appropriaterpt.cshtml" />
-    <Content Include="Views\Reports\_emergencyrpt.cshtml" />
-    <Content Include="Views\Reports\_parrentstudentrpt.cshtml" />
-    <Content Include="Views\Reports\_register_vrpt.cshtml" />
-    <Content Include="Views\Reports\_payment_v_reportrpt.cshtml" />
-    <Content Include="Views\Reports\_paymentdetail_vrpt.cshtml" />
     <Content Include="Views\Employee\_Employee.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\_Department.cshtml" />
@@ -1085,28 +1071,15 @@
     <Content Include="Views\Product\_Category.cshtml" />
     <Content Include="Views\Invoice\Index.cshtml" />
     <Content Include="Views\Invoice\_ExchageRate.cshtml" />
-    <Content Include="Views\Reports\_invoicerpt.cshtml" />
     <Content Include="Views\Employee\_Bonus.cshtml" />
     <Content Include="Views\OtherExpense\_OtherExpense.cshtml" />
     <Content Include="Views\OtherExpense\Index.cshtml" />
     <Content Include="Views\OtherExpense\_ExpenseType.cshtml" />
     <Content Include="Views\Transfer\Index.cshtml" />
     <Content Include="Views\Transfer\_Transfer.cshtml" />
-    <Content Include="Views\Reports\_customerrpt.cshtml" />
-    <Content Include="Views\Reports\_categoryrpt.cshtml" />
-    <Content Include="Views\Reports\_productrpt.cshtml" />
-    <Content Include="Views\Reports\_positionrpt.cshtml" />
-    <Content Include="Views\Reports\_showroomrpt.cshtml" />
-    <Content Include="Views\Reports\_locationrpt.cshtml" />
-    <Content Include="Views\Reports\_invoice_summaryrpt.cshtml" />
-    <Content Include="Views\Reports\_invoice_detailrpt.cshtml" />
     <Content Include="Views\Employee\_Salary.cshtml" />
     <Content Include="Views\Collectmoneys\_Collectmoney.cshtml" />
     <Content Include="Views\Collectmoneys\Index.cshtml" />
-    <Content Include="Views\Reports\_collectinvoicerpt.cshtml" />
-    <Content Include="Views\Reports\_collect_money_rpt.cshtml" />
-    <Content Include="Views\Reports\_paymentreturnrpt.cshtml" />
-    <Content Include="Views\Reports\_invoice_return_detailrpt.cshtml" />
     <Content Include="Views\Conditions\Index.cshtml" />
     <Content Include="Views\Conditions\_Condition.cshtml" />
     <Content Include="Views\Pricings\Index.cshtml" />
@@ -1139,6 +1112,9 @@
     <None Include="Views\CheckIn\_PrintNewInvoice.cshtml" />
     <Content Include="Views\Invoice\_Payment.cshtml" />
     <Content Include="Views\Invoice\_PrintNewInvoice.cshtml" />
+    <Content Include="Views\Reports\_invoicerpt.cshtml" />
+    <Content Include="Views\Reports\_ReportViewer.cshtml" />
+    <Content Include="Views\Room\_CheckInNow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1152,38 +1128,7 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\CollectMoneyRpt.rdlc" />
-    <EmbeddedResource Include="Reports\InvoiceReturnRpt.rdlc" />
-    <EmbeddedResource Include="Reports\Invoice_return_detailRpt.rdlc" />
-    <EmbeddedResource Include="Reports\Invoice_detailRpt.rdlc" />
-    <EmbeddedResource Include="Reports\Collect_Money_summaryRpt.rdlc" />
-    <EmbeddedResource Include="Reports\LocationRpt.rdlc" />
-    <EmbeddedResource Include="Reports\Invoice_summaryRpt.rdlc" />
     <EmbeddedResource Include="Reports\Report1.rdlc" />
-    <EmbeddedResource Include="Reports\ShowroomRpt.rdlc" />
-    <EmbeddedResource Include="Reports\PositionRpt.rdlc" />
-    <EmbeddedResource Include="Reports\CategoryRpt.rdlc" />
-    <EmbeddedResource Include="Reports\ProductRpt.rdlc" />
-    <EmbeddedResource Include="Reports\CustomerRpt.rdlc" />
-    <EmbeddedResource Include="Reports\PaymentDetailRpt.rdlc" />
-    <EmbeddedResource Include="Reports\PaymentReportRpt.rdlc" />
-    <EmbeddedResource Include="Reports\InvoiceRpt.rdlc" />
-    <EmbeddedResource Include="Reports\RegisterVRpt.rdlc" />
-    <EmbeddedResource Include="Reports\ParrentStudentsRpt.rdlc" />
-    <EmbeddedResource Include="Reports\EmergencyRpt.rdlc" />
-    <EmbeddedResource Include="Reports\AppropriateRpt.rdlc" />
-    <EmbeddedResource Include="Reports\StudentRpt.rdlc" />
-    <EmbeddedResource Include="Reports\ExchangeRateRpt.rdlc" />
-    <EmbeddedResource Include="Reports\StudyPeriodRpt.rdlc" />
-    <EmbeddedResource Include="Reports\StudyLanguageRpt.rdlc" />
-    <EmbeddedResource Include="Reports\CourseRpt.rdlc" />
-    <EmbeddedResource Include="Reports\ShiftRpt.rdlc" />
-    <EmbeddedResource Include="Reports\GradeRpt.rdlc" />
-    <EmbeddedResource Include="Reports\UserRpt.rdlc" />
-    <EmbeddedResource Include="Reports\EmployeeRpt.rdlc" />
-    <EmbeddedResource Include="Reports\BranchRpt.rdlc" />
-    <EmbeddedResource Include="Reports\DepartmentRpt.rdlc" />
-    <EmbeddedResource Include="Reports\PaymentRpt.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

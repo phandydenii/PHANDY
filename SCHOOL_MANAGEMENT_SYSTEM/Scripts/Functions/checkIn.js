@@ -11,8 +11,7 @@ function GetCheckInDetail() {
     tbCheckInDetail = $('#tableCheckInDetail').dataTable({
         ajax: {
             url: "/api/checkin_v",
-            dataSrc: ""
-             
+            dataSrc: ""   
         },
         columns:
             [
@@ -39,22 +38,10 @@ function GetCheckInDetail() {
                     data: "building",
                    
                 },
-                //{
-                //    data: "startdate",
-                //    render: function (data) {
-                //        return moment(new Date(data)).format('DD-MMM-YYYY');
-                //    }
-                //},
-                //{
-                //    data: "startdate",
-                //    render: function (data) {
-                //        return moment(new Date(data)).format('DD-MMM-YYYY');
-                //    }
-                //},
                 {
                     data: "id",
                     render: function (data) {
-                        return "<button OnClick='OnPrintInvoice (" + data + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> New Invoice</button>";
+                            return "<button OnClick='OnPrintInvoice (" + data + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> New Invoice</button>";                         
                     }
                 },
                 {
@@ -62,20 +49,15 @@ function GetCheckInDetail() {
                     render: function (data) {
                         return "<button OnClick='CheckOut (" + data + ")' class='btn btn-success btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
                              + "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-
                         ;
                     }
                 }
             ],
         destroy: true,
-        //"order": [[0, "desc"]],
-        //"info": false
-        
     });
 }
 
 function OnPrintInvoice(id) {
-    
     //alert(id);
     $.ajax({
         url: "/api/checkin_v/"+id,
@@ -90,15 +72,13 @@ function OnPrintInvoice(id) {
             $("#guestid").val(result.guestid);
             $("#servicecharge").val(result.servicecharge);
             $("#checkinid").val(result.id);
-            //alert(result.guestid);
+
             $.get("/api/powerusagerecord/"+id, function (data) {
                 $('#oldrecordpower').val(data);
-                
             });
             $.get("/api/waterusagerecord/" + id, function (data) {
                 $('#oldrecordwater').val(data);
             });
-            
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");

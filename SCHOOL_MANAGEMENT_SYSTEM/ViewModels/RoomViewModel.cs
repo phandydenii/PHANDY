@@ -19,6 +19,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
         public IEnumerable<Guest> GuestBook { get; set; }
 
 
+
+
         public int TotalRoom { get; set; }
         public int TotalFree { get; set; }
         public int TotalBook { get; set; }

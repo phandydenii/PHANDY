@@ -20,86 +20,76 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="guestname">លេខវិក័យបត្រ</label>
-                                            <input id="guestname" name="guestname" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="invoiceno">លេខវិក័យបត្រ</label>
+                                            <input id="invoiceno" readonly="readonly" name="invoiceno" placeholder="Enter Guest Name" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="gnamekh">ភ្ញៀវ</label>
-                                            <input id="gnamekh" name="gnamekh" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="guestname">ភ្ញៀវ</label>
+                                            <input id="guestname" name="guestname" readonly="readonly" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="frmbookroomid">បន្ទប់</label>
-                                            <select class="form-control input-sm" id="frmbookroomid">
-                                                <option value="">1</option>
-                                                <option value="">2</option>
-                                            </select>
+                                            <label for="room">បន្ទប់</label>
+                                            <input id="room" name="room" readonly="readonly" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
-                                        @*<div class="form-group">
-                                            <label for="frmbookroomid">Room</label>
-                                            <select class="form-control input-sm" id="frmbookroomid">
-                                                @foreach (var room in Model.ListRoomFree)
-                                                {
-                                                    <option value=@room.id>@room.room_no</option>
-                                                }
-                                            </select>
-                                        </div>*@
                                         <div class="form-group">
-                                            <label for="address">តម្លៃបន្ទប់</label>
-                                            <input id="address" name="address" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="roomprice">តម្លៃបន្ទប់</label>
+                                            <input id="roomprice" name="roomprice" readonly="readonly" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="phonenumber">គីឡូទឺកចាស់</label>
-                                                    <input id="phonenumber" name="phonenumber" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                                    <label for="oldwaterrecord">គីឡូទឺកចាស់</label>
+                                                    <input id="oldwaterrecord" name="oldwaterrecord" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="phonenumber">គីឡូទឺកថ្មី</label>
-                                                    <input id="phonenumber" name="phonenumber" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                                    <label for="newwaterrecord">គីឡូទឺកថ្មី</label>
+                                                    <input id="newwaterrecord" name="newwaterrecord" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="phonenumber">សរុបការប្រើប្រាស់ទឺក</label>
-                                            <input id="phonenumber" name="phonenumber" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="totalwaterusage">សរុបការប្រើប្រាស់ទឺក</label>
+                                            <input id="totalwaterusage" name="totalwaterusage" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
-
-
                                     </div>
                                     <div class="col-md-6">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="phonenumber">គីឡូភ្លើងចាស់</label>
-                                                    <input id="phonenumber" name="phonenumber" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                                    <label for="oldpowerrecord">គីឡូភ្លើងចាស់</label>
+                                                    <input id="oldpowerrecord" name="oldpowerrecord" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label for="phonenumber">គីឡូភ្លើងថ្មី</label>
-                                                    <input id="phonenumber" name="phonenumber" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                                    <label for="newpowerrecord">គីឡូភ្លើងថ្មី</label>
+                                                    <input id="newpowerrecord" name="newpowerrecord" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="phonenumber">សរុបការប្រើប្រាស់ភ្លើង</label>
-                                            <input id="phonenumber" name="phonenumber" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="totalpowerusage">សរុបការប្រើប្រាស់ភ្លើង</label>
+                                            <input id="totalpowerusage" name="totalpowerusage" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="passport">សរុបប្រាក់ត្រូវបង់</label>
-                                            <input id="passport" name="passport" placeholder="Enter Passport Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="servicecharge">ថ្លៃសេវ៉ា</label>
+                                            <input id="servicecharge" name="servicecharge" readonly="readonly" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="email">ជាប្រាក់រៀល</label>
-                                            <input id="email" name="email" placeholder="Enter Email" type="email" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="totalpayment">សរុបប្រាក់ត្រូវបង់</label>
+                                            <input id="totalpayment" name="totalpayment" readonly="readonly" placeholder="Enter Passport Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="ssn">NOTE</label>
-                                            <input id="ssn" name="ssn" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="totalpaymentkh">ជាប្រាក់រៀល</label>
+                                            <input id="totalpaymentkh" name="totalpaymentkh" readonly="readonly" placeholder="Enter Email" type="email" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
-                                        
+                                        <div class="form-group">
+                                            <label for="note">ចំណាំ</label>
+                                            <input id="note" name="note" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -112,37 +102,35 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="bookingno">សាច់ប្រាក់ទទួលបានជាដុល្លា</label>
-                                            <input id="bookingno" name="bookingno" placeholder="Enter Book No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="receivedolla">សាច់ប្រាក់ទទួលបានជាដុល្លា</label>
+                                            <input id="receivedolla" name="receivedolla" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="bookingno">សាច់ប្រាក់ទទួលបានជារៀល</label>
-                                            <input id="bookingno" name="bookingno" placeholder="Enter Book No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="receivekh">សាច់ប្រាក់ទទួលបានជារៀល</label>
+                                            <input id="receivekh" name="receivekh" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="bookingno">ជំពាក់</label>
-                                            <input id="bookingno" name="bookingno" placeholder="Enter Book No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label for="totalbooking">មូលហេតុ</label>
-                                            <input id="totalbooking" name="totalbooking" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="owe">ជំពាក់</label>
+                                            <input id="owe" name="owe" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="paydollarbooking">ប្រាក់ត្រូវសងវិញ</label>
-                                            <input id="paydollarbooking" name="paydollarbooking" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="returnmoney">ប្រាក់ត្រូវសងវិញ</label>
+                                            <input id="returnmoney" name="returnmoney" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
                                             <label for="payreilbooking">សាច់ប្រាក់</label>
                                             <input id="payreilbooking" name="payreilbooking" placeholder="000.0" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
+                                        <div class="form-group">
+                                            <label for="checkindate">ពណ៌នា</label>
+                                            <input id="checkindate" name="checkindate" type="text" value="" class="form-control input-sm" placeholder="Description" />
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="checkindate">Description</label>
-                                            <input id="checkindate" name="checkindate" type="text" value="" class="form-control input-sm" placeholder="Description" />
+                                            <label for="waterprice">តម្លៃទឹក</label>
+                                            <input id="waterprice" name="waterprice" type="text" value="4050" class="form-control input-sm" placeholder="Description" />
                                         </div>
-                                        
                                         <div class="form-group">
                                             <label>អត្រាប្តូរប្រាក់ <span style="color:blue">1$=</span></label><label style="color:blue" id="exchagerate">​ 4050 រៀល</label>
                                         </div>
@@ -173,9 +161,3 @@
 
     </div>
 </div>
-
-<script>
-    @section scripts{
-
-    }
-</script>

@@ -25,6 +25,7 @@ namespace Camtopjobs.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/ExchangeRates/{a}/{b}")]
         public IHttpActionResult GetLastExchange(int a,int b)
         {
             var exchageRates = _context.Exchanges.OrderByDescending(c => c.id).FirstOrDefault(c => c.IsDeleted == false);

@@ -15,6 +15,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public decimal prerecord { get; set; }
         public DateTime? currentdate { get; set; }
         public decimal currentrecord { get; set; }
-        public decimal price { get; set; }
+        public int price { get; set; }
     }
 }

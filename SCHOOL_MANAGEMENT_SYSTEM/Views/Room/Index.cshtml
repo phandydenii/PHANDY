@@ -134,6 +134,7 @@
                     document.getElementById('btnPayment').style.display = "none";
                     document.getElementById('btnBlock').style.display = "none";
                     document.getElementById('btnCheckOut').innerText = "Cancel Booking";
+                    document.getElementById('btnCheckIn').innerText = "Check In";
                     book(b);
                 } else if (result.status == "BLOCK") {
                     document.getElementById('btnBook').style.display = "none";
@@ -176,11 +177,11 @@
                                          + "<li class='list-group-item'>Name Khmer <span class='pull-right' style='color:darkblue'>" + value.namekh + "</span></li>"
                                          + "<li class='list-group-item'>Gender <span class='pull-right' style='color:darkblue'>" + value.sex + "</span></li>"
                                          + "<li class='list-group-item'>Phone <span class='pull-right' style='color:darkblue'>" + value.phone + "</span></li>"
-                                         + "<li class='list-group-item'>Booking Date <span class='pull-right' style='color:darkblue'>" + value.bookingdate + "</span></li>"
+                                         + "<li class='list-group-item'>Booking Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.bookingdate)).format('DD-MMM-YYYY') + "</span></li>"
                                          + "<li class='list-group-item'>Booking No<span class='pull-right' style='color:darkblue'>" + value.bookingno + "</span></li>"
                                          + "<li class='list-group-item'>Total <span class='pull-right' style='color:darkblue'>" + value.total +" $"+"</span></li>"
-                                         + "<li class='list-group-item'>Check IN Date <span class='pull-right' style='color:darkblue'>" + value.checkindate + "</span></li>"
-                                         + "<li class='list-group-item'>Expire Check In Date <span class='pull-right' style='color:darkblue'>" + value.expirecheckindate + "</span></li>"
+                                         + "<li class='list-group-item'>Check IN Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.checkindate)).format('DD-MMM-YYYY')+ "</span></li>"
+                                         + "<li class='list-group-item'>Expire Check In Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.expirecheckindate)).format('DD-MMM-YYYY')+ "</span></li>"
                                          
                                            );
                 });
@@ -193,7 +194,7 @@
     function checkin(roomid) {
         //alert(roomid);
         $.ajax({
-            url: "/api/checkin_v/" + roomid,
+            url: "/api/checkinbyroom_v/"+roomid,
             type: "GET",
             contentType: "application/json;charset=utf-8",
             datatype: "json",
@@ -207,19 +208,18 @@
                                           + "<li class='list-group-item'>Men <span class='pull-right' style='color:darkblue'>" + value.man + "</span></li>"
                                           + "<li class='list-group-item'>Women <span class='pull-right' style='color:darkblue'>" + value.women + "</span></li>"
                                           + "<li class='list-group-item'>Child <span class='pull-right' style='color:darkblue'>" + value.child + "</span></li>"
-                                          + "<li class='list-group-item'>Check In Date <span class='pull-right' style='color:darkblue'>" + value.checkindate + "</span></li>"
-                                          + "<li class='list-group-item'>Stat Date <span class='pull-right' style='color:darkblue'>" + value.startdate + "</span></li>"
-                                          + "<li class='list-group-item'>End Date <span class='pull-right' style='color:darkblue'>" + value.enddate + "</span></li>"
+                                          + "<li class='list-group-item'>Check In Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.checkindate)).format('DD-MMM-YYYY') + "</span></li>"
+                                          + "<li class='list-group-item'>Stat Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.startdate)).format('DD-MMM-YYYY')  + "</span></li>"
+                                          + "<li class='list-group-item'>End Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.enddate)).format('DD-MMM-YYYY') + "</span></li>"
 
                                           );
 
                 });
+
             },
             error: function (errormessage) {
                 toastr.error("No Record Select!", "Service Response");
             }
         });
     }
-
-
 </script>

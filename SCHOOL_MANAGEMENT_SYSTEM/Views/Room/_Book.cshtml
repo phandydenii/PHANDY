@@ -169,12 +169,9 @@
             //insert guest
             CreateGuest();
 
-            //Update room status after booking
-            UpdateRoomStatus();
-
             toastr.success("Book successfully!", "Server Respond");
             $("#BookModal").modal('hide');
-            //window.location.reload(true);
+            window.location.reload(true);
         }
         catch (e) {
             toastr.error(e.toString(), "Server Respond")
@@ -318,10 +315,9 @@
     }
    
     function UpdateRoomStatusBook() {
-        var rmid = document.getElementById('bookroomid');
         $.ajax({
             type: "PUT",
-            url: "/api/updateroomstatus/"+$("#roomid").val()+"/BOOK",
+            url: "/api/updateroomstatus/" + $("#bookroomid").val()+"/BOOK",
             contentType: false,
             processData: false,
             // data: status,
