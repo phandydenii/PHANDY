@@ -12,6 +12,8 @@ using Microsoft.AspNet.Identity;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Web;
+
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 {
@@ -26,6 +28,15 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
+        }
+
+        [HttpGet]
+        //[Route("api/invoices")]
+        //Get : api/CheckIns
+        public IHttpActionResult GetInvoicessss()
+        {
+            var getInvoice = _context.Invoice.ToList();
+            return Ok(getInvoice);
         }
 
         [HttpGet]
@@ -225,7 +236,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
 
         [HttpGet]
-        [Route("api/invoice_v")]
         //Get : api/Buildings
         public IHttpActionResult GetInvoicesNotPrint(int a)
         {
@@ -373,7 +383,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join f in _context.Floors on r.floorid equals f.id
                                join b in _context.Buildings on f.buildingid equals b.id
                                join wp in _context.WaterPowerPrices on pu.price equals wp.id
-                               where i.printed == true
+                               where i.printed == true && i.paid==false
                                select new InvoiceV
                                {
                                    id = i.id,
@@ -488,6 +498,74 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return Ok(GetInvoiceV);
         }
 
+        [HttpGet]
+        [Route("api/invoice-v/newinvoie")]
+        //Get : api/Buildings
+        public object  GetNewInvoice()
+        {
+            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
+            
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from NewInvoice where NewInvoice='Yes'", conx);
+            //conx.Open();
+            //dr = cmd.ExecuteReader();
+            //List<NewInvoiceV> invoicenew = new List<NewInvoiceV>();
+            //while (dr.Read())
+            //{
+            //    NewInvoice = new NewInvoiceV();
+            //    NewInvoice.id = dr.GetValue(0).ToString();
+            //    NewInvoice.checkindate = dr.GetValue(1).ToString();
+            //    NewInvoice.room_no = dr.GetValue(2).ToString();
+            //    NewInvoice.roomtypename = dr.GetValue(3).ToString();
+            //    NewInvoice.floor_no = dr.GetValue(4).ToString();
+            //    NewInvoice.buildingname = dr.GetValue(5).ToString();
+            //    NewInvoice.name = dr.GetValue(6).ToString();
+            //    NewInvoice.namekh = dr.GetValue(7).ToString();
+            //    NewInvoice.sex = dr.GetValue(8).ToString();
+            //    NewInvoice.dob = dr.GetValue(9).ToString();
+            //    NewInvoice.address = dr.GetValue(10).ToString();
+            //    NewInvoice.nationality = dr.GetValue(11).ToString();
+            //    NewInvoice.phone = dr.GetValue(12).ToString();
+            //    NewInvoice.email = dr.GetValue(13).ToString();
+            //    NewInvoice.ssn = dr.GetValue(14).ToString();
+            //    NewInvoice.passport = dr.GetValue(15).ToString();
+            //    NewInvoice.status = dr.GetValue(16).ToString();
+            //    NewInvoice.invoicedate = dr.GetValue(17).ToString();
+            //    NewInvoice.paid = dr.GetValue(18).ToString();
+            //    NewInvoice.NewInvoice = dr.GetValue(19).ToString();
+            //}
+            //conx.Close();
+
+            adp.Fill(ds);
+            //var NewInvoice = new NewInvoiceV();
+            //foreach (DataRow item in ds.Rows)
+            //{
+            //    NewInvoice.id = item[0].ToString();
+            //    NewInvoice.checkindate = item[1].ToString();
+            //    NewInvoice.room_no = item[2].ToString();
+            //    NewInvoice.roomtypename = item[3].ToString();
+            //    NewInvoice.floor_no = item[4].ToString();
+            //    NewInvoice.buildingname = item[5].ToString();
+            //    NewInvoice.name = item[6].ToString();
+            //    NewInvoice.namekh = item[7].ToString();
+            //    NewInvoice.sex = item[8].ToString();
+            //    NewInvoice.dob = item[9].ToString();
+            //    NewInvoice.address = item[10].ToString();
+            //    NewInvoice.nationality = item[11].ToString();
+            //    NewInvoice.phone = item[12].ToString();
+            //    NewInvoice.email = item[13].ToString();
+            //    NewInvoice.ssn = item[14].ToString();
+            //    NewInvoice.passport = item[15].ToString();
+            //    NewInvoice.status = item[16].ToString();
+            //    NewInvoice.invoicedate = item[17].ToString();
+            //    NewInvoice.paid = item[18].ToString();
+            //    NewInvoice.NewInvoice = item[19].ToString();
+            //}
+            return ds.Tables[0];
+        }
+
         [HttpPost]
         //Get : api/CheckIns
         public IHttpActionResult CreateInvoice(InvoiceDto InvoiceDtos)
@@ -510,8 +588,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             InvoiceInDb.updateby= User.Identity.GetUserId();
             InvoiceInDb.updatedate= DateTime.Today;
             InvoiceInDb.createdate= DateTime.Today;
-            InvoiceInDb.status="ACTIVE";                      
-
+            InvoiceInDb.status="ACTIVE"; 
+                
             _context.Invoice.Add(InvoiceInDb);
             _context.SaveChanges();
 
@@ -537,37 +615,51 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpPut]
-        public IHttpActionResult UpdateUser(int id, InvoiceDto InvoiceDto)
+        [Route("api/invoices/{id}")]
+        public IHttpActionResult UpdateUser(int id)
         {
             DataTable ds = new DataTable();
+            DataTable ds1 = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("SELECT id,invoicedate,checkinid,userid,exchangerateid,createby,createdate FROM invoice_tbl where id=" + id, conx);
-            adp.Fill(ds);
-            string invoicedate = ds.Rows[0][1].ToString();
-            string checkinid = ds.Rows[0][2].ToString();
-            string userid = ds.Rows[0][3].ToString();
-            string exchangerateid = ds.Rows[0][4].ToString();
-            string createby = ds.Rows[0][5].ToString();
-            string createdate = ds.Rows[0][6].ToString();
 
-            if (!ModelState.IsValid)
-                return BadRequest();
-            var InvoiceInDb = _context.Invoice.SingleOrDefault(c => c.id == id);
-            InvoiceInDb.invoicedate = DateTime.Parse(invoicedate);
-            InvoiceInDb.checkinid = int.Parse(checkinid);
-            InvoiceInDb.userid = userid;
-            InvoiceInDb.exchangerateid = int.Parse(exchangerateid);
-            InvoiceInDb.createby = createby;
-            InvoiceInDb.createdate = DateTime.Parse(createdate);
-            InvoiceInDb.updateby = User.Identity.GetUserId();
-            InvoiceInDb.updatedate = DateTime.Today;
-            InvoiceInDb.printed = true;
+            var note = HttpContext.Current.Request.Form["note"];
 
-            Mapper.Map(InvoiceDto, InvoiceInDb);
-            _context.SaveChanges();
+            
+            var totalriel = decimal.Parse(HttpContext.Current.Request.Form["totalriel"]);
+            var totaldollar = decimal.Parse(HttpContext.Current.Request.Form["totaldollar"]);
+            var totalother = decimal.Parse(HttpContext.Current.Request.Form["totalother"]);
 
-            return Ok(InvoiceInDb);
+            var grandtotal = decimal.Parse(HttpContext.Current.Request.Form["grandtotal"]);
+
+
+            SqlCommand command = new SqlCommand();
+            SqlCommand requestcommand = new SqlCommand();
+            requestcommand.Connection = conx;
+            requestcommand.CommandType = CommandType.StoredProcedure;
+            requestcommand.CommandText = "UPDATE_INVOICE";
+            requestcommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
+            requestcommand.Parameters.Add("@grandtotal", SqlDbType.Decimal).Value = grandtotal;
+            requestcommand.Parameters.Add("@totaldollar", SqlDbType.Decimal).Value = totaldollar;
+            requestcommand.Parameters.Add("@totalriel", SqlDbType.Decimal).Value = totalriel;
+            requestcommand.Parameters.Add("@totalother", SqlDbType.Decimal).Value = totalother;
+            requestcommand.Parameters.Add("@updateby", SqlDbType.VarChar).Value = User.Identity.GetUserId();
+            requestcommand.Parameters.Add("@updatedate", SqlDbType.Date).Value = DateTime.Today;
+            requestcommand.Parameters.Add("@note", SqlDbType.NVarChar).Value = note;
+            requestcommand.Parameters.Add("@status", SqlDbType.VarChar).Value = "Active";
+
+
+            try
+            {
+                conx.Open();
+                requestcommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Ok();
         }
 
         //DELETE : api/Companies/{id}

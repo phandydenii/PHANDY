@@ -135,6 +135,7 @@
                     document.getElementById('btnBlock').style.display = "none";
                     document.getElementById('btnCheckOut').innerText = "Cancel Booking";
                     document.getElementById('btnCheckIn').innerText = "Check In";
+
                     book(b);
                 } else if (result.status == "BLOCK") {
                     document.getElementById('btnBook').style.display = "none";
@@ -166,12 +167,13 @@
 
     function book(roomid) {
         $.ajax({
-            url: "/api/booking_v/" + roomid,
+            url: "/api/bookings?roomid=" + roomid,
             type: "GET",
             contentType: "application/json;charset=utf-8",
             datatype: "json",
             success: function (result) {
                 $.each(result, function (key, value) {
+                    $("#bookingid").val(value.id);
                     $("#guestid").val(value.id);
                     $('#guestlist').append("<li class='list-group-item'>Name <span class='pull-right' style='color:darkblue'>" + value.name + "</span></li>"
                                          + "<li class='list-group-item'>Name Khmer <span class='pull-right' style='color:darkblue'>" + value.namekh + "</span></li>"

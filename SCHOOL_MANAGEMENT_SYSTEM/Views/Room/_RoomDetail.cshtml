@@ -15,6 +15,7 @@
                     <input id="RoomDetailid" name="RoomDetailid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <input id="roomid" name="roomid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <input id="guestid" name="guestid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                    <input id="bookingid" name="bookingid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-12">
@@ -130,7 +131,7 @@
 @Html.Partial("_Book")
 @Html.Partial("_Block")
 @Html.Partial("_CheckIn")
-@Html.Partial("_CheckInNow")
+@*@Html.Partial("_CheckInNow")*@
 @Html.Partial("_Payment")
 <script>
     
@@ -159,21 +160,21 @@
     
     function OnCheckInAction() {
         var btncheckin = document.getElementById('btnCheckIn').innerText;
+        var rmid = document.getElementById('roomid');
+        var rmname = document.getElementById('lblRoomNo').innerText;
+        var guestid = document.getElementById('guestid');
         if (btncheckin == "Check In Now") {
-            //alert('hello');
             $("#CheckInNowModal").modal("show");
             $.get("/api/ExchangeRates/1/2", function (data) {
                 $("#exid").val(data.id);
                 $("#examount").text(data.rate);
+                $("#roomidchin").val(rmid);               
             });
-            
         } else {
-            var rmid = document.getElementById('roomid');
-            var rmname = document.getElementById('lblRoomNo').innerText;
-            var guestid = document.getElementById('guestid');
+            
             $("#checkinroomid").val(rmid.value);
             $("#guestidchin").val(guestid);
-            $("#lblRoomNoCehckIn").text(guestid);
+            $("#lblRoomNoCehckIn").text(rmname);
 
             $.get("/api/WaterPoserPrice/1/2", function (data) {
                 $("#wpid").val(data.id);
@@ -186,29 +187,122 @@
             $("#CheckInModal").modal("show");
         }
     }
-
     function OnCheckOutAction() {
-        var rmid = document.getElementById('roomid');
-        var rmname = document.getElementById('lblRoomNo').innerText;
-        $("#roomidblock").val(rmid.value);
-        $("#lblRoomNoBlock").text(rmname);
+        var checkoutbtn = document.getElementById('btnCheckOut').innerText;
+        if (checkoutbtn == "Cancel Booking") {
+            bootbox.confirm({
+                title: "",
+                message: "Are you sure want to cancel booking this room?",
+                button: {
+                    cancel: {
+                        label: "Cancel",
+                        ClassName: "btn-default",
+                    },
+                    confirm: {
+                        label: "Delete",
+                        ClassName: "btn-danger"
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        $.ajax({
+                            type: "PUT",
+                            url: "/api/bookingstatus/" + $("#bookingid").val() + "/cancel",
+                            contentType: false,
+                            processData: false,
+                            // data: status,
+                            success: function (result) {
+                                toastr.success("Booking has been cancel successfully.", "Server Response");
+                                $("#RoomDetailModal").modal("hide");
+                                window.location.reload(true);
+                            },
+                            error: function (error) {
+                                toastr.error("Unblock room fail!", "Server Response");
+                            }
+                        });
 
-        $.ajax({
-            type: "PUT",
-            url: "/api/updateroomstatus/" + $("#roomid").val() + "/FREE",
-            contentType: false,
-            processData: false,
-            // data: status,
-            success: function (result) {
-                toastr.success("Room has been unblock successfully.", "Server Response");
-                $("#RoomDetailModal").modal("hide");
-                window.location.reload(true);
-            },
-            error: function (error) {
-                toastr.error("Unblock room fail!", "Server Response");
-            }
-        });
+                        $.ajax({
+                            type: "PUT",
+                            url: "/api/updateroomstatus/" + $("#roomid").val() + "/FREE",
+                            contentType: false,
+                            processData: false,
+                            // data: status,
+                            success: function (result) {
+                                //toastr.success("Room has been unblock successfully.", "Server Response");
+                                $("#RoomDetailModal").modal("hide");
+                                window.location.reload(true);
+                            },
+                            error: function (error) {
+                                toastr.error("Unblock room fail!", "Server Response");
+                            }
+                        });
+                    }
+                }
+            });
+        } else {
+
+            bootbox.confirm({
+                title: "",
+                message: "Are you sure want to check out this room?",
+                button: {
+                    cancel: {
+                        label: "Cancel",
+                        ClassName: "btn-default",
+                    },
+                    confirm: {
+                        label: "Delete",
+                        ClassName: "btn-danger"
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        var rmid = document.getElementById('roomid');
+                        var rmname = document.getElementById('lblRoomNo').innerText;
+                        $("#roomidblock").val(rmid.value);
+                        $("#lblRoomNoBlock").text(rmname);
+
+                        $.ajax({
+                            type: "PUT",
+                            url: "/api/updateroomstatus/" + $("#roomid").val() + "/FREE",
+                            contentType: false,
+                            processData: false,
+                            // data: status,
+                            success: function (result) {
+                                toastr.success("Room has been unblock successfully.", "Server Response");
+                                $("#RoomDetailModal").modal("hide");
+                                window.location.reload(true);
+                            },
+                            error: function (error) {
+                                toastr.error("Unblock room fail!", "Server Response");
+                            }
+                        });
+                    }
+                }
+            });
+        }
     }
+    //function OnCheckOutAction() {
+    //    var rmid = document.getElementById('roomid');
+    //    var rmname = document.getElementById('lblRoomNo').innerText;
+    //    $("#roomidblock").val(rmid.value);
+    //    $("#lblRoomNoBlock").text(rmname);
+
+    //    $.ajax({
+    //        type: "PUT",
+    //        url: "/api/updateroomstatus/" + $("#roomid").val() + "/FREE",
+    //        contentType: false,
+    //        processData: false,
+    //        // data: status,
+    //        success: function (result) {
+    //            toastr.success("Room has been unblock successfully.", "Server Response");
+    //            $("#RoomDetailModal").modal("hide");
+    //            window.location.reload(true);
+    //        },
+    //        error: function (error) {
+    //            toastr.error("Unblock room fail!", "Server Response");
+    //        }
+    //    });
+    //}
     function OnBlockAction() {
         var rmid = document.getElementById('roomid');
         var rmname = document.getElementById('lblRoomNo').innerText;

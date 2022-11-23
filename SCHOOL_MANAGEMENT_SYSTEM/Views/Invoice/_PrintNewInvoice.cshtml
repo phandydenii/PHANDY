@@ -84,8 +84,8 @@
                                             <input id="svprice" disabled name="svprice" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
-                                            <label for="totalpay">សរុបប្រាក់ត្រូវបង់</label>
-                                            <input id="totalpay" disabled name="totalpay" placeholder="Enter Passport Number" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="gratndtotal">សរុបប្រាក់ត្រូវបង់</label>
+                                            <input id="grandtotal" disabled name="gratndtotal" placeholder="Enter Passport Number" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
                                             <label for="totalpayreil">ជាប្រាក់រៀល</label>
@@ -113,7 +113,7 @@
 <script type="text/javascript">
     function InvoicePrint() {
         //alert("Invoice id " + $('#invid').val());
-        var data = {
+        @*var data = {
             id: $('#invid').val(),
             note: $('#note').val(),
             exchangerateid: @Model.ExchangeRateID,
@@ -121,14 +121,20 @@
             totalriel:$('#totalpayreil').val(),
             totaldollar:$('#totalpay').val(),
             totalother:$('#svprice').val(),
-        };
+        };*@
+        var data = new FormData();
+        data.append("grandtotal", $("#grandtotal").val());
+        data.append("totalriel", $("#totalpayreil").val());
+        data.append("totaldollar", $("#grandtotal").val());
+        data.append("totalother", $("#svprice").val());
+        data.append("note", $("#note").val());
 
         $.ajax({
-            url: "/api/invoices/" + data.id,
-            data: JSON.stringify(data),
             type: "PUT",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
+            url: "/api/invoices/" + $("#invid").val(),
+            contentType: false,
+            processData: false,
+            data: data,
             success: function (result) {
                 UpdateWater();
                 UpdatePower();
@@ -176,12 +182,12 @@
     function RecordWaterChange(){
         var waternewrecord = document.getElementById('recordwaternew').value;
         var wateroldrecord = document.getElementById('recordwaterold').value;
-        var totalwaterusage=(parseFloat(waternewrecord)-parseFloat(wateroldrecord))*1500;
+        var totalwaterusage=(parseFloat(waternewrecord)-parseFloat(wateroldrecord))*1500/4130;
         if(totalwaterusage<=0){
             alert('Faild!');
             $('#recordwaternew').focus();
         }else{
-            $('#waterusagetotal').val(totalwaterusage);
+            $('#waterusagetotal').val(totalwaterusage.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
             TotalPayment();
         }
 
@@ -189,12 +195,12 @@
     function RecordPowerChange(){
         var powernewrecord = document.getElementById('recordpowernew').value;
         var powerroldrecord = document.getElementById('recordpowerold').value;
-        var totalwaterusage=(parseInt(powernewrecord)-parseInt(powerroldrecord))*2000;
+        var totalwaterusage=(parseInt(powernewrecord)-parseInt(powerroldrecord))*2000/4130;
         if(totalwaterusage<=0){
             alert('Faild!');
             $('#recordwaternew').focus();
         }else{
-            $('#powerusagetotal').val(totalwaterusage);
+            $('#powerusagetotal').val(totalwaterusage.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
             TotalPayment();
         }
 
@@ -207,8 +213,8 @@
         var roomprice = document.getElementById('rmprice').value;
         var servicecharge = document.getElementById('svprice').value;
         var grandtotal=(parseFloat(totalwaterusage)/4130)+(parseFloat(totalpowerusage)/4130)+parseFloat(roomprice)+parseFloat(servicecharge);
-        $('#totalpay').val(grandtotal);
+        $('#grandtotal').val(grandtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         $('#totalpayreil').val(grandtotal*4130);
     }
 </script>
-  
+ 

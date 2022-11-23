@@ -10,61 +10,69 @@ var tbCheckInDetail = [];
 function GetCheckInDetail() {
     tbCheckInDetail = $('#tablePrintInvoice').dataTable({
         ajax: {
-            url: "/api/invoice_v?a=0",
+            url: "/api/invoice-v/newinvoie",
             dataSrc: ""
 
         },
         columns:
             [
-                
                 {
-                    data: "invoiceno"
+                    data: "id"
                 },
                 {
-                    data: "guestname"
+                    data: "name"
                 },
                 {
                     data: "checkindate",
-                    
                     render: function (data) {
                         return moment(new Date(data)).format('DD-MMM-YYYY');
                     }
                 },
                 {
-                    data: "roomno"
+                    data: "room_no"
                 },
                 {
                     data: "roomtypename",
                 },
                 {
-                    data: "servicecharge",
+                    data: "floor_no",
                 },
                 {
-                    data: "roomprice",
+                    data: "buildingname",
                 },
                 {
                     data: "invoicedate",
                     render: function (data) {
-                        //var result1 = data.addMonths(1);
-                        //var newDate = new Date(date.setMonth(date.getMonth() + 1));
-                        return moment(new Date(data)).format('DD-MMM-YYYY');
+                        var date = new Date(data);
+                        
+                        var newDate = moment(date, "DD-MM-YYYY").add(1, 'months').format('DD-MMM-YYYY');
+                        
+                        //today = new Date();
+                        //var date1 = new Date(newDate);
+                        //var difference = Math.abs(today - date1);
+                        //days = difference / (1000 * 3600 * 24)
+
+                        //if (days > 0) {
+                        //    return newDate + " <span class='label label-danger'>late " + days + " day</span>";
+                            
+                        //} else {
+                        //    return newDate + " <span class='label label-primary'>Now</span>";
+                        //}
+                        return newDate;
+                        
                     }
                 },
                 {
                     data: "id",
                     render: function (data) {
-                        return "<button OnClick='PrintInvoice (" + data + ")' class='btn btn-info btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> New Invoice</button>"
-                            + "<button OnClick='Edit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                            + "<button OnClick='CheckOut (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
+                        return "<button OnClick='PrintInvoice (" + data + ")' class='btn btn-info btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Print Invoice</button>"
+                        + "<button OnClick='PrintInvoice (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-usd'></span> Pay Now</button>"
 
                         ;
                     }
                 }
             ],
         destroy: true,
-        //"order": [[0, "desc"]],
-        //"info": false
-
     });
 }
 

@@ -74,6 +74,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateWaterUsage(WaterUsageDto WaterUsageDtos)
         {
+            DataTable ds1 = new DataTable();
+            var connectionString1 = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx1 = new SqlConnection(connectionString1);
+            SqlDataAdapter adp = new SqlDataAdapter("select Max(id) from waterpowerprice_tbl where IsDeleted=0", conx1);
+            adp.Fill(ds1);
+            string wpprice = ds1.Rows[0][0].ToString();
+
             if (!ModelState.IsValid)
                 return BadRequest();
 
@@ -81,12 +88,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             if (isExist != null)
                 return BadRequest();
 
-            var WaterUsage = Mapper.Map<WaterUsageDto, WaterUsage>(WaterUsageDtos);
-            WaterUsage.predate = DateTime.Today;
-            _context.WaterUsages.Add(WaterUsage);
+            var WaterUsageInDb = Mapper.Map<WaterUsageDto, WaterUsage>(WaterUsageDtos);
+            WaterUsageInDb.predate = DateTime.Today;
+            WaterUsageInDb.id = int.Parse(wpprice);
+            _context.WaterUsages.Add(WaterUsageInDb);
             _context.SaveChanges();
 
-            WaterUsageDtos.id = WaterUsage.id;
+            WaterUsageDtos.id = WaterUsageInDb.id;
 
             return Created(new Uri(Request.RequestUri + "/" + WaterUsageDtos.id), WaterUsageDtos);
         }

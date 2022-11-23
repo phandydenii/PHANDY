@@ -3,13 +3,13 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" onclick="OnCloseBook()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <button type="button"  class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
                 <b class="modal-title" style="color: darkblue;">ចូលស្នាក់នៅ</b>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <input id="bookid" name="bookid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
-                    <input id="bookroomid" name="bookroomid" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="checkindid" name="checkindid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                    <input id="roomidchin" name="roomidchin" type="text" style="display: none;" value="" class="form-control" />
                     <input id="guestid" name="guestid" type="text" style="display: none;" value="" class="form-control" />
                     <div class="col-md-6">
                         <div class="row">
@@ -126,10 +126,206 @@
                     <button type="button" id="btnCheckOut" data-dismiss="modal" class="btn btn-danger btn-block btn-sm">Cancel</button>
                 </div>
                 <div class="col-md-3" id="hidepayment">
-                    <button type="button" id="btnPayment" onclick="OnBookNowAction()" class="btn btn-info btn-block btn-sm">Save</button>
+                    <button type="button" id="btnSaveCheckIn" onclick="OnSaveCheckIn()" class="btn btn-info btn-block btn-sm">Save</button>
                 </div>
             </div>
         </div>
 
     </div>
 </div>
+
+<script>
+    function OnSaveCheckIn() {
+
+    }
+
+    function CreateGuest() {
+        var data = new FormData();
+        data.append("name", $("#guestname").val());
+        data.append("namekh", $("#gnamekh").val());
+        data.append("sex", $("#gsex").val());
+        data.append("dob", $("#dob").val());
+        data.append("address", $("#address").val());
+        data.append("nationality", $("#nationality").val());
+        data.append("phone", $("#phonenumber").val());
+        data.append("email", $("#email").val());
+        data.append("ssn", $("#ssn").val());
+        data.append("passport", $("#passport").val());
+        data.append("status", 'BOOK');
+        $.ajax({
+            type: "POST",
+            url: "/api/guests",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                CheckInAction(result);
+                $("#BookModal").modal('hide');
+                window.location.reload(true);
+                toastr.success("Book successfully!", "Server Respond");
+            },
+            error: function (error) {
+                //console.log(error);
+                toastr.error("Please check all selected field!.", "Server Response");
+            }
+        });
+
+    }
+
+    function CheckInAction(gid) {
+        var data = {
+            roomid: $('#checkinroomid').val(),
+            guestid: gid,
+            child: $('#child').val(),
+            man: $('#man').val(),
+            women: $('#women').val(),
+        };
+        $.ajax({
+            url: "/api/checkins",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $("#CheckInModal").modal("hide");
+                UpdateRoomStatus();
+
+                InsertPowerUsage(result);
+
+                InsertWaterUsage(result);
+
+                CreateInvoice();
+
+                toastr.success("Check In successfully.", "Server Response");
+            },
+            error: function (errormesage) {
+                toastr.error("This Name Guest is exist in Database", "Server Respond");
+                return false;
+            }
+
+        });
+    }
+
+    function UpdateRoomStatusBook() {
+        $.ajax({
+            type: "PUT",
+            url: "/api/updateroomstatus/" + $("#roomidchin").val() + "/CHECK-IN",
+            contentType: false,
+            processData: false,
+            // data: status,
+            success: function (result) {
+                //toastr.success("Room Status has been Update successfully.", "Server Response");
+            },
+            error: function (error) {
+                toastr.error("Update room status fail!", "Server Response");
+            }
+        });
+    }
+
+
+    function InsertPowerUsage(result) {
+        var data = {
+            guestid: $('#guestidchin').val(),
+            prerecord: $('#powerprerecord').val(),
+            checkinid: result,
+            price: @Model.WaterPowerPriceID,
+        };
+        $.ajax({
+            url: "/api/powerusage",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Power usage insert faild!", "Server Respond");
+                return false;
+            }
+
+        });
+    }
+
+    function InsertWaterUsage(result) {
+        var data = {
+            guestid: $('#guestidchin').val(),
+            prerecord: $('#waterprerecord').val(),
+            checkinid: result,
+            price: @Model.WaterPowerPriceID,
+        };
+        $.ajax({
+            url: "/api/waterusage",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Water usage insert faild!", "Server Respond");
+                return false;
+            }
+
+        });
+    }
+
+
+    function UpdateRoomStatus() {
+        $.ajax({
+            type: "PUT",
+            url: "/api/updateroomstatus/" + $("#roomid").val() + "/CHECK-IN",
+            contentType: false,
+            processData: false,
+            // data: status,
+            success: function (result) {
+                $("#RoomDetailModal").modal("hide");
+                window.location.reload(true);
+            },
+            error: function (error) {
+                toastr.error("Update room status fail!", "Server Response");
+            }
+        });
+    }
+
+    function UpdateGuestStatus() {
+        $.ajax({
+            type: "PUT",
+            url: "/api/updategueststatus/" + $("#guestidchin").val() + "/CHECK-IN",
+            contentType: false,
+            processData: false,
+            // data: status,
+            success: function (result) {
+                //toastr.success("Room status update successfully.", "Server Response");
+                $("#RoomDetailModal").modal("hide");
+                window.location.reload(true);
+            },
+            error: function (error) {
+                toastr.error("Update room status fail!", "Server Response");
+            }
+        });
+    }
+
+    function CreateInvoice(gid) {
+        var data = {
+            invoiceno: $('#invno').val(),
+            guestid: gid,
+            exchangerateid: @Model.ExchangeRateID,
+        };
+
+        $.ajax({
+            url: "/api/invoices",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //alert('Print Invoice successfully!');
+            },
+            error: function (errormesage) {
+                toastr.error("This Booking ID is exist in Database", "Server Respond");
+            }
+        });
+    }
+</script>

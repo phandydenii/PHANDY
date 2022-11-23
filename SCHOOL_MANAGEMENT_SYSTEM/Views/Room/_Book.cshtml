@@ -4,7 +4,7 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" onclick="OnCloseBook()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
                 <b class="modal-title" style="color: darkblue;">បន្ទប់</b>
                 <b class="modal-title" style="color: darkblue;" id="lblidroom">Book</b>
                
@@ -167,11 +167,7 @@
     function OnBookNowAction() {
         try{
             //insert guest
-            CreateGuest();
-
-            toastr.success("Book successfully!", "Server Respond");
-            $("#BookModal").modal('hide');
-            window.location.reload(true);
+            CreateGuest();   
         }
         catch (e) {
             toastr.error(e.toString(), "Server Respond")
@@ -199,10 +195,12 @@
             processData: false,
             data: data,
             success: function (result) {
-                //toastr.success("Contract has been created successfully.", "Server Response");
-                //alert(result);
+                alert(result);
                 InsertBooking(result);
                 UpdateRoomStatusBook();
+                $("#BookModal").modal('hide');
+                window.location.reload(true);
+                toastr.success("Book successfully!", "Server Respond");
             },
             error: function (error) {
                 //console.log(error);
@@ -331,7 +329,7 @@
     }
 </script>
 
-
+ 
 
 
 

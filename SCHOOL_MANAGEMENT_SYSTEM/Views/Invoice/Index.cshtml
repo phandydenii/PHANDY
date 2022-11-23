@@ -5,11 +5,11 @@
 }
 <div id="loadingGif"></div>
 <ul class="nav nav-tabs">
-    <li ><a href="#printinvoice" data-toggle="tab">ចេញវិក័យបត្រ</a></li>
-    <li class="active" ><a href="#home" data-toggle="tab" style="background-color:aquamarine">បង់ប្រាក់ប្រចាំខែ</a></li>
+    <li class="active"><a href="#printinvoice" data-toggle="tab">ចេញវិក័យបត្រ</a></li>
+    <li  ><a href="#home" data-toggle="tab">បង់ប្រាក់ប្រចាំខែ</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade " id="printinvoice">
+    <div class="tab-pane fade active in" id="printinvoice">
         <br />
         <table id="tablePrintInvoice" style="width:100%" class="table table-hover table-bordered">
             <thead>
@@ -22,13 +22,13 @@
                     <th>សេវា</th>
                     <th>តម្លៃបន្ទប់</th>
                     <th>បង់ប្រាក់ខែថ្មី</th>
-                    <th>សកម្មភាព</th>
+                    <th style="width:15%">សកម្មភាព</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
     </div>
-    <div class="tab-pane fade active in" id="home">
+    <div class="tab-pane fade " id="home">
         <br />
         <div class="row">
             <div class="col-md-2">
@@ -50,7 +50,7 @@
             <thead>
                 <tr>
                     @*<th>ID</th>*@
-                    <th>លេខវិក្ក័យបត្រ</th>
+                    <th style="width:3%">លេខវិក្ក័យបត្រ</th>
                     <th>កាលបរិច្ឆេទ</th>
                     <th>ភ្ញៀវ</th>
                     <th>បន្ទប់</th>

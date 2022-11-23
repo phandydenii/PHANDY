@@ -19,10 +19,10 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public CheckIn checkin { get; set; }
         public int guestid { get; set; }
         public Guest guest { get; set; }
-        public int powerusageid { get; set; }
-        public PowerUsage powerusage { get; set; }
-        public int waterusageid { get; set; }
-        public WaterUsage waterusage { get; set; }
+        //public int powerusageid { get; set; }
+        //public PowerUsage powerusage { get; set; }
+        //public int waterusageid { get; set; }
+        //public WaterUsage waterusage { get; set; }
         public string userid { get; set; }
         public int exchangerateid { get; set; }
         public ExchangeRate exchangerate { get; set; }

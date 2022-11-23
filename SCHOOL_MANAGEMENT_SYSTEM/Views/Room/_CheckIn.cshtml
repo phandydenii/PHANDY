@@ -169,9 +169,7 @@
             processData: false,
             // data: status,
             success: function (result) {
-                //toastr.success("Room status update successfully.", "Server Response");
                 $("#RoomDetailModal").modal("hide");
-                window.location.reload(true);
             },
             error: function (error) {
                 toastr.error("Update room status fail!", "Server Response");
@@ -187,9 +185,6 @@
             processData: false,
             // data: status,
             success: function (result) {
-                //toastr.success("Room status update successfully.", "Server Response");
-                $("#RoomDetailModal").modal("hide");
-                window.location.reload(true);
             },
             error: function (error) {
                 toastr.error("Update room status fail!", "Server Response");
@@ -204,6 +199,8 @@
             exchangerateid: @Model.ExchangeRateID,
         };
 
+        
+
         $.ajax({
             url: "/api/invoices",
             data: JSON.stringify(data),
@@ -214,7 +211,7 @@
                 //alert('Print Invoice successfully!');
             },
             error: function (errormesage) {
-                toastr.error("This Booking ID is exist in Database", "Server Respond");
+                toastr.error("Create invoice faild...!"+errormesage, "Server Respond");
             }
         });
     }

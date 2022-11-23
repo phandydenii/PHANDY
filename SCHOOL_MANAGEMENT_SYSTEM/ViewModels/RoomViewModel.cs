@@ -27,9 +27,10 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
         public int TotalBlock { get; set; }
         public int TotalCheckIn { get; set; }
         public int ExchangeRateID { get; set; }
+        public int WaterPowerPriceID { get; set; }
 
 
-
+        
 
     }
 }

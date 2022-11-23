@@ -412,6 +412,7 @@
     <Compile Include="Models\HowtoUse.cs" />
     <Compile Include="Models\InvoiceCheckInV.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\NewInvoiceV.cs" />
     <Compile Include="Models\PowerUsage.cs" />
     <Compile Include="Models\Pricing.cs" />
     <Compile Include="Models\Condition.cs" />
