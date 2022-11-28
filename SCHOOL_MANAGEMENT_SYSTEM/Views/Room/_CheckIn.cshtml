@@ -51,6 +51,10 @@
                             <input id="invno" disabled name="invno" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
+                            <label for="checkindate">កាលបរិច្ឆេទ</label>
+                            <input id="checkindate" readonly="readonly" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">លេខកុងទ័រភ្លើង</label>
                             <input id="powerprerecord" name="powerprerecord" placeholder="Enter current number" value="0" type="text" class="form-control input-sm">
                         </div>
@@ -93,13 +97,13 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                $("#CheckInModal").modal("hide");
                 UpdateRoomStatus();
                 UpdateGuestStatus();
-                InsertPowerUsage(result);
-                InsertWaterUsage(result);
-                CreateInvoice();
+                CreateInvoice(result);
+                $("#CheckInModal").modal("hide");
                 toastr.success("Check In successfully.", "Server Response");
+
+                window.location.reload(true);
             },
             error: function (errormesage) {
                 toastr.error("This Name Guest is exist in Database", "Server Respond");
@@ -109,51 +113,7 @@
         });
     }
 
-    function InsertPowerUsage(result) {
-        var data = {
-            guestid: $('#guestidchin').val(),
-            prerecord: $('#powerprerecord').val(),
-            checkinid: result,
-        };
-        $.ajax({
-            url: "/api/powerusage",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                //window.location.reload(true);
-            },
-            error: function (errormesage) {
-                toastr.error("Power usage insert faild!", "Server Respond");
-                return false;
-            }
-
-        });
-    }
-
-    function InsertWaterUsage(result) {
-        var data = {
-            guestid: $('#guestidchin').val(),
-            prerecord: $('#waterprerecord').val(),
-            checkinid: result,
-        };
-        $.ajax({
-            url: "/api/waterusage",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                //window.location.reload(true);
-            },
-            error: function (errormesage) {
-                toastr.error("Water usage insert faild!", "Server Respond");
-                return false;
-            }
-
-        });
-    }
+    
 
 
     function UpdateRoomStatus() {
@@ -192,15 +152,13 @@
         });
     }
 
-    function CreateInvoice() {
+    function CreateInvoice(result) {
         var data = {
             invoiceno: $('#invno').val(),
             guestid: $('#guestidchin').val(),
+            checkinid: result,
             exchangerateid: @Model.ExchangeRateID,
         };
-
-        
-
         $.ajax({
             url: "/api/invoices",
             data: JSON.stringify(data),
@@ -208,11 +166,62 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
+                //alert(result);
+                InsertPowerUsage(result);
+                InsertWaterUsage(result);
                 //alert('Print Invoice successfully!');
             },
             error: function (errormesage) {
                 toastr.error("Create invoice faild...!"+errormesage, "Server Respond");
             }
+        });
+    }
+
+    function InsertPowerUsage(id) {
+        var data = {
+            guestid: $('#guestidchin').val(),
+            prerecord: $('#powerprerecord').val(),
+            predate: $('#checkindate').val(),
+            invoiceid: id,
+        };
+        $.ajax({
+            url: "/api/powerusage",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Power usage insert faild!", "Server Respond");
+                return false;
+            }
+
+        });
+    }
+
+    function InsertWaterUsage(id) {
+        var data = {
+            guestid: $('#guestidchin').val(),
+            prerecord: $('#waterprerecord').val(),
+            predate: $('#checkindate').val(),
+            invoiceid: id,
+        };
+        $.ajax({
+            url: "/api/waterusage",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Water usage insert faild!", "Server Respond");
+                return false;
+            }
+
         });
     }
 </script>

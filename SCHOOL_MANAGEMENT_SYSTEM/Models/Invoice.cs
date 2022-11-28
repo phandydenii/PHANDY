@@ -18,10 +18,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public CheckIn checkin { get; set; }
         public int guestid { get; set; }
         public Guest guest { get; set; }
-        //public int powerusageid { get; set; }
-        //public PowerUsage powerusage { get; set; }
-        //public int waterusageid { get; set; }
-        //public WaterUsage waterusage { get; set; }
         public string userid { get; set; }
         public int exchangerateid { get; set; }
         public ExchangeRate exchangerate { get; set; }
@@ -31,6 +27,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public decimal totaldollar { get; set; }
         //public decimal discount { get; set; }
         public decimal totalother { get; set; }
+        public decimal payriel { get; set; }
+        public decimal paydollar { get; set; }
         public bool paid { get; set; }
         public bool printed { get; set; }
         public string createby { get; set; }

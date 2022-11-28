@@ -141,15 +141,6 @@
     function NewRecordWaterChange(){
         var waternewrecord = document.getElementById('newrecordwater').value;
         var wateroldrecord = document.getElementById('oldrecordwater').value;
-        //var totalwaterusage = (parseFloat(waternewrecord) - parseFloat(wateroldrecord)) * 1500;
-        //if (totalwaterusage <= 0) {
-        //    alert('Faild!');
-        //    $('#newrecordwater').focus();
-        //} else {
-        //    $('#totalwaterusage').val(totalwaterusage);
-        //    TotalPayment();
-        //}
-
         $.ajax({
             url: "/api/ExchangeRates/1/2",
             method: "GET",
@@ -172,14 +163,6 @@
     function NewRecordPowerChange(){
         var powernewrecord = document.getElementById('newrecordpower').value;
         var powerroldrecord = document.getElementById('oldrecordpower').value;
-        //var totalwaterusage = (parseInt(powernewrecord) - parseInt(powerroldrecord)) * 2000;
-        //if (totalwaterusage <= 0) {
-        //    alert('Faild!');
-        //    $('#newrecordwater').focus();
-        //} else {
-        //    $('#totalpowerusage').val(totalwaterusage);
-        //    TotalPayment();
-        //}
         $.ajax({
             url: "/api/ExchangeRates/1/2",
             method: "GET",
@@ -215,7 +198,7 @@
     function UpdateWater() {
         $.ajax({
             type: "PUT",
-            url: "/api/updatewaters/"+$('#checkinid').val()+"/"+$('#newrecordpower').val(),
+            url: "/api/updatewaters/" + $('#checkinid').val() + "/" + $('#newrecordwater').val(),
             contentType: false,
             processData: false,
             success: function (result) {

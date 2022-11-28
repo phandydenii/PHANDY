@@ -4,99 +4,126 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button"  class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <button type="button" onclick="OnCloseNewInv();" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
                 <b class="modal-title" style="color: darkblue;">ចេញវិក័យបត្រ</b>
                 <b class="modal-title" style="color: darkblue;" id="lblExchangeRate"></b>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <input id="invid" name="invid" type="text" style="display: none;"  value="" class="form-control" />
-                    <input id="roomid" name="kroomid" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="checkinid" name="checkinid" type="text" style="display: none;" value="" class="form-control" />
                     <input id="guestid" name="guestid" type="text" style="display: none;" value="" class="form-control" />
+
+                    <input id="exrate" name="exrate" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="wprice" name="wprice" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="pprice" name="pprice" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="isprinted" name="isprinted" type="text" style="display: none;" value="" class="form-control" />
                     <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="invno">លេខវិក័យបត្រ</label>
+                                    <input id="invno" readonly="readonly" name="invno" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">ភ្ញៀវ</label>
+                                    <input id="name" readonly="readonly" name="name" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="roomno">បន្ទប់</label>
+                                    <input id="roomno" readonly="readonly" name="roomno" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>     
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="ivnno">លេខវិក័យបត្រ</label>
-                                            <input id="ivnno" disabled name="ivnno" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="invoicedate">កាលបរិច្ឆេទ</label>
-                                            <input id="invoicedate" name="invoicedate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">ភ្ញៀវ</label>
-                                            <input id="name" disabled name="name" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="roomno">បន្ទប់</label>
-                                            <input id="roomno" disabled name="roomno" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="rmprice">តម្លៃបន្ទប់</label>
-                                            <input id="rmprice" disabled name="rmprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="row">
-                                            <input id="waterid" name="waterid" type="text" style="display: none;" value="" class="form-control" />
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="recordwaterold">គីឡូទឺកចាស់</label>
-                                                    <input id="recordwaterold" disabled name="recordwaterold" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="recordwaternew">គីឡូទឺកថ្មី</label>
-                                                    <input id="recordwaternew" onchange="RecordWaterChange();" name="newrecordwater" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="waterusagetotal">សរុបការប្រើប្រាស់ទឺក($)</label>
-                                            <input id="waterusagetotal" disabled name="waterusagetotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="startdate">ចាប់ផ្តើម</label>
+                                            <input id="startdate" readonly="readonly" name="startdate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="row">
-                                            <input id="powerid" name="powerid" type="text" style="display: none;" value="" class="form-control" />
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="recordpowerold">គីឡូភ្លើងចាស់</label>
-                                                    <input id="recordpowerold" disabled name="recordpowerold" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="recordpowernew">គីឡូភ្លើងថ្មី</label>
-                                                    <input id="recordpowernew" onchange="RecordPowerChange()" name="newrecordpower" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
                                         <div class="form-group">
-                                            <label for="powerusagetotal">សរុបការប្រើប្រាស់ភ្លើង($)</label>
-                                            <input id="powerusagetotal" disabled name="powerusagetotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="enddate">ដល់ថ្ងៃ</label>
+                                            <input id="enddate" readonly="readonly" name="enddate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <input id="waterid" name="waterid" type="text" style="display: none;" value="" class="form-control" />
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="svprice">បង់ថ្លៃសេវា</label>
-                                            <input id="svprice" disabled name="svprice" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="recordwaterold">គីឡូទឺកចាស់</label>
+                                            <input id="recordwaterold" readonly="readonly" name="recordwaterold" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="gratndtotal">សរុបប្រាក់ត្រូវបង់</label>
-                                            <input id="grandtotal" disabled name="gratndtotal" placeholder="Enter Passport Number" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="recordwaternew">គីឡូទឺកថ្មី</label>
+                                            <input id="recordwaternew" onchange="RecordWaterChange();" name="newrecordwater" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <input id="powerid" name="powerid" type="text" style="display: none;" value="" class="form-control" />
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="totalpayreil">ជាប្រាក់រៀល</label>
-                                            <input id="totalpayreil" disabled name="totalpayreil" placeholder="Enter Email" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="recordpowerold">គីឡូភ្លើងចាស់</label>
+                                            <input id="recordpowerold" readonly="readonly" name="recordpowerold" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="note">ពណ៌នា</label>
-                                            <input rows="2" id="note" name="note" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />                                        
+                                            <label for="recordpowernew">គីឡូភ្លើងថ្មី</label>
+                                            <input id="recordpowernew" onchange="RecordPowerChange()" name="newrecordpower" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
-                                        <label>&nbsp;</label>
-                                        <button type="button" id="btnPayment" onclick="InvoicePrint();" class="btn btn-info btn-block btn-sm">Print Invoice</button>                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">   
+                                <div class="form-group">
+                                    <label for="waterusagetotal">សរុបការប្រើប្រាស់ទឺក($)</label>
+                                    <input id="waterusagetotal" readonly="readonly" name="waterusagetotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="powerusagetotal">សរុបការប្រើប្រាស់ភ្លើង($)</label>
+                                    <input id="powerusagetotal" readonly="readonly" name="powerusagetotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="rmprice">តម្លៃបន្ទប់</label>
+                                    <input id="rmprice" readonly="readonly" name="rmprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="svprice">បង់ថ្លៃសេវា</label>
+                                    <input id="svprice" readonly="readonly" name="svprice" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="gratndtotal">សរុបប្រាក់ត្រូវបង់</label>
+                                    <input id="grandtotal" readonly="readonly" name="gratndtotal" placeholder="Enter Passport Number" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="grandtotalkh">ជាប្រាក់រៀល</label>
+                                    <input id="grandtotalkh" readonly="readonly" name="grandtotalkh" placeholder="Enter Email" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>                                      
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="note">ពណ៌នា</label>
+                                    <input rows="2" id="note" name="note" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" id="" onclick="OnCloseNewInv();" class="btn btn-danger btn-block btn-sm">Cancel</button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" id="" onclick="InvoiceNewPrint();" class="btn btn-info btn-block btn-sm">Print Invoice</button>
                                     </div>
                                 </div>
                             </div>
@@ -110,79 +137,109 @@
 
 
     
-<script type="text/javascript">
-    function InvoicePrint() {
-        //alert("Invoice id " + $('#invid').val());
-        @*var data = {
-            id: $('#invid').val(),
-            note: $('#note').val(),
-            exchangerateid: @Model.ExchangeRateID,
-            grandtotal:$('#totalpay').val(),
-            totalriel:$('#totalpayreil').val(),
-            totaldollar:$('#totalpay').val(),
-            totalother:$('#svprice').val(),
-        };*@
-        var data = new FormData();
-        data.append("grandtotal", $("#grandtotal").val());
-        data.append("totalriel", $("#totalpayreil").val());
-        data.append("totaldollar", $("#grandtotal").val());
-        data.append("totalother", $("#svprice").val());
-        data.append("note", $("#note").val());
+<script >
+    function InvoiceNewPrint() {
+        if($('#isprinted').val()==0)
+        {
+            alert("NOt Printed!")
+        }else{
+            //InsertNewInvoice();
+            alert("Printed");
+        }
+    }
+    
+    function UpdateInvoice(){
 
+    }
+
+    function InsertNewInvoice(){
+        var data = {
+            invoiceno: $('#invno').val(),
+            guestid: $('#guestid').val(),
+            checkinid: $('#checkinid').val(),
+            exchangerateid: @Model.ExchangeRateID,
+            grandtotal:$('#grandtotal').val(),
+            totalriel:$('#grandtotalkh').val(),
+            totaldollar:$('#grandtotal').val(),
+            totalother:$('#svprice').val(),
+            note: $('#note').val(),
+            printed:true,
+
+        };
         $.ajax({
-            type: "PUT",
-            url: "/api/invoices/" + $("#invid").val(),
-            contentType: false,
-            processData: false,
-            data: data,
+            url: "/api/invoices",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
             success: function (result) {
-                UpdateWater();
-                UpdatePower();
+                $("#PrintNewInvoiceModal").modal("hide");
+                InsertPowerUsage(result);
+                InsertWaterUsage(result);
                 alert('Print Invoice successfully!');
+                window.location.reload(true);
             },
             error: function (errormesage) {
-                toastr.error("Print invoice faild...!", "Server Respond");
+                toastr.error("Create invoice faild...!"+errormesage, "Server Respond");
+            }
+        });
+    }
 
+    function InsertPowerUsage(id) {
+        var data = {
+            predate: $('#startdate').val(),
+            prerecord: $('#recordpowerold').val(),
+            currentdate: $('#enddate').val(),
+            currentrecord: $('#recordpowernew').val(),
+            invoiceid: id,
+        };
+        $.ajax({
+            url: "/api/powerusage",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Power usage insert faild!", "Server Respond");
+                return false;
             }
         });
+    }
+    function InsertWaterUsage(id) {
+        var data = {
+            predate: $('#startdate').val(),
+            prerecord: $('#recordwaterold').val(),
+            currentdate: $('#enddate').val(),
+            currentrecord: $('#recordwaternew').val(),
+            invoiceid: id,
+        };
+        $.ajax({
+            url: "/api/waterusage",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Water usage insert faild!", "Server Respond");
+                return false;
+            }
 
-    }
-    function UpdateWater() {
-        $.ajax({
-            type: "PUT",
-           url: "/api/updatewaters/"+$('#waterid').val()+"/"+$('#recordwaternew').val(),
-            //url: "/api/updatewaters/2/60",
-            contentType: false,
-            processData: false,
-            // data: status,
-            success: function (result) {
-                toastr.success("Water Status has been Update successfully.", "Server Response");
-            },
-            error: function (error) {
-                toastr.error("Update water status fail!", "Server Response");
-            }
         });
     }
-    function UpdatePower() {
-        $.ajax({
-            type: "PUT",
-            url: "/api/updatepowers/"+$('#powerid').val()+"/"+$('#recordpowernew').val(),
-            //url: "/api/updatepowers/2/60",
-            contentType: false,
-            processData: false,
-            // data: status,
-            success: function (result) {
-               // toastr.success("Power Status has been Update successfully.", "Server Response");
-            },
-            error: function (error) {
-               // toastr.error("Update Power status fail!", "Server Response");
-            }
-        });
-    }
+
+
+
+
     function RecordWaterChange(){
         var waternewrecord = document.getElementById('recordwaternew').value;
         var wateroldrecord = document.getElementById('recordwaterold').value;
-        var totalwaterusage=(parseFloat(waternewrecord)-parseFloat(wateroldrecord))*1500/4130;
+        var totalwaterusage=((parseFloat(waternewrecord)-parseFloat(wateroldrecord))*parseFloat($('#wprice').val()))/parseFloat($('#exrate').val());
         if(totalwaterusage<=0){
             alert('Faild!');
             $('#recordwaternew').focus();
@@ -195,7 +252,7 @@
     function RecordPowerChange(){
         var powernewrecord = document.getElementById('recordpowernew').value;
         var powerroldrecord = document.getElementById('recordpowerold').value;
-        var totalwaterusage=(parseInt(powernewrecord)-parseInt(powerroldrecord))*2000/4130;
+        var totalwaterusage=((parseInt(powernewrecord)-parseInt(powerroldrecord))*parseFloat($('#pprice').val()))/parseFloat($('#exrate').val());
         if(totalwaterusage<=0){
             alert('Faild!');
             $('#recordwaternew').focus();
@@ -206,15 +263,17 @@
 
 
     }
-
     function TotalPayment(){
         var totalwaterusage = document.getElementById('waterusagetotal').value;
         var totalpowerusage = document.getElementById('powerusagetotal').value;
         var roomprice = document.getElementById('rmprice').value;
         var servicecharge = document.getElementById('svprice').value;
-        var grandtotal=(parseFloat(totalwaterusage)/4130)+(parseFloat(totalpowerusage)/4130)+parseFloat(roomprice)+parseFloat(servicecharge);
+        var grandtotal=(parseFloat(totalwaterusage)/parseFloat($('#exrate').val()))+(parseFloat(totalpowerusage)/parseFloat($('#exrate').val()))+parseFloat(roomprice)+parseFloat(servicecharge);
         $('#grandtotal').val(grandtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-        $('#totalpayreil').val(grandtotal*4130);
+        var grkh=grandtotal*parseFloat($('#exrate').val());
+        $('#totalpayreil').val(grkh.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+    }
+    function OnCloseNewInv() {
+        window.location.reload(true);
     }
 </script>
- 

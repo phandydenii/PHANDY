@@ -9,8 +9,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
     public class PowerUsageDto
     {
         public int id { get; set; }
-        public int checkinid { get; set; }
-        public CheckIn checkin { get; set; }
+        public int invoiceid { get; set; }
+        public Invoice Invoice { get; set; }
         public DateTime? predate { get; set; }
         public decimal prerecord { get; set; }
         public DateTime? currentdate { get; set; }

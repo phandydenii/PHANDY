@@ -172,6 +172,7 @@
             contentType: "application/json;charset=utf-8",
             datatype: "json",
             success: function (result) {
+                $("#bookingid").val(result.id);
                 $.each(result, function (key, value) {
                     $("#bookingid").val(value.id);
                     $("#guestid").val(value.id);

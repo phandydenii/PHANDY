@@ -112,8 +112,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join ci in _context.CheckIns on i.checkinid equals ci.id
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on ci.id equals wu.checkinid 
-                               join pu in _context.PowerUsages on ci.id equals pu.checkinid
+                               join wu in _context.WaterUsages on i.id equals wu.invoiceid 
+                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -178,8 +178,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join ci in _context.CheckIns on i.checkinid equals ci.id
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on ci.id equals wu.checkinid
-                               join pu in _context.PowerUsages on ci.id equals pu.checkinid
+                               join wu in _context.WaterUsages on i.id equals wu.invoiceid
+                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -244,8 +244,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join ci in _context.CheckIns on i.checkinid equals ci.id
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on ci.id equals wu.checkinid
-                               join pu in _context.PowerUsages on ci.id equals pu.checkinid
+                               join wu in _context.WaterUsages on i.id equals wu.invoiceid
+                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -309,8 +309,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join ci in _context.CheckIns on i.checkinid equals ci.id
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on ci.id equals wu.checkinid
-                               join pu in _context.PowerUsages on ci.id equals pu.checkinid
+                               join wu in _context.WaterUsages on i.id equals wu.invoiceid
+                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -367,17 +367,17 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
 
         [HttpGet]
-        [Route("api/invoice_v/")]
+        [Route("api/invoice_v/all")]
         //Get : api/Buildings
-        public IHttpActionResult GetInvoicesPrinIDt(int c)
+        public IHttpActionResult GetInvoicesPrinIDt()
         {
             var GetInvoiceV = (from i in _context.Invoice
                                join ex in _context.Exchanges on i.exchangerateid equals ex.id
                                join ci in _context.CheckIns on i.checkinid equals ci.id
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on ci.id equals wu.checkinid
-                               join pu in _context.PowerUsages on ci.id equals pu.checkinid
+                               join wu in _context.WaterUsages on i.id equals wu.invoiceid
+                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -442,8 +442,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join ci in _context.CheckIns on i.checkinid equals ci.id
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on ci.id equals wu.checkinid
-                               join pu in _context.PowerUsages on ci.id equals pu.checkinid
+                               join wu in _context.WaterUsages on i.id equals wu.invoiceid
+                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -509,59 +509,86 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
             SqlDataAdapter adp = new SqlDataAdapter("select * from NewInvoice where NewInvoice='Yes'", conx);
-            //conx.Open();
-            //dr = cmd.ExecuteReader();
-            //List<NewInvoiceV> invoicenew = new List<NewInvoiceV>();
-            //while (dr.Read())
-            //{
-            //    NewInvoice = new NewInvoiceV();
-            //    NewInvoice.id = dr.GetValue(0).ToString();
-            //    NewInvoice.checkindate = dr.GetValue(1).ToString();
-            //    NewInvoice.room_no = dr.GetValue(2).ToString();
-            //    NewInvoice.roomtypename = dr.GetValue(3).ToString();
-            //    NewInvoice.floor_no = dr.GetValue(4).ToString();
-            //    NewInvoice.buildingname = dr.GetValue(5).ToString();
-            //    NewInvoice.name = dr.GetValue(6).ToString();
-            //    NewInvoice.namekh = dr.GetValue(7).ToString();
-            //    NewInvoice.sex = dr.GetValue(8).ToString();
-            //    NewInvoice.dob = dr.GetValue(9).ToString();
-            //    NewInvoice.address = dr.GetValue(10).ToString();
-            //    NewInvoice.nationality = dr.GetValue(11).ToString();
-            //    NewInvoice.phone = dr.GetValue(12).ToString();
-            //    NewInvoice.email = dr.GetValue(13).ToString();
-            //    NewInvoice.ssn = dr.GetValue(14).ToString();
-            //    NewInvoice.passport = dr.GetValue(15).ToString();
-            //    NewInvoice.status = dr.GetValue(16).ToString();
-            //    NewInvoice.invoicedate = dr.GetValue(17).ToString();
-            //    NewInvoice.paid = dr.GetValue(18).ToString();
-            //    NewInvoice.NewInvoice = dr.GetValue(19).ToString();
-            //}
-            //conx.Close();
-
             adp.Fill(ds);
-            //var NewInvoice = new NewInvoiceV();
-            //foreach (DataRow item in ds.Rows)
+            //NewInvoiceV NewInvoice = new NewInvoiceV();
+            //foreach (DataRow item in ds.Tables[0].Rows)
             //{
-            //    NewInvoice.id = item[0].ToString();
-            //    NewInvoice.checkindate = item[1].ToString();
-            //    NewInvoice.room_no = item[2].ToString();
-            //    NewInvoice.roomtypename = item[3].ToString();
-            //    NewInvoice.floor_no = item[4].ToString();
-            //    NewInvoice.buildingname = item[5].ToString();
-            //    NewInvoice.name = item[6].ToString();
-            //    NewInvoice.namekh = item[7].ToString();
-            //    NewInvoice.sex = item[8].ToString();
-            //    NewInvoice.dob = item[9].ToString();
-            //    NewInvoice.address = item[10].ToString();
-            //    NewInvoice.nationality = item[11].ToString();
-            //    NewInvoice.phone = item[12].ToString();
-            //    NewInvoice.email = item[13].ToString();
-            //    NewInvoice.ssn = item[14].ToString();
-            //    NewInvoice.passport = item[15].ToString();
-            //    NewInvoice.status = item[16].ToString();
-            //    NewInvoice.invoicedate = item[17].ToString();
-            //    NewInvoice.paid = item[18].ToString();
-            //    NewInvoice.NewInvoice = item[19].ToString();
+            //    NewInvoice.checkinid = Convert.ToInt16(item["checkinid"].ToString());
+            //    NewInvoice.checkindate = Convert.ToDateTime(item["checkindate"].ToString());
+            //    NewInvoice.room_no = item["room_no"].ToString();
+            //    NewInvoice.roomtypename = item["roomtypename"].ToString();
+            //    NewInvoice.floor_no = item["floor_no"].ToString();
+            //    NewInvoice.buildingname = item["buildingname"].ToString();
+            //    NewInvoice.guestid = Convert.ToInt16(item["geustid"].ToString());
+            //    NewInvoice.name = item["name"].ToString();
+            //    NewInvoice.namekh = item["namekh"].ToString();
+            //    NewInvoice.sex = item["sex"].ToString();
+            //    NewInvoice.dob = item["dob"].ToString();
+            //    NewInvoice.address = item["address"].ToString();
+            //    NewInvoice.nationality = item["nationality"].ToString();
+            //    NewInvoice.phone = item["phone"].ToString();
+            //    NewInvoice.email = item["email"].ToString();
+            //    NewInvoice.ssn = item["ssn"].ToString();
+            //    NewInvoice.passport = item["passport"].ToString();
+            //    NewInvoice.status = item["status"].ToString();
+            //    NewInvoice.startdate = Convert.ToDateTime(item["startdate"].ToString());
+            //    NewInvoice.enddate = Convert.ToDateTime(item["enddate"].ToString());
+            //    NewInvoice.paid = Convert.ToBoolean(item["paid"].ToString());
+            //    NewInvoice.printed = Convert.ToBoolean(item["printed"].ToString());
+            //    NewInvoice.NewInvoice = item["NewInvoice"].ToString();
+            //    NewInvoice.wolddate = Convert.ToDateTime(item["wdate"].ToString());
+            //    NewInvoice.woldrecord = Convert.ToDecimal(item["wrecord"].ToString());
+            //    NewInvoice.polddate = Convert.ToDateTime(item["pdate"].ToString());
+            //    NewInvoice.poldrecord = Convert.ToDecimal(item["precord"].ToString());
+
+            //}
+            //return Ok(NewInvoice);
+            return ds.Tables[0];
+        }
+
+        [HttpGet]
+        [Route("api/invoice-v/newinvoie/{checkinid}")]
+        //Get : api/Buildings
+        public object GetNewInvoiceByID(int checkinid)
+        {
+            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
+
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from NewInvoice where NewInvoice='Yes' and checkinid="+ checkinid, conx);
+            adp.Fill(ds);
+            //NewInvoiceV NewInvoice = new NewInvoiceV();
+            //foreach (DataRow item in ds.Tables[0].Rows)
+            //{
+            //    NewInvoice.checkinid = Convert.ToInt16(item["checkinid"].ToString());
+            //    NewInvoice.checkindate = Convert.ToDateTime(item["checkindate"].ToString());
+            //    NewInvoice.room_no = item["room_no"].ToString();
+            //    NewInvoice.roomtypename = item["roomtypename"].ToString();
+            //    NewInvoice.floor_no = item["floor_no"].ToString();
+            //    NewInvoice.buildingname = item["buildingname"].ToString();
+            //    NewInvoice.guestid = Convert.ToInt16(item["geustid"].ToString());
+            //    NewInvoice.name = item["name"].ToString();
+            //    NewInvoice.namekh = item["namekh"].ToString();
+            //    NewInvoice.sex = item["sex"].ToString();
+            //    NewInvoice.dob = item["dob"].ToString();
+            //    NewInvoice.address = item["address"].ToString();
+            //    NewInvoice.nationality = item["nationality"].ToString();
+            //    NewInvoice.phone = item["phone"].ToString();
+            //    NewInvoice.email = item["email"].ToString();
+            //    NewInvoice.ssn = item["ssn"].ToString();
+            //    NewInvoice.passport = item["passport"].ToString();
+            //    NewInvoice.status = item["status"].ToString();
+            //    NewInvoice.startdate = Convert.ToDateTime(item["startdate"].ToString());
+            //    NewInvoice.enddate = Convert.ToDateTime(item["enddate"].ToString());
+            //    NewInvoice.paid = Convert.ToBoolean(item["paid"].ToString());
+            //    NewInvoice.printed = Convert.ToBoolean(item["printed"].ToString());
+            //    NewInvoice.NewInvoice = item["NewInvoice"].ToString();
+            //    NewInvoice.wolddate = Convert.ToDateTime(item["wolddate"].ToString());
+            //    NewInvoice.woldrecord = Convert.ToDecimal(item["woldrecord"].ToString());
+            //    NewInvoice.polddate = Convert.ToDateTime(item["polddate"].ToString());
+            //    NewInvoice.poldrecord = Convert.ToDecimal(item["poldrecord"].ToString());
+
             //}
             return ds.Tables[0];
         }
@@ -570,34 +597,33 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/CheckIns
         public IHttpActionResult CreateInvoice(InvoiceDto InvoiceDtos)
         {
+            DataTable ds = new DataTable();
             DataTable ds1 = new DataTable();
-            var connectionString1 = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            SqlConnection conx1 = new SqlConnection(connectionString1);
-            SqlDataAdapter adp = new SqlDataAdapter("select max(id) as CheckInMaxID from checkin_tbl", conx1);
-            adp.Fill(ds1);
-            string CheckInId = ds1.Rows[0][0].ToString();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select max(id) from waterusage_tbl", conx);
+            SqlDataAdapter adp1 = new SqlDataAdapter("select max(id) from powerusage_tbl", conx);
+            //adp.Fill(ds);
+            //adp.Fill(ds1);
+            //string wid = ds.Rows[0][0].ToString();
+            //string pid = ds1.Rows[0][0].ToString();
 
             if (!ModelState.IsValid)
                 return BadRequest();
 
             var InvoiceInDb = Mapper.Map<InvoiceDto, Invoice>(InvoiceDtos);
             InvoiceInDb.invoicedate = DateTime.Today;
-            InvoiceInDb.checkinid = Int16.Parse(CheckInId);
             InvoiceInDb.userid = User.Identity.GetUserId();
             InvoiceInDb.createby= User.Identity.GetUserId();
             InvoiceInDb.updateby= User.Identity.GetUserId();
             InvoiceInDb.updatedate= DateTime.Today;
             InvoiceInDb.createdate= DateTime.Today;
             InvoiceInDb.status="ACTIVE"; 
-                
+
             _context.Invoice.Add(InvoiceInDb);
             _context.SaveChanges();
-
             InvoiceInDb.id = InvoiceDtos.id;
 
-            DataTable ds = new DataTable();
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            SqlConnection conx = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand("select max(id) from invoice_tbl", conx);
             Int16 InvoiceMax;
             try
@@ -623,15 +649,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            var note = HttpContext.Current.Request.Form["note"];
-
-            
             var totalriel = decimal.Parse(HttpContext.Current.Request.Form["totalriel"]);
             var totaldollar = decimal.Parse(HttpContext.Current.Request.Form["totaldollar"]);
             var totalother = decimal.Parse(HttpContext.Current.Request.Form["totalother"]);
-
             var grandtotal = decimal.Parse(HttpContext.Current.Request.Form["grandtotal"]);
-
+            var payriel = decimal.Parse(HttpContext.Current.Request.Form["payriel"]);
+            var paydollar = decimal.Parse(HttpContext.Current.Request.Form["paydollar"]);
+            var paid = bool.Parse(HttpContext.Current.Request.Form["paid"]);
+            var note = HttpContext.Current.Request.Form["note"];
 
             SqlCommand command = new SqlCommand();
             SqlCommand requestcommand = new SqlCommand();
@@ -646,7 +671,10 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             requestcommand.Parameters.Add("@updateby", SqlDbType.VarChar).Value = User.Identity.GetUserId();
             requestcommand.Parameters.Add("@updatedate", SqlDbType.Date).Value = DateTime.Today;
             requestcommand.Parameters.Add("@note", SqlDbType.NVarChar).Value = note;
-            requestcommand.Parameters.Add("@status", SqlDbType.VarChar).Value = "Active";
+            requestcommand.Parameters.Add("@status", SqlDbType.VarChar).Value = "ACTIVE";
+            requestcommand.Parameters.Add("@payriel", SqlDbType.Decimal).Value = payriel;
+            requestcommand.Parameters.Add("@paydollar", SqlDbType.Decimal).Value = paydollar;
+            requestcommand.Parameters.Add("@paid", SqlDbType.Bit).Value = paid;
 
 
             try
@@ -681,7 +709,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return Ok();
         }
     }
-
-    
-
 }
+
+

@@ -22,6 +22,9 @@
                             <ul class="dropdown-menu animate slideIn">
                                 <li>@Html.ActionLink("Department", "", "department-list")</li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
+                                    <a href="@Url.Action("Index", "Room")">បន្ទប់</a>
+                                </li>
+                                <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
                                     <a href="@Url.Action("Index", "Staff")">បុគ្គលិក</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
@@ -29,9 +32,6 @@
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
                                     <a href="@Url.Action("Index", "Item")">សម្ភារៈប្រើប្រាស់</a>
-                                </li>
-                                <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "Room")">បន្ទប់</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
                                     <a href="@Url.Action("Index", "BeginingBalance")">តម្លៃទឺក ភ្លើង</a>

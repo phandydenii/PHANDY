@@ -28,7 +28,7 @@ function GetInvoice() {
     //alert(selectedDate);
     tableInvoice = $('#InvoiceTable').DataTable({
         ajax: {
-            url: "/api/invoice_v?c=0",
+            url: "/api/invoice_v/all",
             dataSrc: ""
         },
         columns: [
@@ -117,11 +117,8 @@ function GetInvoice() {
             {
                 data: "id",
                 render: function (data) {
-                    if ({ data: "owe" } == 0) {
-                        return "<span class='label label-primary'><span class='glyphicon glyphicon-ok'></span> Paid</span>";
-                    } else {
                         return "<button OnClick='OnPayment(" + data + ");' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-usd'></span> Pay Now</button>";
-                    }
+                    
                 }
             },
             {
@@ -150,22 +147,10 @@ function GetInvoice() {
     });
 }
 
-//function OnTest() {
-//    window.open("/department-list", "_self")
-//}
-
-//function OnTest() {
-//   // var contentOfDiv = document.getElementById("divCon").innerHTML;
-//    var newWin = window.open('http://localhost:2139/department-list', '', 'height=650, width=650');
-//    newWin.document.close();
-//    newWin.print();
-//}
-
-
-
 function OnPayment(id) {
     //alert(id);
     $("#PaymentModal").modal('show');
+    //$('#invoiceidp').val(id);
     $.ajax({
     url: "/api/invoice_v/"+id,
     type: "GET",
@@ -179,23 +164,41 @@ function OnPayment(id) {
         $('#roomprice').val(result.roomprice);
         $('#oldwaterrecord').val(result.wprerecord);
         $('#newwaterrecord').val(result.wcurrentrecord);
-        $('#totalwaterusage').val(result.wtotal);
+
+        $('#totalwater').val(result.wtotal);
+
         $('#oldpowerrecord').val(result.pprerecord);
         $('#newpowerrecord').val(result.pcurrentrecord);
-        $('#totalpowerusage').val(result.ptotal);
+
+        $('#totalpower').val(result.ptotal);
+
         $('#servicecharge').val(result.servicecharge);
         $('#totalpayment').val(result.grandtotal);
         $('#totalpaymentkh').val(result.totalriel);
         $('#note').val(result.note);
+
+        $('#checkinid').val(result.checkinid);
+
+       // alert(result.checkinid);
+
     },
     error: function (errormessage) {
         toastr.error("Load Record Error", "Service Response");
     }
     });
 
+    $.get("/api/WaterPoserPrice/1/2", function (data) {
+        $("#wpid").val(data.id);
+        $("#wprice").text(data.waterprice);
+        $("#pprice").text(data.powerprice);
+    });
+
+
+    $.get("/api/ExchangeRates/1/2", function (data) {
+        $("#exrate").val(data.rate);
+        $("#lblidroom").text(data.rate);
+    });
 }
-
-
 
 
 

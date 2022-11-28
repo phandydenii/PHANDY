@@ -17,7 +17,7 @@ function GetCheckInDetail() {
         columns:
             [
                 {
-                    data: "id"
+                    data: "checkinid"
                 },
                 {
                     data: "name"
@@ -35,38 +35,52 @@ function GetCheckInDetail() {
                     data: "roomtypename",
                 },
                 {
-                    data: "floor_no",
+                    data: "servicecharge",
                 },
                 {
-                    data: "buildingname",
+                    data: "price",
                 },
                 {
-                    data: "invoicedate",
+                    data: "woldrecord",
+                },
+                {
+                    data: "poldrecord",
+                },
+                {
+                    data: "startdate",
                     render: function (data) {
-                        var date = new Date(data);
+                        return moment(new Date(data)).format('DD-MMM-YYYY');
+                    }
+                    //render: function (data) {
+                    //    var date = new Date(data);
                         
-                        var newDate = moment(date, "DD-MM-YYYY").add(1, 'months').format('DD-MMM-YYYY');
+                    //    var newDate = moment(date, "DD-MM-YYYY").add(1, 'months').format('DD-MMM-YYYY');
                         
-                        //today = new Date();
-                        //var date1 = new Date(newDate);
-                        //var difference = Math.abs(today - date1);
-                        //days = difference / (1000 * 3600 * 24)
+                    //    //today = new Date();
+                    //    //var date1 = new Date(newDate);
+                    //    //var difference = Math.abs(today - date1);
+                    //    //days = difference / (1000 * 3600 * 24)
 
-                        //if (days > 0) {
-                        //    return newDate + " <span class='label label-danger'>late " + days + " day</span>";
+                    //    //if (days > 0) {
+                    //    //    return newDate + " <span class='label label-danger'>late " + days + " day</span>";
                             
-                        //} else {
-                        //    return newDate + " <span class='label label-primary'>Now</span>";
-                        //}
-                        return newDate;
+                    //    //} else {
+                    //    //    return newDate + " <span class='label label-primary'>Now</span>";
+                    //    //}
+                    //    return newDate;
                         
+                    //}
+                },
+                {
+                    data: "enddate",
+                    render: function (data) {
+                        return moment(new Date(data)).format('DD-MMM-YYYY');
                     }
                 },
                 {
-                    data: "id",
+                    data: "checkinid",
                     render: function (data) {
-                        return "<button OnClick='PrintInvoice (" + data + ")' class='btn btn-info btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Print Invoice</button>"
-                        + "<button OnClick='PrintInvoice (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-usd'></span> Pay Now</button>"
+                        return "<button OnClick='PrintInvoice (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Print Invoice</button>"
 
                         ;
                     }
@@ -77,33 +91,29 @@ function GetCheckInDetail() {
 }
 
 function PrintInvoice(id) {
+    $("#checkinid").val(id);
     $.ajax({
-        url: "/api/invoice_v/0/" + id,
+        url: "/api/invoice-v/newinvoie/" + id,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
-            $('#ivnno').val(result.invoiceno);
-            $('#name').val(result.guestname);
-            $("#roomno").val(result.roomno);
-            $("#rmprice").val(result.roomprice);
-            $("#svprice").val(result.servicecharge);
-            if (result.pcurrentrecord == 0) {
-                $("#recordpowerold").val(result.pprerecord);
-            } else {
-                $("#recordpowerold").val(result.pcurrentrecord);
-            }
-            if (result.wcurrentrecord == 0) {
-                $("#recordwaterold").val(result.wprerecord);
-            } else {
-                $("#recordwaterold").val(result.wcurrentrecord);
-            }
+            $('#name').val(result[0]["name"]);
+            $("#roomno").val(result[0]["room_no"]);
+            $("#rmprice").val(result[0]["price"]);
+            $("#svprice").val(result[0]["servicecharge"]);
+            $("#recordpowerold").val(result[0]["woldrecord"]);
+            $("#recordwaterold").val(result[0]["poldrecord"]);
             
-            
-            $("#powerid").val(result.pid);
-            $("#waterid").val(result.wid);
-            $("#invid").val(result.id);
+            var stdate = moment(result[0]["startdate"]).format("YYYY-MM-DD");
+            var enddate = moment(result[0]["enddate"]).format("YYYY-MM-DD");
+            $("#startdate").val(stdate);
+            $("#enddate").val(enddate);
 
+            $("#guestid").val(result[0]["guestid"]);
+            $("#isprinted").val(result[0]["printed"]);
+
+            
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
@@ -112,7 +122,16 @@ function PrintInvoice(id) {
 
     $("#PrintNewInvoiceModal").modal("show");
     $.get("/api/invoicemaxid", function (data) {
-        $('#invoiceno').val(data);
+        $('#invno').val(data);
+    });
+
+    $.get("/api/ExchangeRates/1/2", function (data) {
+        $('#exrate').val(data.rate);
+    });
+
+    $.get("/api/WaterPoserPrice/1/1", function (data) {
+        $('#wprice').val(data.waterprice);
+        $('#pprice').val(data.powerprice);
     });
 }
 function getwater(id) {

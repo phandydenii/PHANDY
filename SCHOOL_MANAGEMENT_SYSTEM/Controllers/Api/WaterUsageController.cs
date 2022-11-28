@@ -27,27 +27,26 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpGet]
-        [Route("api/waterusagerecord/{id}")]
-        public IHttpActionResult GetMaxID(int id)
+        [Route("api/waterusagerecord/{invoiceid}")]
+        public IHttpActionResult GetMaxID(int invoiceid)
         {
             ///For Get Max PaymentNo +1
-            DataTable ds = new DataTable();
+            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select top 1 id,prerecord,currentrecord from waterusage_tbl where checkinid='" + id + "' order by id desc", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select top 1 id,predate,prerecord,currentdate,currentrecord from waterusage_tbl where invoiceid='" + invoiceid + "' order by id desc", conx);
             adp.Fill(ds);
-            string oldrecord = ds.Rows[0][1].ToString();
-            string newrecord = ds.Rows[0][2].ToString();
-            string currenrecrd="";
-            if (decimal.Parse(newrecord) == 0)
+            WaterUsage waterusage = new WaterUsage();
+            foreach(DataRow dr in ds.Tables[0].Rows)
             {
-                currenrecrd = oldrecord;
+                waterusage.id = Convert.ToInt16(dr[0].ToString());
+                waterusage.predate = Convert.ToDateTime(dr[1].ToString());
+                waterusage.prerecord = Convert.ToDecimal(dr[2].ToString());
+                waterusage.currentdate = Convert.ToDateTime(dr[3].ToString());
+                waterusage.currentrecord = Convert.ToDecimal(dr[4].ToString());
             }
-            else
-            {
-                currenrecrd = newrecord;
-            }
-            return Ok(currenrecrd);
+            return Ok(waterusage);
         }
 
         [HttpGet]
@@ -89,8 +88,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 return BadRequest();
 
             var WaterUsageInDb = Mapper.Map<WaterUsageDto, WaterUsage>(WaterUsageDtos);
-            WaterUsageInDb.predate = DateTime.Today;
-            WaterUsageInDb.id = int.Parse(wpprice);
+            
+            WaterUsageInDb.price = int.Parse(wpprice);
             _context.WaterUsages.Add(WaterUsageInDb);
             _context.SaveChanges();
 
@@ -101,13 +100,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
 
         [HttpPut]
-        [Route("api/updatewaters/{id}/{currentrecord}")]
-        public IHttpActionResult GetMaxID(int id, decimal currentrecord)
+        [Route("api/updatewaters/{invoiceid}/{currentrecord}")]
+        public IHttpActionResult GetMaxID(int invoiceid, decimal currentrecord)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            SqlCommand requestcommand = new SqlCommand("update waterusage_tbl set currentrecord='" + currentrecord + "',currentdate=GETDATE() where id=" + id, conx);
+            SqlCommand requestcommand = new SqlCommand("update waterusage_tbl set currentrecord='" + currentrecord + "',currentdate=GETDATE() where invoiceid=" + invoiceid, conx);
             try
             {
                 conx.Open();

@@ -31,8 +31,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                               join id in _context.InvoiceDetail on i.id equals id.invoiceid
                               join ci in _context.Guests on i.checkinid equals ci.id
                               join r in _context.Rooms on id.roomid equals r.id
-                              join wu in _context.WaterUsages on ci.id equals wu.checkinid
-                              join pu in _context.PowerUsages on ci.id equals pu.checkinid
+                              join wu in _context.WaterUsages on i.id equals wu.invoiceid
+                              join pu in _context.PowerUsages on i.id equals pu.invoiceid
                               join e in _context.Exchanges on i.exchangerateid equals e.id
 
                               select new InvoiceDetailV
@@ -77,8 +77,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join id in _context.InvoiceDetail on i.id equals id.invoiceid
                                join ci in _context.Guests on i.checkinid equals ci.id
                                join r in _context.Rooms on id.roomid equals r.id
-                               join wu in _context.WaterUsages on ci.id equals wu.checkinid
-                               join pu in _context.PowerUsages on ci.id equals pu.checkinid
+                               join wu in _context.WaterUsages on i.id equals wu.invoiceid
+                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                where i.id==invdetailid
                                select new InvoiceDetailV

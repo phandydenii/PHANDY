@@ -35,27 +35,26 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpGet]
-        [Route("api/powerusagerecord/{id}")]
-        public IHttpActionResult GetMaxID(int id)
+        [Route("api/powerusagerecord/{invoiceid}")]
+        public IHttpActionResult GetMaxID(int invoiceid)
         {
             //For Get Max PaymentNo +1
-            DataTable ds = new DataTable();
+            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select top 1 id,prerecord,currentrecord from powerusage_tbl where checkinid='" + id + "' order by id desc", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select top 1 id,predate,prerecord,currentdate,currentrecord from powerusage_tbl where invoiceid='" + invoiceid + "' order by id desc", conx);
             adp.Fill(ds);
-            string oldrecord = ds.Rows[0][1].ToString();
-            string newrecord = ds.Rows[0][2].ToString();
-            string currenrecrd = "";
-            if (decimal.Parse(newrecord) == 0)
+            PowerUsage powerusage = new PowerUsage();
+            foreach (DataRow dr in ds.Tables[0].Rows)
             {
-                currenrecrd = oldrecord;
+                powerusage.id = Convert.ToInt16(dr["id"].ToString());
+                powerusage.predate = Convert.ToDateTime(dr["predate"].ToString());
+                powerusage.prerecord = Convert.ToDecimal(dr["prerecord"].ToString());
+                powerusage.currentdate = Convert.ToDateTime(dr["currentdate"].ToString());
+                powerusage.currentrecord = Convert.ToDecimal(dr["currentrecord"].ToString());
             }
-            else
-            {
-                currenrecrd = newrecord;
-            }
-            return Ok(currenrecrd);
+            return Ok(powerusage);
         }
 
         [HttpGet]
@@ -89,7 +88,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 return BadRequest();
 
             var PowerUsageInDb = Mapper.Map<PowerUsageDto, PowerUsage>(PowerUsageDtos);
-            PowerUsageInDb.predate = DateTime.Today;
+           
             PowerUsageInDb.price = int.Parse(wpprice);
             _context.PowerUsages.Add(PowerUsageInDb);
             _context.SaveChanges();
@@ -100,13 +99,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpPut]
-        [Route("api/updatepowers/{id}/{currentrecord}")]
-        public IHttpActionResult GetMaxID(int id, decimal currentrecord)
+        [Route("api/updatepowers/{invoiceid}/{currentrecord}")]
+        public IHttpActionResult GetMaxID(int invoiceid, decimal currentrecord)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            SqlCommand requestcommand = new SqlCommand("update powerusage_tbl set currentrecord='"+ currentrecord + "',currentdate=GETDATE() where id=" + id, conx);
+            SqlCommand requestcommand = new SqlCommand("update powerusage_tbl set currentrecord='"+ currentrecord + "',currentdate=GETDATE() where invoiceid=" + invoiceid, conx);
             try
             {
                 conx.Open();
@@ -153,3 +152,5 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
     }
 }
+
+
