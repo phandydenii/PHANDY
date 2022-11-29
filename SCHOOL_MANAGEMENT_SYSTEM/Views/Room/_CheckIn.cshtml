@@ -113,9 +113,6 @@
         });
     }
 
-    
-
-
     function UpdateRoomStatus() {
         var rmid = document.getElementById('roomid');
         var rmname = document.getElementById('lblRoomNo').innerText;
@@ -181,7 +178,6 @@
         var data = {
             guestid: $('#guestidchin').val(),
             prerecord: $('#powerprerecord').val(),
-            predate: $('#checkindate').val(),
             invoiceid: id,
         };
         $.ajax({
@@ -205,7 +201,6 @@
         var data = {
             guestid: $('#guestidchin').val(),
             prerecord: $('#waterprerecord').val(),
-            predate: $('#checkindate').val(),
             invoiceid: id,
         };
         $.ajax({

@@ -44,7 +44,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="newwaterrecord">គីឡូទឺកថ្មី</label>
-                                                    <input id="newwaterrecord" name="newwaterrecord" onchange="NewWaterRecordChange();" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                                                    <input id="newwaterrecord" name="newwaterrecord" onfocus="this.select();" onchange="NewWaterRecordChange();" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="newpowerrecord">គីឡូភ្លើងថ្មី</label>
-                                                    <input id="newpowerrecord" onchange="NewPowerRecordChange();" name="newpowerrecord"  placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                                                    <input id="newpowerrecord" onfocus="this.select();" onchange="NewPowerRecordChange();" name="newpowerrecord"  placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                                 </div>
                                             </div>
                                         </div>
@@ -145,7 +145,7 @@
                     <button type="button" id="btnCheckOut" onclick="TestAction();" data-dismiss="modal" class="btn btn-danger btn-block btn-sm">Cancel</button>
                 </div>
                 <div class="col-md-3" id="hidepayment">
-                    <button type="button" id="" onclick="OnPayAction()" class="btn btn-info btn-block btn-sm">Pay Now</button>
+                    <button type="button" id="btnPayment" onclick="OnPayAction()" class="btn btn-info btn-block btn-sm">Save</button>
                 </div>
             </div>
         </div>
@@ -153,13 +153,6 @@
     </div>
 </div>
 <script>
-
-    function TestAction() {
-        alert("Invoice id= " + $("#id").val());
-    }
-
-
-
     function NewWaterRecordChange() {
         var waternewrecord = document.getElementById('newwaterrecord').value;
         var wateroldrecord = document.getElementById('oldwaterrecord').value;

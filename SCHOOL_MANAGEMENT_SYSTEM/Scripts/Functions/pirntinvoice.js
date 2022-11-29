@@ -51,25 +51,6 @@ function GetCheckInDetail() {
                     render: function (data) {
                         return moment(new Date(data)).format('DD-MMM-YYYY');
                     }
-                    //render: function (data) {
-                    //    var date = new Date(data);
-                        
-                    //    var newDate = moment(date, "DD-MM-YYYY").add(1, 'months').format('DD-MMM-YYYY');
-                        
-                    //    //today = new Date();
-                    //    //var date1 = new Date(newDate);
-                    //    //var difference = Math.abs(today - date1);
-                    //    //days = difference / (1000 * 3600 * 24)
-
-                    //    //if (days > 0) {
-                    //    //    return newDate + " <span class='label label-danger'>late " + days + " day</span>";
-                            
-                    //    //} else {
-                    //    //    return newDate + " <span class='label label-primary'>Now</span>";
-                    //    //}
-                    //    return newDate;
-                        
-                    //}
                 },
                 {
                     data: "enddate",
@@ -91,13 +72,15 @@ function GetCheckInDetail() {
 }
 
 function PrintInvoice(id) {
-    $("#checkinid").val(id);
+    $("#PrintNewInvoiceModal").modal("show");
+    $("#invid").val(id);
     $.ajax({
         url: "/api/invoice-v/newinvoie/" + id,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
+            //$("#checkinid").val(result[0]["checkinid"]);
             $('#name').val(result[0]["name"]);
             $("#roomno").val(result[0]["room_no"]);
             $("#rmprice").val(result[0]["price"]);
@@ -111,18 +94,22 @@ function PrintInvoice(id) {
             $("#enddate").val(enddate);
 
             $("#guestid").val(result[0]["guestid"]);
-            $("#isprinted").val(result[0]["printed"]);
+            $("#ispaid").val(result[0]["paid"]);
+            $("#isprint").val(result[0]["printed"]);
 
+            if (result[0]["printed"] == false) {
+                $('#invno').val(result[0]["invoiceno"]);
+            } else {
+                $.get("/api/invoicemaxid", function (data) {
+                    $('#invno').val(data);
+                });
+            }
             
+            //alert(result[0]["paid"]);
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
         }
-    });
-
-    $("#PrintNewInvoiceModal").modal("show");
-    $.get("/api/invoicemaxid", function (data) {
-        $('#invno').val(data);
     });
 
     $.get("/api/ExchangeRates/1/2", function (data) {

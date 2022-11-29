@@ -6,11 +6,11 @@
 <div id="loadingGif"></div>
 @*<button type="button" id="btnTest" onclick="TestAction()" class="btn btn-info btn-block btn-sm">Save</button>*@
 <ul class="nav nav-tabs">
-    <li ><a href="#printinvoice" data-toggle="tab">ចេញវិក័យបត្រ</a></li>
-    <li class="active"><a href="#home" data-toggle="tab">បង់ប្រាក់ប្រចាំខែ</a></li>
+    <li class="active"><a href="#printinvoice" data-toggle="tab">ចេញវិក័យបត្រ</a></li>
+    <li ><a href="#home" data-toggle="tab">បង់ប្រាក់ប្រចាំខែ</a></li>
 </ul>
 <div id="myTabContent" class="tab-content">
-    <div class="tab-pane fade " id="printinvoice">
+    <div class="tab-pane fade active in" id="printinvoice">
         <br />
         <table id="tablePrintInvoice" style="width:100%" class="table table-hover table-bordered">
             <thead>
@@ -32,7 +32,7 @@
             <tbody></tbody>
         </table>
     </div>
-    <div class="tab-pane fade active in" id="home">
+    <div class="tab-pane fade" id="home">
         <br />
         <div class="row">
             <div class="col-md-2">
@@ -42,10 +42,12 @@
             <div class="col-md-2">
                 <label>ស្ថានភាព</label>
                 <div class="form-group">
-                    <select class="form-control input-sm" id="guestidchin">
-                        <option value="">----ទាំងអស់----</option>
-                        <option value="">បង់រួច</option>
-                        <option value="">មិនទាន់បង់</option>
+                    <select class="form-control input-sm" id="status">
+                        <option value="not_paid">----- មិនទាន់បង់ -----</option>
+                        <option value="paid">----- បង់រួច -----</option>
+                        <option value="all">----- ទាំងអស់ -----</option>
+                        
+                        
                     </select>
                 </div>
             </div>
@@ -65,7 +67,6 @@
                     <th>បង់ជា(៛)</th>
                     <th>បង់ជា​($)</th>
                     <th>ជំពាក់</th>
-                    <th>បង់រួច</th>
                     <th style="width:5%">ស្ថានភាព</th>
                     <th>សកម្មភាព</th>
                 </tr>

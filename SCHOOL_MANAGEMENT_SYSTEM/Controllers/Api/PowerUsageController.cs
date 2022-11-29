@@ -88,7 +88,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 return BadRequest();
 
             var PowerUsageInDb = Mapper.Map<PowerUsageDto, PowerUsage>(PowerUsageDtos);
-           
+            PowerUsageInDb.predate = DateTime.Today;
             PowerUsageInDb.price = int.Parse(wpprice);
             _context.PowerUsages.Add(PowerUsageInDb);
             _context.SaveChanges();
@@ -105,7 +105,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            SqlCommand requestcommand = new SqlCommand("update powerusage_tbl set currentrecord='"+ currentrecord + "',currentdate=GETDATE() where invoiceid=" + invoiceid, conx);
+            SqlCommand requestcommand = new SqlCommand("update powerusage_tbl set currentrecord='"+ currentrecord + "',currentdate=DATEADD(MONTH,1,predate) where invoiceid=" + invoiceid, conx);
             try
             {
                 conx.Open();

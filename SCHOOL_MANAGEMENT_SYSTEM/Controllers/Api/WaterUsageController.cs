@@ -88,7 +88,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 return BadRequest();
 
             var WaterUsageInDb = Mapper.Map<WaterUsageDto, WaterUsage>(WaterUsageDtos);
-            
+            WaterUsageInDb.predate = DateTime.Today;
             WaterUsageInDb.price = int.Parse(wpprice);
             _context.WaterUsages.Add(WaterUsageInDb);
             _context.SaveChanges();
@@ -106,7 +106,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            SqlCommand requestcommand = new SqlCommand("update waterusage_tbl set currentrecord='" + currentrecord + "',currentdate=GETDATE() where invoiceid=" + invoiceid, conx);
+            SqlCommand requestcommand = new SqlCommand("update waterusage_tbl set currentrecord='" + currentrecord + "',currentdate=DATEADD(MONTH,1,predate) where invoiceid=" + invoiceid, conx);
             try
             {
                 conx.Open();

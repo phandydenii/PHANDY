@@ -50,7 +50,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                     join r in _context.Rooms on c.roomid equals r.id
                                     join f in _context.Floors on r.floorid equals f.id
                                     join  b in _context.Buildings on f.buildingid equals b.id
-                                    where i.checkinid==c.id
+                                    where i.checkinid==c.id && i.status=="ACTIVE"
                                     select new InvoiceCheckInV
                                     {
                                         invoicedate=i.invoicedate,
@@ -119,7 +119,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join f in _context.Floors on r.floorid equals f.id
                                join b in _context.Buildings on f.buildingid equals b.id
                                join wp in _context.WaterPowerPrices on pu.price equals wp.id
-
+                               where i.status == "ACTIVE"
                                select new InvoiceV
                                {
                                    id = i.id,
@@ -185,7 +185,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join f in _context.Floors on r.floorid equals f.id
                                join b in _context.Buildings on f.buildingid equals b.id
                                join wp in _context.WaterPowerPrices on pu.price equals wp.id
-                               where i.id==id
+                               where i.id==id && i.status == "ACTIVE"
                                select new InvoiceV
                                {
                                    id = i.id,
@@ -251,7 +251,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join f in _context.Floors on r.floorid equals f.id
                                join b in _context.Buildings on f.buildingid equals b.id
                                join wp in _context.WaterPowerPrices on pu.price equals wp.id
-                               where i.printed == false
+                               where i.printed == false && i.status == "ACTIVE"
                                select new InvoiceV
                                {
                                    id = i.id,
@@ -316,7 +316,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join f in _context.Floors on r.floorid equals f.id
                                join b in _context.Buildings on f.buildingid equals b.id
                                join wp in _context.WaterPowerPrices on pu.price equals wp.id
-                               where i.printed == false && i.id==id
+                               where i.printed == false && i.id==id && i.status == "ACTIVE"
                                select new InvoiceV
                                {
                                    id = i.id,
@@ -367,70 +367,208 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
 
         [HttpGet]
+        [Route("api/invoice_v/not_paid")]
+        //Get : api/Buildings
+        public IHttpActionResult GetInvoicesNotPaid()
+        {
+           
+                var GetInvoiceV = from i in _context.Invoice
+                                   join ex in _context.Exchanges on i.exchangerateid equals ex.id
+                                   join ci in _context.CheckIns on i.checkinid equals ci.id
+                                   join g in _context.Guests on ci.guestid equals g.id
+                                   join r in _context.Rooms on ci.roomid equals r.id
+                                   join wu in _context.WaterUsages on i.id equals wu.invoiceid
+                                   join pu in _context.PowerUsages on i.id equals pu.invoiceid
+                                   join e in _context.Exchanges on i.exchangerateid equals e.id
+                                   join rt in _context.RoomTypes on r.roomtypeid equals rt.id
+                                   join f in _context.Floors on r.floorid equals f.id
+                                   join b in _context.Buildings on f.buildingid equals b.id
+                                   join wp in _context.WaterPowerPrices on pu.price equals wp.id
+                                   where i.printed == true && i.paid == false && i.status == "ACTIVE"
+                                  select new InvoiceV
+                                   {
+                                       id = i.id,
+                                       invoiceno = i.invoiceno,
+                                       invoicedate = i.invoicedate,
+                                       guestid = g.id,
+                                       guestname = g.name,
+                                       guestnamekh = g.namekh,
+                                       userid = User.Identity.Name,
+                                       exchangerate = e.Rate,
+                                       grandtotal = i.grandtotal,
+                                       totaldollar = i.totaldollar,
+                                       totalriel = i.totalriel,
+                                       paid = i.paid,
+                                       isprint = i.printed,
+                                       owe = i.owe,
+                                       owereassion = i.owereassion,
+                                       totalreturnamount = i.totalreturnamount,
+                                       returnamount = i.returnamount,
+                                       wid = wu.id,
+                                       wpredate = wu.predate,
+                                       wcurrentdate = wu.currentdate,
+                                       wprerecord = wu.prerecord,
+                                       wcurrentrecord = wu.currentrecord,
+                                       wprice = wu.price,
+                                       wtotal = (wu.currentrecord - wu.prerecord) * wp.waterprice / ex.Rate,
+                                       pid = pu.id,
+                                       ppredate = pu.predate,
+                                       pcurrentdate = pu.currentdate,
+                                       pprerecord = pu.prerecord,
+                                       pcurrentrecord = pu.currentrecord,
+                                       pprice = pu.price,
+                                       ptotal = (pu.currentrecord - pu.prerecord) * wp.powerprice / ex.Rate,
+                                       checkinid = ci.id,
+                                       checkindate = ci.checkindate,
+                                       roomno = r.room_no,
+                                       roomprice = r.price,
+                                       roomtypename = rt.roomtypename,
+                                       floorno = f.floor_no,
+                                       building = b.buildingname,
+                                       servicecharge = r.servicecharge,
+                                       roomkey = r.roomkey,
+                                       roomstatus = r.status
+
+                                   };
+                return Ok(GetInvoiceV);
+            
+        }
+
+        [HttpGet]
+        [Route("api/invoice_v/paid")]
+        //Get : api/Buildings
+        public IHttpActionResult GetInvoicesPaid()
+        {
+
+            var GetInvoiceV = from i in _context.Invoice
+                              join ex in _context.Exchanges on i.exchangerateid equals ex.id
+                              join ci in _context.CheckIns on i.checkinid equals ci.id
+                              join g in _context.Guests on ci.guestid equals g.id
+                              join r in _context.Rooms on ci.roomid equals r.id
+                              join wu in _context.WaterUsages on i.id equals wu.invoiceid
+                              join pu in _context.PowerUsages on i.id equals pu.invoiceid
+                              join e in _context.Exchanges on i.exchangerateid equals e.id
+                              join rt in _context.RoomTypes on r.roomtypeid equals rt.id
+                              join f in _context.Floors on r.floorid equals f.id
+                              join b in _context.Buildings on f.buildingid equals b.id
+                              join wp in _context.WaterPowerPrices on pu.price equals wp.id
+                              where i.printed == true && i.paid == true && i.status == "ACTIVE"
+                              select new InvoiceV
+                              {
+                                  id = i.id,
+                                  invoiceno = i.invoiceno,
+                                  invoicedate = i.invoicedate,
+                                  guestid = g.id,
+                                  guestname = g.name,
+                                  guestnamekh = g.namekh,
+                                  userid = User.Identity.Name,
+                                  exchangerate = e.Rate,
+                                  grandtotal = i.grandtotal,
+                                  totaldollar = i.totaldollar,
+                                  totalriel = i.totalriel,
+                                  paid = i.paid,
+                                  isprint = i.printed,
+                                  owe = i.owe,
+                                  owereassion = i.owereassion,
+                                  totalreturnamount = i.totalreturnamount,
+                                  returnamount = i.returnamount,
+                                  wid = wu.id,
+                                  wpredate = wu.predate,
+                                  wcurrentdate = wu.currentdate,
+                                  wprerecord = wu.prerecord,
+                                  wcurrentrecord = wu.currentrecord,
+                                  wprice = wu.price,
+                                  wtotal = (wu.currentrecord - wu.prerecord) * wp.waterprice / ex.Rate,
+                                  pid = pu.id,
+                                  ppredate = pu.predate,
+                                  pcurrentdate = pu.currentdate,
+                                  pprerecord = pu.prerecord,
+                                  pcurrentrecord = pu.currentrecord,
+                                  pprice = pu.price,
+                                  ptotal = (pu.currentrecord - pu.prerecord) * wp.powerprice / ex.Rate,
+                                  checkinid = ci.id,
+                                  checkindate = ci.checkindate,
+                                  roomno = r.room_no,
+                                  roomprice = r.price,
+                                  roomtypename = rt.roomtypename,
+                                  floorno = f.floor_no,
+                                  building = b.buildingname,
+                                  servicecharge = r.servicecharge,
+                                  roomkey = r.roomkey,
+                                  roomstatus = r.status
+
+                              };
+            return Ok(GetInvoiceV);
+
+        }
+        [HttpGet]
         [Route("api/invoice_v/all")]
         //Get : api/Buildings
         public IHttpActionResult GetInvoicesPrinIDt()
         {
-            var GetInvoiceV = (from i in _context.Invoice
-                               join ex in _context.Exchanges on i.exchangerateid equals ex.id
-                               join ci in _context.CheckIns on i.checkinid equals ci.id
-                               join g in _context.Guests on ci.guestid equals g.id
-                               join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on i.id equals wu.invoiceid
-                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
-                               join e in _context.Exchanges on i.exchangerateid equals e.id
-                               join rt in _context.RoomTypes on r.roomtypeid equals rt.id
-                               join f in _context.Floors on r.floorid equals f.id
-                               join b in _context.Buildings on f.buildingid equals b.id
-                               join wp in _context.WaterPowerPrices on pu.price equals wp.id
-                               where i.printed == true && i.paid==false
-                               select new InvoiceV
-                               {
-                                   id = i.id,
-                                   invoiceno = i.invoiceno,
-                                   invoicedate = i.invoicedate,
-                                   guestid = g.id,
-                                   guestname = g.name,
-                                   guestnamekh = g.namekh,
-                                   userid = User.Identity.Name,
-                                   exchangerate = e.Rate,
-                                   grandtotal = i.grandtotal,
-                                   totaldollar = i.totaldollar,
-                                   totalriel = i.totalriel,
-                                   paid = i.paid,
-                                   isprint = i.printed,
-                                   owe = i.owe,
-                                   owereassion = i.owereassion,
-                                   totalreturnamount = i.totalreturnamount,
-                                   returnamount = i.returnamount,
-                                   wid = wu.id,
-                                   wpredate = wu.predate,
-                                   wcurrentdate = wu.currentdate,
-                                   wprerecord = wu.prerecord,
-                                   wcurrentrecord = wu.currentrecord,
-                                   wprice = wu.price,
-                                   wtotal = (wu.currentrecord - wu.prerecord)  * wp.waterprice / ex.Rate,
-                                   pid = pu.id,
-                                   ppredate = pu.predate,
-                                   pcurrentdate = pu.currentdate,
-                                   pprerecord = pu.prerecord,
-                                   pcurrentrecord = pu.currentrecord,
-                                   pprice = pu.price,
-                                   ptotal = (pu.currentrecord - pu.prerecord) * wp.powerprice / ex.Rate,
-                                   checkinid = ci.id,
-                                   checkindate = ci.checkindate,
-                                   roomno = r.room_no,
-                                   roomprice = r.price,
-                                   roomtypename = rt.roomtypename,
-                                   floorno = f.floor_no,
-                                   building = b.buildingname,
-                                   servicecharge = r.servicecharge,
-                                   roomkey = r.roomkey,
-                                   roomstatus = r.status
 
-                               }).ToList();
+            var GetInvoiceV = from i in _context.Invoice
+                              join ex in _context.Exchanges on i.exchangerateid equals ex.id
+                              join ci in _context.CheckIns on i.checkinid equals ci.id
+                              join g in _context.Guests on ci.guestid equals g.id
+                              join r in _context.Rooms on ci.roomid equals r.id
+                              join wu in _context.WaterUsages on i.id equals wu.invoiceid
+                              join pu in _context.PowerUsages on i.id equals pu.invoiceid
+                              join e in _context.Exchanges on i.exchangerateid equals e.id
+                              join rt in _context.RoomTypes on r.roomtypeid equals rt.id
+                              join f in _context.Floors on r.floorid equals f.id
+                              join b in _context.Buildings on f.buildingid equals b.id
+                              join wp in _context.WaterPowerPrices on pu.price equals wp.id
+                              where i.printed == true && i.status == "ACTIVE"
+                              select new InvoiceV
+                              {
+                                  id = i.id,
+                                  invoiceno = i.invoiceno,
+                                  invoicedate = i.invoicedate,
+                                  guestid = g.id,
+                                  guestname = g.name,
+                                  guestnamekh = g.namekh,
+                                  userid = User.Identity.Name,
+                                  exchangerate = e.Rate,
+                                  grandtotal = i.grandtotal,
+                                  totaldollar = i.totaldollar,
+                                  totalriel = i.totalriel,
+                                  paid = i.paid,
+                                  isprint = i.printed,
+                                  owe = i.owe,
+                                  owereassion = i.owereassion,
+                                  totalreturnamount = i.totalreturnamount,
+                                  returnamount = i.returnamount,
+                                  wid = wu.id,
+                                  wpredate = wu.predate,
+                                  wcurrentdate = wu.currentdate,
+                                  wprerecord = wu.prerecord,
+                                  wcurrentrecord = wu.currentrecord,
+                                  wprice = wu.price,
+                                  wtotal = (wu.currentrecord - wu.prerecord) * wp.waterprice / ex.Rate,
+                                  pid = pu.id,
+                                  ppredate = pu.predate,
+                                  pcurrentdate = pu.currentdate,
+                                  pprerecord = pu.prerecord,
+                                  pcurrentrecord = pu.currentrecord,
+                                  pprice = pu.price,
+                                  ptotal = (pu.currentrecord - pu.prerecord) * wp.powerprice / ex.Rate,
+                                  checkinid = ci.id,
+                                  checkindate = ci.checkindate,
+                                  roomno = r.room_no,
+                                  roomprice = r.price,
+                                  roomtypename = rt.roomtypename,
+                                  floorno = f.floor_no,
+                                  building = b.buildingname,
+                                  servicecharge = r.servicecharge,
+                                  roomkey = r.roomkey,
+                                  roomstatus = r.status
+
+                              };
             return Ok(GetInvoiceV);
+
         }
+
 
         [HttpGet]
         [Route("api/invoice_v/1/{id}")]
@@ -449,7 +587,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join f in _context.Floors on r.floorid equals f.id
                                join b in _context.Buildings on f.buildingid equals b.id
                                join wp in _context.WaterPowerPrices on pu.price equals wp.id
-                               where i.printed == true && i.id==id
+                               where i.printed == true && i.id==id && i.status == "ACTIVE"
                                select new InvoiceV
                                {
                                    id = i.id,
@@ -508,88 +646,23 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select * from NewInvoice where NewInvoice='Yes'", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from NewInvoice", conx);
             adp.Fill(ds);
-            //NewInvoiceV NewInvoice = new NewInvoiceV();
-            //foreach (DataRow item in ds.Tables[0].Rows)
-            //{
-            //    NewInvoice.checkinid = Convert.ToInt16(item["checkinid"].ToString());
-            //    NewInvoice.checkindate = Convert.ToDateTime(item["checkindate"].ToString());
-            //    NewInvoice.room_no = item["room_no"].ToString();
-            //    NewInvoice.roomtypename = item["roomtypename"].ToString();
-            //    NewInvoice.floor_no = item["floor_no"].ToString();
-            //    NewInvoice.buildingname = item["buildingname"].ToString();
-            //    NewInvoice.guestid = Convert.ToInt16(item["geustid"].ToString());
-            //    NewInvoice.name = item["name"].ToString();
-            //    NewInvoice.namekh = item["namekh"].ToString();
-            //    NewInvoice.sex = item["sex"].ToString();
-            //    NewInvoice.dob = item["dob"].ToString();
-            //    NewInvoice.address = item["address"].ToString();
-            //    NewInvoice.nationality = item["nationality"].ToString();
-            //    NewInvoice.phone = item["phone"].ToString();
-            //    NewInvoice.email = item["email"].ToString();
-            //    NewInvoice.ssn = item["ssn"].ToString();
-            //    NewInvoice.passport = item["passport"].ToString();
-            //    NewInvoice.status = item["status"].ToString();
-            //    NewInvoice.startdate = Convert.ToDateTime(item["startdate"].ToString());
-            //    NewInvoice.enddate = Convert.ToDateTime(item["enddate"].ToString());
-            //    NewInvoice.paid = Convert.ToBoolean(item["paid"].ToString());
-            //    NewInvoice.printed = Convert.ToBoolean(item["printed"].ToString());
-            //    NewInvoice.NewInvoice = item["NewInvoice"].ToString();
-            //    NewInvoice.wolddate = Convert.ToDateTime(item["wdate"].ToString());
-            //    NewInvoice.woldrecord = Convert.ToDecimal(item["wrecord"].ToString());
-            //    NewInvoice.polddate = Convert.ToDateTime(item["pdate"].ToString());
-            //    NewInvoice.poldrecord = Convert.ToDecimal(item["precord"].ToString());
-
-            //}
-            //return Ok(NewInvoice);
-            return ds.Tables[0];
+            return ds.Tables[0]; 
         }
 
         [HttpGet]
-        [Route("api/invoice-v/newinvoie/{checkinid}")]
+        [Route("api/invoice-v/newinvoie/{id}")]
         //Get : api/Buildings
-        public object GetNewInvoiceByID(int checkinid)
+        public object GetNewInvoiceByID(int id)
         {
             DataTable dt = new DataTable();
             DataSet ds = new DataSet();
 
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select * from NewInvoice where NewInvoice='Yes' and checkinid="+ checkinid, conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from NewInvoice where NewInvoice='Yes' and id="+ id, conx);
             adp.Fill(ds);
-            //NewInvoiceV NewInvoice = new NewInvoiceV();
-            //foreach (DataRow item in ds.Tables[0].Rows)
-            //{
-            //    NewInvoice.checkinid = Convert.ToInt16(item["checkinid"].ToString());
-            //    NewInvoice.checkindate = Convert.ToDateTime(item["checkindate"].ToString());
-            //    NewInvoice.room_no = item["room_no"].ToString();
-            //    NewInvoice.roomtypename = item["roomtypename"].ToString();
-            //    NewInvoice.floor_no = item["floor_no"].ToString();
-            //    NewInvoice.buildingname = item["buildingname"].ToString();
-            //    NewInvoice.guestid = Convert.ToInt16(item["geustid"].ToString());
-            //    NewInvoice.name = item["name"].ToString();
-            //    NewInvoice.namekh = item["namekh"].ToString();
-            //    NewInvoice.sex = item["sex"].ToString();
-            //    NewInvoice.dob = item["dob"].ToString();
-            //    NewInvoice.address = item["address"].ToString();
-            //    NewInvoice.nationality = item["nationality"].ToString();
-            //    NewInvoice.phone = item["phone"].ToString();
-            //    NewInvoice.email = item["email"].ToString();
-            //    NewInvoice.ssn = item["ssn"].ToString();
-            //    NewInvoice.passport = item["passport"].ToString();
-            //    NewInvoice.status = item["status"].ToString();
-            //    NewInvoice.startdate = Convert.ToDateTime(item["startdate"].ToString());
-            //    NewInvoice.enddate = Convert.ToDateTime(item["enddate"].ToString());
-            //    NewInvoice.paid = Convert.ToBoolean(item["paid"].ToString());
-            //    NewInvoice.printed = Convert.ToBoolean(item["printed"].ToString());
-            //    NewInvoice.NewInvoice = item["NewInvoice"].ToString();
-            //    NewInvoice.wolddate = Convert.ToDateTime(item["wolddate"].ToString());
-            //    NewInvoice.woldrecord = Convert.ToDecimal(item["woldrecord"].ToString());
-            //    NewInvoice.polddate = Convert.ToDateTime(item["polddate"].ToString());
-            //    NewInvoice.poldrecord = Convert.ToDecimal(item["poldrecord"].ToString());
-
-            //}
             return ds.Tables[0];
         }
 
@@ -657,13 +730,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var paydollar = decimal.Parse(HttpContext.Current.Request.Form["paydollar"]);
             var paid = bool.Parse(HttpContext.Current.Request.Form["paid"]);
             var note = HttpContext.Current.Request.Form["note"];
-
+            
             SqlCommand command = new SqlCommand();
             SqlCommand requestcommand = new SqlCommand();
             requestcommand.Connection = conx;
             requestcommand.CommandType = CommandType.StoredProcedure;
             requestcommand.CommandText = "UPDATE_INVOICE";
             requestcommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
+            requestcommand.Parameters.Add("@invoicedate", SqlDbType.Date).Value = DateTime.Today;
             requestcommand.Parameters.Add("@grandtotal", SqlDbType.Decimal).Value = grandtotal;
             requestcommand.Parameters.Add("@totaldollar", SqlDbType.Decimal).Value = totaldollar;
             requestcommand.Parameters.Add("@totalriel", SqlDbType.Decimal).Value = totalriel;
@@ -690,13 +764,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return Ok();
         }
 
-        //DELETE : api/Companies/{id}
+        [HttpPut]
+        [Route("api/invoices/delete/{id}")]
         public IHttpActionResult DeleteInvoice(int id)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            SqlCommand requestcommand = new SqlCommand("update invoice_tbl set status='DELETE' WHERE ID=" + id, conx);
+            SqlCommand requestcommand = new SqlCommand("update invoice_tbl set status='DELETE' WHERE id=" + id, conx);
             try
             {
                 conx.Open();

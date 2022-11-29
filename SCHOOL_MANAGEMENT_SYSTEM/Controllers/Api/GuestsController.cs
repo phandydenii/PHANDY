@@ -164,9 +164,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //    if (!ModelState.IsValid)
         //        return BadRequest();
 
-        //    //var isExist = _context.Guests.SingleOrDefault(c => c.ssn == GuestDto.ssn);
-        //    //if (isExist != null)
-        //    //    return BadRequest();
+        //    var isExist = _context.Guests.SingleOrDefault(c => c.id == GuestDto.id);
+        //    if (isExist != null)
+        //        return BadRequest();
 
         //    var Guest = Mapper.Map<GuestDto, Guest>(GuestDto);
 
@@ -175,7 +175,24 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
         //    GuestDto.id = Guest.id;
 
-        //    return Created(new Uri(Request.RequestUri + "/" + GuestDto.id), GuestDto);
+           
+        //    var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        //    SqlConnection conx = new SqlConnection(connectionString);
+        //    SqlCommand cmd = new SqlCommand("select max(id) from guest_tbl", conx);
+
+        //    Int16 GuestMax;
+        //    try
+        //    {
+        //        conx.Open();
+        //        GuestMax = Convert.ToInt16(cmd.ExecuteScalar());
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //    return Ok(GuestMax);
         //}
 
         [HttpPut]

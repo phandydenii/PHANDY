@@ -1,0 +1,78 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="false" id="CheckInModal" tabindex="-1" role="dialog" aria-labelledby="CheckInModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;">Check IN Roon</b>
+                <b class="modal-title" style="color: darkblue;" id="lblRoomNoCehckIn"></b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        @* <input id="roomid" name="checkinroomid" type="text" style="display: none;" value="" class="form-control" />*@
+
+                        <div class="form-group">
+                            <label for="checkinroomid">លេខបន្ទប់</label>
+                            <select class="form-control input-sm" id="checkinroomid" disabled>
+                                @foreach (var room in Model.ListRoomBook)
+                                {
+                                    <option value=@room.id>@room.room_no</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="guestidchin">លេខរៀងភ្ញៀវ</label>
+                            <select class="form-control input-sm" id="guestidchin" disabled>
+                                @foreach (var room in Model.GuestBook)
+                                {
+                                    <option value=@room.id>@room.name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="man">បុរស</label>
+                            <input id="man" name="man" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="women">ស្ត្រី</label>
+                            <input id="women" name="women" placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="child">ក្មេងៗ</label>
+                            <input id="child" name="child" placeholder="Enter number of child" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="invno">លេខវិក័យបត្រ</label>
+                            <input id="invno" disabled name="invno" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="checkindate">កាលបរិច្ឆេទ</label>
+                            <input id="checkindate" readonly="readonly" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">លេខកុងទ័រភ្លើង</label>
+                            <input id="powerprerecord" name="powerprerecord" placeholder="Enter current number" value="0" type="text" class="form-control input-sm">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">លេខកុងទ័រទឹក</label>
+                            <input id="waterprerecord" name="waterprerecord" placeholder="Enter current number" value="0" type="text" class="form-control input-sm">
+                        </div>
+                        <input type="hidden" id="wpid" />
+                        <span>ថ្លៃភ្លើង</span> : 1m<sup>3</sup> = <label id="wprice"></label><span> រៀល</span>
+                        <br />
+                        <span>ថ្លៃទឹក</span> : 1​KWH = <label id="pprice"></label><span> រៀល</span>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button type="button" id="btnSaveCheckIn" onclick="CheckInAction()" class="btn btn-info btn-block btn-sm">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

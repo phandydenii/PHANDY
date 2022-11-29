@@ -17,7 +17,8 @@
                     <input id="exrate" name="exrate" type="text" style="display: none;" value="" class="form-control" />
                     <input id="wprice" name="wprice" type="text" style="display: none;" value="" class="form-control" />
                     <input id="pprice" name="pprice" type="text" style="display: none;" value="" class="form-control" />
-                    <input id="isprinted" name="isprinted" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="ispaid" name="ispaid" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="isprint" name="isprint" type="text" style="display: none;" value="" class="form-control" />
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
@@ -58,7 +59,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="recordwaternew">គីឡូទឺកថ្មី</label>
-                                            <input id="recordwaternew" onchange="RecordWaterChange();" name="newrecordwater" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <input id="recordwaternew" onfocus="this.select();" onchange="RecordWaterChange();" name="newrecordwater" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                 </div>
@@ -73,7 +74,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="recordpowernew">គីឡូភ្លើងថ្មី</label>
-                                            <input id="recordpowernew" onchange="RecordPowerChange()" name="newrecordpower" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <input id="recordpowernew" onfocus="this.select();" onchange="RecordPowerChange()" name="newrecordpower" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                 </div>
@@ -139,18 +140,74 @@
     
 <script >
     function InvoiceNewPrint() {
-        if($('#isprinted').val()==0)
-        {
-            alert("NOt Printed!")
-        }else{
-            //InsertNewInvoice();
-            alert("Printed");
-        }
+        $.get("/api/invoice_v/"+$("#invid").val(), function (data) {
+            if(data.isprint==false){
+                alert('false');
+                PrintUpdateInvoice();
+            }else{
+                alert('true');
+                InsertNewInvoice();
+            }
+        });
+
+    } 
+    function PrintUpdateInvoice(){
+        var data = new FormData();
+        data.append("grandtotal", $("#grandtotal").val());
+        data.append("totalriel", $("#grandtotalkh").val());
+        data.append("totaldollar", $("#grandtotal").val());
+        data.append("totalother", $("#svprice").val());
+        data.append("note", $("#note").val());
+        data.append("payriel", 0);
+        data.append("paydollar", 0);
+        data.append("paid", false);
+        $.ajax({
+            type: "PUT",
+            url: "/api/invoices/" + $("#invid").val(),
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                UpdateWaterPrint();
+                UpdatePowerPrint();
+                toastr.success("Print Invoice successfully!.", "Server Response");
+                window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Print invoice faild...!", "Server Respond");
+
+            }
+        });
+    }
+    function UpdateWaterPrint() {
+        $.ajax({
+            type: "PUT",
+            url: "/api/updatewaters/" + $("#invid").val() + "/" + $('#recordwaternew').val(),
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                //toastr.success("Update water payment has been Update successfully.", "Server Response");
+            },
+            error: function (error) {
+                toastr.error("Update water payment status fail!", "Server Response");
+            }
+        });
+    }
+    function UpdatePowerPrint() {
+        $.ajax({
+            type: "PUT",
+            url: "/api/updatepowers/" + $("#invid").val() + "/" + $('#recordpowernew').val(),
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                //toastr.success("Room Status has been Update successfully.", "Server Response");
+            },
+            error: function (error) {
+                toastr.error("Update room status fail!", "Server Response");
+            }
+        });
     }
     
-    function UpdateInvoice(){
-
-    }
 
     function InsertNewInvoice(){
         var data = {
@@ -233,8 +290,7 @@
         });
     }
 
-
-
+    
 
     function RecordWaterChange(){
         var waternewrecord = document.getElementById('recordwaternew').value;
@@ -264,14 +320,13 @@
 
     }
     function TotalPayment(){
-        var totalwaterusage = document.getElementById('waterusagetotal').value;
-        var totalpowerusage = document.getElementById('powerusagetotal').value;
+        var watertotal = document.getElementById('waterusagetotal').value;
+        var powertotal = document.getElementById('powerusagetotal').value;
         var roomprice = document.getElementById('rmprice').value;
         var servicecharge = document.getElementById('svprice').value;
-        var grandtotal=(parseFloat(totalwaterusage)/parseFloat($('#exrate').val()))+(parseFloat(totalpowerusage)/parseFloat($('#exrate').val()))+parseFloat(roomprice)+parseFloat(servicecharge);
+        var grandtotal= parseFloat(watertotal) + parseFloat(powertotal) + parseFloat(roomprice) + parseFloat(servicecharge);
         $('#grandtotal').val(grandtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-        var grkh=grandtotal*parseFloat($('#exrate').val());
-        $('#totalpayreil').val(grkh.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        $('#totalpayreil').val((grandtotal*parseFloat($('#exrate').val())).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
     }
     function OnCloseNewInv() {
         window.location.reload(true);

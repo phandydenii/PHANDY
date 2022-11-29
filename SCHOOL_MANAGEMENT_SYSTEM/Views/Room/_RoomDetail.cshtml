@@ -131,7 +131,7 @@
 @Html.Partial("_Book")
 @Html.Partial("_Block")
 @Html.Partial("_CheckIn")
-@*@Html.Partial("_CheckInNow")*@
+@Html.Partial("_CheckInNow")
 @Html.Partial("_Payment")
 <script>
     
@@ -165,11 +165,18 @@
         var guestid = document.getElementById('guestid');
         if (btncheckin == "Check In Now") {
             $("#CheckInNowModal").modal("show");
+            $("#chnowroomid").val(rmid.value);
+
+            $.get("/api/invoicemaxid", function (data) {
+                $('#invoiceno').val(data);
+            });
+
             $.get("/api/ExchangeRates/1/2", function (data) {
                 $("#exid").val(data.id);
                 $("#examount").text(data.rate);
                 $("#roomidchin").val(rmid);               
             });
+            //alert('hello');
         } else {
             
             $("#checkinroomid").val(rmid.value);

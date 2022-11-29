@@ -1110,6 +1110,7 @@
     <Content Include="Views\Room\_Block.cshtml" />
     <Content Include="Views\Room\_CheckIn.cshtml" />
     <Content Include="Views\Room\_Payment.cshtml" />
+    <Content Include="Views\CheckIn\_CheckIn.cshtml" />
     <None Include="Views\CheckIn\_PrintNewInvoice.cshtml" />
     <Content Include="Views\Invoice\_Payment.cshtml" />
     <Content Include="Views\Invoice\_PrintNewInvoice.cshtml" />
