@@ -1,4 +1,5 @@
 ﻿using Microsoft.Reporting.WebForms;
+using SCHOOL_MANAGEMENT_SYSTEM.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -11,14 +12,36 @@ using System.Web.UI.WebControls;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
 {
-    public class ReportsController : Controller
+    public class ReportController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        private ApplicationDbContext _context;
+
+        public ReportController()
+        {
+            _context = new ApplicationDbContext();
+        }
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
         public ActionResult Index()
         {
             return View();
         }
 
-        [Route("student-invoice")]        [System.Web.Mvc.HttpGet]        public ActionResult GetInvoiceReport(string invoiceid)        {
+        [Route("invoice-report")]        [System.Web.Mvc.HttpGet]        public ActionResult GetInvoiceReport(string invoiceid)        {
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From InvoiceV where id=1", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
+            //ReportParameter qrCODE = new ReportParameter("qrCODE", base64String);
+            //reportViewer.LocalReport.EnableExternalImages = true;
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\INVOICE_REPORT.rdlc";
+            //reportViewer.LocalReport.SetParameters(new ReportParameter[] { staffname, from, to, khmerDate, khmerYear, qrCODE });
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_invoicerpt");
+        }
+
+        [Route("invoice-rpt")]        [System.Web.Mvc.HttpGet]        public ActionResult GetInvoiceReport()        {
             DataTable ds = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From InvoiceV where id=1", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
             //ReportParameter qrCODE = new ReportParameter("qrCODE", base64String);
@@ -28,24 +51,31 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_invoicerpt");
         }
 
-        [Route("department-list")]        [System.Web.Mvc.HttpGet]        public ActionResult GetDepartment()        {
+        [Route("staff-list")]        [System.Web.Mvc.HttpGet]        public ActionResult GetDepartment()        {
             DataTable ds = new DataTable();
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From InvoiceV where id=1", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
-            //ReportParameter qrCODE = new ReportParameter("qrCODE", base64String);
-            //reportViewer.LocalReport.EnableExternalImages = true;
-            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Report1.rdlc";
-            //reportViewer.LocalReport.SetParameters(new ReportParameter[] { staffname, from, to, khmerDate, khmerYear, qrCODE });
-            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_invoicerpt");
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From STAFF_V", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\STAFF_REPORT.rdlc";
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_stafflistrpt");
         }
 
-        [Route("branch-list")]        [System.Web.Mvc.HttpGet]        public ActionResult GetBranch()        {
+        [Route("guest-list")]        [System.Web.Mvc.HttpGet]        public ActionResult GetBranch()        {
             DataTable ds = new DataTable();
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From Branches", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From guest_tbl", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
             //ReportParameter qrCODE = new ReportParameter("qrCODE", base64String);
             //reportViewer.LocalReport.EnableExternalImages = true;
-            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\BranchRpt.rdlc";
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\GUEST_REPORT.rdlc";
             //reportViewer.LocalReport.SetParameters(new ReportParameter[] { staffname, from, to, khmerDate, khmerYear, qrCODE });
-            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_branchrpt");
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_guestlistrpt");
+        }
+
+        [Route("item-list")]        [System.Web.Mvc.HttpGet]        public ActionResult GetItem()        {
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From item_tbl", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
+            //ReportParameter qrCODE = new ReportParameter("qrCODE", base64String);
+            //reportViewer.LocalReport.EnableExternalImages = true;
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ITEM_REPORT.rdlc";
+            //reportViewer.LocalReport.SetParameters(new ReportParameter[] { staffname, from, to, khmerDate, khmerYear, qrCODE });
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_itemlistrpt");
         }
 
 
@@ -54,7 +84,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlDataAdapter adp = new SqlDataAdapter("Select * From AspNetUsers", con);            adp.Fill(ds);            ReportViewer reportViewer = new ReportViewer();            reportViewer.ProcessingMode = ProcessingMode.Local;            reportViewer.SizeToReportContent = true;            reportViewer.Width = Unit.Percentage(100);            reportViewer.Height = Unit.Percentage(100);
             //ReportParameter qrCODE = new ReportParameter("qrCODE", base64String);
             //reportViewer.LocalReport.EnableExternalImages = true;
-            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\UserRpt.rdlc";
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\USER_REPORT.rdlc";
             //reportViewer.LocalReport.SetParameters(new ReportParameter[] { staffname, from, to, khmerDate, khmerYear, qrCODE });
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));            ViewBag.ReportViewer = reportViewer;            return View("_userrpt");
         }

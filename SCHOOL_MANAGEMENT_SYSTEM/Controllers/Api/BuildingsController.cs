@@ -69,7 +69,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            var isExist = _context.Buildings.SingleOrDefault(c => c.buildingname == BuildingDtos.buildingname && c.id != BuildingDtos.id);
+            var isExist = _context.Buildings.SingleOrDefault(c => c.buildingname == BuildingDtos.buildingname);
             if (isExist != null)
                 return BadRequest();
 

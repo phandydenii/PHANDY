@@ -17,6 +17,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
         public IEnumerable<Item> Items { get; set; }
 
         public IEnumerable<Guest> GuestBook { get; set; }
+        public IEnumerable<Guest> GuestList { get; set; }
 
 
 

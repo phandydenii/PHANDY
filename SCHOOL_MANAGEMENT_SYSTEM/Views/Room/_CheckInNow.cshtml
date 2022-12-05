@@ -124,7 +124,7 @@
             <div class="modal-footer">
 
                 <div class="col-md-3 col-md-offset-6" id="hidecheckout">
-                    <button type="button" id="btnCheckOut" data-dismiss="modal" class="btn btn-danger btn-block btn-sm">Cancel</button>
+                    <button type="button" id="btnCheckOut" onclick="Test();" data-dismiss="modal" class="btn btn-danger btn-block btn-sm">Cancel</button>
                 </div>
                 <div class="col-md-3" id="hidepayment">
                     <button type="button" id="btnSaveCheckIn" onclick="OnSaveCheckInNow()" class="btn btn-info btn-block btn-sm">Save</button>
@@ -161,7 +161,7 @@
             data: data,
             success: function (result) {
                 CheckInNow(result);
-                
+                $('#guestid').val(result);
                 //toastr.success("Guest in successfully!", "Server Respond");
             },
             error: function (error) {
@@ -188,6 +188,8 @@
             dataType: "json",
             success: function (result) {
                 UpdateRoomStatus();
+                InsertPower(result);
+                InsertWater(result); 
                 CreateInvoice(result);
                 toastr.success("Check In successfully.", "Server Response");
             },
@@ -215,11 +217,10 @@
         });
     }
 
-    function InsertPowerUsage(id) {
+    function InsertPower(id) {
         var data = {
-            guestid: $('#guestidchin').val(),
             prerecord: $('#powerprerecord').val(),
-            invoiceid: id,    
+            checkinid: id,    
         };
         $.ajax({
             url: "/api/powerusage",
@@ -238,12 +239,10 @@
         });
     }
 
-    function InsertWaterUsage(id) {
+    function InsertWater(id) {
         var data = {
-            guestid: $('#guestidchin').val(),
             prerecord: $('#waterprerecord').val(),
-            invoiceid: id,
-            price: @Model.WaterPowerPriceID,
+            checkinid: id,
         };
         $.ajax({
             url: "/api/waterusage",
@@ -264,11 +263,11 @@
 
 
     function CreateInvoice(result) {
+        
         var data = {
             invoiceno: $('#invoiceno').val(),
-            guestid: '1',
+            guestid: $('#guestid').val(),
             checkinid: result,
-            exchangerateid: @Model.ExchangeRateID,
         };
 
         $.ajax({
@@ -278,9 +277,6 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                InsertPowerUsage(result);
-                InsertWaterUsage(result);
-
                 $("#CheckInNowModal").modal('hide');
                 window.location.reload(true);
                 //alert('Print Invoice successfully!');

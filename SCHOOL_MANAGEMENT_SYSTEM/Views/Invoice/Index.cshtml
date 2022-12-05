@@ -4,11 +4,91 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="loadingGif"></div>
-@*<button type="button" id="btnTest" onclick="TestAction()" class="btn btn-info btn-block btn-sm">Save</button>*@
+@*<div class="row">
+    <div class="col-md-6">
+        <h4 style="color: darkblue;">គ្រប់គ្រងការចូលស្នាក់នៅ</h4>
+    </div>
+    <div class="col-md-6">
+        <a href="#" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#StaffModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span>បន្ថែមបុគ្គលិក</a>
+        <a href="#" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#PositionModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span>គ្រប់គ្រងតួនាទី</a>
+    </div>
+</div>
+<hr />
+<table id="tablePrintInvoice" style="width:100%" class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>លេខ</th>
+            <th>ឈ្មោះ</th>
+            <th>ថ្ងៃចូលស្នាក់នៅ</th>
+            <th>បន្ទប់លេខ</th>
+            <th>ប្រភេទបន្ទប់</th>
+            <th>សេវា</th>
+            <th>តម្លៃបន្ទប់</th>
+            <th>លេខទឹកចាស់</th>
+            <th>លេខភ្លើងចាស់់</th>
+            <th>ចាប់ពីថ្ងៃ</th>
+            <th>ដល់ថ្ងៃ</th>
+            <th style="width:15%">សកម្មភាព</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<div class="row">
+    <div class="col-md-6">
+        <h4 style="color: darkblue;">គ្រប់គ្រងការចូលស្នាក់នៅ</h4>
+    </div>
+    <div class="col-md-6">
+        <a href="#" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#StaffModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span>បន្ថែមបុគ្គលិក</a>
+        <a href="#" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#PositionModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span>គ្រប់គ្រងតួនាទី</a>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-2">
+        <label>កាលបរិច្ឆេទ</label>
+        <input id="date" name="date" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Payment Date" />
+    </div>
+    <div class="col-md-2">
+        <label>ស្ថានភាព</label>
+        <div class="form-group">
+            <select class="form-control input-sm" id="status">
+                <option value="not_paid">----- មិនទាន់បង់ -----</option>
+                <option value="paid">----- បង់រួច -----</option>
+                <option value="all">----- ទាំងអស់ -----</option>
+
+
+            </select>
+        </div>
+    </div>
+</div>
+<table id="InvoiceTable" style="width:100%" class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th style="width:3%">លេខវិក្ក័យបត្រ</th>
+            <th>កាលបរិច្ឆេទ</th>
+            <th>ភ្ញៀវ</th>
+            <th>បន្ទប់</th>
+            <th>តម្លៃបន្ទប់</th>
+            <th>ប្រើប្រាសទឹក$</th>
+            <th>ប្រើប្រាស់ភ្លើង$</th>
+            <th>សរុប($)</th>
+            <th>បង់ជា(៛)</th>
+            <th>បង់ជា​($)</th>
+            <th>ជំពាក់</th>
+            <th style="width:5%">ស្ថានភាព</th>
+            <th>សកម្មភាព</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>*@
+
+
+
 <ul class="nav nav-tabs">
     <li class="active"><a href="#printinvoice" data-toggle="tab">ចេញវិក័យបត្រ</a></li>
     <li ><a href="#home" data-toggle="tab">បង់ប្រាក់ប្រចាំខែ</a></li>
 </ul>
+
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade active in" id="printinvoice">
         <br />
@@ -55,7 +135,6 @@
         <table id="InvoiceTable" style="width:100%" class="table table-hover table-bordered">
             <thead>
                 <tr>
-                    @*<th>ID</th>*@
                     <th style="width:3%">លេខវិក្ក័យបត្រ</th>
                     <th>កាលបរិច្ឆេទ</th>
                     <th>ភ្ញៀវ</th>
@@ -73,9 +152,7 @@
             </thead>
             <tbody></tbody>
         </table>
-    </div>
-
-    
+    </div> 
 </div>
 
 

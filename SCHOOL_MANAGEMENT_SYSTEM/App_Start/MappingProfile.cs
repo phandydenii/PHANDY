@@ -25,11 +25,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<CheckIn, CheckInDto>();
             Mapper.CreateMap<Booking, BookingDto>();
             Mapper.CreateMap<WaterUsage, WaterUsageDto>();
-            Mapper.CreateMap<PowerUsage, PowerUsageDto>();
+            Mapper.CreateMap<ElectricUsage, ElectricUsageDto>();
             Mapper.CreateMap<WaterPowerPrice, WaterPowerPriceDto>();
-
-
-
             //-------ROSELANY APARTMENT-----------//
 
             Mapper.CreateMap<HowtoUse, HowtoUseDto>();
@@ -91,7 +88,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<CheckInDto,CheckIn>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<BookingDto,Booking>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<WaterUsageDto,WaterUsage>().ForMember(c => c.id, opt => opt.Ignore());
-            Mapper.CreateMap<PowerUsageDto,PowerUsage>().ForMember(c => c.id, opt => opt.Ignore());
+            Mapper.CreateMap<ElectricUsageDto,ElectricUsage>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<WaterPowerPriceDto, WaterPowerPrice>().ForMember(c => c.id, opt => opt.Ignore());
 
             //-------ROSELANY APARTMENT-----------//
@@ -105,7 +102,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<PayByDto, PayBy>().ForMember(c => c.id, opt => opt.Ignore());
 
             Mapper.CreateMap<PaymentMethodDto, PaymentMethod>().ForMember(c => c.id, opt => opt.Ignore());
-            Mapper.CreateMap<BranchDto,Branch>().ForMember(c=>c.Id,opt=>opt.Ignore());
+            Mapper.CreateMap<BranchDto, Branch>().ForMember(c => c.Id, opt => opt.Ignore());
             Mapper.CreateMap<DepartmentDto, Department>().ForMember(c => c.Id, opt => opt.Ignore());
             Mapper.CreateMap<EmployeesDto, Employees>().ForMember(c => c.Id, opt => opt.Ignore());
             Mapper.CreateMap<SalaryDto, Salary>().ForMember(c => c.salaryId, opt => opt.Ignore());
@@ -125,7 +122,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<paymentDto, payment>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<paymentdetailDto, paymentdetail>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<ExchangeRateDto, ExchangeRate>().ForMember(c => c.id, opt => opt.Ignore());
-           
+
             //New
             Mapper.CreateMap<PositionDto, Position>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<ShowroomDto, Showroom>().ForMember(c => c.id, opt => opt.Ignore());

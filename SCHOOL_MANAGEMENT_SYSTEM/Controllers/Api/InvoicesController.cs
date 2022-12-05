@@ -112,8 +112,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join ci in _context.CheckIns on i.checkinid equals ci.id
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on i.id equals wu.invoiceid 
-                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
+                               join wu in _context.WaterUsages on i.waterusageid equals wu.id 
+                               join pu in _context.Electrics on i.electricid equals pu.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -178,8 +178,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join ci in _context.CheckIns on i.checkinid equals ci.id
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on i.id equals wu.invoiceid
-                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
+                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                               join pu in _context.Electrics on i.electricid equals pu.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -244,8 +244,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join ci in _context.CheckIns on i.checkinid equals ci.id
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on i.id equals wu.invoiceid
-                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
+                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                               join pu in _context.Electrics on i.electricid equals pu.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -309,8 +309,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join ci in _context.CheckIns on i.checkinid equals ci.id
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on i.id equals wu.invoiceid
-                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
+                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                               join pu in _context.Electrics on i.electricid equals pu.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -377,9 +377,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    join ci in _context.CheckIns on i.checkinid equals ci.id
                                    join g in _context.Guests on ci.guestid equals g.id
                                    join r in _context.Rooms on ci.roomid equals r.id
-                                   join wu in _context.WaterUsages on i.id equals wu.invoiceid
-                                   join pu in _context.PowerUsages on i.id equals pu.invoiceid
-                                   join e in _context.Exchanges on i.exchangerateid equals e.id
+                                  join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                                  join pu in _context.Electrics on i.electricid equals pu.id
+                                  join e in _context.Exchanges on i.exchangerateid equals e.id
                                    join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                    join f in _context.Floors on r.floorid equals f.id
                                    join b in _context.Buildings on f.buildingid equals b.id
@@ -445,8 +445,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                               join ci in _context.CheckIns on i.checkinid equals ci.id
                               join g in _context.Guests on ci.guestid equals g.id
                               join r in _context.Rooms on ci.roomid equals r.id
-                              join wu in _context.WaterUsages on i.id equals wu.invoiceid
-                              join pu in _context.PowerUsages on i.id equals pu.invoiceid
+                              join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                              join pu in _context.Electrics on i.electricid equals pu.id
                               join e in _context.Exchanges on i.exchangerateid equals e.id
                               join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                               join f in _context.Floors on r.floorid equals f.id
@@ -512,8 +512,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                               join ci in _context.CheckIns on i.checkinid equals ci.id
                               join g in _context.Guests on ci.guestid equals g.id
                               join r in _context.Rooms on ci.roomid equals r.id
-                              join wu in _context.WaterUsages on i.id equals wu.invoiceid
-                              join pu in _context.PowerUsages on i.id equals pu.invoiceid
+                              join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                              join pu in _context.Electrics on i.electricid equals pu.id
                               join e in _context.Exchanges on i.exchangerateid equals e.id
                               join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                               join f in _context.Floors on r.floorid equals f.id
@@ -580,8 +580,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join ci in _context.CheckIns on i.checkinid equals ci.id
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on i.id equals wu.invoiceid
-                               join pu in _context.PowerUsages on i.id equals pu.invoiceid
+                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                               join pu in _context.Electrics on i.electricid equals pu.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -672,14 +672,18 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             DataTable ds = new DataTable();
             DataTable ds1 = new DataTable();
+            DataTable ds2 = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
             SqlDataAdapter adp = new SqlDataAdapter("select max(id) from waterusage_tbl", conx);
             SqlDataAdapter adp1 = new SqlDataAdapter("select max(id) from powerusage_tbl", conx);
-            //adp.Fill(ds);
-            //adp.Fill(ds1);
-            //string wid = ds.Rows[0][0].ToString();
-            //string pid = ds1.Rows[0][0].ToString();
+            SqlDataAdapter adp2 = new SqlDataAdapter("select top 1 id from ExchangeRates where IsDeleted=0 order by id desc", conx);
+            adp.Fill(ds);
+            adp.Fill(ds1);
+            adp2.Fill(ds2);
+            string wid = ds.Rows[0][0].ToString();
+            string pid = ds1.Rows[0][0].ToString();
+            string exid = ds2.Rows[0][0].ToString();
 
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -691,7 +695,11 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             InvoiceInDb.updateby= User.Identity.GetUserId();
             InvoiceInDb.updatedate= DateTime.Today;
             InvoiceInDb.createdate= DateTime.Today;
-            InvoiceInDb.status="ACTIVE"; 
+            InvoiceInDb.status="ACTIVE";
+
+            InvoiceInDb.electricid = int.Parse(pid);
+            InvoiceInDb.waterusageid = int.Parse(wid);
+            InvoiceInDb.exchangerateid = int.Parse(exid);
 
             _context.Invoice.Add(InvoiceInDb);
             _context.SaveChanges();

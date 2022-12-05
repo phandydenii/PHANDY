@@ -20,7 +20,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public int waterusageid { get; set; }
         public WaterUsage waterusage { get; set; }
         public int powerusageid { get; set; }
-        public PowerUsage powerusage { get; set; }
+        public ElectricUsage powerusage { get; set; }
         public decimal paydollar { get; set; }
         public decimal payriel { get; set; }
 

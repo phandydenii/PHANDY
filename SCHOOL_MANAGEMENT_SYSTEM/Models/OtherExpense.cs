@@ -18,9 +18,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public ExpenseType ExpenseTypes { get; set; }
         public Decimal amount { get; set; }
         public string note { get; set; }
-        [Required]
-        public int showroomid { get; set; }
-        public Showroom Showrooms { get; set; }
+
         public string createby { get; set; }
         public DateTime createdate { get; set; }
     }

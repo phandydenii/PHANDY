@@ -16,7 +16,7 @@
 
                             <div class="form-group">
                                 <label for="date">ថ្ងៃខែ</label>
-                                <input id="date" name="date" type="date" value="" class="form-control input-sm" placeholder="Enter Product Name" />
+                                <input id="date" name="date" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Product Name" />
 
                             </div>
                             <div class="form-group">
@@ -38,26 +38,21 @@
                                 <input id="note" name="note" type="text" value="" class="form-control input-sm" />
 
                             </div>
-                            <div class="form-group">
-                                <label for="showroomid">សាខា</label>
-                                <select class="form-control input-sm" id="showroomid">
-                                    @foreach (var pos in Model.Showrooms)
-                                    {
-                                        <option value=@pos.id>@pos.name</option>
-                                    }
-                                </select>
-                            </div>
                         </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-md-8 col-lg-offset-4">
-                                <button type="button" id="btnOtherExpense" onclick="OtherExpenseAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
-                            </div>
+                    </div>
+                    @*<div class="row">
+                        <div class="col-md-8 col-lg-offset-4">
+                            <button type="button" id="btnOtherExpense" onclick="OtherExpenseAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
                         </div>
+                    </div>*@
                 </div>
-
-
-
+                <div class="modal-header">
+                    <div class="col-md-3 col-md-offset-6" id="hidecheckout">
+                        <button type="button" id="btnCheckOut" data-dismiss="modal" class="btn btn-danger btn-block btn-sm">Cancel</button>
+                    </div>
+                    <div class="col-md-3" id="hidepayment">
+                        <button type="button" id="btnOtherExpense" onclick="OtherExpenseAction()" class="btn btn-info btn-block btn-sm">Add New</button>
+                    </div>
                 </div>
             </div>
         </div>

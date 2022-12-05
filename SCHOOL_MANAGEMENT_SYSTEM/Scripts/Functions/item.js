@@ -97,6 +97,10 @@ function OnItemAction() {
         });
 
     } else if (action == "Update") {
+        var res = ValidationFormItem();
+        if (res == false) {
+            return false;
+        }
 
         var data = {
             id: $('#Itemid').val(),
@@ -115,12 +119,12 @@ function OnItemAction() {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                toastr.success("Item has been Updated", "Server Respond");
-                $('#dtItem').DataTable().ajax.reload();
-                //$("#ItemModal").modal('hide');
-                document.getElementById('btnSaveItem').innerText = "Add New";
+                //tableItem.DataTable().ajax.reload();
                 DisableControlItem();
                 ClearControlItem();
+                toastr.success("Item has been Updated", "Server Respond");
+                //$("#ItemModal").modal('hide');
+                window.location.reload(true);
             },
             error: function (errormesage) {
                 toastr.error("Item hasn't Updated in Database", "Server Respond")
@@ -130,7 +134,8 @@ function OnItemAction() {
 }
 
 function OnEditItem(id) {
-    document.getElementById('itemname').disabled = false;
+    $("#ItemModal").modal('show');
+    EnableControlItem();
     action = document.getElementById('btnSaveItem').innerText = "Update";
     $.ajax({
         url: "/api/Items/" + id,
@@ -145,9 +150,7 @@ function OnEditItem(id) {
             $("#remark").val(result.remark);
             $("#statuss").val(result.status);
 
-            $("#ItemModal").modal('show');
-            alert(result.id);
-            
+           
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
@@ -229,7 +232,6 @@ function ValidationFormItem() {
     if ($('#itemname').val().trim() === "") {
         $('#itemname').css('border-color', 'red');
         $('#itemname').focus();
-        alert('Please enter item name');
         isValid = false;
     }
     else {
@@ -237,7 +239,6 @@ function ValidationFormItem() {
         if ($('#itemnamekh').val().trim() === "") {
             $('#itemnamekh').css('border-color', 'red');
             $('#itemnamekh').focus();
-            alert('Please enter item name khmer');
             isValid = false;
         }
         else {
@@ -245,15 +246,13 @@ function ValidationFormItem() {
             if ($('#prices').val().trim() === "") {
                 $('#prices').css('border-color', 'red');
                 $('#prices').focus();
-                alert('Please enter price')
                 isValid = false;
             }
             else {
                 $('#prices').css('border-color', '#cccccc');
-                if ($('#Status').val().trim() === "") {
-                    $('#Status').css('border-color', 'red');
-                    $('#Status').focus();
-                    alert('Please choose status')
+                if ($('#statuss').val().trim() === "") {
+                    $('#statuss').css('border-color', 'red');
+                    $('#statuss').focus();
                     isValid = false;
 
                 }

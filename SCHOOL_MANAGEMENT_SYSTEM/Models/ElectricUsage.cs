@@ -6,12 +6,12 @@ using System.Web;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Models
 {
-    [Table("powerusage_tbl")]
-    public class PowerUsage
+    [Table("electricusage_tbl")]
+    public class ElectricUsage
     {
         public int id { get; set; }
-        public int invoiceid { get; set; }
-        public Invoice Invoice { get; set; }
+        public int checkinid { get; set; }
+        public CheckIn checkin { get; set; }
         public DateTime? predate { get; set; }
         public decimal prerecord { get; set; }
         public DateTime? currentdate { get; set; }

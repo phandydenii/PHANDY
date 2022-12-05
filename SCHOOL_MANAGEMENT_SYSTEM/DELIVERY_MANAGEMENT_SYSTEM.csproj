@@ -287,7 +287,7 @@
     <Compile Include="Controllers\Api\PaymentMethodsController.cs" />
     <Compile Include="Controllers\Api\PaymentsController.cs" />
     <Compile Include="Controllers\Api\PositionController.cs" />
-    <Compile Include="Controllers\Api\PowerUsageController.cs" />
+    <Compile Include="Controllers\Api\ElectricController.cs" />
     <Compile Include="Controllers\Api\PricingsController.cs" />
     <Compile Include="Controllers\Api\ProductController.cs" />
     <Compile Include="Controllers\Api\RegisterstudentsController.cs" />
@@ -326,7 +326,7 @@
     <Compile Include="Controllers\PricingsController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RegisterstudentsController.cs" />
-    <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
@@ -371,7 +371,7 @@
     <Compile Include="Dtos\paymentdetailDto.cs" />
     <Compile Include="Dtos\PaymentMethodDto.cs" />
     <Compile Include="Dtos\PositionDto.cs" />
-    <Compile Include="Dtos\PowerUsageDto.cs" />
+    <Compile Include="Dtos\ElectricUsageDto.cs" />
     <Compile Include="Dtos\PricingDto.cs" />
     <Compile Include="Dtos\ProductDto.cs" />
     <Compile Include="Dtos\registerstudentDto.cs" />
@@ -413,7 +413,7 @@
     <Compile Include="Models\InvoiceCheckInV.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\NewInvoiceV.cs" />
-    <Compile Include="Models\PowerUsage.cs" />
+    <Compile Include="Models\ElectricUsage.cs" />
     <Compile Include="Models\Pricing.cs" />
     <Compile Include="Models\Condition.cs" />
     <Compile Include="Models\CountModel.cs" />
@@ -757,6 +757,16 @@
     <Content Include="Scripts\Functions\student.js" />
     <Content Include="Scripts\Functions\studylanguage.js" />
     <Content Include="Scripts\Functions\studyperiod.js" />
+    <EmbeddedResource Include="Reports\BOOK_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\CHECKIN_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\EXPENSE_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\GUEST_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\INVOICE_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\ITEM_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\PAYMENT_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\ROOM_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\STAFF_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\USER_REPORT.rdlc" />
     <EmbeddedResource Include="Resources\Language.km.resx" />
     <EmbeddedResource Include="Resources\Language.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -1114,9 +1124,13 @@
     <None Include="Views\CheckIn\_PrintNewInvoice.cshtml" />
     <Content Include="Views\Invoice\_Payment.cshtml" />
     <Content Include="Views\Invoice\_PrintNewInvoice.cshtml" />
-    <Content Include="Views\Reports\_invoicerpt.cshtml" />
-    <Content Include="Views\Reports\_ReportViewer.cshtml" />
+    <Content Include="Views\Report\_invoicerpt.cshtml" />
     <Content Include="Views\Room\_CheckInNow.cshtml" />
+    <Content Include="Views\Report\_roomlistrpt.cshtml" />
+    <Content Include="Views\Report\_stafflistrpt.cshtml" />
+    <Content Include="Views\Report\_guestlistrpt.cshtml" />
+    <Content Include="Views\Report\_itemlistrpt.cshtml" />
+    <Content Include="Views\Report\_userrpt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

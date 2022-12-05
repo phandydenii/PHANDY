@@ -8,7 +8,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
     public class CheckInV
     {
         public int id { get; set; }
-        
         public String userid { get; set; }
         public int roomid { get; set; }
         public string room_no { get; set; }

@@ -38,17 +38,11 @@ function GetCheckInDetail() {
                     data: "building",
                    
                 },
-                //{
-                //    data: "id",
-                //    render: function (data) {
-                //            return "<button OnClick='OnPrintInvoice (" + data + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> New Invoice</button>";                         
-                //    }
-                //},
                 {
                     data: "id",
                     render: function (data) {
-                        return "<button OnClick='CheckOut (" + data + ")' class='btn btn-success btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
-                             + "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                        return "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                             + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
                         ;
                     }
                 }
@@ -57,7 +51,9 @@ function GetCheckInDetail() {
     });
 }
 
-function CheckInEdit() {
+function CheckInEdit(id) {
+    $("#CheckInModal").modal("show");
+    $("#checkinid").val(id);
     $.ajax({
         url: "/api/checkin_v/" + id,
         type: "GET",
@@ -65,19 +61,21 @@ function CheckInEdit() {
         datatype: "json",
         success: function (result) {
             $('#guestname').val(result.name);
-            $("#roomno").val(result.room_no);
-            $("#roomprice").val(result.price);
-            $("#roomid").val(result.roomid);
-            $("#guestid").val(result.guestid);
-            $("#servicecharge").val(result.servicecharge);
-            $("#checkinid").val(result.id);
-
-            $.get("/api/powerusagerecord/" + id, function (data) {
-                $('#oldrecordpower').val(data);
-            });
-            $.get("/api/waterusagerecord/" + id, function (data) {
-                $('#oldrecordwater').val(data);
-            });
+            $('#guestnamekh').val(result.namekh);
+            var checkindate = moment(result.checkindate).format("YYYY-MM-DD");
+            $('#checkindate').val(checkindate);
+            $('#roomno').val(result.room_no);
+            $('#servicecharge').val(result.servicecharge);
+            $('#roomprice').val(result.price);
+            var startdate = moment(result.startdate).format("YYYY-MM-DD");
+            var enddate = moment(result.enddate).format("YYYY-MM-DD")
+            $('#startdate').val(startdate);
+            $('#enddate').val(enddate);
+            $('#man').val(result.man);
+            $('#women').val(result.women);
+            $('#child').val(result.child);
+            $('#wrecord').val(result.woldrecord);
+            $('#precord').val(result.poldrecord);
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
@@ -85,39 +83,72 @@ function CheckInEdit() {
     });
 }
 
-function OnPrintInvoice(id) {
-    //alert(id);
+
+
+function SaveCheckIn() {
+    var data = new FormData();
+    data.append("startdate", $("#startdate").val());
+    data.append("enddate", $("#enddate").val());
+    data.append("child", $("#child").val());
+    data.append("man", $("#man").val());
+    data.append("women", $("#women").val());
+       
     $.ajax({
-        url: "/api/checkin_v/"+id,
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        datatype: "json",
+        type: "PUT",
+        url: "/api/checkins/"+$('#id').val(),
+        contentType: false,
+        processData: false,
+        data: data,
         success: function (result) {
-            $('#guestname').val(result.name);
-            $("#roomno").val(result.room_no);
-            $("#roomprice").val(result.price);
-            $("#roomid").val(result.roomid); 
-            $("#guestid").val(result.guestid);
-            $("#servicecharge").val(result.servicecharge);
-            $("#checkinid").val(result.id);
-
-            $.get("/api/powerusagerecord/"+id, function (data) {
-                $('#oldrecordpower').val(data);
-            });
-            $.get("/api/waterusagerecord/" + id, function (data) {
-                $('#oldrecordwater').val(data);
-            });
+            UpdateWater();
+            UpdatePower();
+            toastr.success("Update check in successfully!", "Server Respond");
         },
-        error: function (errormessage) {
-            toastr.error("No Record Select!", "Service Response");
+        error: function (error) {
+            //console.log(error);
+            toastr.error("Please check all selected field!.", "Server Response");
         }
     });
-
-    $("#PrintNewInvoiceModal").modal("show");
-    $.get("/api/invoicemaxid", function (data) {
-        $('#invoiceno').val(data);
-    });
-    
 }
 
+function UpdateWater() {
+    var data = {
+        predate: $('#checkindate').val(),
+        checkinid: $('#checkinid').val(),
+        prerecord: $('#wrecord').val(),
+    };
+    $.ajax({
+        url: "/api/updatewaters/"+data.checkinid+"/"+data.predate,
+        data: JSON.stringify(data),
+        type: "PUT",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+           
+        },
+        error: function (errormesage) {
+            toastr.error("Create invoice faild...!"+errormesage, "Server Respond");
+        }
+    });
+}
 
+function UpdatePower() {
+    var data = {
+        predate: $('#checkindate').val(),
+        checkinid: $('#checkinid').val(),
+        prerecord: $('#precord').val(),
+    };
+    $.ajax({
+        url: "/api/updatepowers/" + data.checkinid + "/" + data.predate,
+        data: JSON.stringify(data),
+        type: "PUT",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+
+        },
+        error: function (errormesage) {
+            toastr.error("Create invoice faild...!" + errormesage, "Server Respond");
+        }
+    });
+}

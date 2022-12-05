@@ -162,7 +162,7 @@
         var btncheckin = document.getElementById('btnCheckIn').innerText;
         var rmid = document.getElementById('roomid');
         var rmname = document.getElementById('lblRoomNo').innerText;
-        var guestid = document.getElementById('guestid');
+        
         if (btncheckin == "Check In Now") {
             $("#CheckInNowModal").modal("show");
             $("#chnowroomid").val(rmid.value);
@@ -178,9 +178,10 @@
             });
             //alert('hello');
         } else {
-            
-            $("#checkinroomid").val(rmid.value);
-            $("#guestidchin").val(guestid);
+            var guestid = document.getElementById('guestid');
+            $("#CheckInModal").modal("show");
+            $("#chroomid").val(rmid.value);
+            $("#guestid").val(guestid.value);
             $("#lblRoomNoCehckIn").text(rmname);
 
             $.get("/api/WaterPoserPrice/1/2", function (data) {
@@ -190,8 +191,7 @@
             });
             $.get("/api/invoicemaxid", function (data) {
                 $('#invno').val(data);
-            });
-            $("#CheckInModal").modal("show");
+            });   
         }
     }
     function OnCheckOutAction() {

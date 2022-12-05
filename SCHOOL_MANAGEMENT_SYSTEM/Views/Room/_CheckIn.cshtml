@@ -15,8 +15,8 @@
                        @* <input id="roomid" name="checkinroomid" type="text" style="display: none;" value="" class="form-control" />*@
                         
                         <div class="form-group">
-                            <label for="checkinroomid">លេខបន្ទប់</label>
-                            <select class="form-control input-sm" id="checkinroomid" disabled>
+                            <label for="chroomid">លេខបន្ទប់</label>
+                            <select class="form-control input-sm" id="chroomid" disabled>
                                 @foreach (var room in Model.ListRoomBook)
                                 {
                                     <option value=@room.id>@room.room_no</option>
@@ -24,9 +24,9 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="guestidchin">លេខរៀងភ្ញៀវ</label>
-                            <select class="form-control input-sm" id="guestidchin" disabled>
-                                @foreach (var room in Model.GuestBook)
+                            <label for="guestid">លេខរៀងភ្ញៀវ</label>
+                            <select class="form-control input-sm" id="guestid" disabled>
+                                @foreach (var room in Model.GuestList)
                                 {
                                     <option value=@room.id>@room.name</option>
                                 }
@@ -48,7 +48,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="invno">លេខវិក័យបត្រ</label>
-                            <input id="invno" disabled name="invno" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                            <input id="invno" readonly="readonly" name="invno" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
                             <label for="checkindate">កាលបរិច្ឆេទ</label>
@@ -70,6 +70,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <button type="button" id="btnSaveCheckIn" onclick="CheckInAction()" class="btn btn-info btn-block btn-sm">Save</button>
+                            @*<button type="button" id="btnTest" onclick="Test()" class="btn btn-info btn-block btn-sm">Test</button>*@
                         </div>
                     </div>
                 </div>
@@ -81,11 +82,20 @@
 
 <script>
 
-    //Insert Check In
+    //function Test(){
+    //    alert($("#chroomid").val());
+    //    //$.get("/api/updateroomstatus/" + $("#chroomid").val() + "/CHECK-IN", 
+    //    //    function (data) {
+    //    //        alert('Successfully');
+    //    //});
+    //    UpdateStatusRoom();
+    //}
+    
+
     function CheckInAction() {
         var data = {
-            roomid: $('#checkinroomid').val(),
-            guestid: $('#guestidchin').val(),
+            roomid: $('#chroomid').val(),
+            guestid: $('#guestid').val(),
             child: $('#child').val(),
             man: $('#man').val(),
             women: $('#women').val(),
@@ -97,12 +107,14 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                UpdateRoomStatus();
-                UpdateGuestStatus();
-                CreateInvoice(result);
-                $("#CheckInModal").modal("hide");
+                UpdateStatusRoom();
+                UpdateStatusGuest();
+                InsertPowerUsage(result);
+                InsertWaterUsage(result);
+                InsertInvoice(result);
+                
                 toastr.success("Check In successfully.", "Server Response");
-
+                $("#CheckInModal").modal("hide");
                 window.location.reload(true);
             },
             error: function (errormesage) {
@@ -113,31 +125,10 @@
         });
     }
 
-    function UpdateRoomStatus() {
-        var rmid = document.getElementById('roomid');
-        var rmname = document.getElementById('lblRoomNo').innerText;
-        $("#roomidblock").val(rmid.value);
-        $("#lblRoomNoBlock").text(rmname);
-
+    function UpdateStatusRoom() {
         $.ajax({
             type: "PUT",
-            url: "/api/updateroomstatus/" + $("#roomid").val() + "/CHECK-IN",
-            contentType: false,
-            processData: false,
-            // data: status,
-            success: function (result) {
-                $("#RoomDetailModal").modal("hide");
-            },
-            error: function (error) {
-                toastr.error("Update room status fail!", "Server Response");
-            }
-        });
-    }
-
-    function UpdateGuestStatus() {
-        $.ajax({
-            type: "PUT",
-            url: "/api/updategueststatus/" + $("#guestidchin").val() + "/CHECK-IN",
+            url: "/api/updateroomstatus/" + $("#chroomid").val() + "/CHECK-IN",
             contentType: false,
             processData: false,
             // data: status,
@@ -149,12 +140,26 @@
         });
     }
 
-    function CreateInvoice(result) {
+    function UpdateStatusGuest() {
+        $.ajax({
+            type: "PUT",
+            url: "/api/updategueststatus/" + $("#guestid").val() + "/CHECK-IN",
+            contentType: false,
+            processData: false,
+            // data: status,
+            success: function (result) {
+            },
+            error: function (error) {
+                toastr.error("Update room status fail!", "Server Response");
+            }
+        });
+    }
+
+    function InsertInvoice(result) {
         var data = {
             invoiceno: $('#invno').val(),
-            guestid: $('#guestidchin').val(),
+            guestid: $('#guestid').val(),
             checkinid: result,
-            exchangerateid: @Model.ExchangeRateID,
         };
         $.ajax({
             url: "/api/invoices",
@@ -163,10 +168,6 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                //alert(result);
-                InsertPowerUsage(result);
-                InsertWaterUsage(result);
-                //alert('Print Invoice successfully!');
             },
             error: function (errormesage) {
                 toastr.error("Create invoice faild...!"+errormesage, "Server Respond");
@@ -176,9 +177,8 @@
 
     function InsertPowerUsage(id) {
         var data = {
-            guestid: $('#guestidchin').val(),
             prerecord: $('#powerprerecord').val(),
-            invoiceid: id,
+            checkinid: id,
         };
         $.ajax({
             url: "/api/powerusage",
@@ -187,7 +187,7 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                //window.location.reload(true);
+
             },
             error: function (errormesage) {
                 toastr.error("Power usage insert faild!", "Server Respond");
@@ -199,9 +199,8 @@
 
     function InsertWaterUsage(id) {
         var data = {
-            guestid: $('#guestidchin').val(),
             prerecord: $('#waterprerecord').val(),
-            invoiceid: id,
+            checkinid: id,
         };
         $.ajax({
             url: "/api/waterusage",
@@ -216,7 +215,6 @@
                 toastr.error("Water usage insert faild!", "Server Respond");
                 return false;
             }
-
         });
     }
 </script>

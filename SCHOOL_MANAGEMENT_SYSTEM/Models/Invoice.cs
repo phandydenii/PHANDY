@@ -14,10 +14,15 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public int id { get; set; }
         public String invoiceno { get; set; }
         public DateTime invoicedate { get; set; }
-        public int checkinid { get; set; }
-        public CheckIn checkin { get; set; }
         public int guestid { get; set; }
         public Guest guest { get; set; }
+        public int checkinid { get; set; }
+        public CheckIn checkin { get; set; }
+        public int electricid { get; set; }
+        public ElectricUsage electric { get; set; }
+        public int waterusageid { get; set; }
+        public WaterUsage waterusage { get; set; }
+
         public string userid { get; set; }
         public int exchangerateid { get; set; }
         public ExchangeRate exchangerate { get; set; }

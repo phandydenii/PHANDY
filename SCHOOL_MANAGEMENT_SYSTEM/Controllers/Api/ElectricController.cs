@@ -13,11 +13,11 @@ using System.Web.Http;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 {
-    public class PowerUsageController : ApiController
+    public class ElectricController : ApiController
     {
         private ApplicationDbContext _context;
 
-        public PowerUsageController()
+        public ElectricController()
         {
             _context = new ApplicationDbContext();
         }
@@ -30,7 +30,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/Buildings
         public IHttpActionResult GetPowerUsages()
         {
-            var getPowerUsage = _context.PowerUsages.ToList().Select(Mapper.Map<PowerUsage, PowerUsageDto>);
+            var getPowerUsage = _context.Electrics.ToList().Select(Mapper.Map<ElectricUsage, ElectricUsageDto>);
             return Ok(getPowerUsage);
         }
 
@@ -43,9 +43,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             DataSet ds = new DataSet();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select top 1 id,predate,prerecord,currentdate,currentrecord from powerusage_tbl where invoiceid='" + invoiceid + "' order by id desc", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select top 1 id,predate,prerecord,currentdate,currentrecord from electricusage_tbl where invoiceid='" + invoiceid + "' order by id desc", conx);
             adp.Fill(ds);
-            PowerUsage powerusage = new PowerUsage();
+            Models.ElectricUsage powerusage = new Models.ElectricUsage();
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
                 powerusage.id = Convert.ToInt16(dr["id"].ToString());
@@ -61,41 +61,41 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/Floors{id}
         public IHttpActionResult GetPowerUsage(int id)
         {
-            var getPowerUsageById = _context.PowerUsages.SingleOrDefault(c => c.id == id);
+            var getPowerUsageById = _context.Electrics.SingleOrDefault(c => c.id == id);
 
             if (getPowerUsageById == null)
                 return NotFound();
 
-            return Ok(Mapper.Map<PowerUsage, PowerUsageDto>(getPowerUsageById));
+            return Ok(Mapper.Map<ElectricUsage, ElectricUsageDto>(getPowerUsageById));
         }
 
 
         [HttpPost]
-        public IHttpActionResult CreateWaterUsage(PowerUsageDto PowerUsageDtos)
+        public IHttpActionResult CreateWaterUsage(ElectricUsageDto ElectricDtos)
         {
             DataTable ds1 = new DataTable();
             var connectionString1 = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx1 = new SqlConnection(connectionString1);
-            SqlDataAdapter adp = new SqlDataAdapter("select Max(id) from waterpowerprice_tbl where IsDeleted=0", conx1);
+            SqlDataAdapter adp = new SqlDataAdapter("select Max(id) from electricusage_tbl where IsDeleted=0", conx1);
             adp.Fill(ds1);
             string wpprice = ds1.Rows[0][0].ToString();
 
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var isExist = _context.PowerUsages.SingleOrDefault(c => c.id == PowerUsageDtos.id);
+            var isExist = _context.Electrics.SingleOrDefault(c => c.id == ElectricDtos.id);
             if (isExist != null)
                 return BadRequest();
 
-            var PowerUsageInDb = Mapper.Map<PowerUsageDto, PowerUsage>(PowerUsageDtos);
+            var PowerUsageInDb = Mapper.Map<ElectricUsageDto, ElectricUsage>(ElectricDtos);
             PowerUsageInDb.predate = DateTime.Today;
             PowerUsageInDb.price = int.Parse(wpprice);
-            _context.PowerUsages.Add(PowerUsageInDb);
+            _context.Electrics.Add(PowerUsageInDb);
             _context.SaveChanges();
 
-            PowerUsageDtos.id = PowerUsageInDb.id;
+            ElectricDtos.id = PowerUsageInDb.id;
 
-            return Created(new Uri(Request.RequestUri + "/" + PowerUsageDtos.id), PowerUsageDtos);
+            return Created(new Uri(Request.RequestUri + "/" + ElectricDtos.id), ElectricDtos);
         }
 
         [HttpPut]
@@ -105,7 +105,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            SqlCommand requestcommand = new SqlCommand("update powerusage_tbl set currentrecord='"+ currentrecord + "',currentdate=DATEADD(MONTH,1,predate) where invoiceid=" + invoiceid, conx);
+            SqlCommand requestcommand = new SqlCommand("update electricusage_tbl set currentrecord='" + currentrecord + "',currentdate=DATEADD(MONTH,1,predate) where invoiceid=" + invoiceid, conx);
             try
             {
                 conx.Open();
@@ -120,21 +120,18 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpPut]
-        //PUT : /api/Building/{id}
-        public IHttpActionResult EditPowerUsage(int id, PowerUsageDto PowerUsageDtos)
+        [Route("api/updatepowers/{checkinid}/{predate}")]
+        public IHttpActionResult EditPowerUsage(int checkinid,DateTime predate, ElectricUsageDto ElectricUsageDtos)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            var isExist = _context.PowerUsages.SingleOrDefault(c => c.id == PowerUsageDtos.id);
-            if (isExist != null)
-                return BadRequest();
 
-            var PowerUsageInDb = _context.PowerUsages.SingleOrDefault(c => c.id == id);
-            PowerUsageInDb.predate = DateTime.Today;
-            Mapper.Map(PowerUsageDtos, PowerUsageInDb);
+            var PowerUsageInDb = _context.Electrics.SingleOrDefault(c => c.checkinid == checkinid && c.predate==predate);
+         
+            Mapper.Map(ElectricUsageDtos, PowerUsageInDb);
             _context.SaveChanges();
 
-            return Ok(PowerUsageDtos);
+            return Ok(ElectricUsageDtos);
         }
 
         [HttpDelete]
@@ -142,10 +139,10 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         public IHttpActionResult DeletePowerUsage(int id)
         {
 
-            var BuildingInDb = _context.PowerUsages.SingleOrDefault(c => c.id == id);
+            var BuildingInDb = _context.Electrics.SingleOrDefault(c => c.id == id);
             if (BuildingInDb == null)
                 return NotFound();
-            _context.PowerUsages.Remove(BuildingInDb);
+            _context.Electrics.Remove(BuildingInDb);
             _context.SaveChanges();
 
             return Ok(new { });

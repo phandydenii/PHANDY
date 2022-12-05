@@ -251,8 +251,6 @@ function ValidationFormRoom() {
     if ($('#roomno').val().trim() === "") {
         $('#roomno').css('border-color', 'red');
         $('#roomno').focus();
-        alert('Please enter room no');
-        //toastr.info("Please enter room no", "Required");
         isValid = false;
     }
     else {
@@ -260,8 +258,6 @@ function ValidationFormRoom() {
         if ($('#price').val().trim() === "") {
             $('#price').css('border-color', 'red');
             $('#price').focus();
-            alert('Please enter your price');
-            //toastr.info("Please enter your price", "Required");
             isValid = false;
         }
         else {
@@ -269,8 +265,6 @@ function ValidationFormRoom() {
             if ($('#roomkey').val().trim() === "") {
                 $('#roomkey').css('border-color', 'red');
                 $('#roomkey').focus();
-                alert('Please enter your room key');
-                //toastr.info("Please enter your room key", "Required");
                 isValid = false;
             }
             else {

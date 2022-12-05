@@ -7,6 +7,7 @@ $(document).ready(function () {
             $('#loadingGif').removeClass('show');
         });
         GetFloor();
+        DisableFloorControl();
     });
 });
 
@@ -50,14 +51,19 @@ function FloorAction() {
 
     if (action == "Add New") {
         document.getElementById('btnSaveFloor').innerText = 'Save';
-        EnableControl();
+        EnableFloorControl();
         $('#floorno').focus();
     }
     else if (action === "Save") {
+        var res = ValidationFormFloor();
+        if (res == false) {
+            return false;
+        }
+
+
         var data = {
             floor_no: $('#floorno').val(),
             buildingid: $('#buildingid').val(),
-            status: $('#status').val(),
         };
 
         $.ajax({
@@ -72,8 +78,8 @@ function FloorAction() {
                 // $('#customerName').val('');
                 //$("#FloorModal").modal('hide');
                 document.getElementById('btnSaveFloor').innerText = "Add New";
-                DisableControl();
-                ClearControl();
+                DisableFloorControl();
+                ClearFloorControl();
             },
             error: function (errormesage) {
                 $('#FloorName').focus();
@@ -83,12 +89,15 @@ function FloorAction() {
         });
 
     } else if (action == "Update") {
+        var res = ValidationFormFloor();
+        if (res == false) {
+            return false;
+        }
 
         var data = {
             id: $('#Floorid').val(),
-
             floor_no: $('#floorno').val(),
-            status: $('#status').val(),
+            buildingid: $('#buildingid').val(),
         };
         $.ajax({
             url: "/api/Floors/" + data.id,
@@ -97,38 +106,31 @@ function FloorAction() {
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                toastr.success("Floor has been Updated", "Server Respond");
+                toastr.success("Update record successully!", "Server Respond");
                 $('#dtFloor').DataTable().ajax.reload();
-                //$("#FloorModal").modal('hide');
                 document.getElementById('btnSaveFloor').innerText = "Add New";
-                DisableControl();
-                ClearControl();
+                DisableFloorControl();
+                ClearFloorControl();
             },
             error: function (errormesage) {
-                toastr.error("Floor hasn't Updated in Database", "Server Respond")
+                toastr.error("Update record faild!", "Server Respond")
             }
         });
     }
 }
 
 function FloorEdit(id) {
-    
-    //ClearControl();
-    EnableControl();
+    EnableFloorControl();
     action = document.getElementById('btnSaveFloor').innerText = "Update";
-    //alert('hi');
     $.ajax({
-        url: "/api/Floors/" + id,
+        url: "/api/floors/" + id,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
             $('#Floorid').val(result.id);
             $("#floorno").val(result.floor_no);
-            $("#status").val(result.status);
-
-
-            //$("#FloorModal").modal('show');
+            $("#buildingid").val(result.buildingid);
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
@@ -141,7 +143,7 @@ function FloorDelete(id) {
     // alert('hi');
     bootbox.confirm({
         title: "",
-        message: "Are you sure want to delete this?",
+        message: "<h4>Do you want to delete record '" + id + "' ?</h4>",
         button: {
             cancel: {
                 label: "Cancel",
@@ -167,29 +169,24 @@ function FloorDelete(id) {
                     error: function (errormessage) {
                         toastr.error("Floor Can't be Deleted", "Service Response");
                     }
-                });
+                });s
             }
         }
     });
 }
 
 
-function DisableControl() {
+function DisableFloorControl() {
     document.getElementById('floorno').disabled = true;
     document.getElementById('buildingid').disabled = true;
-    document.getElementById('status').disabled = true;
-
-
 }
 
-function EnableControl() {
+function EnableFloorControl() {
     document.getElementById('floorno').disabled = false;
     document.getElementById('buildingid').disabled = false;
-    document.getElementById('status').disabled = false;
-
 }
 
-function ClearControl() {
+function ClearFloorControl() {
     $('#floorno').val('');
     $('#buildingid').val('');
     $('#status').val('');
@@ -197,30 +194,26 @@ function ClearControl() {
 
 function AddnewFloorAction() {
     document.getElementById('btnSaveFloor').innerText = "Add New";
-    DisableControl();
-    ClearControl();
+    DisableFloorControl();
+    ClearFloorControl();
 }
 
 function ValidationFormFloor() {
     var isValid = true;
-    if ($('#Floor').val().trim() === "") {
-        $('#Floor').css('border-color', 'red');
-        $('#Floor').focus();
-        alert('Please enter floor no');
+    if ($('#floorno').val().trim() === "") {
+        $('#floorno').css('border-color', 'red');
+        $('#floorno').focus();
         isValid = false;
     }
     else {
-        $('#Floor').css('border-color', '#cccccc');
-        if ($('#buildingid').val().trim() === "") {
-            $('#buildingid').css('border-color', 'red');
-            $('#buildingid').focus();
-            alert('Please enter building');
-            isValid = false;
-        }
-        else {
-            $('#buildingid').css('border-color', '#cccccc');
-        }
+        $('#floorno').css('border-color', '#cccccc');
     }
     return isValid;
 }
+
+
+function OnCloseFloor() {
+    window.location.reload(true);
+}
+
 

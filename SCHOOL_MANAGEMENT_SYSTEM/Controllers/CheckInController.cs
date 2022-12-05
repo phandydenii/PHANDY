@@ -30,6 +30,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             {
                 ExchangeRateID = _context.Exchanges.Where(d => d.IsDeleted == false).Max(a => a.id),
                 WaterPowerPriceID = _context.WaterPowerPrices.Where(d => d.IsDeleted == false).Max(a => a.id),
+                GuestList = _context.Guests.ToList(),
             };
             return View(roomViewModel);
         }

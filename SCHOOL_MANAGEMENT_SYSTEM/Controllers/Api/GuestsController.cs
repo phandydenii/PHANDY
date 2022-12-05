@@ -51,7 +51,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             DataTable ds = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select Max(id)+1 from guest_tbl", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select Max(id) from guest_tbl", conx);
             adp.Fill(ds);
             string GuestID = ds.Rows[0][0].ToString();
             return Ok(GuestID);
@@ -133,8 +133,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             requestcommand.Parameters.Add("@namekh", SqlDbType.NVarChar).Value = namekh;
             requestcommand.Parameters.Add("@sex", SqlDbType.VarChar).Value = sex;
             requestcommand.Parameters.Add("@dob", SqlDbType.Date).Value = dob;
-            requestcommand.Parameters.Add("@address", SqlDbType.VarChar).Value = address;
-            requestcommand.Parameters.Add("@nationality", SqlDbType.VarChar).Value = nationality;
+            requestcommand.Parameters.Add("@address", SqlDbType.NVarChar).Value = address;
+            requestcommand.Parameters.Add("@nationality", SqlDbType.NVarChar).Value = nationality;
             requestcommand.Parameters.Add("@phone", SqlDbType.VarChar).Value = phone;
             requestcommand.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
             requestcommand.Parameters.Add("@ssn", SqlDbType.VarChar).Value = ssn;

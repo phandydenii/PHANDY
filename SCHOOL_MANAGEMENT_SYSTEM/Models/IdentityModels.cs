@@ -36,7 +36,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet<Building> Buildings { get; set; }
         public DbSet<RoomDetail> RoomDetails { get; set; }
         public DbSet<ExchangeRate> Exchanges { get; set; }
-        public DbSet<PowerUsage> PowerUsages { get; set; }
+        public DbSet<ElectricUsage> Electrics { get; set; }
         public DbSet<WaterUsage> WaterUsages { get; set; }
         public DbSet <WaterPowerPrice> WaterPowerPrices { get; set; }
 
@@ -50,17 +50,17 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet<Condition> Conditions { get; set; }
         public DbSet<PayBy> PayBys { get; set; }
         public DbSet<PaymentMethod> PaymentMethods { get; set; }
-        public DbSet<Branch> Branchs{ get; set; }
+        public DbSet<Branch> Branchs { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employees> Employees { get; set; }
         public DbSet<Salary> Salarys { get; set; }
-        public DbSet<Parent> Parents  { get; set; }
+        public DbSet<Parent> Parents { get; set; }
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<student> Students { get; set; }
         public DbSet<shifts> Shiftes { get; set; }
         public DbSet<grade> Grades { get; set; }
-        public DbSet <emergency> Emergencys { get; set; }
+        public DbSet<emergency> Emergencys { get; set; }
         public DbSet<Parrentstudent> Parrentstudents { get; set; }
         public DbSet<appropriate> appropriates { get; set; }
 
@@ -69,16 +69,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet<studyperiod> studyperiods { get; set; }
 
         public DbSet<course> courses { get; set; }
-        public DbSet <payment>Payments { get; set; }
+        public DbSet<payment> Payments { get; set; }
 
         public DbSet<paymentdetail> PaymentDetails { get; set; }
-        
+
 
         //New
         public DbSet<Position> Position { get; set; }
         public DbSet<Showroom> Showroom { get; set; }
         public DbSet<Employee> Employee { get; set; }
-        public DbSet <Customer>Customer { get; set; }
+        public DbSet<Customer> Customer { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Location> Location { get; set; }
@@ -88,7 +88,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet<ExpenseType> ExpenseTypes { get; set; }
         public DbSet<OtherExpense> OtherExpenses { get; set; }
         public DbSet<Transfer> Transfers { get; set; }
-        public DbSet <invoice_move> InvoiceMoves { get; set; }
+        public DbSet<invoice_move> InvoiceMoves { get; set; }
         public DbSet<Collectmoney> CollectMoneys { get; set; }
         public DbSet<Comment> Comments { get; set; }
 

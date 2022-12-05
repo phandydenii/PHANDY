@@ -123,8 +123,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
 
         [HttpPut]
-        //PUT : /api/Building/{id}
-        public IHttpActionResult EditPowerUsage(int id, WaterUsageDto WaterUsageDtos)
+        [Route("api/updatewaters/{checkinid}/{predate}")]
+        public IHttpActionResult EditPowerUsage(int checkinid,DateTime predate, WaterUsageDto WaterUsageDtos)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -132,8 +132,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             if (isExist != null)
                 return BadRequest();
 
-            var WaterUsageInDb = _context.WaterUsages.SingleOrDefault(c => c.id == id);
-            WaterUsageInDb.predate = DateTime.Today;
+            var WaterUsageInDb = _context.WaterUsages.SingleOrDefault(c => c.checkinid == checkinid && c.predate==predate);
+           
             Mapper.Map(WaterUsageDtos, WaterUsageInDb);
             _context.SaveChanges();
 

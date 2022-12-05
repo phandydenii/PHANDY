@@ -12,6 +12,9 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Data.Entity.Validation;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 {
@@ -30,36 +33,36 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             _context.Dispose();
         }
 
-        //GET : /api/Employees?departmentid={de..id}  for get all record
         [HttpGet]
-        public IHttpActionResult GetOtherExpense(string showroomId)
+        public object GetOtherExpenseByDate(DateTime date)
         {
+            var employees = _context.OtherExpenses.Include(c => c.ExpenseTypes).ToList().Where(c => c.date == date);
+            return Ok(employees);
 
-            if (showroomId == "all")
-            {
-                var employees = _context.OtherExpenses.Include(c => c.Showrooms).ToList()
-                                                        .Select(Mapper.Map<OtherExpense, OtherExpenseDto>);
+            //DataTable dt = new DataTable();
+            //DataSet ds = new DataSet();
 
-                return Ok(employees);
-            }
-            else
-            {
-                var employees = _context.OtherExpenses
-                                            .Include(c => c.Showrooms).Select(Mapper.Map<OtherExpense, OtherExpenseDto>)
-                                            .Where(c => c.showroomid == int.Parse(showroomId));
-                return Ok(employees);
-            }
-            //var employees = _context.Employees.ToList().Select(Mapper.Map<Employee, EmployeeDto>);
-            //return Ok(employees);
+            //var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            //SqlConnection conx = new SqlConnection(connectionString);
+            //SqlDataAdapter adp = new SqlDataAdapter("select ox.id,ox.date,ox.expensetypeid,et.typename,ox.amount,ox.note,ox.createby,ox.createdate from otherexpense_tbl ox inner join expensetype_tbl et on ox.expensetypeid = et.id where FORMAT (date, 'MM-yyyy') = FORMAT('"+date+"', 'MM-yyyy')", conx);
+            //adp.Fill(ds);
+            //return ds.Tables[0];
 
+        }
 
+        [HttpGet]
+        public IHttpActionResult GetOtherExpense()
+        {
+            var employees = _context.OtherExpenses.Include(c => c.ExpenseTypes).ToList();
+            return Ok(employees);
+            
         }
 
         //GET : /api/Employees/{id} for get record by id
         [HttpGet]
         public IHttpActionResult GetOtherExpense(int id)
         {
-            var employees = _context.OtherExpenses.Include(c => c.Showrooms).SingleOrDefault(c => c.id == id );
+            var employees = _context.OtherExpenses.Include(c => c.ExpenseTypes).SingleOrDefault(c => c.id == id );
             if (employees == null)
                 return NotFound();
 
@@ -70,8 +73,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateOtherExpense()
         {
-            //var id = HttpContext.Current.Request.Form["Id"];
-            var showroomid = HttpContext.Current.Request.Form["showroomid"];
             var expensetypeid = HttpContext.Current.Request.Form["expensetypeid"];
             var date = HttpContext.Current.Request.Form["date"];
             var amount = HttpContext.Current.Request.Form["amount"];
@@ -81,8 +82,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
             var employeeDto = new OtherExpenseDto()
             {
-                //Id = Int32.Parse(id),
-                showroomid = Int32.Parse(showroomid),
                 expensetypeid = Int32.Parse(expensetypeid),
                 date = DateTime.Parse(date),
                 amount = Decimal.Parse(amount),
@@ -122,8 +121,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         [HttpPut]
         public IHttpActionResult UpdateOtherExpense(int id)
         {
-            //var id = HttpContext.Current.Request.Form["id"];
-            var showroomid = HttpContext.Current.Request.Form["showroomid"];
             var expensetypeid = HttpContext.Current.Request.Form["expensetypeid"];
             var date = HttpContext.Current.Request.Form["date"];
             var amount = HttpContext.Current.Request.Form["amount"];
@@ -135,7 +132,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var employeeDto = new OtherExpenseDto()
             {
                 id = id,
-                showroomid = Int32.Parse(showroomid),
                 expensetypeid = Int32.Parse(expensetypeid),
                 date = DateTime.Parse(date),
                 amount = Decimal.Parse(amount),
