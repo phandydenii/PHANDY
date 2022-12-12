@@ -18,8 +18,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
 
         public IEnumerable<Guest> GuestBook { get; set; }
         public IEnumerable<Guest> GuestList { get; set; }
-
-
+        public IEnumerable<Item> ItemList { get; set; }
+        public IEnumerable<Staff> StaffList { get; set; }
 
 
         public int TotalRoom { get; set; }
@@ -29,9 +29,5 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
         public int TotalCheckIn { get; set; }
         public int ExchangeRateID { get; set; }
         public int WaterPowerPriceID { get; set; }
-
-
-        
-
     }
 }

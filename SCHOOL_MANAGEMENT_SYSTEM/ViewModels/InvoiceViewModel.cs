@@ -9,11 +9,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
 
     public class InvoiceViewModel
     {
-        public IEnumerable<Customer> Customers { get; set; }
-        public IEnumerable<Showroom> Showrooms { get; set; }
-        public IEnumerable<Location> Locations { get; set; }
-        public IEnumerable<Product> Products { get; set; }
-        public IEnumerable<Employee> Employees { get; set; }
+
         public IEnumerable<ExchangeRate> Exchanges { get; set; }
         public int ExchangeRateID { get; set; }
         public int WaterPowerPriceID { get; set; }

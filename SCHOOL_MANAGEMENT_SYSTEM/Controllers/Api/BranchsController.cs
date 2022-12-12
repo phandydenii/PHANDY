@@ -85,23 +85,23 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
         }
 
-        //DELETE : /api/Brachs/{id}  for Delete record
-        [HttpDelete]
-        public IHttpActionResult DeleteBranch(int id) {
-            var BranchInDb = _context.Branchs.SingleOrDefault(c => c.Id==id);
-            if (BranchInDb == null)
-                return BadRequest();
+        ////DELETE : /api/Brachs/{id}  for Delete record
+        //[HttpDelete]
+        //public IHttpActionResult DeleteBranch(int id) {
+        //    var BranchInDb = _context.Branchs.SingleOrDefault(c => c.Id==id);
+        //    if (BranchInDb == null)
+        //        return BadRequest();
 
-            var isExists = _context.Employees.Where(c => c.BranchId == id).Take(1);
-            if (isExists.Count() > 0)
-                return BadRequest();
+        //    var isExists = _context.Employees.Where(c => c.BranchId == id).Take(1);
+        //    if (isExists.Count() > 0)
+        //        return BadRequest();
 
-            _context.Branchs.Remove(BranchInDb);
-            _context.SaveChanges();
-            return Ok(new { });
+        //    _context.Branchs.Remove(BranchInDb);
+        //    _context.SaveChanges();
+        //    return Ok(new { });
 
 
-        }
+        //}
 
 
     }

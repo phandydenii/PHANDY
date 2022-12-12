@@ -10,11 +10,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
     {
         public IEnumerable<Position> Position { get; set; }
 
-        public IEnumerable<Department> Department { get; set; }
 
-        public IEnumerable<Showroom> Showroom { get; set; }
-
-        public IEnumerable<Bonus> Bonus { get; set; }
 
     }
 }

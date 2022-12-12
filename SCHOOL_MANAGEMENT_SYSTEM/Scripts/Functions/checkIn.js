@@ -39,16 +39,36 @@ function GetCheckInDetail() {
                    
                 },
                 {
+                    data: "pay",
+
+                },
+                {
                     data: "id",
                     render: function (data) {
-                        return "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                             + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
+                        //return "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                        //     + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
+                        //     + "<button OnClick='PayDamages (" + data + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-out'></span> Pay Damages</button>"
+                        //;
+
+                        return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
+                                  + "<ul class='dropdown-menu'>"
+                                    + "<li>"
+                                        + "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px''><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                                        + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
+                                        + "<button OnClick='PayDamages (" + data + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-pencil'></span> Pay Damages</button>"
+                                    + "</li>"
+                                  + "</ul>"
+                             + "</div>"
                         ;
                     }
                 }
             ],
         destroy: true,
     });
+}
+
+function PayDamages() {
+    $("#PayDamagesModal").modal("show");
 }
 
 function CheckInEdit(id) {

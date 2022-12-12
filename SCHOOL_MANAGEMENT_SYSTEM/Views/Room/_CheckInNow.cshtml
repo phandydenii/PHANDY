@@ -11,6 +11,8 @@
                     <input id="id" name="id" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <input id="roomid" name="roomid" type="text" style="display: none;" value="" class="form-control" />
                     <input id="guestid" name="guestid" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="waterid" name="waterid" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="electricid" name="electricid" type="text" style="display: none;" value="" class="form-control" />
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-12">
@@ -44,7 +46,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="national">សញ្ជាតិ</label>
-                                            <input id="national" name="national" placeholder="Enter Nationality" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <input id="national" name="national" placeholder="Enter Nationality" type="text" value="Khmer" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
                                             <label for="phone">លេខទូរសព្ទ</label>
@@ -88,25 +90,31 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="numman">បុរស</label>
-                                            <input id="numman" name="numman" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <input id="numman" name="numman" onfocus="this.select();" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
                                             <label for="numwomen">ស្ត្រី</label>
-                                            <input id="numwomen" name="numwomen" placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <input id="numwomen" name="numwomen" onfocus="this.select();" placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
                                             <label for="numchild">ក្មេងៗ</label>
-                                            <input id="numchild" name="numchild" placeholder="Enter number of child" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <input id="numchild" name="numchild" onfocus="this.select();" placeholder="Enter number of child" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
+                                        
                                         <div class="form-group">
                                             <label class="control-label">លេខកុងទ័រភ្លើង</label>
-                                            <input id="powerprerecord" name="powerprerecord" placeholder="Enter current number" value="0" type="text" class="form-control input-sm">
+                                            <input id="erecord" name="erecord" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
                                         </div>
+                                        
                                         <div class="form-group">
                                             <label class="control-label">លេខកុងទ័រទឹក</label>
-                                            <input id="waterprerecord" name="waterprerecord" placeholder="Enter current number" value="0" type="text" class="form-control input-sm">
+                                            <input id="wrecord" name="wrecord" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="paybefor">បង់មុនចំនួន</label>
+                                            <input id="pay" name="pay" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
                                         </div>
                                         <div class="form-group">
                                             <span>អត្រាប្តូរប្រាក់</span> : 1 <span>$</span> = <label id="examount"></label><span> រៀល</span>
@@ -136,6 +144,10 @@
 </div>
 
 <script>
+    //function Test() {
+    //    InsertWater();
+    //    InsertPower(11);
+    //}
     function OnSaveCheckInNow() {
         InsertGuest();
     }
@@ -179,6 +191,7 @@
             child: $('#numchild').val(),
             man: $('#numman').val(),
             women: $('#numwomen').val(),
+            pay: $('#pay').val(),
         };
         $.ajax({
             url: "/api/checkins",
@@ -190,7 +203,7 @@
                 UpdateRoomStatus();
                 InsertPower(result);
                 InsertWater(result); 
-                CreateInvoice(result);
+                
                 toastr.success("Check In successfully.", "Server Response");
             },
             error: function (errormesage) {
@@ -218,21 +231,27 @@
     }
 
     function InsertPower(id) {
-        var data = {
-            prerecord: $('#powerprerecord').val(),
-            checkinid: id,    
-        };
+        var data = new FormData();
+        var d = new Date();
+        data.append("checkinid", id);
+        data.append("predate", d.toLocaleDateString());
+        data.append("prerecord", $('#erecord').val());
+        data.append("currentdate", d.toLocaleDateString());
+        data.append("currentrecord", $('#erecord').val());
+
+
         $.ajax({
-            url: "/api/powerusage",
-            data: JSON.stringify(data),
             type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
+            url: "/api/electrics",
+            contentType: false,
+            processData: false,
+            data: data,
             success: function (result) {
-                //window.location.reload(true);
+               // alert('Max Electric'+result);
+               //$('#electricid').val(result);
             },
             error: function (errormesage) {
-                toastr.error("Power usage insert faild!", "Server Respond");
+                toastr.error("Electric usage insert faild!", "Server Respond");
                 return false;
             }
 
@@ -240,18 +259,23 @@
     }
 
     function InsertWater(id) {
-        var data = {
-            prerecord: $('#waterprerecord').val(),
-            checkinid: id,
-        };
+        var data = new FormData();
+        var d = new Date();
+        data.append("checkinid", id);
+        data.append("predate",d.toLocaleDateString());
+        data.append("prerecord", $('#wrecord').val());
+        data.append("currentdate", d.toLocaleDateString());
+        data.append("currentrecord", $('#wrecord').val());
+
         $.ajax({
-            url: "/api/waterusage",
-            data: JSON.stringify(data),
             type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
+            url: "/api/waterusage",
+            contentType: false,
+            processData: false,
+            data: data,
             success: function (result) {
-                //window.location.reload(true);
+                // $('#waterid').val(result);
+                CreateInvoice(result);
             },
             error: function (errormesage) {
                 toastr.error("Water usage insert faild!", "Server Respond");
@@ -261,15 +285,12 @@
         });
     }
 
-
     function CreateInvoice(result) {
-        
         var data = {
             invoiceno: $('#invoiceno').val(),
             guestid: $('#guestid').val(),
             checkinid: result,
         };
-
         $.ajax({
             url: "/api/invoices",
             data: JSON.stringify(data),
@@ -282,7 +303,7 @@
                 //alert('Print Invoice successfully!');
             },
             error: function (errormesage) {
-                toastr.error("This Booking ID is exist in Database", "Server Respond");
+                toastr.error("Insert invoice faild...!", "Server Respond");
             }
         });
     }

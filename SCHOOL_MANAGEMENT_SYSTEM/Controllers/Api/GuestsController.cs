@@ -145,8 +145,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             {
                 conx.Open();
                 requestcommand.ExecuteNonQuery();
-
-
                 GuestMax = Convert.ToInt16(cmd.ExecuteScalar());
                 
             }
@@ -227,3 +225,4 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
     }
 }
+

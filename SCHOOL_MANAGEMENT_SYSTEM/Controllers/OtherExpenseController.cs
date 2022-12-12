@@ -28,7 +28,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             var employeeViewModel = new OtherExpenseViewModel()
             {
                 ExpenseTypes = _context.ExpenseTypes.ToList(),
-                Showrooms = _context.Showroom.ToList()
             };
 
             return View(employeeViewModel);

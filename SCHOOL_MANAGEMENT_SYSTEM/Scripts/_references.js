@@ -47,6 +47,7 @@
 /// <reference path="functions/building.js" />
 /// <reference path="functions/category.js" />
 /// <reference path="functions/checkin.js" />
+/// <reference path="functions/checkout.js" />
 /// <reference path="functions/collectmoney.js" />
 /// <reference path="Functions/condition.js" />
 /// <reference path="functions/course.js" />

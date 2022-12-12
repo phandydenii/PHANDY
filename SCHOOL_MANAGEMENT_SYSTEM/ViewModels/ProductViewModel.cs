@@ -8,7 +8,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
 {
     public class ProductViewModel
     {
-        public IEnumerable<Showroom> Showrooms { get; set; }
-        public IEnumerable<Category> Categorys { get; set; }
+
     }
 }

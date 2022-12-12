@@ -8,6 +8,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
 {
     public class TransferViewModel
     {
-        public IEnumerable<Showroom> Showrooms { get; set; }
+     
     }
 }

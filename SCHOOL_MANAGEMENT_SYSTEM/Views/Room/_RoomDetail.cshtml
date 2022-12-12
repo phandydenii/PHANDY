@@ -12,10 +12,12 @@
             </div>
             <div class="modal-body">
                 <div class="row">
+                    
                     <input id="RoomDetailid" name="RoomDetailid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <input id="roomid" name="roomid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <input id="guestid" name="guestid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <input id="bookingid" name="bookingid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                    <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-12">
@@ -133,8 +135,8 @@
 @Html.Partial("_CheckIn")
 @Html.Partial("_CheckInNow")
 @Html.Partial("_Payment")
+@Html.Partial("_CheckOut")
 <script>
-    
     function OnCloseRoomDetail() {
         window.location.reload(true);
     }
@@ -248,45 +250,48 @@
                 }
             });
         } else {
+            $("#CheckOutModal").modal("show");
+            var gid = $("#guestid").val();
+            var rmid = $("#roomid").val();
+            var chinid = $("#checkinid").val();
 
-            bootbox.confirm({
-                title: "",
-                message: "Are you sure want to check out this room?",
-                button: {
-                    cancel: {
-                        label: "Cancel",
-                        ClassName: "btn-default",
-                    },
-                    confirm: {
-                        label: "Delete",
-                        ClassName: "btn-danger"
-                    }
+            $("#gid").val(gid);
+            $("#rmid").val(rmid);
+            $("#chinid").val(chinid);
+
+
+            $.ajax({
+                url: "/api/checkin_v/" + chinid,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                datatype: "json",
+                success: function (result) {
+                    //alert(result[0]["enddate"]);
+                    var date = moment(result.enddate).format("YYYY-MM-DD");
+                    $("#woldrecord").val(result.woldrecord);
+                    $("#eoldrecord").val(result.poldrecord);
+                    $("#startdate").val(date);
+                    $("#rmprice").val(result.price);
+                    $("#svprice").val(result.servicecharge);
+                    $("#totalpaybefor").val(result.pay);
                 },
-                callback: function (result) {
-                    if (result) {
-                        var rmid = document.getElementById('roomid');
-                        var rmname = document.getElementById('lblRoomNo').innerText;
-                        $("#roomidblock").val(rmid.value);
-                        $("#lblRoomNoBlock").text(rmname);
-
-                        $.ajax({
-                            type: "PUT",
-                            url: "/api/updateroomstatus/" + $("#roomid").val() + "/FREE",
-                            contentType: false,
-                            processData: false,
-                            // data: status,
-                            success: function (result) {
-                                toastr.success("Room has been unblock successfully.", "Server Response");
-                                $("#RoomDetailModal").modal("hide");
-                                window.location.reload(true);
-                            },
-                            error: function (error) {
-                                toastr.error("Unblock room fail!", "Server Response");
-                            }
-                        });
-                    }
+                error: function (errormessage) {
+                    toastr.error("No Record Select!", "Service Response");
                 }
             });
+
+            $.get("/api/WaterPoserPrice/1/2", function (data) {
+                $("#wpid").val(data.id);
+                $("#wprice").val(data.waterprice);
+                $("#pprice").val(data.powerprice);
+            });
+
+
+            $.get("/api/ExchangeRates/1/2", function (data) {
+                $("#exrate").val(data.rate);
+                $("#lblExchangeRate").text("1 $ = "+data.rate+" រៀល");
+            });
+           
         }
     }
     //function OnCheckOutAction() {
@@ -294,7 +299,6 @@
     //    var rmname = document.getElementById('lblRoomNo').innerText;
     //    $("#roomidblock").val(rmid.value);
     //    $("#lblRoomNoBlock").text(rmname);
-
     //    $.ajax({
     //        type: "PUT",
     //        url: "/api/updateroomstatus/" + $("#roomid").val() + "/FREE",

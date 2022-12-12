@@ -29,13 +29,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             var countModel = new CountModel()
             {
                 TotalUser = _context.Users.Count(),
-                TotalEmployee = _context.Employee.Where(c => c.status == true).Count(),
-                //TotalInvoice = _context.Invoice.Where(c => c.status == true).Count(),
-                TotalCustomer = _context.Customer.Where(c => c.status == true).Count(),
-                TotalBonus = _context.Bonus.Count(),
                 TotalExpense = _context.Exchanges.Count(),
-                TotalTransfer = _context.Transfers.Count(),
-                TotalBalance = _context.Customer.Where(c => c.status == true).Count(),
                 TotalGuest = _context.Guests.Count(),
                 TotalStaff = _context.Staffs.Count(),
                 TotalItem = _context.Items.Count(),

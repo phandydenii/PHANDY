@@ -113,7 +113,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
                                join wu in _context.WaterUsages on i.waterusageid equals wu.id 
-                               join pu in _context.Electrics on i.electricid equals pu.id
+                               join pu in _context.Electrics on i.electricusageid equals pu.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -179,7 +179,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
                                join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                               join pu in _context.Electrics on i.electricid equals pu.id
+                               join pu in _context.Electrics on i.electricusageid equals pu.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -245,7 +245,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
                                join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                               join pu in _context.Electrics on i.electricid equals pu.id
+                               join pu in _context.Electrics on i.electricusageid equals pu.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -310,7 +310,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
                                join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                               join pu in _context.Electrics on i.electricid equals pu.id
+                               join pu in _context.Electrics on i.electricusageid equals pu.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -378,7 +378,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    join g in _context.Guests on ci.guestid equals g.id
                                    join r in _context.Rooms on ci.roomid equals r.id
                                   join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                                  join pu in _context.Electrics on i.electricid equals pu.id
+                                  join pu in _context.Electrics on i.electricusageid equals pu.id
                                   join e in _context.Exchanges on i.exchangerateid equals e.id
                                    join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                    join f in _context.Floors on r.floorid equals f.id
@@ -446,7 +446,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                               join g in _context.Guests on ci.guestid equals g.id
                               join r in _context.Rooms on ci.roomid equals r.id
                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                              join pu in _context.Electrics on i.electricid equals pu.id
+                              join pu in _context.Electrics on i.electricusageid equals pu.id
                               join e in _context.Exchanges on i.exchangerateid equals e.id
                               join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                               join f in _context.Floors on r.floorid equals f.id
@@ -513,7 +513,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                               join g in _context.Guests on ci.guestid equals g.id
                               join r in _context.Rooms on ci.roomid equals r.id
                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                              join pu in _context.Electrics on i.electricid equals pu.id
+                              join pu in _context.Electrics on i.electricusageid equals pu.id
                               join e in _context.Exchanges on i.exchangerateid equals e.id
                               join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                               join f in _context.Floors on r.floorid equals f.id
@@ -581,7 +581,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                join g in _context.Guests on ci.guestid equals g.id
                                join r in _context.Rooms on ci.roomid equals r.id
                                join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                               join pu in _context.Electrics on i.electricid equals pu.id
+                               join pu in _context.Electrics on i.electricusageid equals pu.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
@@ -675,18 +675,18 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             DataTable ds2 = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("select max(id) from invoice_tbl", conx);
+
             SqlDataAdapter adp = new SqlDataAdapter("select max(id) from waterusage_tbl", conx);
-            SqlDataAdapter adp1 = new SqlDataAdapter("select max(id) from powerusage_tbl", conx);
+            SqlDataAdapter adp1 = new SqlDataAdapter("select max(id) from electricusage_tbl", conx);
             SqlDataAdapter adp2 = new SqlDataAdapter("select top 1 id from ExchangeRates where IsDeleted=0 order by id desc", conx);
             adp.Fill(ds);
             adp.Fill(ds1);
             adp2.Fill(ds2);
             string wid = ds.Rows[0][0].ToString();
-            string pid = ds1.Rows[0][0].ToString();
+            string eid = ds1.Rows[0][0].ToString();
             string exid = ds2.Rows[0][0].ToString();
 
-            if (!ModelState.IsValid)
-                return BadRequest();
 
             var InvoiceInDb = Mapper.Map<InvoiceDto, Invoice>(InvoiceDtos);
             InvoiceInDb.invoicedate = DateTime.Today;
@@ -697,15 +697,17 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             InvoiceInDb.createdate= DateTime.Today;
             InvoiceInDb.status="ACTIVE";
 
-            InvoiceInDb.electricid = int.Parse(pid);
-            InvoiceInDb.waterusageid = int.Parse(wid);
             InvoiceInDb.exchangerateid = int.Parse(exid);
+            InvoiceInDb.electricusageid = int.Parse(eid);
+            InvoiceInDb.waterusageid = int.Parse(wid);
+
+
 
             _context.Invoice.Add(InvoiceInDb);
             _context.SaveChanges();
             InvoiceInDb.id = InvoiceDtos.id;
 
-            SqlCommand cmd = new SqlCommand("select max(id) from invoice_tbl", conx);
+            
             Int16 InvoiceMax;
             try
             {

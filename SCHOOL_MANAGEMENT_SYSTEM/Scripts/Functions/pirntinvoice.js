@@ -74,13 +74,14 @@ function GetCheckInDetail() {
 function PrintInvoice(id) {
     $("#PrintNewInvoiceModal").modal("show");
     $("#invid").val(id);
+    $("#checkinid").val(id);
     $.ajax({
         url: "/api/invoice-v/newinvoie/" + id,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
-            //$("#checkinid").val(result[0]["checkinid"]);
+            
             $('#name').val(result[0]["name"]);
             $("#roomno").val(result[0]["room_no"]);
             $("#rmprice").val(result[0]["price"]);
@@ -104,8 +105,6 @@ function PrintInvoice(id) {
                     $('#invno').val(data);
                 });
             }
-            
-            //alert(result[0]["paid"]);
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");

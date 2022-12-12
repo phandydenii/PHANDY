@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
@@ -49,6 +50,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return Ok(waterusage);
         }
 
+
         [HttpGet]
         //Get : api/Buildings
         public IHttpActionResult GetWaterUsages()
@@ -71,42 +73,60 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
 
         [HttpPost]
-        public IHttpActionResult CreateWaterUsage(WaterUsageDto WaterUsageDtos)
+        public IHttpActionResult CreateWaterUsage()
         {
-            DataTable ds1 = new DataTable();
-            var connectionString1 = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            SqlConnection conx1 = new SqlConnection(connectionString1);
-            SqlDataAdapter adp = new SqlDataAdapter("select Max(id) from waterpowerprice_tbl where IsDeleted=0", conx1);
-            adp.Fill(ds1);
-            string wpprice = ds1.Rows[0][0].ToString();
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select Max(id) from waterpowerprice_tbl where IsDeleted=0", conx);
+            SqlCommand cmd = new SqlCommand("select max(id) from waterusage_tbl", conx);
+            adp.Fill(ds);
+            string wpprice = ds.Rows[0][0].ToString();
 
-            if (!ModelState.IsValid)
-                return BadRequest();
+            var chid = HttpContext.Current.Request.Form["checkinid"];
 
-            var isExist = _context.WaterUsages.SingleOrDefault(c => c.id == WaterUsageDtos.id);
-            if (isExist != null)
-                return BadRequest();
+            var predate = HttpContext.Current.Request.Form["predate"];
+            var prerecord = HttpContext.Current.Request.Form["prerecord"];
 
-            var WaterUsageInDb = Mapper.Map<WaterUsageDto, WaterUsage>(WaterUsageDtos);
-            WaterUsageInDb.predate = DateTime.Today;
-            WaterUsageInDb.price = int.Parse(wpprice);
-            _context.WaterUsages.Add(WaterUsageInDb);
-            _context.SaveChanges();
+            var currentdate = HttpContext.Current.Request.Form["currentdate"];
+            var currentrecord = HttpContext.Current.Request.Form["currentrecord"];
 
-            WaterUsageDtos.id = WaterUsageInDb.id;
+            SqlCommand command = new SqlCommand();
+            SqlCommand requestcommand = new SqlCommand();
+            requestcommand.Connection = conx;
+            requestcommand.CommandType = CommandType.StoredProcedure;
+            requestcommand.CommandText = "INSERT_WATER";
+            requestcommand.Parameters.Add("@checkinid", SqlDbType.Int).Value = int.Parse(chid);
+            requestcommand.Parameters.Add("@predate", SqlDbType.Date).Value = DateTime.Parse(predate);
+            requestcommand.Parameters.Add("@curredate", SqlDbType.Date).Value = DateTime.Parse(currentdate);
+            requestcommand.Parameters.Add("@prerecord", SqlDbType.Decimal).Value = decimal.Parse(prerecord);
+            requestcommand.Parameters.Add("@currrecord", SqlDbType.Decimal).Value = decimal.Parse(currentrecord);
+            requestcommand.Parameters.Add("@price", SqlDbType.Int).Value = int.Parse(wpprice);
+            Int16 GuestMax;
+            try
+            {
+                conx.Open();
+                requestcommand.ExecuteNonQuery();
+                GuestMax = Convert.ToInt16(cmd.ExecuteScalar());
 
-            return Created(new Uri(Request.RequestUri + "/" + WaterUsageDtos.id), WaterUsageDtos);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return Ok(GuestMax);
         }
 
 
         [HttpPut]
-        [Route("api/updatewaters/{invoiceid}/{currentrecord}")]
-        public IHttpActionResult GetMaxID(int invoiceid, decimal currentrecord)
+        [Route("api/updatewaterusage/{checkinid}/{currentrecord}")]
+        public IHttpActionResult GetMaxID(int checkinid, decimal currentrecord)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            SqlCommand requestcommand = new SqlCommand("update waterusage_tbl set currentrecord='" + currentrecord + "',currentdate=DATEADD(MONTH,1,predate) where invoiceid=" + invoiceid, conx);
+            SqlCommand requestcommand = new SqlCommand("update waterusage_tbl set currentrecord='" + currentrecord + "',currentdate=DATEADD(MONTH,1,predate) where checkinid=" + checkinid, conx);
             try
             {
                 conx.Open();

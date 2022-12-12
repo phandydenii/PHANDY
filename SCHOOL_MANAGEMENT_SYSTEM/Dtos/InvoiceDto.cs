@@ -19,8 +19,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public Guest guest { get; set; }
         public int checkinid { get; set; }
         public CheckIn checkin { get; set; }
-        public int powerusageid { get; set; }
-        public ElectricUsageDto powerusage { get; set; }
+        public int electricusageid { get; set; }
+        public ElectricUsage electricusage { get; set; }
         public int waterusageid { get; set; }
         public WaterUsage waterusage { get; set; }
 

@@ -1,0 +1,42 @@
+﻿
+
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="StaffSalaryModal" tabindex="-1" role="dialog" aria-labelledby="StaffSalaryModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;">តួនាទី</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    @*<div class="form-group">
+                        <label for="itemcharge">បុគ្គលិក</label>
+                        <select class="form-control input-sm" id="itemcharge">
+                            @foreach (var item in Model.StaffList)
+                            {
+                                <option value=@item.id>@item.name</option>
+                            }
+                        </select>
+                    </div>*@
+                    <div class="form-group">
+                        <label for="salary">ប្រាក់ខែ​</label>
+                        <input id="salary" name="salary" placeholder="Enter Position" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="note">ចំណាំ​</label>
+                        <input id="note" name="note" placeholder="Enter Position" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                    </div>
+                </div>
+             </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <label>&nbsp;</label>
+                    <button type="button" id="btnPosition" onclick="PositionAction()" class="btn btn-info btn-block btn-sm">Add New</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

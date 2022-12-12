@@ -33,6 +33,9 @@
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
                                     <a href="@Url.Action("Index", "BeginingBalance")">តម្លៃទឺក ភ្លើង</a>
                                 </li>
+                                <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
+                                    <a href="@Url.Action("Index", "Salary")">ប្រាក់ខែបុគ្គលិក</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -43,6 +46,9 @@
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
                                     <a href="@Url.Action("Index", "CheckIn")">ចូលស្នាក់នៅ</a>
+                                </li>
+                                <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
+                                    <a href="@Url.Action("Index", "CheckOut")">ចាកចេញ</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
                                     <a href="@Url.Action("Index", "Invoice")">បង់ប្រាក់ប្រចាំខែ</a>

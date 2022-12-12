@@ -30,7 +30,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DateTime? pnewdate { get; set; }
         public decimal wnewrecord { get; set; }
         public decimal pnewrecord { get; set; }
-
+        public decimal pay { get; set; }
         public int guestid { get; set; }
         public string name { get; set; }
         public string namekh { get; set; }

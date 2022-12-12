@@ -16,19 +16,44 @@
                 <span class="label label-warning">Chek In @Model.TotalCheckIn</span>
                 <span class="label label-danger">Block @Model.TotalBlock</span>
                 
-                @*<div class="icon-bar pull-right"><span class="glyphicon glyphicon-th-large"></span></div>
-                <div class="icon-bar pull-right"><span class="glyphicon glyphicon-th-list"></span></div>
-                <button type="button" class="btn btn-default pull-right" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
-                </button>*@
-                @*<button type="button" class="btn btn-default btn-sm pull-right">
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
-                </button>*@
-                <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Floor</button>
+
+                @*<div class="btn-group">
+                    <a href='#' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span> Action</a><a href='#' class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <button OnClick="" class="btn btn-warning btn-xs" style="margin-top:0px"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+                            <button OnClick="" class="btn btn-info btn-xs" style="margin-top:5px"><span class="glyphicon glyphicon-list-alt"></span> Detail</button>
+                            <button OnClick="" class="btn btn-danger btn-xs" style="margin-top:5px"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="btn-group">
+                    <a href="#" class="btn btn-info btn-xs">Success</a>
+                    <a href="#" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>*@
+
+                <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Floor</a>
+                <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomTypeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room Type</a>
+                <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room</a>
+                <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Item To Room</a>
+
+
+
+                @*<button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Floor</button>
                 <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomTypeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room Type</button>
                 <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room</button>
-                <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Item To Room</button>
-            </div>
+                <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Item To Room</button>*@
+           
+             </div>
         </div>
         
         <div class="row">
@@ -73,6 +98,7 @@
 @Html.Partial("_RoomDetail")
 @Html.Partial("_Building")
 @Html.Partial("_AddRoomItem")
+
 
           
 
@@ -204,6 +230,9 @@
             success: function (result) {
                 $.each(result, function (key, value) {
                     //alert(value.id);
+                    $("#guestid").val(value.guestid);
+                    $("#roomid").val(value.roomid);
+                    $("#checkinid").val(value.id);
                     $('#guestlist').append("<li class='list-group-item'>Name <span class='pull-right' style='color:darkblue'>" + value.name + "</span></li>"
                                           + "<li class='list-group-item'>Name Khmer <span class='pull-right' style='color:darkblue'>" + value.namekh + "</span></li>"
                                           + "<li class='list-group-item'>Gender <span class='pull-right' style='color:darkblue'>" + value.sex + "</span></li>"

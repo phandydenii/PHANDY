@@ -10,6 +10,5 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
     {
         public IEnumerable<Branch> Branchs { get; set; }
 
-        public IEnumerable<Department> Departments { get; set; }
     }
 }

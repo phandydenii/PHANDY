@@ -8,6 +8,5 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
 {
     public class CollectMoneyViewModel
     {
-        public IEnumerable<Employee> Employee { get; set; }
     }
 }

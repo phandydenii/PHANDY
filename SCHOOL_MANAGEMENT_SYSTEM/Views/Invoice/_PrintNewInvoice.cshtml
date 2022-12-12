@@ -17,6 +17,7 @@
                     <input id="exrate" name="exrate" type="text" style="display: none;" value="" class="form-control" />
                     <input id="wprice" name="wprice" type="text" style="display: none;" value="" class="form-control" />
                     <input id="pprice" name="pprice" type="text" style="display: none;" value="" class="form-control" />
+                    
                     <input id="ispaid" name="ispaid" type="text" style="display: none;" value="" class="form-control" />
                     <input id="isprint" name="isprint" type="text" style="display: none;" value="" class="form-control" />
                     <div class="col-md-12">
@@ -142,10 +143,10 @@
     function InvoiceNewPrint() {
         $.get("/api/invoice_v/"+$("#invid").val(), function (data) {
             if(data.isprint==false){
-                alert('false');
+                //alert('false');
                 PrintUpdateInvoice();
             }else{
-                alert('true');
+                //alert('true');
                 InsertNewInvoice();
             }
         });
@@ -182,21 +183,21 @@
     function UpdateWaterPrint() {
         $.ajax({
             type: "PUT",
-            url: "/api/updatewaters/" + $("#invid").val() + "/" + $('#recordwaternew').val(),
+            url: "/api/updatewaterusage/" + $("#checkinid").val() + "/" + $('#recordwaternew').val(),
             contentType: false,
             processData: false,
             success: function (result) {
                 //toastr.success("Update water payment has been Update successfully.", "Server Response");
             },
             error: function (error) {
-                toastr.error("Update water payment status fail!", "Server Response");
+                toastr.error("Update water fail!", "Server Response");
             }
         });
     }
     function UpdatePowerPrint() {
         $.ajax({
             type: "PUT",
-            url: "/api/updatepowers/" + $("#invid").val() + "/" + $('#recordpowernew').val(),
+            url: "/api/updateelectrics/" + $("#checkinid").val() + "/" + $('#recordpowernew').val(),
             contentType: false,
             processData: false,
             success: function (result) {
@@ -209,12 +210,15 @@
     }
     
 
+
+
+
+
     function InsertNewInvoice(){
         var data = {
             invoiceno: $('#invno').val(),
             guestid: $('#guestid').val(),
             checkinid: $('#checkinid').val(),
-            exchangerateid: @Model.ExchangeRateID,
             grandtotal:$('#grandtotal').val(),
             totalriel:$('#grandtotalkh').val(),
             totaldollar:$('#grandtotal').val(),
@@ -290,8 +294,7 @@
         });
     }
 
-    
-
+   
     function RecordWaterChange(){
         var waternewrecord = document.getElementById('recordwaternew').value;
         var wateroldrecord = document.getElementById('recordwaterold').value;
@@ -326,9 +329,20 @@
         var servicecharge = document.getElementById('svprice').value;
         var grandtotal= parseFloat(watertotal) + parseFloat(powertotal) + parseFloat(roomprice) + parseFloat(servicecharge);
         $('#grandtotal').val(grandtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-        $('#totalpayreil').val((grandtotal*parseFloat($('#exrate').val())).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        $('#grandtotalkh').val((grandtotal * parseFloat($('#exrate').val())).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
     }
     function OnCloseNewInv() {
+        //alert($("#checkinid").val());
         window.location.reload(true);
     }
 </script>
+
+
+
+@*recordwaterold
+recordwaternew
+waterusagetotal
+
+recordpowerold
+recordpowernew
+powerusagetotal*@

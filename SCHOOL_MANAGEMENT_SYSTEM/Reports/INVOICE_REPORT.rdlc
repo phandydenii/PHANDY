@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>វិក័យបត្របង់ថ្លៃការស្នាក់នៅ</Value>
+                <Value>សក្ខីបត្របង់ថ្លៃការស្នាក់នៅ</Value>
                 <Style>
                   <FontFamily>Khmer OS Muol Light</FontFamily>
                   <FontSize>11pt</FontSize>
@@ -274,9 +274,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.25966cm</Top>
-        <Left>3.65639cm</Left>
+        <Left>4.60889cm</Left>
         <Height>1.31437cm</Height>
-        <Width>7.52707cm</Width>
+        <Width>5.64853cm</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -308,9 +308,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>1.60931cm</Top>
-        <Left>3.65638cm</Left>
+        <Left>4.60888cm</Left>
         <Height>1.17327cm</Height>
-        <Width>7.52708cm</Width>
+        <Width>5.64854cm</Width>
         <ZIndex>7</ZIndex>
         <Style>
           <Border>
@@ -401,9 +401,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.25966cm</Top>
-        <Left>18.8407cm</Left>
+        <Left>19.7932cm</Left>
         <Height>1.31437cm</Height>
-        <Width>7.52708cm</Width>
+        <Width>5.71008cm</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>
@@ -436,9 +436,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
         <Top>1.60931cm</Top>
-        <Left>18.8407cm</Left>
+        <Left>19.7932cm</Left>
         <Height>1.17327cm</Height>
-        <Width>7.52708cm</Width>
+        <Width>5.71008cm</Width>
         <ZIndex>11</ZIndex>
         <Style>
           <Border>
@@ -500,7 +500,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>សក្ខីបត្រទទួលប្រាក់</Value>
+                <Value>សក្ខីបត្របង់ថ្លៃការស្នាក់នៅ</Value>
                 <Style>
                   <FontFamily>Khmer OS Muol Light</FontFamily>
                   <FontSize>11pt</FontSize>
@@ -1001,150 +1001,6 @@
             <Height>0.49417cm</Height>
             <Width>3.1962cm</Width>
             <ZIndex>7</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox157">
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>កាលបរិច្ឆេទ៖</Value>
-                    <Style>
-                      <FontFamily>Khmer OS Battambang</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Fields!wpredate.Value</Value>
-                    <Style>
-                      <FontFamily>Khmer OS Battambang</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>0.12089cm</Top>
-            <Left>3.22145cm</Left>
-            <Height>0.56473cm</Height>
-            <Width>3.2238cm</Width>
-            <ZIndex>8</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox158">
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Stat Date៖</Value>
-                    <Style>
-                      <FontFamily>Khmer OS Battambang</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Fields!wpredate.Value</Value>
-                    <Style>
-                      <FontFamily>Khmer OS Battambang</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>0.7209cm</Top>
-            <Left>3.22145cm</Left>
-            <Height>0.51505cm</Height>
-            <Width>3.2238cm</Width>
-            <ZIndex>9</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox207">
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>ដល់ថ្ងៃ៖</Value>
-                    <Style>
-                      <FontFamily>Khmer OS Battambang</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Fields!wcurrentdate.Value</Value>
-                    <Style>
-                      <FontFamily>Khmer OS Battambang</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>1.27123cm</Top>
-            <Left>3.22144cm</Left>
-            <Height>0.54405cm</Height>
-            <Width>3.1962cm</Width>
-            <ZIndex>10</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox208">
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>End Date៖</Value>
-                    <Style>
-                      <FontFamily>Khmer OS Battambang</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=Fields!wcurrentdate.Value</Value>
-                    <Style>
-                      <FontFamily>Khmer OS Battambang</FontFamily>
-                      <FontSize>8pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>1.85056cm</Top>
-            <Left>3.22144cm</Left>
-            <Height>0.49417cm</Height>
-            <Width>3.1962cm</Width>
-            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>

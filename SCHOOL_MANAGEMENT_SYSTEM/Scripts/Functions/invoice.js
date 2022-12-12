@@ -157,6 +157,8 @@ function OnPayment(id) {
         $('#note').val(result.note);
 
         $('#checkinid').val(result.checkinid);
+
+        alert(result.wprerecord);
     },
     error: function (errormessage) {
         toastr.error("Load Record Error", "Service Response");

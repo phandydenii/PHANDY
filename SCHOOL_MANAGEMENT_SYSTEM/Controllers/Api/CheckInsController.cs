@@ -77,7 +77,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   women = c.women,
                                   checkindate = c.checkindate,
                                   startdate = c.startdate,
-                                  enddate = c.enddate
+                                  enddate = c.enddate,
+                                  pay=c.pay
+                                  
                               }).ToList();
             return Ok(getCheckIn);
         }
@@ -112,8 +114,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   roomstatus = r.status,
                                   wolddate = w.predate,
                                   woldrecord = w.prerecord,
+                                  wnewdate=w.currentdate,
+                                  wnewrecord=w.currentrecord,
+
                                   polddate = p.predate,
                                   poldrecord = p.prerecord,
+                                  pnewdate = p.currentdate,
+                                  pnewrecord = p.currentrecord,
+                                  pay=c.pay,
                                   guestid = g.id,
                                   name = g.name,
                                   namekh = g.namekh,
@@ -165,8 +173,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   roomstatus = r.status,
                                   wolddate = w.predate,
                                   woldrecord = w.prerecord,
+                                  wnewdate=w.currentdate,
+                                  wnewrecord=w.currentrecord,
+
                                   polddate = p.predate,
                                   poldrecord = p.prerecord,
+                                  pnewdate=p.currentdate,
+                                  pnewrecord=p.currentrecord,
+
                                   guestid = g.id,
                                   name = g.name,
                                   namekh = g.namekh,

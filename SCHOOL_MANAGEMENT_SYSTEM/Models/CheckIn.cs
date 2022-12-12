@@ -21,7 +21,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public int child { get; set; }
 		public int man { get; set; }
 		public int women { get; set; }
-	}
+        public decimal pay { get; set; }
+    }
 }
 
 

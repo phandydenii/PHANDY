@@ -56,11 +56,15 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">លេខកុងទ័រភ្លើង</label>
-                            <input id="powerprerecord" name="powerprerecord" placeholder="Enter current number" value="0" type="text" class="form-control input-sm">
+                            <input id="powerprerecord" name="powerprerecord" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
                         </div>
                         <div class="form-group">
                             <label class="control-label">លេខកុងទ័រទឹក</label>
-                            <input id="waterprerecord" name="waterprerecord" placeholder="Enter current number" value="0" type="text" class="form-control input-sm">
+                            <input id="waterprerecord" name="waterprerecord" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="paybefor">បង់មុនចំនួន</label>
+                            <input id="paybefor" name="paybefor" placeholder="0.00" value="0" type="number" class="form-control input-sm">
                         </div>
                         <input type="hidden" id="wpid" />
                         <span >ថ្លៃភ្លើង</span> : 1m<sup>3</sup> = <label id="wprice"></label><span> រៀល</span>
@@ -81,17 +85,6 @@
 
 
 <script>
-
-    //function Test(){
-    //    alert($("#chroomid").val());
-    //    //$.get("/api/updateroomstatus/" + $("#chroomid").val() + "/CHECK-IN", 
-    //    //    function (data) {
-    //    //        alert('Successfully');
-    //    //});
-    //    UpdateStatusRoom();
-    //}
-    
-
     function CheckInAction() {
         var data = {
             roomid: $('#chroomid').val(),
@@ -99,6 +92,7 @@
             child: $('#child').val(),
             man: $('#man').val(),
             women: $('#women').val(),
+            pay: $('#paybefor').val(),
         };
         $.ajax({
             url: "/api/checkins",
@@ -181,7 +175,7 @@
             checkinid: id,
         };
         $.ajax({
-            url: "/api/powerusage",
+            url: "/api/electrics",
             data: JSON.stringify(data),
             type: "POST",
             contentType: "application/json;charset=utf-8",

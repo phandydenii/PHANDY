@@ -8,9 +8,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
 {
     public class PaymentViewModel
     {
-        public IEnumerable<grade> Grades { get; set; }
-        public IEnumerable<student> students { get; set; }
-        public IEnumerable<shifts> Shifts { get; set; }
+
         public IEnumerable<ExchangeRate> Exchanges { get; set; }
 
 

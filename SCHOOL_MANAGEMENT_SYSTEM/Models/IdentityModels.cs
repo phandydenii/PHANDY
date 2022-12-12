@@ -39,58 +39,21 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet<ElectricUsage> Electrics { get; set; }
         public DbSet<WaterUsage> WaterUsages { get; set; }
         public DbSet <WaterPowerPrice> WaterPowerPrices { get; set; }
+        public DbSet <CheckOut> CheckOuts { get; set; }
+        public DbSet <CheckOutDeatil> CheckOutDeatils { get; set; }
 
-
-
-
-        public DbSet<HowtoUse> HowtoUses { get; set; }
-        public DbSet<Feedback> Feedbacks { get; set; }
-        public DbSet<BankAccount> BankAccounts { get; set; }
-        public DbSet<Pricing> Pricings { get; set; }
-        public DbSet<Condition> Conditions { get; set; }
-        public DbSet<PayBy> PayBys { get; set; }
-        public DbSet<PaymentMethod> PaymentMethods { get; set; }
-        public DbSet<Branch> Branchs { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Employees> Employees { get; set; }
-        public DbSet<Salary> Salarys { get; set; }
-        public DbSet<Parent> Parents { get; set; }
-        public DbSet<Experience> Experiences { get; set; }
-        public DbSet<Education> Educations { get; set; }
-        public DbSet<student> Students { get; set; }
-        public DbSet<shifts> Shiftes { get; set; }
-        public DbSet<grade> Grades { get; set; }
-        public DbSet<emergency> Emergencys { get; set; }
-        public DbSet<Parrentstudent> Parrentstudents { get; set; }
-        public DbSet<appropriate> appropriates { get; set; }
-
-        public DbSet<registerstudent> Registerstudents { get; set; }
-        public DbSet<studylanguage> studylanguages { get; set; }
-        public DbSet<studyperiod> studyperiods { get; set; }
-
-        public DbSet<course> courses { get; set; }
-        public DbSet<payment> Payments { get; set; }
-
-        public DbSet<paymentdetail> PaymentDetails { get; set; }
-
-
-        //New
-        public DbSet<Position> Position { get; set; }
-        public DbSet<Showroom> Showroom { get; set; }
-        public DbSet<Employee> Employee { get; set; }
-        public DbSet<Customer> Customer { get; set; }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<Product> Product { get; set; }
-        public DbSet<Location> Location { get; set; }
+        public DbSet<Position> Position { get; set; }    
         public DbSet<Invoice> Invoice { get; set; }
-        public DbSet<InvoiceDetail> InvoiceDetail { get; set; }
-        public DbSet<Bonus> Bonus { get; set; }
+        public DbSet<InvoiceDetail> InvoiceDetail { get; set; }    
         public DbSet<ExpenseType> ExpenseTypes { get; set; }
         public DbSet<OtherExpense> OtherExpenses { get; set; }
-        public DbSet<Transfer> Transfers { get; set; }
-        public DbSet<invoice_move> InvoiceMoves { get; set; }
-        public DbSet<Collectmoney> CollectMoneys { get; set; }
-        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Branch> Branchs { get; set; }
+        public DbSet<Employees> Employees { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Salary> Salary { get; set; }
+        public DbSet<PaySlip> PaySlip { get; set; }
+
+
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
