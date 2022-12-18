@@ -1,0 +1,112 @@
+﻿
+
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="PaySlipModal" tabindex="-1" role="dialog" aria-labelledby="PaySlipModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;">បើកប្រាក់ខែ</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input id="payslipid" name="payslipid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <div class="form-group">
+                            <label for="staffname">ឈ្មោះបុគ្គលិក</label>
+                            <select class="form-control input-sm" id="staffid" onchange="ChangeStaff()">
+                                <option value="0">---Select Staff Name----</option>
+                                @foreach (var position in Model.StaffList)
+                                {
+                                    <option value=@position.id>@position.name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="salary">ប្រាក់ខែ</label>
+                            <input id="salary" name="salary" disabled placeholder="Enter Staff Name Khmer" type="number" value="0.00" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="vat">ពន្ធ</label>
+                            <input onfocus="this.select();" onchange="VatChange()" id="vat" name="vat" placeholder="Enter Staff Name" type="text" value="0.00" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="penanty">ពិន័យ</label>
+                            <input onfocus="this.select();" onchange="PenantyChange()" id="penanty" name="penanty" placeholder="Enter Identity No" type="number" value="0.00" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="bonus">ប្រាក់លើកទឹកចិត្ត</label>
+                            <input onfocus="this.select();" onchange="BonusChange()" id="bonus" name="bonus" placeholder="Enter Staff Name Khmer" type="number" value="0.00" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="salaryamount">សរុបប្រាក់ខែ</label>
+                            <input id="salaryamount" disabled name="salaryamount" placeholder="" type="number" value="0.00" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="note">ចំណាំ</label>
+                            <input id="note" name="note" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+            <div class="modal-footer">
+               <button type="button" id="btnTest" onclick="CloseModalStaff()" class="btn btn-info btn-danger btn-sm">Cancel</button>
+                <button type="button" id="btnSaveStaff" onclick="SaveStaffAction()" class="btn btn-info btn-sm pull-right">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function CloseModalStaff() {
+        //window.open("/invoice-report", "");
+    }
+    function ChangeStaff() {
+        var staffid = document.getElementById('staffid').value;
+        if (staffid == 0) {
+            $('#salary').val('0.00');
+            TotalSalary();
+        } else {
+            $.ajax({
+                url: "/api/salaries/1/" + staffid,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                datatype: "json",
+                success: function (result) {
+                    $('#salary').val(result.salary);
+                    TotalSalary();
+                },
+                error: function (errormessage) {
+                    toastr.error("No Record Select!", "Service Response");
+                }
+            });
+        }
+    }
+
+    function VatChange() {
+        TotalSalary();
+    }
+
+    function PenantyChange() {
+        TotalSalary();
+    }
+
+    function BonusChange() {
+        TotalSalary();
+    }
+
+    function TotalSalary() {
+        var salary = document.getElementById('salary').value;
+        var vat = document.getElementById('vat').value;
+        var penanty = document.getElementById('penanty').value;
+        var bonus = document.getElementById('bonus').value;
+        var totalsalry = parseFloat(salary) + parseFloat(bonus) - parseFloat(penanty) - (parseFloat(vat) * parseFloat(salary) / 100);
+        $('#salaryamount').val(totalsalry);
+    }
+</script>

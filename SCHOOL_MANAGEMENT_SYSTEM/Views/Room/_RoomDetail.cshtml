@@ -140,31 +140,31 @@
     function OnCloseRoomDetail() {
         window.location.reload(true);
     }
+
+
+    //On Book
     function OnBookAction() {
         var rmid = document.getElementById('lblRoomId').innerText;
         $("#RoomDetailModal").modal('hide');
         $("#frmbookroomid").val(rmid);
         $("#bookroomid").val(rmid);
 
-        ///get bookingno 
+        ///Get booking invoice
         $.get("/api/bookinginvoiceno", function (data) {
-
             $('#bookingno').val(data);
         });
 
         document.getElementById('frmbookroomid').disabled = true;
         document.getElementById('bookingno').disabled = true;
-
-        var roomid = document.getElementById('lblRoomId').innerText;
-
+        var roomid = document.getElementById('lblRoomNo').innerText;
         $("#lblidroom").text(roomid);
     }
     
+    //On Check In
     function OnCheckInAction() {
         var btncheckin = document.getElementById('btnCheckIn').innerText;
         var rmid = document.getElementById('roomid');
         var rmname = document.getElementById('lblRoomNo').innerText;
-        
         if (btncheckin == "Check In Now") {
             $("#CheckInNowModal").modal("show");
             $("#chnowroomid").val(rmid.value);
@@ -178,7 +178,6 @@
                 $("#examount").text(data.rate);
                 $("#roomidchin").val(rmid);               
             });
-            //alert('hello');
         } else {
             var guestid = document.getElementById('guestid');
             $("#CheckInModal").modal("show");
@@ -196,6 +195,8 @@
             });   
         }
     }
+
+    //On Check Out
     function OnCheckOutAction() {
         var checkoutbtn = document.getElementById('btnCheckOut').innerText;
         if (checkoutbtn == "Cancel Booking") {
@@ -216,7 +217,7 @@
                     if (result) {
                         $.ajax({
                             type: "PUT",
-                            url: "/api/bookingstatus/" + $("#bookingid").val() + "/cancel",
+                            url: "/api/bookingstatus/" + $("#bookingid").val() + "/Cancel",
                             contentType: false,
                             processData: false,
                             // data: status,
@@ -258,15 +259,12 @@
             $("#gid").val(gid);
             $("#rmid").val(rmid);
             $("#chinid").val(chinid);
-
-
             $.ajax({
                 url: "/api/checkin_v/" + chinid,
                 type: "GET",
                 contentType: "application/json;charset=utf-8",
                 datatype: "json",
                 success: function (result) {
-                    //alert(result[0]["enddate"]);
                     var date = moment(result.enddate).format("YYYY-MM-DD");
                     $("#woldrecord").val(result.woldrecord);
                     $("#eoldrecord").val(result.poldrecord);
@@ -286,7 +284,6 @@
                 $("#pprice").val(data.powerprice);
             });
 
-
             $.get("/api/ExchangeRates/1/2", function (data) {
                 $("#exrate").val(data.rate);
                 $("#lblExchangeRate").text("1 $ = "+data.rate+" រៀល");
@@ -294,27 +291,8 @@
            
         }
     }
-    //function OnCheckOutAction() {
-    //    var rmid = document.getElementById('roomid');
-    //    var rmname = document.getElementById('lblRoomNo').innerText;
-    //    $("#roomidblock").val(rmid.value);
-    //    $("#lblRoomNoBlock").text(rmname);
-    //    $.ajax({
-    //        type: "PUT",
-    //        url: "/api/updateroomstatus/" + $("#roomid").val() + "/FREE",
-    //        contentType: false,
-    //        processData: false,
-    //        // data: status,
-    //        success: function (result) {
-    //            toastr.success("Room has been unblock successfully.", "Server Response");
-    //            $("#RoomDetailModal").modal("hide");
-    //            window.location.reload(true);
-    //        },
-    //        error: function (error) {
-    //            toastr.error("Unblock room fail!", "Server Response");
-    //        }
-    //    });
-    //}
+
+    //On Block Room
     function OnBlockAction() {
         var rmid = document.getElementById('roomid');
         var rmname = document.getElementById('lblRoomNo').innerText;

@@ -11,6 +11,7 @@ using SCHOOL_MANAGEMENT_SYSTEM.Dtos;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Web;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 {
@@ -30,95 +31,62 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/Buildings
         public IHttpActionResult GetInvoiceDetails()
         {
-            var GetInvoiceV = (from i in _context.Invoice
-                              join id in _context.InvoiceDetail on i.id equals id.invoiceid
-                              join ci in _context.Guests on i.checkinid equals ci.id
-                              join r in _context.Rooms on id.roomid equals r.id
-                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                               join pu in _context.Electrics on i.electricusageid equals pu.id
-                               join e in _context.Exchanges on i.exchangerateid equals e.id
-
-                              select new InvoiceDetailV
-                              {
-                                  id = i.id,
-                                  invoiceno=i.invoiceno,
-                                  invoicedate=i.invoicedate,
-                                  userid=User.Identity.Name,
-                                  exchangerate=e.Rate,
-                                  grandtotal=i.grandtotal,
-                                  totaldollar=i.totaldollar,
-                                  totalriel=i.totalriel,
-                                  paydollar=id.paydollar,
-                                  payriel=id.payriel,
-                                  paid=i.paid,
-                                  owe=i.owe,
-                                  owereassion=i.owereassion,
-                                  totalreturnamount=i.totalreturnamount,
-                                  returnamount=i.returnamount,
-                                  wpredate=wu.predate,
-                                  wcurrentdate=wu.currentdate,
-                                  wprerecord=wu.prerecord,
-                                  wcurrentrecord=wu.currentrecord,
-                                  wprice=wu.price,
-                                  ppredate=pu.predate,
-                                  pcurrentdate=pu.currentdate,
-                                  pprerecord=pu.prerecord,
-                                  pcurrentrecord=pu.currentrecord,
-                                  pprice=pu.price,
-                                  roomno = r.room_no,
-                                  roomprice = r.price,
-                                  checkinid=ci.id
-                              }).ToList();
+            var GetInvoiceV = _context.InvoiceDetail.Include(w => w.waterusage).Include(e => e.electric).ToList();
             return Ok(GetInvoiceV);
         }
 
         [HttpGet]
         //Get : api/Buildings
-        public IHttpActionResult GetInvoiceDetail(int invdetailid)
+        public IHttpActionResult GetInvoiceDetail(int id)
         {
-            var GetInvoiceV = (from i in _context.Invoice
-                               join id in _context.InvoiceDetail on i.id equals id.invoiceid
-                               join ci in _context.Guests on i.checkinid equals ci.id
-                               join r in _context.Rooms on id.roomid equals r.id
-                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                               join pu in _context.Electrics on i.electricusageid equals pu.id
-                               join e in _context.Exchanges on i.exchangerateid equals e.id
-                               where i.id==invdetailid
-                               select new InvoiceDetailV
-                               {
-                                   id = i.id,
-                                   invoiceno = i.invoiceno,
-                                   invoicedate = i.invoicedate,
-                                   userid = User.Identity.Name,
-                                   exchangerate = e.Rate,
-                                   grandtotal = i.grandtotal,
-                                   totaldollar = i.totaldollar,
-                                   totalriel = i.totalriel,
-                                   paydollar = id.paydollar,
-                                   payriel = id.payriel,
-                                   paid = i.paid,
-                                   owe = i.owe,
-                                   owereassion = i.owereassion,
-                                   totalreturnamount = i.totalreturnamount,
-                                   returnamount = i.returnamount,
-                                   wpredate = wu.predate,
-                                   wcurrentdate = wu.currentdate,
-                                   wprerecord = wu.prerecord,
-                                   wcurrentrecord = wu.currentrecord,
-                                   wprice = wu.price,
-                                   ppredate = pu.predate,
-                                   pcurrentdate = pu.currentdate,
-                                   pprerecord = pu.prerecord,
-                                   pcurrentrecord = pu.currentrecord,
-                                   pprice = pu.price,
-                                   roomno = r.room_no,
-                                   roomprice = r.price,
-                                   checkinid=ci.id
-                               }).ToList();
+            var GetInvoiceV = _context.InvoiceDetail.Include(w => w.waterusage).Include(e => e.electric).Where(c =>c.id==id).SingleOrDefault();
             return Ok(GetInvoiceV);
         }
 
+        [HttpPost]
+        public IHttpActionResult InsertStaff()
+        {
+            var invoiceid = HttpContext.Current.Request.Form["invoiceid"];
+            var itemname = HttpContext.Current.Request.Form["itemname"];
+            var price = HttpContext.Current.Request.Form["price"];
+            var waterusageid = HttpContext.Current.Request.Form["waterusageid"];
+            var electricusageid = HttpContext.Current.Request.Form["electricusageid"];
+            var paydollar = HttpContext.Current.Request.Form["paydollar"];
+            var payriel = HttpContext.Current.Request.Form["payriel"];
+       
+
+            var InoiceDetailDto = new InvoiceDetailDto()
+            {
+                invoiceid=int.Parse(invoiceid),
+                itemname=itemname,
+                price=decimal.Parse(price),
+                waterusageid=int.Parse(waterusageid),
+                electricusageid=int.Parse(electricusageid),
+                paydollar=decimal.Parse(paydollar),
+                payriel=decimal.Parse(payriel),
+            };
+
+            var InvoiceDetail = Mapper.Map<InvoiceDetailDto, InvoiceDetail>(InoiceDetailDto);
+            _context.InvoiceDetail.Add(InvoiceDetail);
+            _context.SaveChanges();
+            InoiceDetailDto.id = InvoiceDetail.id;
 
 
-    }
+            //var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            //SqlConnection con = new SqlConnection(connectionString);            //SqlCommand cmd = new SqlCommand("Select max(id) From PaySlip_V", con);
+
+            //Int16 maxid;
+            //try
+            //{
+            //    con.Open();
+            //    cmd.ExecuteNonQuery();
+            //    maxid = Convert.ToInt16(cmd.ExecuteScalar());
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
+
+            return Ok();
+        }
+     }
 }

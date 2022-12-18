@@ -5,90 +5,82 @@
         <div class="modal-content">
             <div class="modal-header clearfix">
                 <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">បុគ្គលិក</b>
+                <b class="modal-title" style="color: darkblue;">បន្ថែមបុគ្គលិកថ្មី</b>
             </div>
             <div class="modal-body">
-                <div class="col-md-6">
-                    <input id="staffid" name="staffid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
-                    <div class="form-group">
-                        <label for="staffname">ឈ្មោះជាភាសាអង់គ្លេស</label>
-                        <input id="staffname" name="staffname" placeholder="Enter Staff Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                    </div>
-                    <div class="form-group">
-                        <label for="staffnamekh">ឈ្មោះជាភាសាខ្មែរ</label>
-                        <input id="staffnamekh" name="staffnamekh" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                    </div>
-                    <div class="form-group">
-                        <label for="sex">ភេទ</label>
-                        <select id="sex" name="sex" class="form-control input-sm" style="min-width: 100%">
-                            <option>Male</option>
-                            <option>Female</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">លេខទូរសព្ទ</label>
-                        <input id="phone" name="phone" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                    </div>
-                    <div class="form-group">
-                        <label for="dob">ថ្ងៃខែឆ្នាំំកំណើត</label>
-                        <input id="dob" name="dob" placeholder="Enter Staff Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                    </div>
-                    <div class="form-group">
-                        <label for="status">ស្ថានភាព</label>
-                        <select id="status" name="status" class="form-control input-sm" style="min-width: 100%">
-                            <option>Active</option>
-                            <option>In-Active</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <img class="center img-responsive img-thumbnail" id="photo" src="~/Images/no_image.png" style="width:50%;height:50%"/>
-                    </div>
-                    <div class="form-group">
-                        <label>ជ្រើសរើសរូបថត</label>
-                        <input onchange="readURL(this);" type="file" id="file" />
-                        <input type="hidden" value="" id="file_old" />
-                    </div>
-                    <div class="form-group">
-                        <label for="position">តួនាទី</label>
-                        @*<select class="form-control input-sm" id="position">
-                            @foreach (var position in Model)
-                            {
-                                <option value=@position.id>@position.positionname</option>
-                            }
-                        </select>*@
-                        @*<select class="form-control input-sm" id="buildingid">
-                            @foreach (var roomType in Model.Buildings)
-                            {
-                                <option value=@roomType.id>@roomType.buildingname</option>
-                            }
-                        </select>*@
-                    </div>
-                    <div class="form-group">
-                        <label for="email">អ៊ីម៉ែល</label>
-                        <input id="email" name="email" placeholder="Enter Email" type="email" value="" class="form-control input-sm" style="min-width: 100%" />
-                    </div>
-                    <div class="form-group">
-                        <label for="identityno">លេខអត្តសញ្ញាណប័ណ្ណ</label>
-                        <input id="identityno" name="identityno" placeholder="Enter Identity No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="address">អាស័យដ្ឋាន</label>
-                        <input id="address" name="address" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                    </div>
-                </div>
                 <div class="row">
+                    <div class="col-md-6">
+                        <input id="staffid" name="staffid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <div class="form-group">
+                            <label for="staffname">ឈ្មោះជាភាសាអង់គ្លេស</label>
+                            <input id="staffname" name="staffname" placeholder="Enter Staff Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="staffnamekh">ឈ្មោះជាភាសាខ្មែរ</label>
+                            <input id="staffnamekh" name="staffnamekh" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="sex">ភេទ</label>
+                            <select id="sex" name="sex" class="form-control input-sm" style="min-width: 100%">
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">លេខទូរសព្ទ</label>
+                            <input id="phone" name="phone" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">ថ្ងៃខែឆ្នាំកំណើត</label>
+                            <input id="dob" name="dob" placeholder="Enter Staff Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="identityno">លេខអត្តសញ្ញាណប័ណ្ណ</label>
+                            <input id="identityno" name="identityno" placeholder="Enter Identity No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <img class="center img-responsive img-thumbnail" id="photo" src="~/Images/no_image.png" style="width:200px;height:200px" />
+                        </div>
+                        <div class="form-group">
+                            <label>ជ្រើសរើសរូបថត</label>
+                            <input onchange="readURL(this);" type="file" id="file" />
+                            <input type="hidden" value="" id="file_old" />
+                        </div>
+                        <div class="form-group">
+                            <label for="position">តួនាទី</label>
+                            <select class="form-control input-sm" id="position">
+                                @foreach (var position in Model.Positions)
+                                {
+                                    <option value=@position.id>@position.positionname</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">អ៊ីម៉ែល</label>
+                            <input id="email" name="email" placeholder="Enter Email" type="email" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
                     <div class="col-md-12">
-                        <div class="col-md-12">
-                            <button type="button" id="btnSave" onclick="StaffAction()" class="btn btn-info btn-block btn-sm">Add New</button>
+                        <div class="form-group">
+                            <label for="address">អាស័យដ្ឋាន</label>
+                            <input id="address" name="address" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <button type="button" id="btnTest" onclick="CloseModalStaff()" class="btn btn-info btn-danger btn-block btn-sm">Cancel</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="button" id="btnSaveStaff" onclick="SaveStaffAction()" class="btn btn-info btn-block btn-sm">Save</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

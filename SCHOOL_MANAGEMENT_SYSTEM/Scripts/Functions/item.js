@@ -33,9 +33,6 @@ function GetItem() {
                     data: "remark"
                 },
                 {
-                    data: "status"
-                },
-                {
                     data: "id",
                     render: function (data) {
                         return "<button OnClick='OnEditItem (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +

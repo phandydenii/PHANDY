@@ -18,9 +18,12 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
+            <label for="date">មើលតាមកាលបរិច្ឆេទ:</label>
             <div class="form-inline">
-                <label for="date">មើលតាមកាលបរិច្ឆេទ:</label>
-                <input id="date" name="date" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Product Name" />
+                <label for="fromdate">ចាប់ពីថ្ងៃទី:</label>
+                <input id="fromdate" name="fromdate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Product Name" />
+                <label for="todate">ដល់:</label>
+                <input id="todate" name="todate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Product Name" />
             </div>
         </div>
     </div>

@@ -51,6 +51,14 @@
       <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -91,6 +99,7 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.GraphModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="ReportViewerForMvc, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\ReportViewerForMvc.1.1.1\lib\net45\ReportViewerForMvc.dll</HintPath>
@@ -258,6 +267,7 @@
     <Compile Include="Controllers\Api\ExpenseTypeController.cs" />
     <Compile Include="Controllers\Api\LoginController.cs" />
     <Compile Include="Controllers\Api\OtherExpenseController.cs" />
+    <Compile Include="Controllers\Api\PaySlipsController.cs" />
     <Compile Include="Controllers\Api\PositionController.cs" />
     <Compile Include="Controllers\Api\ElectricsController.cs" />
     <Compile Include="Controllers\Api\RoomDetailsController.cs" />
@@ -278,6 +288,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OtherExpenseController.cs" />
     <Compile Include="Controllers\PaymentMethodsController.cs" />
+    <Compile Include="Controllers\PaySlipController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\SalaryController.cs" />
@@ -384,6 +395,7 @@
     <Content Include="bin\Microsoft.ReportViewer.WinForms.dll" />
     <Content Include="Content\bootstrap-cerolean.css" />
     <Content Include="Content\bootstrap-ceroleanV5.css" />
+    <Content Include="Content\bootstrap-united-v3.css" />
     <Content Include="Content\bootstrap-united.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -619,6 +631,7 @@
     <Content Include="Scripts\Functions\item.js" />
     <Content Include="Scripts\Functions\items.js" />
     <Content Include="Scripts\Functions\paymentMethod.js" />
+    <Content Include="Scripts\Functions\payslip.js" />
     <Content Include="Scripts\Functions\pirntinvoice.js" />
     <Content Include="Scripts\Functions\pricing.js" />
     <Content Include="Scripts\Functions\condition.js" />
@@ -655,6 +668,7 @@
     <EmbeddedResource Include="Reports\INVOICE_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\ITEM_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\PAYMENT_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\PAYSLIP_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\ROOM_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\STAFF_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\USER_REPORT.rdlc" />
@@ -1027,6 +1041,14 @@
     <Content Include="Views\CheckOut\Index.cshtml" />
     <Content Include="Views\Salary\Index.cshtml" />
     <Content Include="Views\Salary\_CreateStaffSalary.cshtml" />
+    <Content Include="Views\PaySlip\Create.cshtml" />
+    <Content Include="Views\PaySlip\Delete.cshtml" />
+    <Content Include="Views\PaySlip\Details.cshtml" />
+    <Content Include="Views\PaySlip\Edit.cshtml" />
+    <Content Include="Views\PaySlip\Index.cshtml" />
+    <Content Include="Views\PaySlip\_Create.cshtml" />
+    <Content Include="Views\Report\_payslip.cshtml" />
+    <Content Include="Views\Report\_Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,22 +6,29 @@
         $('#loadingGif').removeClass('show');
     });
 
-    GetOtherExpense($('#date').val());
-    $('#date').on('change', function () {
-        var date = this.value;
-        GetOtherExpense(date);
-        
-    })
+    GetOtherExpense($('#fromdate').val(), $('#todate').val());
+    $('#fromdate').on('change', function () {
+        var fromdate = this.value;
+        var todate = $('#todate').val();
+        GetOtherExpense(fromdate, todate);
+
+    });
+    $('#todate').on('change', function () {
+        var todate = this.value;
+        var fromdate = $('#fromdate').val();
+        GetOtherExpense(fromdate, todate);
+
+    });
 })
 
 var tableEmployee = [];
 toastr.optionsOverride = 'positionclass = "toast-bottom-right"';
 toastr.options.positionClass = 'toast-bottom-right';
 
-function GetOtherExpense(date) {
+function GetOtherExpense(fromdate,todate) {
     tableEmployee = $('#tableOtherExpense').DataTable({
         ajax: {
-            url: "/api/OtherExpense?date="+date,
+            url: "/api/OtherExpense/" + fromdate + "/" + todate,
             dataSrc: ""
         },
         columns: [

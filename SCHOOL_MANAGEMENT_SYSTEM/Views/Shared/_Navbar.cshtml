@@ -13,13 +13,13 @@
             <ul class="nav navbar-nav">
                 @if (Request.IsAuthenticated)
                 {
-                    if (User.IsInRole("MANAGE BOOKING"))
+                    if (User.IsInRole("Manage Setup"))
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">តម្លើង <span class="glyphicon glyphicon-menu-down"></span></a>
                             <ul class="dropdown-menu animate slideIn">
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "Room")">បន្ទប់</a>
+                                    <a href="@Url.Action("Index", "Room")"> បន្ទប់</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
                                     <a href="@Url.Action("Index", "Staff")">បុគ្គលិក</a>
@@ -38,6 +38,9 @@
                                 </li>
                             </ul>
                         </li>
+                    }
+                    if (User.IsInRole("Manage Process"))
+                    {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ប្រត្តិបត្តការណ៍ <span class="glyphicon glyphicon-menu-down"></span></a>
                             <ul class="dropdown-menu animate slideIn">
@@ -55,6 +58,9 @@
                                 </li>
                             </ul>
                         </li>
+                    }
+                    if (User.IsInRole("Manage Balance"))
+                    {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">គណនេយ្យ <span class="glyphicon glyphicon-menu-down"></span></a>
                             <ul class="dropdown-menu animate slideIn">
@@ -64,23 +70,38 @@
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
                                     <a href="@Url.Action("Index", "OtherExpense")">ចំណាយ</a>
                                 </li>
+                                <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
+                                    <a href="@Url.Action("Index", "PaySlip")">បើកប្រាក់ខែបុគ្គលិក</a>
+                                </li>
                             </ul>
                         </li>
+                    }
+                    if (User.IsInRole("Manage Report"))
+                    {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">របាយការណ៍ <span class="glyphicon glyphicon-menu-down"></span></a>
                             <ul class="dropdown-menu animate slideIn">
+                                <li><b>@Html.ActionLink("តម្លើង", "", "")</b></li>
                                 <li>@Html.ActionLink("-បុគ្គលិក", "", "staff-list")</li>
                                 <li>@Html.ActionLink("-ភ្ញៀវ", "", "guest-list")</li>
                                 <li>@Html.ActionLink("-បន្ទប់", "", "room-list")</li>
                                 <li>@Html.ActionLink("-សម្ភារៈប្រើប្រាស់", "", "item-list")</li>
                                 <li>@Html.ActionLink("-អ្នកប្រើប្រាស់", "", "")</li>
                                 <li>@Html.ActionLink("-វិក័យបត្រ", "", "")</li>
+                                <li><b>@Html.ActionLink("ប្រត្តិបត្តការណ៍", "", "")</b></li>
+                                <li>@Html.ActionLink("-កក់", "", "room-list")</li>
+                                <li>@Html.ActionLink("-ចូលស្នាក់នៅ", "", "item-list")</li>
+                                <li>@Html.ActionLink("-រើរចេញ", "", "")</li>
+                                <li>@Html.ActionLink("-បើកប្រាក់ខែ", "", "payslip-rpt")</li>
+                                <li>@Html.ActionLink("-បង់ប្រាក់ប្រចាំខែ", "", "")</li>
+                                <li><b>@Html.ActionLink("ប្រត្តិបត្តការណ៍", "", "")</b></li>
                                 <li>@Html.ActionLink("-ចំណាយប្រចាំខែ", "", "invoice-report")</li>
+                                <li>@Html.ActionLink("-ចំណូលប្រាចាំខែ", "", "invoice-report")</li>
                                
                             </ul>
                         </li>
                     }
-                    if (User.IsInRole("MANAGE USER"))
+                    if (User.IsInRole("Manage User"))
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

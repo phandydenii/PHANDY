@@ -26,13 +26,11 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
 
         public ActionResult Index()
         {
-            //var roomViewModel = new StaffViewModel()
-            //{
-            //    Positions = _context.Position.ToList()
-            //};
-            //return View(roomViewModel);
-            var position = _context.Position.ToList();
-            return View();
+            var roomViewModel = new StaffViewModel()
+            {
+                Positions = _context.Position.ToList()
+            };
+            return View(roomViewModel);
 
         }
     }

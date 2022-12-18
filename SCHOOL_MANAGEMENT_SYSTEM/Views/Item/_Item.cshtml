@@ -4,7 +4,7 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <button type="button" onclick="CloseItem()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
                 <b class="modal-title" style="color: darkblue;">Item</b>
             </div>
             <div class="modal-body">
@@ -53,6 +53,11 @@
     </div>
 </div>
 
+<script>
+    function CloseItem() {
+        window.location.reload(true);
+    }
+</script>
 
 
 

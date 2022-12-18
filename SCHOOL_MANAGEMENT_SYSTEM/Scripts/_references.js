@@ -73,6 +73,7 @@
 /// <reference path="functions/parrentstudent.js" />
 /// <reference path="functions/payment.js" />
 /// <reference path="Functions/paymentMethod.js" />
+/// <reference path="functions/payslip.js" />
 /// <reference path="functions/pirntinvoice.js" />
 /// <reference path="functions/positions.js" />
 /// <reference path="Functions/pricing.js" />

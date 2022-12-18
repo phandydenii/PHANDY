@@ -10,6 +10,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
     public class Salary
     {
         public int id { get; set; }
+        public DateTime date { get; set; }
         public int staffid { get; set; }
         public Staff staff { get; set; }
         public decimal salary { get; set; }

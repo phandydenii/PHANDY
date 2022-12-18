@@ -209,11 +209,6 @@
         });
     }
     
-
-
-
-
-
     function InsertNewInvoice(){
         var data = {
             invoiceno: $('#invno').val(),
@@ -332,17 +327,6 @@
         $('#grandtotalkh').val((grandtotal * parseFloat($('#exrate').val())).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
     }
     function OnCloseNewInv() {
-        //alert($("#checkinid").val());
         window.location.reload(true);
     }
 </script>
-
-
-
-@*recordwaterold
-recordwaternew
-waterusagetotal
-
-recordpowerold
-recordpowernew
-powerusagetotal*@

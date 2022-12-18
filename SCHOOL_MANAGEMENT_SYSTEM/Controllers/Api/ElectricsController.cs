@@ -85,26 +85,28 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var chid = HttpContext.Current.Request.Form["checkinid"];
             var predate = HttpContext.Current.Request.Form["predate"];
             var prerecord = HttpContext.Current.Request.Form["prerecord"];
-
             var currentdate = HttpContext.Current.Request.Form["currentdate"];
             var currentrecord = HttpContext.Current.Request.Form["currentrecord"];
 
-            SqlCommand command = new SqlCommand();
-            SqlCommand requestcommand = new SqlCommand();
-            requestcommand.Connection = conx;
-            requestcommand.CommandType = CommandType.StoredProcedure;
-            requestcommand.CommandText = "INSERT_ELECTRIC";
-            requestcommand.Parameters.Add("@checkinid", SqlDbType.Int).Value = int.Parse(chid);
-            requestcommand.Parameters.Add("@predate", SqlDbType.Date).Value = DateTime.Parse(predate);
-            requestcommand.Parameters.Add("@curredate", SqlDbType.Date).Value = DateTime.Parse(currentdate);
-            requestcommand.Parameters.Add("@prerecord", SqlDbType.Decimal).Value = decimal.Parse(prerecord);
-            requestcommand.Parameters.Add("@currrecord", SqlDbType.Decimal).Value = decimal.Parse(currentrecord);
-            requestcommand.Parameters.Add("@price", SqlDbType.Int).Value = int.Parse(wpprice);
+            var EletricusageDto = new ElectricUsageDto()
+            {
+                checkinid = int.Parse(chid),
+                predate = DateTime.Today,
+                prerecord = decimal.Parse(prerecord),
+                currentdate = DateTime.Today,
+                currentrecord = decimal.Parse(currentrecord),
+                price = int.Parse(wpprice),
+            };
+
+            var ElectricUsage = Mapper.Map<ElectricUsageDto, ElectricUsage>(EletricusageDto);
+            _context.Electrics.Add(ElectricUsage);
+            _context.SaveChanges();
+            EletricusageDto.id = ElectricUsage.id;
+
             Int16 GuestMax;
             try
             {
                 conx.Open();
-                requestcommand.ExecuteNonQuery();
                 GuestMax = Convert.ToInt16(cmd.ExecuteScalar());
 
             }

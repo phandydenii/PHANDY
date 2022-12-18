@@ -9,6 +9,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using System.IO;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 {
@@ -31,28 +33,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             var getStaff = _context.Staffs.Include(c => c.position).ToList();
             return Ok(getStaff);
-            //var getStaff = (from s in _context.Staffs
-            //                join p in _context.Position on s.positionid equals p.id
-            //                select new StaffV
-            //                {
-            //                    id = s.id,
-            //                    positionname = p.positionname,
-            //                    positionnamekh = p.positionnamekh,
-            //                    name = s.name,
-            //                    namekh = s.namekh,
-            //                    sex=s.sex,
-            //                    phone=s.phone,
-            //                    dob=s.dob,
-            //                    address=s.address,
-            //                    email=s.email,
-            //                    identityno=s.identityno,
-            //                    photo=s.photo,
-            //                    createby=s.createby,
-            //                    createdate=s.createdate,
-            //                   status = s.status
-            //               }).ToList();
-
-            //return Ok(getStaff);
         }
 
 
@@ -60,62 +40,186 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/RoomTypes{id}
         public IHttpActionResult GetStaffById(int id)
         {
-            var getStaffById = _context.Staffs.SingleOrDefault(c => c.id == id);
+            var getStaffById = _context.Staffs.Include(c => c.position).SingleOrDefault(c => c.id == id);
 
             if (getStaffById == null)
                 return NotFound();
 
             return Ok(Mapper.Map<Staff, StaffDto>(getStaffById));
         }
+
+            
         [HttpPost]
-        public IHttpActionResult CreateStaff(StaffDto StaffDtos)
+        public IHttpActionResult InsertStaff()
         {
-            if (!ModelState.IsValid)
+            var positionid = HttpContext.Current.Request.Form["positionid"];
+            var name = HttpContext.Current.Request.Form["name"];
+            var namekh = HttpContext.Current.Request.Form["namekh"];
+            var sex = HttpContext.Current.Request.Form["sex"];
+            var phone = HttpContext.Current.Request.Form["phone"];
+            var dob = HttpContext.Current.Request.Form["dob"];
+            var address = HttpContext.Current.Request.Form["address"];
+            var email = HttpContext.Current.Request.Form["email"];
+            var identityno = HttpContext.Current.Request.Form["identityno"];
+            var photo = HttpContext.Current.Request.Files["photo"];
+            var createby = User.Identity.GetUserName();
+            var createdate = DateTime.Today;
+
+
+            var empInDb = _context.Staffs.SingleOrDefault(c => c.name == name && c.status == true);
+
+            if (empInDb != null)
                 return BadRequest();
 
-            var isExist = _context.Staffs.SingleOrDefault(c => c.id == StaffDtos.id);
-            if (isExist != null)
-                return BadRequest();
+            string photoName = "";
+            if (photo != null)
+            {
+                photoName = Path.Combine(Path.GetDirectoryName(photo.FileName)
+                    , string.Concat(Path.GetFileNameWithoutExtension(photo.FileName)
+                    , DateTime.Now.ToString("_yyyy_MM_dd_HH_mm_ss")
+                    , Path.GetExtension(photo.FileName)
+                    ));
+                var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images"), photoName);
+                photo.SaveAs(fileSavePath);
 
-            var Staff = Mapper.Map<StaffDto, Staff>(StaffDtos);
+            }
 
-            _context.Staffs.Add(Staff);
+            var staffDto = new StaffDto()
+            {
+                positionid = Int32.Parse(positionid),
+                name = name,
+                namekh = namekh,
+                sex = sex,
+                phone = phone,
+                dob = DateTime.Parse(dob),
+                address = address,
+                email = email,
+                identityno = identityno,
+                photo = photoName,
+                status = true,
+                createby = createby,
+                createdate = createdate
+            };
+
+            var staff = Mapper.Map<StaffDto, Staff>(staffDto);
+            _context.Staffs.Add(staff);
             _context.SaveChanges();
 
-            StaffDtos.id = Staff.id;
+            staffDto.id = staff.id;
 
-            return Created(new Uri(Request.RequestUri + "/" + StaffDtos.id), StaffDtos);
+            return Created(new Uri(Request.RequestUri + "/" + staffDto.id), staffDto);
+            
         }
+
 
         [HttpPut]
-        //PUT : /api/Staff/{id}
-        public IHttpActionResult EditStaff(int id, StaffDto StaffDtos)
+        public IHttpActionResult UpdateEmployees(int id)
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
-            var isExist = _context.Staffs.SingleOrDefault(c => c.id == StaffDtos.id && c.id != StaffDtos.id);
-            if (isExist != null)
-                return BadRequest();
+            var positionid = HttpContext.Current.Request.Form["positionid"];
+            var name = HttpContext.Current.Request.Form["name"];
+            var namekh = HttpContext.Current.Request.Form["namekh"];
+            var sex = HttpContext.Current.Request.Form["sex"];
+            var phone = HttpContext.Current.Request.Form["phone"];
+            var dob = HttpContext.Current.Request.Form["dob"];
+            var address = HttpContext.Current.Request.Form["address"];
+            var email = HttpContext.Current.Request.Form["email"];
+            var identityno = HttpContext.Current.Request.Form["identityno"];
+            var photo = HttpContext.Current.Request.Files["photo"];
+            var createby = User.Identity.GetUserName();
+            var createdate = DateTime.Today;
+            var old_file = HttpContext.Current.Request.Form["file_old"];
 
-            var StaffInDb = _context.Staffs.SingleOrDefault(c => c.id == id);
-            Mapper.Map(StaffDtos, StaffInDb);
-            _context.SaveChanges();
 
-            return Ok(StaffInDb);
+            var empInDb = _context.Staffs.SingleOrDefault(c => c.id == id);
+
+            string photoName = "";
+            if (photo != null)
+            {
+                photoName = Path.Combine(Path.GetDirectoryName(photo.FileName)
+                    , string.Concat(Path.GetFileNameWithoutExtension(photo.FileName)
+                    , DateTime.Now.ToString("_yyyy_MM_dd_HH_mm_ss")
+                    , Path.GetExtension(photo.FileName)
+                    ));
+                var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images"), photoName);
+                photo.SaveAs(fileSavePath);
+
+
+                //Delete OldPhoto
+                var oldPhotoPath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images"), empInDb.photo);
+                if (File.Exists(oldPhotoPath))
+                {
+                    File.Delete(oldPhotoPath);
+                }
+                var employeeDto = new StaffDto()
+                {
+                    id = id,
+                    positionid = Int32.Parse(positionid),
+                    name = name,
+                    namekh = namekh,
+                    sex = sex,
+                    phone = phone,
+                    dob = DateTime.Parse(dob),
+                    address = address,
+                    email = email,
+                    identityno = identityno,
+                    photo = photoName,
+                    status = true,
+                    createby = createby,
+                    createdate = createdate
+                };
+                Mapper.Map(employeeDto, empInDb);
+                _context.SaveChanges();
+
+
+            }
+            else
+            {
+
+                var employeeDto = new StaffDto()
+                {
+                    id = id,
+                    positionid = Int32.Parse(positionid),
+                    name = name,
+                    namekh = namekh,
+                    sex = sex,
+                    phone = phone,
+                    dob = DateTime.Parse(dob),
+                    address = address,
+                    email = email,
+                    identityno = identityno,
+                    photo = old_file,
+                    status = true,
+                    createby = createby,
+                    createdate = createdate
+                };
+                Mapper.Map(employeeDto, empInDb);
+                _context.SaveChanges();
+
+            }
+            return Ok(new { });
+
         }
+
 
         [HttpDelete]
         //PUT : /api/Staffs/{id}
         public IHttpActionResult DeleteStaff(int id)
         {
 
-            var StaffInDb = _context.Staffs.SingleOrDefault(c => c.id == id);
-            if (StaffInDb == null)
-                return NotFound();
-            _context.Staffs.Remove(StaffInDb);
+            var empInDb = _context.Staffs.SingleOrDefault(c => c.id == id);
+            if (empInDb == null)
+                return BadRequest();
+            _context.Staffs.Remove(empInDb);
             _context.SaveChanges();
 
+            var photoPart = Path.Combine(HttpContext.Current.Server.MapPath("~/Images"), empInDb.photo);
+            if (File.Exists(photoPart))
+            {
+                File.Delete(photoPart);
+            }
             return Ok(new { });
+
         }
     }
 }
+

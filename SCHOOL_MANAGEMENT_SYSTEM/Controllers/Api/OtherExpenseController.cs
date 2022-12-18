@@ -34,9 +34,10 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpGet]
-        public object GetOtherExpenseByDate(DateTime date)
+        [Route("api/OtherExpense/{fromdate}/{todate}")]
+        public object GetOtherExpenseByDate(DateTime fromdate,DateTime todate)
         {
-            var employees = _context.OtherExpenses.Include(c => c.ExpenseTypes).ToList().Where(c => c.date == date);
+            var employees = _context.OtherExpenses.Include(c => c.ExpenseTypes).Where(c => c.date >= fromdate).Where(c => c.date <= todate).ToList();
             return Ok(employees);
 
             //DataTable dt = new DataTable();
@@ -44,7 +45,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
             //var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             //SqlConnection conx = new SqlConnection(connectionString);
-            //SqlDataAdapter adp = new SqlDataAdapter("select ox.id,ox.date,ox.expensetypeid,et.typename,ox.amount,ox.note,ox.createby,ox.createdate from otherexpense_tbl ox inner join expensetype_tbl et on ox.expensetypeid = et.id where FORMAT (date, 'MM-yyyy') = FORMAT('"+date+"', 'MM-yyyy')", conx);
+            //SqlDataAdapter adp = new SqlDataAdapter("select ox.id,ox.date,ox.expensetypeid,et.typename,ox.amount,ox.note,ox.createby,ox.createdate from otherexpense_tbl ox inner join expensetype_tbl et on ox.expensetypeid = et.id where FORMAT (date, 'MM-yyyy') = FORMAT('" + date + "', 'MM-yyyy')", conx);
             //adp.Fill(ds);
             //return ds.Tables[0];
 

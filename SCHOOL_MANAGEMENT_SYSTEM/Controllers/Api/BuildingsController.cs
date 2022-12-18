@@ -28,6 +28,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         public IHttpActionResult GetBuilding()
         {
             var getBuilding = _context.Buildings.ToList().Select(Mapper.Map<Building, BuildingDto>);
+            
             return Ok(getBuilding);
         }
 

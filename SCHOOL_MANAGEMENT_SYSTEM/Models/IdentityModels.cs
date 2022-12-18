@@ -52,6 +52,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet<Department> Departments { get; set; }
         public DbSet<Salary> Salary { get; set; }
         public DbSet<PaySlip> PaySlip { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
 
 
 
@@ -64,7 +65,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         {
             return new ApplicationDbContext();
         }
-
-        public System.Data.Entity.DbSet<SCHOOL_MANAGEMENT_SYSTEM.Models.Staff> Staffs { get; set; }
+        
     }
 }

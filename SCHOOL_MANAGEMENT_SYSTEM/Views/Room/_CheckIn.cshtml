@@ -46,6 +46,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
+                        <input id="datenow" name="datenow" style="display: none;" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
                         <div class="form-group">
                             <label for="invno">លេខវិក័យបត្រ</label>
                             <input id="invno" readonly="readonly" name="invno" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
@@ -105,10 +106,9 @@
                 UpdateStatusGuest();
                 InsertPowerUsage(result);
                 InsertWaterUsage(result);
-                InsertInvoice(result);
+                $('#checkinid').val(result);
                 
                 toastr.success("Check In successfully.", "Server Response");
-                $("#CheckInModal").modal("hide");
                 window.location.reload(true);
             },
             error: function (errormesage) {
@@ -149,6 +149,56 @@
         });
     }
 
+    
+
+    function InsertPowerUsage(id) {
+        var data = new FormData();
+        data.append("checkinid", id);
+        data.append("predate", $('#datenow').val());
+        data.append("prerecord", $('#powerprerecord').val());
+        data.append("currentdate", $('#datenow').val());
+        data.append("currentrecord", $('#powerprerecord').val());
+        $.ajax({
+            url: "/api/electrics",
+            type: "POST",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+
+            },
+            error: function (errormesage) {
+                toastr.error("Power usage insert faild!", "Server Respond");
+                return false;
+            }
+
+        });
+    }
+
+    function InsertWaterUsage(id) {
+        var data = new FormData();
+        data.append("checkinid", id);
+        data.append("predate", $('#datenow').val());
+        data.append("prerecord", $('#waterprerecord').val());
+        data.append("currentdate", $('#datenow').val());
+        data.append("currentrecord", $('#waterprerecord').val());
+        $.ajax({
+            url: "/api/waterusage",
+            type: "POST",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                InsertInvoice($('#checkinid').val());
+                //window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Water usage insert faild!", "Server Respond");
+                return false;
+            }
+        });
+    }
+
     function InsertInvoice(result) {
         var data = {
             invoiceno: $('#invno').val(),
@@ -164,50 +214,7 @@
             success: function (result) {
             },
             error: function (errormesage) {
-                toastr.error("Create invoice faild...!"+errormesage, "Server Respond");
-            }
-        });
-    }
-
-    function InsertPowerUsage(id) {
-        var data = {
-            prerecord: $('#powerprerecord').val(),
-            checkinid: id,
-        };
-        $.ajax({
-            url: "/api/electrics",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-
-            },
-            error: function (errormesage) {
-                toastr.error("Power usage insert faild!", "Server Respond");
-                return false;
-            }
-
-        });
-    }
-
-    function InsertWaterUsage(id) {
-        var data = {
-            prerecord: $('#waterprerecord').val(),
-            checkinid: id,
-        };
-        $.ajax({
-            url: "/api/waterusage",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                //window.location.reload(true);
-            },
-            error: function (errormesage) {
-                toastr.error("Water usage insert faild!", "Server Respond");
-                return false;
+                toastr.error("Create invoice faild...!" + errormesage, "Server Respond");
             }
         });
     }

@@ -249,16 +249,23 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
                         // This code is used to create user roles (Used when we want to create new role)
                         var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                         var roleManager = new RoleManager<IdentityRole>(roleStore);
-                        await roleManager.CreateAsync(new IdentityRole("Manage Employee"));
-                        await roleManager.CreateAsync(new IdentityRole("Manage Student"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Staff"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Guest"));
                         await roleManager.CreateAsync(new IdentityRole("Manage Register"));
-                        await roleManager.CreateAsync(new IdentityRole("Manage Payment"));
-                        await roleManager.CreateAsync(new IdentityRole("Manage Users"));
-                        await roleManager.CreateAsync(new IdentityRole("Manage Reports"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Invoice"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage User"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Report"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Room"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Utility"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Expense"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Balance"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Process"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Setup"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Booking"));
 
                         //==========================================================================
 
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                         // Send an email with this link
@@ -266,7 +273,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
                         // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                         // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "UserRoles");
                     }else
                     {
                         //AddErrors(result);

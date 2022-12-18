@@ -42,6 +42,25 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-inline">
+                            <label for="fromdate">កាលបរិច្ឆេទ</label>
+                            <input id="fromdate" name="fromdate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Product Name" />
+                        </div>
+                    </div>
+                </div>
+                <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tablePayDamages">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
             </div>
         </div>
     </div>
