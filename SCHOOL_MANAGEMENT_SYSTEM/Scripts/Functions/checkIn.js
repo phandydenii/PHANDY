@@ -66,9 +66,104 @@ function GetCheckInDetail() {
         destroy: true,
     });
 }
+$('#fromdate').on('change', function () {
+    var fromdate = this.value;
+    var today = $('#today').val();
+    GetPayDemages($('#checkinid').val(), fromdate, today);
 
-function PayDamages() {
+});
+
+function PayDamages(id) {
+
     $("#PayDamagesModal").modal("show");
+    $('#checkinid').val(id);
+    var fromdate = $('#fromdate').val();
+    var today = $('#today').val();
+    GetPayDemages(id, fromdate ,today);
+}
+
+function GetPayDemages(id,fromdate,todate) {
+    $('#tablePayDamages').DataTable({
+        ajax: {
+            url: "/api/paydemages/" + id + "/" + fromdate + "/" + todate,
+            dataSrc: ""
+        },
+        columns: [
+            //{
+            //    data: "id",
+            //},
+            {
+                data: "item.itemname",
+            },
+            {
+                data: "item.price",
+            },
+            {
+                data: "id",
+                render: function (data, type, row) {
+                    return "<button OnClick='EditProp(" + data + ");' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                         + "<button OnClick='DeletePrp(" + data + "," + row.propertyname + ");' class='btn btn-danger btn-xs' style='margin-top:0px;margin-left:5px'><span class='glyphicon glyphicon-trash'></span> Delete</button>"
+                    ;
+                }
+            }
+        ],
+
+        destroy: true,
+    });
+}
+
+function EditProp(id) {
+    $("#PayDamagesModal").modal("show");
+    document.getElementById('btnSavePayDemage').innerText = "Update";
+    $.ajax({
+        url: "/api/paydemages/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (result) {
+            $('#pdid').val(result.id);
+            $('#propertyname').val(result.propertyname);
+            $('#price').val(result.price);
+            $('#note').val(result.note);
+        },
+        error: function (errormessage) {
+            toastr.error("No Record Select!", "Service Response");
+        }
+    });
+}
+
+function DeletePrp(id, propertyname) {
+    bootbox.confirm({
+        title: "",
+        message: "<h3>Are you sure want to delete  " + propertyname + " ?</h3>",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success btn-sm'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger btn-sm'
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                $.ajax({
+                    url: "/api/paydemages/" + id,
+                    type: "DELETE",
+                    contentType: "application/json;charset=utf-8",
+                    datatype: "json",
+                    success: function (result) {
+                        toastr.success("Record delete successfully!", "Service Response");
+                        $('#tablePayDamages').DataTable().ajax.reload();
+                    },
+                    error: function (errormessage) {
+                        toastr.error("Record delte faild!", "Service Response");
+                    }
+                });
+            }
+        }
+    });
 }
 
 function CheckInEdit(id) {
@@ -102,8 +197,6 @@ function CheckInEdit(id) {
         }
     });
 }
-
-
 
 function SaveCheckIn() {
     var data = new FormData();

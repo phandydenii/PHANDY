@@ -53,6 +53,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet<Salary> Salary { get; set; }
         public DbSet<PaySlip> PaySlip { get; set; }
         public DbSet<Staff> Staffs { get; set; }
+        public DbSet<PayDemage> PayDemages { get; set; }
+
 
 
 

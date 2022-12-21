@@ -189,7 +189,7 @@
             processData: false,
             data: data,
             success: function (result) {
-                InsertInvoice($('#checkinid').val());
+                InsertInvoice();
                 //window.location.reload(true);
             },
             error: function (errormesage) {
@@ -199,11 +199,11 @@
         });
     }
 
-    function InsertInvoice(result) {
+    function InsertInvoice() {
         var data = {
             invoiceno: $('#invno').val(),
+            roomid: $('#chroomid').val(),
             guestid: $('#guestid').val(),
-            checkinid: result,
         };
         $.ajax({
             url: "/api/invoices",

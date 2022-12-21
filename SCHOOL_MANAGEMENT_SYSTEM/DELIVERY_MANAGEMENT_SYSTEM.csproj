@@ -267,6 +267,7 @@
     <Compile Include="Controllers\Api\ExpenseTypeController.cs" />
     <Compile Include="Controllers\Api\LoginController.cs" />
     <Compile Include="Controllers\Api\OtherExpenseController.cs" />
+    <Compile Include="Controllers\Api\PayDemagesController.cs" />
     <Compile Include="Controllers\Api\PaySlipsController.cs" />
     <Compile Include="Controllers\Api\PositionController.cs" />
     <Compile Include="Controllers\Api\ElectricsController.cs" />
@@ -311,6 +312,7 @@
     <Compile Include="Dtos\ItemDto.cs" />
     <Compile Include="Dtos\OtherExpenseDto.cs" />
     <Compile Include="Dtos\PayByDto.cs" />
+    <Compile Include="Dtos\PayDemageDto.cs" />
     <Compile Include="Dtos\PaymentMethodDto.cs" />
     <Compile Include="Dtos\PaySlipDto.cs" />
     <Compile Include="Dtos\PositionDto.cs" />
@@ -331,6 +333,7 @@
     <Compile Include="Models\Branch.cs" />
     <Compile Include="Models\Building.cs" />
     <Compile Include="Models\CheckIn.cs" />
+    <Compile Include="Models\CheckInDetail.cs" />
     <Compile Include="Models\CheckInV.cs" />
     <Compile Include="Models\CheckOut.cs" />
     <Compile Include="Models\CheckOutDeatil.cs" />
@@ -354,6 +357,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OtherExpense.cs" />
     <Compile Include="Models\PayBy.cs" />
+    <Compile Include="Models\PayDemage.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\PaySlip.cs" />
     <Compile Include="Models\Position.cs" />

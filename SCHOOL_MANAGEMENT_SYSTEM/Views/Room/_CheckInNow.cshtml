@@ -130,13 +130,9 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
-                <div class="col-md-3 col-md-offset-6" id="hidecheckout">
-                    <button type="button" id="btnCheckOut" onclick="Test();" data-dismiss="modal" class="btn btn-danger btn-block btn-sm">Cancel</button>
-                </div>
-                <div class="col-md-3" id="hidepayment">
-                    <button type="button" id="btnSaveCheckIn" onclick="OnSaveCheckInNow()" class="btn btn-info btn-block btn-sm">Save</button>
-                </div>
+            <div class="modal-footer">              
+                <button type="button" id="btnCheckOut" onclick="Test();" data-dismiss="modal" class="btn btn-danger btn-sm" style="margin-left:10px;width:100px">Cancel</button>
+                <button type="button" id="btnSaveCheckIn" onclick="OnSaveCheckInNow()" class="btn btn-info btn-sm" style="margin-left:10px;width:100px">Save</button>
             </div>
         </div>
 
@@ -198,7 +194,8 @@
             success: function (result) {
                 UpdateRoomStatus();
                 InsertPower(result);
-                InsertWater(result); 
+                InsertWater(result);
+                
                 $('#checkinid').val(result);
                 toastr.success("Check In successfully.", "Server Response");
             },
@@ -240,7 +237,7 @@
             processData: false,
             data: data,
             success: function (result) {
-                //
+                $('#electricid').val(result);
             },
             error: function (errormesage) {
                 toastr.error("Electric usage insert faild!", "Server Respond");
@@ -251,8 +248,8 @@
 
     function InsertWater(id) {
         var data = new FormData();
+        data.append("checkinid", id);
         data.append("predate", $('#datenow').val());
-        data.append("checkinid", $('#wrecord').val());
         data.append("prerecord", $('#wrecord').val());
         data.append("currentdate", $('#datenow').val());
         data.append("currentrecord", $('#wrecord').val());
@@ -262,7 +259,8 @@
             contentType: false,
             processData: false,
             data: data,
-            success: function (result) {
+            success: function (result) {              
+                $('#waterid').val(result);
                 CreateInvoice();
             },
             error: function (errormesage) {
@@ -277,7 +275,7 @@
         var data = {
             invoiceno: $('#invoiceno').val(),
             guestid: $('#guestid').val(),
-            checkinid: $('#checkinid').val(),
+            roomid: $('#chnowroomid').val(),
         };
         $.ajax({
             url: "/api/invoices",
@@ -286,9 +284,8 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                $("#CheckInNowModal").modal('hide');
-                window.location.reload(true);
-                //alert('Print Invoice successfully!');
+                //CreateInvoiceDetail();
+                //$("#CheckInNowModal").modal('hide');     
             },
             error: function (errormesage) {
                 toastr.error("Insert invoice faild...!", "Server Respond");

@@ -28,7 +28,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             var Payment = new InvoiceViewModel()
             {
                 ExchangeRateID = _context.Exchanges.Where(d => d.IsDeleted == false).Max(a => a.id),
-                WaterPowerPriceID= _context.WaterPowerPrices.Where(d => d.IsDeleted == false).Max(a => a.id),
+                WaterPowerPriceID = _context.WaterPowerPrices.Where(d => d.IsDeleted == false).Max(a => a.id),
+                ItemList = _context.Items.ToList(),
             };
             return View(Payment);
         }

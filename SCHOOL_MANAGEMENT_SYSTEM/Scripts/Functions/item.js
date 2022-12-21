@@ -66,10 +66,10 @@ function OnItemAction() {
 
         var data = {
             itemname: $('#itemname').val(),
-            itemname: $('#itemnamekh').val(),
+            itemnamekh: $('#itemnamekh').val(),
             price: $('#prices').val(),
             remark: $('#remark').val(),
-            status: $('#statuss').val(),
+            status: true,
 
         };
 
@@ -105,7 +105,7 @@ function OnItemAction() {
             itemnamekh: $('#itemnamekh').val(),
             price: $('#prices').val(),
             remark: $('#remark').val(),
-            status: $('#statuss').val(),
+            status: true,
         };
 
 
@@ -140,6 +140,7 @@ function OnEditItem(id) {
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
+            
             $('#Itemid').val(result.id);
             $("#itemname").val(result.itemname);
             $("#itemnamekh").val(result.itemnamekh);
@@ -198,8 +199,6 @@ function DisableControlItem() {
     document.getElementById('itemnamekh').disabled = true;
     document.getElementById('prices').disabled = true;
     document.getElementById('remark').disabled = true;
-    document.getElementById('statuss').disabled = true;
-
 }
 
 function EnableControlItem() {
@@ -207,7 +206,6 @@ function EnableControlItem() {
     document.getElementById('itemnamekh').disabled = false;
     document.getElementById('prices').disabled = false;
     document.getElementById('remark').disabled = false;
-    document.getElementById('statuss').disabled = false;
 }
 
 function ClearControlItem() {
@@ -215,7 +213,6 @@ function ClearControlItem() {
     $('#itemnamekh').val('');
     $('#prices').val('');
     $('#remark').val('');
-    $('#statuss').val('');
 }
 
 function AddnewItemAction() {
@@ -247,16 +244,6 @@ function ValidationFormItem() {
             }
             else {
                 $('#prices').css('border-color', '#cccccc');
-                if ($('#statuss').val().trim() === "") {
-                    $('#statuss').css('border-color', 'red');
-                    $('#statuss').focus();
-                    isValid = false;
-
-                }
-                else {
-                    $('#Status').css('border-color', '#cccccc');
-
-                }
             }
         }
     }

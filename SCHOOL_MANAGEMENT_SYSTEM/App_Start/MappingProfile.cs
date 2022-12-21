@@ -31,6 +31,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<CheckOutDeatil, CheckOutDetailDto>();
             Mapper.CreateMap<Salary, SalaryDto>();
             Mapper.CreateMap<PaySlip, PaySlipDto>();
+            Mapper.CreateMap<PayDemage, PayDemageDto>();
 
             //-------ROSELANY APARTMENT-----------//
 
@@ -67,6 +68,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<CheckOutDetailDto, CheckOutDeatil>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<SalaryDto, Salary>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<PaySlipDto, PaySlip>().ForMember(c => c.id, opt => opt.Ignore());
+            Mapper.CreateMap<PayDemageDto, PayDemage>().ForMember(c => c.id, opt => opt.Ignore());
 
             //-------ROSELANY APARTMENT-----------//
 

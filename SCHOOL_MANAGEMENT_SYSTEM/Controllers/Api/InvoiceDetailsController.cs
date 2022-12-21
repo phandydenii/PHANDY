@@ -31,7 +31,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/Buildings
         public IHttpActionResult GetInvoiceDetails()
         {
-            var GetInvoiceV = _context.InvoiceDetail.Include(w => w.waterusage).Include(e => e.electric).ToList();
+            var GetInvoiceV = _context.InvoiceDetail.Include(w => w.invoice).ToList();
             return Ok(GetInvoiceV);
         }
 
@@ -39,7 +39,15 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/Buildings
         public IHttpActionResult GetInvoiceDetail(int id)
         {
-            var GetInvoiceV = _context.InvoiceDetail.Include(w => w.waterusage).Include(e => e.electric).Where(c =>c.id==id).SingleOrDefault();
+            var GetInvoiceV = _context.InvoiceDetail.Include(w => w.invoice).Where(c =>c.id==id).SingleOrDefault();
+            return Ok(GetInvoiceV);
+        }
+
+        [HttpGet]
+        //Get : api/Buildings
+        public IHttpActionResult GetInvoiceDetailByCheckIN(int invoiceid)
+        {
+            var GetInvoiceV = _context.InvoiceDetail.Include(w => w.invoice).Where(c => c.invoiceid == invoiceid).ToList();
             return Ok(GetInvoiceV);
         }
 
@@ -47,45 +55,48 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         public IHttpActionResult InsertStaff()
         {
             var invoiceid = HttpContext.Current.Request.Form["invoiceid"];
-            var itemname = HttpContext.Current.Request.Form["itemname"];
-            var price = HttpContext.Current.Request.Form["price"];
-            var waterusageid = HttpContext.Current.Request.Form["waterusageid"];
-            var electricusageid = HttpContext.Current.Request.Form["electricusageid"];
             var paydollar = HttpContext.Current.Request.Form["paydollar"];
             var payriel = HttpContext.Current.Request.Form["payriel"];
-       
 
-            var InoiceDetailDto = new InvoiceDetailDto()
+            var checkinid = int.Parse(HttpContext.Current.Request.Form["checkinid"]);
+            var fromdate = HttpContext.Current.Request.Form["fromdate"];
+            var todate = HttpContext.Current.Request.Form["todate"];
+
+
+            DataTable dt = new DataTable();
+            DataTable dt1 = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select max(id) from invoice_tbl", conx);
+            SqlDataAdapter adp1 = new SqlDataAdapter("select id from paydemage_tbl where checkinid="+ checkinid + " and [date] between '"+ fromdate + "' and '"+ todate +"'", conx);
+            adp.Fill(dt);
+            adp1.Fill(dt1);
+
+            // string invoiceid = ds.Rows[0][0].ToString();
+            //string paydemageid = dt1.Rows[0][0].ToString();
+            if (dt1.Rows.Count > 0)
             {
-                invoiceid=int.Parse(invoiceid),
-                itemname=itemname,
-                price=decimal.Parse(price),
-                waterusageid=int.Parse(waterusageid),
-                electricusageid=int.Parse(electricusageid),
-                paydollar=decimal.Parse(paydollar),
-                payriel=decimal.Parse(payriel),
-            };
+                foreach (DataRow row in dt1.Rows)
+                {
+                    foreach (int id in row.ItemArray)
+                    {
+                        var paydemageid = _context.PayDemages.Where(p => p.id == id).SingleOrDefault();
 
-            var InvoiceDetail = Mapper.Map<InvoiceDetailDto, InvoiceDetail>(InoiceDetailDto);
-            _context.InvoiceDetail.Add(InvoiceDetail);
-            _context.SaveChanges();
-            InoiceDetailDto.id = InvoiceDetail.id;
+                        var InoiceDetailDto = new InvoiceDetailDto()
+                        {
+                            invoiceid = int.Parse(invoiceid),
+                            paydemageid = paydemageid.id,
+                            paydollar = decimal.Parse(paydollar),
+                            payriel = decimal.Parse(payriel),
+                        };
 
-
-            //var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            //SqlConnection con = new SqlConnection(connectionString);            //SqlCommand cmd = new SqlCommand("Select max(id) From PaySlip_V", con);
-
-            //Int16 maxid;
-            //try
-            //{
-            //    con.Open();
-            //    cmd.ExecuteNonQuery();
-            //    maxid = Convert.ToInt16(cmd.ExecuteScalar());
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw ex;
-            //}
-
+                        var InvoiceDetail = Mapper.Map<InvoiceDetailDto, InvoiceDetail>(InoiceDetailDto);
+                        _context.InvoiceDetail.Add(InvoiceDetail);
+                        _context.SaveChanges();
+                        InoiceDetailDto.id = InvoiceDetail.id;
+                    }
+                }
+            }
             return Ok();
         }
      }

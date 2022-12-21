@@ -45,19 +45,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         public IHttpActionResult GetInvoiceCheckIn()
         {
             var getInvoieCheckIn = (from i in _context.Invoice
-                                    join c in _context.CheckIns on i.checkinid equals c.id
-                                    join g in _context.Guests on c.guestid equals g.id
-                                    join r in _context.Rooms on c.roomid equals r.id
+                                    join g in _context.Guests on i.guestid equals g.id
+                                    join r in _context.Rooms on i.roomid equals r.id
                                     join f in _context.Floors on r.floorid equals f.id
                                     join  b in _context.Buildings on f.buildingid equals b.id
-                                    where i.checkinid==c.id && i.status=="ACTIVE"
+                                    where i.status=="ACTIVE"
                                     select new InvoiceCheckInV
                                     {
                                         invoicedate=i.invoicedate,
                                         paid=i.paid,
                                         printed=i.printed,
-                                        checkinid=c.id,
-                                        checkindate=c.checkindate,
                                         roomno=r.room_no,
                                         guestname=g.name,
                                         guestnamekh=g.namekh,
@@ -109,15 +106,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             var GetInvoiceV = (from i in _context.Invoice
                                join ex in _context.Exchanges on i.exchangerateid equals ex.id
-                               join ci in _context.CheckIns on i.checkinid equals ci.id
-                               join g in _context.Guests on ci.guestid equals g.id
-                               join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on i.waterusageid equals wu.id 
-                               join pu in _context.Electrics on i.electricusageid equals pu.id
+                               join g in _context.Guests on i.guestid equals g.id
+                               join r in _context.Rooms on i.roomid equals r.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
                                join b in _context.Buildings on f.buildingid equals b.id
+                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                               join pu in _context.Electrics on i.electricusageid equals pu.id
                                join wp in _context.WaterPowerPrices on pu.price equals wp.id
                                where i.status == "ACTIVE"
                                select new InvoiceV
@@ -139,22 +135,22 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    owereassion = i.owereassion,
                                    totalreturnamount = i.totalreturnamount,
                                    returnamount = i.returnamount,
-                                   wid=wu.id,
+                                   wid = wu.id,
                                    wpredate = wu.predate,
                                    wcurrentdate = wu.currentdate,
                                    wprerecord = wu.prerecord,
                                    wcurrentrecord = wu.currentrecord,
                                    wprice = wu.price,
-                                   wtotal= (wu.currentrecord - wu.prerecord) / ex.Rate * wp.waterprice,
-                                   pid=pu.id,
+                                   wtotal = (wu.currentrecord - wu.prerecord) / ex.Rate * wp.waterprice,
+                                   pid = pu.id,
                                    ppredate = pu.predate,
                                    pcurrentdate = pu.currentdate,
                                    pprerecord = pu.prerecord,
                                    pcurrentrecord = pu.currentrecord,
                                    pprice = pu.price,
-                                   ptotal= (pu.currentrecord - pu.prerecord)/ex.Rate*wp.powerprice,
-                                   checkinid = ci.id,
-                                   checkindate=ci.checkindate,
+                                   //ptotal = (pu.currentrecord - pu.prerecord) / ex.Rate * wp.powerprice,
+                                   //checkinid = ci.id,
+                                   //checkindate = ci.checkindate,
                                    roomno = r.room_no,
                                    roomprice = r.price,
                                    roomtypename=rt.roomtypename,
@@ -175,16 +171,15 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             var GetInvoiceV = (from i in _context.Invoice
                                join ex in _context.Exchanges on i.exchangerateid equals ex.id
-                               join ci in _context.CheckIns on i.checkinid equals ci.id
-                               join g in _context.Guests on ci.guestid equals g.id
-                               join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                               join pu in _context.Electrics on i.electricusageid equals pu.id
+                               join g in _context.Guests on i.guestid equals g.id
+                               join r in _context.Rooms on i.roomid equals r.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
                                join b in _context.Buildings on f.buildingid equals b.id
-                               join wp in _context.WaterPowerPrices on pu.price equals wp.id
+                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                               join el in _context.Electrics on i.electricusageid equals el.id
+                               join we in _context.WaterPowerPrices on wu.price equals we.id
                                where i.id==id && i.status == "ACTIVE"
                                select new InvoiceV
                                {
@@ -205,22 +200,22 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    owereassion = i.owereassion,
                                    totalreturnamount = i.totalreturnamount,
                                    returnamount = i.returnamount,
-                                   wid=wu.id,
+                                   wid = wu.id,
                                    wpredate = wu.predate,
                                    wcurrentdate = wu.currentdate,
                                    wprerecord = wu.prerecord,
                                    wcurrentrecord = wu.currentrecord,
                                    wprice = wu.price,
-                                   wtotal = (wu.currentrecord - wu.prerecord) / ex.Rate*wp.waterprice,
-                                   pid=pu.id,
-                                   ppredate = pu.predate,
-                                   pcurrentdate = pu.currentdate,
-                                   pprerecord = pu.prerecord,
-                                   pcurrentrecord = pu.currentrecord,
-                                   pprice = pu.price,
-                                   ptotal = (pu.currentrecord - pu.prerecord) /ex.Rate*wp.powerprice,
-                                   checkinid = ci.id,
-                                   checkindate = ci.checkindate,
+                                   wtotal = (wu.currentrecord - wu.prerecord) / ex.Rate * we.waterprice,
+                                   pid = el.id,
+                                   ppredate = el.predate,
+                                   pcurrentdate = el.currentdate,
+                                   pprerecord = el.prerecord,
+                                   pcurrentrecord = el.currentrecord,
+                                   pprice = el.price,
+                                   ptotal = (el.currentrecord - el.prerecord) / ex.Rate * we.powerprice,
+                                   //checkinid = ci.id,
+                                   //checkindate = ci.checkindate,
                                    roomno = r.room_no,
                                    roomprice = r.price,
                                    roomtypename = rt.roomtypename,
@@ -241,16 +236,15 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             var GetInvoiceV = (from i in _context.Invoice
                                join ex in _context.Exchanges on i.exchangerateid equals ex.id
-                               join ci in _context.CheckIns on i.checkinid equals ci.id
-                               join g in _context.Guests on ci.guestid equals g.id
-                               join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                               join pu in _context.Electrics on i.electricusageid equals pu.id
+                               join g in _context.Guests on i.guestid equals g.id
+                               join r in _context.Rooms on i.roomid equals r.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
                                join b in _context.Buildings on f.buildingid equals b.id
-                               join wp in _context.WaterPowerPrices on pu.price equals wp.id
+                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                               join eu in _context.Electrics on i.electricusageid equals eu.id
+                               join we in _context.WaterPowerPrices on wu.price equals we.id
                                where i.printed == false && i.status == "ACTIVE"
                                select new InvoiceV
                                {
@@ -277,16 +271,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    wprerecord = wu.prerecord,
                                    wcurrentrecord = wu.currentrecord,
                                    wprice = wu.price,
-                                   wtotal = (wu.currentrecord - wu.prerecord) /ex.Rate*wp.waterprice,
-                                   pid = pu.id,
-                                   ppredate = pu.predate,
-                                   pcurrentdate = pu.currentdate,
-                                   pprerecord = pu.prerecord,
-                                   pcurrentrecord = pu.currentrecord,
-                                   pprice = pu.price,
-                                   ptotal = (pu.currentrecord - pu.prerecord) /ex.Rate*wp.powerprice,
-                                   checkinid = ci.id,
-                                   checkindate = ci.checkindate,
+                                   wtotal = (wu.currentrecord - wu.prerecord) / ex.Rate * we.waterprice,
+                                   pid = eu.id,
+                                   ppredate = eu.predate,
+                                   pcurrentdate = eu.currentdate,
+                                   pprerecord = eu.prerecord,
+                                   pcurrentrecord = eu.currentrecord,
+                                   pprice = eu.price,
+                                   ptotal = (eu.currentrecord - eu.prerecord) / ex.Rate * we.powerprice,
+                                   //checkinid = ci.id,
+                                   //checkindate = ci.checkindate,
                                    roomno = r.room_no,
                                    roomprice = r.price,
                                    roomtypename = rt.roomtypename,
@@ -306,16 +300,15 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             var GetInvoiceV = (from i in _context.Invoice
                                join ex in _context.Exchanges on i.exchangerateid equals ex.id
-                               join ci in _context.CheckIns on i.checkinid equals ci.id
-                               join g in _context.Guests on ci.guestid equals g.id
-                               join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                               join pu in _context.Electrics on i.electricusageid equals pu.id
+                               join g in _context.Guests on i.guestid equals g.id
+                               join r in _context.Rooms on i.roomid equals r.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
                                join b in _context.Buildings on f.buildingid equals b.id
-                               join wp in _context.WaterPowerPrices on pu.price equals wp.id
+                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                               join eu in _context.Electrics on i.electricusageid equals eu.id
+                               join we in _context.WaterPowerPrices on wu.price equals we.id
                                where i.printed == false && i.id==id && i.status == "ACTIVE"
                                select new InvoiceV
                                {
@@ -342,16 +335,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    wprerecord = wu.prerecord,
                                    wcurrentrecord = wu.currentrecord,
                                    wprice = wu.price,
-                                   wtotal = (wu.currentrecord - wu.prerecord) / ex.Rate*wp.waterprice,
-                                   pid = pu.id,
-                                   ppredate = pu.predate,
-                                   pcurrentdate = pu.currentdate,
-                                   pprerecord = pu.prerecord,
-                                   pcurrentrecord = pu.currentrecord,
-                                   pprice = pu.price,
-                                   ptotal = (pu.currentrecord - pu.prerecord) / ex.Rate*wp.powerprice,
-                                   checkinid = ci.id,
-                                   checkindate = ci.checkindate,
+                                   wtotal = (wu.currentrecord - wu.prerecord) / ex.Rate * we.waterprice,
+                                   pid = eu.id,
+                                   ppredate = eu.predate,
+                                   pcurrentdate = eu.currentdate,
+                                   pprerecord = eu.prerecord,
+                                   pcurrentrecord = eu.currentrecord,
+                                   pprice = eu.price,
+                                   ptotal = (eu.currentrecord - eu.prerecord) / ex.Rate * we.powerprice,
+                                   //checkinid = ci.id,
+                                   //checkindate = ci.checkindate,
                                    roomno = r.room_no,
                                    roomprice = r.price,
                                    roomtypename = rt.roomtypename,
@@ -374,17 +367,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
            
                 var GetInvoiceV = from i in _context.Invoice
                                    join ex in _context.Exchanges on i.exchangerateid equals ex.id
-                                   join ci in _context.CheckIns on i.checkinid equals ci.id
-                                   join g in _context.Guests on ci.guestid equals g.id
-                                   join r in _context.Rooms on ci.roomid equals r.id
-                                  join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                                  join pu in _context.Electrics on i.electricusageid equals pu.id
+                                   join g in _context.Guests on i.guestid equals g.id
+                                   join r in _context.Rooms on i.roomid equals r.id
                                   join e in _context.Exchanges on i.exchangerateid equals e.id
                                    join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                    join f in _context.Floors on r.floorid equals f.id
                                    join b in _context.Buildings on f.buildingid equals b.id
-                                   join wp in _context.WaterPowerPrices on pu.price equals wp.id
-                                   where i.printed == true && i.paid == false && i.status == "ACTIVE"
+                                  join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                                  join eu in _context.Electrics on i.electricusageid equals eu.id
+                                  join we in _context.WaterPowerPrices on wu.price equals we.id
+                                  where i.printed == true && i.paid == false && i.status == "ACTIVE"
                                   select new InvoiceV
                                    {
                                        id = i.id,
@@ -404,23 +396,23 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                        owereassion = i.owereassion,
                                        totalreturnamount = i.totalreturnamount,
                                        returnamount = i.returnamount,
-                                       wid = wu.id,
-                                       wpredate = wu.predate,
-                                       wcurrentdate = wu.currentdate,
-                                       wprerecord = wu.prerecord,
-                                       wcurrentrecord = wu.currentrecord,
-                                       wprice = wu.price,
-                                       wtotal = (wu.currentrecord - wu.prerecord) * wp.waterprice / ex.Rate,
-                                       pid = pu.id,
-                                       ppredate = pu.predate,
-                                       pcurrentdate = pu.currentdate,
-                                       pprerecord = pu.prerecord,
-                                       pcurrentrecord = pu.currentrecord,
-                                       pprice = pu.price,
-                                       ptotal = (pu.currentrecord - pu.prerecord) * wp.powerprice / ex.Rate,
-                                       checkinid = ci.id,
-                                       checkindate = ci.checkindate,
-                                       roomno = r.room_no,
+                                        wid = wu.id,
+                                        wpredate = wu.predate,
+                                        wcurrentdate = wu.currentdate,
+                                        wprerecord = wu.prerecord,
+                                        wcurrentrecord = wu.currentrecord,
+                                        wprice = wu.price,
+                                        wtotal = (wu.currentrecord - wu.prerecord) * we.waterprice / ex.Rate,
+                                        pid = eu.id,
+                                        ppredate = eu.predate,
+                                        pcurrentdate = eu.currentdate,
+                                        pprerecord = eu.prerecord,
+                                        pcurrentrecord = eu.currentrecord,
+                                        pprice = eu.price,
+                                        ptotal = (eu.currentrecord - eu.prerecord) * we.powerprice / ex.Rate,
+                                      //checkinid = ci.id,
+                                      //checkindate = ci.checkindate,
+                                      roomno = r.room_no,
                                        roomprice = r.price,
                                        roomtypename = rt.roomtypename,
                                        floorno = f.floor_no,
@@ -442,16 +434,15 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
             var GetInvoiceV = from i in _context.Invoice
                               join ex in _context.Exchanges on i.exchangerateid equals ex.id
-                              join ci in _context.CheckIns on i.checkinid equals ci.id
-                              join g in _context.Guests on ci.guestid equals g.id
-                              join r in _context.Rooms on ci.roomid equals r.id
-                              join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                              join pu in _context.Electrics on i.electricusageid equals pu.id
+                              join g in _context.Guests on i.guestid equals g.id
+                              join r in _context.Rooms on i.roomid equals r.id
                               join e in _context.Exchanges on i.exchangerateid equals e.id
                               join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                               join f in _context.Floors on r.floorid equals f.id
                               join b in _context.Buildings on f.buildingid equals b.id
-                              join wp in _context.WaterPowerPrices on pu.price equals wp.id
+                              join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                              join eu in _context.Electrics on i.electricusageid equals eu.id
+                              join we in _context.WaterPowerPrices on wu.price equals we.id
                               where i.printed == true && i.paid == true && i.status == "ACTIVE"
                               select new InvoiceV
                               {
@@ -478,16 +469,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   wprerecord = wu.prerecord,
                                   wcurrentrecord = wu.currentrecord,
                                   wprice = wu.price,
-                                  wtotal = (wu.currentrecord - wu.prerecord) * wp.waterprice / ex.Rate,
-                                  pid = pu.id,
-                                  ppredate = pu.predate,
-                                  pcurrentdate = pu.currentdate,
-                                  pprerecord = pu.prerecord,
-                                  pcurrentrecord = pu.currentrecord,
-                                  pprice = pu.price,
-                                  ptotal = (pu.currentrecord - pu.prerecord) * wp.powerprice / ex.Rate,
-                                  checkinid = ci.id,
-                                  checkindate = ci.checkindate,
+                                  wtotal = (wu.currentrecord - wu.prerecord) * we.waterprice / ex.Rate,
+                                  pid = eu.id,
+                                  ppredate = eu.predate,
+                                  pcurrentdate = eu.currentdate,
+                                  pprerecord = eu.prerecord,
+                                  pcurrentrecord = eu.currentrecord,
+                                  pprice = eu.price,
+                                  ptotal = (eu.currentrecord - eu.prerecord) * we.powerprice / ex.Rate,
+                                  //checkinid = ci.id,
+                                  //checkindate = ci.checkindate,
                                   roomno = r.room_no,
                                   roomprice = r.price,
                                   roomtypename = rt.roomtypename,
@@ -509,16 +500,15 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
             var GetInvoiceV = from i in _context.Invoice
                               join ex in _context.Exchanges on i.exchangerateid equals ex.id
-                              join ci in _context.CheckIns on i.checkinid equals ci.id
-                              join g in _context.Guests on ci.guestid equals g.id
-                              join r in _context.Rooms on ci.roomid equals r.id
-                              join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                              join pu in _context.Electrics on i.electricusageid equals pu.id
+                              join g in _context.Guests on i.guestid equals g.id
+                              join r in _context.Rooms on i.roomid equals r.id
                               join e in _context.Exchanges on i.exchangerateid equals e.id
                               join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                               join f in _context.Floors on r.floorid equals f.id
                               join b in _context.Buildings on f.buildingid equals b.id
-                              join wp in _context.WaterPowerPrices on pu.price equals wp.id
+                              join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                              join eu in _context.Electrics on i.electricusageid equals eu.id
+                              join we in _context.WaterPowerPrices on wu.price equals we.id
                               where i.printed == true && i.status == "ACTIVE"
                               select new InvoiceV
                               {
@@ -545,16 +535,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   wprerecord = wu.prerecord,
                                   wcurrentrecord = wu.currentrecord,
                                   wprice = wu.price,
-                                  wtotal = (wu.currentrecord - wu.prerecord) * wp.waterprice / ex.Rate,
-                                  pid = pu.id,
-                                  ppredate = pu.predate,
-                                  pcurrentdate = pu.currentdate,
-                                  pprerecord = pu.prerecord,
-                                  pcurrentrecord = pu.currentrecord,
-                                  pprice = pu.price,
-                                  ptotal = (pu.currentrecord - pu.prerecord) * wp.powerprice / ex.Rate,
-                                  checkinid = ci.id,
-                                  checkindate = ci.checkindate,
+                                  wtotal = (wu.currentrecord - wu.prerecord) * we.waterprice / ex.Rate,
+                                  pid = eu.id,
+                                  ppredate = eu.predate,
+                                  pcurrentdate = eu.currentdate,
+                                  pprerecord = eu.prerecord,
+                                  pcurrentrecord = eu.currentrecord,
+                                  pprice = eu.price,
+                                  ptotal = (eu.currentrecord - eu.prerecord) * we.powerprice / ex.Rate,
+                                  //checkinid = ci.id,
+                                  //checkindate = ci.checkindate,
                                   roomno = r.room_no,
                                   roomprice = r.price,
                                   roomtypename = rt.roomtypename,
@@ -577,16 +567,15 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             var GetInvoiceV = (from i in _context.Invoice
                                join ex in _context.Exchanges on i.exchangerateid equals ex.id
-                               join ci in _context.CheckIns on i.checkinid equals ci.id
-                               join g in _context.Guests on ci.guestid equals g.id
-                               join r in _context.Rooms on ci.roomid equals r.id
-                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
-                               join pu in _context.Electrics on i.electricusageid equals pu.id
+                               join g in _context.Guests on i.guestid equals g.id
+                               join r in _context.Rooms on i.roomid equals r.id
                                join e in _context.Exchanges on i.exchangerateid equals e.id
                                join rt in _context.RoomTypes on r.roomtypeid equals rt.id
                                join f in _context.Floors on r.floorid equals f.id
                                join b in _context.Buildings on f.buildingid equals b.id
-                               join wp in _context.WaterPowerPrices on pu.price equals wp.id
+                               join wu in _context.WaterUsages on i.waterusageid equals wu.id
+                               join eu in _context.Electrics on i.electricusageid equals eu.id
+                               join we in _context.WaterPowerPrices on wu.price equals we.id
                                where i.printed == true && i.id==id && i.status == "ACTIVE"
                                select new InvoiceV
                                {
@@ -613,16 +602,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    wprerecord = wu.prerecord,
                                    wcurrentrecord = wu.currentrecord,
                                    wprice = wu.price,
-                                   wtotal = (wu.currentrecord - wu.prerecord) / ex.Rate*wp.waterprice,
-                                   pid = pu.id,
-                                   ppredate = pu.predate,
-                                   pcurrentdate = pu.currentdate,
-                                   pprerecord = pu.prerecord,
-                                   pcurrentrecord = pu.currentrecord,
-                                   pprice = pu.price,
-                                   ptotal = (pu.currentrecord - pu.prerecord) / ex.Rate*wp.powerprice,
-                                   checkinid = ci.id,
-                                   checkindate = ci.checkindate,
+                                   wtotal = (wu.currentrecord - wu.prerecord) / ex.Rate * we.waterprice,
+                                   pid = eu.id,
+                                   ppredate = eu.predate,
+                                   pcurrentdate = eu.currentdate,
+                                   pprerecord = eu.prerecord,
+                                   pcurrentrecord = eu.currentrecord,
+                                   pprice = eu.price,
+                                   ptotal = (eu.currentrecord - eu.prerecord) / ex.Rate * we.powerprice,
+                                   //checkinid = ci.id,
+                                   //checkindate = ci.checkindate,
                                    roomno = r.room_no,
                                    roomprice = r.price,
                                    roomtypename = rt.roomtypename,
@@ -661,7 +650,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select * from NewInvoice where NewInvoice='Yes' and id="+ id, conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from NewInvoice where NewInvoice='Yes' and guestid="+ id, conx);
             adp.Fill(ds);
             return ds.Tables[0];
         }
@@ -712,7 +701,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             try
             {
                 conx.Open();
-                cmd.ExecuteNonQuery();
                 InvoiceMax = Convert.ToInt16(cmd.ExecuteScalar());
 
             }

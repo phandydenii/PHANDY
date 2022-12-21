@@ -11,6 +11,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
     {
 
         public IEnumerable<ExchangeRate> Exchanges { get; set; }
+        public IEnumerable<Item> ItemList { get; set; }
         public int ExchangeRateID { get; set; }
         public int WaterPowerPriceID { get; set; }
 

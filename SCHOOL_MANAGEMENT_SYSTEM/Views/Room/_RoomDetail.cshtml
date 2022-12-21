@@ -120,7 +120,7 @@
                     <button type="button" id="btnBlock" onclick="OnBlockAction()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Block</button>
                     <button type="button" id="btnCheckOut" onclick="OnCheckOutAction()" class="btn btn-warning btn-sm pull-right" style="margin-left:10px;width:100px">Check Out</button>
                     <button type="button" id="btnCheckIn" onclick="OnCheckInAction()" class="btn btn-primary btn-sm pull-right" style="margin-left:10px;width:100px">Check In Now</button>
-                    <button type="button" id="btnPayment" onclick="OnPaymentAction()" data-toggle="modal" data-target="#PaymentModal" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">Payment</button>           
+                    <button type="button" id="btnPayment" onclick="OnPaymentAction()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>           
                     <button type="button" id="btnBook" onclick="OnBookAction()" data-toggle="modal" data-target="#BookModal" class="btn btn-success  btn-sm pull-right" style="margin-left:10px;width:100px">Book</button>
 
                 </div>
@@ -140,7 +140,9 @@
     function OnCloseRoomDetail() {
         window.location.reload(true);
     }
-
+    function OnPaymentAction() {
+        window.location.reload(true);
+    }
 
     //On Book
     function OnBookAction() {

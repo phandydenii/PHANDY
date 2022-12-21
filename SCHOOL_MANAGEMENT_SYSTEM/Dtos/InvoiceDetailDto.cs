@@ -14,14 +14,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public int id { get; set; }
         public int invoiceid { get; set; }
         public Invoice invoice { get; set; }
-        public string itemname { get; set; }
-        public decimal price { get; set; }
-        public int waterusageid { get; set; }
-        public WaterUsage waterusage { get; set; }
-        public int electricusageid { get; set; }
-        public ElectricUsage electric { get; set; }
+        public int paydemageid { get; set; }
+        public PayDemage paydemage { get; set; }
         public decimal paydollar { get; set; }
         public decimal payriel { get; set; }
-        public string note { get; set; }
     }
 }
