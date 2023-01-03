@@ -1,11 +1,7 @@
 ﻿
 $(document).ready(function () {
-    //$('#PrintNewInvoiceModal').on('show.bs.modal', function () {
-    //    $('#odlrecordwater').focus();
-    //});
     GetCheckOut();
 })
-
 
 var tbCheckOut = [];
 function GetCheckOut() {

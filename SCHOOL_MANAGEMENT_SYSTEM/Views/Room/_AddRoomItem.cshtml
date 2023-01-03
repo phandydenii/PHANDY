@@ -12,8 +12,9 @@
                     <div class="col-md-6">
                         <input id="roomitemid" name="roomitemid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <div class="form-group">
-                            <label for="rmid">Room</label>
-                            <select class="form-control input-sm" id="rmid">
+                            <label for="iroomid">Room</label>
+                            <select class="form-control input-sm" id="iroomid">
+                                <option value="0">------Please Choose Room------</option>
                                 @foreach (var room in Model.Rooms)
                                 {
                                     <option value=@room.id>@room.room_no</option>
@@ -23,6 +24,7 @@
                         <div class="form-group">
                             <label for="itemid">Item</label>
                             <select class="form-control input-sm" id="itemid">
+                                <option value="0">------Please Choose Item------</option>
                                 @foreach (var item in Model.Items)
                                 {
                                     <option value=@item.id>@item.itemname</option>
@@ -33,8 +35,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="rprice">Price</label>
-                            <input id="rprice" name="rprice" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                            <label for="iprice">Price</label>
+                            <input id="iprice" name="iprice" placeholder="$0.00" onfocus="this.select();" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <label>&nbsp;</label>
                         <button type="button" id="btnSaveRoomItem" name="btnSaveRoomItem" onclick="RoomItmAction()" class="btn btn-info btn-block btn-sm">Add New</button>
@@ -49,7 +51,7 @@
                             <th>Room No</th>
                             <th>Item</th>
                             <th>Price</th>
-                            <th>Action</th>
+                            <th style="width:15px">Action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>

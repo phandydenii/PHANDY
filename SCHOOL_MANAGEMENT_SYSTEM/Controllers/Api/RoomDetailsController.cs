@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
@@ -130,18 +131,27 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
         [HttpPost]
         //Get : api/Rooms
-        public IHttpActionResult CreateRoomDetail(RoomDetailDto RoomDetailDtos)
+        public IHttpActionResult CreateRoomDetail()
         {
-            if (!ModelState.IsValid)
-                return BadRequest();
+            var roomid = HttpContext.Current.Request.Form["roomid"];
+            var itemid = HttpContext.Current.Request.Form["itemid"];
+            var price = HttpContext.Current.Request.Form["price"];
 
-            var RoomDetailInDb = Mapper.Map<RoomDetailDto, RoomDetail>(RoomDetailDtos);
+            var roomDetailDto = new RoomDetailDto()
+            {
+                roomid=int.Parse(roomid),
+                itemid=int.Parse(itemid),
+                price=decimal.Parse(price),
+            };
+
+
+            var RoomDetailInDb = Mapper.Map<RoomDetailDto, RoomDetail>(roomDetailDto);
             _context.RoomDetails.Add(RoomDetailInDb);
             _context.SaveChanges();
 
-            RoomDetailDtos.id = RoomDetailInDb.id;
+            roomDetailDto.id = RoomDetailInDb.id;
 
-            return Created(new Uri(Request.RequestUri + "/" + RoomDetailDtos.id), RoomDetailDtos);
+            return Ok();
         }
         [HttpPut]
         public IHttpActionResult UpdateRoomDetail(int id, RoomDetailDto RoomDetailDtos)

@@ -14,6 +14,10 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public int guestid { get; set; }
         public Guest guest { get; set; }
         public int roomid { get; set; }
+        public int eletricusageid { get; set; }
+        public ElectricUsage eletricusage { get; set; }
+        public int waterusageid { get; set; }
+        public WEPrice waterusage { get; set; }
         public Room room { get; set; }
         public int exchangeid { get; set; }
         public ExchangeRate exchange { get; set; }

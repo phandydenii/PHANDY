@@ -77,7 +77,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             DataTable ds1 = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select Max(id) from waterpowerprice_tbl where IsDeleted=0", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select Max(id) from weprice_tbl where IsDeleted=0", conx);
             SqlCommand cmd = new SqlCommand("select max(id) from electricusage_tbl", conx);
             adp.Fill(ds1);
             string wpprice = ds1.Rows[0][0].ToString();

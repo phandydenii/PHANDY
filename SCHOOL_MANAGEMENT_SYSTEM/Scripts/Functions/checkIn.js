@@ -10,7 +10,7 @@ var tbCheckInDetail = [];
 function GetCheckInDetail() {
     tbCheckInDetail = $('#tableCheckInDetail').dataTable({
         ajax: {
-            url: "/api/checkin_v",
+            url: "/api/checkins",
             dataSrc: ""   
         },
         columns:
@@ -19,7 +19,7 @@ function GetCheckInDetail() {
                     data: "id"
                 },
                 {
-                    data: "name"
+                    data: "guest.name"
                 },
                 {
                     data: "checkindate",
@@ -29,43 +29,97 @@ function GetCheckInDetail() {
                 },
                 
                 {
-                    data: "room_no"
+                    data: "room.room_no"
                 },
                 {
-                    data: "floorno"
+                    data: "prepaid",
                 },
-                {
-                    data: "building",
-                   
-                },
-                {
-                    data: "pay",
-
-                },
+                //{
+                //    data: "guest.id",
+                //    render: function (data, type, row) {
+                //        var chcekindate = new Date(row.checkindate).getDay();
+                //        var now =new Date().getDay();
+                //        var m = now - chcekindate;
+                //        if(m>=0){
+                //        return "<button OnClick='PrintInvoice (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px''><span class='glyphicon glyphicon-edit'></span> Print "+m+"</button>"
+                //        } else {
+                //            return "";
+                //        }
+                //    }
+                //},
                 {
                     data: "id",
-                    render: function (data) {
-                        //return "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                        //     + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
-                        //     + "<button OnClick='PayDamages (" + data + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-out'></span> Pay Damages</button>"
-                        //;
-
+                    render: function (data, type, row) {
                         return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
-                                  + "<ul class='dropdown-menu'>"
+                                    + "<ul class='dropdown-menu'>"
                                     + "<li>"
                                         + "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px''><span class='glyphicon glyphicon-edit'></span> Edit</button>"
                                         + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
                                         + "<button OnClick='PayDamages (" + data + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-pencil'></span> Pay Damages</button>"
                                     + "</li>"
-                                  + "</ul>"
-                             + "</div>"
-                        ;
+                                    + "</ul>"
+                                + "</div>"
+                        ;                  
                     }
                 }
             ],
+        
         destroy: true,
     });
 }
+
+function PrintInvoice(id) {
+    alert(id);
+    $("#PrintNewInvoiceModal").modal("show");
+    
+    $.ajax({
+        url: "/api/invoice-v/newinvoie/1",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (result) {
+            $("#checkinid").val(result[0]["checkinid"]);
+            alert(result[0]["checkinid"]);
+            $('#name').val(result[0]["name"]);
+            $('#roomid').val(result[0]["roomid"]);
+            $("#room_no").val(result[0]["room_no"]);
+            $("#roompricee").val(result[0]["price"]);
+            $("#svprice").val(result[0]["servicecharge"]);
+            $("#recordpowerold").val(result[0]["estartrecord"]);
+            $("#recordwaterold").val(result[0]["wstartrecord"]);
+            $("#weid").val(result[0]["weid"]);
+            var checkindid = result[0]["checkinid"];
+            var enddate = moment(result[0]["enddate"]).format("YYYY-MM-DD");
+            $("#begindate").val(enddate);
+            $("#guestid").val(result[0]["guestid"]);
+            $.get("/api/invoicemaxid", function (data) {
+                $('#invno').val(data);
+            });
+        },
+        error: function (errormessage) {
+            toastr.error("No Record Select!", "Service Response");
+        }
+    });
+
+    $.get("/api/ExchangeRates/1/2", function (data) {
+        $('#exrate').val(data.rate);
+    });
+
+    $.get("/api/WEPrice/1/1", function (data) {
+        $('#wprice').val(data.waterprice);
+        $('#pprice').val(data.electricprice);
+    });
+}
+
+$('#itemid').on('change', function () {
+    $("#itemprice").val("");
+    if ($("#itemid").val() != "0") {
+        $.get("/api/items/" + $("#itemid").val(), function (data) {
+            $("#itemprice").val(data.price);
+        });
+    }
+});
+
 $('#fromdate').on('change', function () {
     var fromdate = this.value;
     var today = $('#today').val();
@@ -73,13 +127,13 @@ $('#fromdate').on('change', function () {
 
 });
 
-function PayDamages(id) {
+function PayDamages(id, guestid) {
 
     $("#PayDamagesModal").modal("show");
-    $('#checkinid').val(id);
+    $('#guestid').val(guestid);
     var fromdate = $('#fromdate').val();
     var today = $('#today').val();
-    GetPayDemages(id, fromdate ,today);
+    GetPayDemages(guestid, fromdate, today);
 }
 
 function GetPayDemages(id,fromdate,todate) {
@@ -96,7 +150,7 @@ function GetPayDemages(id,fromdate,todate) {
                 data: "item.itemname",
             },
             {
-                data: "item.price",
+                data: "price",
             },
             {
                 data: "id",
@@ -112,25 +166,6 @@ function GetPayDemages(id,fromdate,todate) {
     });
 }
 
-function EditProp(id) {
-    $("#PayDamagesModal").modal("show");
-    document.getElementById('btnSavePayDemage').innerText = "Update";
-    $.ajax({
-        url: "/api/paydemages/" + id,
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        datatype: "json",
-        success: function (result) {
-            $('#pdid').val(result.id);
-            $('#propertyname').val(result.propertyname);
-            $('#price').val(result.price);
-            $('#note').val(result.note);
-        },
-        error: function (errormessage) {
-            toastr.error("No Record Select!", "Service Response");
-        }
-    });
-}
 
 function DeletePrp(id, propertyname) {
     bootbox.confirm({
@@ -170,7 +205,7 @@ function CheckInEdit(id) {
     $("#CheckInModal").modal("show");
     $("#checkinid").val(id);
     $.ajax({
-        url: "/api/checkin_v/" + id,
+        url: "/api/checkins/" + id,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         datatype: "json",
@@ -264,4 +299,86 @@ function UpdatePower() {
             toastr.error("Create invoice faild...!" + errormesage, "Server Respond");
         }
     });
+}
+
+function SavePayDemage() {
+    if ($('#price').val() == "") {
+        $('#price').focus();
+        return false;
+    }
+    if ($('#itemid').val() != 0) {
+        var action = document.getElementById('btnSavePayDemage').innerText;
+        if (action == "Save") {
+            var data = new FormData();
+            data.append("guestid", $('#guestid').val());
+            data.append("itemid", $('#itemid').val());
+            data.append("price", $('#price').val());
+            data.append("note", $('#note').val());
+            $.ajax({
+                type: "POST",
+                url: "/api/paydemages",
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (result) {
+                    $('#tablePayDamages').DataTable().ajax.reload();
+                },
+                error: function (errormesage) {
+                    toastr.error("Water usage insert faild!", "Server Respond");
+                    return false;
+                }
+
+            });
+        } else if (action == "Update") {
+            var data = new FormData();
+            data.append("guestid", $('#guestid').val());
+            data.append("itemid", $('#itemid').val());
+            data.append("price", $('#price').val());
+            data.append("note", $('#note').val());
+            $.ajax({
+                type: "PUT",
+                url: "/api/paydemages/" + $('#pdid').val(),
+                contentType: false,
+                processData: false,
+                data: data,
+                success: function (result) {
+                    $('#tablePayDamages').DataTable().ajax.reload();
+                },
+                error: function (errormesage) {
+                    toastr.error("Water usage insert faild!", "Server Respond");
+                    return false;
+                }
+
+            });
+        }
+    } else {
+        alert('Please choose item');
+        $('#itemid').focus();
+    }
+
+}
+
+function EditProp(id) {
+    $("#PayDamagesModal").modal("show");
+    document.getElementById('btnSavePayDemage').innerText = "Update";
+    $.ajax({
+        url: "/api/paydemages/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (result) {
+            $('#pdid').val(result.id);
+            $('#itemid').val(result.itemid);
+            $('#price').val(result.price);
+            $('#note').val(result.note);
+        },
+        error: function (errormessage) {
+            toastr.error("No Record Select!", "Service Response");
+        }
+    });
+}
+
+
+function CloseForm() {
+    window.location.reload(true);
 }

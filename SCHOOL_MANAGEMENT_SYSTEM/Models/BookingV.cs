@@ -16,6 +16,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public decimal payriel { get; set; }
         public DateTime? checkindate { get; set; }
         public DateTime? expirecheckindate { get; set; }
+        public string bookstatus { get; set; }
         public string note { get; set; }
 
         public int roomid { get; set; }
@@ -42,3 +43,4 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public string gueststatus { get; set; }
     }
 }
+

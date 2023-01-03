@@ -28,21 +28,21 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpGet]
-        [Route("api/waterusagerecord/{invoiceid}")]
-        public IHttpActionResult GetMaxID(int invoiceid)
+        [Route("api/waterusagerecord/{id}")]
+        public IHttpActionResult GetMaxID(int id)
         {
             ///For Get Max PaymentNo +1
             DataTable dt = new DataTable();
             DataSet ds = new DataSet();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select top 1 id,predate,prerecord,currentdate,currentrecord from waterusage_tbl where invoiceid='" + invoiceid + "' order by id desc", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select top 1 id,predate,prerecord,currentdate,currentrecord from waterusage_tbl where id='" + id + "' order by id desc", conx);
             adp.Fill(ds);
             WaterUsage waterusage = new WaterUsage();
             foreach(DataRow dr in ds.Tables[0].Rows)
             {
-                waterusage.id = Convert.ToInt16(dr[0].ToString());
-                waterusage.predate = Convert.ToDateTime(dr[1].ToString());
+                waterusage.id = Convert.ToInt16(dr["id"].ToString());
+                waterusage.predate = Convert.ToDateTime(dr["predate"].ToString());
                 waterusage.prerecord = Convert.ToDecimal(dr[2].ToString());
                 waterusage.currentdate = Convert.ToDateTime(dr[3].ToString());
                 waterusage.currentrecord = Convert.ToDecimal(dr[4].ToString());
@@ -78,7 +78,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             DataTable ds = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select Max(id) from waterpowerprice_tbl where IsDeleted=0", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select Max(id) from weprice_tbl where IsDeleted=0", conx);
             SqlCommand cmd = new SqlCommand("select max(id) from waterusage_tbl", conx);
             adp.Fill(ds);
             string wpprice = ds.Rows[0][0].ToString();

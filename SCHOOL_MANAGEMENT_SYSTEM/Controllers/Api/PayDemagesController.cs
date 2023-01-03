@@ -32,7 +32,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/Buildings
         public IHttpActionResult GetBuilding()
         {
-            var getBuilding = _context.PayDemages.Include(c => c.checkin).ToList();
+            var getBuilding = _context.PayDemages.Include(c => c.guest).ToList();
             return Ok(getBuilding);
         }
 
@@ -40,24 +40,24 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/Buildings
         public IHttpActionResult GetBuilding(int id)
         {
-            var getBuilding = _context.PayDemages.Include(i => i.item).Include(c => c.checkin).Where(p => p.id == id).SingleOrDefault();
+            var getBuilding = _context.PayDemages.Include(i => i.item).Include(c => c.guest).Where(p => p.id == id).SingleOrDefault();
             return Ok(getBuilding);
         }
 
         [HttpGet]
         //Get : api/Buildings
-        public IHttpActionResult GetBuildings(int checkinid)
+        public IHttpActionResult GetBuildings(int guestid)
         {
-            var getBuilding = _context.PayDemages.Include(i => i.item).Include(c => c.checkin).Where(p => p.checkinid == checkinid).ToList();
+            var getBuilding = _context.PayDemages.Include(i => i.item).Include(c => c.guest).Where(p => p.guestid == guestid).ToList();
             return Ok(getBuilding);
         }
 
         [HttpGet]
-        [Route("api/paydemages/{checkinid}/{fromdate}/{todate}")]
+        [Route("api/paydemages/{guestid}/{fromdate}/{todate}")]
         //Get : api/Buildings
-        public IHttpActionResult GetBuildings(int checkinid,DateTime fromdate,DateTime todate)
+        public IHttpActionResult GetBuildings(int guestid, DateTime fromdate, DateTime todate)
         {
-            var getBuilding = _context.PayDemages.Include(i => i.item).Include(c => c.checkin).Where(p => p.checkinid == checkinid).Where(p => p.date >= fromdate).Where(p => p.date<=todate).ToList();
+            var getBuilding = _context.PayDemages.Include(i => i.item).Include(c => c.guest).Where(p => p.guestid == guestid).Where(p => p.date >= fromdate).Where(p => p.date <= todate).ToList();
             return Ok(getBuilding);
         }
 
@@ -65,22 +65,17 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         [HttpPost]
         public IHttpActionResult InsertStaff()
         {
-            DataTable ds = new DataTable();
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select max(id) from checkin_tbl", conx);
-            adp.Fill(ds);
-           // string checkinid = ds.Rows[0][0].ToString();
-
-            var checkinid = HttpContext.Current.Request.Form["checkinid"];
+            var guestid = HttpContext.Current.Request.Form["guestid"];
             var itemid = HttpContext.Current.Request.Form["itemid"];
+            var price = HttpContext.Current.Request.Form["price"];
             var note = HttpContext.Current.Request.Form["note"];
 
             var payslipdDto = new PayDemageDto()
             {
                date=DateTime.Today,
-               checkinid=int.Parse(checkinid),
+               guestid=int.Parse(guestid),
                itemid=int.Parse(itemid),
+               price= int.Parse(price),
                note=note,
             };
 
@@ -95,16 +90,18 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         [HttpPut]
         public IHttpActionResult UpdateStaff(int id)
         {
-            var checkinid = HttpContext.Current.Request.Form["checkinid"];
+            var guestid = HttpContext.Current.Request.Form["guestid"];
             var itemid = HttpContext.Current.Request.Form["itemid"];
+            var price = HttpContext.Current.Request.Form["price"];
             var note = HttpContext.Current.Request.Form["note"];
 
             var empInDb = _context.PayDemages.SingleOrDefault(c => c.id == id);
             var payslipdDto = new PayDemageDto()
             {
                 date = DateTime.Today,
-                checkinid = int.Parse(checkinid),
+                guestid = int.Parse(guestid),
                 itemid = int.Parse(itemid),
+                price=decimal.Parse(price),
                 note = note,
             };
 

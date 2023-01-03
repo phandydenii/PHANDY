@@ -80,49 +80,93 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
         [HttpGet]
         //Get : api/BookingDetails
-        [Route("api/booking_v")]
-        public IHttpActionResult GetRoomDetail()
+        [Route("api/booking-v/{status}")]
+        public IHttpActionResult GetRoomDetail(string status)
         {
-            var getBookin = (from b in _context.Bookings
-                           join g in _context.Guests on b.guestid equals g.id
-                           join r in _context.Rooms on b.roomid equals r.id
-                           join rt in _context.RoomTypes on r.roomtypeid equals rt.id
-                           
-                           select new BookingV
-                           {
-                               id = b.id,
-                               bookingno = b.bookingno,
-                               bookingdate = b.bookingdate,
-                               total = b.total,
-                               paydollar = b.paydollar,
-                               payriel = b.payriel,
-                               checkindate = b.checkindate,
-                               expirecheckindate = b.expiredate,
-                               note = b.note,
-                               roomid = r.id,
-                               room_no = r.room_no,
-                               roomtypeid = r.roomtypeid,
-                               roomtypename = rt.roomtypename,
-                               servicecharge = r.servicecharge,
-                               roomprice = r.price,
-                               roomkey = r.roomkey,
-                               guestid = g.id,
-                               name = g.name,
-                               namekh = g.namekh,
-                               sex = g.sex,
-                               dob = g.dob,
-                               address = g.address,
-                               nationality = g.nationality,
-                               phone = g.phone,
-                               email = g.email,
-                               ssn = g.ssn,
-                               passport = g.passport,
-                               gueststatus = g.status
+            if (status == "All")
+            {
+                var getBookin = (from b in _context.Bookings
+                                 join g in _context.Guests on b.guestid equals g.id
+                                 join r in _context.Rooms on b.roomid equals r.id
+                                 join rt in _context.RoomTypes on r.roomtypeid equals rt.id
+                                 select new BookingV
+                                 {
+                                     id = b.id,
+                                     bookingno = b.bookingno,
+                                     bookingdate = b.bookingdate,
+                                     total = b.total,
+                                     paydollar = b.paydollar,
+                                     payriel = b.payriel,
+                                     checkindate = b.checkindate,
+                                     expirecheckindate = b.expiredate,
+                                     bookstatus = b.status,
+                                     note = b.note,
+                                     roomid = r.id,
+                                     room_no = r.room_no,
+                                     roomtypeid = r.roomtypeid,
+                                     roomtypename = rt.roomtypename,
+                                     servicecharge = r.servicecharge,
+                                     roomprice = r.price,
+                                     roomkey = r.roomkey,
+                                     guestid = g.id,
+                                     name = g.name,
+                                     namekh = g.namekh,
+                                     sex = g.sex,
+                                     dob = g.dob,
+                                     address = g.address,
+                                     nationality = g.nationality,
+                                     phone = g.phone,
+                                     email = g.email,
+                                     ssn = g.ssn,
+                                     passport = g.passport,
+                                     gueststatus = g.status
 
-                           }).ToList();
+                                 }).ToList();
 
-            return Ok(getBookin);
+                return Ok(getBookin);
+            }else
+            {
+                var getBookin = (from b in _context.Bookings
+                                 join g in _context.Guests on b.guestid equals g.id
+                                 join r in _context.Rooms on b.roomid equals r.id
+                                 join rt in _context.RoomTypes on r.roomtypeid equals rt.id
+                                 where b.status==status
+                                 select new BookingV
+                                 {
+                                     id = b.id,
+                                     bookingno = b.bookingno,
+                                     bookingdate = b.bookingdate,
+                                     total = b.total,
+                                     paydollar = b.paydollar,
+                                     payriel = b.payriel,
+                                     checkindate = b.checkindate,
+                                     expirecheckindate = b.expiredate,
+                                     bookstatus = b.status,
+                                     note = b.note,
+                                     roomid = r.id,
+                                     room_no = r.room_no,
+                                     roomtypeid = r.roomtypeid,
+                                     roomtypename = rt.roomtypename,
+                                     servicecharge = r.servicecharge,
+                                     roomprice = r.price,
+                                     roomkey = r.roomkey,
+                                     guestid = g.id,
+                                     name = g.name,
+                                     namekh = g.namekh,
+                                     sex = g.sex,
+                                     dob = g.dob,
+                                     address = g.address,
+                                     nationality = g.nationality,
+                                     phone = g.phone,
+                                     email = g.email,
+                                     ssn = g.ssn,
+                                     passport = g.passport,
+                                     gueststatus = g.status
 
+                                 }).ToList();
+
+                return Ok(getBookin);
+            }
         }
 
         [HttpGet]
@@ -218,13 +262,12 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
 
         [HttpPut]
-        [Route("api/bookingstatus/{id}/cancel")]
-        public IHttpActionResult GetMaxID(int id)
+        [Route("api/bookingstatus/{id}/{status}")]
+        public IHttpActionResult GetMaxID(int id,string status)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-
-            SqlCommand requestcommand = new SqlCommand("Update booking_tbl set status='Cancel' where  id=" + id, conx);
+            SqlCommand requestcommand = new SqlCommand("Update booking_tbl set status='"+ status + "' where  id=" + id, conx);
             try
             {
                 conx.Open();
@@ -238,79 +281,20 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
         }
 
-        //[HttpPost]
-        //public IHttpActionResult BOOKING_INSERT()
-        //{
-
-        //    DataTable ds = new DataTable();
-        //    DataTable ds1 = new DataTable();
-        //    var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        //    SqlConnection conx = new SqlConnection(connectionString);
-        //    SqlDataAdapter adp = new SqlDataAdapter("select max(id) from guest_tbl", conx);
-        //    SqlDataAdapter adp1 = new SqlDataAdapter("select max(id) from ExchangeRates where IsDeleted=0", conx);
-        //    adp.Fill(ds);
-        //    adp1.Fill(ds1);
-
-        //    string GuestID = ds.Rows[0][0].ToString();
-        //    string ExchangeId = ds1.Rows[0][0].ToString();
-
-        //    var bookingno = HttpContext.Current.Request.Form["bookingno"];
-        //    var bookingdate = DateTime.Today;
-        //    string UserId = User.Identity.GetUserId();
-        //    var guestid = int.Parse(GuestID);
-        //    var exchangeid = int.Parse(ExchangeId);
-        //    var roomid = int.Parse(HttpContext.Current.Request.Form["roomid"]);
-        //    var total = decimal.Parse(HttpContext.Current.Request.Form["total"]);
-        //    var paydollar = decimal.Parse(HttpContext.Current.Request.Form["paydollar"]);
-        //    var payriel = decimal.Parse(HttpContext.Current.Request.Form["payriel"]);
-        //    var expiredate = DateTime.Parse(HttpContext.Current.Request.Form["expiredate"]);
-        //    var note = HttpContext.Current.Request.Form["note"];
-        //    var status ="ACTIVE";
-        //    var updateby = User.Identity.GetUserName();
-        //    var updatedate = DateTime.Today;
-        //    var checkindate = DateTime.Today;
-
-
-        //    SqlCommand command = new SqlCommand();
-        //    SqlCommand requestcommand = new SqlCommand();
-        //    requestcommand.Connection = conx;
-        //    requestcommand.CommandType = CommandType.StoredProcedure;
-        //    requestcommand.CommandText = "BOOKING_INSERT";
-        //    requestcommand.Parameters.Add("@bookingno", SqlDbType.VarChar).Value = bookingno;
-        //    requestcommand.Parameters.Add("@bookingdate", SqlDbType.Date).Value = bookingdate;
-        //    requestcommand.Parameters.Add("@userid", SqlDbType.VarChar).Value = UserId;
-        //    requestcommand.Parameters.Add("@guestid", SqlDbType.Int).Value = guestid;
-        //    requestcommand.Parameters.Add("@roomid", SqlDbType.Int).Value = roomid;
-        //    requestcommand.Parameters.Add("@exchangeid ", SqlDbType.Int).Value = exchangeid;
-        //    requestcommand.Parameters.Add("@total", SqlDbType.Decimal).Value = total;
-        //    requestcommand.Parameters.Add("@paydollar", SqlDbType.Decimal).Value = paydollar;
-        //    requestcommand.Parameters.Add("@payriel", SqlDbType.Decimal).Value = payriel;
-        //    requestcommand.Parameters.Add("@updateby", SqlDbType.VarChar).Value = updateby;
-        //    requestcommand.Parameters.Add("@updatedate", SqlDbType.Date).Value = updatedate;
-        //    requestcommand.Parameters.Add("@checkindate", SqlDbType.Date).Value = checkindate;
-        //    requestcommand.Parameters.Add("@expirecheckindate", SqlDbType.Date).Value = expiredate;
-        //    requestcommand.Parameters.Add("@note", SqlDbType.VarChar).Value = note;
-        //    requestcommand.Parameters.Add("@status", SqlDbType.VarChar).Value = status;
-
-
-        //    try
-        //    {
-        //        conx.Open();
-        //        requestcommand.ExecuteNonQuery();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-
-        //    return Ok();
-        //}
-
+        
 
         [HttpPost]
         //Get : api/Rooms
         public IHttpActionResult CreateRoomDetail(BookingDto BookingDtos)
         {
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlCommand requestcommand = new SqlCommand("select max(id) from ExchangeRates where IsDeleted=0", conx);
+            SqlDataAdapter da = new SqlDataAdapter("select max(id) from ExchangeRates where IsDeleted=0", conx);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            string eid = dt.Rows[0][0].ToString();
+
             if (!ModelState.IsValid)
                 return BadRequest();
 
@@ -319,6 +303,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             BookinInDb.userid = User.Identity.GetUserId();
             BookinInDb.updateby= User.Identity.GetUserId();
             BookinInDb.updatedate = DateTime.Today;
+            BookinInDb.exchangeid = int.Parse(eid);
+            BookinInDb.status = "Active";
 
             _context.Bookings.Add(BookinInDb);
             _context.SaveChanges();
@@ -328,17 +314,29 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return Created(new Uri(Request.RequestUri + "/" + BookingDtos.id), BookingDtos);
         }
         [HttpPut]
-        public IHttpActionResult UpdateBookingDetail(int id, BookingDto BookingDtos)
+        public IHttpActionResult UpdateUser(int id, BookingDto BookinDtos)
         {
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlCommand requestcommand = new SqlCommand("select max(id) from ExchangeRates where IsDeleted=0", conx);
+            SqlDataAdapter da = new SqlDataAdapter("select max(id) from ExchangeRates where IsDeleted=0", conx);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            string eid = dt.Rows[0][0].ToString();
+
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            var RoomDetailInDb = _context.Bookings.SingleOrDefault(c => c.id == id);
-            Mapper.Map(BookingDtos, RoomDetailInDb);
+            var BookingInDb = _context.Bookings.SingleOrDefault(c => c.id == id);
+            BookingInDb.bookingdate = DateTime.Today;
+            BookingInDb.userid = User.Identity.GetUserId();
+            BookingInDb.updateby = User.Identity.GetUserId();
+            BookingInDb.updatedate = DateTime.Today;
+            BookingInDb.exchangeid = int.Parse(eid);
+            BookingInDb.status = "Active";
+            Mapper.Map(BookinDtos, BookingInDb);
             _context.SaveChanges();
-
-            return Ok(RoomDetailInDb);
-
+            return Ok(BookinDtos);
         }
 
         //DELETE : api/Companies/{id}

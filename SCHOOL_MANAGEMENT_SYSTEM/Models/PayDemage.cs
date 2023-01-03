@@ -11,10 +11,11 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
     {
         public int id { get; set; }
         public DateTime date { get; set; }
-        public int checkinid { get; set; }
-        public CheckIn checkin { get; set; }
+        public int guestid { get; set; }
+        public Guest guest { get; set; }
         public int itemid { get; set; }
         public Item item { get; set; }
+        public decimal price { get; set; }
         public string note { get; set; }
     }
 }

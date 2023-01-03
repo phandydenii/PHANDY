@@ -20,6 +20,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public int child { get; set; }
         public int man { get; set; }
         public int women { get; set; }
-        public decimal pay { get; set; }
+        public decimal prepaid { get; set; }
+        public decimal payforroom { get; set; }
+        public bool active { get; set; }
     }
 }

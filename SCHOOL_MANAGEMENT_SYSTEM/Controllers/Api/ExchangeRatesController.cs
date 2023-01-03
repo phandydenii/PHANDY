@@ -57,13 +57,13 @@ namespace Camtopjobs.Controllers.Api
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            DateTime now = DateTime.Now;
-            exchageRateDto.date = now;
-            var exchageRate = Mapper.Map<ExchangeRateDto, ExchangeRate>(exchageRateDto);
-            _context.Exchanges.Add(exchageRate);
+
+            var exchageRateInDb = Mapper.Map<ExchangeRateDto, ExchangeRate>(exchageRateDto);
+            exchageRateInDb.date = DateTime.Today;
+            _context.Exchanges.Add(exchageRateInDb);
             _context.SaveChanges();
-            exchageRateDto.id = exchageRate.id;
-            return Created(new Uri(Request.RequestUri + "/" + exchageRate.id), exchageRateDto);
+            exchageRateDto.id = exchageRateInDb.id;
+            return Created(new Uri(Request.RequestUri + "/" + exchageRateInDb.id), exchageRateDto);
         }
 
         // PUT api/parent/5
@@ -72,10 +72,10 @@ namespace Camtopjobs.Controllers.Api
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            var exchageRate = _context.Exchanges.SingleOrDefault(c => c.id == id);
-            exchageRateDto.date = exchageRate.date;
+            var exchageRateInDb = _context.Exchanges.SingleOrDefault(c => c.id == id);
+            exchageRateInDb.date = DateTime.Today;
 
-            Mapper.Map(exchageRateDto, exchageRate);
+            Mapper.Map(exchageRateDto, exchageRateInDb);
             _context.SaveChanges();
             return Ok(exchageRateDto);
         }

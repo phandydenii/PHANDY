@@ -22,9 +22,8 @@
                 <th>ឈ្មោះ</th>
                 <th>ថ្ងៃចូលស្នាក់នៅ</th>
                 <th>បន្ទប់លេខ</th>
-                <th>ជាន់</th>
-                <th>អគារ</th>
                 <th>បង់មុនចំនួន</th>
+                @*<th>ស្ថានភាព</th>*@
                 <th style="width:7%">សកម្មភាព</th>
             </tr>
         </thead>
@@ -35,6 +34,7 @@
 @*@Html.Partial("_PrintNewInvoice")*@
 @Html.Partial("_CheckIn")
 @Html.Partial("_Paydamages")
+@Html.Partial("_PrintNewInvoice")
 
 @section scripts{
     @Scripts.Render("~/Scripts/Functions/checkin.js")

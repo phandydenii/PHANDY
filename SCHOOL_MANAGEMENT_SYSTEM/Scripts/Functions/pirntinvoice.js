@@ -1,8 +1,9 @@
 ﻿
 $(document).ready(function () {
-    $('#PrintNewInvoiceModal').on('show.bs.modal', function () {
-        //$('#odlrecordwater').focus();
-        TotalPayment();
+    $(document).ajaxStart(function () {
+        $('#loadingGif').addClass('show');
+    }).ajaxStop(function () {
+        $('#loadingGif').removeClass('show');
     });
     GetCheckInDetail();
 
@@ -19,7 +20,7 @@ function GetCheckInDetail() {
         columns:
             [
                 {
-                    data: "checkinid"
+                    data: "guestid"
                 },
                 {
                     data: "name"
@@ -43,10 +44,10 @@ function GetCheckInDetail() {
                     data: "price",
                 },
                 {
-                    data: "woldrecord",
+                    data: "wstartrecord",
                 },
                 {
-                    data: "poldrecord",
+                    data: "estartrecord",
                 },
                 {
                     data: "startdate",
@@ -71,7 +72,7 @@ function GetCheckInDetail() {
                             lateday = "Late "+d+" days";
                         }
                         return "<span class='label label-danger' style='margin-right:5px'>" + lateday + "</span>"
-                              + "<button OnClick='OnPrintInvoice (" + data +"," + data +")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Print Invoice</button>"
+                              + "<button OnClick='OnPrintInvoice (" + data +"," + row.guestid +")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Print Invoice</button>"
                         ;
                     }
                 }
@@ -81,9 +82,7 @@ function GetCheckInDetail() {
 }
 
 function OnPrintInvoice(checkinid,guestid) {
-    //alert(id+" "+checkinid)
     $("#PrintNewInvoiceModal").modal("show");
-    //$("#invid").val(id);
     $("#checkinid").val(checkinid);
     $.ajax({
         url: "/api/invoice-v/newinvoie/" + guestid,
@@ -91,12 +90,15 @@ function OnPrintInvoice(checkinid,guestid) {
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
+            $("#invid").val(result[0]["invoiceid"]);
             $('#name').val(result[0]["name"]);
+            $('#roomid').val(result[0]["roomid"]);
             $("#roomno").val(result[0]["room_no"]);
-            $("#roomprice").val(result[0]["price"]);
+            $("#rmprice").val(result[0]["price"]);
             $("#svprice").val(result[0]["servicecharge"]);
-            $("#recordpowerold").val(result[0]["woldrecord"]);
-            $("#recordwaterold").val(result[0]["poldrecord"]);
+            $("#recordpowerold").val(result[0]["estartrecord"]);
+            $("#recordwaterold").val(result[0]["wstartrecord"]);
+            $("#weid").val(result[0]["weid"]);
             var checkindid = result[0]["checkinid"];
             var stdate = moment(result[0]["startdate"]).format("YYYY-MM-DD");
             var enddate = moment(result[0]["enddate"]).format("YYYY-MM-DD");
@@ -106,15 +108,16 @@ function OnPrintInvoice(checkinid,guestid) {
             $("#guestid").val(result[0]["guestid"]);
             $("#ispaid").val(result[0]["paid"]);
             $("#isprint").val(result[0]["printed"]);
+            var invoiceno = "RL" + ("000000" + result[0]["invoiceid"]).slice(-6)
 
             if (result[0]["printed"] == false) {
-                $('#invno').val(result[0]["invoiceno"]);
+                $('#invno').val(invoiceno);
             } else {
                 $.get("/api/invoicemaxid", function (data) {
                     $('#invno').val(data);
                 });
             }
-            GetPayDemage(checkindid, stdate, enddate);
+            GetPayDemage(result[0]["guestid"], stdate, enddate);
 
 
         },
@@ -127,46 +130,33 @@ function OnPrintInvoice(checkinid,guestid) {
         $('#exrate').val(data.rate);
     });
 
-    $.get("/api/WaterPoserPrice/1/1", function (data) {
+    $.get("/api/WEPrice/1/1", function (data) {
         $('#wprice').val(data.waterprice);
-        $('#pprice').val(data.powerprice);
+        $('#pprice').val(data.electricprice);
     });
 }
 var tablepaydemage=[];
 function GetPayDemage(id, fromdate, todate) {
-    //alert(fromdate + " " + todate);
-    tablepaydemage=$('#tblPayDemage').DataTable({
-        ajax: {
-            url: "/api/paydemages/" + id + "/" + fromdate + "/" + todate,
-            dataSrc: ""
-        },
-        columns: [
-            {
-                data: "item.itemname",
-            },
-            {
-                data: "item.price",
+    $.ajax({
+        url: "/api/paydemages/" + id + "/" + fromdate + "/" + todate,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (result) {
+           
+            var valsum = 0;
+            
+            $.each(result, function (key, value) {
+                valsum += parseFloat(value.price);
+                $('#itemname').append("<label>" + value.item.itemname + "</label>"+"="+"<label>" + value.price + "$, </label>");
+
+            });
+            if (valsum != '0') {
+                $('#paydemage').text("សម្ភារៈខូចខាត ​ ");
+                $('#total').text("Total =");
+                $('#itemprice').text(valsum);
             }
-        ],
-
-        destroy: true,
-        "paging": false,
-        "ordering": false,
-        "info": false,
-        "searching": false
-    });
-}
-
-
-function getwater(id) {
-    $.ajax({
-        url: "/api/waterusagerecord/" + id,
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        datatype: "json",
-        success: function (result) {
-            $('#oldrecordwater').val(result.prerecord);
-            $('#waterid').val(result.id);
+            
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
@@ -174,21 +164,6 @@ function getwater(id) {
     });
 }
 
-function getpower(id) {
-    $.ajax({
-        url: "/api/powerusagerecord/" + id,
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        datatype: "json",
-        success: function (result) {
-            $('#oldrecordpower').val(result.prerecord);
-            $('#powerid').val(result.id);
-        },
-        error: function (errormessage) {
-            toastr.error("No Record Select!", "Service Response");
-        }
-    });
-}
 
 function CheckInEdit(id) {
     //alert(id);
@@ -208,17 +183,13 @@ function CheckInEdit(id) {
 
 
 function InvoiceNewPrint() {
-    $.get("/api/invoice_v/" + $("#invid").val(), function (data) {
-        if (data.isprint == false) {
-            //alert('false');
-            PrintUpdateInvoice();
-        } else {
-            //alert('true');
-            InsertNewInvoice();
-        }
-    });
-
+    if ($("#isprint").val() == "false") {
+        PrintUpdateInvoice();
+    } else {
+        InsertWaterElectricUsage();
+    }
 }
+
 function PrintUpdateInvoice() {
     var data = new FormData();
     data.append("grandtotal", $("#grandtotal").val());
@@ -236,10 +207,8 @@ function PrintUpdateInvoice() {
         processData: false,
         data: data,
         success: function (result) {
-            UpdateWaterPrint();
-            UpdatePowerPrint();
-            toastr.success("Print Invoice successfully!.", "Server Response");
-            window.location.reload(true);
+            UpdateWaterElectricUsage();
+            CreateInvoiceDetail($("#invid").val());
         },
         error: function (errormesage) {
             toastr.error("Print invoice faild...!", "Server Respond");
@@ -247,38 +216,61 @@ function PrintUpdateInvoice() {
         }
     });
 }
-function UpdateWaterPrint() {
+function UpdateWaterElectricUsage() {
+    var data = new FormData();
+    data.append("checkinid", $("#checkinid").val());
+    data.append("startdate", $('#startdate').val());
+    data.append("enddate", $('#enddate').val());
+    data.append("wstartrecord", $('#recordwaterold').val());
+    data.append("wendrecord", $('#recordwaternew').val());
+    data.append("estartrecord", $('#recordpowerold').val());
+    data.append("eendrecord", $('#recordpowernew').val());
     $.ajax({
         type: "PUT",
-        url: "/api/updatewaterusage/" + $("#checkinid").val() + "/" + $('#recordwaternew').val(),
+        url: "/api/waterelectricusages/" + $("#weid").val(),
         contentType: false,
         processData: false,
+        data: data,
         success: function (result) {
-            //toastr.success("Update water payment has been Update successfully.", "Server Response");
+
+            toastr.success("Check In successfully.", "Server Response");
+            window.location.reload(true);
         },
-        error: function (error) {
-            toastr.error("Update water fail!", "Server Response");
-        }
-    });
-}
-function UpdatePowerPrint() {
-    $.ajax({
-        type: "PUT",
-        url: "/api/updateelectrics/" + $("#checkinid").val() + "/" + $('#recordpowernew').val(),
-        contentType: false,
-        processData: false,
-        success: function (result) {
-            //toastr.success("Room Status has been Update successfully.", "Server Response");
-        },
-        error: function (error) {
-            toastr.error("Update room status fail!", "Server Response");
+        error: function (errormesage) {
+            toastr.error("Electric usage insert faild!", "Server Respond");
+            return false;
         }
     });
 }
 
+
+function InsertWaterElectricUsage() {
+    var data = new FormData();
+    data.append("checkinid", $("#checkinid").val());
+    data.append("startdate", $('#startdate').val());
+    data.append("enddate", $('#enddate').val());
+    data.append("wstartrecord", $('#recordwaterold').val());
+    data.append("wendrecord", $('#recordwaternew').val());
+    data.append("estartrecord", $('#recordpowerold').val());
+    data.append("eendrecord", $('#recordpowernew').val());
+    $.ajax({
+        type: "POST",
+        url: "/api/waterelectricusages",
+        contentType: false,
+        processData: false,
+        data: data,
+        success: function (result) {
+            InsertNewInvoice();
+        },
+        error: function (errormesage) {
+            toastr.error("Electric usage insert faild!", "Server Respond");
+            return false;
+        }
+    });
+}
 function InsertNewInvoice() {
     var data = {
-        invoiceno: $('#invno').val(),
+        roomid: $('#roomid').val(),
         guestid: $('#guestid').val(),
         checkinid: $('#checkinid').val(),
         grandtotal: $('#grandtotal').val(),
@@ -295,22 +287,12 @@ function InsertNewInvoice() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            $("#PrintNewInvoiceModal").modal("hide");
-            InsertPowerUsage(result);
-            InsertWaterUsage(result);
             CreateInvoiceDetail(result);
-            alert('Print Invoice successfully!');
-            window.location.reload(true);
-
         },
         error: function (errormesage) {
             toastr.error("Create invoice faild...!" + errormesage, "Server Respond");
         }
     });
-}
-
-function OnTest() {
-    CreateInvoiceDetail(1);
 }
 function CreateInvoiceDetail(id) {
     var data = new FormData();
@@ -329,6 +311,7 @@ function CreateInvoiceDetail(id) {
         processData: false,
         data: data,
         success: function (result) {
+            toastr.success("Print Invoice successfully!.", "Server Response");
             window.location.reload(true);
         },
         error: function (errormesage) {
@@ -343,54 +326,6 @@ function CreateInvoiceDetail(id) {
 
 
 
-
-function InsertPowerUsage(id) {
-    var data = {
-        predate: $('#startdate').val(),
-        prerecord: $('#recordpowerold').val(),
-        currentdate: $('#enddate').val(),
-        currentrecord: $('#recordpowernew').val(),
-        invoiceid: id,
-    };
-    $.ajax({
-        url: "/api/powerusage",
-        data: JSON.stringify(data),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            //window.location.reload(true);
-        },
-        error: function (errormesage) {
-            toastr.error("Power usage insert faild!", "Server Respond");
-            return false;
-        }
-    });
-}
-function InsertWaterUsage(id) {
-    var data = {
-        predate: $('#startdate').val(),
-        prerecord: $('#recordwaterold').val(),
-        currentdate: $('#enddate').val(),
-        currentrecord: $('#recordwaternew').val(),
-        invoiceid: id,
-    };
-    $.ajax({
-        url: "/api/waterusage",
-        data: JSON.stringify(data),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            //window.location.reload(true);
-        },
-        error: function (errormesage) {
-            toastr.error("Water usage insert faild!", "Server Respond");
-            return false;
-        }
-
-    });
-}  
 function RecordWaterChange() {
     var waternewrecord = document.getElementById('recordwaternew').value;
     var wateroldrecord = document.getElementById('recordwaterold').value;
@@ -415,26 +350,33 @@ function RecordPowerChange() {
         $('#powerusagetotal').val(totalwaterusage.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         TotalPayment();
     }
-
+   // alert(totalwaterusage);
 
 }
 function TotalPayment() {
     var watertotal = document.getElementById('waterusagetotal').value;
     var powertotal = document.getElementById('powerusagetotal').value;
-    var roomprice = document.getElementById('roomprice').value;
+    var roomprice = document.getElementById('rmprice').value;
     var servicecharge = document.getElementById('svprice').value;
-    var table = document.getElementById("tblPayDemage"),
-    sumVal = 0;
-    for (var i = 1; i < table.rows.length; i++) {
-        sumVal = sumVal + parseFloat(table.rows[i].cells[1].innerHTML);
+    var sumval = document.getElementById("itemprice").innerText;
+    var paydemage = 0;
+    if (sumval == "") {
+        paydemage = 0;
+    } else {
+        paydemage = sumval;
     }
-    var grandtotal = parseFloat(watertotal) + parseFloat(powertotal) + parseFloat(roomprice) + parseFloat(servicecharge) + parseFloat(sumVal);
+    
+    var grandtotal = parseFloat(watertotal) + parseFloat(powertotal) + parseFloat(roomprice) + parseFloat(servicecharge) + parseFloat(paydemage);
     $('#grandtotal').val(grandtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
     $('#grandtotalkh').val((grandtotal * parseFloat($('#exrate').val())).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
 
-
-   // alert("Water ="+watertotal+" Power ="+powertotal+" SV ="+servicecharge+" RP="+roomprice + " Item="+sumVal);
+    //alert(sumval);
+   //alert("Water ="+watertotal+" Power ="+powertotal+" SV ="+servicecharge+" RP="+roomprice + " Item="+sumVal);
 }
+
+
+
+
 function OnCloseNewInv() {
     window.location.reload(true);
 }
@@ -456,110 +398,3 @@ function OnCloseNewInv() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-function ChangeItem() {
-    
-    var id = $('select[name=item]').val()
-    var name = $("#item option:selected").text();
-    var tBody = $("#tabletest > TBODY")[0];
-    var row = tBody.insertRow(-1);
-    var cell = $(row.insertCell(-1));
-
-    cell.html(name);
-    cell = $(row.insertCell(-1));
-
-    cell.html(id);
-    cell = $(row.insertCell(-1));
-
-    var btnRemove = $("<input />");
-    btnRemove.attr("type", "button");
-    btnRemove.attr("class", "btn btn-danger btn-xs");
-    btnRemove.attr("onclick", "Remove(this);");
-    btnRemove.val("X");
-    cell.append(btnRemove);
-    
-    const itemList=[];
-    var table = document.getElementById("tabletest"),
-    sumVal = 0;
-    for (var i = 1; i < table.rows.length; i++) {
-        sumVal = sumVal + parseFloat(table.rows[i].cells[1].innerHTML);
-    }
-
-    
-    $('#itemcharge').val(sumVal);
-    TotalPayment();
-};
-
-
-function Remove(button) {
-    //Determine the reference of the Row using the Button.
-    var row = $(button).closest("TR");
-    var name = $("TD", row).eq(0).html();
-    //Get the reference of the Table.
-    var table = $("#tabletest")[0];
-
-    //Delete the Table row using it's Index.
-    table.deleteRow(row[0].rowIndex);
-
-    var table = document.getElementById("tabletest"),
-    sumVal = 0;
-    for (var i = 1; i < table.rows.length; i++) {
-        sumVal = sumVal + parseFloat(table.rows[i].cells[1].innerHTML);
-    }
-    $('#itemcharge').val(sumVal)
-    TotalPayment();
-};
-
-//=========
-
-
-//[HttpPost]
-//public IHttpActionResult CreateShipperHistory(ShipHistoryReq shipHistoryReq)
-//{
-//    var newtod = new ShipperHistoryDto()
-//    {
-//        shipperid = shipHistoryReq.shipperid,
-//        totalbox = shipHistoryReq.totalbox,
-//        totalservice = shipHistoryReq.totalservice,
-//        totalprice = shipHistoryReq.totalprice,
-//    };
-
-//    var department = Mapper.Map<ShipperHistoryDto, ShipHistory>(newtod);
-//    department.date = DateTime.Today;
-//    _context.ShipHistories.Add(department);
-//    _context.SaveChanges();
-
-//    DataTable ds = new DataTable();
-//    var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-//    SqlConnection conx = new SqlConnection(connectionString);
-//    SqlDataAdapter adp = new SqlDataAdapter("select CASE WHEN max(id) IS NULL THEN '1' ELSE max(id) END from shiphistory_tbl ", conx);
-//    adp.Fill(ds);
-//    string InvNo = ds.Rows[0][0].ToString();
-
-//    var resp = new HttpResponseMessage();
-//    foreach (var i in shipHistoryReq.list_id)
-//    {
-//        var resul1 = _context.InvoiceDetail.FirstOrDefault(c => c.id == i);
-//        var newzhid = new HistoryDetail()
-//        {
-//            invoicedetailid = resul1.id,                    
-//            shiphistoryid = int.Parse(InvNo)
-//        };
-//        _context.HistoryDetails.Add(newzhid);
-//        _context.SaveChanges();
-
-
-//    }            
-
-//return Ok(InvNo);
-
-//}

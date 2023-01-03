@@ -11,7 +11,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
     public class Item
     {
         public int id { get; set; }
-        [Required]
         public string itemname { get; set; }
         public string itemnamekh { get; set; }
         public decimal price { get; set; }

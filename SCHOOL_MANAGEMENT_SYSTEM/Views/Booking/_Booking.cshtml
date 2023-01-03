@@ -1,0 +1,83 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="false" id="BookModal" tabindex="-1" role="dialog" aria-labelledby="BookModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;" id="lblRoom">Booking</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input id="id" name="id" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <input id="bookingno" name="bookingno" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <input id="bookingdate" name="bookingdate" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <input id="rmid" name="rmid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <div class="form-group">
+                            <label for="chroomid">លេខបន្ទប់</label>
+                            <select class="form-control input-sm" id="roomidb" >
+                                @foreach (var room in Model.Rooms)
+                                {
+                                    <option value=@room.id>@room.room_no</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="guestid">លេខរៀងភ្ញៀវ</label>
+                            <select class="form-control input-sm" id="guestid" disabled>
+                                @foreach (var room in Model.GuestList)
+                                {
+                                    <option value=@room.id>@room.name</option>
+                                }
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="checkindate">ថ្ងៃចូលស្នាក់នៅ</label>
+                            <input id="checkindate" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
+                        </div>
+                        <div class="form-group">
+                            <label for="expiredate">ថ្ងៃផុតកំណត់ចូលស្នាក់នៅ</label>
+                            <input id="expiredate" name="expiredate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="totalbooking">សរុបប្រាក់កក់</label>
+                            <input id="totalbooking" name="totalbooking" onfocus="this.select();" placeholder="$0.00" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="paydollarbooking">សាច់ប្រាក់ទទួលបានជាដុល្លា</label>
+                            <input onchange="ChangePayBook()" id="paydollarbooking" name="paydollarbooking" onfocus="this.select();" placeholder="$0.00" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="payreilbooking">សាច់ប្រាក់ទទួលបានជារៀល</label>
+                            <input id="payreilbooking" name="payreilbooking" placeholder="00" onfocus="this.select();" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="note">ចំណាំ</label>
+                            <input id="note" name="note" placeholder="Note" onfocus="this.select();" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnSaveCheckIn" onclick="UpdateBooking()" class="btn btn-info btn-sm pull-right" style="margin:5px;width:100px">Update</button>
+                    <button type="button" id="btnTest" onclick="OnCloseCheckIn()" class="btn btn-danger btn-sm pull-right" style="margin:5px;width:100px">Cancel</button>                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

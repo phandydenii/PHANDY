@@ -15,44 +15,11 @@
                 <span class="label label-success">Booking @Model.TotalBook</span>
                 <span class="label label-warning">Chek In @Model.TotalCheckIn</span>
                 <span class="label label-danger">Block @Model.TotalBlock</span>
-                
-
-                @*<div class="btn-group">
-                    <a href='#' class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-cog"></span> Action</a><a href='#' class="btn btn-primary btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <button OnClick="" class="btn btn-warning btn-xs" style="margin-top:0px"><span class="glyphicon glyphicon-edit"></span> Edit</button>
-                            <button OnClick="" class="btn btn-info btn-xs" style="margin-top:5px"><span class="glyphicon glyphicon-list-alt"></span> Detail</button>
-                            <button OnClick="" class="btn btn-danger btn-xs" style="margin-top:5px"><span class="glyphicon glyphicon-trash"></span> Delete</button>
-                        </li>
-                    </ul>
-                </div>
-
-
-                <div class="btn-group">
-                    <a href="#" class="btn btn-info btn-xs">Success</a>
-                    <a href="#" class="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </div>*@
 
                 <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Floor</a>
                 <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomTypeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room Type</a>
                 <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room</a>
                 <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Item To Room</a>
-
-
-
-                @*<button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Floor</button>
-                <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomTypeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room Type</button>
-                <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room</button>
-                <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Item To Room</button>*@
-           
              </div>
         </div>
         
@@ -108,7 +75,7 @@
     @Scripts.Render("~/Scripts/Functions/building.js")
     @Scripts.Render("~/Scripts/Functions/room.js")
     @Scripts.Render("~/Scripts/Functions/roomitems.js")
-    @*@Scripts.Render("~/Scripts/Functions/roomdetail.js")*@
+    @Scripts.Render("~/Scripts/Functions/checkinnow.js")
 
     @Scripts.Render("~/Scripts/moment.min.js")
 }
@@ -142,12 +109,9 @@
             contentType: "application/json;charset=utf-8",
             datatype: "json",
             success: function (result) {
-                $("#lblRoomNo").text(result.room_no);
-                $("#lblRoomStatus").text(result.status);
-                $("#lblRoomId").text(result.id);
-                $("#roomid").text(result.id);
-
+                $("#lblRoomNo").text("Room "+result.room_no+" "+result.status);
                 $("#rmno").text(result.room_no);
+                $("#roomid").text(result.id);
                 $("#roomtype").text(result.roomtypename);
                 $("#flno").text(result.floorno);
                 $("#sc").text(result.servicecharge + '$');
@@ -223,7 +187,7 @@
     function checkin(roomid) {
         //alert(roomid);
         $.ajax({
-            url: "/api/checkinbyroom_v/"+roomid,
+            url: "/api/checkinbyroom-v/"+roomid,
             type: "GET",
             contentType: "application/json;charset=utf-8",
             datatype: "json",

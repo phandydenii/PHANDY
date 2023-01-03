@@ -5,8 +5,7 @@
         <div class="modal-content">
             <div class="modal-header clearfix">
                 <button type="button" onclick="CloseBook()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">កក់បន្ទប់</b>
-                <b class="modal-title" style="color: darkblue;" id="lblidroom">Book</b>
+                <b class="modal-title" style="color: darkblue;" id="lblbookrmid"></b>
                
             </div>
             <div class="modal-body">
@@ -91,39 +90,41 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
+                                            <label for="roompriceb">តម្លៃបន្ទប់</label>
+                                            <input readonly="readonly" id="roompriceb" name="roompriceb" placeholder="$0.00" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
                                             <label for="totalbooking">សរុបប្រាក់កក់</label>
-                                            <input id="totalbooking" name="totalbooking" placeholder="$0.00" type="number" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="paydollarbooking">ប្រាក់ដុល្លា</label>
-                                            <input id="paydollarbooking" name="paydollarbooking" placeholder="$0.00" type="number" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="payreilbooking">ប្រាក់រៀល</label>
-                                            <input id="payreilbooking" name="payreilbooking" placeholder="000.0" type="number" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <input onchange="TotalBook()" id="totalbooking" name="totalbooking" onfocus="this.select();" placeholder="$0.00" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label for="paydollarbooking">សាច់ប្រាក់ទទួលបានជាដុល្លា</label>
+                                            <input onchange="ChangePayBook()" id="paydollarbooking" name="paydollarbooking" onfocus="this.select();" placeholder="$0.00" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="payreilbooking">សាច់ប្រាក់ទទួលបានជារៀល</label>
+                                            <input  id="payreilbooking" name="payreilbooking" placeholder="00" onfocus="this.select();" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                        <div class="form-group">
                                             <label for="checkindate">ថ្ងៃចូលស្នាក់នៅ</label>
-                                            @*<input id="checkindate" name="checkindate" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />*@
-
                                             <input id="checkindate" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
-
                                         </div>
                                         <div class="form-group">
                                             <label for="expiredate">ថ្ងៃផុតកំណត់ចូលស្នាក់នៅ</label>
-
                                             <input id="expiredate" name="expiredate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
-
-                                            @*<input id="expiredate" name="expiredate" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />*@
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="bookingnote">កត់ត្រា</label>
                                             <input id="bookingnote" name="bookingnote" placeholder="Note" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
-                                            <label >អត្រាប្តូរប្រាក់ <span style="color:blue">1$=</span></label><label style="color:blue" id="exchagerate">​ 4050 រៀល</label>
+                                            <label>អត្រាប្តូរប្រាក់ <span style="color:blue">1$=</span></label><label style="color:blue" id="exchagerate">​</label>
                                         </div>
                                     </div>
                                 </div>
@@ -132,15 +133,9 @@
                     </div>
                 </div>
             </div>
-
             <div class="modal-footer">
-                
-                <div class="col-md-3 col-md-offset-6" id="hidecheckout">
-                    <button type="button" id="btnCheckOut" data-dismiss="modal" class="btn btn-danger btn-block btn-sm">Cancel</button>
-                </div>
-                <div class="col-md-3" id="hidepayment">
-                    <button type="button" id="btnPayment" onclick="OnBookNowAction()" class="btn btn-info btn-block btn-sm">Book Now</button>
-                </div>
+                <button type="button" id="btnPayment" onclick="OnBookNowAction()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:100px">Book Now</button>
+                <button type="button" id="btnCheckOut" onclick="OnCloseBook()" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:5px;width:100px">Cancel</button>   
             </div>
         </div>
 
@@ -148,7 +143,20 @@
 </div>
 
 <script>
-    function CloseBook(){
+    function TotalBook() {
+        var a = $('#totalbooking').val();
+        $('#paydollarbooking').val(a);
+    }
+    function ChangePayBook(){
+        var a =parseFloat($('#totalbooking').val());
+        var b =parseFloat($('#paydollarbooking').val());
+        var e =parseFloat($('#exchagerate').text());
+        var result = (a-b)*e ;
+        $('#payreilbooking').val(result);
+        
+    }
+
+    function OnCloseBook(){
         window.location.reload(true);
     }
 
@@ -163,6 +171,10 @@
 
     ///Insert Guest
     function CreateGuest(){
+        if($("#guestname").val()==""){
+            $("#guestname").focus()
+            return false;
+        }
         var data = new FormData();
         data.append("name", $("#guestname").val());
         data.append("namekh", $("#gnamekh").val());
@@ -184,10 +196,6 @@
             success: function (result) {
                 InsertBooking(result);
                 UpdateRoomStatusBook();
-               
-                toastr.success("Book successfully!", "Server Respond");
-                $("#BookModal").modal('hide');
-                 window.location.reload(true);
             },
             error: function (error) {
                 toastr.error("Please check all selected field!.", "Server Response");
@@ -197,17 +205,20 @@
 
     //Insert Booking
     function InsertBooking(result) {
+        if ($('#totalbooking').val() == "") {
+            $('#totalbooking').focus()
+            return false;
+        }
+
         var data = {
             bookingno: $('#bookingno').val(),
             guestid: result,
-            exchangeid:@Model.ExchangeRateID,
             roomid: $('#frmbookroomid').val(),
             total: $('#totalbooking').val(),
             paydollar: $('#paydollarbooking').val(),
-            payriel: $('#payrielbooking').val(),
+            payriel: $('#payreilbooking').val(),
             checkindate: $('#checkindate').val(),
             expiredate: $('#expiredate').val(),
-            status: 'Active',
             note: $('#bookingnote').val(),
         };
 
@@ -218,7 +229,9 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                //alert('Book Creted');
+                toastr.success("Book successfully!", "Server Respond");
+                window.location.reload(true);
+                window.location = "booking-rpt/1";
             },
             error: function (errormesage) {
                 toastr.error("This Booking ID is exist in Database", "Server Respond");

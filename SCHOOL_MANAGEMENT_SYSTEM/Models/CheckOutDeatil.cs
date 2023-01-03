@@ -12,12 +12,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public int id { get; set; }
         public int checkoutid { get; set; }
         public CheckOut checkout { get; set; }
-        public string itemcharge { get; set; }
-        public decimal itemprice { get; set; }
-        public int electricid { get; set; }
-        public ElectricUsage electric { get; set; }
-        public int waterid { get; set; }
-        public WaterUsage water { get; set; }
+        public int paydemageid { get; set; }
+        public PayDemage paydemage { get; set; }
 
     }
 }

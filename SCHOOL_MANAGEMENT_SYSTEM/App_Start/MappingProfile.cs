@@ -26,12 +26,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<Booking, BookingDto>();
             Mapper.CreateMap<WaterUsage, WaterUsageDto>();
             Mapper.CreateMap<ElectricUsage, ElectricUsageDto>();
-            Mapper.CreateMap<WaterPowerPrice, WaterPowerPriceDto>();
+            Mapper.CreateMap<WEPrice, WEPriceDto>();
             Mapper.CreateMap<CheckOut, CheckOutDto>();
             Mapper.CreateMap<CheckOutDeatil, CheckOutDetailDto>();
             Mapper.CreateMap<Salary, SalaryDto>();
             Mapper.CreateMap<PaySlip, PaySlipDto>();
             Mapper.CreateMap<PayDemage, PayDemageDto>();
+            Mapper.CreateMap<WaterElectricUsage, WaterElectricUsageDto>();
 
             //-------ROSELANY APARTMENT-----------//
 
@@ -63,12 +64,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.App_Start
             Mapper.CreateMap<BookingDto,Booking>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<WaterUsageDto,WaterUsage>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<ElectricUsageDto,ElectricUsage>().ForMember(c => c.id, opt => opt.Ignore());
-            Mapper.CreateMap<WaterPowerPriceDto, WaterPowerPrice>().ForMember(c => c.id, opt => opt.Ignore());
+            Mapper.CreateMap<WEPriceDto, WEPrice>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<CheckOutDto, CheckOut>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<CheckOutDetailDto, CheckOutDeatil>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<SalaryDto, Salary>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<PaySlipDto, PaySlip>().ForMember(c => c.id, opt => opt.Ignore());
             Mapper.CreateMap<PayDemageDto, PayDemage>().ForMember(c => c.id, opt => opt.Ignore());
+            Mapper.CreateMap<WaterElectricUsageDto, WaterElectricUsage>().ForMember(c => c.id, opt => opt.Ignore());
 
             //-------ROSELANY APARTMENT-----------//
 

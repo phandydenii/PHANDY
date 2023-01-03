@@ -1,5 +1,5 @@
 ﻿<div class="modal fade" data-backdrop="static" data-keyboard="false" id="CheckOutModal" tabindex="-1" role="dialog" aria-labelledby="CheckOutModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <input id="checkoutid" name="checkoutid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <input id="chinid" name="chinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <input id="rmid" name="rmid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
@@ -48,10 +48,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="wtotal">សរុបការប្រើប្រាស់ទឺក($)</label>
-                            <input id="wtotal" readonly="readonly" name="wtotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
-                        </div>
                         <div class="row">
                             <input id="powerid" name="powerid" type="text" style="display: none;" value="" class="form-control" />
                             <div class="col-md-6">
@@ -67,63 +63,75 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="etotal">សរុបការប្រើប្រាស់ភ្លើង($)</label>
-                            <input id="etotal" readonly="readonly" name="etotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
-                        </div>
-                        <div class="form-group">
-                            <label for="itemcharge">សម្ភារៈខូចខាត</label>
-                            <select class="form-control input-sm" id="itemcharge">
-                                @foreach (var item in Model.Items)
-                                {
-                                    <option value=@item.id>@item.itemnamekh</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="itemprice">តម្លៃសម្ភារៈ</label>
-                            <input onchange="itempricechange();" id="itemprice"  name="itemprice" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="wtotal">សរុបថ្លៃទឹក</label>
+                                    <input id="wtotal" readonly="readonly" name="wtotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="etotal">សរុបថ្លៃភ្លើង</label>
+                                    <input id="etotal" readonly="readonly" name="etotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="rmprice">តម្លៃបន្ទប់</label>
-                            <input id="rmprice" readonly="readonly" name="rmprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rmprice">តម្លៃបន្ទប់</label>
+                                    <input id="rmprice" readonly="readonly" name="rmprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="svprice">បង់ថ្លៃសេវា</label>
+                                    <input id="svprice" readonly="readonly" name="svprice" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="totalamount">សរុប</label>
+                                    <input id="totalamount" name="totalamount" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="totalpaybefor">បង់មុនចំនួន</label>
+                                    <input id="totalpaybefor" name="totalpaybefor" readonly="readonly" placeholder="0" value="0" type="number" class="form-control input-sm">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="returnamt">ត្រលប់វិញចំនួន</label>
+                                    <input id="returnamt" name="returnamt" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="totalpay">ប្រាក់សរុបត្រូវបង់</label>
+                                    <input id="totalpay" name="totalpay" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
+                                </div>
+                                @*<input type="hidden" id="wpid" />
+                                <span>ថ្លៃភ្លើង</span> : 1m<sup>3</sup> = <label id="waterprice"></label><span> រៀល</span>
+                                <br />
+                                <span>ថ្លៃទឹក</span> : 1​KWH = <label id="electricprice"></label><span> រៀល</span>*@
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="svprice">បង់ថ្លៃសេវា</label>
-                            <input id="svprice" readonly="readonly" name="svprice" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label" for="description">ពណ៌នា</label>
+                                    <input id="description" name="description" placeholder="Description" value="" type="text" class="form-control input-sm">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label" for="totalamount">សរុប</label>
-                            <input id="totalamount" name="totalamount" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="totalpaybefor">បង់មុនចំនួន</label>
-                            <input id="totalpaybefor" name="totalpaybefor" readonly="readonly" placeholder="0" value="0" type="number" class="form-control input-sm">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="returnamt">ត្រលប់វិញចំនួន</label>
-                            <input id="returnamt" name="returnamt" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="totalpay">ប្រាក់សរុបត្រូវបង់</label>
-                            <input id="totalpay" name="totalpay" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="description">ពណ៌នា</label>
-                            <input id="description" name="description" placeholder="Description" value="" type="text" class="form-control input-sm">
-                        </div>
-                        @*<input type="hidden" id="wpid" />
-                        <span>ថ្លៃភ្លើង</span> : 1m<sup>3</sup> = <label id="waterprice"></label><span> រៀល</span>
-                        <br />
-                        <span>ថ្លៃទឹក</span> : 1​KWH = <label id="electricprice"></label><span> រៀល</span>*@
+                    </div>
+                    <div class="col-md-12">
+                        <label id="paydemage" style="color: darkblue;"></label>
+                        <label for="itemname" id="itemname" style="color: darkblue;"></label>
+                        <label id="total" style="color: darkblue;"></label>
+                        <label id="itemprice" style="color: darkblue;"></label>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                           @* <button type="button" id="btnTest"  onclick="Test();" class="btn btn-info btn-block btn-sm">Cancel</button>*@
-                            <button type="button" id="btnSaveCheckOut" onclick="CheckOutAction()" class="btn btn-info btn-block btn-sm">Save</button>
-                            
+                            <button type="button" id="btnSaveCheckOut" onclick="CheckOutAction()" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">Save</button>
+                            <button type="button" id="btnClose"  onclick="CloseForm();" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -133,46 +141,12 @@
 </div>
 
 <script>
-
-    //function Test() {
-    //    var itemcharge = document.getElementById("itemcharge");
-    //    var r = itemcharge.options[itemcharge.selectedIndex].text;
-    //    alert(r);
-    //    CheckOutDetail();
-    //}
-
-
+    function CloseForm() {
+        window.location.reload(true);
+    }
     function CheckOutAction() {
-        var data = {
-            roomid: $('#rmid').val(),
-            guestid: $('#gid').val(),
-            total: $('#totalamount').val(),
-            paybefor: $('#totalpaybefor').val(),
-            returnamount: $('#returnamt').val(),
-            totalpayment: $('#totalpay').val(),
-            description: $('#description').val(),
-        };
-        $.ajax({
-            url: "/api/checkouts",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                //$('#checkoutid').val(result)
-                InsertPowerCheckOut();
-                InsertWaterCheckOut();
-                UpdateStatusGuest();
-                UpdateRoomStatusCheckOut();
-                toastr.success("Check In successfully.", "Server Response");
-                window.location.reload(true);
-            },
-            error: function (errormesage) {
-                toastr.error("This Name Guest is exist in Database", "Server Respond");
-                return false;
-            }
-
-        });
+        InsertPowerCheckOut();
+        InsertWaterCheckOut();
     }
     function InsertPowerCheckOut() {
         var data = new FormData();
@@ -213,7 +187,7 @@
             processData: false,
             data: data,
             success: function (result) {
-                CheckOutDetail();
+                InsertCheckOut();
             },
             error: function (errormesage) {
                 toastr.error("Water usage insert faild!", "Server Respond");
@@ -222,23 +196,55 @@
         });
     }
 
-    function CheckOutDetail() {
-        var itemcharge = document.getElementById("itemcharge");
+    function InsertCheckOut() {
         var data = {
-            itemcharge: itemcharge.options[itemcharge.selectedIndex].text,
-            itemprice: $('#itemprice').val(),
+            roomid: $('#rmid').val(),
+            guestid: $('#gid').val(),
+            total: $('#totalamount').val(),
+            paybefor: $('#totalpaybefor').val(),
+            returnamount: $('#returnamt').val(),
+            totalpayment: $('#totalpay').val(),
+            description: $('#description').val(),
         };
         $.ajax({
-            url: "/api/checkoutdetails",
+            url: "/api/checkouts",
             data: JSON.stringify(data),
             type: "POST",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                //toastr.success("Check out successfully.", "Server Response");
+                CheckOutDetail(result);
+                UpdateStatusGuest();
+                UpdateRoomStatusCheckOut(result);               
             },
             error: function (errormesage) {
-                toastr.error("This Name Guest is exist in Database", "Server Respond");
+                toastr.error("This checkout is exist in Database", "Server Respond");
+                return false;
+            }
+
+        });
+    }
+
+    function CheckOutDetail(id) {
+
+        var data = new FormData();
+        data.append("checkoutid", id);
+        data.append("checkinid", $('#chinid').val());
+        data.append("fromdate", $('#startdate').val());
+        data.append("todate", $('#enddate').val());
+
+        $.ajax({
+            url: "/api/checkoutdetails",
+            type: "POST",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                toastr.success("Check out successfully.", "Server Response");
+                window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("This check out detail is exist in Database", "Server Respond");
                 return false;
             }
 
@@ -299,27 +305,31 @@
             TotalPayment();
         }
     }
-    function itempricechange() {
-        TotalPayment();
-    }
+
     function TotalPayment() {
         var watertotal = document.getElementById('wtotal').value;
         var eletrictotal = document.getElementById('etotal').value;
         var roomprice = document.getElementById('rmprice').value;
         var servicecharge = document.getElementById('svprice').value;
-        var itemprice = document.getElementById('itemprice').value;
         var totalpaybefor = document.getElementById('totalpaybefor').value;
-        var grandtotal = parseFloat(watertotal) + parseFloat(eletrictotal) + parseFloat(roomprice) + parseFloat(servicecharge) + parseFloat(itemprice);
+        
+        var sumval = document.getElementById("itemprice").innerText;
+        var paydemage = 0;
+        if (sumval == "") {
+            paydemage = 0;
+        } else {
+            paydemage = sumval;
+        }
+        var grandtotal = parseFloat(watertotal) + parseFloat(eletrictotal) + parseFloat(roomprice) + parseFloat(servicecharge) + parseFloat(paydemage);
         $('#totalamount').val(grandtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         $('#grandtotalkh').val((grandtotal * parseFloat($('#exrate').val())).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         var totalreturn = grandtotal - parseFloat(totalpaybefor);
-        if(totalreturn>=0){
+        if (totalreturn >= 0) {
             $('#totalpay').val(totalreturn.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         } else {
             $('#returnamt').val((totalreturn * -1).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         }
+        //alert(sumVal);
     }
-
-
 
 </script>

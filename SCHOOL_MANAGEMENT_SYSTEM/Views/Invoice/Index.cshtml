@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="loadingGif"></div>
+<a class="btn btn-success btn-sm pull-right" style='margin-top:0px'​​ data-toggle="modal" data-target="#exchangeModel"><span class='glyphicon glyphicon-usd'></span> អត្រាប្តូរប្រាក់</a>
 <ul class="nav nav-tabs">
     <li class="active"><a href="#printinvoice" data-toggle="tab">ចេញវិក័យបត្រ</a></li>
     <li ><a href="#home" data-toggle="tab">បង់ប្រាក់ប្រចាំខែ</a></li>
@@ -76,13 +77,14 @@
 
 @Html.Partial("_Payment")
 @Html.Partial("_PrintNewInvoice")
+@Html.Partial("_ExchangeRate")
 
 
 @section scripts
 {
     @Scripts.Render("~/Scripts/moment.min.js")
     @Scripts.Render("~/Scripts/Functions/invoice.js")
-    @Scripts.Render("~/Scripts/Functions/pirntinvoice.js")  
-   @* @Scripts.Render("~/Scripts/Functions/payment.js")*@  
+    @Scripts.Render("~/Scripts/Functions/pirntinvoice.js")
+    @Scripts.Render("~/Scripts/Functions/exchangerate.js") 
 }
 

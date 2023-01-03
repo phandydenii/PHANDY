@@ -5,8 +5,7 @@
         <div class="modal-content">
             <div class="modal-header clearfix">
                 <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">Check IN Roon</b>
-                <b class="modal-title" style="color: darkblue;" id="lblRoomNoCehckIn"></b>
+                <b class="modal-title" style="color: darkblue;" id="lblRoom"></b>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -33,49 +32,53 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="man">បុរស</label>
-                            <input id="man" name="man" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                            <label class="control-label" for="roompricech">តម្លៃបន្ទប់</label>
+                            <input id="roompricech" name="roompricech" placeholder="0.00" value="0" type="number" class="form-control input-sm" readonly="readonly">
                         </div>
                         <div class="form-group">
-                            <label for="women">ស្ត្រី</label>
-                            <input id="women" name="women" placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                            <label class="control-label" for="payforroom">បង់ថ្លៃបន្ទប់ចំនួន</label>
+                            <input id="payforroom" name="payforroom" placeholder="0.00" value="0" onfocus="this.select();" type="number" class="form-control input-sm">
                         </div>
                         <div class="form-group">
-                            <label for="child">ក្មេងៗ</label>
-                            <input id="child" name="child" placeholder="Enter number of child" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                            <label class="control-label" for="paybefor">បង់មុនចំនួន</label>
+                            <input id="paybefor" name="paybefor" placeholder="0.00" value="0" type="number" onfocus="this.select();" class="form-control input-sm">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <input id="datenow" name="datenow" style="display: none;" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <label for="invno">លេខវិក័យបត្រ</label>
                             <input id="invno" readonly="readonly" name="invno" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
                             <label for="checkindate">កាលបរិច្ឆេទ</label>
                             <input id="checkindate" readonly="readonly" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
+                        </div>*@
+                        <div class="form-group">
+                            <label class="control-label" for="estartrecord">លេខកុងទ័រភ្លើង</label>
+                            <input id="estartrecord" name="estartrecord" placeholder="Enter current number" onfocus="this.select();" value="0" type="number" class="form-control input-sm">
                         </div>
                         <div class="form-group">
-                            <label class="control-label">លេខកុងទ័រភ្លើង</label>
-                            <input id="powerprerecord" name="powerprerecord" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
+                            <label class="control-label" for="wstartrecord">លេខកុងទ័រទឹក</label>
+                            <input id="wstartrecord" name="wstartrecord" placeholder="Enter current number" onfocus="this.select();" value="0" type="number" class="form-control input-sm">
                         </div>
                         <div class="form-group">
-                            <label class="control-label">លេខកុងទ័រទឹក</label>
-                            <input id="waterprerecord" name="waterprerecord" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
+                            <label for="man">បុរស</label>
+                            <input id="man" name="man" placeholder="Enter number of man" type="number" onfocus="this.select();" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="paybefor">បង់មុនចំនួន</label>
-                            <input id="paybefor" name="paybefor" placeholder="0.00" value="0" type="number" class="form-control input-sm">
+                            <label for="women">ស្ត្រី</label>
+                            <input id="women" name="women" placeholder="Enter number of women" type="number" onfocus="this.select();" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
-                        <input type="hidden" id="wpid" />
-                        <span >ថ្លៃភ្លើង</span> : 1m<sup>3</sup> = <label id="wprice"></label><span> រៀល</span>
-                        <br />
-                        <span>ថ្លៃទឹក</span> : 1​KWH = <label id="pprice"></label><span> រៀល</span>
+                        <div class="form-group">
+                            <label for="child">ក្មេងៗ</label>
+                            <input id="child" name="child" placeholder="Enter number of child" type="number" onfocus="this.select();" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <button type="button" id="btnSaveCheckIn" onclick="CheckInAction()" class="btn btn-info btn-block btn-sm">Save</button>
-                            @*<button type="button" id="btnTest" onclick="Test()" class="btn btn-info btn-block btn-sm">Test</button>*@
+                            <button type="button" id="btnSaveCheckIn" onclick="CheckInAction()" class="btn btn-info btn-sm pull-right" style="margin:5px;width:100px">Save</button>
+                            <button type="button" id="btnTest" onclick="OnCloseCheckIn()" class="btn btn-danger btn-sm pull-right" style="margin:5px;width:100px">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -86,6 +89,9 @@
 
 
 <script>
+    function OnCloseCheckIn() {
+        window.location.reload(true);
+    }
     function CheckInAction() {
         var data = {
             roomid: $('#chroomid').val(),
@@ -93,7 +99,9 @@
             child: $('#child').val(),
             man: $('#man').val(),
             women: $('#women').val(),
-            pay: $('#paybefor').val(),
+            prepaid: $('#paybefor').val(),
+            payforroom: $('#paybefor').val(),
+            
         };
         $.ajax({
             url: "/api/checkins",
@@ -104,12 +112,10 @@
             success: function (result) {
                 UpdateStatusRoom();
                 UpdateStatusGuest();
-                InsertPowerUsage(result);
-                InsertWaterUsage(result);
-                $('#checkinid').val(result);
+                CreatetWaterElectricUsage(result);
+                //InsertPowerUsage(result);
+                //InsertWaterUsage(result);
                 
-                toastr.success("Check In successfully.", "Server Response");
-                window.location.reload(true);
             },
             error: function (errormesage) {
                 toastr.error("This Name Guest is exist in Database", "Server Respond");
@@ -119,6 +125,54 @@
         });
     }
 
+    function CreatetWaterElectricUsage(id) {
+        var data = new FormData();
+        data.append("checkinid", id);
+        data.append("startdate", $('#checkindate').val());
+        data.append("enddate", $('#checkindate').val());
+        data.append("wstartrecord", $('#wstartrecord').val());
+        data.append("wendrecord", $('#wstartrecord').val());
+        data.append("estartrecord", $('#estartrecord').val());
+        data.append("eendrecord", $('#estartrecord').val());
+        $.ajax({
+            type: "POST",
+            url: "/api/waterelectricusages",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                //CreateInvoice();
+                toastr.success("Check In successfully.", "Server Response");
+                window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Electric usage insert faild!", "Server Respond");
+                return false;
+            }
+        });
+    }
+
+  
+    function CreateInvoice() {
+        var data = {
+            guestid: $('#guestid').val(),
+            roomid: $('#chroomid').val(),
+        };
+        $.ajax({
+            url: "/api/invoices",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                toastr.success("Check In successfully.", "Server Response");
+                window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Create invoice faild...!" + errormesage, "Server Respond");
+            }
+        });
+    }
     function UpdateStatusRoom() {
         $.ajax({
             type: "PUT",
@@ -133,7 +187,6 @@
             }
         });
     }
-
     function UpdateStatusGuest() {
         $.ajax({
             type: "PUT",
@@ -149,7 +202,7 @@
         });
     }
 
-    
+
 
     function InsertPowerUsage(id) {
         var data = new FormData();
@@ -174,7 +227,6 @@
 
         });
     }
-
     function InsertWaterUsage(id) {
         var data = new FormData();
         data.append("checkinid", id);
@@ -195,26 +247,6 @@
             error: function (errormesage) {
                 toastr.error("Water usage insert faild!", "Server Respond");
                 return false;
-            }
-        });
-    }
-
-    function InsertInvoice() {
-        var data = {
-            invoiceno: $('#invno').val(),
-            roomid: $('#chroomid').val(),
-            guestid: $('#guestid').val(),
-        };
-        $.ajax({
-            url: "/api/invoices",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-            },
-            error: function (errormesage) {
-                toastr.error("Create invoice faild...!" + errormesage, "Server Respond");
             }
         });
     }

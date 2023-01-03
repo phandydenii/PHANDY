@@ -13,10 +13,12 @@
                     <input id="invid" name="invid" type="text" style="display: none;" value="" class="form-control" />
                     <input id="checkinid" name="checkinid" type="text" style="display: none;" value="" class="form-control" />
                     <input id="guestid" name="guestid" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="roomid" name="roomid" type="text" style="display: none;" value="" class="form-control" />
 
                     <input id="exrate" name="exrate" type="text" style="display: none;" value="" class="form-control" />
                     <input id="wprice" name="wprice" type="text" style="display: none;" value="" class="form-control" />
                     <input id="pprice" name="pprice" type="text" style="display: none;" value="" class="form-control" />
+                    <input id="weid" name="weid" type="text" style="display: none;" value="" class="form-control" />
 
                     <input id="ispaid" name="ispaid" type="text" style="display: none;" value="" class="form-control" />
                     <input id="isprint" name="isprint" type="text" style="display: none;" value="" class="form-control" />
@@ -36,8 +38,8 @@
                                     <input id="roomno" readonly="readonly" name="roomno" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="roomprice">តម្លៃបន្ទប់</label>
-                                    <input id="roomprice" readonly="readonly" name="roomprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                    <label for="rmprice">តម្លៃបន្ទប់</label>
+                                    <input id="rmprice" readonly="readonly" name="rmprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -66,7 +68,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="recordwaternew">គីឡូទឺកថ្មី</label>
-                                            <input id="recordwaternew" onfocus="this.select();" onchange="RecordWaterChange();" name="newrecordwater" placeholder="Enter Phone" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <input id="recordwaternew" onfocus="this.select();" onchange="RecordWaterChange();" name="recordwaternew" placeholder="Enter Phone" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +83,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="recordpowernew">គីឡូភ្លើងថ្មី</label>
-                                            <input id="recordpowernew" onfocus="this.select();" onchange="RecordPowerChange()" name="newrecordpower" placeholder="Enter Phone" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <input id="recordpowernew" onfocus="this.select();" onchange="RecordPowerChange()" name="recordpowernew" placeholder="Enter Phone" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                 </div>
@@ -119,22 +121,12 @@
                                 </div>
                             </div>
                         </div>
-                        @*<div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="frmbookroomid">សម្ភារៈខូចខាត</label>
-                                    <input id="itemcharge" name="itemcharge" type="number" value="0"  style="display:none" />
-                                    <select class="form-control input-sm" id="item" name="item" onchange="ChangeItem()">
-                                        @foreach (var room in Model.ItemList)
-                                        {
-                                            <option value=@room.price>@room.itemname</option>
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                        </div>*@
-                        <label for="frmbookroomid">សម្ភារៈខូចខាត</label>
-                        <table id="tblPayDemage" style="width:100%" class="table table-hover table-bordered">
+                        <label id="paydemage" style="color: darkblue;"></label>
+                        <label for="itemname" id="itemname" style="color: darkblue;"></label>
+                        <label id="total" style="color: darkblue;"></label>
+                        <label id="itemprice" style="color: darkblue;"></label>
+                        
+                        @*<table id="tblPayDemage" style="width:100%" class="table table-hover table-bordered">
                             <thead>
                                 <tr>
                                     <th>លេខ</th>
@@ -142,7 +134,7 @@
                                 </tr>
                             </thead>
                             <tbody></tbody>
-                        </table>
+                        </table>*@
                         <div class="modal-footer">
                             <button type="button" id="" onclick="InvoiceNewPrint();" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">Save</button>
                             <button type="button" id="" onclick="OnCloseNewInv();" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>
@@ -154,64 +146,4 @@
         </div>
     </div>
 </div>
-<script>
-    
 
-    
-    
-
-    function OnTest() {
-
-        var tBody = $("#tabletest > TBODY")[0];
-        var row = tBody.insertRow(-1);
-        var cell = $(row.insertCell(-1));
-        cell.html("Name");
-        cell = $(row.insertCell(-1));
-        cell.html("Country");
-
-        cell = $(row.insertCell(-1));
-        var btnRemove = $("<input />");
-        btnRemove.attr("type", "button");
-        btnRemove.attr("class", "btn btn-danger btn-xs");
-        btnRemove.attr("onclick", "Remove(this);");
-        btnRemove.val("Remove");
-        cell.append(btnRemove);
-    }
-    function AddItem() {
-        $('#ModalItem').modal('show');
-    }
-
-</script>
-
-<div class="modal fade " data-backdrop="static" data-keyboard="false" id="ModalItem" tabindex="-1" role="dialog" aria-labelledby="ModalItem" aria-hidden="true">
-    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
-        <div id="divLoadingModal"></div>
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="row">
-                    @{ var check = false; }
-                    @foreach (var i in Model.ItemList)
-                    {
-                        check = false;
-                        if (check == true)
-                        {
-                            <div class="col-md-12">
-                                <div class="checkbox" id="Role">
-                                    <label><input class="js-delete" type="checkbox" data-user-id="@i.id" data-role-name="@i.itemname" value="@i.id" checked="checked">@i.itemname</label>
-                                </div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="col-md-12">
-                                <div class="checkbox" id="Role">
-                                    <label><input class="js-delete" type="checkbox" data-user-id="@i.id" data-role-name="@i.itemname" value="@i.id">@i.itemname</label>
-                                </div>
-                            </div>
-                        }
-                    }
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

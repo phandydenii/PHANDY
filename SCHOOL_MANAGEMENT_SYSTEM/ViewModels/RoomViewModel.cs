@@ -20,6 +20,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
         public IEnumerable<Guest> GuestList { get; set; }
         public IEnumerable<Item> ItemList { get; set; }
         public IEnumerable<Staff> StaffList { get; set; }
+        public IEnumerable<ExchangeRate> ExchangeRate { get; set; }
 
 
         public int TotalRoom { get; set; }

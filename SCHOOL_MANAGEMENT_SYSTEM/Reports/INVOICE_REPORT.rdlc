@@ -184,7 +184,14 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>អ្នកទទួលប្រាក់</Value>
+                <Value>អ្នកទទួលប្រាក់ </Value>
+                <Style>
+                  <FontFamily>khmer os battambang</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!FullName.Value</Value>
                 <Style>
                   <FontFamily>khmer os battambang</FontFamily>
                   <FontSize>8pt</FontSize>
@@ -549,7 +556,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>ឈ្មោះភ្ញៀវ៖</Value>
+                    <Value>ឈ្មោះភ្ញៀវ៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -570,7 +577,7 @@
             <Top>0.12651cm</Top>
             <Left>0cm</Left>
             <Height>0.56472cm</Height>
-            <Width>3.95929cm</Width>
+            <Width>4.54841cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -584,7 +591,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Guest Name៖</Value>
+                    <Value>Guest Name៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -605,7 +612,7 @@
             <Top>0.72652cm</Top>
             <Left>0cm</Left>
             <Height>0.51506cm</Height>
-            <Width>3.95929cm</Width>
+            <Width>4.54841cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -620,7 +627,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>លេខទូរសព្ទ៖</Value>
+                    <Value>លេខទូរសព្ទ៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -641,7 +648,7 @@
             <Top>1.27685cm</Top>
             <Left>0.00002cm</Left>
             <Height>0.50877cm</Height>
-            <Width>3.95929cm</Width>
+            <Width>4.54841cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -656,7 +663,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Phone៖</Value>
+                    <Value>Phone៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -677,7 +684,7 @@
             <Top>1.85618cm</Top>
             <Left>0.00002cm</Left>
             <Height>0.49417cm</Height>
-            <Width>3.95927cm</Width>
+            <Width>4.54839cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -691,7 +698,7 @@
         <Top>4.93553cm</Top>
         <Left>0.46021cm</Left>
         <Height>2.46562cm</Height>
-        <Width>3.99457cm</Width>
+        <Width>4.54843cm</Width>
         <ZIndex>15</ZIndex>
         <Style>
           <Border>
@@ -727,14 +734,14 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>ថ្ងៃចាប់ផ្តើម៖</Value>
+                    <Value>ថ្ងៃចាប់ផ្តើម៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!wpredate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=CDate(Fields!startdate.Value).ToString("dd-MMM-yyyy")</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -746,9 +753,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>0.12651cm</Top>
-            <Left>6.44289cm</Left>
+            <Left>5.33579cm</Left>
             <Height>0.56473cm</Height>
-            <Width>3.2238cm</Width>
+            <Width>3.77706cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -762,14 +769,14 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Stat Date៖</Value>
+                    <Value>Stat Date៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!wpredate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=CDate(Fields!startdate.Value).ToString("dd-MMM-yyyy")</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -781,9 +788,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>0.72652cm</Top>
-            <Left>6.44289cm</Left>
+            <Left>5.33579cm</Left>
             <Height>0.51505cm</Height>
-            <Width>3.2238cm</Width>
+            <Width>3.77706cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -798,14 +805,14 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>ដល់ថ្ងៃ៖</Value>
+                    <Value>ដល់ថ្ងៃ៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!wcurrentdate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=CDate(Fields!enddate.Value).ToString("dd-MMM-yyyy")</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -817,9 +824,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>1.27685cm</Top>
-            <Left>6.44288cm</Left>
+            <Left>5.33578cm</Left>
             <Height>0.54405cm</Height>
-            <Width>3.1962cm</Width>
+            <Width>3.74946cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -834,7 +841,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>លេខវិក័យបត្រ៖</Value>
+                    <Value>លេខវិក័យបត្រ៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -853,9 +860,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>0.12651cm</Top>
-            <Left>0.03528cm</Left>
+            <Left>0cm</Left>
             <Height>0.56473cm</Height>
-            <Width>3.8588cm</Width>
+            <Width>5.14295cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -870,7 +877,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Invoice No៖</Value>
+                    <Value>Invoice No៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -889,9 +896,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>0.72652cm</Top>
-            <Left>0.03528cm</Left>
+            <Left>0cm</Left>
             <Height>0.51506cm</Height>
-            <Width>3.8588cm</Width>
+            <Width>5.14295cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -906,7 +913,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>បន្ទប់៖</Value>
+                    <Value>បន្ទប់៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -925,9 +932,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>1.27685cm</Top>
-            <Left>0.03528cm</Left>
+            <Left>0cm</Left>
             <Height>0.56472cm</Height>
-            <Width>3.8588cm</Width>
+            <Width>5.14295cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -942,7 +949,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Room No៖</Value>
+                    <Value>Room No៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -961,9 +968,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>1.84157cm</Top>
-            <Left>0.03528cm</Left>
+            <Left>0cm</Left>
             <Height>0.50877cm</Height>
-            <Width>3.8588cm</Width>
+            <Width>5.14295cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -978,14 +985,14 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>End Date៖</Value>
+                    <Value>End Date៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!wcurrentdate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=CDate(Fields!enddate.Value).ToString("dd-MMM-yyyy")</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -997,9 +1004,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>1.85618cm</Top>
-            <Left>6.44288cm</Left>
+            <Left>5.33578cm</Left>
             <Height>0.49417cm</Height>
-            <Width>3.1962cm</Width>
+            <Width>3.74946cm</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -1011,9 +1018,9 @@
         </ReportItems>
         <KeepTogether>true</KeepTogether>
         <Top>4.93553cm</Top>
-        <Left>4.56063cm</Left>
+        <Left>5.11447cm</Left>
         <Height>2.46562cm</Height>
-        <Width>9.66669cm</Width>
+        <Width>9.11285cm</Width>
         <ZIndex>16</ZIndex>
         <Style>
           <Border>
@@ -1749,7 +1756,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!wprerecord.Value</Value>
+                              <Value>=Fields!wstartrecord.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -1801,7 +1808,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!wcurrentrecord.Value</Value>
+                              <Value>=Fields!wendrecord.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -1959,7 +1966,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Format(CDbl(Fields!totalwaterR.Value),"0")</Value>
+                              <Value>=Fields!totalwaterR.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2084,7 +2091,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!pprerecord.Value</Value>
+                              <Value>=Fields!estartrecord.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2136,7 +2143,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!pcurrentrecord.Value</Value>
+                              <Value>=Fields!eendrecord.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2188,7 +2195,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!powerprice.Value</Value>
+                              <Value>=Fields!electricprice.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2294,7 +2301,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Format(CDbl(Fields!totaleletricR.Value),"0")</Value>
+                              <Value>=Fields!totaleletricR.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2696,183 +2703,6 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox121">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>5</Value>
-                              <Style>
-                                <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox119</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox177">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>ផាកពិន័យ / Penalty</Value>
-                              <Style>
-                                <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Right</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox172</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                    <ColSpan>4</ColSpan>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell />
-                <TablixCell />
-                <TablixCell />
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox178">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!totalother.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Right</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox133</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <TopBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox179">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox134</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <TopBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-              </TablixCells>
-            </TablixRow>
-            <TablixRow>
               <Height>0.65292cm</Height>
               <TablixCells>
                 <TablixCell>
@@ -3018,6 +2848,152 @@
                 </TablixCell>
               </TablixCells>
             </TablixRow>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox270">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>សាច់ប្រាក់ទទួលបាន​ / Reciev Money</Value>
+                              <Style>
+                                <FontFamily>khmer os battambang</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox270</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>5</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="paydollar">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!paydollar.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style />
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>paydollar</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="payriel">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!payriel.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>payriel</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
@@ -3093,7 +3069,14 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>អ្នកទទួលប្រាក់</Value>
+                <Value>អ្នកទទួលប្រាក់ </Value>
+                <Style>
+                  <FontFamily>khmer os battambang</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!FullName.Value</Value>
                 <Style>
                   <FontFamily>khmer os battambang</FontFamily>
                   <FontSize>8pt</FontSize>
@@ -3189,6 +3172,158 @@
           </Border>
         </Style>
       </Image>
+      <Textbox Name="Textbox132">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>បន្ទប់៖</Value>
+                <Style>
+                  <FontFamily>khmer os muol light</FontFamily>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!room_no.Value</Value>
+                <Style>
+                  <FontFamily>khmer os muol light</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Room៖</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!room_no.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox132</rd:DefaultName>
+        <Top>0.63889cm</Top>
+        <Left>11.35985cm</Left>
+        <Height>1.45324cm</Height>
+        <Width>2.86747cm</Width>
+        <ZIndex>26</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <TopBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </TopBorder>
+          <BottomBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </BottomBorder>
+          <LeftBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </LeftBorder>
+          <RightBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </RightBorder>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox133">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>បន្ទប់៖</Value>
+                <Style>
+                  <FontFamily>khmer os muol light</FontFamily>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!room_no.Value</Value>
+                <Style>
+                  <FontFamily>khmer os muol light</FontFamily>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Room៖</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!room_no.Value</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox132</rd:DefaultName>
+        <Top>0.63889cm</Top>
+        <Left>26.2255cm</Left>
+        <Height>1.45324cm</Height>
+        <Width>2.86747cm</Width>
+        <ZIndex>27</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <TopBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </TopBorder>
+          <BottomBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </BottomBorder>
+          <LeftBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </LeftBorder>
+          <RightBorder>
+            <Color>Black</Color>
+            <Style>Solid</Style>
+            <Width>1pt</Width>
+          </RightBorder>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
       <Rectangle Name="Rectangle8">
         <ReportItems>
           <Textbox Name="Textbox140">
@@ -3197,7 +3332,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>ឈ្មោះភ្ញៀវ៖</Value>
+                    <Value>ឈ្មោះភ្ញៀវ៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3218,7 +3353,7 @@
             <Top>0.12651cm</Top>
             <Left>0cm</Left>
             <Height>0.56472cm</Height>
-            <Width>4.64721cm</Width>
+            <Width>4.51313cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3232,7 +3367,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Guest Name៖</Value>
+                    <Value>Guest Name៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3253,7 +3388,7 @@
             <Top>0.72652cm</Top>
             <Left>0cm</Left>
             <Height>0.51506cm</Height>
-            <Width>4.64721cm</Width>
+            <Width>4.51313cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -3268,7 +3403,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>លេខទូរសព្ទ៖</Value>
+                    <Value>លេខទូរសព្ទ៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3289,7 +3424,7 @@
             <Top>1.27685cm</Top>
             <Left>0.00002cm</Left>
             <Height>0.50877cm</Height>
-            <Width>4.64721cm</Width>
+            <Width>4.51313cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -3304,7 +3439,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Phone៖</Value>
+                    <Value>Phone៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3325,7 +3460,7 @@
             <Top>1.85618cm</Top>
             <Left>0.00002cm</Left>
             <Height>0.49417cm</Height>
-            <Width>4.64719cm</Width>
+            <Width>4.51311cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -3336,11 +3471,11 @@
           </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>4.9362cm</Top>
-        <Left>15.45387cm</Left>
+        <Top>4.98924cm</Top>
+        <Left>15.45736cm</Left>
         <Height>2.46562cm</Height>
-        <Width>4.68249cm</Width>
-        <ZIndex>26</ZIndex>
+        <Width>4.54843cm</Width>
+        <ZIndex>28</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -3375,14 +3510,14 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>ថ្ងៃចាប់ផ្តើម៖</Value>
+                    <Value>ថ្ងៃចាប់ផ្តើម៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!wpredate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=CDate(Fields!startdate.Value).ToString("dd-MMM-yyyy")</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3394,9 +3529,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>0.12651cm</Top>
-            <Left>4.42854cm</Left>
+            <Left>5.33579cm</Left>
             <Height>0.56473cm</Height>
-            <Width>4.20276cm</Width>
+            <Width>3.77706cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -3410,14 +3545,14 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Stat Date៖</Value>
+                    <Value>Stat Date៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!wpredate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=CDate(Fields!startdate.Value).ToString("dd-MMM-yyyy")</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3429,9 +3564,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>0.72652cm</Top>
-            <Left>4.42854cm</Left>
+            <Left>5.33579cm</Left>
             <Height>0.51505cm</Height>
-            <Width>4.20276cm</Width>
+            <Width>3.77706cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -3446,14 +3581,14 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>ដល់ថ្ងៃ៖</Value>
+                    <Value>ដល់ថ្ងៃ៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!wcurrentdate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=CDate(Fields!enddate.Value).ToString("dd-MMM-yyyy")</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3465,9 +3600,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>1.27685cm</Top>
-            <Left>4.42853cm</Left>
+            <Left>5.33578cm</Left>
             <Height>0.54405cm</Height>
-            <Width>4.17516cm</Width>
+            <Width>3.74946cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -3482,7 +3617,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>លេខវិក័យបត្រ៖</Value>
+                    <Value>លេខវិក័យបត្រ៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3501,9 +3636,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>0.12651cm</Top>
-            <Left>0.04938cm</Left>
+            <Left>0cm</Left>
             <Height>0.56473cm</Height>
-            <Width>4.20276cm</Width>
+            <Width>4.92774cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -3518,7 +3653,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>IVOICE NO៖</Value>
+                    <Value>Invoice No៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3537,9 +3672,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>0.72652cm</Top>
-            <Left>0.04938cm</Left>
+            <Left>0cm</Left>
             <Height>0.51506cm</Height>
-            <Width>4.20276cm</Width>
+            <Width>4.92774cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -3554,7 +3689,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>បន្ទប់៖</Value>
+                    <Value>បន្ទប់៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3573,9 +3708,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>1.27685cm</Top>
-            <Left>0.04938cm</Left>
+            <Left>0cm</Left>
             <Height>0.56472cm</Height>
-            <Width>4.20276cm</Width>
+            <Width>4.92774cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -3590,7 +3725,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Room No៖</Value>
+                    <Value>Room No៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3609,9 +3744,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>1.84157cm</Top>
-            <Left>0.04938cm</Left>
+            <Left>0cm</Left>
             <Height>0.50877cm</Height>
-            <Width>4.20276cm</Width>
+            <Width>4.92774cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -3626,14 +3761,14 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>End Date៖</Value>
+                    <Value>End Date៖ </Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!wcurrentdate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=CDate(Fields!enddate.Value).ToString("dd-MMM-yyyy")</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
@@ -3645,9 +3780,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>1.85618cm</Top>
-            <Left>4.42853cm</Left>
+            <Left>5.33578cm</Left>
             <Height>0.49417cm</Height>
-            <Width>4.17516cm</Width>
+            <Width>3.74946cm</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -3658,11 +3793,11 @@
           </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>4.9362cm</Top>
-        <Left>20.29864cm</Left>
+        <Top>4.98924cm</Top>
+        <Left>20.11162cm</Left>
         <Height>2.46562cm</Height>
-        <Width>8.84948cm</Width>
-        <ZIndex>27</ZIndex>
+        <Width>9.11285cm</Width>
+        <ZIndex>29</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -3708,7 +3843,7 @@
               <Width>1.59698cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.83854cm</Width>
+              <Width>1.9114cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.86566cm</Width>
@@ -4281,7 +4416,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!wprerecord.Value</Value>
+                              <Value>=Fields!wstartrecord.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -4333,7 +4468,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!wcurrentrecord.Value</Value>
+                              <Value>=Fields!wendrecord.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -4491,7 +4626,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Format(CDbl(Fields!totalwaterR.Value),"0")</Value>
+                              <Value>=Fields!totalwaterR.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -4616,7 +4751,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!pprerecord.Value</Value>
+                              <Value>=Fields!estartrecord.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -4668,7 +4803,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!pcurrentrecord.Value</Value>
+                              <Value>=Fields!eendrecord.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -4720,7 +4855,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!powerprice.Value</Value>
+                              <Value>=Fields!electricprice.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -4826,7 +4961,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Format(CDbl(Fields!totaleletricR.Value),"0")</Value>
+                              <Value>=Fields!totaleletricR.Value</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -5228,183 +5363,6 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.6cm</Height>
-              <TablixCells>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox127">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>5</Value>
-                              <Style>
-                                <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox119</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox201">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>ផាកពិន័យ / Penalty</Value>
-                              <Style>
-                                <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Right</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox172</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                    <ColSpan>4</ColSpan>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell />
-                <TablixCell />
-                <TablixCell />
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox202">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!totalother.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Right</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox133</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <TopBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox203">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox134</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Style>Solid</Style>
-                        </Border>
-                        <TopBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </TopBorder>
-                        <BottomBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </BottomBorder>
-                        <LeftBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </LeftBorder>
-                        <RightBorder>
-                          <Color>Black</Color>
-                          <Style>Solid</Style>
-                          <Width>1pt</Width>
-                        </RightBorder>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-              </TablixCells>
-            </TablixRow>
-            <TablixRow>
               <Height>0.65292cm</Height>
               <TablixCells>
                 <TablixCell>
@@ -5505,14 +5463,162 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Format(CDbl(Fields!totalriel.Value),"0")</Value>
+                              <Value>=Fields!totalriel.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox148</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+              </TablixCells>
+            </TablixRow>
+            <TablixRow>
+              <Height>0.6cm</Height>
+              <TablixCells>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox271">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>សាច់ប្រាក់ទទួលបាន​ / Reciev Money</Value>
+                              <Style>
+                                <FontFamily>khmer os battambang</FontFamily>
+                                <FontSize>9pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox270</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <ColSpan>5</ColSpan>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="paydollar1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!paydollar.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox148</rd:DefaultName>
+                      <rd:DefaultName>paydollar1</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Style>Solid</Style>
+                        </Border>
+                        <TopBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </TopBorder>
+                        <BottomBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </BottomBorder>
+                        <LeftBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </LeftBorder>
+                        <RightBorder>
+                          <Color>Black</Color>
+                          <Style>Solid</Style>
+                          <Width>1pt</Width>
+                        </RightBorder>
+                        <BackgroundColor>SkyBlue</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="payriel1">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!payriel.Value</Value>
+                              <Style />
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>payriel1</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -5573,11 +5679,11 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>7.51281cm</Top>
-        <Left>15.47064cm</Left>
+        <Top>7.56585cm</Top>
+        <Left>15.47413cm</Left>
         <Height>5.01349cm</Height>
-        <Width>13.67748cm</Width>
-        <ZIndex>28</ZIndex>
+        <Width>13.75034cm</Width>
+        <ZIndex>30</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -5604,163 +5710,11 @@
           </RightBorder>
         </Style>
       </Tablix>
-      <Textbox Name="Textbox132">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>បន្ទប់៖</Value>
-                <Style>
-                  <FontFamily>khmer os muol light</FontFamily>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!room_no.Value</Value>
-                <Style>
-                  <FontFamily>khmer os muol light</FontFamily>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Room៖</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!room_no.Value</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox132</rd:DefaultName>
-        <Top>0.63889cm</Top>
-        <Left>11.35985cm</Left>
-        <Height>1.45324cm</Height>
-        <Width>2.86747cm</Width>
-        <ZIndex>29</ZIndex>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-          <TopBorder>
-            <Color>Black</Color>
-            <Style>Solid</Style>
-            <Width>1pt</Width>
-          </TopBorder>
-          <BottomBorder>
-            <Color>Black</Color>
-            <Style>Solid</Style>
-            <Width>1pt</Width>
-          </BottomBorder>
-          <LeftBorder>
-            <Color>Black</Color>
-            <Style>Solid</Style>
-            <Width>1pt</Width>
-          </LeftBorder>
-          <RightBorder>
-            <Color>Black</Color>
-            <Style>Solid</Style>
-            <Width>1pt</Width>
-          </RightBorder>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox133">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>បន្ទប់៖</Value>
-                <Style>
-                  <FontFamily>khmer os muol light</FontFamily>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!room_no.Value</Value>
-                <Style>
-                  <FontFamily>khmer os muol light</FontFamily>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Room៖</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!room_no.Value</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox132</rd:DefaultName>
-        <Top>0.63889cm</Top>
-        <Left>26.2255cm</Left>
-        <Height>1.45324cm</Height>
-        <Width>2.86747cm</Width>
-        <ZIndex>30</ZIndex>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-          <TopBorder>
-            <Color>Black</Color>
-            <Style>Solid</Style>
-            <Width>1pt</Width>
-          </TopBorder>
-          <BottomBorder>
-            <Color>Black</Color>
-            <Style>Solid</Style>
-            <Width>1pt</Width>
-          </BottomBorder>
-          <LeftBorder>
-            <Color>Black</Color>
-            <Style>Solid</Style>
-            <Width>1pt</Width>
-          </LeftBorder>
-          <RightBorder>
-            <Color>Black</Color>
-            <Style>Solid</Style>
-            <Width>1pt</Width>
-          </RightBorder>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
     </ReportItems>
     <Height>20.1615cm</Height>
     <Style />
   </Body>
-  <Width>29.15032cm</Width>
+  <Width>29.27738cm</Width>
   <Page>
     <PageHeight>21cm</PageHeight>
     <PageWidth>29.7cm</PageWidth>
@@ -5792,17 +5746,9 @@
           <DataField>id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="invoiceno">
-          <DataField>invoiceno</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="invoicedate">
           <DataField>invoicedate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="checkinid">
-          <DataField>checkinid</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="guestid">
           <DataField>guestid</DataField>
@@ -5811,10 +5757,6 @@
         <Field Name="userid">
           <DataField>userid</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="rate">
-          <DataField>rate</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="grandtotal">
           <DataField>grandtotal</DataField>
@@ -5876,13 +5818,9 @@
           <DataField>status</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="electricid">
-          <DataField>electricid</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="waterusageid">
-          <DataField>waterusageid</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="rate">
+          <DataField>rate</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="name">
           <DataField>name</DataField>
@@ -5964,40 +5902,32 @@
           <DataField>buildingnamekh</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="wpredate">
-          <DataField>wpredate</DataField>
+        <Field Name="startdate">
+          <DataField>startdate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="wprerecord">
-          <DataField>wprerecord</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="wcurrentdate">
-          <DataField>wcurrentdate</DataField>
+        <Field Name="enddate">
+          <DataField>enddate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="wcurrentrecord">
-          <DataField>wcurrentrecord</DataField>
+        <Field Name="wstartrecord">
+          <DataField>wstartrecord</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="ppredate">
-          <DataField>ppredate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="pprerecord">
-          <DataField>pprerecord</DataField>
+        <Field Name="wendrecord">
+          <DataField>wendrecord</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="pcurrentdate">
-          <DataField>pcurrentdate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="pcurrentrecord">
-          <DataField>pcurrentrecord</DataField>
+        <Field Name="estartrecord">
+          <DataField>estartrecord</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="powerprice">
-          <DataField>powerprice</DataField>
+        <Field Name="eendrecord">
+          <DataField>eendrecord</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="electricprice">
+          <DataField>electricprice</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="waterprice">
@@ -6019,6 +5949,22 @@
         <Field Name="totalwaterR">
           <DataField>totalwaterR</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="FullName">
+          <DataField>FullName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="paydollar">
+          <DataField>paydollar</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="payriel">
+          <DataField>payriel</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="invoiceno">
+          <DataField>invoiceno</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>

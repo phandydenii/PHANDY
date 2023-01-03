@@ -13,141 +13,139 @@
                     <input id="id" name="id" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <input id="chinid" name="chinid" type="text" style="display: none;" value="" class="form-control" />
                     <input id="guestid" name="guestid" type="text" style="display: none;" value="" class="form-control" />
-                    <div class="col-md-6">
+                    <input id="weid" name="weid" type="text" style="display: none;" value="" class="form-control" />
+                    <div class="col-md-12">
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="invoiceno">លេខវិក័យបត្រ</label>
+                                    <input id="invoiceno" readonly="readonly" name="invoiceno" placeholder="Enter Guest Name" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="guestname">ភ្ញៀវ</label>
+                                    <input id="guestname" name="guestname" readonly="readonly" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="room">បន្ទប់</label>
+                                    <input id="room" name="room" readonly="readonly" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="roomprice">តម្លៃបន្ទប់</label>
+                                    <input id="roomprice" name="roomprice" readonly="readonly" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="invoiceno">លេខវិក័យបត្រ</label>
-                                            <input id="invoiceno" readonly="readonly" name="invoiceno" placeholder="Enter Guest Name" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="startdate">ចាប់ផ្តើម</label>
+                                            <input id="startdate" readonly="readonly" name="startdate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
-                                        <div class="form-group">
-                                            <label for="guestname">ភ្ញៀវ</label>
-                                            <input id="guestname" name="guestname" readonly="readonly" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="room">បន្ទប់</label>
-                                            <input id="room" name="room" readonly="readonly" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="roomprice">តម្លៃបន្ទប់</label>
-                                            <input id="roomprice" name="roomprice" readonly="readonly" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="oldwaterrecord">គីឡូទឺកចាស់</label>
-                                                    <input id="oldwaterrecord" name="oldwaterrecord" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="newwaterrecord">គីឡូទឺកថ្មី</label>
-                                                    <input id="newwaterrecord" name="newwaterrecord" onfocus="this.select();" onchange="NewWaterRecordChange();" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="form-group">
-                                            <label for="totalwater">សរុបការប្រើប្រាស់ទឺក</label>
-                                            <input id="totalwater" name="totalwater" readonly="readonly" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="enddate">ដល់ថ្ងៃ</label>
+                                            <input id="enddate" readonly="readonly" name="enddate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="oldpowerrecord">គីឡូភ្លើងចាស់</label>
-                                                    <input id="oldpowerrecord" name="oldpowerrecord" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="newpowerrecord">គីឡូភ្លើងថ្មី</label>
-                                                    <input id="newpowerrecord" onfocus="this.select();" onchange="NewPowerRecordChange();" name="newpowerrecord" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="totalpower">សរុបការប្រើប្រាស់ភ្លើង</label>
-                                            <input id="totalpower" name="totalpower" readonly="readonly" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-
-
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="servicecharge">ថ្លៃសេវ៉ា</label>
-                                            <input id="servicecharge" name="servicecharge" readonly="readonly" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="wstartrecord">គីឡូទឺកចាស់</label>
+                                            <input id="wstartrecord" name="wstartrecord" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                         </div>
-                                        <div class="form-group">
-                                            <label for="totalpay">សរុបប្រាក់ត្រូវបង់</label>
-                                            <input id="totalpay" name="totalpay" readonly="readonly" placeholder="Enter Passport Number" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="totalpaykh">ជាប្រាក់រៀល</label>
-                                            <input id="totalpaykh" name="totalpaykh" readonly="readonly" placeholder="Enter Email" type="email" value="0" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        @*<div class="form-group">
-                                            <label for="note">ចំណាំ</label>
-                                            <input id="note" name="note" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>*@
-
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="paydollar">សាច់ប្រាក់ទទួលបានជាដុល្លា</label>
-                                            <input id="paydollar" name="paydollar" placeholder="$0.00" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="wendrecord">គីឡូទឺកថ្មី</label>
+                                            <input id="wendrecord" name="wendrecord" onfocus="this.select();" onchange="wendrecordChange();" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                         </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="payriel">សាច់ប្រាក់ទទួលបានជារៀល</label>
-                                            <input id="payriel" name="payriel" placeholder="$0.00" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="estartrecord">គីឡូភ្លើងចាស់</label>
+                                            <input id="estartrecord" name="estartrecord" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            @*<label for="owe">ជំពាក់</label>*@
-                                            <input id="owe" name="owe" style="display: none;" placeholder="$0.00" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="eendrecord">គីឡូភ្លើងថ្មី</label>
+                                            <input id="eendrecord" onfocus="this.select();" onchange="eendrecordChange();" name="eendrecord" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                         </div>
-                                        <div class="form-group">
-                                            @*<label for="returnmoney">ប្រាក់ត្រូវសងវិញ</label>*@
-                                            <input id="returnmoney" name="returnmoney" style="display: none;" placeholder="$0.00" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="payreilbooking">សាច់ប្រាក់</label>
-                                            <input id="payreilbooking" name="payreilbooking" placeholder="000.0" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        
-                                        @*<input type="hidden" id="wpid" />
-                                            <span>ថ្លៃភ្លើង</span> : 1m<sup>3</sup> = <label id="wprice"></label><span> រៀល</span>
-                                            <br />
-                                            <span>ថ្លៃទឹក</span> : 1​KWH = <label id="pprice"></label><span> រៀល</span>*@
-
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="description">ពណ៌នា</label>
-                                            <input id="description" name="description" type="text" value="" class="form-control input-sm" placeholder="Description" />
+                                            <label for="totalwater">សរុបថ្លៃទឹក</label>
+                                            <input id="totalwater" name="totalwater" readonly="readonly" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="totalelectric">សរុបថ្លៃភ្លើង</label>
+                                            <input id="totalelectric" name="totalelectric" readonly="readonly" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                    </div>
+                                </div>
+                                 
+                                <div class="form-group">
+                                    <label for="servicecharge">ថ្លៃសេវ៉ា</label>
+                                    <input id="servicecharge" name="servicecharge" readonly="readonly" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="totalpay">សរុបប្រាក់ត្រូវបង់</label>
+                                    <input id="totalpay" name="totalpay" readonly="readonly" placeholder="Enter Passport Number" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div> 
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="totalpaykh">ជាប្រាក់រៀល</label>
+                                    <input id="totalpaykh" name="totalpaykh" readonly="readonly" placeholder="Enter Email" type="email" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                @*<div class="form-group">
+                                    <label for="note">ចំណាំ</label>
+                                    <input id="note" name="note" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>*@
+                                <div class="form-group">
+                                    <label for="paydollar">សាច់ប្រាក់ទទួលបានជាដុល្លា</label>
+                                    <input id="paydollar" name="paydollar" placeholder="$0.00" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="payriel">សាច់ប្រាក់ទទួលបានជារៀល</label>
+                                    <input id="payriel" name="payriel" placeholder="$0.00" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    @*<label for="owe">ជំពាក់</label>*@
+                                    <input id="owe" name="owe" style="display: none;min-width:100%" placeholder="$0.00" type="text" value="0" class="form-control input-sm" />
+                                </div>
+                                <div class="form-group">
+                                    @*<label for="returnmoney">ប្រាក់ត្រូវសងវិញ</label>*@
+                                    <input id="returnmoney" name="returnmoney" style="display: none;min-width:100%" placeholder="$0.00" type="text" value="0" class="form-control input-sm" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="payreilbooking">សាច់ប្រាក់</label>
+                                    <input id="payreilbooking" name="payreilbooking" placeholder="000.0" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">ពណ៌នា</label>
+                                    <input id="description" name="description" type="text" value="" class="form-control input-sm" placeholder="Description" />
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <label id="paydemage" style="color: darkblue;"></label>
+                <label for="itemname" id="itemname" style="color: darkblue;"></label>
+                <label id="total" style="color: darkblue;"></label>
+                <label id="itemprice" style="color: darkblue;"></label>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" id="btnPayment" onclick="OnPayAction()" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">Save</button>
+                        <button type="button" id="btnSavePayment" onclick="OnPayAction()" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">Save</button>
                         <button type="button" id="btnCheckOut" onclick="TestAction();" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>
                     </div>
                 </div>

@@ -38,7 +38,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet<ExchangeRate> Exchanges { get; set; }
         public DbSet<ElectricUsage> Electrics { get; set; }
         public DbSet<WaterUsage> WaterUsages { get; set; }
-        public DbSet <WaterPowerPrice> WaterPowerPrices { get; set; }
+        public DbSet <WEPrice> WEPrices { get; set; }
         public DbSet <CheckOut> CheckOuts { get; set; }
         public DbSet <CheckOutDeatil> CheckOutDeatils { get; set; }
 
@@ -54,8 +54,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public DbSet<PaySlip> PaySlip { get; set; }
         public DbSet<Staff> Staffs { get; set; }
         public DbSet<PayDemage> PayDemages { get; set; }
-
-
+        public DbSet<WaterElectricUsage> WaterEletricUsages { get; set; }
 
 
         public ApplicationDbContext()

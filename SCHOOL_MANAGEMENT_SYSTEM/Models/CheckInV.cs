@@ -8,6 +8,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
     public class CheckInV
     {
         public int id { get; set; }
+        public DateTime? checkindate { get; set; }
         public String userid { get; set; }
         public int roomid { get; set; }
         public string room_no { get; set; }
@@ -21,16 +22,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public string roomkey { get; set; }
         public string roomstatus { get; set; }
 
-        public DateTime? wolddate { get; set; }
-        public DateTime? polddate { get; set; }
-        public decimal woldrecord { get; set; }
-        public decimal poldrecord { get; set; }
-
-        public DateTime? wnewdate { get; set; }
-        public DateTime? pnewdate { get; set; }
-        public decimal wnewrecord { get; set; }
-        public decimal pnewrecord { get; set; }
-        public decimal pay { get; set; }
+        public DateTime? startdate { get; set; }
+        public DateTime? enddate { get; set; }
+        public decimal wstartrecode { get; set; }
+        public decimal wendrecord { get; set; }
+        public decimal estartrecord { get; set; }
+        public decimal eendrecord { get; set; }
+        public decimal prepaid { get; set; }
+        public decimal payforroom { get; set; }
         public int guestid { get; set; }
         public string name { get; set; }
         public string namekh { get; set; }
@@ -48,8 +47,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public int man { get; set; }
         public int women { get; set; }
 
-        public DateTime? checkindate { get; set; }
-        public DateTime? startdate { get; set; }
-        public DateTime? enddate { get; set; }
+        
     }
 }

@@ -54,29 +54,35 @@ function RoomItmAction() {
         $('#rmid').focus();
 
     }
-    else if (action === "Save") {
-        if($("#rprice").val().trim() ==="") {
-            toastr.error("Please input price", "Server Respond");
-            return false
+    else if (action == "Save") {
+        if ($("#iroomid").val() == 0) {
+            $("#iroomid").focus();
+            return false;
         }
-        var data = {
-            roomid: $('#rmid').val(),
-            itemid: $('#itemid').val(),
-            price: $('#rprice').val(),
-        };
+
+        if ($("#itemid").val() == 0) {
+            $("#itemid").focus();
+            return false;
+        }
+        var data = new FormData();
+        data.append("roomid", $("#iroomid").val());
+        data.append("itemid", $("#itemid").val());
+        data.append("price", $("#iprice").val());
 
         $.ajax({
-            url: "/api/roomdetails",
-            data: JSON.stringify(data),
             type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
+            url: "/api/roomdetails",
+            contentType: false,
+            processData: false,
+            data: data,
             success: function (result) {
-                toastr.success("New RoomType has been Created", "Server Respond");
+                toastr.success("New record has been created!", "Server Respond");
                 $('#tblRoomItem').DataTable().ajax.reload();
                 document.getElementById('btnSaveRoomItem').innerText = "Add New";
                 DisableControlRoomItem();
                 ClearControlRoomItem();
+                $("#itemid").val() == 0;
+                $("#iroomid").val() == 0
             },
             error: function (errormesage) {
                 $('#roomid').focus();
@@ -89,9 +95,9 @@ function RoomItmAction() {
     else if (action === "Update") {
         var data = {
             id: $('#roomitemid').val(),
-            roomid: $('#rmid').val(),
+            roomid: $('#iroomid').val(),
             itemid: $('#itemid').val(),
-            price: $('#rprice').val(),
+            price: $('#iprice').val(),
         };
         $.ajax({
             url: "/api/roomdetails/" + data.id,
@@ -124,9 +130,9 @@ function OnRoomItemEdit(id) {
         datatype: "json",
         success: function (result) {
             $('#roomitemid').val(result.id);
-            $("#rmid").val(result.roomid);
+            $("#iroomid").val(result.roomid);
             $("#itemid").val(result.itemid);
-            $("#rprice").val(result.price);
+            $("#iprice").val(result.price);
             //alert(result.room_no);
         },
         error: function (errormessage) {
@@ -172,24 +178,23 @@ function OnDeletRoomItem(id) {
 }
 
 function DisableControlRoomItem() {
-    document.getElementById('rmid').disabled = true;
+    document.getElementById('iroomid').disabled = true;
     document.getElementById('itemid').disabled = true;
-    document.getElementById('rprice').disabled = true;
+    document.getElementById('iprice').disabled = true;
 }
 
 function EnableControlRoomItem() {
-    document.getElementById('rmid').disabled = false;
+    document.getElementById('iroomid').disabled = false;
     document.getElementById('itemid').disabled = false;
-    document.getElementById('rprice').disabled = false;
+    document.getElementById('iprice').disabled = false;
 }
 
 function ClearControlRoomItem() {
-    $('#rmid').val('');
+    $('#iroomid').val('');
     $('#itemid').val('');
-    $('#rprice').val('');
+    $('#iprice').val('');
 }
 
 function OnCloseRoomItem() {
     window.location.reload(true);
 }
-

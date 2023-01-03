@@ -3,9 +3,23 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container-fluid">
-    <h4 style="color: darkblue;">គ្រប់គ្រងការកក់</h4>
+    <h4 style="color: darkblue;" id="lblbook">គ្រប់គ្រងការកក់</h4>
     <hr />
+    <div class="row">
+        <div class="col-md-2">
+            <label>ស្ថានភាព</label>
+            <div class="form-group">
+                <select class="form-control input-sm" id="status">
+                    <option value="Active">----- កក់រួច -----</option>
+                    <option value="Cancel">----- បោះបង់ -----</option>
+                    <option value="Expire">----- ផុតកំណត់ -----</option>
+                    <option value="All">----- ទាំងអស់ -----</option>
+                </select>
+            </div>
+        </div>
+    </div>
     <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableBooking">
         <thead>
             <tr>
@@ -24,10 +38,10 @@
         <tbody></tbody>
     </table>
 </div>
-
+@Html.Partial("_Booking")
 
 @section scripts{
     @Scripts.Render("~/Scripts/Functions/booking.js")
-
     @Scripts.Render("~/Scripts/moment.min.js")
 }
+

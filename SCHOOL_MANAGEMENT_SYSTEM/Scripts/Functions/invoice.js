@@ -5,18 +5,27 @@
     }).ajaxStop(function () {
         $('#loadingGif').removeClass('show');
     });
-    GetInvoice("not_paid");
+    GetInvoice($('#date').val(), "not_paid");
 })
 
 var tableInvoice = [];
 var tableInvoiceDetail = [];
 $('#status').on('change', function () {
-    GetInvoice(this.value);
+    var date = $('#date').val();
+    GetInvoice(date, this.value);
+    alert(this.value+" "+date);
 });
-function GetInvoice(status) {
+
+$('#date').on('change', function () {
+    var status = $('#status').val();
+    GetInvoice(this.value, status);
+
+});
+
+function GetInvoice(date,status) {
     tableInvoice = $('#InvoiceTable').DataTable({
         ajax: {
-            url: "/api/invoice_v/" + status,
+            url: "/api/invoice_v/1/" + date + "/" + status,
             dataSrc: ""
         },
         columns: [
@@ -55,7 +64,7 @@ function GetInvoice(status) {
                 }
             },
             {
-                data: "ptotal",
+                data: "etotal",
                 render: function (data) {
                     if (data <= 0) {
                         return 0;
@@ -82,24 +91,17 @@ function GetInvoice(status) {
                     return parseFloat(data).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
                 }
             },
-            //{
-            //    data: "owe",
-            //    render: function (data) {
-            //        if (data == 0) {
-            //            return parseFloat(data).toFixed(2);
-            //        } else {
-            //            return "<span class='label label-danger'>" + data + "</span>";
-            //        }
-            //    }
-            //},
-            
             {
                 data: "id",
                 render: function (data, type, row) {
+                    var d = new Date();
+                    var date = d.getMonth() + 1 + "/" + d.getDate() + "/" + d.getFullYear();
+                    var invdate = row.invoicedate;
+                    var td = Math.floor(data-invdate);
                     if (row.paid==1) {
-                        return "<span class='label label-primary'><span class='glyphicon glyphicon-ok'></span> Paid</span>";
+                        return "<span class='label label-primary'><span class='glyphicon glyphicon-ok'></span> Paid </span>";
                     } else {
-                        return "<span class='label label-danger'><span class='glyphicon glyphicon-close'></span>Not Paid</span>";
+                        return "<span class='label label-danger'><span class='glyphicon glyphicon-close'></span>Not Paid " + td + "</span>";
                     }
                 }
             },
@@ -107,7 +109,9 @@ function GetInvoice(status) {
                 data: "id",
                 render: function (data, type, row) {
                     if (row.paid == 0) {
-                        return "<button OnClick='OnPayment(" + data + ");' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-usd'></span> Pay Now</button>";
+                        return "<button OnClick='OnPayment(" + data + ");' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-usd'></span> Pay Now</button>"
+                             + "<button OnClick='EditInvoice (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                        ;
                     } else {
                         return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
                                    + "<ul class='dropdown-menu'>"
@@ -136,20 +140,26 @@ function OnPayment(id) {
     contentType: "application/json;charset=utf-8",
     datatype: "json",
     success: function (result) {
+        
         $('#id').val(id);
-        $('#invoiceno').val(result.invoiceno);
+        var invoiceno = "RL" + ("000000" + result.id).slice(-6)
+        $('#invoiceno').val(invoiceno);
+        $('#guestid').val(result.guestid);
         $("#guestname").val(result.guestname);
         $("#room").val(result.roomno);
         $('#roomprice').val(result.roomprice);
-        $('#oldwaterrecord').val(result.wprerecord);
-        $('#newwaterrecord').val(result.wcurrentrecord);
+        var stdate = moment(result.startdate).format("YYYY-MM-DD");
+        var enddate = moment(result.enddate).format("YYYY-MM-DD");
+        $("#startdate").val(stdate);
+        $("#enddate").val(enddate);
+        $('#wstartrecord').val(result.wstartrecord);
+        $('#wendrecord').val(result.wendrecord);
         var totalwater = result.wtotal;
         $('#totalwater').val(totalwater.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-
-        $('#oldpowerrecord').val(result.pprerecord);
-        $('#newpowerrecord').val(result.pcurrentrecord);
-        var totalpower = result.ptotal;
-        $('#totalpower').val(totalpower.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        $('#estartrecord').val(result.estartrecord);
+        $('#eendrecord').val(result.eendrecord);
+        var totalelectric = result.etotal;
+        $('#totalpower').val(totalelectric.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
 
         $('#servicecharge').val(result.servicecharge);
         $('#totalpay').val(result.grandtotal);
@@ -158,6 +168,7 @@ function OnPayment(id) {
 
         $('#checkinid').val(result.checkinid);
 
+        GetPayDemage(result.guestid, stdate, enddate);
         //alert(result.wprerecord);
     },
     error: function (errormessage) {
@@ -165,7 +176,7 @@ function OnPayment(id) {
     }
     });
 
-    $.get("/api/WaterPoserPrice/1/2", function (data) {
+    $.get("/api/WEPrice/1/2", function (data) {
         $("#wpid").val(data.id);
         $("#wprice").text(data.waterprice);
         $("#pprice").text(data.powerprice);
@@ -178,9 +189,37 @@ function OnPayment(id) {
     });
 }
 
+function GetPayDemage(id, fromdate, todate) {
+    $.ajax({
+        url: "/api/paydemages/" + id + "/" + fromdate + "/" + todate,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (result) {
+
+            var valsum = 0;
+
+            $.each(result, function (key, value) {
+                valsum += parseFloat(value.price);
+                $('#itemname').append("<label>" + value.item.itemname + "</label>" + "=" + "<label>" + value.price + "$, </label>");
+
+            });
+            if (valsum != '0') {
+                $('#paydemage').text("សម្ភារៈខូចខាត ​ ");
+                $('#total').text("Total =");
+                $('#itemprice').text(valsum);
+            }
+
+        },
+        error: function (errormessage) {
+            toastr.error("No Record Select!", "Service Response");
+        }
+    });
+}
+
 function EditInvoice(id) {
     $("#PaymentModal").modal('show');
-    document.getElementById('btnPayment').innerHTML == "Update";
+    document.getElementById('btnSavePayment').innerText = "Update";
     $.ajax({
         url: "/api/invoice_v/" + id,
         type: "GET",
@@ -192,16 +231,22 @@ function EditInvoice(id) {
             $("#guestname").val(result.guestname);
             $("#room").val(result.roomno);
             $('#roomprice').val(result.roomprice);
-            $('#oldwaterrecord').val(result.wprerecord);
-            $('#newwaterrecord').val(result.wcurrentrecord);
+            $('#weid').val(result.weid);
+            var stdate = moment(result.startdate).format("YYYY-MM-DD");
+            var enddate = moment(result.enddate).format("YYYY-MM-DD");
+            $("#startdate").val(stdate);
+            $("#enddate").val(enddate);
+            $('#wstartrecord').val(result.wstartrecord);
+            $('#wendrecord').val(result.wendrecord);
             var totalwater = result.wtotal;
             $('#totalwater').val(totalwater.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+            $('#estartrecord').val(result.estartrecord);
+            $('#eendrecord').val(result.eendrecord);
+            var totalelectric = result.etotal;
+            $('#totalpower').val(totalelectric.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
 
-            $('#oldpowerrecord').val(result.pprerecord);
-            $('#newpowerrecord').val(result.pcurrentrecord);
-            var totalpower = result.ptotal;
-            $('#totalpower').val(totalpower.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-
+            $('#paydollar').val(result.paydollar);
+            $('#payriel').val(result.payriel);
             $('#servicecharge').val(result.servicecharge);
             $('#totalpay').val(result.grandtotal);
             $('#totalpaykh').val(result.totalriel);
@@ -214,7 +259,7 @@ function EditInvoice(id) {
         }
     });
 
-    $.get("/api/WaterPoserPrice/1/2", function (data) {
+    $.get("/api/WEPrice/1/2", function (data) {
         $("#wpid").val(data.id);
         $("#wprice").text(data.waterprice);
         $("#pprice").text(data.powerprice);
@@ -267,9 +312,9 @@ function DeleteInvoice(id) {
 }
 
 
-function NewWaterRecordChange() {
-    var waternewrecord = document.getElementById('newwaterrecord').value;
-    var wateroldrecord = document.getElementById('oldwaterrecord').value;
+function wendrecordChange() {
+    var waternewrecord = document.getElementById('wendrecord').value;
+    var wateroldrecord = document.getElementById('wstartrecord').value;
     $.ajax({
         url: "/api/ExchangeRates/1/2",
         method: "GET",
@@ -278,9 +323,9 @@ function NewWaterRecordChange() {
             var totalwaterusage = ((parseFloat(waternewrecord) - parseFloat(wateroldrecord)) * parseFloat($('#wprice').text())) / rate;
             if (totalwaterusage <= 0) {
                 alert('Faild!');
-                $('#newwaterrecord').focus();
+                $('#wendrecord').focus();
             } else {
-                $('#totalwater').val(totalwaterusage.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+                $('#totalelectric').val(totalwaterusage.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
                 TotalPay();
             }
         },
@@ -289,9 +334,9 @@ function NewWaterRecordChange() {
         }
     });
 }
-function NewPowerRecordChange() {
-    var powernewrecord = document.getElementById('newpowerrecord').value;
-    var powerroldrecord = document.getElementById('oldpowerrecord').value;
+function eendrecordChange() {
+    var powernewrecord = document.getElementById('eendrecord').value;
+    var powerroldrecord = document.getElementById('estartrecord').value;
 
     $.ajax({
         url: "/api/ExchangeRates/1/2",
@@ -301,9 +346,9 @@ function NewPowerRecordChange() {
             var totalwaterusage = ((parseInt(powernewrecord) - parseInt(powerroldrecord)) * parseFloat($('#pprice').text())) / rate;
             if (totalwaterusage <= 0) {
                 alert('Faild!');
-                $('#newwaterrecord').focus();
+                $('#wendrecord').focus();
             } else {
-                $('#totalpower').val(totalwaterusage.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+                $('#totalelectric').val(totalwaterusage.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
                 TotalPay();
             }
         },
@@ -315,7 +360,7 @@ function NewPowerRecordChange() {
 }
 function TotalPay() {
     var totalwaterusage = document.getElementById('totalwater').value;
-    var totalpowerusage = document.getElementById('totalpower').value;
+    var totalpowerusage = document.getElementById('totalelectric').value;
     var roomprice = document.getElementById('roomprice').value;
     var servicecharge = document.getElementById('servicecharge').value;
     var grandtotal = parseFloat(totalwaterusage) + parseFloat(totalpowerusage) + parseFloat(roomprice) + parseFloat(servicecharge);
@@ -327,39 +372,48 @@ function TotalPay() {
 
 
 function OnPayAction() {
-    var data = new FormData();
-    data.append("grandtotal", $("#totalpay").val());
-    data.append("totalriel", $("#totalpaykh").val());
-    data.append("totaldollar", $("#totalpay").val());
-    data.append("totalother", $("#servicecharge").val());
-    data.append("note", $("#note").val());
-    data.append("payriel", $("#payriel").val());
-    data.append("paydollar", $("#paydollar").val());
-    data.append("paid", true);
+    var action = document.getElementById('btnSavePayment').innerText;
+    if (action == "Save") {
+        var data = new FormData();
+        data.append("grandtotal", $("#totalpay").val());
+        data.append("totalriel", $("#totalpaykh").val());
+        data.append("totaldollar", $("#totalpay").val());
+        data.append("totalother", $("#servicecharge").val());
+        data.append("note", $("#note").val());
+        data.append("payriel", $("#payriel").val());
+        data.append("paydollar", $("#paydollar").val());
+        data.append("paid", true);
 
-    $.ajax({
-        type: "PUT",
-        url: "/api/invoices/" + $("#id").val(),
-        contentType: false,
-        processData: false,
-        data: data,
-        success: function (result) {
-            UpdateWaterPayment();
-            UpdatePowerPayment();
-            toastr.success("Print Invoice successfully!.", "Server Response");
-            window.location.reload(true);
-        },
-        error: function (errormesage) {
-            toastr.error("Print invoice faild...!", "Server Respond");
+        $.ajax({
+            type: "PUT",
+            url: "/api/invoices/" + $("#id").val(),
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                //UpdateWaterPayment();
+                //UpdatePowerPayment();
+                toastr.success("Print Invoice successfully!.", "Server Response");
+                window.location.reload(true);
 
-        }
-    });
+                
+            },
+            error: function (errormesage) {
+                toastr.error("Print invoice faild...!", "Server Respond");
+
+            }
+        });
+    } else {
+
+    }
+    
 };
+
 
 function UpdateWaterPayment() {
     $.ajax({
         type: "PUT",
-        url: "/api/updatewaters/" + $("#id").val() + "/" + $('#newpowerrecord').val(),
+        url: "/api/updatewaters/" + $("#id").val() + "/" + $('#eendrecord').val(),
         contentType: false,
         processData: false,
         success: function (result) {
@@ -374,7 +428,7 @@ function UpdateWaterPayment() {
 function UpdatePowerPayment() {
     $.ajax({
         type: "PUT",
-        url: "/api/updatepowers/" + $("#id").val() + "/" + $('#newpowerrecord').val(),
+        url: "/api/updatepowers/" + $("#id").val() + "/" + $('#eendrecord').val(),
         contentType: false,
         processData: false,
         success: function (result) {
@@ -387,4 +441,22 @@ function UpdatePowerPayment() {
 }
 function OnClosePayment() {
     window.location.reload(true);
+}
+
+
+function TestAction() {
+    $.ajax({
+        url: "/api/invoice_v",
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (result) {
+            window.location = "invoice-report/1";
+        },
+        error: function (errormessage) {
+            toastr.error("Load Record Error", "Service Response");
+        }
+    });
+
+    
 }

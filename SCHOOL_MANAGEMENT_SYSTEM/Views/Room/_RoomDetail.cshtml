@@ -5,10 +5,7 @@
         <div class="modal-content">
             <div class="modal-header clearfix">
                 <button type="button" id="btnCloseRoomDetail" class="btn btn-danger btn-xs pull-right" data-dismiss="modal" onclick="OnCloseRoomDetail()">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">Room</b>
                 <b class="modal-title" style="color: darkblue;" id="lblRoomNo"></b>
-                <b class="modal-title" style="color: darkblue;" id="lblRoomStatus"></b>
-                <b class="modal-title" style="color: darkblue;display:none" id="lblRoomId"></b>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -121,7 +118,7 @@
                     <button type="button" id="btnCheckOut" onclick="OnCheckOutAction()" class="btn btn-warning btn-sm pull-right" style="margin-left:10px;width:100px">Check Out</button>
                     <button type="button" id="btnCheckIn" onclick="OnCheckInAction()" class="btn btn-primary btn-sm pull-right" style="margin-left:10px;width:100px">Check In Now</button>
                     <button type="button" id="btnPayment" onclick="OnPaymentAction()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>           
-                    <button type="button" id="btnBook" onclick="OnBookAction()" data-toggle="modal" data-target="#BookModal" class="btn btn-success  btn-sm pull-right" style="margin-left:10px;width:100px">Book</button>
+                    <button type="button" id="btnBook" onclick="OnBookAction()" class="btn btn-success  btn-sm pull-right" style="margin-left:10px;width:100px">Book</button>
 
                 </div>
             </div>
@@ -146,20 +143,40 @@
 
     //On Book
     function OnBookAction() {
-        var rmid = document.getElementById('lblRoomId').innerText;
+        var rmid = document.getElementById('roomid').value;
         $("#RoomDetailModal").modal('hide');
-        $("#frmbookroomid").val(rmid);
-        $("#bookroomid").val(rmid);
+        $("#BookModal").modal('show');
+
+        $.ajax({
+            url: "/api/rooms/" + rmid,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            datatype: "json",
+            success: function (result) {
+                $('#lblbookrmid').text("Book Room "+result.room_no);
+                $("#frmbookroomid").val(rmid);
+                $("#bookroomid").val(rmid);
+                //$("#totalbooking").val(result.price / 2);
+               // $("#paydollarbooking").val(result.price / 2);
+                $("#roompriceb").val(result.price);
+            },
+            error: function (errormessage) {
+                toastr.error("No Record Select!", "Service Response");
+            }
+        });
 
         ///Get booking invoice
         $.get("/api/bookinginvoiceno", function (data) {
             $('#bookingno').val(data);
         });
 
+        $.get("/api/ExchangeRates/1/2", function (data) {
+            $("#exchagerate").text(data.rate+" រៀល");
+        });
+
         document.getElementById('frmbookroomid').disabled = true;
         document.getElementById('bookingno').disabled = true;
-        var roomid = document.getElementById('lblRoomNo').innerText;
-        $("#lblidroom").text(roomid);
+        $("#lblidroom").text(rmid);
     }
     
     //On Check In
@@ -185,15 +202,11 @@
             $("#CheckInModal").modal("show");
             $("#chroomid").val(rmid.value);
             $("#guestid").val(guestid.value);
-            $("#lblRoomNoCehckIn").text(rmname);
-
-            $.get("/api/WaterPoserPrice/1/2", function (data) {
-                $("#wpid").val(data.id);
-                $("#wprice").text(data.waterprice);
-                $("#pprice").text(data.powerprice);
-            });
-            $.get("/api/invoicemaxid", function (data) {
-                $('#invno').val(data);
+            $.get("/api/rooms/" + rmid.value, function (data) {
+                $("#roompricech").val(data.price);
+                $("#payforroom").val(data.price);
+                $("#paybefor").val(data.price/2);
+                $("#lblRoom").text("Check In Room " + data.room_no);
             });   
         }
     }
@@ -268,22 +281,26 @@
                 datatype: "json",
                 success: function (result) {
                     var date = moment(result.enddate).format("YYYY-MM-DD");
-                    $("#woldrecord").val(result.woldrecord);
-                    $("#eoldrecord").val(result.poldrecord);
                     $("#startdate").val(date);
+                    $("#woldrecord").val(result.wendrecord);
+                    $("#eoldrecord").val(result.eendrecord);
+                    
                     $("#rmprice").val(result.price);
                     $("#svprice").val(result.servicecharge);
                     $("#totalpaybefor").val(result.pay);
+
+                    GetPayDemage(chinid, date, $('#enddate').val());
+                    //alert(chinid+" "+date +""+$('#startdate').val());
                 },
                 error: function (errormessage) {
                     toastr.error("No Record Select!", "Service Response");
                 }
             });
 
-            $.get("/api/WaterPoserPrice/1/2", function (data) {
+            $.get("/api/WEPrice/1/2", function (data) {
                 $("#wpid").val(data.id);
                 $("#wprice").val(data.waterprice);
-                $("#pprice").val(data.powerprice);
+                $("#pprice").val(data.electricprice);
             });
 
             $.get("/api/ExchangeRates/1/2", function (data) {
@@ -293,6 +310,32 @@
            
         }
     }
+    function GetPayDemage(id, fromdate, todate) {
+        $.ajax({
+            url: "/api/paydemages/" + id + "/" + fromdate + "/" + todate,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            datatype: "json",
+            success: function (result) {
+                var valsum = 0;
+                $.each(result, function (key, value) {
+                    valsum += parseFloat(value.item.price);
+                    $('#itemname').append("<label>" + value.item.itemname + "</label>" + " = " + "<label>" + value.price + "$,   </label>");
+
+                });
+                if (valsum != '0') {
+                    $('#paydemage').text("សម្ភារៈខូចខាត ​ ");
+                    $('#total').text("Total =");
+                    $('#itemprice').text(valsum);
+                }
+
+            },
+            error: function (errormessage) {
+                toastr.error("No Record Select!", "Service Response");
+            }
+        });
+    }
+
 
     //On Block Room
     function OnBlockAction() {
@@ -303,14 +346,14 @@
         var btnblock = document.getElementById('btnBlock').innerText;
         var stts;
         if (btnblock == "Block") {
-            stts="BLOCK"
+            stts = "BLOCK"
         } else {
-            stts="FREE"
+            stts = "FREE"
         }
 
         $.ajax({
             type: "PUT",
-            url: "/api/updateroomstatus/" + $("#roomid").val() + "/"+stts,
+            url: "/api/updateroomstatus/" + $("#roomid").val() + "/" + stts,
             contentType: false,
             processData: false,
             // data: status,

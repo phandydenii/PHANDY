@@ -29,6 +29,25 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             _context.Dispose();
         }
 
+        [HttpGet]
+        //Get : api/CheckIns
+        public IHttpActionResult GetAllCheckIn()
+        {
+            var getCheckIn = _context.CheckIns
+                .Include(r => r.room)
+                .Include(g => g.guest)
+                .ToList();
+            return Ok(getCheckIn);
+        }
+
+        [HttpGet]
+        //Get : api/CheckIns
+        public IHttpActionResult GetAllCheckIn(int id)
+        {
+            var getCheckIn = _context.CheckIns.Include(r => r.room).Include(g => g.guest).Where(c => c.id==id).ToList();
+            return Ok(getCheckIn);
+        }
+
 
         [HttpGet]
         [Route("api/checkin_v")]
@@ -41,11 +60,12 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                               join g in _context.Guests on c.guestid equals g.id
                               join f in _context.Floors on r.floorid equals f.id
                               join b in _context.Buildings on f.buildingid equals b.id
-                              join w in _context.WaterUsages on c.id equals w.checkinid
-                              join p in _context.Electrics on c.id equals p.checkinid
+                              join we in _context.WaterEletricUsages on c.id equals we.checkinid
+                              join wep in _context.WEPrices on we.wepriceid equals wep.id
                               select new CheckInV
                               {
                                   id = c.id,
+                                  checkindate = c.checkindate,
                                   roomid = r.id,
                                   room_no = r.room_no,
                                   roomtypeid = rt.id,
@@ -57,10 +77,12 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   price = r.price,
                                   roomkey = r.roomkey,
                                   roomstatus = r.status,
-                                  wolddate = w.predate,
-                                  woldrecord = w.prerecord,
-                                  polddate = p.predate,
-                                  poldrecord = p.prerecord,
+                                  startdate=we.startdate,
+                                  enddate=we.enddate,
+                                  wstartrecode = we.wstartrecord,
+                                  wendrecord = we.wendrecord,
+                                  estartrecord = we.estartrecord,
+                                  eendrecord = we.eendrecord,
                                   guestid = g.id,
                                   name = g.name,
                                   namekh = g.namekh,
@@ -75,10 +97,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   child = c.child,
                                   man = c.man,
                                   women = c.women,
-                                  checkindate = c.checkindate,
-                                  startdate = c.startdate,
-                                  enddate = c.enddate,
-                                  pay=c.pay
+                                  prepaid=c.prepaid,
+                                  payforroom=c.payforroom
                                   
                               }).ToList();
             return Ok(getCheckIn);
@@ -95,12 +115,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                               join g in _context.Guests on c.guestid equals g.id
                               join f in _context.Floors on r.floorid equals f.id
                               join b in _context.Buildings on f.buildingid equals b.id
-                              join w in _context.WaterUsages on c.id equals w.checkinid
-                              join p in _context.Electrics on c.id equals p.checkinid
-                              where c.id == id
+                              join we in _context.WaterEletricUsages on c.id equals we.checkinid
+                              join wep in _context.WEPrices on we.wepriceid equals wep.id
+                              where c.id == id  && c.active==true
                               select new CheckInV
                               {
                                   id = c.id,
+                                  checkindate = c.checkindate,
                                   roomid = r.id,
                                   room_no = r.room_no,
                                   roomtypeid = rt.id,
@@ -112,16 +133,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   price = r.price,
                                   roomkey = r.roomkey,
                                   roomstatus = r.status,
-                                  wolddate = w.predate,
-                                  woldrecord = w.prerecord,
-                                  wnewdate=w.currentdate,
-                                  wnewrecord=w.currentrecord,
-
-                                  polddate = p.predate,
-                                  poldrecord = p.prerecord,
-                                  pnewdate = p.currentdate,
-                                  pnewrecord = p.currentrecord,
-                                  pay=c.pay,
+                                  startdate = we.startdate,
+                                  enddate = we.enddate,
+                                  wstartrecode = we.wstartrecord,
+                                  wendrecord = we.wendrecord,
+                                  estartrecord = we.estartrecord,
+                                  eendrecord = we.eendrecord,
+                                  prepaid =c.prepaid,
+                                  payforroom=c.payforroom,
                                   guestid = g.id,
                                   name = g.name,
                                   namekh = g.namekh,
@@ -136,9 +155,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   child = c.child,
                                   man = c.man,
                                   women = c.women,
-                                  checkindate = c.checkindate,
-                                  startdate = c.startdate,
-                                  enddate = c.enddate
                               }).SingleOrDefault();
             return Ok(getCheckIn);
         }
@@ -154,9 +170,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                               join g in _context.Guests on c.guestid equals g.id
                               join f in _context.Floors on r.floorid equals f.id
                               join b in _context.Buildings on f.buildingid equals b.id
-                              join w in _context.WaterUsages on c.id equals w.checkinid
-                              join p in _context.Electrics on c.id equals p.checkinid
-                              where r.id == roomid
+                              join we in _context.WaterEletricUsages on c.id equals we.checkinid
+                              join wep in _context.WEPrices on we.wepriceid equals wep.id
+                              where r.id == roomid 
                               select new CheckInV
                               {
                                   id = c.id,
@@ -171,16 +187,61 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   price = r.price,
                                   roomkey = r.roomkey,
                                   roomstatus = r.status,
-                                  wolddate = w.predate,
-                                  woldrecord = w.prerecord,
-                                  wnewdate=w.currentdate,
-                                  wnewrecord=w.currentrecord,
+                                  startdate = we.startdate,
+                                  enddate = we.enddate,
+                                  wstartrecode = we.wstartrecord,
+                                  wendrecord = we.wendrecord,
+                                  estartrecord = we.estartrecord,
+                                  eendrecord = we.eendrecord,
+                                  prepaid=c.prepaid,
+                                  payforroom=c.payforroom,
+                                  guestid = g.id,
+                                  name = g.name,
+                                  namekh = g.namekh,
+                                  sex = g.sex,
+                                  dob = g.dob,
+                                  address = g.address,
+                                  nationality = g.nationality,
+                                  phone = g.phone,
+                                  email = g.email,
+                                  ssn = g.ssn,
+                                  passport = g.passport,
+                                  child = c.child,
+                                  man = c.man,
+                                  women = c.women,
+                                  checkindate = c.checkindate,
+                              }).ToList();
+            return Ok(getCheckIn);
+        }
 
-                                  polddate = p.predate,
-                                  poldrecord = p.prerecord,
-                                  pnewdate=p.currentdate,
-                                  pnewrecord=p.currentrecord,
-
+        [HttpGet]
+        [Route("api/checkinbyroom-v/{roomid}")]
+        //Get : api/CheckIns
+        public IHttpActionResult GetCheckInVByRoomIDs(int roomid)
+        {
+            var getCheckIn = (from c in _context.CheckIns
+                              join r in _context.Rooms on c.roomid equals r.id
+                              join rt in _context.RoomTypes on r.roomtypeid equals rt.id
+                              join g in _context.Guests on c.guestid equals g.id
+                              join f in _context.Floors on r.floorid equals f.id
+                              join b in _context.Buildings on f.buildingid equals b.id
+                              where r.id == roomid && c.active==true
+                              select new CheckInV
+                              {
+                                  id = c.id,
+                                  roomid = r.id,
+                                  room_no = r.room_no,
+                                  roomtypeid = rt.id,
+                                  roomtypename = rt.roomtypename,
+                                  floorid = f.id,
+                                  floorno = f.floor_no,
+                                  building = b.buildingname,
+                                  servicecharge = r.servicecharge,
+                                  price = r.price,
+                                  prepaid=c.prepaid,
+                                  payforroom=c.payforroom,
+                                  roomkey = r.roomkey,
+                                  roomstatus = r.status,
                                   guestid = g.id,
                                   name = g.name,
                                   namekh = g.namekh,
@@ -202,24 +263,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return Ok(getCheckIn);
         }
 
-        [HttpGet]
-        public IHttpActionResult GetCheckIns()
-        {
-            var getBuilding = _context.CheckIns.ToList().Select(Mapper.Map<CheckIn, CheckInDto>);
-            return Ok(getBuilding);
-        }
-
-        [HttpGet]
-        //Get : api/CheckIns
-        public IHttpActionResult GetCheckInById(int id)
-        {
-            var getBuildingById = _context.CheckIns.SingleOrDefault(c => c.id == id);
-
-            if (getBuildingById == null)
-                return NotFound();
-            return Ok(Mapper.Map<CheckIn, CheckInDto>(getBuildingById));
-        }
-
         [HttpPost]
         //Get : api/CheckIns
         public IHttpActionResult CreateCheckIn(CheckInDto CheckInDto)
@@ -228,16 +271,12 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            //var isExist = _context.Vacancies.SingleOrDefault(c => c.VacancyName == VacancyDtos.VacancyName);
-            //if (isExist != null)
-            //    return BadRequest();
-            //DbContextTransaction dbTran = _context.Database.BeginTransaction();
-
             var CheckInInDb = Mapper.Map<CheckInDto, CheckIn>(CheckInDto);
             CheckInInDb.checkindate = DateTime.Today;
             CheckInInDb.startdate = DateTime.Today;
             CheckInInDb.enddate = DateTime.Today;
-            CheckInInDb.userid = User.Identity.GetUserName();
+            CheckInInDb.userid = User.Identity.GetUserId();
+            CheckInInDb.active = false;
 
             _context.CheckIns.Add(CheckInInDb);
             _context.SaveChanges();

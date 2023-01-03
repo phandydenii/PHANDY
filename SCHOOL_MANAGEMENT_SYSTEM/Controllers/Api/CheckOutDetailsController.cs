@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
@@ -28,38 +29,53 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
 
         [HttpPost]
-        public IHttpActionResult CreateCheckOutDetail(CheckOutDetailDto CheckOutDetailDto)
+        public IHttpActionResult CreateCheckOutDetail()
         {
-            DataTable ds = new DataTable();
-            DataTable ds1 = new DataTable();
-            DataTable ds2 = new DataTable();
+            var checkoutid = HttpContext.Current.Request.Form["checkoutid"];
+            var checkinid = int.Parse(HttpContext.Current.Request.Form["checkinid"]);
+            var fromdate = HttpContext.Current.Request.Form["fromdate"];
+            var todate = HttpContext.Current.Request.Form["todate"];
+
+            DataTable dt = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            SqlDataAdapter adp = new SqlDataAdapter("select max(id) from waterusage_tbl", conx);
-            SqlDataAdapter adp1 = new SqlDataAdapter("select max(id) from electricusage_tbl", conx);
-            SqlDataAdapter adp2 = new SqlDataAdapter("select max(id) from checkout_tbl", conx);
-            adp.Fill(ds);
-            adp.Fill(ds1);
-            adp2.Fill(ds2);
+            SqlDataAdapter adp = new SqlDataAdapter("select id from paydemage_tbl where checkinid=" + checkinid + " and [date] between '" + fromdate + "' and '" + todate + "'", conx);
 
-            string wid = ds.Rows[0][0].ToString();
-            string eid = ds1.Rows[0][0].ToString();
-            string choutid = ds2.Rows[0][0].ToString();
+            adp.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    foreach (int id in row.ItemArray)
+                    {
+                        var paydemageid = _context.PayDemages.Where(p => p.id == id).SingleOrDefault();
 
-            if (!ModelState.IsValid)
-                return BadRequest();
+                        var InoiceDetailDto = new CheckOutDetailDto()
+                        {
+                            checkoutid = int.Parse(checkoutid),
+                            paydemageid = paydemageid.id,
+                        };
 
-            var CheckOutDetailInDb = Mapper.Map<CheckOutDetailDto, CheckOutDeatil>(CheckOutDetailDto);
-            CheckOutDetailInDb.waterid = int.Parse(wid);
-            CheckOutDetailInDb.electricid = int.Parse(eid);
-            CheckOutDetailInDb.checkoutid = int.Parse(choutid);
-            _context.CheckOutDeatils.Add(CheckOutDetailInDb);
-            _context.SaveChanges();
-
-            CheckOutDetailInDb.id = CheckOutDetailDto.id;
-
-            return Ok(CheckOutDetailInDb);
+                        var InvoiceDetail = Mapper.Map<CheckOutDetailDto, CheckOutDeatil>(InoiceDetailDto);
+                        _context.CheckOutDeatils.Add(InvoiceDetail);
+                        _context.SaveChanges();
+                        InoiceDetailDto.id = InvoiceDetail.id;
+                    }
+                }
+            }
+            SqlCommand command = new SqlCommand("update checkin_tbl set active=0 where id="+ checkinid, conx);
+            
+            try
+            {
+                conx.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Ok();
         }
 
     }

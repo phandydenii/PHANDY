@@ -12,16 +12,32 @@
                 <div class="row">
                     <div class="col-md-12">
                         <input id="pdid" name="pdid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
-                        <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
-                        <div class="form-group">
-                            <label for="chroomid">លេខបន្ទប់</label>
-                            <select class="form-control input-sm" id="itemid" onchange="ChangeItem()">
-                                <option value="0">---------Please choose item------</option>
-                                @foreach (var room in Model.ItemList)
-                                {
-                                    <option value=@room.id>@room.itemnamekh</option>
-                                }
-                            </select>
+                        <input id="guestid" name="guestid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="chroomid">សម្ភារៈ</label>
+                                    <select class="form-control input-sm" id="itemid">
+                                        <option value="0">---------Please choose item------</option>
+                                        @foreach (var room in Model.ItemList)
+                                        {
+                                            <option value=@room.id>@room.itemnamekh</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="itemprice">តម្លៃ</label>
+                                    <input id="itemprice" name="price" disabled placeholder="Item Price" type="number" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="price">បង់ថ្លៃខូចខាត</label>
+                                    <input id="price" name="price" placeholder="Enter Guest Name" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -60,59 +76,3 @@
     </div>
 </div>
 
-<script>
-
-    function SavePayDemage() {
-        if($('#itemid').val() != 0){
-            var action = document.getElementById('btnSavePayDemage').innerText;
-            if (action == "Save") {
-                var data = new FormData();
-                data.append("checkinid", $('#checkinid').val());
-                data.append("itemid", $('#itemid').val());
-                data.append("note", $('#note').val());
-                $.ajax({
-                    type: "POST",
-                    url: "/api/paydemages",
-                    contentType: false,
-                    processData: false,
-                    data: data,
-                    success: function (result) {
-                        $('#tablePayDamages').DataTable().ajax.reload();
-                    },
-                    error: function (errormesage) {
-                        toastr.error("Water usage insert faild!", "Server Respond");
-                        return false;
-                    }
-
-                });
-            } else if (action == "Update") {
-                var data = new FormData();
-                data.append("checkinid", $('#checkinid').val());
-                data.append("itemid", $('#itemid').val());
-                data.append("note", $('#note').val());
-                $.ajax({
-                    type: "PU",
-                    url: "/api/paydemages/"+$('#pdid').val(),
-                    contentType: false,
-                    processData: false,
-                    data: data,
-                    success: function (result) {
-                        $('#tablePayDamages').DataTable().ajax.reload();
-                    },
-                    error: function (errormesage) {
-                        toastr.error("Water usage insert faild!", "Server Respond");
-                        return false;
-                    }
-
-                });
-            }
-        } else {
-            alert('Please choose item');
-            $('#itemid').focus();
-        }
-        
-    }
-    function CloseForm() {
-        window.location.reload(true);
-    }
-</script>

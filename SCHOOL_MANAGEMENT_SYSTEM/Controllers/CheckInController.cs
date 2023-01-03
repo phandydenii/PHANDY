@@ -29,7 +29,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             var roomViewModel = new RoomViewModel()
             {
                 ExchangeRateID = _context.Exchanges.Where(d => d.IsDeleted == false).Max(a => a.id),
-                WaterPowerPriceID = _context.WaterPowerPrices.Where(d => d.IsDeleted == false).Max(a => a.id),
+                WaterPowerPriceID = _context.WEPrices.Where(d => d.IsDeleted == false).Max(a => a.id),
                 GuestList = _context.Guests.ToList(),
                 ItemList = _context.Items.ToList(),
             };

@@ -38,7 +38,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
                 Items = _context.Items.ToList(),
                 TotalRoom = _context.Rooms.Count(),
                 ExchangeRateID =_context.Exchanges.Where(d=>d.IsDeleted==false).Max(a=>a.id),
-                WaterPowerPriceID = _context.WaterPowerPrices.Where(d => d.IsDeleted == false).Max(a => a.id),
+                WaterPowerPriceID = _context.WEPrices.Where(d => d.IsDeleted == false).Max(a => a.id),
                 GuestBook = _context.Guests.Where(c => c.status == "BOOK").ToList(),
                 GuestList = _context.Guests.ToList(),
 
