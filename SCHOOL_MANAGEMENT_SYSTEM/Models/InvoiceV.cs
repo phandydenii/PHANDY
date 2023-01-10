@@ -40,9 +40,11 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public decimal wstartrecord { get; set; }
         public decimal estartrecord { get; set; }
         public decimal wtotal { get; set; }
+        public decimal waterusage { get; set; }
         public decimal wendrecord { get; set; }
         public decimal eendrecord { get; set; }
         public decimal etotal { get; set; }
+        public decimal electricusage { get; set; }
 
 
         public DateTime? checkindate { get; set; }

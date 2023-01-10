@@ -32,7 +32,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         public IHttpActionResult CreateCheckOutDetail()
         {
             var checkoutid = HttpContext.Current.Request.Form["checkoutid"];
-            var checkinid = int.Parse(HttpContext.Current.Request.Form["checkinid"]);
+            var guestid = int.Parse(HttpContext.Current.Request.Form["guestid"]);
             var fromdate = HttpContext.Current.Request.Form["fromdate"];
             var todate = HttpContext.Current.Request.Form["todate"];
 
@@ -40,7 +40,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            SqlDataAdapter adp = new SqlDataAdapter("select id from paydemage_tbl where checkinid=" + checkinid + " and [date] between '" + fromdate + "' and '" + todate + "'", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select id from paydemage_tbl where paid=0 and guestid=" + guestid + " and [date] between '" + fromdate + "' and '" + todate + "'", conx);
 
             adp.Fill(dt);
             if (dt.Rows.Count > 0)
@@ -63,17 +63,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                         InoiceDetailDto.id = InvoiceDetail.id;
                     }
                 }
-            }
-            SqlCommand command = new SqlCommand("update checkin_tbl set active=0 where id="+ checkinid, conx);
-            
-            try
-            {
-                conx.Open();
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
             return Ok();
         }

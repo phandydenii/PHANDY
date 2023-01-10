@@ -1,0 +1,73 @@
+﻿
+<div class="modal fade " data-backdrop="static" data-keyboard="false" id="GuestModal" tabindex="-1" role="dialog" aria-labelledby="GuestModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" onclick="CloseGuest()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;" id="lblbookrmid"></b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input id="guestid" name="guestid" type="text" style="display: none;" value="" class="form-control" />
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="namekh">ឈ្មោះភ្ញៀវជាភាសាខ្មែរ</label>
+                                    <input id="namekh" name="namekh" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">ឈ្មោះភ្ញៀវ</label>
+                                    <input id="name" name="name" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gsex">ភេទ</label>
+                                    <select class="form-control input-sm" id="sex">
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob">ថ្ងៃខែឆ្នាំកំណើត</label>
+                                    <input id="dob" name="dob" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="address">អាស័យដ្ឋាន</label>
+                                    <input id="address" name="address" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nationality">សញ្ជាតិ</label>
+                                    <input id="nationality" name="nationality" placeholder="Enter Nationality" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">លេខទូរសព្ទ</label>
+                                    <input id="phone" name="phone" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">អ៊ីម៉ែល</label>
+                                    <input id="email" name="email" placeholder="Enter Email" type="email" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="ssn">លេខអត្តសញ្ញាណប័ណ្ណ</label>
+                                    <input id="ssn" name="ssn" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="passport">លិខិតឆ្លងដែន</label>
+                                    <input id="passport" name="passport" placeholder="Enter Passport Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSaveGuest" onclick="UpdateGuest()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:100px">Update</button>
+                <button type="button" id="btnCheckOut" onclick="OnCloseBook()" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:5px;width:100px">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

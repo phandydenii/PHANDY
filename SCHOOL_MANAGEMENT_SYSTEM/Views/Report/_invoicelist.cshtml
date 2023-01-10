@@ -1,0 +1,55 @@
+﻿
+@using ReportViewerForMvc;
+@{
+    ViewBag.Title = "_invoicelist";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <label>ចាប់ពី</label>
+            <input id="dateStart" name="dateStart" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Payment Date" />
+        </div>
+        <div class="col-md-2">
+            <label>ដល់</label>
+            <input id="dateEnd" name="dateEnd" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Payment Date" />
+        </div>
+        <div class="col-md-2">
+            <label>ស្ថានភាព</label>
+            <div class="form-group">
+                <select class="form-control input-sm" id="paid">
+                    <option value="1">----- បង់រួច -----</option>
+                    <option value="0">----- មិនទាន់បង់ -----</option>                  
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label>&nbsp;&nbsp;</label>
+            <div​ class="form-group">
+                <a class="btn btn-success btn-sm" style='margin-top:0px' onclick="PreviewInvoiceList()"> បង្ហាញ</a>
+            </div​>        
+        </div>
+    </div>
+    <div class="row">
+        <div id="" class="col-md-12">
+            @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer, new { @style = "width: 100%; height: 95%" })
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        function PreviewInvoiceList() {
+          var startdate=$("#dateStart").val();
+          var enddate = $("#dateEnd").val();
+          var paid = $("#paid").val();
+          if (paid == 1) {
+              window.open("/invoicelist-rpt/" + startdate + "/" + enddate + "/paid");
+          } else {
+              window.open("/invoicelist-rpt/" + startdate + "/" + enddate + "/notpaid");
+          }
+          
+       }
+    </script>
+}
+

@@ -204,6 +204,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 return BadRequest();
 
             var GuestInDb = _context.Guests.SingleOrDefault(c => c.id == id);
+            GuestInDb.status = "";
             Mapper.Map(GuestDtos, GuestInDb);
             _context.SaveChanges();
 

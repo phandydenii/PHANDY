@@ -45,7 +45,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpPost]
-        public IHttpActionResult InsertWEU()
+        public IHttpActionResult InsertWEU( )
         {
             DataTable ds = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
@@ -54,6 +54,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             adp.Fill(ds);
             string weprice = ds.Rows[0][0].ToString();
 
+
+
+            //var WEInDb = Mapper.Map<WaterElectricUsageDto, WaterElectricUsage>(WaterElectricUsageDtos);
+            //WEInDb.wepriceid = int.Parse(weprice);
+            //_context.WaterEletricUsages.Add(WEInDb);
+            //_context.SaveChanges();
+
             var checkinid = HttpContext.Current.Request.Form["checkinid"];
             var startdate = HttpContext.Current.Request.Form["startdate"];
             var enddate = HttpContext.Current.Request.Form["enddate"];
@@ -61,24 +68,31 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var wendrecord = HttpContext.Current.Request.Form["wendrecord"];
             var estartrecord = HttpContext.Current.Request.Form["estartrecord"];
             var eendrecord = HttpContext.Current.Request.Form["eendrecord"];
-
-
-            var waterElectricUsageDto = new WaterElectricUsageDto()
+            SqlCommand command = new SqlCommand();
+            SqlCommand requestcommand = new SqlCommand();
+            requestcommand.Connection = conx;
+            requestcommand.CommandType = CommandType.StoredProcedure;
+            requestcommand.CommandText = "InsertWaterElectric";
+            requestcommand.Parameters.Add("@checkinid", SqlDbType.Int).Value = int.Parse(checkinid);
+            requestcommand.Parameters.Add("@startdate", SqlDbType.Date).Value = DateTime.Parse(startdate);
+            requestcommand.Parameters.Add("@enddate", SqlDbType.Date).Value = DateTime.Parse(enddate);
+            requestcommand.Parameters.Add("@wstartrecord", SqlDbType.Decimal).Value = decimal.Parse(wstartrecord);
+            requestcommand.Parameters.Add("@wendrecord", SqlDbType.Decimal).Value = decimal.Parse(wendrecord);
+            requestcommand.Parameters.Add("@estartrecord", SqlDbType.Decimal).Value = decimal.Parse(estartrecord);
+            requestcommand.Parameters.Add("@eendrecord", SqlDbType.Decimal).Value = decimal.Parse(eendrecord);
+            requestcommand.Parameters.Add("@weprice", SqlDbType.Int).Value = int.Parse(weprice);
+            try
             {
-                checkinid = int.Parse(checkinid),
-                startdate = DateTime.Parse(startdate),
-                enddate = DateTime.Parse(enddate),
-                wstartrecord = decimal.Parse(wstartrecord),
-                wendrecord = decimal.Parse(wendrecord),
-                estartrecord = decimal.Parse(estartrecord),
-                eendrecord = decimal.Parse(eendrecord),
-                wepriceid = int.Parse(weprice),
-            };
+                conx.Open();
+                requestcommand.ExecuteNonQuery();
+                conx.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-            var waterElectricUsage = Mapper.Map<WaterElectricUsageDto, WaterElectricUsage>(waterElectricUsageDto);
-            _context.WaterEletricUsages.Add(waterElectricUsage);
-            _context.SaveChanges();
-            waterElectricUsageDto.id = waterElectricUsage.id;            SqlCommand cmd = new SqlCommand("Select max(id) From waterelectricusage_tbl", conx);
+            SqlCommand cmd = new SqlCommand("Select max(id) From waterelectricusage_tbl", conx);
             Int16 maxid;
             try
             {
@@ -132,3 +146,4 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
     }
 }
+

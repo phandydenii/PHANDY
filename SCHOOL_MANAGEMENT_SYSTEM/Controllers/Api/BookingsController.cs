@@ -12,6 +12,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Data.Entity;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 {
@@ -62,7 +63,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/Buildings
         public IHttpActionResult GetBookings()
         {
-            var getBuilding = _context.Bookings.ToList().Select(Mapper.Map<Booking, BookingDto>);
+            var getBuilding = _context.Bookings.Include(g => g.guest).Include(r => r.room).ToList().Select(Mapper.Map<Booking, BookingDto>);
             return Ok(getBuilding);
         }
 
@@ -70,11 +71,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/Buildings
         public IHttpActionResult GetBookings(int id)
         {
-            var getBuildingById = _context.Bookings.SingleOrDefault(c => c.id == id);
-
-            if (getBuildingById == null)
-                return NotFound();
-            return Ok(Mapper.Map<Booking, BookingDto>(getBuildingById));
+            var getBuildingById = _context.Bookings.Include(g => g.guest).Include(r => r.room).SingleOrDefault(c => c.id == id);
+            
+            return Ok(getBuildingById);
         }
         
 
@@ -289,7 +288,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlCommand requestcommand = new SqlCommand("select max(id) from ExchangeRates where IsDeleted=0", conx);
+            SqlCommand requestcommand = new SqlCommand("select max(id) from booking_tbl", conx);
             SqlDataAdapter da = new SqlDataAdapter("select max(id) from ExchangeRates where IsDeleted=0", conx);
             DataTable dt = new DataTable();
             da.Fill(dt);
@@ -311,7 +310,18 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
             BookingDtos.id = BookinInDb.id;
 
-            return Created(new Uri(Request.RequestUri + "/" + BookingDtos.id), BookingDtos);
+            Int16 BookMax;
+            try
+            {
+                conx.Open();
+                BookMax = Convert.ToInt16(requestcommand.ExecuteScalar());
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Ok(BookMax);
         }
         [HttpPut]
         public IHttpActionResult UpdateUser(int id, BookingDto BookinDtos)

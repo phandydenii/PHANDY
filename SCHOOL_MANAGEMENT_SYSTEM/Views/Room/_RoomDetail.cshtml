@@ -267,30 +267,24 @@
             });
         } else {
             $("#CheckOutModal").modal("show");
-            var gid = $("#guestid").val();
-            var rmid = $("#roomid").val();
-            var chinid = $("#checkinid").val();
-
-            $("#gid").val(gid);
-            $("#rmid").val(rmid);
-            $("#chinid").val(chinid);
             $.ajax({
-                url: "/api/checkin_v/" + chinid,
+                url: "/api/checkin_v/" + $("#checkinid").val(),
                 type: "GET",
                 contentType: "application/json;charset=utf-8",
                 datatype: "json",
                 success: function (result) {
-                    var date = moment(result.enddate).format("YYYY-MM-DD");
-                    $("#startdate").val(date);
-                    $("#woldrecord").val(result.wendrecord);
-                    $("#eoldrecord").val(result.eendrecord);
-                    
+                    $("#chinid").val(result.id);
+                    $("#gid").val(result.guestid);
+                    $("#rmid").val(result.roomid);
+                    var stdate = moment(result.enddate).format("YYYY-MM-DD");
+                    $("#startdatechout").val(stdate);
+                    $("#wstartrecords").val(result.wendrecord);
+                    $("#estartrecords").val(result.eendrecord);                   
                     $("#rmprice").val(result.price);
                     $("#svprice").val(result.servicecharge);
-                    $("#totalpaybefor").val(result.pay);
+                    $("#totalpaybefor").val(result.prepaid);
 
-                    GetPayDemage(chinid, date, $('#enddate').val());
-                    //alert(chinid+" "+date +""+$('#startdate').val());
+                    GetPayDemageList(result.guestid, $('#enddatechout').val(), stdate);
                 },
                 error: function (errormessage) {
                     toastr.error("No Record Select!", "Service Response");
@@ -310,7 +304,7 @@
            
         }
     }
-    function GetPayDemage(id, fromdate, todate) {
+    function GetPayDemageList(id, fromdate, todate) {
         $.ajax({
             url: "/api/paydemages/" + id + "/" + fromdate + "/" + todate,
             type: "GET",
@@ -319,13 +313,12 @@
             success: function (result) {
                 var valsum = 0;
                 $.each(result, function (key, value) {
-                    valsum += parseFloat(value.item.price);
-                    $('#itemname').append("<label>" + value.item.itemname + "</label>" + " = " + "<label>" + value.price + "$,   </label>");
-
+                    valsum += parseFloat(value.price);
+                    $('#PayDemageList').append("<li class='list-group-item'>" + value.item.itemname + "<span class='badge'>$ " + value.price + "</span></li>");
                 });
-                if (valsum != '0') {
-                    $('#paydemage').text("សម្ភារៈខូចខាត ​ ");
-                    $('#total').text("Total =");
+
+                if (valsum > 0) {
+                    $('#lblPayDemage').text("សម្ភារៈខូចខាត");
                     $('#itemprice').text(valsum);
                 }
 

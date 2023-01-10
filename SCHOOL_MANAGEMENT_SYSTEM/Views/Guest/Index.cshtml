@@ -3,8 +3,6 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6">
@@ -16,7 +14,7 @@
         <thead>
             <tr>
                 <th>លេខ</th>
-                <th>ឈ្មោះជាភាសាអង់គ្លេស</th>
+                <th>ឈ្មោះ</th>
                 <th>ឈ្មោះជាភាសាខ្មែរ</th>
                 <th>ភេទ</th>
                 <th>ថ្ងៃខែឆ្នាំកំណើត</th>
@@ -24,14 +22,15 @@
                 <th>លេខទូរសព្ទ</th>
                 <th>អ៊ីម៉ែល</th>
                 <th>ស្ថានភាព</th>
+                <th style="width:25px">សកម្មភាព</th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
 </div>
-
+@Html.Partial("_History")
+@Html.Partial("_Guest")
 @section scripts{
     @Scripts.Render("~/Scripts/Functions/guest.js")
-
     @Scripts.Render("~/Scripts/moment.min.js")
 }

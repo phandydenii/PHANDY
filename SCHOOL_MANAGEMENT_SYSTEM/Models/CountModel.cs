@@ -20,5 +20,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public int TotalItem { get; set; }
         public int TotalcheckIn { get; set; }
         public int TotalRoom { get; set; }
+        public int TotalBook { get; set; }
     }
 }

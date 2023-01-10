@@ -68,48 +68,46 @@ function GetCheckInDetail() {
     });
 }
 
-function PrintInvoice(id) {
-    alert(id);
-    $("#PrintNewInvoiceModal").modal("show");
-    
-    $.ajax({
-        url: "/api/invoice-v/newinvoie/1",
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        datatype: "json",
-        success: function (result) {
-            $("#checkinid").val(result[0]["checkinid"]);
-            alert(result[0]["checkinid"]);
-            $('#name').val(result[0]["name"]);
-            $('#roomid').val(result[0]["roomid"]);
-            $("#room_no").val(result[0]["room_no"]);
-            $("#roompricee").val(result[0]["price"]);
-            $("#svprice").val(result[0]["servicecharge"]);
-            $("#recordpowerold").val(result[0]["estartrecord"]);
-            $("#recordwaterold").val(result[0]["wstartrecord"]);
-            $("#weid").val(result[0]["weid"]);
-            var checkindid = result[0]["checkinid"];
-            var enddate = moment(result[0]["enddate"]).format("YYYY-MM-DD");
-            $("#begindate").val(enddate);
-            $("#guestid").val(result[0]["guestid"]);
-            $.get("/api/invoicemaxid", function (data) {
-                $('#invno').val(data);
-            });
-        },
-        error: function (errormessage) {
-            toastr.error("No Record Select!", "Service Response");
-        }
-    });
+//function PrintInvoice(id) {
+//    $("#PrintNewInvoiceModal").modal("show");
+//    $.ajax({
+//        url: "/api/invoice-v/newinvoie/1",
+//        type: "GET",
+//        contentType: "application/json;charset=utf-8",
+//        datatype: "json",
+//        success: function (result) {
+//            $("#checkinid").val(result[0]["checkinid"]);
+//            alert(result[0]["checkinid"]);
+//            $('#name').val(result[0]["name"]);
+//            $('#roomid').val(result[0]["roomid"]);
+//            $("#room_no").val(result[0]["room_no"]);
+//            $("#roompricee").val(result[0]["price"]);
+//            $("#svprice").val(result[0]["servicecharge"]);
+//            $("#recordpowerold").val(result[0]["estartrecord"]);
+//            $("#recordwaterold").val(result[0]["wstartrecord"]);
+//            $("#weid").val(result[0]["weid"]);
+//            var checkindid = result[0]["checkinid"];
+//            var enddate = moment(result[0]["enddate"]).format("YYYY-MM-DD");
+//            $("#begindate").val(enddate);
+//            $("#guestid").val(result[0]["guestid"]);
+//            $.get("/api/invoicemaxid", function (data) {
+//                $('#invno').val(data);
+//            });
+//        },
+//        error: function (errormessage) {
+//            toastr.error("No Record Select!", "Service Response");
+//        }
+//    });
 
-    $.get("/api/ExchangeRates/1/2", function (data) {
-        $('#exrate').val(data.rate);
-    });
+//    $.get("/api/ExchangeRates/1/2", function (data) {
+//        $('#exrate').val(data.rate);
+//    });
 
-    $.get("/api/WEPrice/1/1", function (data) {
-        $('#wprice').val(data.waterprice);
-        $('#pprice').val(data.electricprice);
-    });
-}
+//    $.get("/api/WEPrice/1/1", function (data) {
+//        $('#wprice').val(data.waterprice);
+//        $('#pprice').val(data.electricprice);
+//    });
+//}
 
 $('#itemid').on('change', function () {
     $("#itemprice").val("");
@@ -127,7 +125,7 @@ $('#fromdate').on('change', function () {
 
 });
 
-function PayDamages(id, guestid) {
+function PayDamages(guestid) {
 
     $("#PayDamagesModal").modal("show");
     $('#guestid').val(guestid);
@@ -204,19 +202,21 @@ function DeletePrp(id, propertyname) {
 function CheckInEdit(id) {
     $("#CheckInModal").modal("show");
     $("#checkinid").val(id);
+    document.getElementById('btnSaveCheckIn').innerText == "Update";
     $.ajax({
         url: "/api/checkins/" + id,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
-            $('#guestname').val(result.name);
-            $('#guestnamekh').val(result.namekh);
+            alert(result.id);
+            $('#guestname').val(result.guest.name);
+            $('#guestnamekh').val(result.guest.namekh);
             var checkindate = moment(result.checkindate).format("YYYY-MM-DD");
             $('#checkindate').val(checkindate);
-            $('#roomno').val(result.room_no);
-            $('#servicecharge').val(result.servicecharge);
-            $('#roomprice').val(result.price);
+            $('#roomno').val(result.room.room_no);
+            $('#servicecharge').val(result.room.servicecharge);
+            $('#roomprice').val(result.room.price);
             var startdate = moment(result.startdate).format("YYYY-MM-DD");
             var enddate = moment(result.enddate).format("YYYY-MM-DD")
             $('#startdate').val(startdate);
@@ -377,7 +377,6 @@ function EditProp(id) {
         }
     });
 }
-
 
 function CloseForm() {
     window.location.reload(true);

@@ -110,8 +110,7 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                UpdateStatusRoom();
-                UpdateStatusGuest();
+                
                 CreatetWaterElectricUsage(result);
                 //InsertPowerUsage(result);
                 //InsertWaterUsage(result);
@@ -142,6 +141,8 @@
             data: data,
             success: function (result) {
                 //CreateInvoice();
+                UpdateStatusRoom();
+                UpdateGuestStatus();
                 toastr.success("Check In successfully.", "Server Response");
                 window.location.reload(true);
             },
@@ -187,7 +188,7 @@
             }
         });
     }
-    function UpdateStatusGuest() {
+    function UpdateGuestStatus() {
         $.ajax({
             type: "PUT",
             url: "/api/updategueststatus/" + $("#guestid").val() + "/CHECK-IN",

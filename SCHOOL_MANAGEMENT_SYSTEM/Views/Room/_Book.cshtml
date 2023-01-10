@@ -231,7 +231,7 @@
             success: function (result) {
                 toastr.success("Book successfully!", "Server Respond");
                 window.location.reload(true);
-                window.location = "booking-rpt/1";
+                window.location = "booking-rpt/" + result;
             },
             error: function (errormesage) {
                 toastr.error("This Booking ID is exist in Database", "Server Respond");

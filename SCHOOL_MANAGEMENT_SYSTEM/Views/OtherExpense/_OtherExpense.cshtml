@@ -5,12 +5,12 @@
             <div class="modal-content">
                 <div id="loadingGif"></div>
                 <div class="modal-header">
-                    <button type="button" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <button type="button" class="btn-danger btn-xs pull-right" onclick="CloseFrm()">Close</button>
                     <b class="modal-title" style="color:darkblue">គ្រប់គ្រងចំណាយផ្សេងៗ</b>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <input type="text" hidden value="" />
                             <input id="id" name="id" type="text" value="" class="form-control input-sm hidden" placeholder="Enter employeeId" />
 
@@ -39,20 +39,21 @@
 
                             </div>
                         </div>
-                    </div>
-                    @*<div class="row">
-                        <div class="col-md-8 col-lg-offset-4">
-                            <button type="button" id="btnOtherExpense" onclick="OtherExpenseAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <img class="center img-responsive img-thumbnail" id="image" src="~/Images/invoice-icon.png" style="width:260px;height:260px" />
+                            </div>
+                            <div class="form-group">
+                                <label>ភ្ជាប់វិក័យបត្រ</label>
+                                <input onchange="readURL(this);" type="file" id="file" />
+                                <input type="hidden" value="" id="file_old" />
+                            </div>
                         </div>
-                    </div>*@
+                    </div>
                 </div>
-                <div class="modal-header">
-                    <div class="col-md-3 col-md-offset-6" id="hidecheckout">
-                        <button type="button" id="btnCheckOut" data-dismiss="modal" class="btn btn-danger btn-block btn-sm">Cancel</button>
-                    </div>
-                    <div class="col-md-3" id="hidepayment">
-                        <button type="button" id="btnOtherExpense" onclick="OtherExpenseAction()" class="btn btn-info btn-block btn-sm">Add New</button>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCheckOut" data-dismiss="modal" class="btn btn-danger pull-right btn-sm" style="margin-left:10px">Cancel</button>                 
+                    <button type="button" id="btnOtherExpense" onclick="OtherExpenseAction()" class="btn btn-info pull-right btn-sm">Add New</button>                    
                 </div>
             </div>
         </div>

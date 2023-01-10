@@ -21,5 +21,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
 
         public string createby { get; set; }
         public DateTime createdate { get; set; }
+        public string image { get; set; }
     }
 }

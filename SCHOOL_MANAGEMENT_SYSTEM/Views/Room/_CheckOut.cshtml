@@ -22,14 +22,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="startdate">ចាប់ផ្តើម</label>
-                                    <input id="startdate" readonly="readonly" name="startdate" type="date" value="" class="form-control input-sm" style="min-width: 100%" />
+                                    <label for="startdatechout">ចាប់ផ្តើម</label>
+                                    <input id="startdatechout" readonly="readonly" name="startdatechout" type="date" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="enddate">ដល់ថ្ងៃ</label>
-                                    <input id="enddate" readonly="readonly" name="enddate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
+                                    <label for="enddatechout">ដល់ថ្ងៃ</label>
+                                    <input id="enddatechout" readonly="readonly" name="enddatechout" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                         </div>
@@ -37,14 +37,14 @@
                             <input id="waterid" name="waterid" type="text" style="display: none;" value="" class="form-control" />
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="woldrecord">គីឡូទឺកចាស់</label>
-                                    <input id="woldrecord" readonly="readonly" name="woldrecord" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                    <label for="wstartrecords">គីឡូទឺកចាស់</label>
+                                    <input id="wstartrecords" readonly="readonly" name="wstartrecords" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="wnewrecord">គីឡូទឺកថ្មី</label>
-                                    <input id="wnewrecord" onfocus="this.select();" onchange="RecordWaterChange();" name="wnewrecord" placeholder="" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                    <label for="wendrecords">គីឡូទឺកថ្មី</label>
+                                    <input id="wendrecords" onfocus="this.select();" onchange="RecordWaterChange();" name="wendrecords" placeholder="" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                         </div>
@@ -52,14 +52,14 @@
                             <input id="powerid" name="powerid" type="text" style="display: none;" value="" class="form-control" />
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="eoldrecord">គីឡូភ្លើងចាស់</label>
-                                    <input id="eoldrecord" readonly="readonly" name="eoldrecord" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                    <label for="estartrecords">គីឡូភ្លើងចាស់</label>
+                                    <input id="estartrecords" readonly="readonly" name="estartrecords" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="enewrecord">គីឡូភ្លើងថ្មី</label>
-                                    <input id="enewrecord" onfocus="this.select();" onchange="RecordElectricChange()" name="enewrecord" placeholder="Enter Phone" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                    <label for="eendrecords">គីឡូភ្លើងថ្មី</label>
+                                    <input id="eendrecords" onfocus="this.select();" onchange="RecordElectricChange()" name="eendrecords" placeholder="Enter Phone" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                         </div>
@@ -90,8 +90,8 @@
                                     <input id="svprice" readonly="readonly" name="svprice" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="totalamount">សរុប</label>
-                                    <input id="totalamount" name="totalamount" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
+                                    <label class="control-label" for="grandtotal">សរុប</label>
+                                    <input id="grandtotal" name="grandtotal" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -123,18 +123,20 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <label id="paydemage" style="color: darkblue;"></label>
-                        <label for="itemname" id="itemname" style="color: darkblue;"></label>
-                        <label id="total" style="color: darkblue;"></label>
-                        <label id="itemprice" style="color: darkblue;"></label>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <button type="button" id="btnSaveCheckOut" onclick="CheckOutAction()" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">Save</button>
-                            <button type="button" id="btnClose"  onclick="CloseForm();" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>
-                        </div>
+                        
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <label for="lblPayDemage"></label>
+                        <label id="itemprice" style="color: darkblue;display:none"></label>
+                        <ul id="PayDemageList" class="list-group"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSaveCheckOut" onclick="CheckOutAction()" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">Save</button>
+                <button type="button" id="btnClose" onclick="CloseForm();" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>
             </div>
         </div>
     </div>
@@ -145,61 +147,39 @@
         window.location.reload(true);
     }
     function CheckOutAction() {
-        InsertPowerCheckOut();
-        InsertWaterCheckOut();
+        CreatetWaterElectricUsage();
     }
-    function InsertPowerCheckOut() {
+    //Insert WE
+    function CreatetWaterElectricUsage() {
         var data = new FormData();
         data.append("checkinid", $('#chinid').val());
-        data.append("predate", $('#startdate').val());
-        data.append("prerecord", $('#eoldrecord').val());
-        data.append("currentdate", $('#enddate').val());
-        data.append("currentrecord", $('#enewrecord').val());
-
+        data.append("startdate", $('#startdatechout').val());
+        data.append("enddate", $('#enddatechout').val());
+        data.append("wstartrecord", $('#wstartrecords').val());
+        data.append("wendrecord", $('#wendrecords').val());
+        data.append("estartrecord", $('#estartrecords').val());
+        data.append("eendrecord", $('#eendrecords').val());
         $.ajax({
+            url: "/api/waterelectricusages",
             type: "POST",
-            url: "/api/electrics",
             contentType: false,
             processData: false,
             data: data,
             success: function (result) {
-                //
+                CreateCheckOut(result);
             },
             error: function (errormesage) {
-                toastr.error("Water usage insert faild!", "Server Respond");
-                return false;
-            }
-
-        });
-    }
-    function InsertWaterCheckOut() {
-        var data = new FormData();
-        data.append("checkinid", $('#chinid').val());
-        data.append("predate", $('#startdate').val());
-        data.append("prerecord", $('#woldrecord').val());
-        data.append("currentdate", $('#enddate').val());
-        data.append("currentrecord", $('#wnewrecord').val());
-
-        $.ajax({
-            type: "POST",
-            url: "/api/waterusage",
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function (result) {
-                InsertCheckOut();
-            },
-            error: function (errormesage) {
-                toastr.error("Water usage insert faild!", "Server Respond");
+                toastr.error("Electric usage insert faild!", "Server Respond");
                 return false;
             }
         });
     }
 
-    function InsertCheckOut() {
+    function CreateCheckOut(id) {
         var data = {
-            roomid: $('#rmid').val(),
             guestid: $('#gid').val(),
+            roomid: $('#rmid').val(),            
+            weusageid: id,
             total: $('#totalamount').val(),
             paybefor: $('#totalpaybefor').val(),
             returnamount: $('#returnamt').val(),
@@ -213,7 +193,7 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                CheckOutDetail(result);
+                CreateCheckOutDetail(result);
                 UpdateStatusGuest();
                 UpdateRoomStatusCheckOut(result);               
             },
@@ -225,14 +205,13 @@
         });
     }
 
-    function CheckOutDetail(id) {
-
+    function CreateCheckOutDetail(id) {
         var data = new FormData();
         data.append("checkoutid", id);
-        data.append("checkinid", $('#chinid').val());
-        data.append("fromdate", $('#startdate').val());
-        data.append("todate", $('#enddate').val());
 
+        data.append("guestid", $('#gid').val());
+        data.append("fromdate", $('#startdatechout').val());
+        data.append("todate", $('#enddatechout').val());
         $.ajax({
             url: "/api/checkoutdetails",
             type: "POST",
@@ -279,33 +258,30 @@
             }
         });
     }
-
-
     function RecordWaterChange() {
-        var wnewrecord = document.getElementById('wnewrecord').value;
-        var woldrecord = document.getElementById('woldrecord').value;
-        var wtotal = ((parseFloat(wnewrecord) - parseFloat(woldrecord)) * parseFloat($('#wprice').val())) / parseFloat($('#exrate').val());
+        var wendrecords = document.getElementById('wendrecords').value;
+        var wstartrecords = document.getElementById('wstartrecords').value;
+        var wtotal = ((parseFloat(wendrecords) - parseFloat(wstartrecords)) * parseFloat($('#wprice').val())) / parseFloat($('#exrate').val());
         if (wtotal <= 0) {
             alert('Faild!');
-            $('#wnewrecord').focus();
+            $('#wendrecords').focus();
         } else {
             $('#wtotal').val(wtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
             TotalPayment();
         }
     }
     function RecordElectricChange() {
-        var enewrecord = document.getElementById('enewrecord').value;
-        var eoldrecord = document.getElementById('eoldrecord').value;
-        var etotal = ((parseFloat(enewrecord) - parseFloat(eoldrecord)) * parseFloat($('#pprice').val())) / parseFloat($('#exrate').val());
+        var eendrecords = document.getElementById('eendrecords').value;
+        var estartrecords = document.getElementById('estartrecords').value;
+        var etotal = ((parseFloat(eendrecords) - parseFloat(estartrecords)) * parseFloat($('#pprice').val())) / parseFloat($('#exrate').val());
         if (etotal <= 0) {
             alert('Faild!');
-            $('#enewrecord').focus();
+            $('#eendrecords').focus();
         } else {
             $('#etotal').val(etotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
             TotalPayment();
         }
     }
-
     function TotalPayment() {
         var watertotal = document.getElementById('wtotal').value;
         var eletrictotal = document.getElementById('etotal').value;
@@ -314,14 +290,13 @@
         var totalpaybefor = document.getElementById('totalpaybefor').value;
         
         var sumval = document.getElementById("itemprice").innerText;
+       // alert(sumval);
         var paydemage = 0;
-        if (sumval == "") {
-            paydemage = 0;
-        } else {
+        if (sumval >= 0) {
             paydemage = sumval;
         }
         var grandtotal = parseFloat(watertotal) + parseFloat(eletrictotal) + parseFloat(roomprice) + parseFloat(servicecharge) + parseFloat(paydemage);
-        $('#totalamount').val(grandtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        $('#grandtotal').val(grandtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         $('#grandtotalkh').val((grandtotal * parseFloat($('#exrate').val())).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         var totalreturn = grandtotal - parseFloat(totalpaybefor);
         if (totalreturn >= 0) {
@@ -329,7 +304,55 @@
         } else {
             $('#returnamt').val((totalreturn * -1).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         }
-        //alert(sumVal);
+    }
+
+
+    function InsertPowerCheckOut() {
+        var data = new FormData();
+        data.append("checkinid", $('#chinid').val());
+        data.append("predate", $('#startdatechout').val());
+        data.append("prerecord", $('#estartrecords').val());
+        data.append("currentdate", $('#enddatechout').val());
+        data.append("currentrecord", $('#eendrecords').val());
+
+        $.ajax({
+            type: "POST",
+            url: "/api/electrics",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                //
+            },
+            error: function (errormesage) {
+                toastr.error("Water usage insert faild!", "Server Respond");
+                return false;
+            }
+
+        });
+    }
+    function InsertWaterCheckOut() {
+        var data = new FormData();
+        data.append("checkinid", $('#chinid').val());
+        data.append("predate", $('#startdatechout').val());
+        data.append("prerecord", $('#wstartrecords').val());
+        data.append("currentdate", $('#enddatechout').val());
+        data.append("currentrecord", $('#wendrecords').val());
+
+        $.ajax({
+            type: "POST",
+            url: "/api/waterusage",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                InsertCheckOut();
+            },
+            error: function (errormesage) {
+                toastr.error("Water usage insert faild!", "Server Respond");
+                return false;
+            }
+        });
     }
 
 </script>

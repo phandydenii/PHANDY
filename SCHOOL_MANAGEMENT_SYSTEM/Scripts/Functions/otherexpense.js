@@ -6,62 +6,120 @@
         $('#loadingGif').removeClass('show');
     });
 
-    GetOtherExpense($('#fromdate').val(), $('#todate').val());
-    $('#fromdate').on('change', function () {
-        var fromdate = this.value;
-        var todate = $('#todate').val();
-        GetOtherExpense(fromdate, todate);
+    GetOtherExpense('', '');
 
-    });
-    $('#todate').on('change', function () {
-        var todate = this.value;
-        var fromdate = $('#fromdate').val();
-        GetOtherExpense(fromdate, todate);
+    //$('#fromdate').on('change', function () {
+    //    var fromdate = this.value;
+    //    var todate = $('#todate').val();
+    //    GetOtherExpense(fromdate, todate);
 
-    });
+    //});
+    //$('#todate').on('change', function () {
+    //    var todate = this.value;
+    //    var fromdate = $('#fromdate').val();
+    //    GetOtherExpense(fromdate, todate);
+
+    //});
 })
+function PreviewOtherExpendList() {
+    var todate = $('#todate').val();
+    var fromdate = $('#fromdate').val();
+    GetOtherExpense(fromdate, todate);
+}
 
 var tableEmployee = [];
 toastr.optionsOverride = 'positionclass = "toast-bottom-right"';
 toastr.options.positionClass = 'toast-bottom-right';
 
-function GetOtherExpense(fromdate,todate) {
-    tableEmployee = $('#tableOtherExpense').DataTable({
-        ajax: {
-            url: "/api/OtherExpense/" + fromdate + "/" + todate,
-            dataSrc: ""
-        },
-        columns: [
-                {
-                    data: "id"
-                },
-                {
-                    data: "date",
-                    render: function (data) {
-                        return moment(new Date(data)).format('DD-MMM-YYYY');
-                    }
-                },
-                {
-                    data: "expenseTypes.typename"
-                },
-                {
-                   data: "amount"
-                },
+function GetOtherExpense(fromdate, todate) {
+    if (fromdate == "" && todate == "") {
+        tableEmployee = $('#tableOtherExpense').DataTable({
+            ajax: {
+                url: "/api/OtherExpense",
+                dataSrc: ""
+            },
+            columns: [
+                    {
+                        data: "id"
+                    },
+                    {
+                        data: "date",
+                        render: function (data) {
+                            return moment(new Date(data)).format('DD-MMM-YYYY');
+                        }
+                    },
+                    {
+                        data: "expenseTypes.typename"
+                    },
+                    {
+                        data: "amount"
+                    },
 
-                {
-                    data: "note"
-                },
-                {
-                    data: "id",
-                    render: function (data) {
-                        return "<button onclick='OtherExpenseEdit(" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px;'​>Edit</button>" + "<button onclick='OtherExpenseDelete(" + data + ")' class='btn btn-danger btn-xs' >Delete</button>";
-                    }
-                },
-        ],
-        destroy: true,
-        "order": [0, "desc"],
-        "info": false
-    });
+                    {
+                        data: "note"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button onclick='OtherExpenseEdit(" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px;'​>Edit</button>" + "<button onclick='OtherExpenseDelete(" + data + ")' class='btn btn-danger btn-xs' >Delete</button>";
+                        }
+                    },
+            ],
+            destroy: true,
+            "order": [0, "desc"],
+            "info": false
+        });
+    } else {
+        tableEmployee = $('#tableOtherExpense').DataTable({
+            ajax: {
+                url: "/api/OtherExpense/" + fromdate + "/" + todate,
+                dataSrc: ""
+            },
+            columns: [
+                    {
+                        data: "id"
+                    },
+                    {
+                        data: "date",
+                        render: function (data) {
+                            return moment(new Date(data)).format('DD-MMM-YYYY');
+                        }
+                    },
+                    {
+                        data: "expenseTypes.typename"
+                    },
+                    {
+                        data: "amount"
+                    },
+
+                    {
+                        data: "note"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button onclick='OtherExpenseEdit(" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px;'​>Edit</button>" + "<button onclick='OtherExpenseDelete(" + data + ")' class='btn btn-danger btn-xs' >Delete</button>";
+                        }
+                    },
+            ],
+            destroy: true,
+            "order": [0, "desc"],
+            "info": false
+        });
+    }
+    
+}
+function CloseFrm() {
+    window.location.reload(true);
+}
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#image').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
 function OtherExpenseAction() {
@@ -86,6 +144,10 @@ function OtherExpenseAction() {
         data.append("expensetypeid", $("#expensetypeid").val());
         data.append("amount", $("#amount").val());
         data.append("note", $("#note").val());
+        var files = $("#file").get(0).files;
+        if (files.length > 0) {
+            data.append("image", files[0]);
+        }
         $.ajax({
             type: "POST",
             url: "/api/OtherExpense",
@@ -95,7 +157,7 @@ function OtherExpenseAction() {
             success: function (result) {
                 toastr.success("OtherExpense has been created successfully.", "Server Response");
                 tableEmployee.ajax.reload();
-
+                window.location.reload(true);
                 $('#id').val(result.id);
                 $('#otherexpenseModel').modal('hide');
 
@@ -121,6 +183,10 @@ function OtherExpenseAction() {
         data.append("expensetypeid", $("#expensetypeid").val());
         data.append("amount", $("#amount").val());
         data.append("note", $("#note").val());
+        var files = $("#file").get(0).files;
+        if (files.length > 0) {
+            data.append("image", files[0]);
+        }
         $.ajax({
             type: "PUT",
             url: "/api/OtherExpense/" + $('#id').val(),
@@ -131,7 +197,7 @@ function OtherExpenseAction() {
                 toastr.success("OtherExpense has been updated successfully.", "Server Response");
                 tableEmployee.ajax.reload();
                 $('#otherexpenseModel').modal('hide');
-
+                window.location.reload(true);
                 document.getElementById('btnOtherExpense').innerText = "Add New";
                 $('#date').val('');
                 $('#expensetypeid').val('');
@@ -161,6 +227,12 @@ function OtherExpenseEdit(id) {
             $('#expensetypeid').val(result.expensetypeid);
             $("#amount").val(result.amount);
             $('#note').val(result.note);
+            $('#file_old').val(result.image);
+            if (result.image == "") {
+                $('#image').attr('src', '../Images/invoice-icon.png');
+            } else {
+                $('#image').attr('src', '../Images/' + result.image);
+            }
 
             document.getElementById('date').disabled = false;
             document.getElementById('expensetypeid').disabled = false;

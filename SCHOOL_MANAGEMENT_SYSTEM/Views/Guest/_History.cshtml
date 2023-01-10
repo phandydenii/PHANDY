@@ -1,0 +1,57 @@
+﻿
+<div class="modal fade " data-backdrop="static" data-keyboard="false" id="HistoryModal" tabindex="-1" role="dialog" aria-labelledby="HistoryModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" onclick="CloseHistory()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
+                <b class="modal-title" style="color: darkblue;" id="lblbookrmid"></b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input id="guestid" name="guestid" type="text" style="display: none;" value="" class="form-control" />
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="gnamekh">ឈ្មោះភ្ញៀវជាភាសាខ្មែរ</label>
+                                    <input id="gnamekh" name="gnamekh" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%;height" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="guestname">ឈ្មោះភ្ញៀវ</label>
+                                    <input id="guestname" name="guestname" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nationality">សញ្ជាតិ</label>
+                                    <input id="nationality" name="nationality" placeholder="Enter Nationality" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="phonenumber">លេខទូរសព្ទ</label>
+                                    <input id="phonenumber" name="phonenumber" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableHistory">
+                    <thead>
+                        <tr>
+                            <th>ចាប់ផ្តើម</th>
+                            <th>ដល់</th>
+                            <th>ទឹក (m<sup>3</sup>)</th>
+                            <th>ភ្លើង (KWM)</th>
+                            <th>សរុបទឹក</th>
+                            <th>សរុបភ្លើង</th>
+                            <th>សរុប</th>
+                            <th style="width:4px">សកម្មភាព</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

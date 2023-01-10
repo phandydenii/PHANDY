@@ -39,16 +39,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             var employees = _context.OtherExpenses.Include(c => c.ExpenseTypes).Where(c => c.date >= fromdate).Where(c => c.date <= todate).ToList();
             return Ok(employees);
-
-            //DataTable dt = new DataTable();
-            //DataSet ds = new DataSet();
-
-            //var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-            //SqlConnection conx = new SqlConnection(connectionString);
-            //SqlDataAdapter adp = new SqlDataAdapter("select ox.id,ox.date,ox.expensetypeid,et.typename,ox.amount,ox.note,ox.createby,ox.createdate from otherexpense_tbl ox inner join expensetype_tbl et on ox.expensetypeid = et.id where FORMAT (date, 'MM-yyyy') = FORMAT('" + date + "', 'MM-yyyy')", conx);
-            //adp.Fill(ds);
-            //return ds.Tables[0];
-
         }
 
         [HttpGet]
@@ -56,7 +46,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             var employees = _context.OtherExpenses.Include(c => c.ExpenseTypes).ToList();
             return Ok(employees);
-            
         }
 
         //GET : /api/Employees/{id} for get record by id
@@ -66,7 +55,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var employees = _context.OtherExpenses.Include(c => c.ExpenseTypes).SingleOrDefault(c => c.id == id );
             if (employees == null)
                 return NotFound();
-
             return Ok(Mapper.Map<OtherExpense, OtherExpenseDto>(employees));
         }
 
@@ -78,8 +66,22 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var date = HttpContext.Current.Request.Form["date"];
             var amount = HttpContext.Current.Request.Form["amount"];
             var note = HttpContext.Current.Request.Form["note"];
-            var createby = User.Identity.GetUserName();
+            var createby = User.Identity.GetUserId();
             var createdate = DateTime.Today;
+            var photo = HttpContext.Current.Request.Files["image"];
+
+            string photoName = "";
+            if (photo != null)
+            {
+                photoName = Path.Combine(Path.GetDirectoryName(photo.FileName)
+                    , string.Concat(Path.GetFileNameWithoutExtension(photo.FileName)
+                    , DateTime.Now.ToString("_yyyy_MM_dd_HH_mm_ss")
+                    , Path.GetExtension(photo.FileName)
+                    ));
+                var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images"), photoName);
+                photo.SaveAs(fileSavePath);
+
+            }
 
             var employeeDto = new OtherExpenseDto()
             {
@@ -88,34 +90,18 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 amount = Decimal.Parse(amount),
                 note = note,
                 createby = createby,
-                createdate = createdate
+                createdate = createdate,
+                image=photoName,
             };
 
+            var employee = Mapper.Map<OtherExpenseDto, OtherExpense>(employeeDto);
+            _context.OtherExpenses.Add(employee);
+            _context.SaveChanges();
 
-            try
-            {
-                var employee = Mapper.Map<OtherExpenseDto, OtherExpense>(employeeDto);
-                _context.OtherExpenses.Add(employee);
-                _context.SaveChanges();
+            employeeDto.id = employee.id;
 
-                employeeDto.id = employee.id;
-
-                return Created(new Uri(Request.RequestUri + "/" + employeeDto.id), employeeDto);
-            }
-            catch (DbEntityValidationException e)
-            {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                throw;
-            }
+            return Created(new Uri(Request.RequestUri + "/" + employeeDto.id), employeeDto);
+            
         }
 
         //PUT : /api/Employees/{id}  for Update record
@@ -126,22 +112,62 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var date = HttpContext.Current.Request.Form["date"];
             var amount = HttpContext.Current.Request.Form["amount"];
             var note = HttpContext.Current.Request.Form["note"];
-            var createby = User.Identity.GetUserName();
+            var createby = User.Identity.GetUserId();
             var createdate = DateTime.Today;
+            var photo = HttpContext.Current.Request.Files["image"];
+            var old_file = HttpContext.Current.Request.Form["file_old"];
 
             var empInDb = _context.OtherExpenses.SingleOrDefault(c => c.id == id);
-            var employeeDto = new OtherExpenseDto()
+
+            string photoName = "";
+            if (photo != null)
             {
-                id = id,
-                expensetypeid = Int32.Parse(expensetypeid),
-                date = DateTime.Parse(date),
-                amount = Decimal.Parse(amount),
-                note = note,
-                createby = createby,
-                createdate = createdate
-            };
-            Mapper.Map(employeeDto, empInDb);
-            _context.SaveChanges();
+                photoName = Path.Combine(Path.GetDirectoryName(photo.FileName)
+                    , string.Concat(Path.GetFileNameWithoutExtension(photo.FileName)
+                    , DateTime.Now.ToString("_yyyy_MM_dd_HH_mm_ss")
+                    , Path.GetExtension(photo.FileName)
+                    ));
+                var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images"), photoName);
+                photo.SaveAs(fileSavePath);
+
+
+                //Delete OldPhoto
+                var oldPhotoPath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images"), empInDb.image);
+                if (File.Exists(oldPhotoPath))
+                {
+                    File.Delete(oldPhotoPath);
+                }
+                var employeeDto = new OtherExpenseDto()
+                {
+                    id = id,
+                    expensetypeid = Int32.Parse(expensetypeid),
+                    date = DateTime.Parse(date),
+                    amount = Decimal.Parse(amount),
+                    note = note,
+                    createby = createby,
+                    createdate = createdate,
+                    image=photoName,
+                };
+                Mapper.Map(employeeDto, empInDb);
+                _context.SaveChanges();
+            }else
+            {
+                var employeeDto = new OtherExpenseDto()
+                {
+                    id = id,
+                    expensetypeid = Int32.Parse(expensetypeid),
+                    date = DateTime.Parse(date),
+                    amount = Decimal.Parse(amount),
+                    note = note,
+                    createby = createby,
+                    createdate = createdate,
+                    image = old_file,
+                };
+                Mapper.Map(employeeDto, empInDb);
+                _context.SaveChanges();
+            }
+
+            
             return Ok(new { });
 
         }

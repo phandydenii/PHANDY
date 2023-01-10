@@ -76,6 +76,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                guestid=int.Parse(guestid),
                itemid=int.Parse(itemid),
                price= int.Parse(price),
+               paid=false,
                note=note,
             };
 
@@ -109,7 +110,26 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             _context.SaveChanges();
             return Ok();
         }
+        [HttpGet]
+        [Route("api/updatepaydemages-paid/{id}")]
+        public IHttpActionResult GetMaxID(int id)
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
 
+            SqlCommand requestcommand = new SqlCommand("update paydemage_tbl set paid=1 where id=" + id, conx);
+            try
+            {
+                conx.Open();
+                requestcommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Ok();
+
+        }
         [HttpDelete]
         //PUT : /api/Staffs/{id}
         public IHttpActionResult DeleteStaff(int id)

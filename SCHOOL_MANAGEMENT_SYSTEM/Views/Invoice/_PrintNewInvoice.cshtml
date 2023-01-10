@@ -22,6 +22,9 @@
 
                     <input id="ispaid" name="ispaid" type="text" style="display: none;" value="" class="form-control" />
                     <input id="isprint" name="isprint" type="text" style="display: none;" value="" class="form-control" />
+
+                    <input id="action" name="action" type="text" style="display: none;" value="" class="form-control" />
+                    <span class="text-primary"></span>
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-4">
@@ -39,21 +42,21 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="rmprice">តម្លៃបន្ទប់</label>
-                                    <input id="rmprice" readonly="readonly" name="rmprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                    <input id="rmprice" readonly="readonly" name="rmprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%;" />
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="startdate">ចាប់ផ្តើម</label>
-                                            <input id="startdate" readonly="readonly" name="startdate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="stdate">ចាប់ផ្តើម</label>
+                                            <input id="stdate" readonly="readonly" name="stdate" type="date" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="enddate">ដល់ថ្ងៃ</label>
-                                            <input id="enddate" readonly="readonly" name="enddate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="eddate">ដល់ថ្ងៃ</label>
+                                            <input id="eddate" readonly="readonly" name="eddate" type="date" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                 </div>
@@ -125,7 +128,12 @@
                         <label for="itemname" id="itemname" style="color: darkblue;"></label>
                         <label id="total" style="color: darkblue;"></label>
                         <label id="itemprice" style="color: darkblue;"></label>
-                        
+                        <div class="row">
+                            <div class="col-md-8">
+                                <label for="lblPayDemage"​>សម្ភារៈខូចខាត</label>
+                                <ul id="PayDemageList" class="list-group"></ul>
+                            </div>
+                        </div>
                         @*<table id="tblPayDemage" style="width:100%" class="table table-hover table-bordered">
                             <thead>
                                 <tr>

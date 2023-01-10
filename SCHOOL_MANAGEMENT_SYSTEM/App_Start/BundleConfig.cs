@@ -32,7 +32,25 @@ namespace SCHOOL_MANAGEMENT_SYSTEM
                       "~/Content/toastr.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
                       "~/Content/select2/css/bootstrap-select.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css")
+            );
+
+            bundles.Add(new StyleBundle("~/Report/css").Include(
+                      "~/Content/report-css/css/bootstrap-report.min.css",
+                      "~/Content/report-css/css/main-report.css"
+                 )
+            );
+            bundles.Add(new ScriptBundle("~/Report/lib").Include(
+                        "~/Scripts/report-js/js/bootstrap.bundle.min.js",
+                        "~/Scripts/report-js/js/coming-soon.js",
+                        "~/Scripts/report-js/js/jquery-ui.min.js",
+                        "~/Scripts/report-js/js/jquery.easing.1.3.js",
+                        "~/Scripts/report-js/js/jquery.min.js",
+                        "~/Scripts/report-js/js/main.js",
+                        "~/Scripts/report-js/js/moment.js"
+                   )
+            );
         }
     }
 }
+

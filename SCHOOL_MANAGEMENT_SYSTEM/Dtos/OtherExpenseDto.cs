@@ -23,5 +23,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
 
         public string createby { get; set; }
         public DateTime createdate { get; set; }
+        public string image { get; set; }
     }
 }

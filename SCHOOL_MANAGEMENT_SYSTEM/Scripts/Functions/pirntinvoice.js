@@ -43,18 +43,18 @@ function GetCheckInDetail() {
                 {
                     data: "price",
                 },
-                {
-                    data: "wstartrecord",
-                },
-                {
-                    data: "estartrecord",
-                },
-                {
-                    data: "startdate",
-                    render: function (data) {
-                        return moment(new Date(data)).format('DD-MMM-YYYY');
-                    }
-                },
+                //{
+                //    data: "wstartrecord",
+                //},
+                //{
+                //    data: "estartrecord",
+                //},
+                //{
+                //    data: "startdate",
+                //    render: function (data) {
+                //        return moment(new Date(data)).format('DD-MMM-YYYY');
+                //    }
+                //},
                 {
                     data: "enddate",
                     render: function (data) {
@@ -64,16 +64,15 @@ function GetCheckInDetail() {
                 {
                     data: "checkinid",
                     render: function (data, type, row) {
-                        var d = row.day - 30;
-                        var lateday;
-                        if(d==0){
-                            lateday = "";
+                        
+                        if (row.day <= 35 && row.day >= 28) {
+                            return "<button OnClick='OnPrintInvoice (" + data + "," + row.guestid + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Print Invoice</button>"
+                            ;
+                            
                         } else {
-                            lateday = "Late "+d+" days";
+                            return "<span class='text-primary'><span class='glyphicon glyphicon-ok'></span></span>";
                         }
-                        return "<span class='label label-danger' style='margin-right:5px'>" + lateday + "</span>"
-                              + "<button OnClick='OnPrintInvoice (" + data +"," + row.guestid +")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Print Invoice</button>"
-                        ;
+                        
                     }
                 }
             ],
@@ -81,7 +80,8 @@ function GetCheckInDetail() {
     });
 }
 
-function OnPrintInvoice(checkinid,guestid) {
+function OnPrintInvoice(checkinid, guestid) {
+    //alert('Hello');
     $("#PrintNewInvoiceModal").modal("show");
     $("#checkinid").val(checkinid);
     $.ajax({
@@ -102,38 +102,41 @@ function OnPrintInvoice(checkinid,guestid) {
             var checkindid = result[0]["checkinid"];
             var stdate = moment(result[0]["startdate"]).format("YYYY-MM-DD");
             var enddate = moment(result[0]["enddate"]).format("YYYY-MM-DD");
-            $("#startdate").val(stdate);
-            $("#enddate").val(enddate);
-
+            $("#stdate").val(stdate);
+            $("#eddate").val(enddate);
             $("#guestid").val(result[0]["guestid"]);
-            $("#ispaid").val(result[0]["paid"]);
-            $("#isprint").val(result[0]["printed"]);
-            var invoiceno = "RL" + ("000000" + result[0]["invoiceid"]).slice(-6)
+            $("#action").val(result[0]["action"]);
 
-            if (result[0]["printed"] == false) {
+            //$("#ispaid").val(result[0]["paid"]);
+            //$("#isprint").val(result[0]["printed"]);           
+            //var invoiceno = "RL" + ("000000" + result[0]["invoiceid"]).slice(-6)
+
+            //if (result[0]["action"] == false) {
+            //    $('#invno').val(invoiceno);
+            //} else {
+            //    $.get("/api/invoicemaxid", function (data) {
+            //        $('#invno').val(data);
+            //    });
+            //}
+            $.get("/api/invoicemaxid", function (data) {
+                var invoiceno = "RL" + ("000000" + data).slice(-6)
                 $('#invno').val(invoiceno);
-            } else {
-                $.get("/api/invoicemaxid", function (data) {
-                    $('#invno').val(data);
-                });
-            }
+            });
             GetPayDemage(result[0]["guestid"], stdate, enddate);
 
+            $.get("/api/ExchangeRates/1/2", function (data) {
+                $('#exrate').val(data.rate);
+            });
 
+            $.get("/api/WEPrice/1/1", function (data) {
+                $('#wprice').val(data.waterprice);
+                $('#pprice').val(data.electricprice);
+            });
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
         }
-    });
-
-    $.get("/api/ExchangeRates/1/2", function (data) {
-        $('#exrate').val(data.rate);
-    });
-
-    $.get("/api/WEPrice/1/1", function (data) {
-        $('#wprice').val(data.waterprice);
-        $('#pprice').val(data.electricprice);
-    });
+    });  
 }
 var tablepaydemage=[];
 function GetPayDemage(id, fromdate, todate) {
@@ -143,18 +146,18 @@ function GetPayDemage(id, fromdate, todate) {
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
-           
             var valsum = 0;
-            
             $.each(result, function (key, value) {
                 valsum += parseFloat(value.price);
-                $('#itemname').append("<label>" + value.item.itemname + "</label>"+"="+"<label>" + value.price + "$, </label>");
-
+                $('#PayDemageList').append("<li class='list-group-item'>" + value.item.itemname + "<span class='badge'>$ " + value.price + "</span></li>");
             });
-            if (valsum != '0') {
+
+            if (valsum != 0) {
                 $('#paydemage').text("សម្ភារៈខូចខាត ​ ");
                 $('#total').text("Total =");
                 $('#itemprice').text(valsum);
+            } else {
+                $('#lblPayDemage').hidden = true;
             }
             
         },
@@ -173,7 +176,7 @@ function CheckInEdit(id) {
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
-            alert(result.id);
+           // alert(result.id);
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
@@ -183,11 +186,134 @@ function CheckInEdit(id) {
 
 
 function InvoiceNewPrint() {
-    if ($("#isprint").val() == "false") {
-        PrintUpdateInvoice();
-    } else {
+    if ($("#action").val() == "Update") {
+        UpdateWaterElectricUsage();
+    } else if ($("#action").val() == "Insert") {
         InsertWaterElectricUsage();
     }
+}
+
+//Update WE
+function UpdateWaterElectricUsage() {
+    var data = new FormData();
+    data.append("checkinid", $("#checkinid").val());
+    data.append("startdate", $('#stdate').val());
+    data.append("enddate", $('#eddate').val());
+    data.append("wstartrecord", $('#recordwaterold').val());
+    data.append("wendrecord", $('#recordwaternew').val());
+    data.append("estartrecord", $('#recordpowerold').val());
+    data.append("eendrecord", $('#recordpowernew').val());
+    $.ajax({
+        type: "PUT",
+        url: "/api/waterelectricusages/" + $("#weid").val(),
+        contentType: false,
+        processData: false,
+        data: data,
+        success: function (result) {
+            InsertNewInvoice();
+            
+        },
+        error: function (errormesage) {
+            toastr.error("Electric usage insert faild!", "Server Respond");
+            return false;
+        }
+    });
+}
+
+//Insert WE
+function InsertWaterElectricUsage() {
+    //var data = {
+    //    checkindid: $("#checkinid").val(),
+    //    startdate: $("#stdate").val(),
+    //    enddate: $("#eddate").val(),
+    //    wstartrecord: $("#recordwaterold").val(),
+    //    wendrecord: $("#recordwaternew").val(),
+    //    estartrecord: $("#recordpowerold").val(),
+    //    eendrecord: $("#recordpowernew").val(),
+    //}
+    var data = new FormData();
+    data.append("checkinid", $("#checkinid").val());
+    data.append("startdate", $('#stdate').val());
+    data.append("enddate", $('#eddate').val());
+    data.append("wstartrecord", $('#recordwaterold').val());
+    data.append("wendrecord", $('#recordwaternew').val());
+    data.append("estartrecord", $('#recordpowerold').val());
+    data.append("eendrecord", $('#recordpowernew').val());
+    $.ajax({
+        url: "/api/waterelectricusages",
+        type: "POST",
+        contentType: false,
+        processData: false,
+        data: data,
+        success: function (result) {
+            InsertNewInvoice();
+        },
+        error: function (errormesage) {
+            toastr.error("Electric usage insert faild!", "Server Respond");
+            return false;
+        }
+    });
+}
+
+
+
+//Insert Invoice
+function InsertNewInvoice() {
+    var data = {
+        roomid: $('#roomid').val(),
+        guestid: $('#guestid').val(),
+        checkinid: $('#checkinid').val(),
+        grandtotal: $('#grandtotal').val(),
+        totalriel: $('#grandtotalkh').val(),
+        totaldollar: $('#grandtotal').val(),
+        totalother: $('#svprice').val(),
+        note: $('#note').val(),
+        printed: true,
+    };
+    $.ajax({
+        url: "/api/invoices",
+        data: JSON.stringify(data),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            UpdateCheckInStatus();
+            CreateInvoiceDetail(result);
+            window.location = "invoice-report/" + result;
+        },
+        error: function (errormesage) {
+            toastr.error("Create invoice faild...!" + errormesage, "Server Respond");
+        }
+    });
+}
+
+//INsert Invoice Detail
+function CreateInvoiceDetail(id) {
+    var data = new FormData();
+    data.append("invoiceid", id);
+    data.append("paydollar", '0');
+    data.append("payriel", '0');
+
+    data.append("guestid", $('#guestid').val());
+    data.append("fromdate", $('#startdate').val());
+    data.append("todate", $('#enddate').val());
+
+    $.ajax({
+        type: "POST",
+        url: "/api/invoicedetails",
+        contentType: false,
+        processData: false,
+        data: data,
+        success: function (result) {
+            toastr.success("Print invoice successfully.", "Server Response");
+            window.location.reload(true);
+        },
+        error: function (errormesage) {
+            toastr.error("Invoice Detail Faild!", "Server Respond");
+            return false;
+        }
+
+    });
 }
 
 function PrintUpdateInvoice() {
@@ -208,6 +334,7 @@ function PrintUpdateInvoice() {
         data: data,
         success: function (result) {
             UpdateWaterElectricUsage();
+
             CreateInvoiceDetail($("#invid").val());
         },
         error: function (errormesage) {
@@ -216,114 +343,21 @@ function PrintUpdateInvoice() {
         }
     });
 }
-function UpdateWaterElectricUsage() {
-    var data = new FormData();
-    data.append("checkinid", $("#checkinid").val());
-    data.append("startdate", $('#startdate').val());
-    data.append("enddate", $('#enddate').val());
-    data.append("wstartrecord", $('#recordwaterold').val());
-    data.append("wendrecord", $('#recordwaternew').val());
-    data.append("estartrecord", $('#recordpowerold').val());
-    data.append("eendrecord", $('#recordpowernew').val());
+function UpdateCheckInStatus(id) {
     $.ajax({
         type: "PUT",
-        url: "/api/waterelectricusages/" + $("#weid").val(),
+        url: "/api/updatecheckind/" + $("#checkinid").val(),
         contentType: false,
         processData: false,
-        data: data,
+        // data: status,
         success: function (result) {
-
-            toastr.success("Check In successfully.", "Server Response");
-            window.location.reload(true);
+            //toastr.success("Room Status has been Update successfully.", "Server Response");
         },
-        error: function (errormesage) {
-            toastr.error("Electric usage insert faild!", "Server Respond");
-            return false;
+        error: function (error) {
+            toastr.error("Update room status fail!", "Server Response");
         }
     });
 }
-
-
-function InsertWaterElectricUsage() {
-    var data = new FormData();
-    data.append("checkinid", $("#checkinid").val());
-    data.append("startdate", $('#startdate').val());
-    data.append("enddate", $('#enddate').val());
-    data.append("wstartrecord", $('#recordwaterold').val());
-    data.append("wendrecord", $('#recordwaternew').val());
-    data.append("estartrecord", $('#recordpowerold').val());
-    data.append("eendrecord", $('#recordpowernew').val());
-    $.ajax({
-        type: "POST",
-        url: "/api/waterelectricusages",
-        contentType: false,
-        processData: false,
-        data: data,
-        success: function (result) {
-            InsertNewInvoice();
-        },
-        error: function (errormesage) {
-            toastr.error("Electric usage insert faild!", "Server Respond");
-            return false;
-        }
-    });
-}
-function InsertNewInvoice() {
-    var data = {
-        roomid: $('#roomid').val(),
-        guestid: $('#guestid').val(),
-        checkinid: $('#checkinid').val(),
-        grandtotal: $('#grandtotal').val(),
-        totalriel: $('#grandtotalkh').val(),
-        totaldollar: $('#grandtotal').val(),
-        totalother: $('#svprice').val(),
-        note: $('#note').val(),
-        printed: true,
-    };
-    $.ajax({
-        url: "/api/invoices",
-        data: JSON.stringify(data),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            CreateInvoiceDetail(result);
-        },
-        error: function (errormesage) {
-            toastr.error("Create invoice faild...!" + errormesage, "Server Respond");
-        }
-    });
-}
-function CreateInvoiceDetail(id) {
-    var data = new FormData();
-    data.append("invoiceid", id);
-    data.append("paydollar", '0');
-    data.append("payriel", '0');
-
-    data.append("checkinid", $('#checkinid').val());
-    data.append("fromdate", $('#startdate').val());
-    data.append("todate", $('#enddate').val());
-
-    $.ajax({
-        type: "POST",
-        url: "/api/invoicedetails",
-        contentType: false,
-        processData: false,
-        data: data,
-        success: function (result) {
-            toastr.success("Print Invoice successfully!.", "Server Response");
-            window.location.reload(true);
-        },
-        error: function (errormesage) {
-            toastr.error("Water usage insert faild!", "Server Respond");
-            return false;
-        }
-
-    });
-}
-
-
-
 
 
 function RecordWaterChange() {
@@ -373,22 +407,9 @@ function TotalPayment() {
     //alert(sumval);
    //alert("Water ="+watertotal+" Power ="+powertotal+" SV ="+servicecharge+" RP="+roomprice + " Item="+sumVal);
 }
-
-
-
-
 function OnCloseNewInv() {
     window.location.reload(true);
 }
-
-
-
-
-
-
-
-
-
 
 
 

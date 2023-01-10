@@ -587,7 +587,11 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             }
         }
 
-        private async Task SignInAsync(ApplicationUser user, bool isPersistent)        {            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));        }
+        private async Task SignInAsync(ApplicationUser user, bool isPersistent)
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+            AuthenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = isPersistent }, await user.GenerateUserIdentityAsync(UserManager));
+        }
 
         private void AddErrors(IdentityResult result)
         {

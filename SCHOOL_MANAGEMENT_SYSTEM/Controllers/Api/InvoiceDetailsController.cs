@@ -58,7 +58,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var paydollar = HttpContext.Current.Request.Form["paydollar"];
             var payriel = HttpContext.Current.Request.Form["payriel"];
 
-            var checkinid = int.Parse(HttpContext.Current.Request.Form["checkinid"]);
+            var guestid = int.Parse(HttpContext.Current.Request.Form["guestid"]);
             var fromdate = HttpContext.Current.Request.Form["fromdate"];
             var todate = HttpContext.Current.Request.Form["todate"];
 
@@ -68,7 +68,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
             SqlDataAdapter adp = new SqlDataAdapter("select max(id) from invoice_tbl", conx);
-            SqlDataAdapter adp1 = new SqlDataAdapter("select id from paydemage_tbl where checkinid="+ checkinid + " and [date] between '"+ fromdate + "' and '"+ todate +"'", conx);
+            SqlDataAdapter adp1 = new SqlDataAdapter("select id from paydemage_tbl where paid=0 and guestid=" + guestid + " and [date] between '"+ fromdate + "' and '"+ todate +"'", conx);
             adp.Fill(dt);
             adp1.Fill(dt1);
 
@@ -93,7 +93,17 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                         var InvoiceDetail = Mapper.Map<InvoiceDetailDto, InvoiceDetail>(InoiceDetailDto);
                         _context.InvoiceDetail.Add(InvoiceDetail);
                         _context.SaveChanges();
-                        InoiceDetailDto.id = InvoiceDetail.id;
+                        SqlCommand cmd1 = new SqlCommand("update paydemage_tbl set paid=1 where id=" + id, conx);
+                        try
+                        {
+                            conx.Open();
+                            cmd1.ExecuteNonQuery();
+                            conx.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
                     }
                 }
             }

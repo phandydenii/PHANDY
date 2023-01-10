@@ -15,6 +15,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public int itemid { get; set; }
         public Item item { get; set; }
         public decimal price { get; set; }
+        public bool paid { get; set; }
         public string note { get; set; }
     }
 }

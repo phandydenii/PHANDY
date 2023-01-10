@@ -13,15 +13,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public int guestid { get; set; }
         public Guest guest { get; set; }
         public int roomid { get; set; }
-        public int eletricusageid { get; set; }
-        public ElectricUsage eletricusage { get; set; }
-        public int waterusageid { get; set; }
-        public WEPrice waterusage { get; set; }
         public Room room { get; set; }
+        public int weusageid { get; set; }
+        public WaterElectricUsage weusage { get; set; }
+
         public int exchangeid { get; set; }
         public ExchangeRate exchange { get; set; }
         public string userid { get; set; }
-        
         public decimal total { get; set; }
         public decimal paybefor { get; set; }
         public decimal returnamount { get; set; }

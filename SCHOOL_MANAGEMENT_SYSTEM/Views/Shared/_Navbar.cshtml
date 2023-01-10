@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("រ៉ូសឡានីអាផាតម៉ិន", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink(@Resources.Content.RL, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -16,25 +16,22 @@
                     if (User.IsInRole("Manage Setup"))
                     {
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">តម្លើង <span class="glyphicon glyphicon-menu-down"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Resources.Content.SetUp <span class="glyphicon glyphicon-menu-down"></span></a>
                             <ul class="dropdown-menu animate slideIn">
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "Room")"> បន្ទប់</a>
+                                    <a href="@Url.Action("Index", "Room")">@Resources.Content.Room</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "Staff")">បុគ្គលិក</a>
+                                    <a href="@Url.Action("Index", "Staff")">@Resources.Content.Staff</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "Guest")">ភ្ញៀវ</a>
+                                    <a href="@Url.Action("Index", "Guest")">@Resources.Content.Guest</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "Item")">សម្ភារៈប្រើប្រាស់</a>
+                                    <a href="@Url.Action("Index", "Item")">@Resources.Content.Item</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "BeginingBalance")">តម្លៃទឺក ភ្លើង</a>
-                                </li>
-                                <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "Salary")">ប្រាក់ខែបុគ្គលិក</a>
+                                    <a href="@Url.Action("Index", "Salary")">@Resources.Content.Salary</a>
                                 </li>
                             </ul>
                         </li>
@@ -42,19 +39,19 @@
                     if (User.IsInRole("Manage Process"))
                     {
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ប្រត្តិបត្តការណ៍ <span class="glyphicon glyphicon-menu-down"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Resources.Content.Proccess <span class="glyphicon glyphicon-menu-down"></span></a>
                             <ul class="dropdown-menu animate slideIn">
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "Booking")">កក់</a>
+                                    <a href="@Url.Action("Index", "Booking")">@Resources.Content.Booking</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "CheckIn")">ចូលស្នាក់នៅ</a>
+                                    <a href="@Url.Action("Index", "CheckIn")">@Resources.Content.CheckIn</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "CheckOut")">ចាកចេញ</a>
+                                    <a href="@Url.Action("Index", "CheckOut")">@Resources.Content.CheckOut</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "Invoice")">បង់ប្រាក់ប្រចាំខែ</a>
+                                    <a href="@Url.Action("Index", "Invoice")">@Resources.Content.Payment</a>
                                 </li>
                             </ul>
                         </li>
@@ -62,16 +59,16 @@
                     if (User.IsInRole("Manage Balance"))
                     {
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">គណនេយ្យ <span class="glyphicon glyphicon-menu-down"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Resources.Content.Account <span class="glyphicon glyphicon-menu-down"></span></a>
                             <ul class="dropdown-menu animate slideIn">
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "UserUse")">ចំណូល</a>
+                                    <a href="@Url.Action("Index", "UserUse")">@Resources.Content.Income</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "OtherExpense")">ចំណាយ</a>
+                                    <a href="@Url.Action("Index", "OtherExpense")">@Resources.Content.Expense</a>
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "PaySlip")">បើកប្រាក់ខែបុគ្គលិក</a>
+                                    <a href="@Url.Action("Index", "PaySlip")">@Resources.Content.PaySlip</a>
                                 </li>
                             </ul>
                         </li>
@@ -79,24 +76,23 @@
                     if (User.IsInRole("Manage Report"))
                     {
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">របាយការណ៍ <span class="glyphicon glyphicon-menu-down"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@Resources.Content.Report <span class="glyphicon glyphicon-menu-down"></span></a>
                             <ul class="dropdown-menu animate slideIn">
-                                <li><b>@Html.ActionLink("តម្លើង", "", "")</b></li>
-                                <li>@Html.ActionLink("-បុគ្គលិក", "", "staff-list")</li>
-                                <li>@Html.ActionLink("-ភ្ញៀវ", "", "guest-list")</li>
-                                <li>@Html.ActionLink("-បន្ទប់", "", "room-list")</li>
-                                <li>@Html.ActionLink("-សម្ភារៈប្រើប្រាស់", "", "item-list")</li>
-                                <li>@Html.ActionLink("-អ្នកប្រើប្រាស់", "", "")</li>
-                                <li>@Html.ActionLink("-វិក័យបត្រ", "", "")</li>
-                                <li><b>@Html.ActionLink("ប្រត្តិបត្តការណ៍", "", "")</b></li>
-                                <li>@Html.ActionLink("-កក់", "", "room-list")</li>
-                                <li>@Html.ActionLink("-ចូលស្នាក់នៅ", "", "item-list")</li>
-                                <li>@Html.ActionLink("-រើរចេញ", "", "")</li>
-                                <li>@Html.ActionLink("-បើកប្រាក់ខែ", "", "payslip-rpt")</li>
-                                <li>@Html.ActionLink("-បង់ប្រាក់ប្រចាំខែ", "", "")</li>
-                                <li><b>@Html.ActionLink("ប្រត្តិបត្តការណ៍", "", "")</b></li>
-                                <li>@Html.ActionLink("-ចំណាយប្រចាំខែ", "", "invoice-report")</li>
-                                <li>@Html.ActionLink("-ចំណូលប្រាចាំខែ", "", "invoice-report")</li>
+                                <li><b>@Resources.Content.SetUp</b></li>
+                                <li>@Html.ActionLink("-"+Resources.Content.Staff, "", "staff-list")</li>
+                                <li>@Html.ActionLink("-"+Resources.Content.Guest, "", "guest-list")</li>
+                                <li>@Html.ActionLink("-"+Resources.Content.Room, "", "room-list")</li>
+                                <li>@Html.ActionLink("-"+Resources.Content.Item, "", "item-list")</li>
+                                <li>@Html.ActionLink("-"+Resources.Content.User, "", "")</li>
+                                <li><b>@Resources.Content.Proccess</b></li>
+                                <li>@Html.ActionLink("-"+Resources.Content.Booking, "", "bookinglist-rpt")</li>
+                                <li>@Html.ActionLink("-"+Resources.Content.CheckIn, "", "checkinlist-rpt")</li>
+                                <li>@Html.ActionLink("-"+Resources.Content.CheckOut, "", "checkoutlist-rpt")</li>
+                                <li>@Html.ActionLink("-"+Resources.Content.PaySlip, "", "paysliplist-rpt")</li>
+                                <li>@Html.ActionLink("-"+Resources.Content.Payment, "", "invoicelist-rpt")</li>
+                                <li><b>@Resources.Content.Account</b></li>
+                                <li>@Html.ActionLink("-"+Resources.Content.Expense, "", "otherexpense-rpt")</li>
+                                <li>@Html.ActionLink("-"+Resources.Content.Income, "", "invoice-report")</li>
                                
                             </ul>
                         </li>
@@ -105,12 +101,12 @@
                     {
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                គ្រប់គ្រង់អ្នកប្រើប្រាស់ <span class="glyphicon glyphicon-menu-down">
+                                @Resources.Content.User <span class="glyphicon glyphicon-menu-down">
                                </span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li>@Html.ActionLink("អ្នកប្រើប្រាស់", "Index", "UserRoles")</li>
-                                <li>@Html.ActionLink("បង្កើតថ្មី", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                                <li>@Html.ActionLink(Resources.Content.User, "Index", "UserRoles")</li>
+                                <li>@Html.ActionLink(Resources.Content.NewUser, "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                             </ul>
                         </li>                
                     }

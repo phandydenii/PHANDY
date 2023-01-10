@@ -156,7 +156,64 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return Ok(GetInvoiceV);
         }
 
-        
+        [HttpGet]
+        [Route("api/invoice_v_by_guestid/{guestid}")]
+        //Get : api/Buildings
+        public IHttpActionResult GetInvoicesByGuestId(int guestid)
+        {
+            var GetInvoiceV = (from i in _context.Invoice
+                               join ex in _context.Exchanges on i.exchangerateid equals ex.id
+                               join g in _context.Guests on i.guestid equals g.id
+                               join r in _context.Rooms on i.roomid equals r.id
+                               join e in _context.Exchanges on i.exchangerateid equals e.id
+                               join rt in _context.RoomTypes on r.roomtypeid equals rt.id
+                               join f in _context.Floors on r.floorid equals f.id
+                               join b in _context.Buildings on f.buildingid equals b.id
+                               join we in _context.WaterEletricUsages on i.weusageid equals we.id
+                               join wp in _context.WEPrices on we.wepriceid equals wp.id
+                               where i.status == "ACTIVE" && g.id==guestid
+                               select new InvoiceV
+                               {
+                                   id = i.id,
+                                   invoicedate = i.invoicedate,
+                                   guestid = g.id,
+                                   guestname = g.name,
+                                   guestnamekh = g.namekh,
+                                   userid = User.Identity.Name,
+                                   exchangerate = e.Rate,
+                                   grandtotal = i.grandtotal,
+                                   totaldollar = i.totaldollar,
+                                   totalriel = i.totalriel,
+                                   paid = i.paid,
+                                   isprint = i.printed,
+                                   owe = i.owe,
+                                   owereassion = i.owereassion,
+                                   totalreturnamount = i.totalreturnamount,
+                                   returnamount = i.returnamount,
+                                   weid = we.id,
+                                   startdate = we.startdate,
+                                   enddate = we.enddate,
+                                   wstartrecord = we.wstartrecord,
+                                   wendrecord = we.wendrecord,
+                                   estartrecord = we.estartrecord,
+                                   eendrecord = we.eendrecord,
+                                   wtotal = (we.wendrecord - we.wstartrecord) / ex.Rate * wp.waterprice,
+                                   waterusage = we.wendrecord - we.wstartrecord,
+                                   etotal = (we.eendrecord - we.estartrecord) / ex.Rate * wp.electricprice,
+                                   electricusage = we.eendrecord - we.estartrecord,
+
+                                   roomno = r.room_no,
+                                   roomprice = r.price,
+                                   roomtypename = rt.roomtypename,
+                                   floorno = f.floor_no,
+                                   building = b.buildingname,
+                                   servicecharge = r.servicecharge,
+                                   roomkey = r.roomkey,
+                                   roomstatus = r.status
+
+                               }).ToList();
+            return Ok(GetInvoiceV);
+        }
 
         [HttpGet]
         [Route("api/invoice_v/{id}")]
@@ -345,7 +402,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   join b in _context.Buildings on f.buildingid equals b.id
                                   join we in _context.WaterEletricUsages on i.weusageid equals we.id
                                   join wp in _context.WEPrices on we.wepriceid equals wp.id
-                                  where i.printed == true && i.paid == false && i.status == "ACTIVE" && i.invoicedate >= date
+                                  where i.printed == true && i.paid == false && i.status == "ACTIVE" && i.invoicedate >= date && i.status== "ACTIVE"
                                   select new InvoiceV
                                   {
                                       id = i.id,
@@ -492,121 +549,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             }
         }
 
-        [HttpGet]
-        [Route("api/invoice_v/paid")]
-        //Get : api/Buildings
-        public IHttpActionResult GetInvoicesPaid()
-        {
-
-            var GetInvoiceV = from i in _context.Invoice
-                              join ex in _context.Exchanges on i.exchangerateid equals ex.id
-                              join g in _context.Guests on i.guestid equals g.id
-                              join r in _context.Rooms on i.roomid equals r.id
-                              join e in _context.Exchanges on i.exchangerateid equals e.id
-                              join rt in _context.RoomTypes on r.roomtypeid equals rt.id
-                              join f in _context.Floors on r.floorid equals f.id
-                              join b in _context.Buildings on f.buildingid equals b.id
-                              join we in _context.WaterEletricUsages on i.weusageid equals we.id
-                              join wp in _context.WEPrices on we.wepriceid equals wp.id
-                              where i.printed == true && i.paid == true && i.status == "ACTIVE"
-                              select new InvoiceV
-                              {
-                                  id = i.id,
-                                  invoicedate = i.invoicedate,
-                                  guestid = g.id,
-                                  guestname = g.name,
-                                  guestnamekh = g.namekh,
-                                  userid = User.Identity.Name,
-                                  exchangerate = e.Rate,
-                                  grandtotal = i.grandtotal,
-                                  totaldollar = i.totaldollar,
-                                  totalriel = i.totalriel,
-                                  paid = i.paid,
-                                  isprint = i.printed,
-                                  owe = i.owe,
-                                  owereassion = i.owereassion,
-                                  totalreturnamount = i.totalreturnamount,
-                                  returnamount = i.returnamount,
-                                  weid = we.id,
-                                  startdate = we.startdate,
-                                  enddate = we.enddate,
-                                  wstartrecord = we.wstartrecord,
-                                  wendrecord = we.wendrecord,
-                                  estartrecord = we.estartrecord,
-                                  eendrecord = we.eendrecord,
-                                  wtotal = (we.wendrecord - we.wstartrecord) / ex.Rate * wp.waterprice,
-                                  etotal = (we.eendrecord - we.estartrecord) / ex.Rate * wp.electricprice,
-                                  roomno = r.room_no,
-                                  roomprice = r.price,
-                                  roomtypename = rt.roomtypename,
-                                  floorno = f.floor_no,
-                                  building = b.buildingname,
-                                  servicecharge = r.servicecharge,
-                                  roomkey = r.roomkey,
-                                  roomstatus = r.status
-
-                              };
-            return Ok(GetInvoiceV);
-
-        }
-        [HttpGet]
-        [Route("api/invoice_v/all")]
-        //Get : api/Buildings
-        public IHttpActionResult GetInvoicesPrinIDt()
-        {
-
-            var GetInvoiceV = from i in _context.Invoice
-                              join ex in _context.Exchanges on i.exchangerateid equals ex.id
-                              join g in _context.Guests on i.guestid equals g.id
-                              join r in _context.Rooms on i.roomid equals r.id
-                              join e in _context.Exchanges on i.exchangerateid equals e.id
-                              join rt in _context.RoomTypes on r.roomtypeid equals rt.id
-                              join f in _context.Floors on r.floorid equals f.id
-                              join b in _context.Buildings on f.buildingid equals b.id
-                              join we in _context.WaterEletricUsages on i.weusageid equals we.id
-                              join wp in _context.WEPrices on we.wepriceid equals wp.id
-                              where i.printed == true && i.status == "ACTIVE"
-                              select new InvoiceV
-                              {
-                                  id = i.id,
-                                  invoicedate = i.invoicedate,
-                                  guestid = g.id,
-                                  guestname = g.name,
-                                  guestnamekh = g.namekh,
-                                  userid = User.Identity.Name,
-                                  exchangerate = e.Rate,
-                                  grandtotal = i.grandtotal,
-                                  totaldollar = i.totaldollar,
-                                  totalriel = i.totalriel,
-                                  paid = i.paid,
-                                  isprint = i.printed,
-                                  owe = i.owe,
-                                  owereassion = i.owereassion,
-                                  totalreturnamount = i.totalreturnamount,
-                                  returnamount = i.returnamount,
-                                  weid = we.id,
-                                  startdate = we.startdate,
-                                  enddate = we.enddate,
-                                  wstartrecord = we.wstartrecord,
-                                  wendrecord = we.wendrecord,
-                                  estartrecord = we.estartrecord,
-                                  eendrecord = we.eendrecord,
-                                  wtotal = (we.wendrecord - we.wstartrecord) / ex.Rate * wp.waterprice,
-                                  etotal = (we.eendrecord - we.estartrecord) / ex.Rate * wp.electricprice,
-                                  roomno = r.room_no,
-                                  roomprice = r.price,
-                                  roomtypename = rt.roomtypename,
-                                  floorno = f.floor_no,
-                                  building = b.buildingname,
-                                  servicecharge = r.servicecharge,
-                                  roomkey = r.roomkey,
-                                  roomstatus = r.status
-
-                              };
-            return Ok(GetInvoiceV);
-
-        }
-
 
         [HttpGet]
         [Route("api/invoice_v/1/{id}")]
@@ -674,7 +616,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select * from NewInvoice", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from PRINT_INVOICE", conx);
             adp.Fill(ds);
             return ds.Tables[0]; 
         }
@@ -760,7 +702,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select * from NewInvoice where NewInvoice='Yes' and guestid="+ id, conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from PRINT_INVOICE where guestid=" + id, conx);
             adp.Fill(ds);
             return ds.Tables[0];
         }
@@ -858,6 +800,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             requestcommand.Parameters.Add("@payriel", SqlDbType.Decimal).Value = payriel;
             requestcommand.Parameters.Add("@paydollar", SqlDbType.Decimal).Value = paydollar;
             requestcommand.Parameters.Add("@paid", SqlDbType.Bit).Value = paid;
+            
+
 
 
             try

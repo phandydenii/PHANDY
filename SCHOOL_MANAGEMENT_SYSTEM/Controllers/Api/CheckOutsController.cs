@@ -78,8 +78,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             CheckOutInDb.date = DateTime.Today;
             CheckOutInDb.userid = User.Identity.GetUserName();
             CheckOutInDb.exchangeid = int.Parse(exid);
-            CheckOutInDb.waterusageid = int.Parse(wid);
-            CheckOutInDb.eletricusageid = int.Parse(eid);
 
             _context.CheckOuts.Add(CheckOutInDb);
             _context.SaveChanges();

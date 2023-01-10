@@ -13,13 +13,11 @@ var tableInvoiceDetail = [];
 $('#status').on('change', function () {
     var date = $('#date').val();
     GetInvoice(date, this.value);
-    alert(this.value+" "+date);
 });
 
 $('#date').on('change', function () {
     var status = $('#status').val();
     GetInvoice(this.value, status);
-
 });
 
 function GetInvoice(date,status) {
@@ -227,7 +225,8 @@ function EditInvoice(id) {
         datatype: "json",
         success: function (result) {
             $('#id').val(result.id);
-            $('#invoiceno').val(result.invoiceno);
+            var invoiceno = "RL" + ("000000" + result.id).slice(-6)
+            $('#invoiceno').val(invoiceno);
             $("#guestname").val(result.guestname);
             $("#room").val(result.roomno);
             $('#roomprice').val(result.roomprice);
@@ -370,7 +369,6 @@ function TotalPay() {
 
 }
 
-
 function OnPayAction() {
     var action = document.getElementById('btnSavePayment').innerText;
     if (action == "Save") {
@@ -394,9 +392,7 @@ function OnPayAction() {
                 //UpdateWaterPayment();
                 //UpdatePowerPayment();
                 toastr.success("Print Invoice successfully!.", "Server Response");
-                window.location.reload(true);
-
-                
+                window.location = "invoice-report/" + $("#id").val();  
             },
             error: function (errormesage) {
                 toastr.error("Print invoice faild...!", "Server Respond");
@@ -408,8 +404,6 @@ function OnPayAction() {
     }
     
 };
-
-
 function UpdateWaterPayment() {
     $.ajax({
         type: "PUT",
@@ -424,7 +418,6 @@ function UpdateWaterPayment() {
         }
     });
 }
-
 function UpdatePowerPayment() {
     $.ajax({
         type: "PUT",

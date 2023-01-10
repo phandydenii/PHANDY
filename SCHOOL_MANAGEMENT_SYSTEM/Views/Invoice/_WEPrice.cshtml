@@ -1,0 +1,92 @@
+﻿
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="WEPriceModel" tabindex="-1" role="dialog" aria-labelledby="WEPriceModel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="LoadingGif"></div>
+            <div class="modal-header">
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">Close</button>
+                <b class="modal-title" style="color: darkblue">Price</b>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input id="wepid" name="wepid" type="text" value="" class="form-control input-sm hidden" />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="waterprice">តម្លៃទឹក</label>
+                            <input id="waterprice" name="waterprice" type="number" value="0" class="form-control input-sm" placeholder="Enter Rate's Price'" />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="electricprice">តម្លៃភ្លើង</label>
+                            <input id="electricprice" name="electricprice" type="number" value="0" class="form-control input-sm" placeholder="Enter Rate's Price'" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnRate" onclick="WEAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="tableWEPrice" class="table table-hover table-bordered table-condensed table-striped" style="width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Date</th>
+                                    <th>Water Price</th>
+                                    <th>Electrict Price</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(document).ajaxStart(function () {
+                $('#LoadingGif').addClass('show');
+            }).ajaxStop(function () {
+                $('#LoadingGif').removeClass('show');
+            });
+            $('#WEPriceModel').on('show.bs.modal', function () {
+                GetWEPrice();
+                alert('hi');
+            });
+
+        })
+        var tableWEPrice = [];
+        function GetWEPrice() {
+            tableWEPrice = $('#tableWEPrice').dataTable({
+                ajax: {
+                    url: "/api/weprice",
+                    dataSrc: ""
+                },
+                columns:
+                    [
+                        {
+                            data: "id"
+                        },
+                        {
+                            data: "date"
+                        },
+                        {
+                            data: "waterprice"
+                        },
+                        {
+                            data: "electricprice"
+                        },
+                    ],
+            });
+        }
+    </script>
+    @Scripts.Render("~/Scripts/Functions/weprice.js")
+}
