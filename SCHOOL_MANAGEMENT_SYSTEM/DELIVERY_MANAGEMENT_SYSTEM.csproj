@@ -1076,10 +1076,6 @@
     <Content Include="Views\CheckOut\Index.cshtml" />
     <Content Include="Views\Salary\Index.cshtml" />
     <Content Include="Views\Salary\_CreateStaffSalary.cshtml" />
-    <Content Include="Views\PaySlip\Create.cshtml" />
-    <Content Include="Views\PaySlip\Delete.cshtml" />
-    <Content Include="Views\PaySlip\Details.cshtml" />
-    <Content Include="Views\PaySlip\Edit.cshtml" />
     <Content Include="Views\PaySlip\Index.cshtml" />
     <Content Include="Views\PaySlip\_Create.cshtml" />
     <Content Include="Views\Report\_payslip.cshtml" />

@@ -18,20 +18,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public Guest guest { get; set; }
         public int weusageid { get; set; }
         public WaterElectricUsage weusage { get; set; }
-        //public int waterusageid { get; set; }
-        //public WaterUsage waterusage { get; set; }
-        //public int electricusageid { get; set; }
-        //public ElectricUsage electric { get; set; }
         public int roomid { get; set; }
         public Room room { get; set; }
         public string userid { get; set; }
         public int exchangerateid { get; set; }
         public ExchangeRate exchangerate { get; set; }
         public decimal grandtotal { get; set; }
-        //public decimal vat { get; set; }
         public decimal totalriel { get; set; }
         public decimal totaldollar { get; set; }
-        //public decimal discount { get; set; }
         public decimal totalother { get; set; }
         public decimal payriel { get; set; }
         public decimal paydollar { get; set; }
@@ -42,11 +36,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public string updateby { get; set; }
         public DateTime updatedate { get; set; }
         public string note { get; set; }
-        public decimal owe { get; set; }
-        public string owereassion { get; set; }
-        public decimal totalreturnamount { get; set; }
-        public decimal returnamount { get; set; }
-        public string returndescription { get; set; }
         public string status { get; set; }
 
     }

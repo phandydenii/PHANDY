@@ -43,7 +43,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var getBuilding = _context.PaySlip.Include(s => s.staff).Where(p=>p.id==id).SingleOrDefault();
             return Ok(getBuilding);
         }
-        
+
+        [HttpGet]
+        [Route("api/payslipbystaff/{id}")]
+        //Get : api/Buildings
+        public IHttpActionResult GetBuildingByGuest(int id)
+        {
+            var getBuilding = _context.PaySlip.Include(s => s.staff).Where(p => p.staffid == id).SingleOrDefault();
+            return Ok(getBuilding);
+        }
+
         [HttpPost]
         public IHttpActionResult InsertStaff()
         {
@@ -53,7 +62,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var penanty = HttpContext.Current.Request.Form["penanty"];
             var bonus = HttpContext.Current.Request.Form["bonus"];
             var note = HttpContext.Current.Request.Form["note"];
-            var salaryamount = HttpContext.Current.Request.Form["salaryamount"];
+            var totalsalary = HttpContext.Current.Request.Form["totalsalary"];
             var date = DateTime.Today;
 
             var payslipdDto = new PaySlipDto()
@@ -64,7 +73,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 penanty=decimal.Parse(penanty),
                 bonus=decimal.Parse(bonus),
                 note=note,
-                salaryamount=decimal.Parse(salaryamount),
+                totalsalary=decimal.Parse(totalsalary),
                 date=date,
             };
 
@@ -74,7 +83,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             payslipdDto.id = PaySlip.id;
 
             
-            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;            SqlConnection con = new SqlConnection(connectionString);            SqlCommand cmd = new SqlCommand("Select max(id) From PaySlip_V", con);
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlCommand cmd = new SqlCommand("Select max(id) From PaySlip_V", con);
 
             Int16 maxid;
             try
@@ -100,7 +111,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var penanty = HttpContext.Current.Request.Form["penanty"];
             var bonus = HttpContext.Current.Request.Form["bonus"];
             var note = HttpContext.Current.Request.Form["note"];
-            var salaryamount = HttpContext.Current.Request.Form["salaryamount"];
+            var totalsalary = HttpContext.Current.Request.Form["totalsalary"];
             var date = DateTime.Today;
             var empInDb = _context.PaySlip.SingleOrDefault(c => c.id == id);
             var payslipdDto = new PaySlipDto()
@@ -112,7 +123,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 penanty = decimal.Parse(penanty),
                 bonus = decimal.Parse(bonus),
                 note = note,
-                salaryamount = decimal.Parse(salaryamount),
+                totalsalary = decimal.Parse(totalsalary),
                 date = date,
             };
 

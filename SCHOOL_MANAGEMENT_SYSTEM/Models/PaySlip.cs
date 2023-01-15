@@ -22,7 +22,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public decimal vat { get; set; }
         public decimal penanty { get; set; }
         public decimal bonus { get; set; }
-        public decimal salaryamount { get; set; }
+        public decimal totalsalary { get; set; }
         public string note { get; set; }
     }
 }

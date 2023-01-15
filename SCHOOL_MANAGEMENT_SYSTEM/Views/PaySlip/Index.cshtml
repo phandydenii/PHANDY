@@ -15,7 +15,25 @@
             @*<a href="#" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#PositionModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> គ្រប់គ្រងតួនាទី</a>*@
         </div>
     </div>
-    <hr />
+    @*<div class="row">
+        <div class="col-md-12">
+            <div class="form-inline">
+                <label for="fromdate">ចាប់ពីថ្ងៃទី:</label>
+                <input id="fromdate" name="fromdate" type="date" value="" class="form-control input-sm" placeholder="Enter Product Name" />
+
+                <label for="staffname">ឈ្មោះបុគ្គលិក</label>
+                <select class="form-control input-sm" id="staffid" onchange="StaffChange()">
+                    <option value="0">---Select Staff Name----</option>
+                    @foreach (var position in Model.StaffList)
+                    {
+                        <option value=@position.id>@position.name</option>
+                    }
+                </select>                
+                <a class="btn btn-success btn-sm" style='margin-top:0px' onclick="PreviewOtherExpendList()"> បង្ហាញ</a>
+            </div>
+
+        </div>
+    </div>*@
     <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="TablePaySlip">
         <thead>
             <tr>
@@ -42,79 +60,3 @@
     @Scripts.Render("~/Scripts/Functions/payslip.js")
     @Scripts.Render("~/Scripts/moment.min.js")
 }
-
-
-
-@*<p>
-    @Html.ActionLink("Create New", "Create",new { }, new { @class = "btn btn-info btn-xs pull-right" })
-    <br />
-</p>
-<table class="table" id="TablePaySlip">
-    <tr>
-        <th>
-           Name
-        </th>
-        <th>
-            Date
-        </th>
-        <th>
-            Salary
-        </th>
-        <th>
-            Vat
-        </th>
-        <th>
-            Penanty
-        </th>
-        <th>
-            Bonus
-        </th>
-        <th>
-            Salary Amount
-        </th>
-        <th>
-            Note
-        </th>
-        <th style="width:15%">Action</th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.staff.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.salary)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.vat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.penanty)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.bonus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.salaryamount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.note)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id},new { @class="btn btn-warning btn-xs"})
-            @Html.ActionLink("Details", "Details", new { id=item.id }, new { @class = "btn btn-success btn-xs" })
-            @Html.ActionLink("Delete", "Delete", new { id=item.id }, new { @class = "btn btn-danger btn-xs" })
-        </td>
-    </tr>
-}
-
-</table>
-<script>
-    $(document).ready(function () {
-        $('#TablePaySlip').DataTable();
-    });
-</script>*@

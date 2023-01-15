@@ -129,10 +129,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    totalriel = i.totalriel,
                                    paid = i.paid,
                                    isprint=i.printed,
-                                   owe = i.owe,
-                                   owereassion = i.owereassion,
-                                   totalreturnamount = i.totalreturnamount,
-                                   returnamount = i.returnamount,
                                    weid=we.id,
                                    startdate=we.startdate,
                                    enddate=we.enddate,
@@ -186,10 +182,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    totalriel = i.totalriel,
                                    paid = i.paid,
                                    isprint = i.printed,
-                                   owe = i.owe,
-                                   owereassion = i.owereassion,
-                                   totalreturnamount = i.totalreturnamount,
-                                   returnamount = i.returnamount,
                                    weid = we.id,
                                    startdate = we.startdate,
                                    enddate = we.enddate,
@@ -247,10 +239,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    payriel=i.payriel,
                                    paid = i.paid,
                                    isprint=i.printed,
-                                   owe = i.owe,
-                                   owereassion = i.owereassion,
-                                   totalreturnamount = i.totalreturnamount,
-                                   returnamount = i.returnamount,
                                    weid = we.id,
                                    startdate = we.startdate,
                                    enddate = we.enddate,
@@ -303,10 +291,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    totalriel = i.totalriel,
                                    paid = i.paid,
                                    isprint = i.printed,
-                                   owe = i.owe,
-                                   owereassion = i.owereassion,
-                                   totalreturnamount = i.totalreturnamount,
-                                   returnamount = i.returnamount,
                                    weid = we.id,
                                    startdate = we.startdate,
                                    enddate = we.enddate,
@@ -358,10 +342,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    totalriel = i.totalriel,
                                    paid = i.paid,
                                    isprint = i.printed,
-                                   owe = i.owe,
-                                   owereassion = i.owereassion,
-                                   totalreturnamount = i.totalreturnamount,
-                                   returnamount = i.returnamount,
                                    weid = we.id,
                                    startdate = we.startdate,
                                    enddate = we.enddate,
@@ -417,10 +397,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                       totalriel = i.totalriel,
                                       paid = i.paid,
                                       isprint = i.printed,
-                                      owe = i.owe,
-                                      owereassion = i.owereassion,
-                                      totalreturnamount = i.totalreturnamount,
-                                      returnamount = i.returnamount,
                                       weid = we.id,
                                       startdate = we.startdate,
                                       enddate = we.enddate,
@@ -469,10 +445,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                       totalriel = i.totalriel,
                                       paid = i.paid,
                                       isprint = i.printed,
-                                      owe = i.owe,
-                                      owereassion = i.owereassion,
-                                      totalreturnamount = i.totalreturnamount,
-                                      returnamount = i.returnamount,
                                       weid = we.id,
                                       startdate = we.startdate,
                                       enddate = we.enddate,
@@ -520,10 +492,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                       totalriel = i.totalriel,
                                       paid = i.paid,
                                       isprint = i.printed,
-                                      owe = i.owe,
-                                      owereassion = i.owereassion,
-                                      totalreturnamount = i.totalreturnamount,
-                                      returnamount = i.returnamount,
                                       weid = we.id,
                                       startdate = we.startdate,
                                       enddate = we.enddate,
@@ -580,10 +548,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    totalriel = i.totalriel,
                                    paid = i.paid,
                                    isprint = i.printed,
-                                   owe = i.owe,
-                                   owereassion = i.owereassion,
-                                   totalreturnamount = i.totalreturnamount,
-                                   returnamount = i.returnamount,
                                    weid = we.id,
                                    startdate = we.startdate,
                                    enddate = we.enddate,
@@ -664,10 +628,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                        totalriel = i.totalriel,
                                        paid = i.paid,
                                        isprint = i.printed,
-                                       owe = i.owe,
-                                       owereassion = i.owereassion,
-                                       totalreturnamount = i.totalreturnamount,
-                                       returnamount = i.returnamount,
                                        weid = we.id,
                                        startdate = we.startdate,
                                        enddate = we.enddate,
@@ -718,17 +678,12 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
             SqlCommand cmd = new SqlCommand("select max(id) from invoice_tbl", conx);
-
-            SqlDataAdapter adp = new SqlDataAdapter("select max(id) from waterusage_tbl", conx);
-            SqlDataAdapter adp1 = new SqlDataAdapter("select max(id) from electricusage_tbl", conx);
+            
             SqlDataAdapter adp3 = new SqlDataAdapter("select max(id) from waterelectricusage_tbl", conx);
             SqlDataAdapter adp2 = new SqlDataAdapter("select top 1 id from ExchangeRates where IsDeleted=0 order by id desc", conx);
-            adp.Fill(ds);
-            adp.Fill(ds1);
+            
             adp2.Fill(ds2);
             adp3.Fill(ds3);
-            string wid = ds.Rows[0][0].ToString();
-            string eid = ds1.Rows[0][0].ToString();
             string exid = ds2.Rows[0][0].ToString();
             string weid = ds3.Rows[0][0].ToString();
 

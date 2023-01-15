@@ -124,10 +124,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>13.17452cm</Top>
-        <Left>15.48047cm</Left>
+        <Top>12.82496cm</Top>
+        <Left>15.45738cm</Left>
         <Height>3.4575cm</Height>
-        <Width>13.61251cm</Width>
+        <Width>13.69294cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -153,10 +153,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox163</rd:DefaultName>
-        <Top>12.6114cm</Top>
-        <Left>15.48047cm</Left>
+        <Top>12.26184cm</Top>
+        <Left>15.45649cm</Left>
         <Height>0.52784cm</Height>
-        <Width>13.6125cm</Width>
+        <Width>13.74037cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -166,7 +166,7 @@
         </Style>
       </Textbox>
       <Line Name="Line5">
-        <Top>18.47438cm</Top>
+        <Top>17.8391cm</Top>
         <Left>25.22574cm</Left>
         <Height>0cm</Height>
         <Width>3.22159cm</Width>
@@ -204,7 +204,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox180</rd:DefaultName>
-        <Top>18.58021cm</Top>
+        <Top>17.94493cm</Top>
         <Left>24.45604cm</Left>
         <Height>0.6cm</Height>
         <Width>4.4739cm</Width>
@@ -234,7 +234,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox182</rd:DefaultName>
-        <Top>19.21549cm</Top>
+        <Top>18.58021cm</Top>
         <Left>24.45604cm</Left>
         <Height>0.40906cm</Height>
         <Width>4.4739cm</Width>
@@ -1123,10 +1123,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>13.17452cm</Top>
-        <Left>0.43198cm</Left>
+        <Top>12.78968cm</Top>
+        <Left>0.43194cm</Left>
         <Height>3.4575cm</Height>
-        <Width>13.72248cm</Width>
+        <Width>13.76777cm</Width>
         <ZIndex>17</ZIndex>
         <Style>
           <Border>
@@ -1152,10 +1152,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox163</rd:DefaultName>
-        <Top>12.6114cm</Top>
+        <Top>12.26184cm</Top>
         <Left>0.43194cm</Left>
         <Height>0.52784cm</Height>
-        <Width>13.72252cm</Width>
+        <Width>13.76777cm</Width>
         <ZIndex>18</ZIndex>
         <Style>
           <Border>
@@ -1174,10 +1174,10 @@
               <Width>3.78077cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.67099cm</Width>
+              <Width>1.88266cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.06782cm</Width>
+              <Width>1.85615cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.59698cm</Width>
@@ -1219,7 +1219,7 @@
                               <Value>NO</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1288,7 +1288,7 @@
                               <Value>Description</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1354,10 +1354,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Pre-Re</Value>
+                              <Value>Start Record</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1423,10 +1423,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Curent-Re</Value>
+                              <Value>End Record</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1495,7 +1495,7 @@
                               <Value>Unit Price</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1564,7 +1564,7 @@
                               <Value>Dollar</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1633,7 +1633,7 @@
                               <Value>Riel</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -3019,7 +3019,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>7.22992cm</Top>
+        <Top>7.21307cm</Top>
         <Left>0.47698cm</Left>
         <Height>5.01349cm</Height>
         <Width>13.75034cm</Width>
@@ -3051,7 +3051,7 @@
         </Style>
       </Tablix>
       <Line Name="Line7">
-        <Top>18.47438cm</Top>
+        <Top>17.8391cm</Top>
         <Left>10.20447cm</Left>
         <Height>0cm</Height>
         <Width>3.22159cm</Width>
@@ -3089,7 +3089,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox180</rd:DefaultName>
-        <Top>18.58021cm</Top>
+        <Top>17.94493cm</Top>
         <Left>9.43477cm</Left>
         <Height>0.6cm</Height>
         <Width>4.4739cm</Width>
@@ -3119,7 +3119,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox182</rd:DefaultName>
-        <Top>19.21549cm</Top>
+        <Top>18.58021cm</Top>
         <Left>9.43477cm</Left>
         <Height>0.40906cm</Height>
         <Width>4.4739cm</Width>
@@ -3133,7 +3133,7 @@
       <Line Name="Line13">
         <Top>0.95639cm</Top>
         <Left>14.83975cm</Left>
-        <Height>19.17865cm</Height>
+        <Height>19.20511cm</Height>
         <Width>0cm</Width>
         <ZIndex>23</ZIndex>
         <Style>
@@ -3350,9 +3350,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>0.12651cm</Top>
+            <Top>0.1382cm</Top>
             <Left>0cm</Left>
-            <Height>0.56472cm</Height>
+            <Height>0.49418cm</Height>
             <Width>4.51313cm</Width>
             <Style>
               <Border>
@@ -3385,9 +3385,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>0.72652cm</Top>
+            <Top>0.70292cm</Top>
             <Left>0cm</Left>
-            <Height>0.51506cm</Height>
+            <Height>0.47979cm</Height>
             <Width>4.51313cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -3421,7 +3421,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>1.27685cm</Top>
+            <Top>1.18271cm</Top>
             <Left>0.00002cm</Left>
             <Height>0.50877cm</Height>
             <Width>4.51313cm</Width>
@@ -3457,7 +3457,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>1.85618cm</Top>
+            <Top>1.69148cm</Top>
             <Left>0.00002cm</Left>
             <Height>0.49417cm</Height>
             <Width>4.51311cm</Width>
@@ -3471,9 +3471,9 @@
           </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>4.98924cm</Top>
+        <Top>4.92384cm</Top>
         <Left>15.45736cm</Left>
-        <Height>2.46562cm</Height>
+        <Height>2.18565cm</Height>
         <Width>4.54843cm</Width>
         <ZIndex>28</ZIndex>
         <Style>
@@ -3530,7 +3530,7 @@
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>0.12651cm</Top>
             <Left>5.33579cm</Left>
-            <Height>0.56473cm</Height>
+            <Height>0.50587cm</Height>
             <Width>3.77706cm</Width>
             <Style>
               <Border>
@@ -3563,9 +3563,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>0.72652cm</Top>
+            <Top>0.70292cm</Top>
             <Left>5.33579cm</Left>
-            <Height>0.51505cm</Height>
+            <Height>0.47979cm</Height>
             <Width>3.77706cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
@@ -3599,9 +3599,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>1.27685cm</Top>
+            <Top>1.18271cm</Top>
             <Left>5.33578cm</Left>
-            <Height>0.54405cm</Height>
+            <Height>0.49416cm</Height>
             <Width>3.74946cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
@@ -3637,7 +3637,7 @@
             <rd:DefaultName>Textbox91</rd:DefaultName>
             <Top>0.12651cm</Top>
             <Left>0cm</Left>
-            <Height>0.56473cm</Height>
+            <Height>0.50587cm</Height>
             <Width>4.92774cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
@@ -3671,9 +3671,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>0.72652cm</Top>
+            <Top>0.66766cm</Top>
             <Left>0cm</Left>
-            <Height>0.51506cm</Height>
+            <Height>0.51505cm</Height>
             <Width>4.92774cm</Width>
             <ZIndex>4</ZIndex>
             <Style>
@@ -3707,9 +3707,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>1.27685cm</Top>
+            <Top>1.18271cm</Top>
             <Left>0cm</Left>
-            <Height>0.56472cm</Height>
+            <Height>0.49416cm</Height>
             <Width>4.92774cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
@@ -3743,9 +3743,9 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>1.84157cm</Top>
+            <Top>1.69148cm</Top>
             <Left>0cm</Left>
-            <Height>0.50877cm</Height>
+            <Height>0.49417cm</Height>
             <Width>4.92774cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
@@ -3779,7 +3779,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox91</rd:DefaultName>
-            <Top>1.85618cm</Top>
+            <Top>1.69148cm</Top>
             <Left>5.33578cm</Left>
             <Height>0.49417cm</Height>
             <Width>3.74946cm</Width>
@@ -3793,9 +3793,9 @@
           </Textbox>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>4.98924cm</Top>
+        <Top>4.92384cm</Top>
         <Left>20.11162cm</Left>
-        <Height>2.46562cm</Height>
+        <Height>2.18565cm</Height>
         <Width>9.11285cm</Width>
         <ZIndex>29</ZIndex>
         <Style>
@@ -3834,10 +3834,10 @@
               <Width>3.78077cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.67099cm</Width>
+              <Width>1.93557cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.06782cm</Width>
+              <Width>1.80324cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.59698cm</Width>
@@ -3879,7 +3879,7 @@
                               <Value>NO</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -3948,7 +3948,7 @@
                               <Value>Description</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -4014,10 +4014,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Pre-Re</Value>
+                              <Value>Start Record</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -4083,10 +4083,10 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Curent-Re</Value>
+                              <Value>End Record</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -4155,7 +4155,7 @@
                               <Value>Unit Price</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -4224,7 +4224,7 @@
                               <Value>Dollar</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -4293,7 +4293,7 @@
                               <Value>Riel</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
-                                <FontSize>9pt</FontSize>
+                                <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -5463,7 +5463,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!totalriel.Value</Value>
+                              <Value>=Format(CDec(Fields!totalriel.Value),"0")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -5679,8 +5679,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
-        <Top>7.56585cm</Top>
-        <Left>15.47413cm</Left>
+        <Top>7.21307cm</Top>
+        <Left>15.45649cm</Left>
         <Height>5.01349cm</Height>
         <Width>13.75034cm</Width>
         <ZIndex>30</ZIndex>
@@ -5714,7 +5714,7 @@
     <Height>20.1615cm</Height>
     <Style />
   </Body>
-  <Width>29.27738cm</Width>
+  <Width>29.48905cm</Width>
   <Page>
     <PageHeight>21cm</PageHeight>
     <PageWidth>29.7cm</PageWidth>
@@ -5734,17 +5734,28 @@
       </ConnectionProperties>
       <rd:DataSourceID>47b5e6fa-3146-4260-90b1-c5ba3122d6c7</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="RLDataSet">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>9c4c57c7-e622-4a2a-b8bd-d9d1569e0773</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>AllDataSet</DataSourceName>
+        <DataSourceName>RLDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
         <Field Name="id">
           <DataField>id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="invoiceno">
+          <DataField>invoiceno</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="invoicedate">
           <DataField>invoicedate</DataField>
@@ -5754,73 +5765,9 @@
           <DataField>guestid</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
-        <Field Name="userid">
-          <DataField>userid</DataField>
+        <Field Name="FullName">
+          <DataField>FullName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="grandtotal">
-          <DataField>grandtotal</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="totalriel">
-          <DataField>totalriel</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="totaldollar">
-          <DataField>totaldollar</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="totalother">
-          <DataField>totalother</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="createby">
-          <DataField>createby</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="createdate">
-          <DataField>createdate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="updateby">
-          <DataField>updateby</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="updatedate">
-          <DataField>updatedate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="note">
-          <DataField>note</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="owe">
-          <DataField>owe</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="owereassion">
-          <DataField>owereassion</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="totalreturnamount">
-          <DataField>totalreturnamount</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="returnamount">
-          <DataField>returnamount</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="returndescription">
-          <DataField>returndescription</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="status">
-          <DataField>status</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="rate">
-          <DataField>rate</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="name">
           <DataField>name</DataField>
@@ -5910,6 +5857,46 @@
           <DataField>enddate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="grandtotal">
+          <DataField>grandtotal</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="totalriel">
+          <DataField>totalriel</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="totaldollar">
+          <DataField>totaldollar</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="totalother">
+          <DataField>totalother</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="paid">
+          <DataField>paid</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="note">
+          <DataField>note</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="status">
+          <DataField>status</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="rate">
+          <DataField>rate</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="paydollar">
+          <DataField>paydollar</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="payriel">
+          <DataField>payriel</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
         <Field Name="wstartrecord">
           <DataField>wstartrecord</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -5950,26 +5937,10 @@
           <DataField>totalwaterR</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="FullName">
-          <DataField>FullName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="paydollar">
-          <DataField>paydollar</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="payriel">
-          <DataField>payriel</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="invoiceno">
-          <DataField>invoiceno</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>AllDataSet</rd:DataSetName>
-        <rd:SchemaPath>E:\GIT\ROSELANY-APARTMENT\SCHOOL_MANAGEMENT_SYSTEM\AllDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>RLDataSet</rd:DataSetName>
+        <rd:SchemaPath>E:\GIT\ROSELANY-APARTMENT\SCHOOL_MANAGEMENT_SYSTEM\RLDataSet.xsd</rd:SchemaPath>
         <rd:TableName>InvoiceV</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

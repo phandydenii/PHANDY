@@ -33,10 +33,44 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/CheckIns
         public IHttpActionResult GetAllCheckIn()
         {
-            var getCheckIn = _context.CheckIns
-                .Include(r => r.room)
-                .Include(g => g.guest)
-                .ToList();
+            var getCheckIn = (from c in _context.CheckIns
+                              join we in _context.WaterEletricUsages on c.id equals we.checkinid
+                              join r in _context.Rooms on c.roomid equals r.id
+                              join g in _context.Guests on c.guestid equals g.id
+                             
+                              select new CheckInV
+                              {
+                                  id = c.id,
+                                  checkindate = c.checkindate,
+                                  roomid = r.id,
+                                  room_no = r.room_no,
+                                  servicecharge = r.servicecharge,
+                                  price = r.price,
+                                  roomkey = r.roomkey,
+                                  roomstatus = r.status,
+                                  startdate = we.startdate,
+                                  enddate = we.enddate,
+                                  wstartrecode = we.wstartrecord,
+                                  estartrecord = we.estartrecord,
+                                  prepaid = c.prepaid,
+                                  payforroom = c.payforroom,
+                                  guestid = g.id,
+                                  name = g.name,
+                                  namekh = g.namekh,
+                                  sex = g.sex,
+                                  dob = g.dob,
+                                  address = g.address,
+                                  nationality = g.nationality,
+                                  phone = g.phone,
+                                  email = g.email,
+                                  ssn = g.ssn,
+                                  passport = g.passport,
+                                  gueststatus = g.status,
+                                  child = c.child,
+                                  man = c.man,
+                                  women = c.women
+                              }
+                              ).ToList();
             return Ok(getCheckIn);
         }
 
@@ -44,11 +78,44 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/CheckIns
         public IHttpActionResult GetAllCheckIn(int id)
         {
-            var getCheckIn = _context.CheckIns
-                        .Include(r => r.room)
-                        .Include(g => g.guest)
-                        .Where(c => c.id==id)
-                        .SingleOrDefault();
+            var getCheckIn = (from c in _context.CheckIns
+                              join we in _context.WaterEletricUsages on c.id equals we.checkinid
+                              join r in _context.Rooms on c.roomid equals r.id
+                              join g in _context.Guests on c.guestid equals g.id
+                            
+                              select new CheckInV
+                              {
+                                  id=c.id,
+                                  checkindate=c.checkindate,
+                                  roomid=r.id,
+                                  room_no=r.room_no,
+                                  servicecharge=r.servicecharge,
+                                  price=r.price,
+                                  roomkey=r.roomkey,
+                                  roomstatus=r.status,
+                                  startdate=we.startdate,
+                                  enddate=we.enddate,
+                                  wstartrecode=we.wstartrecord,
+                                  estartrecord=we.estartrecord,
+                                  prepaid=c.prepaid,
+                                  payforroom=c.payforroom,
+                                  guestid=g.id,
+                                  name=g.name,
+                                  namekh=g.namekh,
+                                  sex=g.sex,
+                                  dob=g.dob,
+                                  address=g.address,
+                                  nationality=g.nationality,
+                                  phone=g.phone,
+                                  email=g.email,
+                                  ssn=g.ssn,
+                                  passport=g.passport,
+                                  gueststatus=g.status,
+                                  child=c.child,
+                                  man=c.man,
+                                  women=c.women
+                              }
+                              ).ToList();
             return Ok(getCheckIn);
         }
 

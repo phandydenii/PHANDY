@@ -1,14 +1,10 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
     GetBooking("Active");
 });
 var tableBooking = [];
 $('#status').on('change', function () {
     GetBooking(this.value);
 });
-
-
-
 
 function GetBooking(status) {
     tableBooking = $('#tableBooking').dataTable({
@@ -214,19 +210,22 @@ function BookingEdit(id) {
         success: function (result) {
             var checkindate = moment(result.checkindate).format("YYYY-MM-DD");
             var expiredate = moment(result.expiredate).format("YYYY-MM-DD");
-            $('#id').val(result.id);
+            var bookingdate = moment(result.bookingdate).format("YYYY-MM-DD");
+            $('#bookid').val(result.id);
             $('#bookingno').val(result.bookingno);
-            $('#bookingdate').val(result.bookingdate);
+            $('#bookingdate').val(bookingdate);
             $('#checkindate').val(checkindate);
             $('#expiredate').val(expiredate);
             $('#roomid').val(result.room.room_no);
             $('#roomprice').val(result.room.price);
             $('#guestid').val(result.guestid);
+            $('#guestname').val(result.guest.name);
             $('#totalbooking').val(result.total);
             $('#paydollarbooking').val(result.paydollar);
             $('#payreilbooking').val(result.payriel);
             $('#note').val(result.note);
-            $('#guestname').val(result.guest.name);
+            $('#status').val(result.status);
+            
         },
         error: function (errormessage) {
             toastr.error("Load Record Error", "Service Response");
@@ -240,7 +239,7 @@ function UpdateBooking() {
     }
 
     var data = {
-        id: $('#id').val(),
+        id: $('#bookid').val(),
         bookingno: $('#bookingno').val(),
         bookingdate: $('#bookingdate').val(),
         guestid: $('#guestid').val(),
@@ -251,6 +250,7 @@ function UpdateBooking() {
         checkindate: $('#checkindate').val(),
         expiredate: $('#expiredate').val(),
         note: $('#note').val(),
+        status: $('#status').val(),
     };
 
     $.ajax({
@@ -260,12 +260,13 @@ function UpdateBooking() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            if ($("#rmid").val() != $("#roomidb").val()) {
-                UpdateRoomStatus($("#rmid").val(),'FREE');
-                UpdateRoomStatus($("#roomidb").val(),'BOOK');
-            }
+            //if ($("#rmid").val() != $("#roomidb").val()) {
+            //    UpdateRoomStatus($("#rmid").val(),'FREE');
+            //    UpdateRoomStatus($("#roomidb").val(),'BOOK');
+            //}
             
             toastr.success("Update record successfully!", "Service Response");
+            window.location = "booking-rpt/" + data.id;
         },
         error: function (errormesage) {
             toastr.error("This Booking ID is exist in Database", "Server Respond");

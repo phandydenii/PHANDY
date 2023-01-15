@@ -86,7 +86,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection con = new SqlConnection(connectionString);
             SqlDataAdapter adp = new SqlDataAdapter("Select * From InvoiceV where id=" + invoiceid, con);
-            SqlDataAdapter adp1 = new SqlDataAdapter("Select * From InvoiceV where id=" + invoiceid, con);
             adp.Fill(ds);
 
             ReportViewer reportViewer = new ReportViewer();
@@ -290,7 +289,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             return View("_userrpt");
         }
 
-        [Route("payslip-rpt")]
+        [Route("payslip-rpt/{id}")]
         [System.Web.Mvc.HttpGet]
         public ActionResult GetEmployee(int id)
         {

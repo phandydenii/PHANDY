@@ -15,7 +15,5 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public Invoice invoice { get; set; }
         public int paydemageid { get; set; }
         public PayDemage paydemage { get; set; }
-        public decimal paydollar { get; set; }
-        public decimal payriel { get; set; }
     }
 }

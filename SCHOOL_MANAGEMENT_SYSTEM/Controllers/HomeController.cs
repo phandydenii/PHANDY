@@ -47,7 +47,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             var updatedate = DateTime.Today;
             var createdate = DateTime.Today;
             var exid = int.Parse(dt1.Rows[0][0].ToString());
-            var status = "ACTIVE";
+            //var status = "ACTIVE";
 
 
             adp.Fill(dt);

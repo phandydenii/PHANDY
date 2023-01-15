@@ -28,11 +28,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public string updateby { get; set; }
         public DateTime updatedate { get; set; }
         public string note { get; set; }
-        public decimal owe { get; set; }
-        public string owereassion { get; set; }
-        public decimal totalreturnamount { get; set; }
-        public decimal returnamount { get; set; }
-        public string returndescription { get; set; }
 
         public int weid { get; set; }
         public DateTime? startdate { get; set; }

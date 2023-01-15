@@ -19,59 +19,29 @@
                             <label for="guestnamekh">ឈ្មោះជាអក្សរខ្មែរ</label>
                             <input id="guestnamekh" name="guestnamekh" readonly="readonly" placeholder="Enter number of name khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
-                        <div class="form-group">
-                            <label for="checkindate">ថ្ងៃចូលស្នាក់នៅ</label>
-                            <input id="checkindate" name="checkindate" readonly="readonly" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                        </div>
-                        <div class="form-group">
-                            <label for="roomno">បន្ទប់</label>
-                            <input id="roomno" readonly="readonly" name="roomno" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="payforroom">បង់ថ្លៃបន្ទប់</label>
+                                    <input id="payforroom" name="payforroom" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="prepaid">បង់មុន</label>
+                                    <input id="prepaid" name="prepaid" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="servicecharge">ថ្លៃសេវ៉ា</label>
-                                    <input id="servicecharge" readonly="readonly" name="servicecharge" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="roomprice">តម្លៃបន្ទប់</label>
-                                    <input id="roomprice" name="roomprice" readonly="readonly" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="wrecord">គីឡូទឹកចាស់</label>
+                            <input id="wrecord" name="wrecord" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="startdate">ចាប់ផ្តើម</label>
-                                    <input id="startdate" name="startdate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="enddate">រហូរដល់</label>
-                                    <input id="enddate"  name="enddate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="wrecord">គីឡូទឹកចាស់</label>
-                                    <input id="wrecord" name="wrecord" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="precord">គីឡូភ្លើងចាស់</label>
-                                    <input id="precord" name="precord" onfocus="this.select();"  placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="precord">គីឡូភ្លើងចាស់</label>
+                            <input id="precord" name="precord" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
                         <div class="row">
                             <div class="col-md-4">

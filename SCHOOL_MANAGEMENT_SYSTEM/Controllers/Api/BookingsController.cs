@@ -338,12 +338,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 return BadRequest();
 
             var BookingInDb = _context.Bookings.SingleOrDefault(c => c.id == id);
-            BookingInDb.bookingdate = DateTime.Today;
+            if (BookingInDb == null)
+                return BadRequest();
+
             BookingInDb.userid = User.Identity.GetUserId();
             BookingInDb.updateby = User.Identity.GetUserId();
             BookingInDb.updatedate = DateTime.Today;
             BookingInDb.exchangeid = int.Parse(eid);
-            BookingInDb.status = "Active";
             Mapper.Map(BookinDtos, BookingInDb);
             _context.SaveChanges();
             return Ok(BookinDtos);

@@ -46,14 +46,7 @@
                     </div>
                     <div class="col-md-6">
                         <input id="datenow" name="datenow" style="display: none;" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
-                        @*<div class="form-group">
-                            <label for="invno">លេខវិក័យបត្រ</label>
-                            <input id="invno" readonly="readonly" name="invno" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                        </div>
-                        <div class="form-group">
-                            <label for="checkindate">កាលបរិច្ឆេទ</label>
-                            <input id="checkindate" readonly="readonly" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
-                        </div>*@
+                        <input id="checkindate" readonly="readonly" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%;display:none" />
                         <div class="form-group">
                             <label class="control-label" for="estartrecord">លេខកុងទ័រភ្លើង</label>
                             <input id="estartrecord" name="estartrecord" placeholder="Enter current number" onfocus="this.select();" value="0" type="number" class="form-control input-sm">
@@ -110,11 +103,7 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                
-                CreatetWaterElectricUsage(result);
-                //InsertPowerUsage(result);
-                //InsertWaterUsage(result);
-                
+                CreatetWaterElectricCheckIn(result); 
             },
             error: function (errormesage) {
                 toastr.error("This Name Guest is exist in Database", "Server Respond");
@@ -124,7 +113,7 @@
         });
     }
 
-    function CreatetWaterElectricUsage(id) {
+    function CreatetWaterElectricCheckIn(id) {
         var data = new FormData();
         data.append("checkinid", id);
         data.append("startdate", $('#checkindate').val());

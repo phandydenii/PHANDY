@@ -10,8 +10,8 @@
             <h4 style="color: darkblue;">គ្រប់គ្រងការចូលស្នាក់នៅ</h4>
         </div>
         @*<div class="col-md-6">
-                <a href="#" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#StaffModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span>បន្ថែមបុគ្គលិក</a>
-                <a href="#" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#PositionModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span>គ្រប់គ្រងតួនាទី</a>
+                <a href="#" class="btn btn-success btn-sm pull-right" onclick="Test()" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span>បន្ថែមបុគ្គលិក</a>
+                <a href="#" class="btn btn-success btn-sm pull-right" onclick="Demo()" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span>គ្រប់គ្រងតួនាទី</a>
             </div>*@
     </div>
     <hr />
@@ -41,4 +41,37 @@
     @Scripts.Render("~/Scripts/moment.min.js")
 }
 
+<script>
+    var array = [];
+   
+
+    function Test() {
+        
+        $.ajax({
+            url: "/api/paydemages/5/2023-01-12/2023-02-12",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            datatype: "json",
+            success: function (result) {
+                //var id =result.id;
+                for (var i = 0; i < result.length; i++) {
+                    array[i] = result[i].id;
+
+                    alert(result[i].id);
+                }
+                
+            },
+            error: function (errormessage) {
+                toastr.error("No Record Select!", "Service Response");
+            }
+        });
+    }
+
+    function Demo() {
+        for (var j = 0; j < array.length; j++) {
+            console.log(array[j]);
+        }
+
+    }
+</script>
  

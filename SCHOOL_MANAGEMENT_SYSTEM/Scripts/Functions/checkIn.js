@@ -19,7 +19,7 @@ function GetCheckInDetail() {
                     data: "id"
                 },
                 {
-                    data: "guest.name"
+                    data: "name"
                 },
                 {
                     data: "checkindate",
@@ -29,37 +29,37 @@ function GetCheckInDetail() {
                 },
                 
                 {
-                    data: "room.room_no"
+                    data: "room_no"
                 },
                 {
                     data: "prepaid",
                 },
-                //{
-                //    data: "guest.id",
-                //    render: function (data, type, row) {
-                //        var chcekindate = new Date(row.checkindate).getDay();
-                //        var now =new Date().getDay();
-                //        var m = now - chcekindate;
-                //        if(m>=0){
-                //        return "<button OnClick='PrintInvoice (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px''><span class='glyphicon glyphicon-edit'></span> Print "+m+"</button>"
-                //        } else {
-                //            return "";
-                //        }
-                //    }
-                //},
                 {
                     data: "id",
                     render: function (data, type, row) {
-                        return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
+                        if (row.active == 0) {
+                            return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
                                     + "<ul class='dropdown-menu'>"
                                     + "<li>"
                                         + "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px''><span class='glyphicon glyphicon-edit'></span> Edit</button>"
                                         + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
-                                        + "<button OnClick='PayDamages (" + data + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-pencil'></span> Pay Damages</button>"
+                                        //+ "<button OnClick='PayDamages (" + row.guestid + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-pencil'></span> Pay Damages</button>"
                                     + "</li>"
                                     + "</ul>"
                                 + "</div>"
-                        ;                  
+                            ;
+                        }
+                        else {
+                            return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
+                                    + "<ul class='dropdown-menu'>"
+                                    + "<li>"
+                                        + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
+                                        //+ "<button OnClick='PayDamages (" + row.guestid + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-pencil'></span> Pay Damages</button>"
+                                    + "</li>"
+                                    + "</ul>"
+                                + "</div>"
+                            ;
+                        }
                     }
                 }
             ],
@@ -67,48 +67,7 @@ function GetCheckInDetail() {
         destroy: true,
     });
 }
-
-//function PrintInvoice(id) {
-//    $("#PrintNewInvoiceModal").modal("show");
-//    $.ajax({
-//        url: "/api/invoice-v/newinvoie/1",
-//        type: "GET",
-//        contentType: "application/json;charset=utf-8",
-//        datatype: "json",
-//        success: function (result) {
-//            $("#checkinid").val(result[0]["checkinid"]);
-//            alert(result[0]["checkinid"]);
-//            $('#name').val(result[0]["name"]);
-//            $('#roomid').val(result[0]["roomid"]);
-//            $("#room_no").val(result[0]["room_no"]);
-//            $("#roompricee").val(result[0]["price"]);
-//            $("#svprice").val(result[0]["servicecharge"]);
-//            $("#recordpowerold").val(result[0]["estartrecord"]);
-//            $("#recordwaterold").val(result[0]["wstartrecord"]);
-//            $("#weid").val(result[0]["weid"]);
-//            var checkindid = result[0]["checkinid"];
-//            var enddate = moment(result[0]["enddate"]).format("YYYY-MM-DD");
-//            $("#begindate").val(enddate);
-//            $("#guestid").val(result[0]["guestid"]);
-//            $.get("/api/invoicemaxid", function (data) {
-//                $('#invno').val(data);
-//            });
-//        },
-//        error: function (errormessage) {
-//            toastr.error("No Record Select!", "Service Response");
-//        }
-//    });
-
-//    $.get("/api/ExchangeRates/1/2", function (data) {
-//        $('#exrate').val(data.rate);
-//    });
-
-//    $.get("/api/WEPrice/1/1", function (data) {
-//        $('#wprice').val(data.waterprice);
-//        $('#pprice').val(data.electricprice);
-//    });
-//}
-
+ 
 $('#itemid').on('change', function () {
     $("#itemprice").val("");
     if ($("#itemid").val() != "0") {
@@ -121,7 +80,7 @@ $('#itemid').on('change', function () {
 $('#fromdate').on('change', function () {
     var fromdate = this.value;
     var today = $('#today').val();
-    GetPayDemages($('#checkinid').val(), fromdate, today);
+    GetPayDemages($('#guestid').val(), fromdate, today);
 
 });
 
@@ -153,9 +112,14 @@ function GetPayDemages(id,fromdate,todate) {
             {
                 data: "id",
                 render: function (data, type, row) {
-                    return "<button OnClick='EditProp(" + data + ");' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                    if (row.paid == 0) {
+                        return "<button OnClick='EditProp(" + data + ");' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
                          + "<button OnClick='DeletePrp(" + data + "," + row.propertyname + ");' class='btn btn-danger btn-xs' style='margin-top:0px;margin-left:5px'><span class='glyphicon glyphicon-trash'></span> Delete</button>"
                     ;
+                    } else {
+                        return "<span class='text-primary'><span class='glyphicon glyphicon-ok'></span></span>";
+                    }
+                    
                 }
             }
         ],
@@ -209,23 +173,15 @@ function CheckInEdit(id) {
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
-            alert(result.id);
             $('#guestname').val(result.guest.name);
             $('#guestnamekh').val(result.guest.namekh);
-            var checkindate = moment(result.checkindate).format("YYYY-MM-DD");
-            $('#checkindate').val(checkindate);
-            $('#roomno').val(result.room.room_no);
-            $('#servicecharge').val(result.room.servicecharge);
-            $('#roomprice').val(result.room.price);
-            var startdate = moment(result.startdate).format("YYYY-MM-DD");
-            var enddate = moment(result.enddate).format("YYYY-MM-DD")
-            $('#startdate').val(startdate);
-            $('#enddate').val(enddate);
             $('#man').val(result.man);
             $('#women').val(result.women);
             $('#child').val(result.child);
-            $('#wrecord').val(result.woldrecord);
-            $('#precord').val(result.poldrecord);
+            $('#wrecord').val(result.wstartrecode);
+            $('#precord').val(result.estartrecord);
+            $('#prepaid').val(result.prepaid);
+            $('#payforroom').val(result.payforroom);
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");

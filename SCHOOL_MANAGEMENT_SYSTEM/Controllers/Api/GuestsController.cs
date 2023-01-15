@@ -156,42 +156,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return Ok(GuestMax);
         }
 
-        //[HttpPost]
-        //public IHttpActionResult InsertGuest(GuestDto GuestDto)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest();
 
-        //    var isExist = _context.Guests.SingleOrDefault(c => c.id == GuestDto.id);
-        //    if (isExist != null)
-        //        return BadRequest();
-
-        //    var Guest = Mapper.Map<GuestDto, Guest>(GuestDto);
-
-        //    _context.Guests.Add(Guest);
-        //    _context.SaveChanges();
-
-        //    GuestDto.id = Guest.id;
-
-           
-        //    var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        //    SqlConnection conx = new SqlConnection(connectionString);
-        //    SqlCommand cmd = new SqlCommand("select max(id) from guest_tbl", conx);
-
-        //    Int16 GuestMax;
-        //    try
-        //    {
-        //        conx.Open();
-        //        GuestMax = Convert.ToInt16(cmd.ExecuteScalar());
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-
-        //    return Ok(GuestMax);
-        //}
 
         [HttpPut]
         //PUT : /api/Building/{id}
@@ -199,12 +164,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            var isExist = _context.Guests.SingleOrDefault(c => c.id != GuestDtos.id);
-            if (isExist != null)
-                return BadRequest();
-
             var GuestInDb = _context.Guests.SingleOrDefault(c => c.id == id);
-            GuestInDb.status = "";
+            if (GuestInDb == null)
+                return BadRequest();
             Mapper.Map(GuestDtos, GuestInDb);
             _context.SaveChanges();
 

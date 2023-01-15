@@ -333,7 +333,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!salaryamount.Value</Value>
+                <Value>=Fields!totalsalary.Value</Value>
                 <Style>
                   <FontFamily>khmer os battambang</FontFamily>
                 </Style>
@@ -1755,7 +1755,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!salaryamount.Value</Value>
+                <Value>=Fields!totalsalary.Value</Value>
                 <Style>
                   <FontFamily>khmer os battambang</FontFamily>
                 </Style>
@@ -3206,11 +3206,18 @@
       </ConnectionProperties>
       <rd:DataSourceID>5051085f-5bd5-49ea-aea4-fb96c8b868db</rd:DataSourceID>
     </DataSource>
+    <DataSource Name="RLDataSet">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>d8b89687-4c86-4326-b9c1-8b3854ef3358</rd:DataSourceID>
+    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>AllDataSet</DataSourceName>
+        <DataSourceName>RLDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -3238,8 +3245,8 @@
           <DataField>bonus</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="salaryamount">
-          <DataField>salaryamount</DataField>
+        <Field Name="totalsalary">
+          <DataField>totalsalary</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="note">
@@ -3272,8 +3279,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>AllDataSet</rd:DataSetName>
-        <rd:SchemaPath>E:\GIT\ROSELANY-APARTMENT\SCHOOL_MANAGEMENT_SYSTEM\AllDataSet.xsd</rd:SchemaPath>
+        <rd:DataSetName>RLDataSet</rd:DataSetName>
+        <rd:SchemaPath>E:\GIT\ROSELANY-APARTMENT\SCHOOL_MANAGEMENT_SYSTEM\RLDataSet.xsd</rd:SchemaPath>
         <rd:TableName>PaySlip_V</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

@@ -53,12 +53,27 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/paydemagesbyguest/{guestid}/{paid}")]
+        //Get : api/Buildings
+        public IHttpActionResult GetBuildingsdd(int guestid, bool paid)
+        {
+            var getBuilding = _context.PayDemages.Include(i => i.item).Include(c => c.guest).Where(p => p.guestid == guestid).Where(p => p.paid == paid).ToList();
+            return Ok(getBuilding);
+        }
+        [HttpGet]
         [Route("api/paydemages/{guestid}/{fromdate}/{todate}")]
         //Get : api/Buildings
         public IHttpActionResult GetBuildings(int guestid, DateTime fromdate, DateTime todate)
         {
             var getBuilding = _context.PayDemages.Include(i => i.item).Include(c => c.guest).Where(p => p.guestid == guestid).Where(p => p.date >= fromdate).Where(p => p.date <= todate).ToList();
             return Ok(getBuilding);
+
+            //DataSet ds = new DataSet();
+            //var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            //SqlConnection conx = new SqlConnection(connectionString);
+            //SqlDataAdapter adp = new SqlDataAdapter("select *,item_tbl.* from paydemage_tbl inner join item_tbl on paydemage_tbl.itemid=item_tbl.id where guestid='" + guestid+"' and date between '"+fromdate+"'  and '"+todate+"'", conx);
+            //adp.Fill(ds);
+            //return Ok(ds.Tables[0]);
         }
 
 
@@ -87,6 +102,28 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
             return Ok();
         }
+
+        [HttpPut]
+        [Route("api/updatedemagepaid/{id}")]
+        public IHttpActionResult UpdatePaydemage(int id)
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+
+            SqlCommand requestcommand = new SqlCommand("update paydemage_tbl set paid=1 where id=" + id, conx);
+            try
+            {
+                conx.Open();
+                requestcommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Ok();
+
+        }
+
 
         [HttpPut]
         public IHttpActionResult UpdateStaff(int id)

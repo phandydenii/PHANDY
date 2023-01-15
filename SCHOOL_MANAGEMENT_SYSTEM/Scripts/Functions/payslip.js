@@ -40,7 +40,7 @@ function GetPaySlipList() {
                     data: "bonus"
                 },
                 {
-                    data: "salaryamount"
+                    data: "totalsalary"
                 },
                 {
                     data: "note"
@@ -70,7 +70,7 @@ function SaveStaffAction() {
         data.append("penanty", $("#penanty").val());
         data.append("bonus", $("#bonus").val());
         data.append("note", $("#note").val());
-        data.append("salaryamount", $("#salaryamount").val());
+        data.append("totalsalary", $("#totalsalary").val());
         $.ajax({
             type: "POST",
             url: "/api/payslips",
@@ -80,8 +80,8 @@ function SaveStaffAction() {
             success: function (result) {
                 toastr.success("Insert record successfully.", "Server Response");
                 $('#PaySlipModal').modal('hide');
-                //window.open("/payslip-rpt?id=" + result, "");
-                
+                window.location = "/payslip-rpt/" + result;
+                tablePaySlip.DataTable().ajax.reload();
             },
             error: function (error) {
                 console.log(error);
@@ -96,7 +96,7 @@ function SaveStaffAction() {
         data.append("penanty", $("#penanty").val());
         data.append("bonus", $("#bonus").val());
         data.append("note", $("#note").val());
-        data.append("salaryamount", $("#salaryamount").val());
+        data.append("totalsalary", $("#totalsalary").val());
         $.ajax({
             type: "PUT",
             url: "/api/payslips/" + $('#payslipid').val(),
@@ -106,7 +106,8 @@ function SaveStaffAction() {
             success: function (result) {
                 toastr.success("Insert record successfully.", "Server Response");
                 $('#PaySlipModal').modal('hide');
-                window.open("/payslip-rpt/" + result, "");
+                window.location = "/payslip-rpt/" + result;
+                tablePaySlip.DataTable().ajax.reload();
             },
             error: function (error) {
                 console.log(error);
@@ -132,7 +133,7 @@ function EditPaySlip(id) {
             $('#vat').val(result.vat);
             $('#penanty').val(result.penanty);
             $('#bonus').val(result.bonus);
-            $('#salaryamount').val(result.salaryamount);
+            $('#totalsalary').val(result.totalsalary);
             
         },
         error: function (errormessage) {
@@ -172,5 +173,62 @@ function DeletePaySlip(id) {
                 });
             }
         }
+    });
+}
+
+function StaffChange() {
+    tablePaySlip = $('#TablePaySlip').dataTable({
+        ajax: {
+            url: "/api/payslipbystaff/1/" + this.value,
+            dataSrc: ""
+        },
+        columns:
+            [
+                {
+                    data: "id"
+                },
+                {
+                    data: "date",
+                    render: function (data) {
+                        return moment(new Date(data)).format('DD-MMM-YYYY');
+                    }
+
+                },
+                {
+                    data: "staff.name"
+                },
+                {
+                    data: "staff.namekh"
+                },
+                {
+                    data: "salary"
+                },
+                {
+                    data: "vat"
+                },
+                {
+                    data: "penanty"
+                },
+                {
+                    data: "bonus"
+                },
+                {
+                    data: "totalsalary"
+                },
+                {
+                    data: "note"
+                },
+                {
+                    data: "id",
+                    render: function (data) {
+                        return "<button OnClick='EditPaySlip (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
+                            "<button OnClick='DeletePaySlip (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Delete</button>";
+                    }
+                }
+            ],
+        destroy: true,
+        "order": [[0, "desc"]],
+        "info": false
+
     });
 }

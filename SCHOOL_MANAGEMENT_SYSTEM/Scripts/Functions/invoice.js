@@ -166,8 +166,7 @@ function OnPayment(id) {
 
         $('#checkinid').val(result.checkinid);
 
-        GetPayDemage(result.guestid, stdate, enddate);
-        //alert(result.wprerecord);
+        GetPayDemageInvoice(result.guestid);
     },
     error: function (errormessage) {
         toastr.error("Load Record Error", "Service Response");
@@ -187,27 +186,23 @@ function OnPayment(id) {
     });
 }
 
-function GetPayDemage(id, fromdate, todate) {
+function GetPayDemageInvoice(id) {
     $.ajax({
-        url: "/api/paydemages/" + id + "/" + fromdate + "/" + todate,
+        url: "/api/paydemagesbyguest/" + id + "/false",
         type: "GET",
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
-
             var valsum = 0;
-
             $.each(result, function (key, value) {
                 valsum += parseFloat(value.price);
                 $('#itemname').append("<label>" + value.item.itemname + "</label>" + "=" + "<label>" + value.price + "$, </label>");
-
             });
             if (valsum != '0') {
                 $('#paydemage').text("សម្ភារៈខូចខាត ​ ");
                 $('#total').text("Total =");
                 $('#itemprice').text(valsum);
             }
-
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
@@ -369,7 +364,7 @@ function TotalPay() {
 
 }
 
-function OnPayAction() {
+function OnPaymentAction() {
     var action = document.getElementById('btnSavePayment').innerText;
     if (action == "Save") {
         var data = new FormData();

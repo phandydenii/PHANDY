@@ -55,12 +55,10 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         public IHttpActionResult InsertStaff()
         {
             var invoiceid = HttpContext.Current.Request.Form["invoiceid"];
-            var paydollar = HttpContext.Current.Request.Form["paydollar"];
-            var payriel = HttpContext.Current.Request.Form["payriel"];
-
             var guestid = int.Parse(HttpContext.Current.Request.Form["guestid"]);
-            var fromdate = HttpContext.Current.Request.Form["fromdate"];
-            var todate = HttpContext.Current.Request.Form["todate"];
+
+            //var fromdate = HttpContext.Current.Request.Form["fromdate"];
+            //var todate = HttpContext.Current.Request.Form["todate"];
 
 
             DataTable dt = new DataTable();
@@ -68,7 +66,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
             SqlDataAdapter adp = new SqlDataAdapter("select max(id) from invoice_tbl", conx);
-            SqlDataAdapter adp1 = new SqlDataAdapter("select id from paydemage_tbl where paid=0 and guestid=" + guestid + " and [date] between '"+ fromdate + "' and '"+ todate +"'", conx);
+            SqlDataAdapter adp1 = new SqlDataAdapter("select id from paydemage_tbl where paid=0 and guestid=" + guestid, conx);
             adp.Fill(dt);
             adp1.Fill(dt1);
 
@@ -86,8 +84,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                         {
                             invoiceid = int.Parse(invoiceid),
                             paydemageid = paydemageid.id,
-                            paydollar = decimal.Parse(paydollar),
-                            payriel = decimal.Parse(payriel),
                         };
 
                         var InvoiceDetail = Mapper.Map<InvoiceDetailDto, InvoiceDetail>(InoiceDetailDto);

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Models
 {
-    [Table("Salarys")]
+    [Table("salary_tbl")]
     public class Salary
     {
         public int id { get; set; }

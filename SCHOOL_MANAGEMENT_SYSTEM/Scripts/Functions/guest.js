@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
-    //$('#GuestModal').on('show.bs.modal', function () {
-    //});
+    $('#HistoryModal').on('show.bs.modal', function () {
+        $('#rowhide').hide();
+    });
     GetGuest();
 
 });
@@ -68,6 +69,7 @@ function GetGuest() {
 var tableHistory = [];
 function GuestHistory(id) {
     $('#HistoryModal').modal('show');
+    $('#guestid').val(id);
     tableHistory = $('#tableHistory').dataTable({
         ajax: {
             url: "/api/invoice_v_by_guestid/"+id,
@@ -119,9 +121,7 @@ function GuestHistory(id) {
                 },
                 {
                     data: "id",
-                    
                     render: function (data) {
-                        
                             return "<button OnClick='OnEditRoom (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>"
                             + "<button OnClick='OnDeleteRoom (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span></button>"
                         ;
@@ -134,79 +134,45 @@ function GuestHistory(id) {
 
     });
 }
-
-
+function OnEditRoom() {
+    $('#rowhide').show();
+}
+function OnDeleteRoom() {
+    $('#rowhide').hide();
+}
 function UpdateGuest() {
-    var action = '';
-    action = document.getElementById('btnSaveGuest').innerText;
-    if (action == "Save") {
-        var data = {
-            firstname: $('#fname').val(),
-            lastname: $('#lname').val(),
-            fullname: $('#fullname').val(),
-            sex: $('#gender').val(),
-            dob: $('#dob').val(),
-            address: $('#address').val(),
-            nationality: $('#nationality').val(),
-            phone: $('#phone').val(),
-            email: $('#email').val(),
-            note: $('#note').val(),
-            status: $('#status').val(),
-        };
-        $.ajax({
-            url: "/api/Guests",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("Save to database successfully.", "Server Response");
-                $('#tableGuest').DataTable().ajax.reload();
-
-                $('#GuestModal').modal('hide');
-                document.getElementById('btnSaveGuest').innerText = "Add New";
-            },
-            error: function (errormessage) {
-                toastr.error("This Guest is already exists.", "Server Response");
-            }
-        });
-    }
-    else if (action == "Update") {
-        var data = {
-            id: $('#guestid').val(),
-            name: $('#name').val(),
-            namekh: $('#namekh').val(),
-            sex: $('#sex').val(),
-            dob: $('#dob').val(),
-            address: $('#address').val(),
-            nationality: $('#nationality').val(),
-            phone: $('#phone').val(),
-            email: $('#email').val(),
-            ssn: $('#ssn').val(),
-            passport: $('#passport').val(),
-            status: $('#status').val(),
-        };
-        $.ajax({
-            url: "/api/Guests/" + data.id,
-            data: JSON.stringify(data),
-            type: "PUT",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                window.location.reload(true);
-                toastr.success("Updated successfully.", "Server Response");
-            },
-            error: function (errormessage) {
-                toastr.error("This Guest can't Update.", "Server Response");
-
-            }
-        });
-    }
+    var data = {
+        id: $('#guestid').val(),
+        name: $('#name').val(),
+        namekh: $('#namekh').val(),
+        sex: $('#sex').val(),
+        dob: $('#dob').val(),
+        address: $('#address').val(),
+        nationality: $('#national').val(),
+        phone: $('#phone').val(),
+        email: $('#email').val(),
+        ssn: $('#ssn').val(),
+        passport: $('#passport').val(),
+        status: $('#status').val(),
+    };
+    $.ajax({
+        url: "/api/Guests/" + data.id,
+        data: JSON.stringify(data),
+        type: "PUT",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {         
+            toastr.success("Updated successfully.", "Server Response");
+            window.location.reload(true);
+        },
+        error: function (errormessage) {
+            toastr.error("Update Guest faild.", "Server Response");
+        }
+    });
 }
 
 
 function GuestEdit(id) {
-    alert(id);
     $("#GuestModal").modal('show');
     $.ajax({
         url: "/api/Guests/" + id,
@@ -214,6 +180,7 @@ function GuestEdit(id) {
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
+            alert(result.nationality);
             $('#guestid').val(result.id);
             $('#name').val(result.name);
             $('#namekh').val(result.namekh);
@@ -221,18 +188,17 @@ function GuestEdit(id) {
             var dr = moment(result.dob).format("YYYY-MM-DD");
             $("#dob").val(dr);
             $('#address').val(result.address);
-            $('#nationality').val(result.nationality);
+            $('#national').val(result.nationality);
             $('#phone').val(result.phone);
             $('#email').val(result.email);
             $('#ssn').val(result.ssn);
             $('#passport').val(result.passport);
-            $('#status').val(result.status);  
+            $('#status').val(result.status);
         },
         error: function (errormessage) {
             toastr.error("Something unexpected happen.", "Server Response");
         }
     });
-    return false;
 }
 function GuestDelete(id) {
     bootbox.confirm({
@@ -283,10 +249,7 @@ function DisableControll() {
     document.getElementById('email').disabled = true;
     document.getElementById('note').disabled = true;
     document.getElementById('status').disabled = true;
-
-
 }
-
 function EnableControlGuest() {
     document.getElementById('fname').disabled = false;
     document.getElementById('lname').disabled = false;
@@ -300,7 +263,6 @@ function EnableControlGuest() {
     document.getElementById('note').disabled = false;
     document.getElementById('status').disabled = false;
 }
-
 function ClearControlGuest() {
     $('#fname').val('');
     $('#lname').val('');
@@ -315,7 +277,6 @@ function ClearControlGuest() {
     $('#note').val('');
     $('#status').val('');
 }
-
 function AddnewGuestAction() {
     document.getElementById('btnSaveGuest').innerText = "Add New";
     ClearControlGuest();

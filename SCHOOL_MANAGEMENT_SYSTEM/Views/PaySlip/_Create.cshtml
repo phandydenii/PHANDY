@@ -6,7 +6,7 @@
         <div class="modal-content">
             <div class="modal-header clearfix">
                 <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">បើកប្រាក់ខែ</b>
+                <b class="modal-title" style="color: darkblue;" onclick="CloseModalStaff()">បើកប្រាក់ខែ</b>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -41,8 +41,8 @@
                             <input onfocus="this.select();" onchange="BonusChange()" id="bonus" name="bonus" placeholder="Enter Staff Name Khmer" type="number" value="0.00" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
-                            <label for="salaryamount">សរុបប្រាក់ខែ</label>
-                            <input id="salaryamount" disabled name="salaryamount" placeholder="" type="number" value="0.00" class="form-control input-sm" style="min-width: 100%" />
+                            <label for="totalsalary">សរុបប្រាក់ខែ</label>
+                            <input id="totalsalary" name="totalsalary" placeholder="" type="number" value="0.00" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -64,8 +64,9 @@
 </div>
 
 <script>
+    window.laocation.reload(true);
     function CloseModalStaff() {
-        //window.open("/invoice-report", "");
+        window.laocation.reload(true);
     }
     function ChangeStaff() {
         var staffid = document.getElementById('staffid').value;
@@ -80,6 +81,7 @@
                 datatype: "json",
                 success: function (result) {
                     $('#salary').val(result.salary);
+                    $('#totalsalary').val(result.salary);
                     TotalSalary();
                 },
                 error: function (errormessage) {
@@ -107,6 +109,6 @@
         var penanty = document.getElementById('penanty').value;
         var bonus = document.getElementById('bonus').value;
         var totalsalry = parseFloat(salary) + parseFloat(bonus) - parseFloat(penanty) - (parseFloat(vat) * parseFloat(salary) / 100);
-        $('#salaryamount').val(totalsalry);
+        $('#totalsalary').val(totalsalry);
     }
 </script>
