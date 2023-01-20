@@ -28,7 +28,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         public decimal wendrecord { get; set; }
         public decimal estartrecord { get; set; }
         public decimal eendrecord { get; set; }
-        public decimal prepaid { get; set; }
+        //public decimal prepaid { get; set; }
         public decimal payforroom { get; set; }
         public int guestid { get; set; }
         public string name { get; set; }

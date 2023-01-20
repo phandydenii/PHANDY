@@ -756,9 +756,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             requestcommand.Parameters.Add("@paydollar", SqlDbType.Decimal).Value = paydollar;
             requestcommand.Parameters.Add("@paid", SqlDbType.Bit).Value = paid;
             
-
-
-
             try
             {
                 conx.Open();

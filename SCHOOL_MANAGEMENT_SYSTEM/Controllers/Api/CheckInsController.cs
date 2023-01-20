@@ -29,15 +29,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             _context.Dispose();
         }
 
+        
+
         [HttpGet]
         //Get : api/CheckIns
         public IHttpActionResult GetAllCheckIn()
         {
             var getCheckIn = (from c in _context.CheckIns
-                              join we in _context.WaterEletricUsages on c.id equals we.checkinid
                               join r in _context.Rooms on c.roomid equals r.id
                               join g in _context.Guests on c.guestid equals g.id
-                             
+                              where g.status== "CHECK-IN"
                               select new CheckInV
                               {
                                   id = c.id,
@@ -48,11 +49,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   price = r.price,
                                   roomkey = r.roomkey,
                                   roomstatus = r.status,
-                                  startdate = we.startdate,
-                                  enddate = we.enddate,
-                                  wstartrecode = we.wstartrecord,
-                                  estartrecord = we.estartrecord,
-                                  prepaid = c.prepaid,
                                   payforroom = c.payforroom,
                                   guestid = g.id,
                                   name = g.name,
@@ -97,7 +93,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   enddate=we.enddate,
                                   wstartrecode=we.wstartrecord,
                                   estartrecord=we.estartrecord,
-                                  prepaid=c.prepaid,
                                   payforroom=c.payforroom,
                                   guestid=g.id,
                                   name=g.name,
@@ -154,7 +149,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 checkinv.wendrecord = decimal.Parse(dr["wendrecord"].ToString());
                 checkinv.estartrecord = decimal.Parse(dr["estartrecord"].ToString());
                 checkinv.eendrecord = decimal.Parse(dr["eendrecord"].ToString());
-                checkinv.prepaid = decimal.Parse(dr["prepaid"].ToString());
                 checkinv.payforroom = decimal.Parse(dr["payforroom"].ToString());
                 checkinv.guestid = int.Parse(dr["guestid"].ToString());
                 checkinv.name = dr["name"].ToString();
@@ -257,7 +251,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 checkinv.wendrecord = decimal.Parse(dr["wendrecord"].ToString());
                 checkinv.estartrecord = decimal.Parse(dr["estartrecord"].ToString());
                 checkinv.eendrecord = decimal.Parse(dr["eendrecord"].ToString());
-                checkinv.prepaid = decimal.Parse(dr["prepaid"].ToString());
                 checkinv.payforroom = decimal.Parse(dr["payforroom"].ToString());
                 checkinv.guestid = int.Parse(dr["guestid"].ToString());
                 checkinv.name = dr["name"].ToString();
@@ -363,7 +356,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   wendrecord = we.wendrecord,
                                   estartrecord = we.estartrecord,
                                   eendrecord = we.eendrecord,
-                                  prepaid=c.prepaid,
                                   payforroom=c.payforroom,
                                   guestid = g.id,
                                   name = g.name,
@@ -408,7 +400,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   building = b.buildingname,
                                   servicecharge = r.servicecharge,
                                   price = r.price,
-                                  prepaid=c.prepaid,
                                   payforroom=c.payforroom,
                                   roomkey = r.roomkey,
                                   roomstatus = r.status,

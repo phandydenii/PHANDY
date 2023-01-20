@@ -24,6 +24,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public decimal paybefor { get; set; }
         public decimal returnamount { get; set; }
         public decimal totalpayment { get; set; }
+        public decimal paydollar { get; set; }
+        public decimal payriel { get; set; }
         public string description { get; set; }
     }
 }

@@ -59,11 +59,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        //[Required]
+        //[DataType(DataType.Password)]
+        //[Display(Name = "Confirm Password")]
+        //public string ConfirmPassword { get; set; }
+
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
 
-        [Display(Name = "Security Code"), MaxLength(5, ErrorMessage = "Must be less than 6 digits."), NotMapped, Required(ErrorMessage = "Enter the security code")]
-        public string SecurityCode { get; set; }
+        //[Display(Name = "Security Code"), MaxLength(5, ErrorMessage = "Must be less than 6 digits."), NotMapped, Required(ErrorMessage = "Enter the security code")]
+        //public string SecurityCode { get; set; }
     }
 
     public class RegisterViewModel

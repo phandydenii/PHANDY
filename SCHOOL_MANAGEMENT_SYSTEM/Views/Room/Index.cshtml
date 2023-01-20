@@ -9,15 +9,15 @@
         <div class="row">
             <div class="col-md-12">
                 <span class="label label-info">Total Room @Model.TotalRoom</span>
-                <span class="label label-primary">Free @Model.TotalFree</span>
-                <span class="label label-success">Booking @Model.TotalBook</span>
-                <span class="label label-warning">Chek In @Model.TotalCheckIn</span>
-                <span class="label label-danger">Block @Model.TotalBlock</span>
+                <span class="label label-success" style="color:black">Free @Model.TotalFree</span>
+                <span class="label label-yellow" style="color:black">Booking @Model.TotalBook</span>
+                <span class="label label-danger">Chek In @Model.TotalCheckIn</span>
+                <span class="label label-default">Block @Model.TotalBlock</span>
 
-                <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Floor</a>
-                <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomTypeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room Type</a>
-                <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room</a>
-                <a href="#" class="btn btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#RoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Item To Room</a>
+                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Floor</a>
+                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomTypeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room Type</a>
+                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room</a>
+                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Item To Room</a>
              </div>
         </div>
         
@@ -27,26 +27,24 @@
             {
                 if (item.status == "FREE")
                 {
-                    c = "btn-block btn btn-primary";
+                    c = "btn-block btn btn-success";
                 }
                 else if (item.status == "BLOCK")
                 {
-                    c = "btn-block btn btn-danger";
+                    c = "btn-block btn btn-default";
                 }
                 else if (item.status == "CHECK-IN")
                 {
-                    c = "btn-block btn btn-warning";
+                    c = "btn-block btn btn-danger";
                 }
                 else if (item.status == "BOOK")
                 {
-                    c = "btn-block btn btn-success";
+                    c = "btn-block btn btn-yellow";
                 }
-
                 var b = @item.id;
                 <div class="col-md-1 col-lg-1 col-xl-1">
-                    <button onclick='OnClickRoom(@b)' type="button" class="@c"  style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@b+'"><span style="font-weight:bold" >@item.room_no</span></button>
+                    <button onclick='OnClickRoom(@b)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@b+'"><span style="font-weight:bold">@item.room_no</span></button>
                 </div>
-                
             }
             <div class="col-md-1 col-lg-1 col-xl-1">
                 <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#RoomModal" style="height:60px;margin-bottom:20px;margin-top:10px"><span class="glyphicon glyphicon-plus " style="color:gray"></span></button>
@@ -135,7 +133,7 @@
                 } else if (result.status == "FREE") {
                     document.getElementById('btnCheckOut').style.display = "none";
                     document.getElementById('btnPayment').style.display = "none";
-                    //document.getElementById('btnCheckIn').style.display = "none";
+                    document.getElementById('btnCheckIn').style.display = "none";
                 } else if (result.status == "BLOCK") {
                     document.getElementById('btnBook').style.display = "none";
                 }
@@ -162,8 +160,9 @@
             success: function (result) {
                 $("#bookingid").val(result.id);
                 $.each(result, function (key, value) {
+                    //alert(value.id);
                     $("#bookingid").val(value.id);
-                    $("#guestid").val(value.id);
+                    $("#guestid").val(value.guestid);
                     $('#guestlist').append("<li class='list-group-item'>Name <span class='pull-right' style='color:darkblue'>" + value.name + "</span></li>"
                                          + "<li class='list-group-item'>Name Khmer <span class='pull-right' style='color:darkblue'>" + value.namekh + "</span></li>"
                                          + "<li class='list-group-item'>Gender <span class='pull-right' style='color:darkblue'>" + value.sex + "</span></li>"
@@ -174,7 +173,7 @@
                                          + "<li class='list-group-item'>Check IN Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.checkindate)).format('DD-MMM-YYYY')+ "</span></li>"
                                          + "<li class='list-group-item'>Expire Check In Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.expirecheckindate)).format('DD-MMM-YYYY')+ "</span></li>"
                                          
-                                           );
+                    );
                 });
             },
             error: function (errormessage) {

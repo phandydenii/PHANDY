@@ -32,7 +32,7 @@ function GetCheckInDetail() {
                     data: "room_no"
                 },
                 {
-                    data: "prepaid",
+                    data: "payforroom",
                 },
                 {
                     data: "id",

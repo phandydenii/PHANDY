@@ -95,7 +95,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="totalbooking">សរុបប្រាក់កក់</label>
-                                            <input onchange="TotalBook()" id="totalbooking" name="totalbooking" onfocus="this.select();" placeholder="$0.00" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <input readonly="readonly" onchange="TotalBook()" id="totalbooking" name="totalbooking" onfocus="this.select();" placeholder="$0.00" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -134,7 +134,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnPayment" onclick="OnBookNowAction()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:100px">Book Now</button>
+                <button type="button" id="btnPayment" onclick="OnBookNowAction()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:100px">Save</button>
                 <button type="button" id="btnCheckOut" onclick="OnCloseBook()" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:5px;width:100px">Cancel</button>   
             </div>
         </div>

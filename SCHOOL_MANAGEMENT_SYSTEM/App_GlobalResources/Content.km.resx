@@ -222,4 +222,34 @@
   <data name="User" xml:space="preserve">
     <value>អ្នកប្រើប្រាស់</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>បញ្ជាក់លេខសម្ងាត់</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>អ៊ីម៉ែល</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ចូលប្រើប្រាស់ប្រព័ន្ធ</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>លេខសម្ងាត់</value>
+  </data>
+  <data name="AssigeRoleTo" xml:space="preserve">
+    <value>កំណត់សិទ្ធទៅលើកគណនីឈ្មោះ</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>កោត្តនាម និងនាម</value>
+  </data>
+  <data name="RegisterNewAccount" xml:space="preserve">
+    <value>បង្កើតគណនីថ្មី</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>ភេទ</value>
+  </data>
+  <data name="UserRoleManagement" xml:space="preserve">
+    <value>គ្រប់គ្រងសិទ្ធរបស់អ្នកប្រើប្រាស់</value>
+  </data>
+  <data name="RAMS" xml:space="preserve">
+    <value>ប្រព័ន្ធគ្រប់គ្រង រ៉ូសឡានី អាផាត់ម៉ិន</value>
+  </data>
 </root>

@@ -222,4 +222,34 @@
   <data name="User" xml:space="preserve">
     <value>User</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm​​ Password</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="AssigeRoleTo" xml:space="preserve">
+    <value>Assige Role To</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="RegisterNewAccount" xml:space="preserve">
+    <value>Regirster New Account</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>Sex</value>
+  </data>
+  <data name="UserRoleManagement" xml:space="preserve">
+    <value>User Role Management</value>
+  </data>
+  <data name="RAMS" xml:space="preserve">
+    <value>ROSELANY APARTMENT MANAGEMENT SYSTEM</value>
+  </data>
 </root>

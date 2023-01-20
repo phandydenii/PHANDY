@@ -6,7 +6,6 @@ $(document).ready(function () {
         $('#loadingGif').removeClass('show');
     });
     GetCheckInDetail();
-
 })
 
 var tbCheckInDetail = [];
@@ -70,7 +69,6 @@ function GetCheckInDetail() {
 function OnPrintInvoice(checkinid, guestid) {
     $("#PrintNewInvoiceModal").modal("show");
     $("#checkinid").val(checkinid);
-    GetPayDemage(guestid);
     $.ajax({
         url: "/api/invoice-v/newinvoie/" + guestid,
         type: "GET",
@@ -98,12 +96,9 @@ function OnPrintInvoice(checkinid, guestid) {
                 var invoiceno = "RL" + ("000000" + data).slice(-6)
                 $('#invno').val(invoiceno);
             });
-            //GetPayDemage(result[0]["guestid"], stdate, enddate);
-
             $.get("/api/ExchangeRates/1/2", function (data) {
                 $('#exrate').val(data.rate);
             });
-
             $.get("/api/WEPrice/1/1", function (data) {
                 $('#wprice').val(data.waterprice);
                 $('#pprice').val(data.electricprice);
@@ -114,49 +109,15 @@ function OnPrintInvoice(checkinid, guestid) {
         }
     });  
 }
-var tablepaydemage = [];
-var array = [];
-function GetPayDemage(id) {
-    $.ajax({
-        url: "/api/paydemagesbyguest/" + id + "/false",
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        datatype: "json",
-        success: function (result) {
-            for (var i = 0; i < result.length; i++) {
-                array[i] = result[i].id;
-                alert(result[i].id);
-            }
-            var valsum = 0;
-            $.each(result, function (key, value) {
-                
-                valsum += parseFloat(value.price);
-                $('#PayDemageList').append("<li class='list-group-item'>" + value.item.itemname + "<span class='badge'>$ " + value.price + "</span></li>");
-            });
-            if (valsum != 0) {
-                $('#paydemage').text("សម្ភារៈខូចខាត ​ ");
-                $('#total').text("Total =");
-                $('#itemprice').text(valsum);
-            } else {
-                $('#lblPayDemage').hidden = true;
-            }
-            
-        },
-        error: function (errormessage) {
-            toastr.error("No Record Select!", "Service Response");
-        }
-    });
-}
 
 function CheckInEdit(id) {
-    //alert(id);
     $.ajax({
         url: "/api/checkin_v/" + id,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
-           // alert(result.id);
+            //
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
@@ -247,85 +208,10 @@ function InsertNewInvoice() {
         dataType: "json",
         success: function (result) {
             UpdateCheckInStatus();
-            //CreateInvoiceDetail(result);
             window.location = "invoice-report/" + result;
         },
         error: function (errormesage) {
             toastr.error("Create invoice faild...!" + errormesage, "Server Respond");
-        }
-    });
-}
-
-//INsert Invoice Detail
-function CreateInvoiceDetail(id) {
-    var data = new FormData();
-    data.append("invoiceid", id);
-    data.append("guestid", $('#guestid').val());
-
-    //data.append("fromdate", $('#startdate').val());
-    //data.append("todate", $('#enddate').val());
-
-    $.ajax({
-        type: "POST",
-        url: "/api/invoicedetails",
-        contentType: false,
-        processData: false,
-        data: data,
-        success: function (result) {
-            
-            toastr.success("Print invoice successfully.", "Server Response");
-            window.location.reload(true);
-        },
-        error: function (errormesage) {
-            toastr.error("Invoice Detail Faild!", "Server Respond");
-            return false;
-        }
-
-    });
-}
-
-function UpdateDemagePaid() {
-    for (var j = 0; j < array.length; j++) {
-        $.ajax({
-            type: "PUT",
-            url: "/api/updatedemagepaid/" + j,
-            contentType: false,
-            processData: false,
-            // data: status,
-            success: function (result) {
-            },
-            error: function (error) {
-                toastr.error("Update pay demage paid fail!", "Server Response");
-            }
-        });
-    }
-
-}
-
-function PrintUpdateInvoice() {
-    var data = new FormData();
-    data.append("grandtotal", $("#grandtotal").val());
-    data.append("totalriel", $("#grandtotalkh").val());
-    data.append("totaldollar", $("#grandtotal").val());
-    data.append("totalother", $("#svprice").val());
-    data.append("note", $("#note").val());
-    data.append("payriel", 0);
-    data.append("paydollar", 0);
-    data.append("paid", false);
-    $.ajax({
-        type: "PUT",
-        url: "/api/invoices/" + $("#invid").val(),
-        contentType: false,
-        processData: false,
-        data: data,
-        success: function (result) {
-            UpdateWaterElectricUsage();
-
-            CreateInvoiceDetail($("#invid").val());
-        },
-        error: function (errormesage) {
-            toastr.error("Print invoice faild...!", "Server Respond");
-
         }
     });
 }
@@ -344,7 +230,6 @@ function UpdateCheckInStatus(id) {
         }
     });
 }
-
 
 function RecordWaterChange() {
     var waternewrecord = document.getElementById('recordwaternew').value;

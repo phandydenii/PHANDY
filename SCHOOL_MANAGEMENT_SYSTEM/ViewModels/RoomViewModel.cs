@@ -22,6 +22,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
         public IEnumerable<Staff> StaffList { get; set; }
         public IEnumerable<ExchangeRate> ExchangeRate { get; set; }
 
+        public IEnumerable<Room> RoomG { get; set; }
+        public IEnumerable<Room> RoomF1 { get; set; }
+        public IEnumerable<Room> RoomF2 { get; set; }
+        public IEnumerable<Room> RoomF3 { get; set; }
+        public IEnumerable<Room> RoomF4 { get; set; }
+        public IEnumerable<Room> RoomF5 { get; set; }
+
+
 
         public int TotalRoom { get; set; }
         public int TotalFree { get; set; }

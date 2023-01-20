@@ -77,6 +77,29 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             return Content(FilePathReturn);
         }
 
+        [Route("check-out-report/{id}")]
+        [System.Web.Mvc.HttpGet]
+        public ActionResult GetCheckOutReport(string id)
+        {
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("Select * From CHECK_OUT_V where id=" + id, con);
+            adp.Fill(ds);
+
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
+            reportViewer.Width = Unit.Percentage(100);
+            reportViewer.Height = Unit.Percentage(100);
+            //ReportParameter qrCODE = new ReportParameter("qrCODE", base64String);
+            //reportViewer.LocalReport.EnableExternalImages = true;
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\CHECKOUT_REPORT.rdlc";
+            //reportViewer.LocalReport.SetParameters(new ReportParameter[] { staffname, from, to, khmerDate, khmerYear, qrCODE });
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));
+            ViewBag.ReportViewer = reportViewer;
+            return View("_checkout");
+        }
 
         [Route("invoice-report/{invoiceid}")]
         [System.Web.Mvc.HttpGet]

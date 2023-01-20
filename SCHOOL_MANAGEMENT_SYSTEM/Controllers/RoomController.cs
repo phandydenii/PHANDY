@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using System.Data.SqlClient;
+using System.Data;
+using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
 {
     public class RoomController : Controller
@@ -28,7 +31,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
                 RoomTypes = _context.RoomTypes.ToList(),
                 Buildings = _context.Buildings.ToList(),
                 Floors = _context.Floors.ToList(),
-                Rooms = _context.Rooms.ToList(),
+                Rooms = _context.Rooms.Include(f => f.floor).ToList(),
                 ListRoomFree = _context.Rooms.Where(c => c.status == "FREE").ToList(),
                 ListRoomBook = _context.Rooms.Where(c => c.status == "BOOK").ToList(),
                 TotalBlock = _context.Rooms.Where(c => c.status == "BLOCK").Count(),

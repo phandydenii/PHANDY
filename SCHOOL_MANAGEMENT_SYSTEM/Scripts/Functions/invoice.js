@@ -99,7 +99,7 @@ function GetInvoice(date,status) {
                     if (row.paid==1) {
                         return "<span class='label label-primary'><span class='glyphicon glyphicon-ok'></span> Paid </span>";
                     } else {
-                        return "<span class='label label-danger'><span class='glyphicon glyphicon-close'></span>Not Paid " + td + "</span>";
+                        return "<span class='label label-danger'><span class='glyphicon glyphicon-close'></span>Not Paid</span>";
                     }
                 }
             },
@@ -166,7 +166,6 @@ function OnPayment(id) {
 
         $('#checkinid').val(result.checkinid);
 
-        GetPayDemageInvoice(result.guestid);
     },
     error: function (errormessage) {
         toastr.error("Load Record Error", "Service Response");
@@ -183,30 +182,6 @@ function OnPayment(id) {
     $.get("/api/ExchangeRates/1/2", function (data) {
         $("#exrate").val(data.rate);
         $("#lblidroom").text(data.rate);
-    });
-}
-
-function GetPayDemageInvoice(id) {
-    $.ajax({
-        url: "/api/paydemagesbyguest/" + id + "/false",
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        datatype: "json",
-        success: function (result) {
-            var valsum = 0;
-            $.each(result, function (key, value) {
-                valsum += parseFloat(value.price);
-                $('#itemname').append("<label>" + value.item.itemname + "</label>" + "=" + "<label>" + value.price + "$, </label>");
-            });
-            if (valsum != '0') {
-                $('#paydemage').text("សម្ភារៈខូចខាត ​ ");
-                $('#total').text("Total =");
-                $('#itemprice').text(valsum);
-            }
-        },
-        error: function (errormessage) {
-            toastr.error("No Record Select!", "Service Response");
-        }
     });
 }
 
@@ -238,14 +213,12 @@ function EditInvoice(id) {
             $('#eendrecord').val(result.eendrecord);
             var totalelectric = result.etotal;
             $('#totalpower').val(totalelectric.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
-
             $('#paydollar').val(result.paydollar);
             $('#payriel').val(result.payriel);
             $('#servicecharge').val(result.servicecharge);
             $('#totalpay').val(result.grandtotal);
             $('#totalpaykh').val(result.totalriel);
             $('#note').val(result.note);
-
             $('#checkinid').val(result.checkinid);
         },
         error: function (errormessage) {
@@ -384,8 +357,6 @@ function OnPaymentAction() {
             processData: false,
             data: data,
             success: function (result) {
-                //UpdateWaterPayment();
-                //UpdatePowerPayment();
                 toastr.success("Print Invoice successfully!.", "Server Response");
                 window.location = "invoice-report/" + $("#id").val();  
             },
@@ -429,22 +400,4 @@ function UpdatePowerPayment() {
 }
 function OnClosePayment() {
     window.location.reload(true);
-}
-
-
-function TestAction() {
-    $.ajax({
-        url: "/api/invoice_v",
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        datatype: "json",
-        success: function (result) {
-            window.location = "invoice-report/1";
-        },
-        error: function (errormessage) {
-            toastr.error("Load Record Error", "Service Response");
-        }
-    });
-
-    
 }

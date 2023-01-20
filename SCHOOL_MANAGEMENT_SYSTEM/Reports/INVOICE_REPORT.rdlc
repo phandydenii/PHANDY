@@ -1912,7 +1912,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!totalwater.Value</Value>
+                              <Value>=Format(CDec(Fields!totalwater.Value),"00")</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2247,7 +2247,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!totaleletric.Value</Value>
+                              <Value>=Format(CDec(Fields!totaleletric.Value),"00")</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -2483,11 +2483,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>0</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox118</rd:DefaultName>
@@ -2660,11 +2662,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>0</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox141</rd:DefaultName>
@@ -4572,7 +4576,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!totalwater.Value</Value>
+                              <Value>=Format(CDec(Fields!totalwater.Value),"00")</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -4907,7 +4911,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!totaleletric.Value</Value>
+                              <Value>=Format(CDec(Fields!totaleletric.Value),"00")</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -5143,11 +5147,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>0</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox118</rd:DefaultName>
@@ -5320,11 +5326,13 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>0</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox141</rd:DefaultName>

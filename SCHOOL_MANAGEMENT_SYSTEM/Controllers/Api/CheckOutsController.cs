@@ -61,22 +61,15 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             SqlConnection conx = new SqlConnection(connectionString);
 
             SqlDataAdapter adp = new SqlDataAdapter("select top 1 id from ExchangeRates where IsDeleted=0 order by id desc", conx);
-            SqlDataAdapter adp1 = new SqlDataAdapter("select max(id) from waterusage_tbl", conx);
-            SqlDataAdapter adp2 = new SqlDataAdapter("select max(id) from electricusage_tbl", conx);
-
             adp.Fill(ds);
-            adp1.Fill(ds1);
-            adp2.Fill(ds2);
             string exid = ds.Rows[0][0].ToString();
-            string wid = ds1.Rows[0][0].ToString();
-            string eid = ds2.Rows[0][0].ToString();
 
             if (!ModelState.IsValid)
                 return BadRequest();
 
             var CheckOutInDb = Mapper.Map<CheckOutDto, CheckOut>(CheckOutDto);
             CheckOutInDb.date = DateTime.Today;
-            CheckOutInDb.userid = User.Identity.GetUserName();
+            CheckOutInDb.userid = User.Identity.GetUserId();
             CheckOutInDb.exchangeid = int.Parse(exid);
 
             _context.CheckOuts.Add(CheckOutInDb);

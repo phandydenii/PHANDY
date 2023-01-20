@@ -1553,13 +1553,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>RL</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!id.Value</Value>
+                <Value>=Fields!no.Value</Value>
                 <Style>
                   <FontFamily>khmer os battambang</FontFamily>
                 </Style>
@@ -2773,13 +2767,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>RL</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!id.Value</Value>
+                <Value>=Fields!no.Value</Value>
                 <Style>
                   <FontFamily>khmer os battambang</FontFamily>
                 </Style>
@@ -3224,6 +3212,10 @@
         <Field Name="id">
           <DataField>id</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="no">
+          <DataField>no</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="date">
           <DataField>date</DataField>

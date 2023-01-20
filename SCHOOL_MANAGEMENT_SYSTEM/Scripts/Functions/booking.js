@@ -53,14 +53,19 @@ function GetBooking(status) {
                 {
                     data: "id",
                     render: function (data, type, row) {
-                        if (row.bookstatus == "Expire") {
-                            return "<span class='label label-danger'><span class='glyphicon glyphicon-ok'></span> Expire</span>";
-                        } else if (row.bookstatus == "Active") {
-                            return "<button OnClick='BookingEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
-                                   "<button OnClick='CancelBooking (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Cancel</button>";
-                        } else if (row.bookstatus == "Cancel") {
-                            return "<span class='label label-danger'><span class='glyphicon glyphicon-ok'></span> Cancel</span>";
+                        if (row.gueststatus == "CHECK-IN") {
+                            return "<span class='glyphicon glyphicon-ok'>";
+                        } else {
+                            if (row.bookstatus == "Expire") {
+                                return "<span class='label label-danger'><span class='glyphicon glyphicon-ok'></span> Expire</span>";
+                            } else if (row.bookstatus == "Active") {
+                                return "<button OnClick='BookingEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
+                                       "<button OnClick='CancelBooking (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Cancel</button>";
+                            } else if (row.bookstatus == "Cancel") {
+                                return "<span class='label label-danger'><span class='glyphicon glyphicon-ok'></span> Cancel</span>";
+                            }
                         }
+                        
                     }
                 }
             ],

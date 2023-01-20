@@ -381,6 +381,9 @@
     <Compile Include="Models\WEPrice.cs" />
     <Compile Include="Models\WaterUsage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RLDataSet.cs">
+      <DependentUpon>RLDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="RLDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -583,12 +586,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\account.png" />
+    <Content Include="Images\background.jpg" />
     <Content Include="Images\balance.jpg" />
     <Content Include="Images\bonus.jpg" />
     <Content Include="Images\booking.png" />
+    <Content Include="Images\Check-In.png" />
     <Content Include="Images\customer.png" />
-    <Content Include="Images\download.png" />
     <Content Include="Images\employee.png" />
     <Content Include="Images\employees.png" />
     <Content Include="Images\expend.png" />
@@ -598,12 +601,13 @@
     <Content Include="Images\Loading.gif" />
     <Content Include="Images\money.jpg" />
     <Content Include="Images\no_image.png" />
-    <Content Include="Images\no_product.png" />
     <Content Include="Images\receipt.png" />
     <Content Include="Images\report.png" />
+    <Content Include="Images\RL_2022_12_14_00_22_21.jpg" />
     <Content Include="Images\room.png" />
     <Content Include="Images\user.png" />
     <Content Include="Images\utility.png" />
+    <Content Include="Images\wallpaper.jpg" />
     <Content Include="ReportViewerWebForm.aspx" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
@@ -679,6 +683,7 @@
     <EmbeddedResource Include="Reports\BOOKING_LIST.rdlc" />
     <EmbeddedResource Include="Reports\BOOK_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\CHECKIN_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\CHECKOUT_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\CHECK_IN_LIST.rdlc" />
     <EmbeddedResource Include="Reports\CHECK_OUT_LIST.rdlc" />
     <EmbeddedResource Include="Reports\EXPENSE_REPORT.rdlc" />
@@ -1093,6 +1098,7 @@
     <Content Include="Views\Report\_checkinlist.cshtml" />
     <Content Include="Views\Report\_invoicelist.cshtml" />
     <Content Include="Views\Report\_otherexpenselist.cshtml" />
+    <Content Include="Views\Report\_checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

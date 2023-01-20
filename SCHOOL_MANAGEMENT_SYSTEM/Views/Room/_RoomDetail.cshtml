@@ -116,7 +116,7 @@
                 <div class="modal-footer">
                     <button type="button" id="btnBlock" onclick="OnBlockAction()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Block</button>
                     <button type="button" id="btnCheckOut" onclick="OnCheckOutAction()" class="btn btn-warning btn-sm pull-right" style="margin-left:10px;width:100px">Check Out</button>
-                    <button type="button" id="btnCheckIn" onclick="OnCheckInAction()" class="btn btn-primary btn-sm pull-right" style="margin-left:10px;width:100px">Check In Now</button>
+                    <button type="button" id="btnCheckIn" onclick="OnCheckInAction()" class="btn btn-primary btn-sm pull-right" style="margin-left:10px;width:100px">Check In</button>
                     <button type="button" id="btnPayment" onclick="OnPaymentAction()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>           
                     <button type="button" id="btnBook" onclick="OnBookAction()" class="btn btn-success  btn-sm pull-right" style="margin-left:10px;width:100px">Book</button>
 
@@ -156,7 +156,7 @@
                 $('#lblbookrmid').text("Book Room "+result.room_no);
                 $("#frmbookroomid").val(rmid);
                 $("#bookroomid").val(rmid);
-                //$("#totalbooking").val(result.price / 2);
+                $("#totalbooking").val(result.price);
                // $("#paydollarbooking").val(result.price / 2);
                 $("#roompriceb").val(result.price);
             },
@@ -201,11 +201,11 @@
             var guestid = document.getElementById('guestid');
             $("#CheckInModal").modal("show");
             $("#chroomid").val(rmid.value);
-            $("#guestid").val(guestid.value);
+            $("#guestidchin").val(guestid.value);
             $.get("/api/rooms/" + rmid.value, function (data) {
                 $("#roompricech").val(data.price);
                 $("#payforroom").val(data.price);
-                $("#paybefor").val(data.price/2);
+                //$("#paybefor").val(data.price);
                 $("#lblRoom").text("Check In Room " + data.room_no);
             });   
         }
@@ -282,9 +282,7 @@
                     $("#estartrecords").val(result.eendrecord);                   
                     $("#rmprice").val(result.price);
                     $("#svprice").val(result.servicecharge);
-                    $("#totalpaybefor").val(result.prepaid);
-
-                    GetPayDemageList(result.guestid, $('#enddatechout').val(), stdate);
+                    $("#paybefor").val(result.price);
                 },
                 error: function (errormessage) {
                     toastr.error("No Record Select!", "Service Response");
@@ -304,31 +302,6 @@
            
         }
     }
-    function GetPayDemageList(id, fromdate, todate) {
-        $.ajax({
-            url: "/api/paydemages/" + id + "/" + fromdate + "/" + todate,
-            type: "GET",
-            contentType: "application/json;charset=utf-8",
-            datatype: "json",
-            success: function (result) {
-                var valsum = 0;
-                $.each(result, function (key, value) {
-                    valsum += parseFloat(value.price);
-                    $('#PayDemageList').append("<li class='list-group-item'>" + value.item.itemname + "<span class='badge'>$ " + value.price + "</span></li>");
-                });
-
-                if (valsum > 0) {
-                    $('#lblPayDemage').text("សម្ភារៈខូចខាត");
-                    $('#itemprice').text(valsum);
-                }
-
-            },
-            error: function (errormessage) {
-                toastr.error("No Record Select!", "Service Response");
-            }
-        });
-    }
-
 
     //On Block Room
     function OnBlockAction() {
