@@ -241,6 +241,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
                         await roleManager.CreateAsync(new IdentityRole("Manage Process"));
                         await roleManager.CreateAsync(new IdentityRole("Manage Setup"));
                         await roleManager.CreateAsync(new IdentityRole("Manage Booking"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Other Expense"));
+                        await roleManager.CreateAsync(new IdentityRole("Manage Payment"));
 
                         //==========================================================================
 

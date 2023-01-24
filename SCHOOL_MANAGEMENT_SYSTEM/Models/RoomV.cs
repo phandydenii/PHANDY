@@ -17,5 +17,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
 		public decimal price { get; set; }
 		public string roomkey { get; set; }
 		public string status { get; set; }
-	}
+		public string note { get; set; }
+    }
 }

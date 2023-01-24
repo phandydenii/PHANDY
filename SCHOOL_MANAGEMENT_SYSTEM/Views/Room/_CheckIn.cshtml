@@ -4,15 +4,13 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;" id="lblRoom"></b>
+                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="OnCloseCheckIn();"><span class="glyphicon glyphicon-remove"></span></button>
+                <b class="modal-title" style="color: darkblue;" id="lblRoom">@Resources.Content.CheckIn</b>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
-                       @* <input id="roomid" name="checkinroomid" type="text" style="display: none;" value="" class="form-control" />*@
-                        
+                        <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />                    
                         <div class="form-group">
                             <label for="chroomid">លេខបន្ទប់</label>
                             <select class="form-control input-sm" id="chroomid" disabled>
@@ -99,7 +97,7 @@
     function CheckInAction() {
         var data = {
             roomid: $('#chroomid').val(),
-            guestidchin: $('#guestidchin').val(),
+            guestid: $('#guestidchin').val(),
             child: $('#child').val(),
             man: $('#man').val(),
             women: $('#women').val(),
@@ -156,7 +154,7 @@
   
     function CreateInvoice() {
         var data = {
-            guestidchin: $('#guestidchin').val(),
+            guestid: $('#guestidchin').val(),
             roomid: $('#chroomid').val(),
         };
         $.ajax({

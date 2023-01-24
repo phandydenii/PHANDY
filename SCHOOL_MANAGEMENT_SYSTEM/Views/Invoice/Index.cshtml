@@ -4,14 +4,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="loadingGif"></div>
-<a class="btn btn-success btn-sm pull-right" style='margin-top:0px;margin-left:5px' data-toggle="modal" data-target="#exchangeModel"><span class='glyphicon glyphicon-usd'></span> អត្រាប្តូរប្រាក់</a>
-<a class="btn btn-success btn-sm pull-right" style='margin-top:0px'​​ data-toggle="modal" data-target="#WEPriceModel"><span class='glyphicon glyphicon-usd'></span> តម្លៃទឹកភ្លើង</a>
-<ul class="nav nav-tabs">
+
+@*<ul class="nav nav-tabs">
     <li class="active"><a href="#printinvoice" data-toggle="tab">ចេញវិក័យបត្រ</a></li>
     <li ><a href="#home" data-toggle="tab">បង់ប្រាក់ប្រចាំខែ</a></li>
-</ul>
-
-<div id="myTabContent" class="tab-content">
+</ul>*@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <h4 style="color: darkblue;">@Resources.Content.Payment</h4>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-success btn-sm pull-right" style='margin-top:0px;margin-left:5px' data-toggle="modal" data-target="#exchangeModel"><span class='glyphicon glyphicon-usd'></span> អត្រាប្តូរប្រាក់</a>
+            <a class="btn btn-success btn-sm pull-right" style='margin-top:0px' data-toggle="modal" data-target="#WEPriceModel"><span class='glyphicon glyphicon-usd'></span> តម្លៃទឹកភ្លើង</a>
+        </div>
+    </div>
+    <hr />
     <div class="tab-pane fade active in" id="printinvoice">
         <br />
         <table id="tablePrintInvoice" style="width:100%" class="table table-hover table-bordered">
@@ -24,9 +32,29 @@
                     <th>ប្រភេទបន្ទប់</th>
                     <th>សេវា</th>
                     <th>តម្លៃបន្ទប់</th>
-                    @*<th>លេខទឹកចាស់</th>
-                    <th>លេខភ្លើងចាស់់</th>
-                    <th>ចាប់ពីថ្ងៃ</th>*@
+                    <th>បង់ប្រាក់ខែបន្ទាប់</th>
+                    <th style="width:15%">សកម្មភាព</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+
+@*<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="printinvoice">
+        <br />
+        <table id="tablePrintInvoice" style="width:100%" class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>លេខ</th>
+                    <th>ឈ្មោះ</th>
+                    <th>ថ្ងៃចូលស្នាក់នៅ</th>
+                    <th>បន្ទប់លេខ</th>
+                    <th>ប្រភេទបន្ទប់</th>
+                    <th>សេវា</th>
+                    <th>តម្លៃបន្ទប់</th>
                     <th>បង់ប្រាក់ខែបន្ទាប់</th>
                     <th style="width:15%">សកម្មភាព</th>
                 </tr>
@@ -65,7 +93,6 @@
                     <th>សរុប($)</th>
                     <th>បង់ជា(៛)</th>
                     <th>បង់ជា​($)</th>
-                    @*<th>ជំពាក់</th>*@
                     <th style="width:5%">ស្ថានភាព</th>
                     <th>សកម្មភាព</th>
                 </tr>
@@ -73,7 +100,7 @@
             <tbody></tbody>
         </table>
     </div> 
-</div>
+</div>*@
 
 
 @Html.Partial("_Payment")

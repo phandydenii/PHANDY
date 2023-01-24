@@ -53,6 +53,9 @@ function GetBooking(status) {
                 {
                     data: "id",
                     render: function (data, type, row) {
+                        //return "<button OnClick='BookingEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
+                        //               "<button OnClick='CancelBooking (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Cancel</button>";
+
                         if (row.gueststatus == "CHECK-IN") {
                             return "<span class='glyphicon glyphicon-ok'>";
                         } else {
@@ -221,7 +224,7 @@ function BookingEdit(id) {
             $('#bookingdate').val(bookingdate);
             $('#checkindate').val(checkindate);
             $('#expiredate').val(expiredate);
-            $('#roomid').val(result.room.room_no);
+            $('#roomid').val(result.roomid);
             $('#roomprice').val(result.room.price);
             $('#guestid').val(result.guestid);
             $('#guestname').val(result.guest.name);
@@ -230,6 +233,7 @@ function BookingEdit(id) {
             $('#payreilbooking').val(result.payriel);
             $('#note').val(result.note);
             $('#status').val(result.status);
+            $('#userid').val(result.userid);
             
         },
         error: function (errormessage) {
@@ -248,7 +252,7 @@ function UpdateBooking() {
         bookingno: $('#bookingno').val(),
         bookingdate: $('#bookingdate').val(),
         guestid: $('#guestid').val(),
-        roomid: $('#roomidb').val(),
+        roomid: $('#roomid').val(),
         total: $('#totalbooking').val(),
         paydollar: $('#paydollarbooking').val(),
         payriel: $('#payrielbooking').val(),
@@ -265,6 +269,7 @@ function UpdateBooking() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
+            alert($('#note').val());
             //if ($("#rmid").val() != $("#roomidb").val()) {
             //    UpdateRoomStatus($("#rmid").val(),'FREE');
             //    UpdateRoomStatus($("#roomidb").val(),'BOOK');
@@ -296,16 +301,29 @@ function UpdateRoomStatus(id,status) {
 }
 
 function CancelBooking(id) {
+    $.ajax({
+        url: "/api/bookings/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (result) {
+            $('#roomid').val(result.roomid);
+        },
+        error: function (errormessage) {
+            toastr.error("Load Record Error", "Service Response");
+        }
+    });
+
     bootbox.confirm({
         title: "",
         message: "Are you sure want to delete this?",
         button: {
             cancel: {
-                label: "Cancel",
+                label: "No",
                 ClassName: "btn-default",
             },
             confirm: {
-                label: "Delete",
+                label: "Ok",
                 ClassName: "btn-danger"
             }
         },
@@ -313,21 +331,31 @@ function CancelBooking(id) {
             if (result) {
                 $.ajax({
                     type: "PUT",
-                    url: "/api/bookingstatus/" + id+"/Cancel",
+                    url: "/api/bookingstatus/" + id + "/Cancel",
                     contentType: false,
                     processData: false,
+                    // data: status,
                     success: function (result) {
-                        $.get("/api/bookings/" + id, function (data) {
-                            UpdateRoomStatusBook(data.roomid);
+                        toastr.success("Booking has been cancel successfully.", "Server Response");
+                    },
+                    error: function (error) {
+                        toastr.error("Unblock room fail!", "Server Response");
+                    }
+                });
 
-                        });
-                        toastr.success("Booking hase been Cancel!", "Service Response");
+                $.ajax({
+                    type: "PUT",
+                    url: "/api/updateroomstatus/" + $('#roomid').val() + "/FREE",
+                    contentType: false,
+                    processData: false,
+                    // data: status,
+                    success: function (result) {
                         window.location.reload(true);
                     },
                     error: function (error) {
-                        toastr.error("Invoice Can't be Deleted", "Service Response");
+                        toastr.error("Unblock room fail!", "Server Response");
                     }
-                });  
+                });
             }
         }
     })  

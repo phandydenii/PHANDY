@@ -60,7 +60,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                servicecharge = r.servicecharge,
                                price = r.price,
                                roomkey = r.roomkey,
-                               status = r.status
+                               status = r.status,
+                               note=r.note,
                            }).ToList();
 
             return Ok(getRoom);
@@ -85,7 +86,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    servicecharge = r.servicecharge,
                                    price = r.price,
                                    roomkey = r.roomkey,
-                                   status = r.status
+                                   status = r.status,
+                                   note=r.note,
                                }).SingleOrDefault();
 
             return Ok(getRoomByid);
@@ -116,7 +118,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
      
-            SqlCommand requestcommand = new SqlCommand("Update room_tbl set status='"+ status + "' where id="+id,conx);
+            SqlCommand requestcommand = new SqlCommand("Update room_tbl set status='"+ status + "' where id=" + id,conx);
             try
             {
                 conx.Open();
@@ -130,6 +132,26 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
         }
 
+        [HttpPut]
+        [Route("api/blockroom/{id}/{note}")]
+        public IHttpActionResult BlockRoom(int id, string note)
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+
+            SqlCommand requestcommand = new SqlCommand("Update room_tbl set note='" + note + "' where id=" + id, conx);
+            try
+            {
+                conx.Open();
+                requestcommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Ok();
+
+        }
 
 
 
@@ -150,6 +172,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return Ok(RoomDtos);
         }
 
+        [HttpDelete]
         //DELETE : api/Companies/{id}
         public IHttpActionResult DeleteUser(int id)
         {

@@ -51,7 +51,7 @@ function GetRoom() {
                     data: "id",
                     render: function (data) {
                         return "<button OnClick='OnEditRoom (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                            + "<button OnClick='OnDeleteRoom (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span> Delete</button>"                           
+                            + "<button OnClick='DeleteRoom (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span> Delete</button>"                           
                             ;
                     }
                 }
@@ -61,7 +61,9 @@ function GetRoom() {
 
     });
 }
-
+function OnCloseRoomModal() {
+    window.location.reload(true);
+}
 
 //Save  
 function RoomAction() {
@@ -100,8 +102,6 @@ function RoomAction() {
             success: function (result) {
                 toastr.success("New Room has been Created", "Server Respond");
                 $('#tableRoom').DataTable().ajax.reload();
-               
-                window.location.reload(true);
             },
             error: function (errormesage) {
                 $('#RoomName').focus();
@@ -171,39 +171,39 @@ function OnEditRoom(id) {
     });
 }
 
-//function OnDeleteRoom(id) {
-//    bootbox.confirm({
-//        title: "",
-//        message: "Are you sure want to delete this?",
-//        button: {
-//            cancel: {
-//                label: "Cancel",
-//                ClassName: "btn-default",
-//            },
-//            confirm: {
-//                label: "Delete",
-//                ClassName: "btn-danger"
-//            }
-//        },
-//        callback: function (result) {
-//            if (result) {
-//                $.ajax({
-//                    url: "/api/Rooms/" + id,
-//                    type: "DELETE",
-//                    contentType: "application/json;charset=utf-8",
-//                    datatype: "json",
-//                    success: function (result) {
-//                        $('#tableRoom').DataTable().ajax.reload();
-//                        toastr.success("Room Deleted successfully!", "Service Response");
-//                    },
-//                    error: function (errormessage) {
-//                        toastr.error("Room Can't be Deleted", "Service Response");
-//                    }
-//                });
-//            }
-//        }
-//    });
-//}
+function DeleteRoom(id) {
+    bootbox.confirm({
+        title: "",
+        message: "Are you sure want to delete this?",
+        button: {
+            cancel: {
+                label: "Cancel",
+                ClassName: "btn-default",
+            },
+            confirm: {
+                label: "Delete",
+                ClassName: "btn-danger"
+            }
+        },
+        callback: function (result) {
+            if (result) {
+                $.ajax({
+                    url: "/api/Rooms/" + id,
+                    type: "DELETE",
+                    contentType: "application/json;charset=utf-8",
+                    datatype: "json",
+                    success: function (result) {
+                        $('#tableRoom').DataTable().ajax.reload();
+                        toastr.success("Room Deleted successfully!", "Service Response");
+                    },
+                    error: function (errormessage) {
+                        toastr.error("Room Can't be Deleted", "Service Response");
+                    }
+                });
+            }
+        }
+    });
+}
 
 function OnCloseRoomModal() {
     window.location.reload(true);
@@ -238,13 +238,6 @@ function ClearControlRoom() {
     $('#roomkey').val('');
 
 }
-
-//function AddnewRoomAction() {
-//    document.getElementById('btnSaveRoom').innerText = "Save";
-//    //DisableControlRoom();
-//    ClearControlRoom();
-//}
-
 
 function ValidationFormRoom() {
     var isValid = true;

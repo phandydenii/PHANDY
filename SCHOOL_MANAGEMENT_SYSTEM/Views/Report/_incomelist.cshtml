@@ -16,19 +16,19 @@
         <div class="col-md-2">
             <label>ស្ថានភាព</label>
             <div class="form-group">
-                <select class="form-control input-sm" id="expensetypeid">
+                <select class="form-control input-sm" id="type">
                     <option value="All">All</option>
-                    @foreach (var i in Model.ExpenseType)
-                    {
-                        <option value="@i.id">@i.typename</option>
-                    }
+                    <option value="Book">Book</option>                   
+                    <option value="CheckIn">Check In</option>
+                    <option value="Invoice">Invoice</option>
+                    <option value="CheckOut">Check Out</option>                   
                 </select>
             </div>
         </div>
         <div class="col-md-2">
             <label>&nbsp;</label>
             <div class="form-group">
-                <a class="btn btn-success btn-sm" style='margin-top:0px' onclick="PreViewOtherExList()">@Resources.Content.Search</a>
+                <a class="btn btn-success btn-sm" style='margin-top:0px' onclick="PreViewOtherExList()"> បង្ហាញ</a>
             </div>
         </div>
     </div>
@@ -45,8 +45,8 @@
         function PreViewOtherExList() {
           var startdate=$("#dateStart").val();
           var enddate=$("#dateEnd").val();
-          var type = $("#expensetypeid").val();
-          window.location = "/otherexpenselist-rpt/" + startdate + "/" + enddate + "/" + type;   
+          var type = $("#type").val();
+          window.location = "/incomelist-rpt/" + startdate + "/" + enddate + "/" + type;
        }
     </script>
 }

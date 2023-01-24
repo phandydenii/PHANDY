@@ -4,8 +4,8 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" id="btnCloseRoomDetail" class="btn btn-danger btn-xs pull-right" data-dismiss="modal" onclick="OnCloseRoomDetail()">បិទ</button>
-                <b class="modal-title" style="color: darkblue;" id="lblRoomNo"></b>
+                <button type="button" id="btnCloseRoomDetail" class="btn btn-danger btn-xs pull-right" data-dismiss="modal" onclick="OnCloseRoomDetail()"><span class="glyphicon glyphicon-remove"></span></button>
+                <b class="modal-title text-center" style="color: darkblue;">@Resources.Content.RoomDetail</b>               
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -114,7 +114,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btnBlock" onclick="OnBlockAction()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Block</button>
+                    <h4><b class="pull-left" style="color:red" id="BlockNote"></b></h4>
+                    <button type="button" id="btnBlock" onclick="OnBlockAction()" class="btn btn-default btn-sm pull-right" style="margin-left:10px;width:100px">Block</button>
                     <button type="button" id="btnCheckOut" onclick="OnCheckOutAction()" class="btn btn-warning btn-sm pull-right" style="margin-left:10px;width:100px">Check Out</button>
                     <button type="button" id="btnCheckIn" onclick="OnCheckInAction()" class="btn btn-primary btn-sm pull-right" style="margin-left:10px;width:100px">Check In</button>
                     <button type="button" id="btnPayment" onclick="OnPaymentAction()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>           
@@ -153,7 +154,7 @@
             contentType: "application/json;charset=utf-8",
             datatype: "json",
             success: function (result) {
-                $('#lblbookrmid').text("Book Room "+result.room_no);
+                //$('#lblbookrmid').text("Book Room "+result.room_no);
                 $("#frmbookroomid").val(rmid);
                 $("#bookroomid").val(rmid);
                 $("#totalbooking").val(result.price);
@@ -183,7 +184,7 @@
     function OnCheckInAction() {
         var btncheckin = document.getElementById('btnCheckIn').innerText;
         var rmid = document.getElementById('roomid');
-        var rmname = document.getElementById('lblRoomNo').innerText;
+        //var rmname = document.getElementById('lblRoomNo').innerText;
         if (btncheckin == "Check In Now") {
             $("#CheckInNowModal").modal("show");
             $("#chnowroomid").val(rmid.value);
@@ -206,9 +207,20 @@
                 $("#roompricech").val(data.price);
                 $("#payforroom").val(data.price);
                 //$("#paybefor").val(data.price);
-                $("#lblRoom").text("Check In Room " + data.room_no);
-            });   
+                //$("#lblRoom").text("Check In Room " + data.room_no);
+            });
+            
+            //var comefrom = ['Takeo', 'Kandal', 'Prey Veng', 'Kampot', 'Kampong Cham', 'Kampng Thom', 'Battambong', 'Pusath', 'Seim Reap'];
+            //var select = document.getElementById("address");
+            //for (var i = 0; i < comefrom.length; i++) {
+            //    var optn = comefrom[i];
+            //    var el = document.createElement("option");
+            //    el.textContent = optn;
+            //    el.value = optn;
+            //    select.appendChild(el);
+            //}
         }
+        
     }
 
     //On Check Out
@@ -306,32 +318,57 @@
     //On Block Room
     function OnBlockAction() {
         var rmid = document.getElementById('roomid');
-        var rmname = document.getElementById('lblRoomNo').innerText;
-        $("#roomidblock").val(rmid.value);
-        $("#lblRoomNoBlock").text(rmname);
+        //var rmname = document.getElementById('lblRoomNo').innerText;
+        //$("#roomidblock").val(rmid.value);
+        //$("#lblRoomNoBlock").text(rmname);
         var btnblock = document.getElementById('btnBlock').innerText;
         var stts;
+        var sms;
+        var title;
         if (btnblock == "Block") {
-            stts = "BLOCK"
+            stts = "BLOCK";
+            sms = "Block Room Successfully!";
+            title = "Do your want to Block this room?";
         } else {
-            stts = "FREE"
+            stts = "FREE";
+            sms = "Unblock Room Successfully!";
+            title = "Do your want to UnBlock this room?";
         }
-
-        $.ajax({
-            type: "PUT",
-            url: "/api/updateroomstatus/" + $("#roomid").val() + "/" + stts,
-            contentType: false,
-            processData: false,
-            // data: status,
-            success: function (result) {
-                toastr.success("Room has been unblock successfully.", "Server Response");
-                $("#RoomDetailModal").modal("hide");
-                window.location.reload(true);
+        bootbox.prompt({
+            title: title,
+            inputType: 'textarea',
+            button: {
+                cancel: {
+                    label: "Cancel",
+                    ClassName: "btn-default",
+                },
+                confirm: {
+                    label: "Ok",
+                    ClassName: "btn-danger"
+                }
             },
-            error: function (error) {
-                toastr.error("Unblock room fail!", "Server Response");
+            callback: function (result) {
+                var note;
+                if (!result || result) {
+                    $.ajax({
+                        type: "PUT",
+                        url: "/api/updateroomstatus/" + $("#roomid").val() + "/" + stts + "/" + note,
+                        contentType: false,
+                        processData: false,
+                        // data: status,
+                        success: function (result) {
+                            toastr.success(sms, "Service Response");
+                            window.location.reload(true);
+                        },
+                        error: function (error) {
+                            toastr.error("Block room fail!", "Server Response");
+                        }
+                    });
+                }
+                    
+                
             }
-        });
+        });   
     }
 </script>
 

@@ -4,10 +4,10 @@
 }
 
 <div class="row">
-    <div id="LoginPanel" class="col-md-6 col-md-offset-3">
+    <div style="margin-top:10px" class="col-md-4 col-md-offset-4">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title text-center">Register New Account</h3>
+                <h3 class="panel-title text-center">@Resources.Content.RegisterNewAccount</h3>
             </div>
             <div class="panel-body">
                 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -15,31 +15,31 @@
                     @Html.AntiForgeryToken()
                     <div class="form-group">
                         <div class="col-md-12">
-                            @Html.LabelFor(m => m.FullName)
+                            <label>@Resources.Content.FullName</label>
                             @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", @placeholder = "Enter your Fullname" })
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            @Html.LabelFor(m => m.Sex)
+                            <label>@Resources.Content.Sex</label>
                             @Html.TextBoxFor(m => m.Sex, new { @class = "form-control", @placeholder = "Enter your Fullname" })
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            @Html.LabelFor(m => m.Email)
+                            <label>@Resources.Content.Email</label>
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Enter your email" })
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            @Html.LabelFor(m => m.Password)
+                            <label>@Resources.Content.Password</label>
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Enter your password" })
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            @Html.LabelFor(m => m.ConfirmPassword)
+                            <label>@Resources.Content.ConfirmPassword</label>
                             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Enter confirm password" })
                         </div>
                     </div>
@@ -51,7 +51,6 @@
                 }
             </div>
         </div>
-
     </div>
 </div>
 

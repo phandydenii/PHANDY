@@ -1,21 +1,53 @@
 ﻿@using Microsoft.AspNet.Identity
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
     @Html.AntiForgeryToken()
-
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li>
+                @if (Request.Cookies["Language"].Value == "km")
+                {
+                    <a href="@Url.Action("Change", "Language", new { LanguageAbbrevation = "en" }, null)">
+                        <img src="~/Content/english-flag.png" style="width: 17px;"> English
+                    </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("Change", "Language", new { LanguageAbbrevation = "km" }, null)">
+                        <img src="~/Content/cambodia-flag.png" style="width: 17px;"> ភាសាខ្មែរ
+                    </a>
+                }
+            </li>
+            
+            <li><a href="javascript:document.getElementById('logoutForm').submit()"><span class="glyphicon glyphicon-off"></span>​​ ចាកចេញ</a></li>
+        </ul>
+    </div>
+    
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
+        <li>
+            @if (Request.Cookies["Language"].Value == "km")
+            {
+                <a href="@Url.Action("Change", "Language", new { LanguageAbbrevation = "en" }, null)">
+                    <img src="~/Content/english-flag.png" style="width:17px;"> English
+                </a>
+            }
+            else
+            {
+                <a href="@Url.Action("Change", "Language", new { LanguageAbbrevation = "km" }, null)">
+                    <img src="~/Content/cambodia-flag.png" style="width:17px;"> ភាសាខ្មែរ
+                </a>
+            }
+        </li>
         @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>

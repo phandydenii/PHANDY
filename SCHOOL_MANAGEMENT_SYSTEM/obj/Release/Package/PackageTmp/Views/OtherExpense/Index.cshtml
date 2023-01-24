@@ -4,54 +4,49 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div id="loadingGif"></div>
-
-<div class="container-fluid">
-    <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-            <button class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#expensetypeModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> ប្រភេទចំណាយ</button>
-            <button onclick="ClickAddnewOtherExpense()" class="btn-success btn-xs pull-right" type="button" data-toggle="modal" data-target="#otherexpenseModel" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> បង្កើតចំណាយថ្មី</button>
-            <h5 class="modal-title">Manage Product</h5>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-inline">
-                        <label for="displayshowroom">ជ្រើសរើសសាខា:</label>
-                        <select class="form-control" id="displayshowroom">
-                            <option>---Select Showroom----</option>
-                            @foreach (var depart in Model.Showrooms)
-                            {
-                                <option value="@depart.id">@depart.name</option>
-                            }
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row" style="overflow:auto">
-                <div class="col-md-12">
-                    <table id="tableOtherExpense" class="table table-hover table-bordered">
-                        <thead>
-                            <tr>
-                                @*<th>ID</th>*@
-                                <th>ថ្ងៃខែ</th>
-                                @*<th>ប្រភេទទំនិញ</th>*@
-                                <th>ចំនួនប្រាក់</th>
-                                <td>បរិយាយ</td>
-                                @*<th>សាខា</th>*@
-                                @*<th>ស្ថានភាព</th>*@
-                                <th>សកម្មភាព</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        
-
+<div class="row">
+    <div class="col-md-6">
+        <h4 style="color: darkblue;">គ្រប់គ្រងការចំណាយផ្សេងៗ</h4>
+    </div>
+    <div class="col-md-6">
+        <a href="#" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#expensetypeModel" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> ប្រភេទចំណាយ</a>
+        <a href="#" class="btn btn-success btn-sm pull-right"​​ onclick="ClickAddnewOtherExpense()" data-toggle="modal" data-target="#otherexpenseModel" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> បង្កើតចំណាយថ្មី</a>
     </div>
 </div>
+<hr />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-inline">
+                <label for="fromdate">ចាប់ពីថ្ងៃទី:</label>
+                <input id="fromdate" name="fromdate" type="date" value="" class="form-control input-sm" placeholder="Enter Product Name" />
+                <label for="todate">ដល់:</label>
+                <input id="todate" name="todate" type="date" value="" class="form-control input-sm" placeholder="Enter Product Name" />
+                <a class="btn btn-success btn-sm" style='margin-top:0px' onclick="PreviewOtherExpendList()"> បង្ហាញ</a>
+            </div>
+            
+        </div>
+    </div>
+    <table id="tableOtherExpense" class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ថ្ងៃខែ</th>
+                <th>ប្រភេទចំណាយ</th>
+                <th>ចំនួនប្រាក់</th>
+                <th>បរិយាយ</th>
+                <th style="width:10%">សកម្មភាព</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+
+
+
+
 
 
 

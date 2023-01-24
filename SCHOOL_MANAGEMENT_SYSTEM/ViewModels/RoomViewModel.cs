@@ -22,13 +22,19 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
         public IEnumerable<Staff> StaffList { get; set; }
         public IEnumerable<ExchangeRate> ExchangeRate { get; set; }
 
-        public IEnumerable<Room> RoomG { get; set; }
+        public IEnumerable<Room> Room0 { get; set; }
         public IEnumerable<Room> RoomF1 { get; set; }
         public IEnumerable<Room> RoomF2 { get; set; }
         public IEnumerable<Room> RoomF3 { get; set; }
         public IEnumerable<Room> RoomF4 { get; set; }
         public IEnumerable<Room> RoomF5 { get; set; }
 
+
+        public IEnumerable<Floor> Floor { get; set; }
+        public IEnumerable<Floor> TotalFloor { get; set; }
+        public IEnumerable<Room> TotalRoomFloor { get; set; }
+
+        
 
 
         public int TotalRoom { get; set; }
@@ -38,5 +44,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
         public int TotalCheckIn { get; set; }
         public int ExchangeRateID { get; set; }
         public int WaterPowerPriceID { get; set; }
+        //public int TotalFloor { get; set; }
     }
 }

@@ -39,7 +39,7 @@ function GetCheckOut() {
                     data: "id",
                     render: function (data) {
                         return "<button OnClick='EditCheckOut (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                             + "<button OnClick='DeleteCheckOut (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-out'></span> Delete</button>"
+                             + "<button OnClick='DeleteCheckOut (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trush'></span> Delete</button>"
                         ; 
                     }
                 }

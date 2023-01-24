@@ -348,21 +348,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="typename">
+                    <Textbox Name="incometype">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!typename.Value</Value>
+                              <Value>=Fields!incometype.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>typename</rd:DefaultName>
+                      <rd:DefaultName>incometype</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -408,21 +408,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="amount">
+                    <Textbox Name="total">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Format(CDec(Fields!amount.Value),"00.00")</Value>
+                              <Value>=Format(CDec(Fields!total.Value),"00")</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>amount</rd:DefaultName>
+                      <rd:DefaultName>total</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -488,7 +488,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!amount.Value)</Value>
+                              <Value>=Sum(Fields!total.Value)</Value>
                               <Style>
                                 <FontFamily>khmer OS Battambang</FontFamily>
                               </Style>
@@ -630,13 +630,13 @@
           <DataField>date</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="typename">
-          <DataField>typename</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="amount">
-          <DataField>amount</DataField>
+        <Field Name="total">
+          <DataField>total</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="incometype">
+          <DataField>incometype</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="note">
           <DataField>note</DataField>
@@ -646,10 +646,10 @@
       <rd:DataSetInfo>
         <rd:DataSetName>RLDataSet</rd:DataSetName>
         <rd:SchemaPath>E:\GIT\ROSELANY-APARTMENT\SCHOOL_MANAGEMENT_SYSTEM\RLDataSet.xsd</rd:SchemaPath>
-        <rd:TableName>OTHER_EXPENSE_V</rd:TableName>
+        <rd:TableName>INCOME_V</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>OTHER_EXPENSE_VTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>INCOME_VTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

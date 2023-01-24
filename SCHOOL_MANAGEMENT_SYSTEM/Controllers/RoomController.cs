@@ -40,11 +40,19 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
                 TotalCheckIn = _context.Rooms.Where(c => c.status == "CHECK-IN").Count(),
                 Items = _context.Items.ToList(),
                 TotalRoom = _context.Rooms.Count(),
-                ExchangeRateID =_context.Exchanges.Where(d=>d.IsDeleted==false).Max(a=>a.id),
+                ExchangeRateID = _context.Exchanges.Where(d => d.IsDeleted == false).Max(a => a.id),
                 WaterPowerPriceID = _context.WEPrices.Where(d => d.IsDeleted == false).Max(a => a.id),
                 GuestBook = _context.Guests.Where(c => c.status == "BOOK").ToList(),
                 GuestList = _context.Guests.ToList(),
-
+                TotalFloor=_context.Floors.ToList().OrderByDescending(x => x.id),
+                TotalRoomFloor=_context.Rooms.ToList(),
+                Room0 = _context.Rooms.Where(c =>c.floorid==1).OrderBy(x =>x.room_no).ToList(),
+                RoomF1=_context.Rooms.Where(c=>c.floorid==2).OrderBy(x => x.room_no).ToList().ToList(),
+                RoomF2=_context.Rooms.Where(c=>c.floorid==3).OrderBy(x => x.room_no).ToList().ToList(),
+                RoomF3=_context.Rooms.Where(c=>c.floorid==4).OrderBy(x => x.room_no).ToList().ToList(),
+                RoomF4=_context.Rooms.Where(c=>c.floorid==5).OrderBy(x => x.room_no).ToList().ToList(),
+                RoomF5=_context.Rooms.Where(c=>c.floorid==6).OrderBy(x => x.room_no).ToList().ToList(),
+       
             };
             return View(roomViewModel);
         }

@@ -3,9 +3,8 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">Check Out Roon</b>
-                <b class="modal-title" style="color: darkblue;" id="lblExchangeRate"></b>
+                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="OnCloseCheckOut()"><span class="glyphicon glyphicon-remove"></span></button>
+                <b class="modal-title" style="color: darkblue;">@Resources.Content.CheckOut</b>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -18,6 +17,7 @@
                         <input id="exrate" name="exrate" type="text" style="display: none;" value="" class="form-control" />
                         <input id="wprice" name="wprice" type="text" style="display: none;" value="" class="form-control" />
                         <input id="pprice" name="pprice" type="text" style="display: none;" value="" class="form-control" />
+                        <input id="lblExchangeRate" name="lblExchangeRate" type="text" style="display: none;" value="" class="form-control" />
 
                         <div class="row">
                             <div class="col-md-6">
@@ -130,8 +130,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnSaveCheckOut" onclick="CheckOutAction()" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">Save</button>
-                <button type="button" id="btnClose" onclick="CloseForm();" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>
+                <button type="button" id="btnSaveCheckOut" onclick="CheckOutAction()" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">@Resources.Content.Save</button>
+                <button type="button" id="btnClose" onclick="CloseForm();" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">@Resources.Content.Cancel</button>
             </div>
         </div>
     </div>

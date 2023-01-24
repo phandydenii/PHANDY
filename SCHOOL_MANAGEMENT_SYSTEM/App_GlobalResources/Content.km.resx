@@ -249,7 +249,184 @@
   <data name="UserRoleManagement" xml:space="preserve">
     <value>គ្រប់គ្រងសិទ្ធរបស់អ្នកប្រើប្រាស់</value>
   </data>
+  <data name="AddItemToRoom" xml:space="preserve">
+    <value>បន្ថែមសម្ភារៈចូលបន្ទប់</value>
+  </data>
+  <data name="Book" xml:space="preserve">
+    <value>កក់បន្ទប់</value>
+  </data>
+  <data name="ManageFloor" xml:space="preserve">
+    <value>គ្រប់គ្រងជាន់</value>
+  </data>
+  <data name="ManageRoomType" xml:space="preserve">
+    <value>គ្រប់គ្រងប្រភេទបន្ទប់</value>
+  </data>
   <data name="RAMS" xml:space="preserve">
     <value>ប្រព័ន្ធគ្រប់គ្រង រ៉ូសឡានី អាផាត់ម៉ិន</value>
+  </data>
+  <data name="RoomDetail" xml:space="preserve">
+    <value>ពត៌មានបន្ទប់លំអិត</value>
+  </data>
+  <data name="TotalBooking" xml:space="preserve">
+    <value>សរុបកក់រួច</value>
+  </data>
+  <data name="TotalRoomBlock" xml:space="preserve">
+    <value>សរុបបន្ទប់ខូច</value>
+  </data>
+  <data name="TotalRoomFree" xml:space="preserve">
+    <value>សរុបបន្ទប់ទំនេរ</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>សកម្មភាព</value>
+  </data>
+  <data name="AddItem" xml:space="preserve">
+    <value>បន្ថែមសម្ភារៈ</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>បន្ថែម</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>អាស័យដ្ឋាន</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>ទាំងអស់</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>ចំនួនទឹកប្រាក់</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>ខូច</value>
+  </data>
+  <data name="BookingDate" xml:space="preserve">
+    <value>ថ្ងៃកក់</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ចាកចេញ</value>
+  </data>
+  <data name="CancelBooking" xml:space="preserve">
+    <value>បោះបង់ការកក់</value>
+  </data>
+  <data name="CheckInDate" xml:space="preserve">
+    <value>ថ្ងៃចូលស្នាក់នៅ</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>កាលបរិច្ឆេទ</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>លុប</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>បរិយាយ</value>
+  </data>
+  <data name="DOB" xml:space="preserve">
+    <value>ថ្ងៃខែឆ្នាំកំណើត</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>កែប្រែ</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>ដល់ថ្ងៃ</value>
+  </data>
+  <data name="ExpenseType" xml:space="preserve">
+    <value>ប្រភេទចំណាយ</value>
+  </data>
+  <data name="Expire" xml:space="preserve">
+    <value>ផុតកំណត់</value>
+  </data>
+  <data name="ExpireDate" xml:space="preserve">
+    <value>ថ្ងៃផុតកំណត់</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>ប្រវត្តស្នាក់នៅរបស់ភ្ញៀវ</value>
+  </data>
+  <data name="ManageCheckOut" xml:space="preserve">
+    <value>គ្រប់គ្រងការរើចេញ</value>
+  </data>
+  <data name="ManageExpenseType" xml:space="preserve">
+    <value>គ្រប់គ្រងប្រភេទចំណាយ</value>
+  </data>
+  <data name="ManagePosition" xml:space="preserve">
+    <value>គ្រប់គ្រងតូនាទី</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>ឈ្មោះ</value>
+  </data>
+  <data name="NameKh" xml:space="preserve">
+    <value>ឈ្មោះជាភាសាខ្មែរ</value>
+  </data>
+  <data name="NewExpense" xml:space="preserve">
+    <value>ចំណាយថ្មី</value>
+  </data>
+  <data name="NewStaff" xml:space="preserve">
+    <value>បន្ថែមបុគ្គលិក</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>លេខរៀង</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>ចំណាំ</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>លេខទូរសព្ទ</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>តួនាទី</value>
+  </data>
+  <data name="PrePaid" xml:space="preserve">
+    <value>បង់មុន</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>តម្លៃ</value>
+  </data>
+  <data name="ReturnAmount" xml:space="preserve">
+    <value>ប្រាក់បង្វិលវិញ</value>
+  </data>
+  <data name="RoomNo" xml:space="preserve">
+    <value>លេខបន្ទប់</value>
+  </data>
+  <data name="RoomType" xml:space="preserve">
+    <value>ប្រភេទបន្ទប់</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>រក្សាទុក</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>ស្វែងរក</value>
+  </data>
+  <data name="ServiceCharge" xml:space="preserve">
+    <value>បង់ថ្លៃសេវា</value>
+  </data>
+  <data name="SSN" xml:space="preserve">
+    <value>លេខអត្តសញ្ញាណប័ណ្ណ</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>ចាប់ពីថ្ងៃ</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>ស្ថានភាព</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>សរុប</value>
+  </data>
+  <data name="TotalPayment" xml:space="preserve">
+    <value>សរុបប្រាក់ត្រូវបង់</value>
+  </data>
+  <data name="UnBlock" xml:space="preserve">
+    <value>ដំណើរការបន្ទប់</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>កែប្រែរ</value>
+  </data>
+  <data name="UpdateBooking" xml:space="preserve">
+    <value>កែប្រែរពត៌មានកក់</value>
+  </data>
+  <data name="UpdateGuest" xml:space="preserve">
+    <value>កែប្រែរពត៌មានភ្ញៀវ</value>
+  </data>
+  <data name="PrintInvoice" xml:space="preserve">
+    <value>ចេញវិក័យបត្រ</value>
+  </data>
+  <data name="UpdatePayment" xml:space="preserve">
+    <value>កែប្រែរទិន្នន័យបង់ថ្លៃស្នាក់នៅ</value>
   </data>
 </root>

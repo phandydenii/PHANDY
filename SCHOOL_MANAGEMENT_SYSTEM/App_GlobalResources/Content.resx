@@ -249,7 +249,184 @@
   <data name="UserRoleManagement" xml:space="preserve">
     <value>User Role Management</value>
   </data>
+  <data name="AddItemToRoom" xml:space="preserve">
+    <value>Add Item To Room</value>
+  </data>
+  <data name="Book" xml:space="preserve">
+    <value>Book</value>
+  </data>
+  <data name="ManageFloor" xml:space="preserve">
+    <value>Manage Floor</value>
+  </data>
+  <data name="ManageRoomType" xml:space="preserve">
+    <value>Manage Room Type</value>
+  </data>
   <data name="RAMS" xml:space="preserve">
     <value>ROSELANY APARTMENT MANAGEMENT SYSTEM</value>
+  </data>
+  <data name="RoomDetail" xml:space="preserve">
+    <value>Room Detail</value>
+  </data>
+  <data name="TotalBooking" xml:space="preserve">
+    <value>Booking</value>
+  </data>
+  <data name="TotalRoomBlock" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="TotalRoomFree" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="AddItem" xml:space="preserve">
+    <value>Add Item</value>
+  </data>
+  <data name="AddNew" xml:space="preserve">
+    <value>Add New</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="BookingDate" xml:space="preserve">
+    <value>Booking Date</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CancelBooking" xml:space="preserve">
+    <value>Cancel​ Booking</value>
+  </data>
+  <data name="CheckInDate" xml:space="preserve">
+    <value>CheckInDate</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DOB" xml:space="preserve">
+    <value>Date Of Birth</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="ExpenseType" xml:space="preserve">
+    <value>Expense Type</value>
+  </data>
+  <data name="Expire" xml:space="preserve">
+    <value>Expire</value>
+  </data>
+  <data name="ExpireDate" xml:space="preserve">
+    <value>Expire Date</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="ManageCheckOut" xml:space="preserve">
+    <value>Manage Check Out</value>
+  </data>
+  <data name="ManageExpenseType" xml:space="preserve">
+    <value>Manage Expense Type</value>
+  </data>
+  <data name="ManagePosition" xml:space="preserve">
+    <value>Manage Position</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameKh" xml:space="preserve">
+    <value>Name Khmer</value>
+  </data>
+  <data name="NewExpense" xml:space="preserve">
+    <value>New Expense</value>
+  </data>
+  <data name="NewStaff" xml:space="preserve">
+    <value>New Staff</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="PrePaid" xml:space="preserve">
+    <value>Pre-Paid</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="ReturnAmount" xml:space="preserve">
+    <value>Return Amount</value>
+  </data>
+  <data name="RoomNo" xml:space="preserve">
+    <value>Room No</value>
+  </data>
+  <data name="RoomType" xml:space="preserve">
+    <value>Room Type</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="ServiceCharge" xml:space="preserve">
+    <value>Service Charge</value>
+  </data>
+  <data name="SSN" xml:space="preserve">
+    <value>SSN</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TotalPayment" xml:space="preserve">
+    <value>Total Payment</value>
+  </data>
+  <data name="UnBlock" xml:space="preserve">
+    <value>UnBlock</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateBooking" xml:space="preserve">
+    <value>Update Booking</value>
+  </data>
+  <data name="UpdateGuest" xml:space="preserve">
+    <value>Update Guest</value>
+  </data>
+  <data name="PrintInvoice" xml:space="preserve">
+    <value>Print Invoice</value>
+  </data>
+  <data name="UpdatePayment" xml:space="preserve">
+    <value>Update Payment</value>
   </data>
 </root>

@@ -6,71 +6,120 @@
         $('#loadingGif').removeClass('show');
     });
 
-    GetOtherExpense("all");
-    $('#displayshowroom').on('change', function () {
-        var departmentid = this.value;
-        if (departmentid == "---Select Showroom----") {
-            GetOtherExpense("all");
-        } else {
-            //alert(departmentid);
-            GetOtherExpense(departmentid);
-        }
-    })
+    GetOtherExpense('', '');
+
+    //$('#fromdate').on('change', function () {
+    //    var fromdate = this.value;
+    //    var todate = $('#todate').val();
+    //    GetOtherExpense(fromdate, todate);
+
+    //});
+    //$('#todate').on('change', function () {
+    //    var todate = this.value;
+    //    var fromdate = $('#fromdate').val();
+    //    GetOtherExpense(fromdate, todate);
+
+    //});
 })
+function PreviewOtherExpendList() {
+    var todate = $('#todate').val();
+    var fromdate = $('#fromdate').val();
+    GetOtherExpense(fromdate, todate);
+}
 
 var tableEmployee = [];
 toastr.optionsOverride = 'positionclass = "toast-bottom-right"';
 toastr.options.positionClass = 'toast-bottom-right';
 
-function GetOtherExpense(departmentId) {
-    tableEmployee = $('#tableOtherExpense').DataTable({
-        ajax: {
-            url: (departmentId == "all") ? "/api/OtherExpense?showroomid=all" : "/api/OtherExpense?showroomid=" + departmentId,
-            dataSrc: ""
-        },
-        columns: [
-                //{
-                //    data: "id"
-                //},
-                {
-                    data: "date",
-                    render: function (data) {
-                        return moment(new Date(data)).format('DD-MMM-YYYY');
-                    }
-                },
-                //{
-                //     data: "expensetypeid"
-                //},
-                {
-                   data: "amount"
-                },
-
-                {
-                    data: "note"
-                },
-
-                //{
-                //    data: "showroomid"
-                //},
-
-                //{
-                //    data: "createby"
-                //},
-                //{
-                //    data: "createdate"
-                //},
-
-            {
-                data: "id",
-                render: function (data) {
-                    return "<button onclick='OtherExpenseEdit(" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px;'​>Edit</button>" + "<button onclick='OtherExpenseDelete(" + data + ")' class='btn btn-danger btn-xs' >Delete</button>";
-                }
+function GetOtherExpense(fromdate, todate) {
+    if (fromdate == "" && todate == "") {
+        tableEmployee = $('#tableOtherExpense').DataTable({
+            ajax: {
+                url: "/api/OtherExpense",
+                dataSrc: ""
             },
-        ],
-        destroy: true,
-        "order": [0, "desc"],
-        "info": false
-    });
+            columns: [
+                    {
+                        data: "id"
+                    },
+                    {
+                        data: "date",
+                        render: function (data) {
+                            return moment(new Date(data)).format('DD-MMM-YYYY');
+                        }
+                    },
+                    {
+                        data: "expenseTypes.typename"
+                    },
+                    {
+                        data: "amount"
+                    },
+
+                    {
+                        data: "note"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button onclick='OtherExpenseEdit(" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px;'​>Edit</button>" + "<button onclick='OtherExpenseDelete(" + data + ")' class='btn btn-danger btn-xs' >Delete</button>";
+                        }
+                    },
+            ],
+            destroy: true,
+            "order": [0, "desc"],
+            "info": false
+        });
+    } else {
+        tableEmployee = $('#tableOtherExpense').DataTable({
+            ajax: {
+                url: "/api/OtherExpense/" + fromdate + "/" + todate,
+                dataSrc: ""
+            },
+            columns: [
+                    {
+                        data: "id"
+                    },
+                    {
+                        data: "date",
+                        render: function (data) {
+                            return moment(new Date(data)).format('DD-MMM-YYYY');
+                        }
+                    },
+                    {
+                        data: "expenseTypes.typename"
+                    },
+                    {
+                        data: "amount"
+                    },
+
+                    {
+                        data: "note"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button onclick='OtherExpenseEdit(" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px;'​>Edit</button>" + "<button onclick='OtherExpenseDelete(" + data + ")' class='btn btn-danger btn-xs' >Delete</button>";
+                        }
+                    },
+            ],
+            destroy: true,
+            "order": [0, "desc"],
+            "info": false
+        });
+    }
+    
+}
+function CloseFrm() {
+    window.location.reload(true);
+}
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#image').attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
 function OtherExpenseAction() {
@@ -83,7 +132,6 @@ function OtherExpenseAction() {
         document.getElementById('expensetypeid').disabled = false;
         document.getElementById('amount').disabled = false;
         document.getElementById('note').disabled = false;
-        document.getElementById('showroomid').disabled = false;
         $("#expensetypeid").focus();
         $("#amount").val(0);
     } else if (action == "Save") {
@@ -96,10 +144,10 @@ function OtherExpenseAction() {
         data.append("expensetypeid", $("#expensetypeid").val());
         data.append("amount", $("#amount").val());
         data.append("note", $("#note").val());
-        data.append("showroomid", $("#showroomid").val());
-
-        //console.log(files[0]);
-
+        var files = $("#file").get(0).files;
+        if (files.length > 0) {
+            data.append("image", files[0]);
+        }
         $.ajax({
             type: "POST",
             url: "/api/OtherExpense",
@@ -107,12 +155,9 @@ function OtherExpenseAction() {
             processData: false,
             data: data,
             success: function (result) {
-
-                //console.log(result);
-
                 toastr.success("OtherExpense has been created successfully.", "Server Response");
                 tableEmployee.ajax.reload();
-
+                window.location.reload(true);
                 $('#id').val(result.id);
                 $('#otherexpenseModel').modal('hide');
 
@@ -124,13 +169,9 @@ function OtherExpenseAction() {
                 
             },
             error: function (error) {
-                //console.log(error);
                 toastr.error("OtherExpense Already Exists!.", "Server Response");
             }
         });
-
-        //maritalstatus
-
     } else if (action == "Update") {
         var response = Validate();
         if (response == false) {
@@ -142,10 +183,10 @@ function OtherExpenseAction() {
         data.append("expensetypeid", $("#expensetypeid").val());
         data.append("amount", $("#amount").val());
         data.append("note", $("#note").val());
-        data.append("showroomid", $("#showroomid").val());
-
-        console.log(data);
-
+        var files = $("#file").get(0).files;
+        if (files.length > 0) {
+            data.append("image", files[0]);
+        }
         $.ajax({
             type: "PUT",
             url: "/api/OtherExpense/" + $('#id').val(),
@@ -153,15 +194,10 @@ function OtherExpenseAction() {
             processData: false,
             data: data,
             success: function (result) {
-
-                //console.log(result);
-
                 toastr.success("OtherExpense has been updated successfully.", "Server Response");
                 tableEmployee.ajax.reload();
-
-                //$('#employeeId').val(result.id);
                 $('#otherexpenseModel').modal('hide');
-
+                window.location.reload(true);
                 document.getElementById('btnOtherExpense').innerText = "Add New";
                 $('#date').val('');
                 $('#expensetypeid').val('');
@@ -170,7 +206,6 @@ function OtherExpenseAction() {
 
             },
             error: function (error) {
-                //console.log(error);
                 toastr.error("OtherExpense Already Exists!.", "Server Response");
             }
         });
@@ -180,7 +215,6 @@ function OtherExpenseAction() {
 
 function OtherExpenseEdit(id) {
     document.getElementById('btnOtherExpense').innerText = "Update";
-
     $.ajax({
         url: "/api/OtherExpense/" + id,
         type: "GET",
@@ -192,18 +226,18 @@ function OtherExpenseEdit(id) {
             $('#date').val(pd);
             $('#expensetypeid').val(result.expensetypeid);
             $("#amount").val(result.amount);
-            $("#showroomid").val(result.showroomid);
             $('#note').val(result.note);
-            //console.log(result);
-           
+            $('#file_old').val(result.image);
+            if (result.image == "") {
+                $('#image').attr('src', '../Images/invoice-icon.png');
+            } else {
+                $('#image').attr('src', '../Images/' + result.image);
+            }
 
-            //Enable Control
             document.getElementById('date').disabled = false;
             document.getElementById('expensetypeid').disabled = false;
             document.getElementById('amount').disabled = false;
             document.getElementById('note').disabled = false;
-            document.getElementById('showroomid').disabled = false;
-
 
             $('#otherexpenseModel').modal('show');
         },
@@ -266,7 +300,6 @@ function ClickAddnewOtherExpense() {
     document.getElementById('expensetypeid').disabled = true;
     document.getElementById('amount').disabled = true;
     document.getElementById('note').disabled = true;
-    document.getElementById('showroomid').disabled = true;
 
     $('#amount').val('');
     $('#note').val('');

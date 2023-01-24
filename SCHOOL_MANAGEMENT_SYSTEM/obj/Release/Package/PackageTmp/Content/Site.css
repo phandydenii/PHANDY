@@ -25,17 +25,17 @@ textarea {
 
 
 #footer {
-    background: #772953;
-    color:#fff;
+    background: #2fa4e7;
+    color: #fff;
     padding-top: 15px;
-    padding-bottom:15px;
-    position:fixed;
+    padding-bottom: 15px;
+    position: fixed;
     width: 100%;
-    bottom:0;
-    z-index:100;
+    bottom: 0;
+    z-index: 100;
 }
 #LoginPanel {
-    margin-top: 15px;
+    margin-top: 40%;
 }
 
 

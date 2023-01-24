@@ -475,14 +475,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             if (!ModelState.IsValid)
                 return BadRequest();
 
-            //var isExist = _context.Vacancies.SingleOrDefault(c => c.VacancyName == VacancyDtos.VacancyName);
-            //if (isExist != null)
-            //    return BadRequest();
             var CheckIninDb = _context.CheckIns.SingleOrDefault(c => c.id == id);
-            Mapper.Map(CheckInDto, CheckIninDb);
+            if (CheckIninDb == null)
+                return BadRequest();
+            CheckIninDb.userid = User.Identity.GetUserId();
+            
             _context.SaveChanges();
 
-            return Ok(CheckIninDb);
+            return Ok(CheckInDto);
         }
 
         [HttpPut]

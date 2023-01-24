@@ -3,15 +3,18 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" onclick="CloseBook()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;" id="lblbookrmid"></b>
+                <button type="button" onclick="CloseBook()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <b class="modal-title" style="color: darkblue;" id="lblbookrmid">@Resources.Content.UpdateBooking</b>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <input id="bookid" name="bookid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <input id="bookroomid" name="bookroomid" type="text" style="display: none;" value="" class="form-control" />
                     <input id="guestid" name="guestid" type="text" style="display: none;" value="" class="form-control" />
-                    <input id="status" name="status" type="text" style="display: none;" value="" class="form-control" />                
+                    <input id="status" name="status" type="text" style="display: none;" value="" class="form-control" />
+
+                    <input id="userid" name="userid" type="text" style="display: none;" value="" class="form-control" />
+           
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-6">
@@ -29,7 +32,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="roomid">បន្ទប់</label>
-                                    <input readonly="readonly" id="roomid" name="roomid" placeholder="$0.00" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                    <select class="form-control input-sm" id="roomid" disabled>
+                                        @foreach (var room in Model.Rooms)
+                                        {
+                                            <option value=@room.id>@room.room_no</option>
+                                        }
+                                    </select>
+
+                                    @*<input readonly="readonly" id="roomid" name="roomid" placeholder="$0.00" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />*@
                                 </div>
                                 <div class="form-group">
                                     <label for="roomprice">តម្លៃបន្ទប់</label>
@@ -63,8 +73,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="bookingnote">កត់ត្រា</label>
-                                    <input id="bookingnote" name="bookingnote" placeholder="Note" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                    <label for="note">កត់ត្រា</label>
+                                    <input id="note" name="note" placeholder="Note" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                         </div>
@@ -72,10 +82,20 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnPayment" onclick="UpdateBooking()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:100px">Update</button>
-                <button type="button" id="btnCheckOut" onclick="OnCloseBook()" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:5px;width:100px">Cancel</button>
+                <button type="button" id="btnPayment" onclick="UpdateBooking()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:100px">@Resources.Content.Update</button>
+                <button type="button" id="btnCheckOut" onclick="OnCloseBook()" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:5px;width:100px">@Resources.Content.Cancel</button>
             </div>
         </div>
 
     </div>
 </div>
+<script>
+    function ChangePayBook() {
+        var a = parseFloat($('#totalbooking').val());
+        var b = parseFloat($('#paydollarbooking').val());
+        var e = parseFloat($('#exchagerate').text());
+        var result = (a - b) * e;
+        $('#payreilbooking').val(result.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+
+    }
+</script>

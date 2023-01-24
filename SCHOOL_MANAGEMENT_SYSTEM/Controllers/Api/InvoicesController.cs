@@ -571,20 +571,34 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpGet]
-        [Route("api/invoice-v/newinvoie")]
+        [Route("api/invoice-max-by-guestid/{guestid}")]
         //Get : api/Buildings
-        public object  GetNewInvoice()
+        public IHttpActionResult  GetMaxInvoiceByGuestID(int guestid)
         {
             DataTable dt = new DataTable();
             DataSet ds = new DataSet();
             
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select * from PRINT_INVOICE", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from V_INVOICE_MAX_BY_GUEST WHERE guestid=" + guestid, conx);
             adp.Fill(ds);
-            return ds.Tables[0]; 
+            return Ok(ds.Tables[0]); 
         }
 
+        [HttpGet]
+        [Route("api/invoice-v/newinvoie")]
+        //Get : api/Buildings
+        public object GetNewInvoice()
+        {
+            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
+
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from PRINT_INVOICE", conx);
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
 
         //no
         [HttpGet]

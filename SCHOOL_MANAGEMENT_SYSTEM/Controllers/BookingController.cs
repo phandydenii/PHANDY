@@ -62,7 +62,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
 
             var roomViewModel = new RoomViewModel()
             {
-                Rooms = _context.Rooms.Where(r => r.status == "FREE").ToList(),
+                Rooms = _context.Rooms.ToList(),
                 GuestList = _context.Guests.ToList(),
             };
 

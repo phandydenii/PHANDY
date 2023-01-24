@@ -546,19 +546,19 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             return View("_paysliplist");
         }
 
-        [Route("otherexpense-rpt")]
+        [Route("otherexpenselist-rpt")]
         [System.Web.Mvc.HttpGet]
-        public ActionResult GetOtherExpenseList()
+        public ActionResult _otherexpenselist()
         {
             DataTable ds = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection con = new SqlConnection(connectionString);
             SqlDataAdapter adp = new SqlDataAdapter("select * from OTHER_EXPENSE_V where date >= getdate()", con);
             adp.Fill(ds);
-            //var reportViewModel = new ReportViewModel()
-            //{
-            //    ExpenseType = _context.ExpenseTypes.ToList(),
-            //};
+            var reportView = new ReportViewModel()
+            {
+                ExpenseType = _context.ExpenseTypes.ToList(),
+            };
             ReportViewer reportViewer = new ReportViewer();
             reportViewer.ProcessingMode = ProcessingMode.Local;
             reportViewer.SizeToReportContent = true;
@@ -570,18 +570,29 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             reportViewer.LocalReport.SetParameters(new ReportParameter[] { pfromdate, ptodate });
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));
             ViewBag.ReportViewer = reportViewer;
-            return View("_otherexpenselist");
+            return View("_otherexpenselist", reportView);
         }
-        [Route("otherexpense-rpt/{fromdate}/{todate}")]
+        [Route("otherexpenselist-rpt/{fromdate}/{todate}/{typename}")]
         [System.Web.Mvc.HttpGet]
-        public ActionResult GetOtherExpenseList(string fromdate, string todate)
+        public ActionResult _otherexpenselist(string fromdate, string todate,string typename)
         {
             DataTable ds = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection con = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select * from OTHER_EXPENSE_V where date between '" + fromdate + "' and '" + todate + "'", con);
+            string cmd = ""; 
+            if (typename == "All")
+            {
+                cmd = "select * from OTHER_EXPENSE_V where date between '" + fromdate + "' and '" + todate + "'";
+            }else
+            {
+                cmd = "select * from OTHER_EXPENSE_V where date between '" + fromdate + "' and '" + todate + "' and expensetypeid=" + typename;
+            }
+            SqlDataAdapter adp = new SqlDataAdapter(cmd, con);
             adp.Fill(ds);
-
+            var reportView = new ReportViewModel()
+            {
+                ExpenseType = _context.ExpenseTypes.ToList(),
+            };
             ReportViewer reportViewer = new ReportViewer();
             reportViewer.ProcessingMode = ProcessingMode.Local;
             reportViewer.SizeToReportContent = true;
@@ -593,7 +604,64 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             reportViewer.LocalReport.SetParameters(new ReportParameter[] { pfromdate, ptodate });
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));
             ViewBag.ReportViewer = reportViewer;
-            return View("_otherexpenselist");
+            reportViewer.ServerReport.Refresh();
+            return View("_otherexpenselist",reportView);
+        }
+
+        [Route("incomelist-rpt")]
+        [System.Web.Mvc.HttpGet]
+        public ActionResult _incomelist()
+        {
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from INCOME_V where date >= getdate()", con);
+            adp.Fill(ds);
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
+            reportViewer.Width = Unit.Percentage(100);
+            reportViewer.Height = Unit.Percentage(100);
+            ReportParameter pfromdate = new ReportParameter("fromdate", DateTime.Today.ToString("yyyy-MM-dd"));
+            ReportParameter ptodate = new ReportParameter("todate", DateTime.Today.ToString("yyyy-MM-dd"));
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\INCOME_LIST.rdlc";
+            reportViewer.LocalReport.SetParameters(new ReportParameter[] { pfromdate, ptodate });
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));
+            ViewBag.ReportViewer = reportViewer;
+            return View("_incomelist");
+        }
+
+        [Route("incomelist-rpt/{fromdate}/{todate}/{type}")]
+        [System.Web.Mvc.HttpGet]
+        public ActionResult _incomelist(string fromdate, string todate, string type)
+        {
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
+            string cmd = "";
+            if (type == "All")
+            {
+                cmd = "select * from INCOME_V where date between '" + fromdate + "' and '" + todate + "'";
+            }
+            else
+            {
+                cmd = "select * from INCOME_V where date between '" + fromdate + "' and '" + todate + "' and incometype='"+ type + "'";
+            }
+            SqlDataAdapter adp = new SqlDataAdapter(cmd, con);
+            adp.Fill(ds);
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
+            reportViewer.Width = Unit.Percentage(100);
+            reportViewer.Height = Unit.Percentage(100);
+            ReportParameter pfromdate = new ReportParameter("fromdate", fromdate);
+            ReportParameter ptodate = new ReportParameter("todate", todate);
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\INCOME_LIST.rdlc";
+            reportViewer.LocalReport.SetParameters(new ReportParameter[] { pfromdate, ptodate });
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));
+            ViewBag.ReportViewer = reportViewer;
+            reportViewer.ServerReport.Refresh();
+            return View("_incomelist");
         }
     }
 }

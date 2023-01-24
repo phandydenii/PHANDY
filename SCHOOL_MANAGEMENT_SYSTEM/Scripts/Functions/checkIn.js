@@ -37,29 +37,33 @@ function GetCheckInDetail() {
                 {
                     data: "id",
                     render: function (data, type, row) {
-                        if (row.active == 0) {
-                            return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
-                                    + "<ul class='dropdown-menu'>"
-                                    + "<li>"
-                                        + "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px''><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                                        + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
-                                        //+ "<button OnClick='PayDamages (" + row.guestid + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-pencil'></span> Pay Damages</button>"
-                                    + "</li>"
-                                    + "</ul>"
-                                + "</div>"
-                            ;
-                        }
-                        else {
-                            return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
-                                    + "<ul class='dropdown-menu'>"
-                                    + "<li>"
-                                        + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
-                                        //+ "<button OnClick='PayDamages (" + row.guestid + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-pencil'></span> Pay Damages</button>"
-                                    + "</li>"
-                                    + "</ul>"
-                                + "</div>"
-                            ;
-                        }
+                        return "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px''><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                             + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-left:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
+                        ;
+
+                        //if (row.active == 0) {
+                        //    return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
+                        //            + "<ul class='dropdown-menu'>"
+                        //            + "<li>"
+                        //                + "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px''><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                        //                + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
+                        //                //+ "<button OnClick='PayDamages (" + row.guestid + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-pencil'></span> Pay Damages</button>"
+                        //            + "</li>"
+                        //            + "</ul>"
+                        //        + "</div>"
+                        //    ;
+                        //}
+                        //else {
+                        //    return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
+                        //            + "<ul class='dropdown-menu'>"
+                        //            + "<li>"
+                        //                + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
+                        //                //+ "<button OnClick='PayDamages (" + row.guestid + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-pencil'></span> Pay Damages</button>"
+                        //            + "</li>"
+                        //            + "</ul>"
+                        //        + "</div>"
+                        //    ;
+                        //}
                     }
                 }
             ],
@@ -166,15 +170,24 @@ function DeletePrp(id, propertyname) {
 function CheckInEdit(id) {
     $("#CheckInModal").modal("show");
     $("#checkinid").val(id);
-    document.getElementById('btnSaveCheckIn').innerText == "Update";
     $.ajax({
-        url: "/api/checkins/" + id,
+        url: "/api/checkin_v/" + id,
         type: "GET",
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
-            $('#guestname').val(result.guest.name);
-            $('#guestnamekh').val(result.guest.namekh);
+            //alert(result.name);
+            var checkindate = moment(result.checkindate).format('DD-MMM-YYYY');
+            var startdate = moment(result.checkindate).format('DD-MMM-YYYY');
+            var enddate = moment(result.checkindate).format('DD-MMM-YYYY');
+            $('#roomid').val(result.roomid);
+            $('#checkindate').val(checkindate);
+            $('#startdate').val(startdate);
+            $('#enddate').val(enddate);
+
+            $('#guestid').val(result.guestid);
+            $('#name').val(result.name);
+            $('#namekh').val(result.namekh);
             $('#man').val(result.man);
             $('#women').val(result.women);
             $('#child').val(result.child);
@@ -189,23 +202,29 @@ function CheckInEdit(id) {
     });
 }
 
-function SaveCheckIn() {
-    var data = new FormData();
-    data.append("startdate", $("#startdate").val());
-    data.append("enddate", $("#enddate").val());
-    data.append("child", $("#child").val());
-    data.append("man", $("#man").val());
-    data.append("women", $("#women").val());
-       
+function SaveCheckIn() {  
+    var data = {
+        id: $('#checkinid').val(),
+        checkindate: $('#checkindate').val(),
+        roomid: $('#roomid').val(),
+        guestid: $('#guestid').val(),
+        child: $('#child').val(),
+        man: $('#man').val(),
+        women: $('#women').val(),
+        payforroom: $('#payforroom').val(),
+        startdate: $('#startdate').val(),
+        enddate: $('#enddate').val(),
+        active: false,      
+    };
     $.ajax({
+        url: "/api/checkins/" + data.id,
+        data: JSON.stringify(data),
         type: "PUT",
-        url: "/api/checkins/"+$('#id').val(),
-        contentType: false,
-        processData: false,
-        data: data,
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
         success: function (result) {
-            UpdateWater();
-            UpdatePower();
+            //UpdateWater();
+            //UpdatePower();
             toastr.success("Update check in successfully!", "Server Respond");
         },
         error: function (error) {

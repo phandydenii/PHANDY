@@ -1,10 +1,10 @@
 ﻿@using ReportViewerForMvc;
 @{
-    ViewBag.Title = "_otherexpenselist";
+    ViewBag.Title = "_bookinglist";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <div class="container-fluid">
-    <div class="row">
+    <div class="row">       
         <div class="col-md-2">
             <label>ចាប់ពី</label>
             <input id="dateStart" name="dateStart" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Payment Date" />
@@ -16,19 +16,17 @@
         <div class="col-md-2">
             <label>ស្ថានភាព</label>
             <div class="form-group">
-                <select class="form-control input-sm" id="expensetypeid">
-                    <option value="All">All</option>
-                    @foreach (var i in Model.ExpenseType)
-                    {
-                        <option value="@i.id">@i.typename</option>
-                    }
+                <select class="form-control input-sm" id="status">
+                    <option value="Active">----- កក់រួច -----</option>
+                    <option value="Cancel">----- បោះបង់ -----</option>
+                    <option value="Expire">----- ផុតកំណត់ -----</option>
                 </select>
             </div>
         </div>
         <div class="col-md-2">
             <label>&nbsp;</label>
-            <div class="form-group">
-                <a class="btn btn-success btn-sm" style='margin-top:0px' onclick="PreViewOtherExList()">@Resources.Content.Search</a>
+            <div  class="form-group">
+                <a class="btn btn-success btn-sm" style='margin-top:0px' onclick="ExpenseList()"> បង្ហាញ</a>
             </div>
         </div>
     </div>
@@ -42,15 +40,13 @@
 @section scripts
 {
     <script>
-        function PreViewOtherExList() {
+        function ExpenseList() {
           var startdate=$("#dateStart").val();
           var enddate=$("#dateEnd").val();
-          var type = $("#expensetypeid").val();
-          window.location = "/otherexpenselist-rpt/" + startdate + "/" + enddate + "/" + type;   
+          var status = $("#status").val();
+          window.open("/expense-list/" + startdate + "/" + enddate);
        }
     </script>
 }
-
-
 
 

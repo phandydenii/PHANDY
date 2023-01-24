@@ -45,7 +45,9 @@ function GetExpenseType() {
         "info": false
     });
 }
-
+function CloseExpenseType() {
+    window.location.reload(true);
+}
 function ExpenseTypeAction() {
     var action = '';
     action = document.getElementById('btnExpenseType').innerText;

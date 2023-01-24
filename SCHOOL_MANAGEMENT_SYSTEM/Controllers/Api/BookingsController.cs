@@ -323,6 +323,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             }
             return Ok(BookMax);
         }
+
         [HttpPut]
         public IHttpActionResult UpdateUser(int id, BookingDto BookinDtos)
         {
@@ -345,7 +346,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             BookingInDb.updateby = User.Identity.GetUserId();
             BookingInDb.updatedate = DateTime.Today;
             BookingInDb.exchangeid = int.Parse(eid);
-            Mapper.Map(BookinDtos, BookingInDb);
+
             _context.SaveChanges();
             return Ok(BookinDtos);
         }

@@ -8,22 +8,190 @@
     <div class="pos_relative ">
         <div class="row">
             <div class="col-md-12">
-                <span class="label label-info">Total Room @Model.TotalRoom</span>
-                <span class="label label-success" style="color:black">Free @Model.TotalFree</span>
-                <span class="label label-yellow" style="color:black">Booking @Model.TotalBook</span>
-                <span class="label label-danger">Chek In @Model.TotalCheckIn</span>
-                <span class="label label-default">Block @Model.TotalBlock</span>
+                <span class="label label-info" style="padding:7px">@Resources.Content.TotalRoom @Model.TotalRoom</span>
+                <span class="label label-success" style="padding:7px">@Resources.Content.TotalRoomFree @Model.TotalFree</span>
+                <span class="label label-warning" style="padding:7px">@Resources.Content.TotalBooking @Model.TotalBook</span>
+                <span class="label label-danger" style="padding:7px">@Resources.Content.CheckIn @Model.TotalCheckIn</span>
+                <span class="label label-default" style="padding:7px">@Resources.Content.TotalRoomBlock @Model.TotalBlock</span>
 
-                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Floor</a>
-                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomTypeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room Type</a>
-                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Manage Room</a>
-                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> Add Item To Room</a>
+                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> @Resources.Content.ManageFloor</a>
+                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomTypeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> @Resources.Content.ManageRoomType</a>
+                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomModal" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> @Resources.Content.ManageRoom</a>
+                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus"></span> @Resources.Content.AddItemToRoom</a>
              </div>
         </div>
         
         <div class="row">
             @{ string c = "";}
-            @foreach (var item in Model.Rooms)
+            @{ string b = "";}
+            @foreach (var f in Model.TotalFloor)
+            {
+                if (f.id == 1)
+                {
+                    <div class="row">
+                        @foreach (var rg in Model.Room0)
+                        {
+                            if (rg.status == "FREE")
+                            {
+                                c = "btn-block btn btn-success";
+                            }
+                            else if (rg.status == "BLOCK")
+                            {
+                                c = "btn-block btn btn-default";
+                            }
+                            else if (rg.status == "CHECK-IN")
+                            {
+                                c = "btn-block btn btn-danger";
+                            }
+                            else if (rg.status == "BOOK")
+                            {
+                                c = "btn-block btn btn-warning";
+                            }
+                            <div class="col-md-1 col-lg-1 col-xl-1">
+                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                            </div>
+                        }
+                    </div>
+                }
+                else if (f.id == 2)
+                {
+                    <div class="row">
+                        @foreach (var rg in Model.RoomF1)
+                        {
+                            if (rg.status == "FREE")
+                            {
+                                c = "btn-block btn btn-success";
+                            }
+                            else if (rg.status == "BLOCK")
+                            {
+                                c = "btn-block btn btn-default";
+                            }
+                            else if (rg.status == "CHECK-IN")
+                            {
+                                c = "btn-block btn btn-danger";
+                            }
+                            else if (rg.status == "BOOK")
+                            {
+                                c = "btn-block btn btn-warning";
+                            }
+                            <div class="col-md-1 col-lg-1 col-xl-1">
+                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                            </div>
+                        }
+                    </div>
+                }
+                else if (f.id == 3)
+                {
+                    <div class="row">
+                    @foreach (var rg in Model.RoomF2)
+                    {
+                        if (rg.status == "FREE")
+                        {
+                            c = "btn-block btn btn-success";
+                        }
+                        else if (rg.status == "BLOCK")
+                        {
+                            c = "btn-block btn btn-default";
+                        }
+                        else if (rg.status == "CHECK-IN")
+                        {
+                            c = "btn-block btn btn-danger";
+                        }
+                        else if (rg.status == "BOOK")
+                        {
+                            c = "btn-block btn btn-warning";
+                        }
+                        <div class="col-md-1 col-lg-1 col-xl-1">
+                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                        </div>
+                    }</div>
+
+                }
+                else if (f.id == 4)
+                {
+                    <div class="row">@foreach (var rg in Model.RoomF3)
+                    {
+                        if (rg.status == "FREE")
+                        {
+                            c = "btn-block btn btn-success";
+                        }
+                        else if (rg.status == "BLOCK")
+                        {
+                            c = "btn-block btn btn-default";
+                        }
+                        else if (rg.status == "CHECK-IN")
+                        {
+                            c = "btn-block btn btn-danger";
+                        }
+                        else if (rg.status == "BOOK")
+                        {
+                            c = "btn-block btn btn-warning";
+                        }
+                        <div class="col-md-1 col-lg-1 col-xl-1">
+                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                        </div>
+
+                    }</div>
+
+                }
+                else if (f.id == 5)
+                {
+                    <div class="row">@foreach (var rg in Model.RoomF4)
+                    {
+                        if (rg.status == "FREE")
+                        {
+                            c = "btn-block btn btn-success";
+                        }
+                        else if (rg.status == "BLOCK")
+                        {
+                            c = "btn-block btn btn-default";
+                        }
+                        else if (rg.status == "CHECK-IN")
+                        {
+                            c = "btn-block btn btn-danger";
+                        }
+                        else if (rg.status == "BOOK")
+                        {
+                            c = "btn-block btn btn-warning";
+                        }
+                        <div class="col-md-1 col-lg-1 col-xl-1">
+                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                        </div>
+
+                    }</div>
+
+                }else if (f.id == 6)
+                {
+                    <div class="row">
+                    @foreach (var rg in Model.RoomF5)
+                    {
+                        if (rg.status == "FREE")
+                        {
+                            c = "btn-block btn btn-success";
+                        }
+                        else if (rg.status == "BLOCK")
+                        {
+                            c = "btn-block btn btn-default";
+                        }
+                        else if (rg.status == "CHECK-IN")
+                        {
+                            c = "btn-block btn btn-danger";
+                        }
+                        else if (rg.status == "BOOK")
+                        {
+                            c = "btn-block btn btn-warning";
+                        }
+                        <div class="col-md-1 col-lg-1 col-xl-1">
+                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                        </div>
+                        
+                    }</div>
+
+                }
+            }
+
+
+            @*@foreach (var item in Model.Rooms)
             {
                 if (item.status == "FREE")
                 {
@@ -45,10 +213,10 @@
                 <div class="col-md-1 col-lg-1 col-xl-1">
                     <button onclick='OnClickRoom(@b)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@b+'"><span style="font-weight:bold">@item.room_no</span></button>
                 </div>
-            }
-            <div class="col-md-1 col-lg-1 col-xl-1">
+            }*@
+            @*<div class="col-md-1 col-lg-1 col-xl-1">
                 <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#RoomModal" style="height:60px;margin-bottom:20px;margin-top:10px"><span class="glyphicon glyphicon-plus " style="color:gray"></span></button>
-            </div>
+            </div>*@
             <br />
         </div>
         
@@ -78,6 +246,9 @@
 
 
 <script>
+    function OnClickRoom1(id){
+        alert(id);
+}
 
     function OnClickRoom(b) {
         $("#RoomDetailModal").modal('show');
@@ -105,7 +276,7 @@
             contentType: "application/json;charset=utf-8",
             datatype: "json",
             success: function (result) {
-                $("#lblRoomNo").text("Room "+result.room_no+" "+result.status);
+                //$("#lblRoomNo").text("Room "+result.room_no+" "+result.status);
                 $("#rmno").text(result.room_no);
                 $("#roomid").text(result.id);
                 $("#roomtype").text(result.roomtypename);
@@ -128,7 +299,8 @@
                     document.getElementById('btnCheckOut').style.display = "none";
                     document.getElementById('btnCheckIn').style.display = "none";
                     document.getElementById('btnPayment').style.display = "none";
-                    document.getElementById('btnBlock').innerText = "Unblock";
+                    document.getElementById('btnBlock').innerText = "UnBlock";
+                    $("#BlockNote").text("This room has been block...! " + result.note);
 
                 } else if (result.status == "FREE") {
                     document.getElementById('btnCheckOut').style.display = "none";
@@ -172,7 +344,7 @@
                                          + "<li class='list-group-item'>Total <span class='pull-right' style='color:darkblue'>" + value.total +" $"+"</span></li>"
                                          + "<li class='list-group-item'>Check IN Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.checkindate)).format('DD-MMM-YYYY')+ "</span></li>"
                                          + "<li class='list-group-item'>Expire Check In Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.expirecheckindate)).format('DD-MMM-YYYY')+ "</span></li>"
-                                         
+
                     );
                 });
             },

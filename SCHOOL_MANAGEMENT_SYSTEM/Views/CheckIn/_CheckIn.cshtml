@@ -4,20 +4,26 @@
         <div class="modal-content">
             <div class="modal-header clearfix">
                 <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">Check IN Roon</b>
-                <b class="modal-title" style="color: darkblue;" id="lblRoomNoCehckIn"></b>
+                <b class="modal-title" style="color: darkblue;">@Resources.Content.CheckIn</b>
             </div>
+
+            <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+            <input id="guestid" name="guestid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+            <input id="roomid" name="roomid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+            <input id="checkindate" name="checkindate" type="date" style="display: none;" disabled="disabled" value="" class="form-control" />
+            <input id="startdate" name="startdate" type="date" style="display: none;" disabled="disabled" value="" class="form-control" />
+            <input id="enddate" name="enddate" type="date" style="display: none;" disabled="disabled" value="" class="form-control" />
+
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <div class="form-group">
-                            <label for="guestname">ឈ្មោះជាអក្សរឡាតាំង</label>
-                            <input id="guestname" name="guestname" readonly="readonly" placeholder="Enter number of name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                            <label for="name">ឈ្មោះជាអក្សរឡាតាំង</label>
+                            <input id="name" name="name" readonly="readonly" placeholder="Enter number of name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
-                            <label for="guestnamekh">ឈ្មោះជាអក្សរខ្មែរ</label>
-                            <input id="guestnamekh" name="guestnamekh" readonly="readonly" placeholder="Enter number of name khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                            <label for="namekh">ឈ្មោះជាអក្សរខ្មែរ</label>
+                            <input id="namekh" name="namekh" readonly="readonly" placeholder="Enter number of name khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -26,12 +32,7 @@
                                     <input id="payforroom" name="payforroom" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="prepaid">បង់មុន</label>
-                                    <input id="prepaid" name="prepaid" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -66,7 +67,7 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <button type="button" id="btnSaveCheckIn" onclick="SaveCheckIn();"  class="btn btn-info btn-block btn-sm">Save</button>
+                            <button type="button" id="btnSaveCheckIn" onclick="SaveCheckIn();"  class="btn btn-info btn-block btn-sm">Update</button>
                         </div>
                     </div>
                 </div>

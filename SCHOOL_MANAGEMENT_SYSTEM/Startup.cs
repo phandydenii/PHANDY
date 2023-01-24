@@ -53,22 +53,22 @@ namespace SCHOOL_MANAGEMENT_SYSTEM
             }
 
             // creating Creating Manager role     
-            //if (!roleManager.RoleExists("Manager"))
-            //{
-            //    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-            //    role.Name = "Manager";
-            //    roleManager.Create(role);
+            if (!roleManager.RoleExists("Manage Payment"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Manage Payment";
+                roleManager.Create(role);
 
-            //}
+            }
 
-            //// creating Creating Employee role     
-            //if (!roleManager.RoleExists("Employee"))
-            //{
-            //    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-            //    role.Name = "Employee";
-            //    roleManager.Create(role);
+            // creating Creating Employee role     
+            if (!roleManager.RoleExists("Manage Other Expense"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Manage Other Expense";
+                roleManager.Create(role);
 
-            //}
+            }
         }
    
     }

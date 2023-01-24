@@ -622,6 +622,7 @@
     <Content Include="fonts\Battambang-Regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\select2\css\bootstrap-select.css.map" />
+    <Content Include="fonts\KhmerOSmuollight.ttf" />
     <None Include="Properties\PublishProfiles\DIAMOND.pubxml" />
     <None Include="Properties\PublishProfiles\ESEN.pubxml" />
     <Content Include="Scripts\Functions\appropriate.js" />
@@ -686,12 +687,14 @@
     <EmbeddedResource Include="Reports\CHECKOUT_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\CHECK_IN_LIST.rdlc" />
     <EmbeddedResource Include="Reports\CHECK_OUT_LIST.rdlc" />
+    <EmbeddedResource Include="Reports\Expense-List.rdlc" />
     <EmbeddedResource Include="Reports\EXPENSE_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\GUEST_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\INVOICE_LIST.rdlc" />
     <EmbeddedResource Include="Reports\INVOICE_LIST_NOT_PAID.rdlc" />
     <EmbeddedResource Include="Reports\INVOICE_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\ITEM_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\INCOME_LIST.rdlc" />
     <EmbeddedResource Include="Reports\OTHER_EXPENSE.rdlc" />
     <EmbeddedResource Include="Reports\PAYMENT_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\PAYSLIP_LIST.rdlc" />
@@ -1099,6 +1102,8 @@
     <Content Include="Views\Report\_invoicelist.cshtml" />
     <Content Include="Views\Report\_otherexpenselist.cshtml" />
     <Content Include="Views\Report\_checkout.cshtml" />
+    <Content Include="Views\Report\_expenselist.cshtml" />
+    <Content Include="Views\Report\_incomelist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

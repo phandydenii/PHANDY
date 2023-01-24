@@ -27,7 +27,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
         {
             var employeeViewModel = new OtherExpenseViewModel()
             {
-                ExpenseTypes = _context.ExpenseTypes.ToList(),
+                ExpenseTypes = _context.ExpenseTypes.Where(x =>x.typename !="Salary Expend").Where(x => x.typename != "Return To Guest").ToList(),
             };
 
             return View(employeeViewModel);

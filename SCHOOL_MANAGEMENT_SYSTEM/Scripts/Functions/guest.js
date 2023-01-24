@@ -65,6 +65,9 @@ function GetGuest() {
         "info": false
     });
 }
+function CloseGuest() {
+    window.location.reload(true);
+}
 
 var tableHistory = [];
 function GuestHistory(id) {
@@ -170,8 +173,6 @@ function UpdateGuest() {
         }
     });
 }
-
-
 function GuestEdit(id) {
     $("#GuestModal").modal('show');
     $.ajax({

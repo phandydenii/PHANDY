@@ -5,18 +5,18 @@
 }
 
 <div class="container-fluid">
-    <h4 style="color: darkblue;" id="lblbook">គ្រប់គ្រងការកក់</h4>
+    <h4 style="color: darkblue;" id="lblbook">@Resources.Content.ManageBook</h4>
     @*<button type="button" id="btnPayment" onclick="OnBookingAction()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:100px" data-toggle="modal" data-target="#BookingModal">Book Now</button>*@
     <hr />
     <div class="row">
         <div class="col-md-2">
-            <label>ស្ថានភាព</label>
+            <label>@Resources.Content.Status</label>
             <div class="form-group">
                 <select class="form-control input-sm" id="status">
-                    <option value="Active">----- កក់រួច -----</option>
-                    <option value="Cancel">----- បោះបង់ -----</option>
-                    <option value="Expire">----- ផុតកំណត់ -----</option>
-                    <option value="All">----- ទាំងអស់ -----</option>
+                    <option value="Active">----- @Resources.Content.Booking -----</option>
+                    <option value="Cancel">----- @Resources.Content.CancelBooking -----</option>
+                    <option value="Expire">----- @Resources.Content.Expire -----</option>
+                    <option value="All">----- @Resources.Content.All -----</option>
                 </select>
             </div>
         </div>
@@ -25,16 +25,16 @@
     <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableBooking">
         <thead>
             <tr>
-                <th>លេខ</th>
-                <th>ឈ្មោះ</th>
-                <th>បន្ទប់លេខ</th>
-                <th>ប្រភេទបន្ទប់</th>
-                <th>សរុប</th>
-                <th>បង់ថ្លៃសេវា</th>
-                <th>ថ្ងៃចូលស្នាក់នៅ</th>
-                <th>ថ្ងៃផុតកំណត់ចូលស្នាក់នៅ</th>
-                <th>ថ្ងៃកក់</th>
-                <th>សកម្មភាព</th>
+                <th>@Resources.Content.No</th>
+                <th>@Resources.Content.Name</th>
+                <th>@Resources.Content.Room</th>
+                <th>@Resources.Content.RoomType</th>
+                <th>@Resources.Content.Total</th>
+                <th>@Resources.Content.ServiceCharge</th>
+                <th>@Resources.Content.CheckInDate</th>
+                <th>@Resources.Content.ExpireDate</th>
+                <th>@Resources.Content.BookingDate</th>
+                <th>@Resources.Content.Action</th>
             </tr>
         </thead>
         <tbody></tbody>
