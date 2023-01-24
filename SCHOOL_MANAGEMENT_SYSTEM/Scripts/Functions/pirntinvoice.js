@@ -70,7 +70,6 @@ function GetCheckInDetail() {
 }
 function OnPaymentNow(id) {
     $("#PaymentModal").modal('show');
-    $('#Payment').text('@Resources.Content.Payment');
     $.ajax({
         url: "/api/invoice_v/" + id,
         type: "GET",
