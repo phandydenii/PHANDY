@@ -10,7 +10,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
     public class BookingDto
     {
         public int id { get; set; }
-        public string bookingno { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? bookingdate { get; set; }

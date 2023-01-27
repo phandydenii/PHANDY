@@ -5,7 +5,7 @@
         <div class="modal-content">
             <div class="modal-header clearfix">
                 <button type="button" class="btn btn-danger btn-xs pull-right" onclick="OnCloseCheckIn();"><span class="glyphicon glyphicon-remove"></span></button>
-                <b class="modal-title" style="color: darkblue;" id="lblRoom">@Resources.Content.CheckIn</b>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b>@Resources.Content.CheckIn</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -101,7 +101,6 @@
             child: $('#child').val(),
             man: $('#man').val(),
             women: $('#women').val(),
-            //prepaid: $('#paybefor').val(),
             payforroom: $('#payforroom').val(),
             
         };
@@ -112,7 +111,7 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                CreatetWaterElectricCheckIn(result); 
+                CreatetWaterElectricCheckIn($('#guestidchin').val());
             },
             error: function (errormesage) {
                 toastr.error("This Name Guest is exist in Database", "Server Respond");
@@ -124,7 +123,7 @@
 
     function CreatetWaterElectricCheckIn(id) {
         var data = new FormData();
-        data.append("checkinid", id);
+        data.append("guestid", id);
         data.append("startdate", $('#checkindate').val());
         data.append("enddate", $('#checkindate').val());
         data.append("wstartrecord", $('#wstartrecord').val());

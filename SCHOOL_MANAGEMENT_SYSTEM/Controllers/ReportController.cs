@@ -663,5 +663,17 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             reportViewer.ServerReport.Refresh();
             return View("_incomelist");
         }
+
+
+
+
+
+        [Route("test")]
+        [System.Web.Mvc.HttpGet]
+        public ActionResult test()
+        {
+           
+            return View("_Test");
+        }
     }
 }

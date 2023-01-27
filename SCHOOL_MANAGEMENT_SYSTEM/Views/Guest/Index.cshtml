@@ -6,7 +6,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6">
-            <h4 style="color: darkblue;">@Resources.Content.ManageGuest</h4>
+            <h4 style="color: darkblue;"><b>@Resources.Content.ManageGuest</b></h4>
         </div>
     </div>
     <hr />
@@ -31,7 +31,7 @@
 @Html.Partial("_History")
 @Html.Partial("_Guest")
 @section scripts{
-    @*@Scripts.Render("~/Scripts/Functions/history.js")*@
+    
     @Scripts.Render("~/Scripts/Functions/guest.js")
     @Scripts.Render("~/Scripts/moment.min.js")
 }

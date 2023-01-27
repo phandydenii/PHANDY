@@ -3,6 +3,9 @@ $(document).ready(function () {
     $('#PrintNewInvoiceModal').on('show.bs.modal', function () {
         $('#odlrecordwater').focus();
     });
+    $('#HistoryModal').on('show.bs.modal', function () {
+        $('#rowhide').hide();
+    });
     GetCheckInDetail();
 })
 
@@ -10,7 +13,7 @@ var tbCheckInDetail = [];
 function GetCheckInDetail() {
     tbCheckInDetail = $('#tableCheckInDetail').dataTable({
         ajax: {
-            url: "/api/checkins",
+            url: "/api/checkin_v",
             dataSrc: ""   
         },
         columns:
@@ -32,38 +35,17 @@ function GetCheckInDetail() {
                     data: "room_no"
                 },
                 {
+                    data: "roomtypename"
+                },
+                {
                     data: "payforroom",
                 },
                 {
                     data: "id",
                     render: function (data, type, row) {
-                        return "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px''><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                             + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-left:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
-                        ;
-
-                        //if (row.active == 0) {
-                        //    return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
-                        //            + "<ul class='dropdown-menu'>"
-                        //            + "<li>"
-                        //                + "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px''><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                        //                + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
-                        //                //+ "<button OnClick='PayDamages (" + row.guestid + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-pencil'></span> Pay Damages</button>"
-                        //            + "</li>"
-                        //            + "</ul>"
-                        //        + "</div>"
-                        //    ;
-                        //}
-                        //else {
-                        //    return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
-                        //            + "<ul class='dropdown-menu'>"
-                        //            + "<li>"
-                        //                + "<button OnClick='CheckOut (" + data + ")' class='btn btn-primary btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
-                        //                //+ "<button OnClick='PayDamages (" + row.guestid + ")' class='btn btn-info btn-xs' style='margin-top:5px'><span class='glyphicon glyphicon-pencil'></span> Pay Damages</button>"
-                        //            + "</li>"
-                        //            + "</ul>"
-                        //        + "</div>"
-                        //    ;
-                        //}
+                        return   "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                            + "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"
+                        ;    
                     }
                 }
             ],
@@ -71,100 +53,79 @@ function GetCheckInDetail() {
         destroy: true,
     });
 }
- 
-$('#itemid').on('change', function () {
-    $("#itemprice").val("");
-    if ($("#itemid").val() != "0") {
-        $.get("/api/items/" + $("#itemid").val(), function (data) {
-            $("#itemprice").val(data.price);
-        });
-    }
-});
-
-$('#fromdate').on('change', function () {
-    var fromdate = this.value;
-    var today = $('#today').val();
-    GetPayDemages($('#guestid').val(), fromdate, today);
-
-});
-
-function PayDamages(guestid) {
-
-    $("#PayDamagesModal").modal("show");
-    $('#guestid').val(guestid);
-    var fromdate = $('#fromdate').val();
-    var today = $('#today').val();
-    GetPayDemages(guestid, fromdate, today);
-}
-
-function GetPayDemages(id,fromdate,todate) {
-    $('#tablePayDamages').DataTable({
+var tableHistory = [];
+function GuestHistory(id) {
+    $('#HistoryModal').modal('show');
+    $('#guestid').val(id);
+    tableHistory = $('#tableHistory').dataTable({
         ajax: {
-            url: "/api/paydemages/" + id + "/" + fromdate + "/" + todate,
+            url: "/api/invoice_v_by_guestid/" + id,
             dataSrc: ""
         },
-        columns: [
-            //{
-            //    data: "id",
-            //},
-            {
-                data: "item.itemname",
-            },
-            {
-                data: "price",
-            },
-            {
-                data: "id",
-                render: function (data, type, row) {
-                    if (row.paid == 0) {
-                        return "<button OnClick='EditProp(" + data + ");' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                         + "<button OnClick='DeletePrp(" + data + "," + row.propertyname + ");' class='btn btn-danger btn-xs' style='margin-top:0px;margin-left:5px'><span class='glyphicon glyphicon-trash'></span> Delete</button>"
-                    ;
-                    } else {
-                        return "<span class='text-primary'><span class='glyphicon glyphicon-ok'></span></span>";
+        columns:
+            [
+                {
+                    data: "startdate",
+                    render: function (data) {
+                        return moment(new Date(data)).format('DD-MMM-YYYY');
                     }
-                    
-                }
-            }
-        ],
+                },
+                {
+                    data: "enddate",
+                    render: function (data) {
+                        return moment(new Date(data)).format('DD-MMM-YYYY');
+                    }
+                },
+                {
+                    data: "waterusage",
+                    render: function (data) {
+                        return data.toFixed(2);
+                    }
+                },
+                {
+                    data: "electricusage",
+                    render: function (data) {
+                        return data.toFixed(2);
+                    }
+                },
+                {
+                    data: "wtotal",
+                    render: function (data) {
+                        return data.toFixed(2);
+                    }
+                },
+                {
+                    data: "etotal",
+                    render: function (data) {
+                        return data.toFixed(2);
+                    }
+                },
+                {
+                    data: "grandtotal",
+                    render: function (data) {
+                        return data.toFixed(2);
+                    }
+                },
+                {
+                    data: "id",
+                    render: function (data) {
+                        return "<button OnClick='OnEditInvHistory (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>"
+                        + "<button OnClick='OnDeleteInvoiceHistory (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span></button>"
+                        ;
 
+                    }
+                }
+            ],
         destroy: true,
+        "order": [[0, "asc"]],
+
     });
 }
-
-
-function DeletePrp(id, propertyname) {
-    bootbox.confirm({
-        title: "",
-        message: "<h3>Are you sure want to delete  " + propertyname + " ?</h3>",
-        buttons: {
-            confirm: {
-                label: 'Yes',
-                className: 'btn-success btn-sm'
-            },
-            cancel: {
-                label: 'No',
-                className: 'btn-danger btn-sm'
-            }
-        },
-        callback: function (result) {
-            if (result) {
-                $.ajax({
-                    url: "/api/paydemages/" + id,
-                    type: "DELETE",
-                    contentType: "application/json;charset=utf-8",
-                    datatype: "json",
-                    success: function (result) {
-                        toastr.success("Record delete successfully!", "Service Response");
-                        $('#tablePayDamages').DataTable().ajax.reload();
-                    },
-                    error: function (errormessage) {
-                        toastr.error("Record delte faild!", "Service Response");
-                    }
-                });
-            }
-        }
-    });
+function OnEditInvHistory() {
+    $('#rowhide').show();
+}
+function OnDeleteInvoiceHistory() {
+    $('#rowhide').hide();
 }
 
 function CheckInEdit(id) {
@@ -176,25 +137,30 @@ function CheckInEdit(id) {
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
-            //alert(result.name);
-            var checkindate = moment(result.checkindate).format('DD-MMM-YYYY');
-            var startdate = moment(result.checkindate).format('DD-MMM-YYYY');
-            var enddate = moment(result.checkindate).format('DD-MMM-YYYY');
-            $('#roomid').val(result.roomid);
+            //alert(result[0].wstartrecord);
+            var checkindate = moment(result[0].checkindate).format("YYYY-MM-DD");
+            var startdate = moment(result[0].checkindate).format("YYYY-MM-DD");
+            var enddate = moment(result[0].checkindate).format("YYYY-MM-DD");
+            $('#roomid').val(result[0].roomid);
             $('#checkindate').val(checkindate);
-            $('#startdate').val(startdate);
-            $('#enddate').val(enddate);
+            $('#startdate').val(checkindate);
+            $('#enddate').val(checkindate);
+            if (result[0].active == 1) {
+                $('#wrecord').attr('readonly', 'readonly');
+                $('#precord').attr('readonly', 'readonly');
+            }
+            $('#guestid').val(result[0].guestid);
+            $('#name').val(result[0].name);
+            $('#namekh').val(result[0].namekh);
+            $('#man').val(result[0].man);
+            $('#women').val(result[0].women);
+            $('#child').val(result[0].child);
 
-            $('#guestid').val(result.guestid);
-            $('#name').val(result.name);
-            $('#namekh').val(result.namekh);
-            $('#man').val(result.man);
-            $('#women').val(result.women);
-            $('#child').val(result.child);
-            $('#wrecord').val(result.wstartrecode);
-            $('#precord').val(result.estartrecord);
-            $('#prepaid').val(result.prepaid);
-            $('#payforroom').val(result.payforroom);
+            $('#weid').val(result[0].weid);
+            $('#wrecord').val(result[0].wstartrecord);
+            $('#precord').val(result[0].estartrecord);
+            $('#prepaid').val(result[0].prepaid);
+            $('#payforroom').val(result[0].payforroom);
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
@@ -223,9 +189,8 @@ function SaveCheckIn() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            //UpdateWater();
-            //UpdatePower();
-            toastr.success("Update check in successfully!", "Server Respond");
+            UpdateWaterElectricUsage($("#weid").val())
+            
         },
         error: function (error) {
             //console.log(error);
@@ -233,126 +198,27 @@ function SaveCheckIn() {
         }
     });
 }
-
-function UpdateWater() {
-    var data = {
-        predate: $('#checkindate').val(),
-        checkinid: $('#checkinid').val(),
-        prerecord: $('#wrecord').val(),
-    };
+//Update WE
+function UpdateWaterElectricUsage(id) {
+    var data = new FormData();
+    data.append("wstartrecord", $('#wrecord').val());
+    data.append("estartrecord", $('#precord').val());
     $.ajax({
-        url: "/api/updatewaters/"+data.checkinid+"/"+data.predate,
-        data: JSON.stringify(data),
         type: "PUT",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
+        url: "/api/updatewestartrecord/" + id,
+        contentType: false,
+        processData: false,
+        data: data,
         success: function (result) {
-           
+            toastr.success("Update check in successfully!", "Server Respond");
+            window.location.reload(true);
         },
         error: function (errormesage) {
-            toastr.error("Create invoice faild...!"+errormesage, "Server Respond");
+            toastr.error("Electric usage insert faild!", "Server Respond");
+            return false;
         }
     });
 }
-
-function UpdatePower() {
-    var data = {
-        predate: $('#checkindate').val(),
-        checkinid: $('#checkinid').val(),
-        prerecord: $('#precord').val(),
-    };
-    $.ajax({
-        url: "/api/updatepowers/" + data.checkinid + "/" + data.predate,
-        data: JSON.stringify(data),
-        type: "PUT",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-
-        },
-        error: function (errormesage) {
-            toastr.error("Create invoice faild...!" + errormesage, "Server Respond");
-        }
-    });
-}
-
-function SavePayDemage() {
-    if ($('#price').val() == "") {
-        $('#price').focus();
-        return false;
-    }
-    if ($('#itemid').val() != 0) {
-        var action = document.getElementById('btnSavePayDemage').innerText;
-        if (action == "Save") {
-            var data = new FormData();
-            data.append("guestid", $('#guestid').val());
-            data.append("itemid", $('#itemid').val());
-            data.append("price", $('#price').val());
-            data.append("note", $('#note').val());
-            $.ajax({
-                type: "POST",
-                url: "/api/paydemages",
-                contentType: false,
-                processData: false,
-                data: data,
-                success: function (result) {
-                    $('#tablePayDamages').DataTable().ajax.reload();
-                },
-                error: function (errormesage) {
-                    toastr.error("Water usage insert faild!", "Server Respond");
-                    return false;
-                }
-
-            });
-        } else if (action == "Update") {
-            var data = new FormData();
-            data.append("guestid", $('#guestid').val());
-            data.append("itemid", $('#itemid').val());
-            data.append("price", $('#price').val());
-            data.append("note", $('#note').val());
-            $.ajax({
-                type: "PUT",
-                url: "/api/paydemages/" + $('#pdid').val(),
-                contentType: false,
-                processData: false,
-                data: data,
-                success: function (result) {
-                    $('#tablePayDamages').DataTable().ajax.reload();
-                },
-                error: function (errormesage) {
-                    toastr.error("Water usage insert faild!", "Server Respond");
-                    return false;
-                }
-
-            });
-        }
-    } else {
-        alert('Please choose item');
-        $('#itemid').focus();
-    }
-
-}
-
-function EditProp(id) {
-    $("#PayDamagesModal").modal("show");
-    document.getElementById('btnSavePayDemage').innerText = "Update";
-    $.ajax({
-        url: "/api/paydemages/" + id,
-        type: "GET",
-        contentType: "application/json;charset=utf-8",
-        datatype: "json",
-        success: function (result) {
-            $('#pdid').val(result.id);
-            $('#itemid').val(result.itemid);
-            $('#price').val(result.price);
-            $('#note').val(result.note);
-        },
-        error: function (errormessage) {
-            toastr.error("No Record Select!", "Service Response");
-        }
-    });
-}
-
-function CloseForm() {
+function Close() {
     window.location.reload(true);
 }

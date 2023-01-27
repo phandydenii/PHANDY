@@ -47,15 +47,7 @@ function GetGuest() {
             {
                 data: "id",
                 render: function (data) {
-                    return "<div class='btn-group'><a href='#' class='btn btn-primary btn-xs'><span class='glyphicon glyphicon-cog'></span> Action</a><a href='#' class='btn btn-primary btn-xs dropdown-toggle' data-toggle='dropdown' aria-expanded='false'><span class='caret'></span></a>"
-                                   + "<ul class='dropdown-menu'>"
-                                     + "<li>"
-                                        + "<button onclick='GuestEdit(" + data + ")' class='btn btn-warning btn-xs' style='border-width: 0px; width: 65px; margin-right: 5px;margin-top:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                                        + "<button onclick='GuestHistory(" + data + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-top:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"
-                                        
-                                     + "</li>"
-                                   + "</ul>"
-                              + "</div>"
+                    return "<button onclick='GuestEdit(" + data + ")' class='btn btn-warning btn-xs' style='border-width: 0px; width: 65px; margin-right: 5px;margin-top:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
                     ;
                 },
                 "width": "130px"
@@ -181,7 +173,6 @@ function GuestEdit(id) {
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
-            alert(result.nationality);
             $('#guestid').val(result.id);
             $('#name').val(result.name);
             $('#namekh').val(result.namekh);

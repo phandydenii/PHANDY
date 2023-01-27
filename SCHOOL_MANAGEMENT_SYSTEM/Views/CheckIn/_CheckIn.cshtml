@@ -3,16 +3,17 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">@Resources.Content.CheckIn</b>
+                <button type="button" onclick="Close()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.CheckIn</b></h4>
             </div>
 
             <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
             <input id="guestid" name="guestid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
             <input id="roomid" name="roomid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
-            <input id="checkindate" name="checkindate" type="date" style="display: none;" disabled="disabled" value="" class="form-control" />
-            <input id="startdate" name="startdate" type="date" style="display: none;" disabled="disabled" value="" class="form-control" />
-            <input id="enddate" name="enddate" type="date" style="display: none;" disabled="disabled" value="" class="form-control" />
+            <input id="weid" name="weid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+            <input id="checkindate" name="checkindate" style="display: none;" type="date"  disabled="disabled" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+            <input id="startdate" name="startdate" style="display: none;" type="date"  disabled="disabled" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+            <input id="enddate" name="enddate" style="display: none;" type="date"  disabled="disabled" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control" />
 
             <div class="modal-body">
                 <div class="row">
@@ -25,15 +26,6 @@
                             <label for="namekh">ឈ្មោះជាអក្សរខ្មែរ</label>
                             <input id="namekh" name="namekh" readonly="readonly" placeholder="Enter number of name khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="payforroom">បង់ថ្លៃបន្ទប់</label>
-                                    <input id="payforroom" name="payforroom" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                                </div>
-                            </div>
-                            
-                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -44,33 +36,42 @@
                             <label for="precord">គីឡូភ្លើងចាស់</label>
                             <input id="precord" name="precord" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="man">បុរស</label>
-                                    <input id="man" name="man" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="women">ស្ត្រី</label>
-                                    <input id="women" name="women"  placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label for="child">ក្មេងៗ</label>
-                                    <input id="child" name="child" placeholder="Enter number of child" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                                </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label for="payforroom">បង់ថ្លៃបន្ទប់</label>
+                                <input id="payforroom" name="payforroom" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <button type="button" id="btnSaveCheckIn" onclick="SaveCheckIn();"  class="btn btn-info btn-block btn-sm">Update</button>
+                            <label for="man">បុរស</label>
+                            <input id="man" name="man" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="women">ស្ត្រី</label>
+                            <input id="women" name="women" placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="child">ក្មេងៗ</label>
+                            <input id="child" name="child" placeholder="Enter number of child" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
                     </div>
                 </div>
+
+            </div>
+            <div class="modal-footer">               
+                <div class="form-group">
+                    <button type="button" id="btnSaveCheckIn" onclick="SaveCheckIn();" class="btn btn-info pull-right btn-sm">Update</button>
+                </div>                
             </div>
         </div>
     </div>

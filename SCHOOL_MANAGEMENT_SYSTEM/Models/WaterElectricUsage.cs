@@ -10,8 +10,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
     public class WaterElectricUsage
     {
         public int id { get; set; }
-        public int  checkinid { get; set; }
-        public CheckIn checkin { get; set; }
+        public int guestid { get; set; }
+        public Guest guest { get; set; }
         public DateTime startdate { get; set; }
         public DateTime enddate { get; set; }
         public decimal wstartrecord { get; set; }

@@ -775,6 +775,13 @@
                   <FontSize>9pt</FontSize>
                 </Style>
               </TextRun>
+              <TextRun>
+                <Value>=Fields!note.Value</Value>
+                <Style>
+                  <FontFamily>khmer os battambang</FontFamily>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>
@@ -1492,6 +1499,7 @@
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
+                                <Format>#,0;(#,0)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1544,6 +1552,7 @@
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
+                                <Format>#,0.00;(#,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1598,6 +1607,7 @@
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
+                                <Format>#,0.00;(#,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1827,6 +1837,7 @@
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
+                                <Format>#,0;(#,0)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1879,6 +1890,7 @@
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
+                                <Format>#,0.00;(#,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1933,6 +1945,7 @@
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
+                                <Format>#,0.00;(#,0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2435,7 +2448,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Format(CDbl(Fields!totalriel.Value),"0")</Value>
+                              <Value>0</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>

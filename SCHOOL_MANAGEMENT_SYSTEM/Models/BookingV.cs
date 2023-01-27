@@ -8,7 +8,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
     public class BookingV
     {
         public int id { get; set; }
-        public string bookingno { get; set; }
         public DateTime? bookingdate { get; set; }
         public int userid { get; set; }
         public decimal total { get; set; }

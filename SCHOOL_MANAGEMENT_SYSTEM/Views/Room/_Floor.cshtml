@@ -19,7 +19,7 @@
                     <div class="col-md-5">
                         <div class="form-group">
                             <label for="buildingid">Building</label>
-                            <select class="form-control input-sm" id="buildingid">
+                            <select class="select form-control input-sm" id="buildingid">
                                 @foreach (var roomType in Model.Buildings)
                                 {
                                     <option value=@roomType.id>@roomType.buildingname</option>

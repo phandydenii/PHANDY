@@ -75,9 +75,10 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         public IHttpActionResult GetAllCheckIn(int id)
         {
             var getCheckIn = (from c in _context.CheckIns
-                              join we in _context.WaterEletricUsages on c.id equals we.checkinid
-                              join r in _context.Rooms on c.roomid equals r.id
                               join g in _context.Guests on c.guestid equals g.id
+                              join we in _context.WaterEletricUsages on g.id equals we.guestid
+                              join r in _context.Rooms on c.roomid equals r.id
+                              
                             
                               select new CheckInV
                               {
@@ -122,99 +123,11 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             DataTable dt = new DataTable();
             DataSet ds = new DataSet();
-
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
             SqlDataAdapter adp = new SqlDataAdapter("select * from CheckIn_v", conx);
             adp.Fill(ds);
-            CheckInV checkinv = new CheckInV();
-            foreach (DataRow dr in ds.Tables[0].Rows)
-            {
-                checkinv.id = int.Parse(dr["id"].ToString());
-                checkinv.checkindate = DateTime.Parse(dr["checkindate"].ToString());
-                checkinv.roomid = int.Parse(dr["roomid"].ToString());
-                checkinv.room_no = dr["room_no"].ToString();
-                checkinv.roomtypeid = int.Parse(dr["roomtypeid"].ToString());
-                checkinv.roomtypename = dr["roomtypename"].ToString();
-                checkinv.floorid = int.Parse(dr["floorid"].ToString());
-                checkinv.floorno = dr["floor_no"].ToString();
-                checkinv.building = dr["buildingname"].ToString();
-                checkinv.servicecharge = decimal.Parse(dr["servicecharge"].ToString());
-                checkinv.price = decimal.Parse(dr["price"].ToString());
-                checkinv.roomkey = dr["roomkey"].ToString();
-                checkinv.roomstatus = dr["roomstatus"].ToString();
-                checkinv.startdate = DateTime.Parse(dr["startdate"].ToString());
-                checkinv.enddate = DateTime.Parse(dr["enddate"].ToString());
-                checkinv.wstartrecode = decimal.Parse(dr["wstartrecord"].ToString());
-                checkinv.wendrecord = decimal.Parse(dr["wendrecord"].ToString());
-                checkinv.estartrecord = decimal.Parse(dr["estartrecord"].ToString());
-                checkinv.eendrecord = decimal.Parse(dr["eendrecord"].ToString());
-                checkinv.payforroom = decimal.Parse(dr["payforroom"].ToString());
-                checkinv.guestid = int.Parse(dr["guestid"].ToString());
-                checkinv.name = dr["name"].ToString();
-                checkinv.namekh = dr["namekh"].ToString();
-                checkinv.sex = dr["sex"].ToString();
-                checkinv.dob = DateTime.Parse(dr["dob"].ToString());
-                checkinv.address = dr["address"].ToString();
-                checkinv.nationality = dr["nationality"].ToString();
-                checkinv.phone = dr["phone"].ToString();
-                checkinv.ssn = dr["ssn"].ToString();
-                checkinv.email = dr["email"].ToString();
-                checkinv.passport = dr["passport"].ToString();
-                checkinv.child = int.Parse(dr["child"].ToString());
-                checkinv.man = int.Parse(dr["man"].ToString());
-                checkinv.women = int.Parse(dr["women"].ToString());
-
-            }
             return Ok(ds.Tables[0]);
-            //var getCheckIn = (from c in _context.CheckIns
-            //                  join r in _context.Rooms on c.roomid equals r.id
-            //                  join rt in _context.RoomTypes on r.roomtypeid equals rt.id
-            //                  join g in _context.Guests on c.guestid equals g.id
-            //                  join f in _context.Floors on r.floorid equals f.id
-            //                  join b in _context.Buildings on f.buildingid equals b.id
-            //                  join we in _context.WaterEletricUsages on c.id equals we.checkinid
-            //                  join wep in _context.WEPrices on we.wepriceid equals wep.id
-            //                  select new CheckInV
-            //                  {
-            //                      id = c.id,
-            //                      checkindate = c.checkindate,
-            //                      roomid = r.id,
-            //                      room_no = r.room_no,
-            //                      roomtypeid = rt.id,
-            //                      roomtypename = rt.roomtypename,
-            //                      floorid = f.id,
-            //                      floorno = f.floor_no,
-            //                      building = b.buildingname,
-            //                      servicecharge = r.servicecharge,
-            //                      price = r.price,
-            //                      roomkey = r.roomkey,
-            //                      roomstatus = r.status,
-            //                      startdate=we.startdate,
-            //                      enddate=we.enddate,
-            //                      wstartrecode = we.wstartrecord,
-            //                      wendrecord = we.wendrecord,
-            //                      estartrecord = we.estartrecord,
-            //                      eendrecord = we.eendrecord,
-            //                      guestid = g.id,
-            //                      name = g.name,
-            //                      namekh = g.namekh,
-            //                      sex = g.sex,
-            //                      dob = g.dob,
-            //                      address = g.address,
-            //                      nationality = g.nationality,
-            //                      phone = g.phone,
-            //                      email = g.email,
-            //                      ssn = g.ssn,
-            //                      passport = g.passport,
-            //                      child = c.child,
-            //                      man = c.man,
-            //                      women = c.women,
-            //                      prepaid=c.prepaid,
-            //                      payforroom=c.payforroom
-
-            //                  }).ToList();
-            //return Ok(getCheckIn);
         }
 
         [HttpGet]
@@ -224,102 +137,11 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         {
             DataTable dt = new DataTable();
             DataSet ds = new DataSet();
-
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
             SqlDataAdapter adp = new SqlDataAdapter("select * from CheckIn_v where id=" + id, conx);
             adp.Fill(ds);
-            CheckInV checkinv = new CheckInV();
-            foreach(DataRow dr in ds.Tables[0].Rows)
-            {
-                checkinv.id = int.Parse(dr["id"].ToString());
-                checkinv.checkindate = DateTime.Parse(dr["checkindate"].ToString());
-                checkinv.roomid = int.Parse(dr["roomid"].ToString());
-                checkinv.room_no = dr["room_no"].ToString();
-                checkinv.roomtypeid = int.Parse(dr["roomtypeid"].ToString());
-                checkinv.roomtypename = dr["roomtypename"].ToString();
-                checkinv.floorid = int.Parse(dr["floorid"].ToString());
-                checkinv.floorno = dr["floor_no"].ToString();
-                checkinv.building = dr["buildingname"].ToString();
-                checkinv.servicecharge = decimal.Parse(dr["servicecharge"].ToString());
-                checkinv.price = decimal.Parse(dr["price"].ToString());
-                checkinv.roomkey = dr["roomkey"].ToString();
-                checkinv.roomstatus = dr["roomstatus"].ToString();
-                checkinv.startdate = DateTime.Parse(dr["startdate"].ToString());
-                checkinv.enddate = DateTime.Parse(dr["enddate"].ToString());
-                checkinv.wstartrecode = decimal.Parse(dr["wstartrecord"].ToString());
-                checkinv.wendrecord = decimal.Parse(dr["wendrecord"].ToString());
-                checkinv.estartrecord = decimal.Parse(dr["estartrecord"].ToString());
-                checkinv.eendrecord = decimal.Parse(dr["eendrecord"].ToString());
-                checkinv.payforroom = decimal.Parse(dr["payforroom"].ToString());
-                checkinv.guestid = int.Parse(dr["guestid"].ToString());
-                checkinv.name = dr["name"].ToString();
-                checkinv.namekh = dr["namekh"].ToString();
-                checkinv.sex = dr["sex"].ToString();
-                checkinv.dob = DateTime.Parse(dr["dob"].ToString());
-                checkinv.address = dr["address"].ToString();
-                checkinv.nationality = dr["nationality"].ToString();
-                checkinv.phone = dr["phone"].ToString();
-                checkinv.ssn = dr["ssn"].ToString();
-                checkinv.email = dr["email"].ToString();
-                checkinv.passport = dr["passport"].ToString();
-                checkinv.child = int.Parse(dr["child"].ToString());
-                checkinv.man = int.Parse(dr["man"].ToString());
-                checkinv.women = int.Parse(dr["women"].ToString());
-
-            }
-            return Ok(checkinv);
-
-            //var max = from we in _context.WaterEletricUsages.GroupBy(x => x.checkinid).Select(w =>w.Max(y=>y.id)),
-            //var getCheckIn = (from c in _context.CheckIns
-            //                  join r in _context.Rooms on c.roomid equals r.id
-            //                  join rt in _context.RoomTypes on r.roomtypeid equals rt.id
-            //                  join g in _context.Guests on c.guestid equals g.id
-            //                  join f in _context.Floors on r.floorid equals f.id
-            //                  join b in _context.Buildings on f.buildingid equals b.id
-            //                  join we in _context.WaterEletricUsages on c.id equals we.checkinid
-            //                  join wep in _context.WEPrices on we.wepriceid equals wep.id
-            //                  where c.id == id  && c.active==true && c.id==id && we.id== from we in _context.WaterEletricUsages.GroupBy(x => x.checkinid).Select(w => w.Max(y => y.id))
-
-            //                  select new CheckInV
-            //                  {
-            //                      id = c.id,
-            //                      checkindate = c.checkindate,
-            //                      roomid = r.id,
-            //                      room_no = r.room_no,
-            //                      roomtypeid = rt.id,
-            //                      roomtypename = rt.roomtypename,
-            //                      floorid = f.id,
-            //                      floorno = f.floor_no,
-            //                      building = b.buildingname,
-            //                      servicecharge = r.servicecharge,
-            //                      price = r.price,
-            //                      roomkey = r.roomkey,
-            //                      roomstatus = r.status,
-            //                      startdate = we.startdate,
-            //                      enddate = we.enddate,
-            //                      wstartrecode = we.wstartrecord,
-            //                      wendrecord = we.wendrecord,
-            //                      estartrecord = we.estartrecord,
-            //                      eendrecord = we.eendrecord,
-            //                      prepaid =c.prepaid,
-            //                      payforroom=c.payforroom,
-            //                      guestid = g.id,
-            //                      name = g.name,
-            //                      namekh = g.namekh,
-            //                      sex = g.sex,
-            //                      dob = g.dob,
-            //                      address = g.address,
-            //                      nationality = g.nationality,
-            //                      phone = g.phone,
-            //                      email = g.email,
-            //                      ssn = g.ssn,
-            //                      passport = g.passport,
-            //                      child = c.child,
-            //                      man = c.man,
-            //                      women = c.women,
-            //                  }).SingleOrDefault();
-            //return Ok(getCheckIn);
+            return Ok(ds.Tables[0]);
         }
 
         [HttpGet]
@@ -333,7 +155,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                               join g in _context.Guests on c.guestid equals g.id
                               join f in _context.Floors on r.floorid equals f.id
                               join b in _context.Buildings on f.buildingid equals b.id
-                              join we in _context.WaterEletricUsages on c.id equals we.checkinid
+                              join we in _context.WaterEletricUsages on g.id equals we.guestid
                               join wep in _context.WEPrices on we.wepriceid equals wep.id
                               where r.id == roomid 
                               select new CheckInV
@@ -470,7 +292,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpPut]
-        public IHttpActionResult UpdateUser(int id, CheckInDto CheckInDto)
+        public IHttpActionResult UpdateUser(int id, CheckInDto CheckInDtos)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -478,11 +300,12 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var CheckIninDb = _context.CheckIns.SingleOrDefault(c => c.id == id);
             if (CheckIninDb == null)
                 return BadRequest();
+            Mapper.Map(CheckInDtos, CheckIninDb);
             CheckIninDb.userid = User.Identity.GetUserId();
-            
+          
             _context.SaveChanges();
 
-            return Ok(CheckInDto);
+            return Ok(CheckInDtos);
         }
 
         [HttpPut]

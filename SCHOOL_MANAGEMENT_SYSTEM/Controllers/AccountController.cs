@@ -620,5 +620,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             }
         }
         #endregion
+
+
+        ///////Sent Mail
+
     }
 }

@@ -48,7 +48,7 @@
                                 c = "btn-block btn btn-warning";
                             }
                             <div class="col-md-1 col-lg-1 col-xl-1">
-                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
                             </div>
                         }
                     </div>
@@ -75,7 +75,7 @@
                                 c = "btn-block btn btn-warning";
                             }
                             <div class="col-md-1 col-lg-1 col-xl-1">
-                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
                             </div>
                         }
                     </div>
@@ -102,7 +102,7 @@
                             c = "btn-block btn btn-warning";
                         }
                         <div class="col-md-1 col-lg-1 col-xl-1">
-                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
                         </div>
                     }</div>
 
@@ -128,7 +128,7 @@
                             c = "btn-block btn btn-warning";
                         }
                         <div class="col-md-1 col-lg-1 col-xl-1">
-                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
                         </div>
 
                     }</div>
@@ -155,7 +155,7 @@
                             c = "btn-block btn btn-warning";
                         }
                         <div class="col-md-1 col-lg-1 col-xl-1">
-                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
                         </div>
 
                     }</div>
@@ -182,41 +182,13 @@
                             c = "btn-block btn btn-warning";
                         }
                         <div class="col-md-1 col-lg-1 col-xl-1">
-                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><span style="font-weight:bold">@rg.room_no</span></button>
+                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
                         </div>
-                        
+
                     }</div>
 
                 }
             }
-
-
-            @*@foreach (var item in Model.Rooms)
-            {
-                if (item.status == "FREE")
-                {
-                    c = "btn-block btn btn-success";
-                }
-                else if (item.status == "BLOCK")
-                {
-                    c = "btn-block btn btn-default";
-                }
-                else if (item.status == "CHECK-IN")
-                {
-                    c = "btn-block btn btn-danger";
-                }
-                else if (item.status == "BOOK")
-                {
-                    c = "btn-block btn btn-yellow";
-                }
-                var b = @item.id;
-                <div class="col-md-1 col-lg-1 col-xl-1">
-                    <button onclick='OnClickRoom(@b)' type="button" class="@c" style="height:60px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@b+'"><span style="font-weight:bold">@item.room_no</span></button>
-                </div>
-            }*@
-            @*<div class="col-md-1 col-lg-1 col-xl-1">
-                <button type="button" class="btn btn-default btn-block" data-toggle="modal" data-target="#RoomModal" style="height:60px;margin-bottom:20px;margin-top:10px"><span class="glyphicon glyphicon-plus " style="color:gray"></span></button>
-            </div>*@
             <br />
         </div>
         
@@ -340,7 +312,7 @@
                                          + "<li class='list-group-item'>Gender <span class='pull-right' style='color:darkblue'>" + value.sex + "</span></li>"
                                          + "<li class='list-group-item'>Phone <span class='pull-right' style='color:darkblue'>" + value.phone + "</span></li>"
                                          + "<li class='list-group-item'>Booking Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.bookingdate)).format('DD-MMM-YYYY') + "</span></li>"
-                                         + "<li class='list-group-item'>Booking No<span class='pull-right' style='color:darkblue'>" + value.bookingno + "</span></li>"
+                                         + "<li class='list-group-item'>Booking No<span class='pull-right' style='color:darkblue'>" + value.id + "</span></li>"
                                          + "<li class='list-group-item'>Total <span class='pull-right' style='color:darkblue'>" + value.total +" $"+"</span></li>"
                                          + "<li class='list-group-item'>Check IN Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.checkindate)).format('DD-MMM-YYYY')+ "</span></li>"
                                          + "<li class='list-group-item'>Expire Check In Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.expirecheckindate)).format('DD-MMM-YYYY')+ "</span></li>"

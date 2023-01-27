@@ -91,7 +91,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                  select new BookingV
                                  {
                                      id = b.id,
-                                     bookingno = b.bookingno,
                                      bookingdate = b.bookingdate,
                                      total = b.total,
                                      paydollar = b.paydollar,
@@ -133,7 +132,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                  select new BookingV
                                  {
                                      id = b.id,
-                                     bookingno = b.bookingno,
                                      bookingdate = b.bookingdate,
                                      total = b.total,
                                      paydollar = b.paydollar,
@@ -181,7 +179,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                              select new BookingV
                              {
                                  id = b.id,
-                                 bookingno = b.bookingno,
                                  bookingdate = b.bookingdate,
                                  total = b.total,
                                  paydollar = b.paydollar,
@@ -226,7 +223,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                              select new BookingV
                              {
                                  id = b.id,
-                                 bookingno = b.bookingno,
                                  bookingdate = b.bookingdate,
                                  total = b.total,
                                  paydollar = b.paydollar,
@@ -339,16 +335,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 return BadRequest();
 
             var BookingInDb = _context.Bookings.SingleOrDefault(c => c.id == id);
-            if (BookingInDb == null)
-                return BadRequest();
-
+            Mapper.Map(BookinDtos, BookingInDb);
             BookingInDb.userid = User.Identity.GetUserId();
             BookingInDb.updateby = User.Identity.GetUserId();
             BookingInDb.updatedate = DateTime.Today;
             BookingInDb.exchangeid = int.Parse(eid);
-
             _context.SaveChanges();
-            return Ok(BookinDtos);
+            return Ok(BookingInDb);
         }
 
         //DELETE : api/Companies/{id}

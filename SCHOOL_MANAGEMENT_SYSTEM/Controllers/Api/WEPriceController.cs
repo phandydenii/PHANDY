@@ -25,7 +25,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetLastExchange()
         {
-            var exchageRates = _context.WEPrices.OrderByDescending(c => c.id).FirstOrDefault(c => c.IsDeleted == false);
+            var exchageRates = _context.WEPrices.OrderByDescending(c => c.id).ToList();
             return Ok(exchageRates);
         }
         [HttpGet]

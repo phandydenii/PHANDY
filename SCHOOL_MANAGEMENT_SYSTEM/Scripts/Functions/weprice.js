@@ -6,7 +6,8 @@
     });
     $('#WEPriceModel').on('show.bs.modal', function () {
         GetWEPrice();
-        alert('hi');
+        $('#waterprice').attr('readonly', 'readonly');
+        $('#electricprice').attr('readonly', 'readonly');
     });
     
 })
@@ -23,7 +24,10 @@ function GetWEPrice() {
                     data: "id"
                 },
                 {
-                    data: "date"
+                    data: "date",
+                    render: function (data) {
+                                return moment(new Date(data)).format('DD-MMM-YYYY');
+                            }
                 },
                 {
                     data: "waterprice"
@@ -33,4 +37,15 @@ function GetWEPrice() {
                 },
             ],
     });
+}
+
+function AddWaterEletric() {
+    $('#waterprice').removeAttr('readonly');
+    $('#electricprice').removeAttr('readonly');
+    document.getElementById('btnWEAction').innerText =="Save";
+    $('#waterprice').focus()
+}
+
+function CloseWE() {
+    window.location.reload(true);
 }

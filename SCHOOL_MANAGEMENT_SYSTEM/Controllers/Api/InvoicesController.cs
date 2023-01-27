@@ -137,8 +137,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    estartrecord=we.estartrecord,
                                    eendrecord=we.eendrecord,
                                    wtotal=(we.wendrecord-we.wstartrecord)/ex.Rate*wp.waterprice,
-                                   etotal=(we.eendrecord-we.estartrecord)/ex.Rate*wp.electricprice,
-                                   
+                                   etotal=(we.eendrecord-we.estartrecord)/ex.Rate*wp.electricprice,                                  
                                    roomno = r.room_no,
                                    roomprice = r.price,
                                    roomtypename=rt.roomtypename,
@@ -146,8 +145,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    building=b.buildingname,
                                    servicecharge=r.servicecharge,
                                    roomkey=r.roomkey,
-                                   roomstatus=r.status
-
+                                   roomstatus=r.status,
+                                   note = i.note
                                }).ToList();
             return Ok(GetInvoiceV);
         }
@@ -255,7 +254,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                    building = b.buildingname,
                                    servicecharge = r.servicecharge,
                                    roomkey = r.roomkey,
-                                   roomstatus = r.status
+                                   roomstatus = r.status,
+                                   note=i.note
 
                                }).SingleOrDefault();
             return Ok(GetInvoiceV);
@@ -697,9 +697,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             SqlDataAdapter adp2 = new SqlDataAdapter("select top 1 id from ExchangeRates where IsDeleted=0 order by id desc", conx);
             
             adp2.Fill(ds2);
-            adp3.Fill(ds3);
             string exid = ds2.Rows[0][0].ToString();
-            string weid = ds3.Rows[0][0].ToString();
 
 
             var InvoiceInDb = Mapper.Map<InvoiceDto, Invoice>(InvoiceDtos);
@@ -712,8 +710,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             InvoiceInDb.status="ACTIVE";
 
             InvoiceInDb.exchangerateid = int.Parse(exid);
-            InvoiceInDb.weusageid = int.Parse(weid);
-
             _context.Invoice.Add(InvoiceInDb);
             _context.SaveChanges();
             InvoiceInDb.id = InvoiceDtos.id;

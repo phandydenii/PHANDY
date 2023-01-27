@@ -220,7 +220,6 @@ function BookingEdit(id) {
             var expiredate = moment(result.expiredate).format("YYYY-MM-DD");
             var bookingdate = moment(result.bookingdate).format("YYYY-MM-DD");
             $('#bookid').val(result.id);
-            $('#bookingno').val(result.bookingno);
             $('#bookingdate').val(bookingdate);
             $('#checkindate').val(checkindate);
             $('#expiredate').val(expiredate);
@@ -241,6 +240,7 @@ function BookingEdit(id) {
         }
     });
 }
+
 function UpdateBooking() {
     if ($('#totalbooking').val() == "") {
         $('#totalbooking').focus()
@@ -249,7 +249,6 @@ function UpdateBooking() {
 
     var data = {
         id: $('#bookid').val(),
-        bookingno: $('#bookingno').val(),
         bookingdate: $('#bookingdate').val(),
         guestid: $('#guestid').val(),
         roomid: $('#roomid').val(),
@@ -269,12 +268,6 @@ function UpdateBooking() {
         contentType: "application/json;charset=utf-8",
         dataType: "json",
         success: function (result) {
-            alert($('#note').val());
-            //if ($("#rmid").val() != $("#roomidb").val()) {
-            //    UpdateRoomStatus($("#rmid").val(),'FREE');
-            //    UpdateRoomStatus($("#roomidb").val(),'BOOK');
-            //}
-            
             toastr.success("Update record successfully!", "Service Response");
             window.location = "booking-rpt/" + data.id;
         },

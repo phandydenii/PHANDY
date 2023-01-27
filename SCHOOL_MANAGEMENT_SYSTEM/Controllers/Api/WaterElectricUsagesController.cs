@@ -32,7 +32,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/Buildings
         public IHttpActionResult GetBuilding()
         {
-            var getBuilding = _context.WaterEletricUsages.Include(s => s.checkin).Include(w =>w.weprice).ToList();
+            var getBuilding = _context.WaterEletricUsages.Include(s => s.guest).Include(w =>w.weprice).ToList();
             return Ok(getBuilding);
         }
 
@@ -40,7 +40,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         //Get : api/Buildings
         public IHttpActionResult GetBuilding(int id)
         {
-            var getBuilding = _context.WaterEletricUsages.Include(s => s.checkin).Include(w => w.weprice).Where(w =>w.id==id).ToList();
+            var getBuilding = _context.WaterEletricUsages.Include(s => s.guest).Include(w => w.weprice).Where(w =>w.id==id).ToList();
             return Ok(getBuilding);
         }
 
@@ -54,7 +54,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             adp.Fill(ds);
             string weprice = ds.Rows[0][0].ToString();
 
-            var checkinid = HttpContext.Current.Request.Form["checkinid"];
+            var guestid = HttpContext.Current.Request.Form["guestid"];
             var startdate = HttpContext.Current.Request.Form["startdate"];
             var enddate = HttpContext.Current.Request.Form["enddate"];
             var wstartrecord = HttpContext.Current.Request.Form["wstartrecord"];
@@ -64,7 +64,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
             var waterElectricUsageDto = new WaterElectricUsageDto()
             {
-                checkinid = int.Parse(checkinid),
+                guestid = int.Parse(guestid),
                 startdate = DateTime.Parse(startdate),
                 enddate = DateTime.Parse(enddate),
                 wstartrecord = decimal.Parse(wstartrecord),
@@ -105,7 +105,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             adp.Fill(ds);
             string weprice = ds.Rows[0][0].ToString();
 
-            var checkinid = HttpContext.Current.Request.Form["checkinid"];
+            var guestid = HttpContext.Current.Request.Form["guestid"];
             var startdate = HttpContext.Current.Request.Form["startdate"];
             var enddate = HttpContext.Current.Request.Form["enddate"];
             var wstartrecord = HttpContext.Current.Request.Form["wstartrecord"];
@@ -116,7 +116,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var empInDb = _context.WaterEletricUsages.SingleOrDefault(c => c.id == id);
             var waterElectricUsageDto = new WaterElectricUsageDto()
             {
-                checkinid = int.Parse(checkinid),
+                guestid = int.Parse(guestid),
                 startdate = DateTime.Parse(startdate),
                 enddate = DateTime.Parse(enddate),
                 wstartrecord = decimal.Parse(wstartrecord),
@@ -129,6 +129,54 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
             Mapper.Map(waterElectricUsageDto, empInDb);
             _context.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("api/updatewestartrecord/{id}")]
+        public IHttpActionResult UpdateWE(int id)
+        {
+            var wstartrecord = HttpContext.Current.Request.Form["wstartrecord"];
+            var estartrecord = HttpContext.Current.Request.Form["estartrecord"];
+
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+
+            SqlCommand requestcommand = new SqlCommand("update waterelectricusage_tbl set wstartrecord='"+ wstartrecord + "',estartrecord='"+ estartrecord + "' where id=" + id, conx);
+            try
+            {
+                conx.Open();
+                requestcommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("api/updateweendrecord/{id}")]
+        public IHttpActionResult UpdateWEENd(int id)
+        {
+            var startdate = HttpContext.Current.Request.Form["startdate"];
+            var enddate = HttpContext.Current.Request.Form["enddate"];
+            var wendrecord = HttpContext.Current.Request.Form["wendrecord"];
+            var eendrecord = HttpContext.Current.Request.Form["eendrecord"];
+
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+
+            SqlCommand requestcommand = new SqlCommand("update waterelectricusage_tbl set wendrecord='" + wendrecord + "',eendrecord='" + eendrecord + "' where id=" + id, conx);
+            try
+            {
+                conx.Open();
+                requestcommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
             return Ok();
         }
     }

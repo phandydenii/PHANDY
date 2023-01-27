@@ -239,15 +239,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Content.Designer.cs">
+      <DependentUpon>Content.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="App_GlobalResources\Content.km.designer.cs">
       <DependentUpon>Content.km.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="App_GlobalResources\Content.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Content.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -300,6 +300,7 @@
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\SalaryController.cs" />
+    <Compile Include="Controllers\SentMailController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Controllers\UserRolesController.cs" />
     <Compile Include="Dtos\BookingDto.cs" />
@@ -347,6 +348,7 @@
     <Compile Include="Models\CheckOutDeatil.cs" />
     <Compile Include="Models\CountModel.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\Employees.cs" />
     <Compile Include="Models\Floor.cs" />
     <Compile Include="Models\FloorV.cs" />
@@ -673,13 +675,13 @@
     <Content Include="Scripts\Functions\student.js" />
     <Content Include="Scripts\Functions\studylanguage.js" />
     <Content Include="Scripts\Functions\studyperiod.js" />
-    <Content Include="App_GlobalResources\Content.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Content.Designer.cs</LastGenOutput>
-    </Content>
     <Content Include="App_GlobalResources\Content.km.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Content.km.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Content.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Content.Designer.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="Reports\BOOKING_LIST.rdlc" />
     <EmbeddedResource Include="Reports\BOOK_REPORT.rdlc" />
@@ -1070,6 +1072,7 @@
     <Content Include="Views\CheckIn\_CheckIn.cshtml" />
     <Content Include="Views\CheckIn\_PayDamages.cshtml" />
     <Content Include="Views\Booking\_Booking.cshtml" />
+    <Content Include="Views\CheckIn\_History.cshtml" />
     <None Include="Views\CheckIn\_PrintNewInvoice.cshtml" />
     <Content Include="Views\Invoice\_Payment.cshtml" />
     <Content Include="Views\Invoice\_PrintNewInvoice.cshtml" />
@@ -1104,11 +1107,11 @@
     <Content Include="Views\Report\_checkout.cshtml" />
     <Content Include="Views\Report\_expenselist.cshtml" />
     <Content Include="Views\Report\_incomelist.cshtml" />
+    <Content Include="Views\SentMail\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="UploadFile\" />
-    <Folder Include="Views\Language\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1146,6 +1149,8 @@
           <DevelopmentServerPort>2139</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:2139/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:2139/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -160,7 +160,7 @@
     <value>គ្រប់គ្រងចំណាយផ្សេងៗ</value>
   </data>
   <data name="ManagePayment" xml:space="preserve">
-    <value>បង់ប្រាក់ប្រចាំខែ</value>
+    <value>គ្រប់គ្រងការបង់ថ្លៃស្នាក់នៅ</value>
   </data>
   <data name="ManageRoom" xml:space="preserve">
     <value>គ្រប់គ្រងបន្ទប់</value>
@@ -428,5 +428,14 @@
   </data>
   <data name="UpdatePayment" xml:space="preserve">
     <value>កែប្រែរទិន្នន័យបង់ថ្លៃស្នាក់នៅ</value>
+  </data>
+  <data name="ManageExchaneRate" xml:space="preserve">
+    <value>គ្រប់គ្រងអត្រាប្តូរប្រាក់</value>
+  </data>
+  <data name="ManageWEPrice" xml:space="preserve">
+    <value>កំណត់តម្លៃទឹកភ្លើង</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>ចាកចេញ</value>
   </data>
 </root>

@@ -394,6 +394,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Log Out.
+        /// </summary>
+        internal static string LogOut {
+            get {
+                return ResourceManager.GetString("LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Book.
         /// </summary>
         internal static string ManageBook {
@@ -417,6 +426,15 @@ namespace Resources {
         internal static string ManageCheckOut {
             get {
                 return ResourceManager.GetString("ManageCheckOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage E​xchane Rate.
+        /// </summary>
+        internal static string ManageExchaneRate {
+            get {
+                return ResourceManager.GetString("ManageExchaneRate", resourceCulture);
             }
         }
         
@@ -507,6 +525,15 @@ namespace Resources {
         internal static string ManageStaff {
             get {
                 return ResourceManager.GetString("ManageStaff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage Water Electric Price.
+        /// </summary>
+        internal static string ManageWEPrice {
+            get {
+                return ResourceManager.GetString("ManageWEPrice", resourceCulture);
             }
         }
         

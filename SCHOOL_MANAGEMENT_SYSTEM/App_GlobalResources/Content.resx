@@ -429,4 +429,13 @@
   <data name="UpdatePayment" xml:space="preserve">
     <value>Update Payment</value>
   </data>
+  <data name="ManageExchaneRate" xml:space="preserve">
+    <value>Manage E​xchane Rate</value>
+  </data>
+  <data name="ManageWEPrice" xml:space="preserve">
+    <value>Manage Water Electric Price</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log Out</value>
+  </data>
 </root>
