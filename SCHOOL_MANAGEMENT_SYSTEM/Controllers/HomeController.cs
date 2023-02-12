@@ -32,6 +32,37 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
         }
         public ActionResult Index()
         {
+            DataTable dt = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select booking_tbl.id,roomid,guest_tbl.id as guestid from booking_tbl inner join guest_tbl on guest_tbl.id=booking_tbl.guestid where expiredate<=FORMAT (getdate(), 'yyyy-MM-dd') and guest_tbl.status='BOOK' and booking_tbl.status='Active'", conx);
+
+            adp.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    var id = row["id"].ToString();
+                    var roomid = row["roomid"].ToString();
+                    var guestid = row["guestid"].ToString();
+
+                    SqlCommand cmd = new SqlCommand("update booking_tbl set status='Expire' where id=" + int.Parse(id), conx);
+                    SqlCommand cmd1 = new SqlCommand("update room_tbl set status='FREE' where id=" + int.Parse(roomid), conx);
+                    try
+                    {
+                        conx.Open();
+                        cmd.ExecuteNonQuery();
+                        cmd1.ExecuteNonQuery();
+                        conx.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+
+            }
+
             var countModel = new CountModel()
             {
                 TotalUser = _context.Users.Count(),

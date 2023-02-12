@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>បញ្ជីបុគ្កលិក</Value>
+                <Value>របាយការណ៍បុគ្កលិក</Value>
                 <Style>
                   <FontFamily>khmer os muol light</FontFamily>
                   <FontSize>14pt</FontSize>
@@ -24,9 +24,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.07056cm</Top>
-        <Left>6.97855cm</Left>
+        <Left>0.53789cm</Left>
         <Height>0.97042cm</Height>
-        <Width>7.52707cm</Width>
+        <Width>19.814cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -81,19 +81,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.83854cm</Width>
+              <Width>1.84383cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.77542cm</Width>
+              <Width>6.57988cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.82833cm</Width>
+              <Width>6.5005cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.87584cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>4.46942cm</Width>
+              <Width>4.8898cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -232,39 +229,6 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox12">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>ស្ថានភាព</Value>
-                              <Style>
-                                <FontFamily>KHMER OS BAttambang</FontFamily>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox12</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>PaleTurquoise</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
               </TablixCells>
             </TablixRow>
             <TablixRow>
@@ -272,21 +236,21 @@
               <TablixCells>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="id">
+                    <Textbox Name="Textbox3">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!id.Value</Value>
+                              <Value>=rownumber(nothing)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>id</rd:DefaultName>
+                      <rd:DefaultName>Textbox3</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -390,43 +354,12 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="status">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!status.Value</Value>
-                              <Style />
-                            </TextRun>
-                          </TextRuns>
-                          <Style />
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>status</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
-            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -445,9 +378,9 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>1.15948cm</Top>
-        <Left>0.56435cm</Left>
+        <Left>0.53789cm</Left>
         <Height>1.35875cm</Height>
-        <Width>19.78755cm</Width>
+        <Width>19.81401cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -462,7 +395,7 @@
   <Width>21.03437cm</Width>
   <Page>
     <PageHeader>
-      <Height>1.66687cm</Height>
+      <Height>1.74625cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -473,10 +406,10 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>រ៉ូសឡានី អាផាត់ម៉ិន</Value>
+                  <Value>រ៉ូសឡានី អាផាតម៉ិន</Value>
                   <Style>
                     <FontFamily>Khmer OS Muol Light</FontFamily>
-                    <FontSize>12pt</FontSize>
+                    <FontSize>14pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -502,9 +435,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.26886cm</Top>
-          <Left>6.97855cm</Left>
-          <Height>1.31437cm</Height>
-          <Width>7.52707cm</Width>
+          <Left>0.53789cm</Left>
+          <Height>1.47312cm</Height>
+          <Width>19.814cm</Width>
           <Style>
             <Border>
               <Style>None</Style>

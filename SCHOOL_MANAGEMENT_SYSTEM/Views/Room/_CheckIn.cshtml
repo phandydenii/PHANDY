@@ -12,7 +12,7 @@
                     <div class="col-md-6">
                         <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />                    
                         <div class="form-group">
-                            <label for="chroomid">លេខបន្ទប់</label>
+                            <label for="chroomid">@Resources.Content.RoomNo</label>
                             <select class="form-control input-sm" id="chroomid" disabled>
                                 @foreach (var room in Model.ListRoomBook)
                                 {
@@ -21,7 +21,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="guestidchin">ឈ្មោះភ្ញៀវ</label>
+                            <label for="guestidchin">@Resources.Content.Guest</label>
                             <select class="form-control input-sm" id="guestidchin" disabled>
                                 @foreach (var room in Model.GuestList)
                                 {
@@ -30,59 +30,69 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="roompricech">តម្លៃបន្ទប់</label>
+                            <label class="control-label" for="roompricech">@Resources.Content.RoomPrice</label>
                             <input id="roompricech" name="roompricech" placeholder="0.00" value="0" type="number" class="form-control input-sm" readonly="readonly">
                         </div>
-                        
-                        @*<div class="form-group">
-                            <label class="control-label" for="paybefor">បង់មុនចំនួន</label>
-                            <input id="paybefor" name="paybefor" placeholder="0.00" value="0" type="number" onfocus="this.select();" class="form-control input-sm">
-                        </div>*@
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="payforroom">@Resources.Content.PayForRoom</label>
+                                    <input id="payforroom" name="payforroom" placeholder="0.00" value="0" onfocus="this.select();" type="number" class="form-control input-sm">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="prepaid">@Resources.Content.PrePaid</label>
+                                    <input id="prepaid" name="prepaid" placeholder="0.00" value="0" onfocus="this.select();" type="number" class="form-control input-sm">
+                                </div>
+                            </div>
+                        </div>
+                                              
                     </div>
                     <div class="col-md-6">
                         <input id="datenow" name="datenow" style="display: none;" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
                         <input id="checkindate" readonly="readonly" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%;display:none" />
                         <div class="form-group">
-                            <label class="control-label" for="payforroom">បង់ថ្លៃបន្ទប់ចំនួន</label>
-                            <input id="payforroom" name="payforroom" placeholder="0.00" value="0" onfocus="this.select();" type="number" class="form-control input-sm">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="estartrecord">លេខកុងទ័រភ្លើង</label>
+                            <label class="control-label" for="estartrecord">@Resources.Content.ElectricStartRecord</label>
                             <input id="estartrecord" name="estartrecord" placeholder="Enter current number" onfocus="this.select();" value="0" type="number" class="form-control input-sm">
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="wstartrecord">លេខកុងទ័រទឹក</label>
+                            <label class="control-label" for="wstartrecord">@Resources.Content.WaterStartRecord</label>
                             <input id="wstartrecord" name="wstartrecord" placeholder="Enter current number" onfocus="this.select();" value="0" type="number" class="form-control input-sm">
                         </div>
+                        <div class="form-group">
+                            <label for="paydollar">@Resources.Content.PayDollar</label>
+                            <input id="paydollar" name="paydollar" onfocus="this.select();" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="payriel">@Resources.Content.PayRiel</label>
+                            <input id="payriel" name="payriel" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
+                        </div>
                     </div>
-                    
-                    
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="man">បុរស</label>
+                            <label for="man">@Resources.Content.Man</label>
                             <input id="man" name="man" placeholder="Enter number of man" type="number" onfocus="this.select();" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="women">ស្ត្រី</label>
+                            <label for="women">@Resources.Content.Woman</label>
                             <input id="women" name="women" placeholder="Enter number of women" type="number" onfocus="this.select();" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="child">ក្មេងៗ</label>
+                            <label for="child">@Resources.Content.Child</label>
                             <input id="child" name="child" placeholder="Enter number of child" type="number" onfocus="this.select();" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <div class="form-group">
-                        <button type="button" id="btnSaveCheckIn" onclick="CheckInAction()" class="btn btn-info btn-sm pull-right" style="margin:5px;width:100px">Save</button>
-                        <button type="button" id="btnTest" onclick="OnCloseCheckIn()" class="btn btn-danger btn-sm pull-right" style="margin:5px;width:100px">Cancel</button>
-                    </div>
+                <div class="modal-footer">                  
+                    <button type="button" id="btnSaveCheckIn" onclick="CheckInAction()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:15%">Save</button>
+                    <button type="button" id="btnTest" onclick="OnCloseCheckIn()" class="btn btn-danger btn-sm pull-right" style="width:15%">Cancel</button>                   
                 </div>
             </div>
         </div>
@@ -102,7 +112,9 @@
             man: $('#man').val(),
             women: $('#women').val(),
             payforroom: $('#payforroom').val(),
-            
+            prepaid: $('#prepaid').val(),
+            paydollar: $('#paydollar').val(),
+            payriel: $('#payriel').val(),
         };
         $.ajax({
             url: "/api/checkins",

@@ -20,6 +20,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Dtos
         public int exchangeid { get; set; }
         public ExchangeRate exchange { get; set; }
         public string userid { get; set; }
+        public decimal totalroomprice { get; set; }
         public decimal total { get; set; }
         public decimal paybefor { get; set; }
         public decimal returnamount { get; set; }

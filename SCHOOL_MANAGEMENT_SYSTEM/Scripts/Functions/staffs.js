@@ -142,8 +142,6 @@ function SaveStaffAction() {
    
 }
 
-
-
 function EditStaff(id) {
     $("#StaffModal").modal('show');
     action = document.getElementById('btnSaveStaff').innerText = "Update";

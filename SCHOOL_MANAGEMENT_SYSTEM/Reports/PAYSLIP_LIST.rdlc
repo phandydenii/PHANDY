@@ -9,10 +9,10 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>បញ្ជីបើកប្រាក់ខែបុគ្គលិក</Value>
+                <Value>របាយការណ៍បើកប្រាក់ខែបុគ្គលិក</Value>
                 <Style>
                   <FontFamily>khmer os muol light</FontFamily>
-                  <FontSize>14pt</FontSize>
+                  <FontSize>12pt</FontSize>
                   <TextDecoration>Underline</TextDecoration>
                 </Style>
               </TextRun>
@@ -24,9 +24,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.05263cm</Top>
-        <Left>0.67664cm</Left>
+        <Left>0.57081cm</Left>
         <Height>0.97042cm</Height>
-        <Width>19.65464cm</Width>
+        <Width>19.76047cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -79,9 +79,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>1.05833cm</Top>
-        <Left>0.67664cm</Left>
+        <Left>0.57081cm</Left>
         <Height>0.79403cm</Height>
-        <Width>19.65464cm</Width>
+        <Width>19.76047cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -113,8 +113,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox28</rd:DefaultName>
-        <Top>3.25521cm</Top>
-        <Left>14.77893cm</Left>
+        <Top>6.17333cm</Top>
+        <Left>14.77896cm</Left>
         <Height>0.6cm</Height>
         <Width>5.55235cm</Width>
         <ZIndex>2</ZIndex>
@@ -132,31 +132,31 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.83854cm</Width>
+              <Width>1.8503cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.12958cm</Width>
+              <Width>2.14134cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.51176cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.62688cm</Width>
+              <Width>1.63864cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.51176cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.97083cm</Width>
+              <Width>1.98259cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.91792cm</Width>
+              <Width>1.92968cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.98839cm</Width>
+              <Width>3.00015cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.1825cm</Width>
+              <Width>2.19426cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -763,9 +763,9 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <Top>1.85236cm</Top>
-        <Left>0.67664cm</Left>
+        <Left>0.57081cm</Left>
         <Height>1.35875cm</Height>
-        <Width>19.65464cm</Width>
+        <Width>19.76048cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -773,14 +773,61 @@
           </Border>
         </Style>
       </Tablix>
+      <Line Name="Line1">
+        <Top>5.50277cm</Top>
+        <Left>16.79943cm</Left>
+        <Height>0cm</Height>
+        <Width>3.53188cm</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Textbox Name="Textbox4">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>អ្នកបង្កើត</Value>
+                <Style>
+                  <FontFamily>khmer os battambang</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Top>5.53805cm</Top>
+        <Left>16.79943cm</Left>
+        <Height>0.6cm</Height>
+        <Width>3.53188cm</Width>
+        <ZIndex>5</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>9.525cm</Height>
+    <Height>6.77333cm</Height>
     <Style />
   </Body>
   <Width>21.03351cm</Width>
   <Page>
     <PageHeader>
-      <Height>1.69333cm</Height>
+      <Height>1.76416cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -791,10 +838,10 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>រ៉ូសឡានី អាផាត់ម៉ិន</Value>
+                  <Value>រ៉ូសឡានី អាផាតម៉ិន</Value>
                   <Style>
                     <FontFamily>Khmer OS Muol Light</FontFamily>
-                    <FontSize>12pt</FontSize>
+                    <FontSize>14pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -820,9 +867,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.3175cm</Top>
-          <Left>0.67664cm</Left>
-          <Height>1.31437cm</Height>
-          <Width>19.65464cm</Width>
+          <Left>0.57081cm</Left>
+          <Height>1.44666cm</Height>
+          <Width>19.76047cm</Width>
           <Style>
             <Border>
               <Style>None</Style>

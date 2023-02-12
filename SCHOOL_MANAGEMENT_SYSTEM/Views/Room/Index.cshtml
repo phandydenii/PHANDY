@@ -1,10 +1,17 @@
 ﻿@using SCHOOL_MANAGEMENT_SYSTEM.ViewModels
-    @{
-        ViewBag.Title = "Manage Room";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-    }
+@{
+    ViewBag.Title = "Manage Room";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<div class="container-fluid" >
+@{ 
+    bool isRM = false;
+    if (User.IsInRole("Manage Roomd"))
+    {
+        isRM = true;
+    }
+}
+<div class="container-fluid">
     <div class="pos_relative ">
         <div class="row">
             <div class="col-md-12">
@@ -14,16 +21,17 @@
                 <span class="label label-danger" style="padding:7px">@Resources.Content.CheckIn @Model.TotalCheckIn</span>
                 <span class="label label-default" style="padding:7px">@Resources.Content.TotalRoomBlock @Model.TotalBlock</span>
 
-                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> @Resources.Content.ManageFloor</a>
-                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomTypeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> @Resources.Content.ManageRoomType</a>
-                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomModal" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> @Resources.Content.ManageRoom</a>
-                <a href="#" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus"></span> @Resources.Content.AddItemToRoom</a>
-             </div>
+                <a href="#" onclick="ClickFloor('@User.IsInRole("Manage Floor")' ? true:false)" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#FloorModal" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> @Resources.Content.ManageFloor</a>
+                <a href="#" onclick="ClickRoomType('@User.IsInRole("Manae Room Type")' ? true:false)" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomTypeModal" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> @Resources.Content.ManageRoomType</a>
+                <a href="#" onclick="ClickRoom('@User.IsInRole("Manage Room")' ? true:false)" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomModal" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> @Resources.Content.ManageRoom</a>
+                <a href="#" onclick="ClickRoomItem('@User.IsInRole("Manage Room Item")' ? true:false)" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#RoomItemModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus"></span> @Resources.Content.AddItemToRoom</a>
+            </div>
         </div>
-        
+
         <div class="row">
+
             @{ string c = "";}
-            @{ string b = "";}
+            @{ string btncolor = "";}
             @foreach (var f in Model.TotalFloor)
             {
                 if (f.id == 1)
@@ -34,21 +42,25 @@
                             if (rg.status == "FREE")
                             {
                                 c = "btn-block btn btn-success";
+                                btncolor = "color:white";
                             }
                             else if (rg.status == "BLOCK")
                             {
                                 c = "btn-block btn btn-default";
+                                btncolor = "";
                             }
                             else if (rg.status == "CHECK-IN")
                             {
                                 c = "btn-block btn btn-danger";
+                                btncolor = "color:white";
                             }
                             else if (rg.status == "BOOK")
                             {
                                 c = "btn-block btn btn-warning";
+                                btncolor = "color:white";
                             }
                             <div class="col-md-1 col-lg-1 col-xl-1">
-                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
+                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style=@btncolor><b>@rg.room_no</b></h4></button>
                             </div>
                         }
                     </div>
@@ -58,24 +70,29 @@
                     <div class="row">
                         @foreach (var rg in Model.RoomF1)
                         {
+
                             if (rg.status == "FREE")
                             {
                                 c = "btn-block btn btn-success";
+                                btncolor = "color:white";
                             }
                             else if (rg.status == "BLOCK")
                             {
                                 c = "btn-block btn btn-default";
+                                btncolor = "";
                             }
                             else if (rg.status == "CHECK-IN")
                             {
                                 c = "btn-block btn btn-danger";
+                                btncolor = "color:white";
                             }
                             else if (rg.status == "BOOK")
                             {
                                 c = "btn-block btn btn-warning";
+                                btncolor = "color:white";
                             }
                             <div class="col-md-1 col-lg-1 col-xl-1">
-                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
+                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style=@btncolor><b>@rg.room_no</b></h4></button>
                             </div>
                         }
                     </div>
@@ -83,127 +100,147 @@
                 else if (f.id == 3)
                 {
                     <div class="row">
-                    @foreach (var rg in Model.RoomF2)
-                    {
-                        if (rg.status == "FREE")
+                        @foreach (var rg in Model.RoomF2)
                         {
-                            c = "btn-block btn btn-success";
+                            if (rg.status == "FREE")
+                            {
+                                c = "btn-block btn btn-success";
+                                btncolor = "color:white";
+                            }
+                            else if (rg.status == "BLOCK")
+                            {
+                                c = "btn-block btn btn-default";
+                                btncolor = "";
+                            }
+                            else if (rg.status == "CHECK-IN")
+                            {
+                                c = "btn-block btn btn-danger";
+                                btncolor = "color:white";
+                            }
+                            else if (rg.status == "BOOK")
+                            {
+                                c = "btn-block btn btn-warning";
+                                btncolor = "color:white";
+                            }
+                            <div class="col-md-1 col-lg-1 col-xl-1">
+                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style=@btncolor><b>@rg.room_no</b></h4></button>
+                            </div>
                         }
-                        else if (rg.status == "BLOCK")
-                        {
-                            c = "btn-block btn btn-default";
-                        }
-                        else if (rg.status == "CHECK-IN")
-                        {
-                            c = "btn-block btn btn-danger";
-                        }
-                        else if (rg.status == "BOOK")
-                        {
-                            c = "btn-block btn btn-warning";
-                        }
-                        <div class="col-md-1 col-lg-1 col-xl-1">
-                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
-                        </div>
-                    }</div>
+                    </div>
 
                 }
                 else if (f.id == 4)
                 {
-                    <div class="row">@foreach (var rg in Model.RoomF3)
-                    {
-                        if (rg.status == "FREE")
+                    <div class="row">
+                        @foreach (var rg in Model.RoomF3)
                         {
-                            c = "btn-block btn btn-success";
-                        }
-                        else if (rg.status == "BLOCK")
-                        {
-                            c = "btn-block btn btn-default";
-                        }
-                        else if (rg.status == "CHECK-IN")
-                        {
-                            c = "btn-block btn btn-danger";
-                        }
-                        else if (rg.status == "BOOK")
-                        {
-                            c = "btn-block btn btn-warning";
-                        }
-                        <div class="col-md-1 col-lg-1 col-xl-1">
-                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
-                        </div>
+                            if (rg.status == "FREE")
+                            {
+                                c = "btn-block btn btn-success";
+                                btncolor = "color:white";
+                            }
+                            else if (rg.status == "BLOCK")
+                            {
+                                c = "btn-block btn btn-default";
+                                btncolor = "";
+                            }
+                            else if (rg.status == "CHECK-IN")
+                            {
+                                c = "btn-block btn btn-danger";
+                                btncolor = "color:white";
+                            }
+                            else if (rg.status == "BOOK")
+                            {
+                                c = "btn-block btn btn-warning";
+                                btncolor = "color:white";
+                            }
+                            <div class="col-md-1 col-lg-1 col-xl-1">
+                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style=@btncolor><b>@rg.room_no</b></h4></button>
+                            </div>
 
-                    }</div>
+                        }
+                    </div>
 
                 }
                 else if (f.id == 5)
                 {
-                    <div class="row">@foreach (var rg in Model.RoomF4)
-                    {
-                        if (rg.status == "FREE")
+                    <div class="row">
+                        @foreach (var rg in Model.RoomF4)
                         {
-                            c = "btn-block btn btn-success";
-                        }
-                        else if (rg.status == "BLOCK")
-                        {
-                            c = "btn-block btn btn-default";
-                        }
-                        else if (rg.status == "CHECK-IN")
-                        {
-                            c = "btn-block btn btn-danger";
-                        }
-                        else if (rg.status == "BOOK")
-                        {
-                            c = "btn-block btn btn-warning";
-                        }
-                        <div class="col-md-1 col-lg-1 col-xl-1">
-                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
-                        </div>
+                            if (rg.status == "FREE")
+                            {
+                                c = "btn-block btn btn-success";
+                                btncolor = "color:white";
+                            }
+                            else if (rg.status == "BLOCK")
+                            {
+                                c = "btn-block btn btn-default";
+                                btncolor = "";
+                            }
+                            else if (rg.status == "CHECK-IN")
+                            {
+                                c = "btn-block btn btn-danger";
+                                btncolor = "color:white";
+                            }
+                            else if (rg.status == "BOOK")
+                            {
+                                c = "btn-block btn btn-warning";
+                                btncolor = "color:white";
+                            }
+                            <div class="col-md-1 col-lg-1 col-xl-1">
+                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style=@btncolor><b>@rg.room_no</b></h4></button>
+                            </div>
 
-                    }</div>
+                        }
+                    </div>
 
-                }else if (f.id == 6)
+                }
+                else if (f.id == 6)
                 {
                     <div class="row">
-                    @foreach (var rg in Model.RoomF5)
-                    {
-                        if (rg.status == "FREE")
+                        @foreach (var rg in Model.RoomF5)
                         {
-                            c = "btn-block btn btn-success";
-                        }
-                        else if (rg.status == "BLOCK")
-                        {
-                            c = "btn-block btn btn-default";
-                        }
-                        else if (rg.status == "CHECK-IN")
-                        {
-                            c = "btn-block btn btn-danger";
-                        }
-                        else if (rg.status == "BOOK")
-                        {
-                            c = "btn-block btn btn-warning";
-                        }
-                        <div class="col-md-1 col-lg-1 col-xl-1">
-                            <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style="color:white"><b>@rg.room_no</b></h4></button>
-                        </div>
+                            if (rg.status == "FREE")
+                            {
+                                c = "btn-block btn btn-success";
+                                btncolor = "color:white";
+                            }
+                            else if (rg.status == "BLOCK")
+                            {
+                                c = "btn-block btn btn-default";
+                                btncolor = "";
+                            }
+                            else if (rg.status == "CHECK-IN")
+                            {
+                                c = "btn-block btn btn-danger";
+                                btncolor = "color:white";
+                            }
+                            else if (rg.status == "BOOK")
+                            {
+                                c = "btn-block btn btn-warning";
+                                btncolor = "color:white";
+                            }
+                            <div class="col-md-1 col-lg-1 col-xl-1">
+                                <button onclick='OnClickRoom(@rg.id)' type="button" class="@c" style="height:65px;margin-bottom:20px;margin-top:10px" id="btnRoom'+@rg.id+'"><h4 style=@btncolor><b>@rg.room_no</b></h4></button>
+                            </div>
 
-                    }</div>
+                        }
+                    </div>
 
                 }
             }
             <br />
         </div>
-        
+
     </div>
 </div>
-    
+
 @Html.Partial("_Floor")
 @Html.Partial("_RoomType")
 @Html.Partial("_Room")
 @Html.Partial("_RoomDetail")
 @Html.Partial("_Building")
 @Html.Partial("_AddRoomItem")
-
-
-          
 
 @section scripts{
     @Scripts.Render("~/Scripts/Functions/floor.js")
@@ -212,87 +249,139 @@
     @Scripts.Render("~/Scripts/Functions/room.js")
     @Scripts.Render("~/Scripts/Functions/roomitems.js")
     @Scripts.Render("~/Scripts/Functions/checkinnow.js")
-
     @Scripts.Render("~/Scripts/moment.min.js")
 }
-
-
 <script>
-    function OnClickRoom1(id){
-        alert(id);
-}
-
+    function ClickFloor(role) {
+        if (role == false) {
+            toastr.options = {
+                "progressBar": true
+            };
+            toastr.warning("Your don't have permission!", "Service Response");
+            $("a").removeAttr("data-target");
+            return false;
+        }
+    }
+    function ClickRoomType(role) {
+        if (role == false) {
+            toastr.options = {
+                "progressBar": true
+            };
+            toastr.warning("Your don't have permission!", "Service Response");
+            $("a").removeAttr("data-target");
+            return false;
+        }
+    }
+    function ClickRoom(role) {
+        if (role == false) {
+            toastr.options = {
+                "progressBar": true
+            };
+            toastr.warning("Your don't have permission!", "Service Response");
+            $("a").removeAttr("data-target");
+            return false;
+        }
+    }
+    function ClickRoomItem(role) {
+        if (role == false) {
+            toastr.options = {
+                "progressBar": true
+            };
+            toastr.warning("Your don't have permission!", "Service Response");
+            $("a").removeAttr("data-target");
+            return false;
+        }
+    }
     function OnClickRoom(b) {
-        $("#RoomDetailModal").modal('show');
-        $("#roomid").val(b);
+        if ("@isRM" == "True") {
+            toastr.options = {
+                "progressBar": true
+            };
+            toastr.warning("Your don't have permission!", "Service Response");
+            return false;
+        } else {
+            $("#RoomDetailModal").modal('show');
+            $("#roomid").val(b);
 
-        //Get Item
-        $.ajax({
-            url: "/api/roomdetails_v/" + b,
-            type: "GET",
-            contentType: "application/json;charset=utf-8",
-            datatype: "json",
-            success: function (result) {
-                $.each(result, function (key, value) {
-                    $('#itlist').append("<li class='list-group-item'>" + "<span class='badge'>1</span>" + value.itemnamekh + " " + value.itemname + "</li>");
-                });
-            },
-            error: function (errormessage) {
-                toastr.error("No Record Select!", "Service Response");
-            }
-        });
-
-        $.ajax({
-            url: "/api/rooms/" + b,
-            type: "GET",
-            contentType: "application/json;charset=utf-8",
-            datatype: "json",
-            success: function (result) {
-                //$("#lblRoomNo").text("Room "+result.room_no+" "+result.status);
-                $("#rmno").text(result.room_no);
-                $("#roomid").text(result.id);
-                $("#roomtype").text(result.roomtypename);
-                $("#flno").text(result.floorno);
-                $("#sc").text(result.servicecharge + '$');
-                $("#roomprice").text(result.price + '$');
-                $("#rmky").text(result.roomkey);
-                $("#roomstatus").text(result.status);
-
-                if (result.status == "BOOK") {
-                    document.getElementById('btnBook').style.display = "none";
-                    document.getElementById('btnPayment').style.display = "none";
-                    document.getElementById('btnBlock').style.display = "none";
-                    document.getElementById('btnCheckOut').innerText = "Cancel Booking";
-                    document.getElementById('btnCheckIn').innerText = "Check In";
-
-                    book(b);
-                } else if (result.status == "BLOCK") {
-                    document.getElementById('btnBook').style.display = "none";
-                    document.getElementById('btnCheckOut').style.display = "none";
-                    document.getElementById('btnCheckIn').style.display = "none";
-                    document.getElementById('btnPayment').style.display = "none";
-                    document.getElementById('btnBlock').innerText = "UnBlock";
-                    $("#BlockNote").text("This room has been block...! " + result.note);
-
-                } else if (result.status == "FREE") {
-                    document.getElementById('btnCheckOut').style.display = "none";
-                    document.getElementById('btnPayment').style.display = "none";
-                    document.getElementById('btnCheckIn').style.display = "none";
-                } else if (result.status == "BLOCK") {
-                    document.getElementById('btnBook').style.display = "none";
+            //Get Item
+            $.ajax({
+                url: "/api/roomdetails_v/" + b,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                datatype: "json",
+                success: function (result) {
+                    $.each(result, function (key, value) {
+                        $('#itlist').append("<li class='list-group-item'>" + "<span class='badge'>1</span>" + value.itemnamekh + " " + value.itemname + "</li>");
+                    });
+                },
+                error: function (errormessage) {
+                    toastr.error("No Record Select!", "Service Response");
                 }
-                else if (result.status == "CHECK-IN") {
-                    checkin(b);
-                    document.getElementById('btnBlock').style.display = "none";
-                    document.getElementById('btnBook').style.display = "none";
-                    document.getElementById('btnCheckIn').style.display = "none";
-                }
+            });
 
-            },
-            error: function (errormessage) {
-                toastr.error("No Record Select!", "Service Response");
-            }
-        });
+            $.ajax({
+                url: "/api/rooms/" + b,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                datatype: "json",
+                success: function (result) {
+                    //$("#lblRoomNo").text("Room "+result.room_no+" "+result.status);
+                    $("#rmno").text(result.room_no);
+                    $("#roomid").text(result.id);
+                    $("#roomtype").text(result.roomtypename);
+                    $("#flno").text(result.floorno);
+                    $("#status").text(result.status);
+                    $("#roomprice").text(result.price + '$');
+                    $("#rmky").text(result.roomkey);
+                    $("#roomstatus").text(result.status);
+                    
+                    if (result.status == "BOOK") {
+                        book(b);
+                        document.getElementById('btnBook').style.display = "none";
+                        document.getElementById('btnPayment').style.display = "none";
+                        document.getElementById('btnBlock').style.display = "none";
+                        document.getElementById('btnCheckInNow').style.display = "none";
+                        document.getElementById('btnCheckOut').style.display = "none";
+                        document.getElementById('btnUnBlock').style.display = "none";
+                        $("#sms").text('This room is booking!');
+                        $('#class').addClass('alert alert-dismissible alert-success alert-block');
+                        $(".badge").attr('style', 'background-color: #dd5600');
+                    } else if (result.status == "BLOCK") {
+                        document.getElementById('btnBook').style.display = "none";
+                        document.getElementById('btnCheckOut').style.display = "none";
+                        document.getElementById('btnCheckIn').style.display = "none";
+                        document.getElementById('btnPayment').style.display = "none";
+                        document.getElementById('btnBlock').style.display = "none";
+                        document.getElementById('btnCancelBooking').style.display = "none";
+                        document.getElementById('btnCheckInNow').style.display = "none";
+                        $("#BlockNote").text("This room has been block...! " + result.note);
+                        //$("#sms").text('This has been block!');
+                        //$('#class').addClass('alert alert-dismissible alert-danger alert-block pull-left');
+                        //$(".badge").attr('style', 'background-color: #dddddd');
+                    } else if (result.status == "FREE") {
+                        document.getElementById('btnCheckOut').style.display = "none";
+                        document.getElementById('btnPayment').style.display = "none";
+                        document.getElementById('btnCheckIn').style.display = "none";
+                        document.getElementById('btnCancelBooking').style.display = "none";
+                        document.getElementById('btnUnBlock').style.display = "none";
+                        $(".badge").attr('style', 'background-color: #468847');
+                    } else if (result.status == "CHECK-IN") {
+                        checkin(b);
+                        document.getElementById('btnBlock').style.display = "none";
+                        document.getElementById('btnBook').style.display = "none";
+                        document.getElementById('btnCheckIn').style.display = "none";
+                        document.getElementById('btnCheckInNow').style.display = "none";
+                        document.getElementById('btnCancelBooking').style.display = "none";
+                        document.getElementById('btnUnBlock').style.display = "none";
+                        $(".badge").attr('style', 'background-color: #c71c22');
+                    }
+
+                },
+                error: function (errormessage) {
+                    toastr.error("No Record Select!", "Service Response");
+                }
+            });
+        }
     }
 
     function book(roomid) {
@@ -307,15 +396,15 @@
                     //alert(value.id);
                     $("#bookingid").val(value.id);
                     $("#guestid").val(value.guestid);
-                    $('#guestlist').append("<li class='list-group-item'>Name <span class='pull-right' style='color:darkblue'>" + value.name + "</span></li>"
-                                         + "<li class='list-group-item'>Name Khmer <span class='pull-right' style='color:darkblue'>" + value.namekh + "</span></li>"
-                                         + "<li class='list-group-item'>Gender <span class='pull-right' style='color:darkblue'>" + value.sex + "</span></li>"
-                                         + "<li class='list-group-item'>Phone <span class='pull-right' style='color:darkblue'>" + value.phone + "</span></li>"
-                                         + "<li class='list-group-item'>Booking Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.bookingdate)).format('DD-MMM-YYYY') + "</span></li>"
-                                         + "<li class='list-group-item'>Booking No<span class='pull-right' style='color:darkblue'>" + value.id + "</span></li>"
-                                         + "<li class='list-group-item'>Total <span class='pull-right' style='color:darkblue'>" + value.total +" $"+"</span></li>"
-                                         + "<li class='list-group-item'>Check IN Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.checkindate)).format('DD-MMM-YYYY')+ "</span></li>"
-                                         + "<li class='list-group-item'>Expire Check In Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.expirecheckindate)).format('DD-MMM-YYYY')+ "</span></li>"
+                    $('#guestlist').append("<li class='list-group-item'>@Resources.Content.Name <span class='pull-right' style='color:darkblue'>" +value.name + "</span></li>"
+                                         + "<li class='list-group-item'>@Resources.Content.NameKh <span class='pull-right' style='color:darkblue'>" + value.namekh + "</span></li>"
+                                         + "<li class='list-group-item'>@Resources.Content.Sex <span class='pull-right' style='color:darkblue'>" + value.sex + "</span></li>"
+                                         + "<li class='list-group-item'>@Resources.Content.Phone <span class='pull-right' style='color:darkblue'>" + value.phone + "</span></li>"
+                                         + "<li class='list-group-item'>@Resources.Content.BookingDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.bookingdate)).format('DD-MMM-YYYY') + "</span></li>"
+                                         + "<li class='list-group-item'>@Resources.Content.No <span class='pull-right' style='color:darkblue'>" + value.id + "</span></li>"
+                                         + "<li class='list-group-item'>@Resources.Content.Total <span class='pull-right' style='color:darkblue'>" + value.total +" $"+"</span></li>"
+                                         + "<li class='list-group-item'>@Resources.Content.CheckInDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.checkindate)).format('DD-MMM-YYYY')+ "</span></li>"
+                                         + "<li class='list-group-item'>@Resources.Content.ExpireDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.expirecheckindate)).format('DD-MMM-YYYY')+ "</span></li>"
 
                     );
                 });
@@ -338,16 +427,16 @@
                     $("#guestid").val(value.guestid);
                     $("#roomid").val(value.roomid);
                     $("#checkinid").val(value.id);
-                    $('#guestlist').append("<li class='list-group-item'>Name <span class='pull-right' style='color:darkblue'>" + value.name + "</span></li>"
-                                          + "<li class='list-group-item'>Name Khmer <span class='pull-right' style='color:darkblue'>" + value.namekh + "</span></li>"
-                                          + "<li class='list-group-item'>Gender <span class='pull-right' style='color:darkblue'>" + value.sex + "</span></li>"
-                                          + "<li class='list-group-item'>Phone <span class='pull-right' style='color:darkblue'>" + value.phone + "</span></li>"
-                                          + "<li class='list-group-item'>Men <span class='pull-right' style='color:darkblue'>" + value.man + "</span></li>"
-                                          + "<li class='list-group-item'>Women <span class='pull-right' style='color:darkblue'>" + value.women + "</span></li>"
-                                          + "<li class='list-group-item'>Child <span class='pull-right' style='color:darkblue'>" + value.child + "</span></li>"
-                                          + "<li class='list-group-item'>Check In Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.checkindate)).format('DD-MMM-YYYY') + "</span></li>"
-                                          + "<li class='list-group-item'>Stat Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.startdate)).format('DD-MMM-YYYY')  + "</span></li>"
-                                          + "<li class='list-group-item'>End Date <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.enddate)).format('DD-MMM-YYYY') + "</span></li>"
+                    $('#guestlist').append("<li class='list-group-item'>@Resources.Content.Name <span class='pull-right' style='color:darkblue'>" + value.name + "</span></li>"
+                                          + "<li class='list-group-item'>@Resources.Content.NameKh <span class='pull-right' style='color:darkblue'>" + value.namekh + "</span></li>"
+                                          + "<li class='list-group-item'>@Resources.Content.Sex <span class='pull-right' style='color:darkblue'>" + value.sex + "</span></li>"
+                                          + "<li class='list-group-item'>@Resources.Content.Phone <span class='pull-right' style='color:darkblue'>" + value.phone + "</span></li>"
+                                          + "<li class='list-group-item'>@Resources.Content.Man <span class='pull-right' style='color:darkblue'>" + value.man + "</span></li>"
+                                          + "<li class='list-group-item'>@Resources.Content.Woman <span class='pull-right' style='color:darkblue'>" + value.women + "</span></li>"
+                                          + "<li class='list-group-item'>@Resources.Content.Child <span class='pull-right' style='color:darkblue'>" + value.child + "</span></li>"
+                                          + "<li class='list-group-item'>@Resources.Content.CheckInDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.checkindate)).format('DD-MMM-YYYY') + "</span></li>"
+                                          + "<li class='list-group-item'>@Resources.Content.StartDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.startdate)).format('DD-MMM-YYYY')  + "</span></li>"
+                                          + "<li class='list-group-item'>@Resources.Content.EndDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.enddate)).format('DD-MMM-YYYY') + "</span></li>"
 
                                           );
 

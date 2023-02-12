@@ -4,15 +4,15 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="OnCloseRoomItem()" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">@Resources.Content.AddItemToRoom</b>
+                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="OnCloseRoomItem()" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.AddItemToRoom</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
                         <input id="roomitemid" name="roomitemid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <div class="form-group">
-                            <label for="iroomid">Room</label>
+                            <label for="iroomid">@Resources.Content.RoomNo</label>
                             <select class="form-control input-sm" id="iroomid">
                                 <option value="0">------Please Choose Room------</option>
                                 @foreach (var room in Model.Rooms)
@@ -22,7 +22,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="itemid">Item</label>
+                            <label for="itemid">@Resources.Content.Item</label>
                             <select class="form-control input-sm" id="itemid">
                                 <option value="0">------Please Choose Item------</option>
                                 @foreach (var item in Model.Items)
@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="iprice">Price</label>
+                            <label for="iprice">@Resources.Content.Price</label>
                             <input id="iprice" name="iprice" placeholder="$0.00" onfocus="this.select();" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <label>&nbsp;</label>
@@ -47,11 +47,11 @@
                 <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tblRoomItem">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Room No</th>
-                            <th>Item</th>
-                            <th>Price</th>
-                            <th style="width:15px">Action</th>
+                            <th>@Resources.Content.No</th>
+                            <th>@Resources.Content.RoomNo</th>
+                            <th>@Resources.Content.Item</th>
+                            <th>@Resources.Content.Price</th>
+                            <th style="width:15px">@Resources.Content.Action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>

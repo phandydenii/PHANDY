@@ -11,6 +11,7 @@ $(document).ready(function () {
 var tbCheckInDetail = [];
 function GetCheckInDetail() {
     tbCheckInDetail = $('#tablePrintInvoice').dataTable({
+        
         ajax: {
             url: "/api/invoice-v/newinvoie",
             dataSrc: ""
@@ -43,30 +44,49 @@ function GetCheckInDetail() {
                 },
                 {
                     data: "enddate",
-                    render: function (data) {
-                        return moment(new Date(data)).format('DD-MMM-YYYY');
+                    render: function (data, type, row) {
+                        if (row.action == '') {
+                            return moment(new Date(data)).format('DD-MMM-YYYY');
+                        } else {
+                            const now = new Date(Date.now());
+                            const now1 = new Date(data);
+                            const counday = parseInt(now.getDate()) - parseInt(now1.getDate());
+                            if (counday == 0) {
+                                return moment(new Date(data)).format('DD-MMM-YYYY');
+                            } else {
+                                return moment(new Date(data)).format('DD-MMM-YYYY') + " <span class='label label-danger'> Late " + counday + " day</span>"
+                            }
+                        }
+                                               
                     }
                 },
                 {
                     data: "checkinid",
-                    render: function (data, type, row) {
-                        if (row.day <= 35 && row.day >= 28) {
-                            return "<button OnClick='OnPrintInvoice (" + data + "," + row.guestid + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Print Invoice</button>"
-                            ;                           
-                        } else if (parseFloat(row.action) > 0) {
+                    render: function (data, type, row) {                        
+                        if (parseFloat(row.action) > 0) {
                             return "<button OnClick='OnPaymentNow (" + row.action + ")' class='btn btn-info btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Payment Now</button>"
-                                 + "<button OnClick='OnEdtInvoice (" + row.action + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                            ;                            
-                        } 
-                        else{
-                            return "<span class='text-primary'><span class='glyphicon glyphicon-ok'></span></span>";
-                        }                       
+                                + "<button OnClick='OnEdtInvoice (" + row.action + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                                + "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"
+                                ;
+                        } else if (row.action == '') {
+                            return "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"
+                                ;
+                        } else {
+                            return "<button OnClick='OnPrintInvoice (" + data + "," + row.guestid + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Print Invoice</button>"
+                               + "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"
+                               ;                         
+                        }
                     }
                 }
             ],
         destroy: true,
     });
 }
+function GuestHistory(id) {
+    $('#guestid').val(id);
+    $('#HistoryModal').modal('show');  
+}
+
 
 /////============OnPrintInvoice Button==========
 function OnPrintInvoice(checkinid, guestid) {
@@ -176,6 +196,7 @@ function OnPaymentNow(id) {
 function OnEdtInvoice(id) {
     $("#PaymentModal").modal('show');
     document.getElementById('SavePaymentbtn').innerText = 'Update';
+    //$("#SavePaymentbtn").val('Update');
     $.ajax({
         url: "/api/invoice_v/" + id,
         type: "GET",
@@ -314,7 +335,7 @@ function InsertNewInvoice(id) {
         }
     });
 }
-function UpdateCheckInStatus(id) {
+function UpdateCheckInStatus() {
     $.ajax({
         type: "PUT",
         url: "/api/updatecheckind/" + $("#checkinid").val(),

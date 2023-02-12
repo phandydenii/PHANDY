@@ -23,8 +23,8 @@ function InsertGuest() {
         data: data,
         success: function (result) {
             CheckInNow(result);
+            InsertWEUsage(result);
             $('#guestid').val(result);
-            //toastr.success("Guest in successfully!", "Server Respond");
         },
         error: function (error) {
             //console.log(error);
@@ -41,7 +41,9 @@ function CheckInNow(gid) {
         child: $('#numchild').val(),
         man: $('#numman').val(),
         women: $('#numwomen').val(),
-        pay: $('#pay').val(),
+        payforroom: $('#payforrooms').val(),
+        paydollar: $('#paydollar').val(),
+        payriel: $('#payriel').val(),
     };
     $.ajax({
         url: "/api/checkins",
@@ -51,19 +53,41 @@ function CheckInNow(gid) {
         dataType: "json",
         success: function (result) {
             UpdateRoomStatus();
-            //InsertPower(result);
-            //InsertWater(result);
-            //CreateInvoice();
-            InsertWaterElectricUsage(result);
-
-           // $('#checkinid').val(result);
-            
         },
         error: function (errormesage) {
-            toastr.error("Check In faild!", "Server Respond");
+            toastr.error("This Name Guest is exist in Database", "Server Respond");
             return false;
         }
+    });
+}
 
+
+
+
+function InsertWEUsage(id) {
+    
+    var data = new FormData();
+    data.append("guestid", id);
+    data.append("startdate", $('#checkindate').val());
+    data.append("enddate", $('#checkindate').val());
+    data.append("wstartrecord", $('#wstartrecords').val());
+    data.append("wendrecord", $('#wstartrecords').val());
+    data.append("estartrecord", $('#estartrecords').val());
+    data.append("eendrecord", $('#estartrecords').val());
+    $.ajax({
+        type: "POST",
+        url: "/api/waterelectricusages",
+        contentType: false,
+        processData: false,
+        data: data,
+        success: function (result) {
+            toastr.success("Check In successfully.", "Server Response");
+            window.location.reload(true);
+        },
+        error: function (errormesage) {
+            toastr.error("Electric usage insert faild!", "Server Respond");
+            return false;
+        }
     });
 }
 
@@ -83,98 +107,3 @@ function UpdateRoomStatus() {
     });
 }
 
-
-function InsertWaterElectricUsage(id) {
-    var data = new FormData();
-    data.append("checkinid", id);
-    data.append("startdate", $('#datenow').val());
-    data.append("enddate", $('#datenow').val());
-    data.append("wstartrecord", $('#wrecord').val());
-    data.append("wendrecord", $('#wrecord').val());
-    data.append("estartrecord", $('#erecord').val());
-    data.append("eendrecord", $('#erecord').val());
-    $.ajax({
-        type: "POST",
-        url: "/api/waterelectricusages",
-        contentType: false,
-        processData: false,
-        data: data,
-        success: function (result) {
-            CreateInvoice();
-        },
-        error: function (errormesage) {
-            toastr.error("Electric usage insert faild!", "Server Respond");
-            return false;
-        }
-    });
-}
-
-
-function InsertPower(id) {
-    var data = new FormData();
-    data.append("checkinid", id);
-    data.append("predate", $('#datenow').val());
-    data.append("prerecord", $('#erecord').val());
-    data.append("currentdate", $('#datenow').val());
-    data.append("currentrecord", $('#erecord').val());
-    $.ajax({
-        type: "POST",
-        url: "/api/electrics",
-        contentType: false,
-        processData: false,
-        data: data,
-        success: function (result) {
-            //$('#electricid').val(result);
-        },
-        error: function (errormesage) {
-            toastr.error("Electric usage insert faild!", "Server Respond");
-            return false;
-        }
-    });
-}
-
-function InsertWater(id) {
-    var data = new FormData();
-    data.append("checkinid", id);
-    data.append("predate", $('#datenow').val());
-    data.append("prerecord", $('#wrecord').val());
-    data.append("currentdate", $('#datenow').val());
-    data.append("currentrecord", $('#wrecord').val());
-    $.ajax({
-        type: "POST",
-        url: "/api/waterusage",
-        contentType: false,
-        processData: false,
-        data: data,
-        success: function (result) {
-            //$('#waterid').val(result);
-            CreateInvoice();
-        },
-        error: function (errormesage) {
-            toastr.error("Water usage insert faild!", "Server Respond");
-            return false;
-        }
-
-    });
-}
-
-function CreateInvoice() {
-    var data = {
-        guestid: $('#guestid').val(),
-        roomid: $('#chnowroomid').val(),
-    };
-    $.ajax({
-        url: "/api/invoices",
-        data: JSON.stringify(data),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            toastr.success("Check In successfully.", "Server Response");
-            window.location.reload(true);
-        },
-        error: function (errormesage) {
-            toastr.error("Insert invoice faild...!", "Server Respond");
-        }
-    });
-}

@@ -17,27 +17,27 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="invoiceno">លេខវិក័យបត្រ</label>
+                                    <label for="invoiceno">@Resources.Content.No</label>
                                     <input id="invoiceno" readonly="readonly" name="invoiceno" placeholder="Enter Guest Name" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="guestname">ភ្ញៀវ</label>
+                                    <label for="guestname">@Resources.Content.Name</label>
                                     <input id="guestname" name="guestname" readonly="readonly" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="room">បន្ទប់</label>
+                                    <label for="room">@Resources.Content.RoomNo</label>
                                     <input id="room" name="room" readonly="readonly" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="roomprice">តម្លៃបន្ទប់ $</label>
+                                            <label for="roomprice">@Resources.Content.RoomPrice</label>
                                             <input id="roomprice" name="roomprice" readonly="readonly" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="servicecharge">ថ្លៃសេវ៉ា ៛</label>
+                                            <label for="servicecharge">@Resources.Content.ServiceCharge</label>
                                             <input id="servicecharge" name="servicecharge" readonly="readonly" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
@@ -47,13 +47,13 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="startdate">ចាប់ផ្តើម</label>
+                                            <label for="startdate">@Resources.Content.StartDate</label>
                                             <input id="startdate" readonly="readonly" name="startdate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="enddate">ដល់ថ្ងៃ</label>
+                                            <label for="enddate">@Resources.Content.EndDate</label>
                                             <input id="enddate" name="enddate" readonly="readonly" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
@@ -61,13 +61,13 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="wstartrecord">គីឡូទឺកចាស់</label>
+                                            <label for="wstartrecord">@Resources.Content.WaterStartRecord</label>
                                             <input id="wstartrecord" name="wstartrecord" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="wendrecord">គីឡូទឺកថ្មី</label>
+                                            <label for="wendrecord">@Resources.Content.WEndRecord</label>
                                             <input id="wendrecord" name="wendrecord" onfocus="this.select();" onchange="wendrecordChange();" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                         </div>
                                     </div>
@@ -75,13 +75,13 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="estartrecord">គីឡូភ្លើងចាស់</label>
+                                            <label for="estartrecord">@Resources.Content.ElectricStartRecord</label>
                                             <input id="estartrecord" name="estartrecord" readonly="readonly" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="eendrecord">គីឡូភ្លើងថ្មី</label>
+                                            <label for="eendrecord">@Resources.Content.EEndRecord</label>
                                             <input id="eendrecord" onfocus="this.select();" onchange="electricChange();" name="eendrecord" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                                         </div>
                                     </div>
@@ -89,13 +89,13 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="totalwater">សរុបថ្លៃទឹក​ $</label>
+                                            <label for="totalwater">@Resources.Content.TotalWater</label>
                                             <input id="totalwater" name="totalwater" readonly="readonly" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="totalelectric">សរុបថ្លៃភ្លើង $</label>
+                                            <label for="totalelectric">@Resources.Content.TotalElectric</label>
                                             <input id="totalelectric" name="totalelectric" readonly="readonly" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
@@ -103,19 +103,19 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label for="totalpay">សរុបប្រាក់ត្រូវបង់ $</label>
+                                    <label for="totalpay">@Resources.Content.TotalPayment $</label>
                                     <input id="totalpay" name="totalpay" readonly="readonly" placeholder="Enter Passport Number" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div> 
                                 <div class="form-group">
-                                    <label for="totalpaykh">ជាប្រាក់រៀល ៛</label>
+                                    <label for="totalpaykh">@Resources.Content.TotalPaymentRiel</label>
                                     <input id="totalpaykh" name="totalpaykh" readonly="readonly" placeholder="Enter Email" type="email" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="paydollar">សាច់ប្រាក់ទទួលបានជាដុល្លា​ $</label>
+                                    <label for="paydollar">@Resources.Content.PayDollar</label>
                                     <input id="paydollar" name="paydollar" placeholder="$0.00" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="payriel">សាច់ប្រាក់ទទួលបានជារៀល ៛</label>
+                                    <label for="payriel">@Resources.Content.PayRiel</label>
                                     <input id="payriel" name="payriel" placeholder="$0.00" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
@@ -125,17 +125,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="note">ពណ៌នា</label>
+                            <label for="note">@Resources.Content.Note</label>
                             <input id="note" name="note" type="text" value="" class="form-control input-sm" placeholder="Description" />
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="button" id="SavePaymentbtn" onclick="OnPaymentAction()" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">Save</button>
-                        <button type="button" id="btnCheckOut" onclick="TestAction();" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>
-                    </div>
-                </div>
+                </div>                
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="SavePaymentbtn" onclick="OnPaymentAction()" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px" value="Save">Save</button>
+                <button type="button" id="btnCheckOut" onclick="TestAction();" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>
             </div>
         </div>
     </div>

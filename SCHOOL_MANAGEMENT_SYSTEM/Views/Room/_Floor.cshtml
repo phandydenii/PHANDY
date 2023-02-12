@@ -4,21 +4,21 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" onclick="OnCloseFloor();" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">@Resources.Content.ManageFloor</b>
+                <button type="button" onclick="OnCloseFloor();" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.ManageFloor</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
                         <input id="Floorid" name="Floorid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <div class="form-group">
-                            <label for="floorno">Floor No</label>
+                            <label for="floorno">@Resources.Content.Floor</label>
                             <input id="floorno" name="floorno" placeholder="Enter Floor No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-5">
                         <div class="form-group">
-                            <label for="buildingid">Building</label>
+                            <label for="buildingid">@Resources.Content.Building</label>
                             <select class="select form-control input-sm" id="buildingid">
                                 @foreach (var roomType in Model.Buildings)
                                 {
@@ -43,10 +43,10 @@
                             <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="dtFloor">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Floor no</th>
-                                        <th>Building</th>
-                                        <th>Action</th>
+                                        <th>@Resources.Content.No</th>
+                                        <th>@Resources.Content.Floor</th>
+                                        <th>@Resources.Content.Building</th>
+                                        <th>@Resources.Content.Action</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>

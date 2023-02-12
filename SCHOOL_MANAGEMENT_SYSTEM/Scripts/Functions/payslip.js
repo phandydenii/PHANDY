@@ -106,7 +106,7 @@ function SaveStaffAction() {
             success: function (result) {
                 toastr.success("Insert record successfully.", "Server Response");
                 $('#PaySlipModal').modal('hide');
-                window.location = "/payslip-rpt/" + result;
+                window.location = "/payslip-rpt/" + $('#payslipid').val();
                 tablePaySlip.DataTable().ajax.reload();
             },
             error: function (error) {
@@ -120,6 +120,7 @@ function SaveStaffAction() {
 
 function EditPaySlip(id) {
     $('#PaySlipModal').modal('show');
+    $('#payslipid').val(id);
     document.getElementById('btnSaveStaff').innerText = "Update";
     $.ajax({
         url: "/api/payslips/"+id,
@@ -127,13 +128,14 @@ function EditPaySlip(id) {
         contentType: "application/json;charset=utf-8",
         datatype: "json",
         success: function (result) {
-            $('#payslipid').val(result.id);
+            
             $('#staffid').val(result.staffid);
             $('#salary').val(result.salary);
             $('#vat').val(result.vat);
             $('#penanty').val(result.penanty);
             $('#bonus').val(result.bonus);
             $('#totalsalary').val(result.totalsalary);
+            $('#note').val(result.note);
             
         },
         error: function (errormessage) {

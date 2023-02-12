@@ -295,7 +295,7 @@
     <value>ចំនួនទឹកប្រាក់</value>
   </data>
   <data name="Block" xml:space="preserve">
-    <value>ខូច</value>
+    <value>បិទបន្ទប់</value>
   </data>
   <data name="BookingDate" xml:space="preserve">
     <value>ថ្ងៃកក់</value>
@@ -437,5 +437,80 @@
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>ចាកចេញ</value>
+  </data>
+  <data name="BlockRoom" xml:space="preserve">
+    <value>បិទបន្ទប់</value>
+  </data>
+  <data name="Building" xml:space="preserve">
+    <value>អគារ</value>
+  </data>
+  <data name="ExchangeRate" xml:space="preserve">
+    <value>អត្រាប្តូរប្រាក់</value>
+  </data>
+  <data name="Floor" xml:space="preserve">
+    <value>ជាន់</value>
+  </data>
+  <data name="PayNextMonth" xml:space="preserve">
+    <value>បង់ប្រាក់ខែបន្ទាប់</value>
+  </data>
+  <data name="RoomKey" xml:space="preserve">
+    <value>សោបន្ទប់</value>
+  </data>
+  <data name="RoomPrice" xml:space="preserve">
+    <value>តម្លៃបន្ទប់</value>
+  </data>
+  <data name="RoomTypeKh" xml:space="preserve">
+    <value>ប្រភេទបន្ទប់ជាភាសាខ្មែរ</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>បង្ហាញ</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>សញ្ជាតិ</value>
+  </data>
+  <data name="Passport" xml:space="preserve">
+    <value>លិខិតឆ្លងដែន</value>
+  </data>
+  <data name="PayDollar" xml:space="preserve">
+    <value>សាច់ប្រាក់ដុល្លា</value>
+  </data>
+  <data name="PayRiel" xml:space="preserve">
+    <value>សាច់ប្រាក់រៀល</value>
+  </data>
+  <data name="Child" xml:space="preserve">
+    <value>ក្មេង</value>
+  </data>
+  <data name="ElectricStartRecord" xml:space="preserve">
+    <value>លេខកុងទ័រភ្លើង</value>
+  </data>
+  <data name="Man" xml:space="preserve">
+    <value>បុរស</value>
+  </data>
+  <data name="PayForRoom" xml:space="preserve">
+    <value>បង់ថ្លៃបន្ទប់</value>
+  </data>
+  <data name="WaterStartRecord" xml:space="preserve">
+    <value>លេខកុងទ័រទឹក</value>
+  </data>
+  <data name="Woman" xml:space="preserve">
+    <value>ស្រ្តី</value>
+  </data>
+  <data name="TotalRoomPrice" xml:space="preserve">
+    <value>សរុបថ្លៃបន្ទប់</value>
+  </data>
+  <data name="EEndRecord" xml:space="preserve">
+    <value>គីឡូភ្លើងថ្មី</value>
+  </data>
+  <data name="TotalElectric" xml:space="preserve">
+    <value>សរុបថ្លៃភ្លើង</value>
+  </data>
+  <data name="TotalPaymentRiel" xml:space="preserve">
+    <value>សរុបប្រាក់ត្រូវបង់ជារៀល</value>
+  </data>
+  <data name="TotalWater" xml:space="preserve">
+    <value>សរុបថ្លៃទឹក</value>
+  </data>
+  <data name="WEndRecord" xml:space="preserve">
+    <value>គីឡូទឹកថ្មី</value>
   </data>
 </root>

@@ -9,10 +9,10 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>បញ្ជីបន្ទប់</Value>
+                <Value>បញ្ជីឈ្មោះភ្ញៀវ</Value>
                 <Style>
                   <FontFamily>khmer os muol light</FontFamily>
-                  <FontSize>14pt</FontSize>
+                  <FontSize>12pt</FontSize>
                   <TextDecoration>Underline</TextDecoration>
                 </Style>
               </TextRun>
@@ -355,7 +355,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!id.Value</Value>
+                              <Value>=rownumber(nothing)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -616,7 +616,7 @@
         <Top>1.25264cm</Top>
         <Left>0.44662cm</Left>
         <Height>1.35875cm</Height>
-        <Width>20.09088cm</Width>
+        <Width>20.09089cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -671,7 +671,7 @@
   <Width>21.19312cm</Width>
   <Page>
     <PageHeader>
-      <Height>1.77271cm</Height>
+      <Height>1.905cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -682,10 +682,10 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>រ៉ូសឡានី អាផាត់ម៉ិន</Value>
+                  <Value>រ៉ូសឡានី អាផាតម៉ិន</Value>
                   <Style>
                     <FontFamily>Khmer OS Muol Light</FontFamily>
-                    <FontSize>12pt</FontSize>
+                    <FontSize>14pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -712,7 +712,7 @@
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.28209cm</Top>
           <Left>7.34896cm</Left>
-          <Height>1.31437cm</Height>
+          <Height>1.4818cm</Height>
           <Width>7.52707cm</Width>
           <Style>
             <Border>

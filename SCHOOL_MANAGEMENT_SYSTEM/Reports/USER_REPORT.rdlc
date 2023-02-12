@@ -1,44 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
-    <ReportItems>
-      <Textbox Name="Textbox1">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>បញ្ជីបុគ្កលិក</Value>
-                <Style>
-                  <FontFamily>khmer os muol light</FontFamily>
-                  <FontSize>14pt</FontSize>
-                  <TextDecoration>Underline</TextDecoration>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.07056cm</Top>
-        <Left>7.21667cm</Left>
-        <Height>0.97042cm</Height>
-        <Width>7.52707cm</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-    </ReportItems>
-    <Height>5.08cm</Height>
+    <Height>9.39271cm</Height>
     <Style />
   </Body>
   <Width>21.37833cm</Width>
@@ -55,7 +18,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>រ៉ូសឡានី អាផាត់ម៉ិន</Value>
+                  <Value>រ៉ូសឡានី អាផាតម៉ិន</Value>
                   <Style>
                     <FontFamily>Khmer OS Muol Light</FontFamily>
                     <FontSize>12pt</FontSize>

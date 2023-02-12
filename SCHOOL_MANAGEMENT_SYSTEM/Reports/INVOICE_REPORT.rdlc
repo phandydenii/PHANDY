@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>រ៉ូសឡានី អាផាត់ម៉ិន</Value>
+                <Value>រ៉ូសឡានី អាផាតម៉ិន</Value>
                 <Style>
                   <FontFamily>Khmer OS Muol Light</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -369,10 +369,11 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!startdate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=Fields!startdate.Value</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
+                      <Format>d MMM yyyy</Format>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -404,10 +405,11 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!startdate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=Fields!startdate.Value</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
+                      <Format>d MMM yyyy</Format>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -440,10 +442,11 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!enddate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=Fields!enddate.Value</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
+                      <Format>d MMM yyyy</Format>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -620,10 +623,11 @@
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value>=CDate(Fields!enddate.Value).ToString("dd-MMM-yyyy")</Value>
+                    <Value>=Fields!enddate.Value</Value>
                     <Style>
                       <FontFamily>Khmer OS Battambang</FontFamily>
                       <FontSize>8pt</FontSize>
+                      <Format>d MMM yyyy</Format>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -2864,6 +2868,49 @@
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Line Name="Line8">
+        <Top>17.8391cm</Top>
+        <Left>1.20164cm</Left>
+        <Height>0cm</Height>
+        <Width>3.22159cm</Width>
+        <ZIndex>15</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Textbox Name="Textbox192">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>អ្នកបង់ប្រាក់</Value>
+                <Style>
+                  <FontFamily>khmer os battambang</FontFamily>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox180</rd:DefaultName>
+        <Top>17.94493cm</Top>
+        <Left>0.43194cm</Left>
+        <Height>0.6cm</Height>
+        <Width>4.4739cm</Width>
+        <ZIndex>16</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
         </Style>
       </Textbox>
     </ReportItems>

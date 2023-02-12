@@ -5,20 +5,20 @@
         <div class="modal-content">
             <div class="modal-header clearfix">
                 <button type="button" class="btn btn-danger btn-xs pull-right" onclick="OnCloseRoomModal()" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
-                <b class="modal-title" style="color: darkblue;">@Resources.Content.ManageRoom</b>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.ManageRoom</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <input id="Roomid" name="Roomid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
-                            <label for="roomno">Room no</label>
+                            <label for="roomno">@Resources.Content.RoomNo</label>
                             <input id="roomno" name="roomno" placeholder="Enter Room No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="floorid">Floor</label>
+                            <label for="floorid">@Resources.Content.Floor</label>
                             <select class="form-control input-sm" id="floorid">
                                 @foreach (var floor in Model.Floors)
                                 {
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="roomtypeid">Room Type</label>
+                            <label for="roomtypeid">@Resources.Content.RoomType</label>
                             <select class="form-control input-sm" id="roomtypeid">
                                 @foreach (var roomType in Model.RoomTypes)
                                 {
@@ -43,25 +43,25 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="servicecharge">Service Charge</label>
+                            <label for="servicecharge">@Resources.Content.ServiceCharge</label>
                             <input id="servicecharge" name="servicecharge" placeholder="Enter Service Charge" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="price">Price</label>
+                            <label for="price">@Resources.Content.Price</label>
                             <input id="price" name="price" placeholder="$0.00" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="roomkey">Room Key</label>
+                            <label for="roomkey">@Resources.Content.RoomKey</label>
                             <input id="roomkey" name="roomkey" placeholder="Enter Room Key" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="roomstatus">Status</label>
+                            <label for="roomstatus">@Resources.Content.Status</label>
                             <select id="roomstatus" name="roomstatus" class="form-control input-sm" style="min-width: 100%">
                                 <option>FREE</option>
                                 <option>BOOK</option>
@@ -81,13 +81,13 @@
                 <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableRoom">
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Room No</th>
-                            <th>Price</th>
-                            <th>Room Type</th>
-                            <th>Floor</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>@Resources.Content.No</th>
+                            <th>@Resources.Content.RoomNo</th>
+                            <th>@Resources.Content.Price</th>
+                            <th>@Resources.Content.RoomType</th>
+                            <th>@Resources.Content.Floor</th>
+                            <th>@Resources.Content.Status</th>
+                            <th>@Resources.Content.Action</th>
                         </tr>
                     </thead>
                     <tbody></tbody>

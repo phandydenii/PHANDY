@@ -1,0 +1,29 @@
+﻿
+<div class="modal fade " data-backdrop="static" data-keyboard="false" id="HistoryModal" tabindex="-1" role="dialog" aria-labelledby="HistoryModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" onclick="Close()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b  id="lblRoomNo">@Resources.Content.History</b></h4>
+            </div>
+            <div class="modal-body">
+                <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableHistory">
+                    <thead>
+                        <tr>
+                            <th>ចាប់ផ្តើម</th>
+                            <th>ដល់</th>
+                            <th>ទឹក (m<sup>3</sup>)</th>
+                            <th>ភ្លើង (KWM)</th>
+                            <th>សរុបទឹក</th>
+                            <th>សរុបភ្លើង</th>
+                            <th>សរុប</th>
+                            <th style="width:4px">សកម្មភាព</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,22 +4,22 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">Building</b>
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.Building</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
                         <input id="buildingid" name="buildingid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <div class="form-group">
-                            <label for="buildingname">Buildin Name</label>
+                            <label for="buildingname">@Resources.Content.Name</label>
                             <input id="buildingname" name="buildingname" placeholder="Enter Floor No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <input id="Floorid" name="Floorid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <div class="form-group">
-                            <label for="buildingnamekh">Buildin Name Khmer</label>
+                            <label for="buildingnamekh">@Resources.Content.NameKh</label>
                             <input id="buildingnamekh" name="buildingnamekh" placeholder="Enter Floor No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
@@ -35,10 +35,10 @@
                         <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableBuilding">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Building</th>
-                                    <th>Buildin Khmer</th>
-                                    <th>Action</th>
+                                    <th>@Resources.Content.No</th>
+                                    <th>@Resources.Content.Name</th>
+                                    <th>@Resources.Content.NameKh</th>
+                                    <th>@Resources.Content.Action</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

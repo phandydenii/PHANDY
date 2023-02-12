@@ -5,21 +5,28 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">Block Roon</b>
-                <b class="modal-title" style="color: darkblue;" id="lblRoomNoBlock"></b>
+                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.BlockRoom</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
+                    <input id="datenow" name="datenow" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%;display:none" />
+
                     <div class="col-md-12">
-                        <input id="roomidblock" name="roomidblock" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <input id="roomid" name="roomid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <div class="form-group">
-                            <label for="noteblock">Note</label>
-                            <input id="noteblock" name="noteblock" placeholder="Enter reason" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                            <label for="note">@Resources.Content.Note</label>
+                            <textarea name="noteblobk" id="noteblobk" rows="1" style="min-width:100%; max-width:100%" class="form-control" value=""></textarea>
                         </div>
-                        <button type="button" id="btnSaveBlock" name="btnSaveRoomItem" onclick="OnSaveBlock()" class="btn btn-success btn-sm pull-right">Save</button>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnSaveBlockRoom" onclick="BlockRoomAction()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:100px">@Resources.Content.Save</button>
+                        <button type="button" id="btnClose" onclick="OnCloseBook()" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:5px;width:100px">@Resources.Content.Cancel</button>
                     </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -27,16 +34,23 @@
 
 
 <script>
-    function OnSaveBlock() {
-        var noteblock = document.getElementById('noteblock').innerText;
+    function OnCloseBook() {
+        window.location.reload(true);
+    }
+    function BlockRoomAction() {
+        var data = new FormData();
+        data.append("note", $("#noteblobk").val());
+        data.append("status", 'BLOCK');
+
         $.ajax({
             type: "PUT",
-            url: "/api/updateroomnote/" + $("#roomidblock").val(),
+            url: "/api/blockroom/" + $("#roomid").val(),
             contentType: false,
             processData: false,
-            // data: status,
+            data: data,
             success: function (result) {
                 toastr.success("Room has been Block successfully.", "Server Response");
+                window.location.reload(true);
             },
             error: function (error) {
                 toastr.error("Block room fail!", "Server Response");

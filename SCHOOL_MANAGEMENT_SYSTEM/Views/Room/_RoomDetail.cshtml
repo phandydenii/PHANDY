@@ -20,45 +20,42 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <h5><b>Room</b></h5>
+                                        <h5><b>@Resources.Content.Room</b></h5>
                                     </div>
                                     <div class="col-md-8">
                                         <hr />
                                     </div>
-                                    @*<div class="col-md-2">
-                                        <button OnClick='OnEditRoom' class='btn btn-warning btn-xs' style='margin-right:5px'>Edit</button>
-                                    </div>*@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <ul class="list-group" id="listroom">
                                             <li class="list-group-item">
                                                 <span class="badge" id="rmno"></span>
-                                               Room No
+                                               @Resources.Content.RoomNo
                                             </li>
                                             <li class="list-group-item">
                                                 <span class="badge" id="roomtype"></span>
-                                                Room Type
+                                                @Resources.Content.RoomType
                                             </li>
                                             <li class="list-group-item">
                                                 <span class="badge" id="flno"></span>
-                                                Floor No
+                                                @Resources.Content.Floor
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6">
                                         <ul class="list-group">
                                             <li class="list-group-item">
-                                                <span class="badge" id="sc"></span>
-                                                Service Charge
+                                                <span class="badge" id="status" ></span>
+                                                @Resources.Content.Status
                                             </li>
                                             <li class="list-group-item">
                                                 <span class="badge" id="roomprice"></span>
-                                                Room Price
+                                                @Resources.Content.RoomPrice
                                             </li>
                                             <li class="list-group-item">
                                                 <span class="badge" id="rmky"></span>
-                                                Room Key
+                                                @Resources.Content.RoomKey
                                             </li>
                                         </ul>
                                     </div>
@@ -69,14 +66,11 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <h5><b>Item</b></h5>
+                                        <h5><b>@Resources.Content.Item</b></h5>
                                     </div>
                                     <div class="col-md-8">
                                         <hr />
                                     </div>
-                                    @*<div class="col-md-2">
-                                        <button OnClick='OnEditRoom' class='btn btn-warning btn-xs' style='margin-right:5px'>Edit</button>
-                                    </div>*@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -92,14 +86,11 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-2">
-                                        <h5><b>Guest</b></h5>
+                                        <h5><b>@Resources.Content.Guest</b></h5>
                                     </div>
                                     <div class="col-md-8">
                                         <hr />
                                     </div>
-                                    @*<div class="col-md-2">
-                                        <button OnClick='OnEditRoom' class='btn btn-warning btn-xs' style='margin-right:5px'>Edit</button>
-                                    </div>*@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
@@ -113,19 +104,23 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <h4><b class="pull-left" style="color:red" id="BlockNote"></b></h4>
-                    <button type="button" id="btnBlock" onclick="OnBlockAction()" class="btn btn-default btn-sm pull-right" style="margin-left:10px;width:100px">Block</button>
-                    <button type="button" id="btnCheckOut" onclick="OnCheckOutAction()" class="btn btn-warning btn-sm pull-right" style="margin-left:10px;width:100px">Check Out</button>
-                    <button type="button" id="btnCheckIn" onclick="OnCheckInAction()" class="btn btn-primary btn-sm pull-right" style="margin-left:10px;width:100px">Check In</button>
-                    <button type="button" id="btnPayment" onclick="OnPaymentAction()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px">Cancel</button>           
-                    <button type="button" id="btnBook" onclick="OnBookAction()" class="btn btn-success  btn-sm pull-right" style="margin-left:10px;width:100px">Book</button>
-
-                </div>
+                
             </div>
-            
+            <div class="modal-footer">
+                
+                    <h4><b class="pull-left" style="color:red" id="BlockNote"></b></h4>
+                    <button type="button" id="btnCancel" onclick="OnCnacel()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px" value="">@Resources.Content.Cancel</button>
+                    <button type="button" id="btnBlock" onclick="OnBlockAction('@User.IsInRole("Block Room")' ? true:false)" class="btn btn-default btn-sm pull-right" style="margin-left:10px;width:100px">@Resources.Content.Block</button>
+                    <button type="button" id="btnUnBlock" onclick="OnUnBlockAction('@User.IsInRole("Block Room")' ? true:false)" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px">@Resources.Content.UnBlock</button>
+                    <button type="button" id="btnCheckOut" onclick="OnCheckOutAction('@User.IsInRole("Manage CheckOut")' ? true:false)" class="btn btn-warning btn-sm pull-right" style="margin-left:10px;width:100px">@Resources.Content.CheckOut</button>
+                    <button type="button" id="btnCancelBooking" onclick="OnCancelBooking('@User.IsInRole("Cancel Booking")' ? true:false)" class="btn btn-warning btn-sm pull-right" style="margin-left:10px;width:100px">@Resources.Content.CancelBooking</button>
+                    <button type="button" id="btnCheckIn" onclick="OnCheckInAction('@User.IsInRole("Manage Check In")' ? true:false)" class="btn btn-primary btn-sm pull-right" style="margin-left:10px;width:100px">@Resources.Content.CheckIn</button>
+                    <button type="button" id="btnBook" onclick="OnBookAction('@User.IsInRole("Manage Booking")' ? true:false)" class="btn btn-success  btn-sm pull-right" style="margin-left:10px;width:100px">@Resources.Content.Book</button>
+                    <button type="button" id="btnCheckInNow" onclick="OnCheckInNowAction('@User.IsInRole("Manage Check In")' ? true:false)" class="btn btn-primary  btn-sm pull-right" style="margin-left:10px;width:100px">@Resources.Content.CheckIn</button>
+                             
+            </div>
         </div>
-    </div>
+    </div>  
 </div>
 
 @Html.Partial("_Book")
@@ -138,12 +133,19 @@
     function OnCloseRoomDetail() {
         window.location.reload(true);
     }
-    function OnPaymentAction() {
+    function OnCnacel() {
+        alert($("#btnCancel").val());
         window.location.reload(true);
     }
 
     //On Book
-    function OnBookAction() {
+    function OnBookAction(role) {
+        if (role == false) {
+            toastr.options = {"progressBar": true };
+            toastr.warning("Your don't have permission!", "Service Response");
+            return false;
+        }
+
         var rmid = document.getElementById('roomid').value;
         $("#RoomDetailModal").modal('hide');
         $("#BookModal").modal('show');
@@ -157,7 +159,7 @@
                 //$('#lblbookrmid').text("Book Room "+result.room_no);
                 $("#frmbookroomid").val(rmid);
                 $("#bookroomid").val(rmid);
-                $("#totalbooking").val(result.price);
+                //$("#totalbooking").val(result.price);
                // $("#paydollarbooking").val(result.price / 2);
                 $("#roompriceb").val(result.price);
             },
@@ -181,194 +183,226 @@
     }
     
     //On Check In
-    function OnCheckInAction() {
+    function OnCheckInAction(role) {
+        if (role == false) {
+            toastr.options = { "progressBar": true };
+            toastr.warning("Your don't have permission!", "Service Response");
+            return false;
+        }
+
         var btncheckin = document.getElementById('btnCheckIn').innerText;
         var rmid = document.getElementById('roomid');
-        //var rmname = document.getElementById('lblRoomNo').innerText;
-        if (btncheckin == "Check In Now") {
-            $("#CheckInNowModal").modal("show");
-            $("#chnowroomid").val(rmid.value);
-
-            $.get("/api/invoicemaxid", function (data) {
-                $('#invoiceno').val(data);
-            });
-
-            $.get("/api/ExchangeRates/1/2", function (data) {
-                $("#exid").val(data.id);
-                $("#examount").text(data.rate);
-                $("#roomidchin").val(rmid);               
-            });
-        } else {
-            var guestid = document.getElementById('guestid');
-            $("#CheckInModal").modal("show");
-            $("#chroomid").val(rmid.value);
-            $("#guestidchin").val(guestid.value);
-            $.get("/api/rooms/" + rmid.value, function (data) {
-                $("#roompricech").val(data.price);
-                $("#payforroom").val(data.price);
-                //$("#paybefor").val(data.price);
-                //$("#lblRoom").text("Check In Room " + data.room_no);
-            });
-            
-            //var comefrom = ['Takeo', 'Kandal', 'Prey Veng', 'Kampot', 'Kampong Cham', 'Kampng Thom', 'Battambong', 'Pusath', 'Seim Reap'];
-            //var select = document.getElementById("address");
-            //for (var i = 0; i < comefrom.length; i++) {
-            //    var optn = comefrom[i];
-            //    var el = document.createElement("option");
-            //    el.textContent = optn;
-            //    el.value = optn;
-            //    select.appendChild(el);
-            //}
-        }
-        
+        var guestid = document.getElementById('guestid');
+        $("#CheckInModal").modal("show");
+        $("#chroomid").val(rmid.value);
+        $("#guestidchin").val(guestid.value);
+        $.get("/api/rooms/" + rmid.value, function (data) {
+            $("#roompricech").val(data.price);
+            $("#payforroom").val(data.price);
+            $("#prepaid").val(data.price/2);
+        });
     }
 
     //On Check Out
-    function OnCheckOutAction() {
-        var checkoutbtn = document.getElementById('btnCheckOut').innerText;
-        if (checkoutbtn == "Cancel Booking") {
-            bootbox.confirm({
-                title: "",
-                message: "Are you sure want to cancel booking this room?",
-                button: {
-                    cancel: {
-                        label: "Cancel",
-                        ClassName: "btn-default",
-                    },
-                    confirm: {
-                        label: "Delete",
-                        ClassName: "btn-danger"
-                    }
-                },
-                callback: function (result) {
-                    if (result) {
-                        $.ajax({
-                            type: "PUT",
-                            url: "/api/bookingstatus/" + $("#bookingid").val() + "/Cancel",
-                            contentType: false,
-                            processData: false,
-                            // data: status,
-                            success: function (result) {
-                                toastr.success("Booking has been cancel successfully.", "Server Response");
-                                $("#RoomDetailModal").modal("hide");
-                            },
-                            error: function (error) {
-                                toastr.error("Unblock room fail!", "Server Response");
-                            }
-                        });
-
-                        $.ajax({
-                            type: "PUT",
-                            url: "/api/updateroomstatus/" + $("#roomid").val() + "/FREE",
-                            contentType: false,
-                            processData: false,
-                            // data: status,
-                            success: function (result) {
-                                //toastr.success("Room has been unblock successfully.", "Server Response");
-                                $("#RoomDetailModal").modal("hide");
-                               //window.location.reload(true);
-                            },
-                            error: function (error) {
-                                toastr.error("Unblock room fail!", "Server Response");
-                            }
-                        });
-
-                        window.location.reload(true);
-                    }
-                }
-            });
-        } else {
-            $("#CheckOutModal").modal("show");
-            $.ajax({
-                url: "/api/checkin_v/" + $("#checkinid").val(),
-                type: "GET",
-                contentType: "application/json;charset=utf-8",
-                datatype: "json",
-                success: function (result) {
-                    $("#chinid").val(result.id);
-                    $("#gid").val(result.guestid);
-                    $("#rmid").val(result.roomid);
-                    var stdate = moment(result.enddate).format("YYYY-MM-DD");
-                    $("#startdatechout").val(stdate);
-                    $("#wstartrecords").val(result.wendrecord);
-                    $("#estartrecords").val(result.eendrecord);                   
-                    $("#rmprice").val(result.price);
-                    $("#svprice").val(result.servicecharge);
-                    $("#paybefor").val(result.price);
-                },
-                error: function (errormessage) {
-                    toastr.error("No Record Select!", "Service Response");
-                }
-            });
-
-            $.get("/api/WEPrice/1/2", function (data) {
-                $("#wpid").val(data.id);
-                $("#wprice").val(data.waterprice);
-                $("#pprice").val(data.electricprice);
-            });
-
-            $.get("/api/ExchangeRates/1/2", function (data) {
-                $("#exrate").val(data.rate);
-                $("#lblExchangeRate").text("1 $ = "+data.rate+" រៀល");
-            });
-           
+    function OnCheckOutAction(role) {
+        if (role == false) {
+            toastr.options = { "progressBar": true };
+            toastr.warning("Your don't have permission!", "Service Response");
+            return false;
         }
+
+        $("#RoomDetailModal").modal("hide");
+        $("#CheckOutModal").modal("show");
+        $.ajax({
+            url: "/api/checkin_v/" + $("#checkinid").val(),
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            datatype: "json",
+            success: function (result) {
+                $("#chinid").val(result[0].id);
+                $("#gid").val(result[0].guestid);
+                $("#rmid").val(result[0].roomid);
+                var stdate = moment(result[0].enddate).format("YYYY-MM-DD");
+
+                const startdate = new Date(result[0].enddate);
+                const startday = startdate.getDate();
+                const now = new Date(Date.now());
+                const countDay = parseInt(now.getDate()) - parseInt(startday);
+                
+                var totalday = countDay;
+                if (countDay >= 30) {
+                    totalday = 30;
+                }
+                $("#startdatechout").val(stdate);
+                $("#wstart").val(result[0].wendrecord);
+                $("#estart").val(result[0].eendrecord);                   
+                $("#rmprice").val(result[0].price);
+                $("#svprice").val(result[0].servicecharge);
+                $("#paybefor").val(result[0].price + result[0].prepaid);
+                $("#totalroomprice").val((result[0].price / 30 * parseInt(totalday)).toFixed(2));
+
+            },
+            error: function (errormessage) {
+                toastr.error("No Record Select!", "Service Response");
+            }
+        });
+        $.get("/api/WEPrice/1/2", function (data) {
+            $("#wpid").val(data.id);
+            $("#wprice").val(data.waterprice);
+            $("#pprice").val(data.electricprice);
+        });
+        $.get("/api/ExchangeRates/1/2", function (data) {
+            $("#exrate").val(data.rate);
+            $("#lblExchangeRate").text("1 $ = "+data.rate+" រៀល");
+        });
     }
 
-    //On Block Room
-    function OnBlockAction() {
-        var rmid = document.getElementById('roomid');
-        //var rmname = document.getElementById('lblRoomNo').innerText;
-        //$("#roomidblock").val(rmid.value);
-        //$("#lblRoomNoBlock").text(rmname);
-        var btnblock = document.getElementById('btnBlock').innerText;
-        var stts;
-        var sms;
-        var title;
-        if (btnblock == "Block") {
-            stts = "BLOCK";
-            sms = "Block Room Successfully!";
-            title = "Do your want to Block this room?";
-        } else {
-            stts = "FREE";
-            sms = "Unblock Room Successfully!";
-            title = "Do your want to UnBlock this room?";
+    //Cancel Booking
+    function OnCancelBooking(role) {
+        if (role == false) {
+            toastr.options = { "progressBar": true };
+            toastr.warning("Your don't have permission!", "Service Response");
+            return false;
         }
-        bootbox.prompt({
-            title: title,
-            inputType: 'textarea',
+        bootbox.confirm({
+            message: "Are you sure want to cancel booking this room?",
             button: {
                 cancel: {
                     label: "Cancel",
                     ClassName: "btn-default",
                 },
                 confirm: {
-                    label: "Ok",
+                    label: "Delete",
                     ClassName: "btn-danger"
                 }
             },
             callback: function (result) {
-                var note;
-                if (!result || result) {
+                if (result) {
                     $.ajax({
                         type: "PUT",
-                        url: "/api/updateroomstatus/" + $("#roomid").val() + "/" + stts + "/" + note,
+                        url: "/api/bookingstatus/" + $("#bookingid").val() + "/Cancel",
                         contentType: false,
                         processData: false,
                         // data: status,
                         success: function (result) {
-                            toastr.success(sms, "Service Response");
+                            toastr.success("Booking has been cancel successfully.", "Server Response");
+                            $("#RoomDetailModal").modal("hide");
+                        },
+                        error: function (error) {
+                            toastr.error("Unblock room fail!", "Server Response");
+                        }
+                    });
+
+                    $.ajax({
+                        type: "PUT",
+                        url: "/api/updateroomstatus/" + $("#roomid").val() + "/FREE",
+                        contentType: false,
+                        processData: false,
+                        // data: status,
+                        success: function (result) {
+                            toastr.success("Room has been unblock successfully.", "Server Response");
                             window.location.reload(true);
+                        },
+                        error: function (error) {
+                            toastr.error("Unblock room fail!", "Server Response");
+                        }
+                    });
+
+                    window.location.reload(true);
+                }
+            }
+        });
+    }
+
+    //UnBlock Room
+    function OnUnBlockAction(role) {
+        if (role == false) {
+            toastr.options = { "progressBar": true };
+            toastr.warning("Your don't have permission!", "Service Response");
+            return false;
+        }
+        bootbox.confirm({
+            message: "Are you sure want to UnBlock this room?",
+            button: {
+                cancel: {
+                    label: "Cancel",
+                    ClassName: "btn-default",
+                },
+                confirm: {
+                    label: "Delete",
+                    ClassName: "btn-danger"
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "/api/rooms/" + $("#roomid").val(),
+                        type: "GET",
+                        contentType: "application/json;charset=utf-8",
+                        datatype: "json",
+                        success: function (result) {
+                            var data = new FormData();
+                            data.append("note", result.note + ' Open date ');
+                            data.append("status", 'FREE');
+                            $.ajax({
+                                type: "PUT",
+                                url: "/api/blockroom/" + $("#roomid").val(),
+                                contentType: false,
+                                processData: false,
+                                data: data,
+                                success: function (result) {
+                                    toastr.success("Room has been UnBlock successfully.", "Server Response");
+                                    window.location.reload(true);
+                                },
+                                error: function (error) {
+                                    toastr.error("Block room fail!", "Server Response");
+                                }
+                            });
                         },
                         error: function (error) {
                             toastr.error("Block room fail!", "Server Response");
                         }
                     });
                 }
-                    
-                
             }
-        });   
+        });
+    }
+    //On Block Room
+    function OnBlockAction(role) {
+        if (role == false) {
+            toastr.options = { "progressBar": true };
+            toastr.warning("Your don't have permission!", "Service Response");
+            return false;
+        }
+
+        var rmid = document.getElementById('roomid').value;
+        $("#roomid").val(rmid);
+        $("#BlockRoomModal").modal('show');
+    }
+
+    function OnCheckInNowAction(role) {
+        if (role == false) {
+            toastr.options = { "progressBar": true };
+            toastr.warning("Your don't have permission!", "Service Response");
+            return false;
+        }
+
+        var rmid = document.getElementById('roomid').value;
+        $("#chnowroomid").val(rmid);
+        $("#CheckInNowModal").modal('show');
+        $.ajax({
+            url: "/api/rooms/" + rmid,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            datatype: "json",
+            success: function (result) {
+                $("#roomprices").val(result.price);
+                $("#payforrooms").val(result.price);
+            },
+            error: function (errormessage) {
+                toastr.error("No Record Select!", "Service Response");
+            }
+        });
     }
 </script>
 

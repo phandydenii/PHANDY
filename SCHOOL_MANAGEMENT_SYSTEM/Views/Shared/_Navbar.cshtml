@@ -8,7 +8,6 @@
                 <span class="icon-bar"></span>
             </button>
             @Html.ActionLink(@Resources.Content.RL, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            @Html.ActionLink("Sent Mail", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -84,7 +83,7 @@
                                 <li>@Html.ActionLink("-"+Resources.Content.Guest, "", "guest-list")</li>
                                 <li>@Html.ActionLink("-"+Resources.Content.Room, "", "room-list")</li>
                                 <li>@Html.ActionLink("-"+Resources.Content.Item, "", "item-list")</li>
-                                <li>@Html.ActionLink("-"+Resources.Content.User, "", "")</li>
+                                @*<li>@Html.ActionLink("-"+Resources.Content.User, "", "user-list")</li>*@
                                 <li><b>@Resources.Content.Proccess</b></li>
                                 <li>@Html.ActionLink("-"+Resources.Content.Booking, "", "bookinglist-rpt")</li>
                                 <li>@Html.ActionLink("-"+Resources.Content.CheckIn, "", "checkinlist-rpt")</li>
@@ -94,7 +93,6 @@
                                 <li><b>@Resources.Content.Account</b></li>
                                 <li>@Html.ActionLink("-" + Resources.Content.Expense, "", "otherexpenselist-rpt")</li>
                                 <li>@Html.ActionLink("-" + Resources.Content.Income, "", "incomelist-rpt")</li>
-                                <li>@Html.ActionLink("- Test", "", "test")</li>
                             </ul>
                         </li>
                     }

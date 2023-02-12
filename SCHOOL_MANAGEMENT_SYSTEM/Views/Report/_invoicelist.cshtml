@@ -44,9 +44,9 @@
           var enddate = $("#dateEnd").val();
           var paid = $("#paid").val();
           if (paid == 1) {
-              window.open("/invoicelist-rpt/" + startdate + "/" + enddate + "/paid");
+              window.location ="/invoicelist-rpt/" + startdate + "/" + enddate + "/paid";
           } else {
-              window.open("/invoicelist-rpt/" + startdate + "/" + enddate + "/notpaid");
+              window.location ="/invoicelist-rpt/" + startdate + "/" + enddate + "/notpaid";
           }
           
        }

@@ -3,8 +3,8 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button"  class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">ចូលស្នាក់នៅ</b>
+                <button type="button"  class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b>@Resources.Content.CheckIn</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -14,114 +14,137 @@
                     <input id="waterid" name="waterid" type="text" style="display: none;" value="" class="form-control" />
                     <input id="electricid" name="electricid" type="text" style="display: none;" value="" class="form-control" />
                     <input id="checkinid" name="checkinid" type="text" style="display: none;" value="" class="form-control" />
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="namekh">ឈ្មោះភ្ញៀវជាភាសាខ្មែរ</label>
-                                            <input id="namekh" name="namekh" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%;font-family:'Khmer OS Battambang'" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="name">ឈ្មោះភ្ញៀវ</label>
-                                            <input id="name" name="name" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
+                                <div class="form-group">
+                                    <label for="namekh">ឈ្មោះភ្ញៀវជាភាសាខ្មែរ</label>
+                                    <input id="namekh" name="namekh" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%;font-family:'Khmer OS Battambang'" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">ឈ្មោះភ្ញៀវ</label>
+                                    <input id="name" name="name" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
                                         
-                                        <div class="form-group">
-                                            <label for="gsex">ភេទ</label>
-                                            <select class="form-control input-sm" id="gsex">
-                                                <option>Male</option>
-                                                <option>Female</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="dob">ថ្ងៃខែឆ្នាំកំណើត</label>
-                                            <input id="dob" name="dob" type="date" value="" class="form-control input-sm" placeholder="Choose Datetime" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="addr">អាស័យដ្ឋាន</label>
-                                            <input id="addr" name="addr" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input id="datenow" name="datenow" style="display: none;" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm"/>
-                                        <div class="form-group">
-                                            <label for="national">សញ្ជាតិ</label>
-                                            <input id="national" name="national" placeholder="Enter Nationality" type="text" value="Khmer" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="phone">លេខទូរសព្ទ</label>
-                                            <input id="phone" name="phone" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="gemail">អ៊ីម៉ែល</label>
-                                            <input id="gemail" name="gemail" placeholder="Enter Email" type="email" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="gssn">លេខអត្តសញ្ញាណប័ណ្ណ</label>
-                                            <input id="gssn" name="ssn" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="gpassport">លិខិតឆ្លងដែន</label>
-                                            <input id="gpassport" name="passport" placeholder="Enter Passport Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="gsex">ភេទ</label>
+                                    <select class="form-control input-sm" id="gsex">
+                                        <option>Male</option>
+                                        <option>Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dob">ថ្ងៃខែឆ្នាំកំណើត</label>
+                                    <input id="dob" name="dob" type="date" value="" class="form-control input-sm" placeholder="Choose Datetime" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="addr">អាស័យដ្ឋាន</label>
+                                    <input id="addr" name="addr" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input id="datenow" name="datenow" style="display: none;" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" />
+                                <div class="form-group">
+                                    <label for="national">សញ្ជាតិ</label>
+                                    <input id="national" name="national" placeholder="Enter Nationality" type="text" value="Khmer" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">លេខទូរសព្ទ</label>
+                                    <input id="phone" name="phone" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="gemail">អ៊ីម៉ែល</label>
+                                    <input id="gemail" name="gemail" placeholder="Enter Email" type="email" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="gssn">លេខអត្តសញ្ញាណប័ណ្ណ</label>
+                                    <input id="gssn" name="ssn" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="gpassport">លិខិតឆ្លងដែន</label>
+                                    <input id="gpassport" name="passport" placeholder="Enter Passport Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="frmbookroomid">លេខបន្ទប់</label>
+                                    <select class="form-control input-sm" id="chnowroomid" disabled>
+                                        @foreach (var room in Model.ListRoomFree)
+                                        {
+                                            <option value=@room.id>@room.room_no</option>
+                                        }
+                                    </select>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="invoiceno">លេខរៀងកក់</label>
-                                            <input id="invoiceno" name="invoiceno" readonly="readonly" placeholder="Enter Book No" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                            <label for="roomprices">តម្លៃបន្ទប់</label>
+                                            <input id="roomprices" name="roomprices" readonly="readonly" onfocus="this.select();" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="frmbookroomid">លេខបន្ទប់</label>
-                                            <select class="form-control input-sm" id="chnowroomid" disabled>
-                                                @foreach (var room in Model.ListRoomFree)
-                                                {
-                                                    <option value=@room.id>@room.room_no</option>
-                                                }
-                                            </select>
+                                            <label class="control-label" for="payforrooms">បង់ថ្លៃបន្ទប់</label>
+                                            <input id="payforrooms" name="payforrooms" onfocus="this.select();" readonly="readonly" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="paydollar">បង់ជាដុល្លា</label>
+                                            <input id="paydollar" name="paydollar"  onfocus="this.select();" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="payriel">បង់ជារៀល</label>
+                                            <input id="payriel" name="payriel" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <input id="checkindate" readonly="readonly" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%;display:none" />
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="estartrecords">លេខកុងទ័រភ្លើង</label>
+                                            <input id="estartrecords" name="estartrecords" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="wstartrecords">លេខកុងទ័រទឹក</label>
+                                            <input id="wstartrecords" name="wstartrecords" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="numman">បុរស</label>
                                             <input id="numman" name="numman" onfocus="this.select();" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="numwomen">ស្ត្រី</label>
                                             <input id="numwomen" name="numwomen" onfocus="this.select();" placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="numchild">ក្មេងៗ</label>
                                             <input id="numchild" name="numchild" onfocus="this.select();" placeholder="Enter number of child" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        
-                                        <div class="form-group">
-                                            <label class="control-label">លេខកុងទ័រភ្លើង</label>
-                                            <input id="erecord" name="erecord" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
-                                        </div>
-                                        
-                                        <div class="form-group">
-                                            <label class="control-label">លេខកុងទ័រទឹក</label>
-                                            <input id="wrecord" name="wrecord" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label" for="paybefor">បង់មុនចំនួន</label>
-                                            <input id="pay" name="pay" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
-                                        </div>
-                                        <div class="form-group">
-                                            <span>អត្រាប្តូរប្រាក់</span> : 1 <span>$</span> = <label id="examount"></label><span> រៀល</span>
-                                            <input type="hidden" id="exid" />
-
                                         </div>
                                     </div>
                                 </div>

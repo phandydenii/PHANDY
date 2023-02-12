@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Drawing.Imaging;
+using System.Net.Mail;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
 {
@@ -303,16 +304,28 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
                 var user = await UserManager.FindByNameAsync(model.Email);
                 if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return View("ForgotPasswordConfirmation");
-                }
+                    string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                    var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                // Send an email with this link
-                // string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                // var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);		
-                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                // return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                    string to = model.Email;
+                    string sub = "Welcome to ROSELANY APARTMENT";
+                    string bod = "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>";
+                    MailMessage mm = new MailMessage();
+                    mm.To.Add(to);
+                    mm.Subject = sub;
+                    mm.Body = bod;
+                    mm.From = new MailAddress("phandy010@gmail.com");
+                    mm.IsBodyHtml = false;
+                    SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                    smtp.Port = 587;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.EnableSsl = true;
+                    smtp.Credentials = new System.Net.NetworkCredential("phandy010@gmail.com", "vpvsvqigrcingkbk");
+                    smtp.Send(mm);
+                    ViewBag.Message = "The mail has been sent to " + model.Email + "successfuly";
+                    return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                }
             }
 
             // If we got this far, something failed, redisplay form

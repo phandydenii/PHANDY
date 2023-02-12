@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
@@ -133,13 +134,15 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpPut]
-        [Route("api/blockroom/{id}/{note}")]
-        public IHttpActionResult BlockRoom(int id, string note)
+        [Route("api/blockroom/{id}")]
+        public IHttpActionResult BlockRoom(int id)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-
-            SqlCommand requestcommand = new SqlCommand("Update room_tbl set note='" + note + "' where id=" + id, conx);
+            var note = HttpContext.Current.Request.Form["note"];
+            var status = HttpContext.Current.Request.Form["status"];
+            var notestr = note +" "+ DateTime.Today;
+            SqlCommand requestcommand = new SqlCommand("Update room_tbl set status='"+ status + "', note='" + notestr + "' where id=" + id, conx);
             try
             {
                 conx.Open();

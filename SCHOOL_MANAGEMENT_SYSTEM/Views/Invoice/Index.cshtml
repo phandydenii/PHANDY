@@ -10,8 +10,8 @@
             <h4 style="color: darkblue;"><b>@Resources.Content.ManagePayment</b></h4>
         </div>
         <div class="col-md-6">
-            <a class="btn btn-success btn-sm pull-right" style='margin-top:0px;margin-left:5px' data-toggle="modal" data-target="#exchangeModel"><span class='glyphicon glyphicon-usd'></span> អត្រាប្តូរប្រាក់</a>
-            <a class="btn btn-success btn-sm pull-right" style='margin-top:0px' data-toggle="modal" data-target="#WEPriceModel"><span class='glyphicon glyphicon-usd'></span> តម្លៃទឹកភ្លើង</a>
+            <a class="btn btn-success btn-sm pull-right" style='margin-top:0px;margin-left:5px' data-toggle="modal" data-target="#exchangeModel"><span class='glyphicon glyphicon-usd'></span> @Resources.Content.ManageExchaneRate</a>
+            <a class="btn btn-success btn-sm pull-right" style='margin-top:0px' data-toggle="modal" data-target="#WEPriceModel"><span class='glyphicon glyphicon-usd'></span> @Resources.Content.ManageWEPrice</a>
         </div>
     </div>
     <hr />
@@ -20,15 +20,15 @@
         <table id="tablePrintInvoice" style="width:100%" class="table table-hover table-bordered">
             <thead>
                 <tr>
-                    <th>លេខ</th>
-                    <th>ឈ្មោះ</th>
-                    <th>ថ្ងៃចូលស្នាក់នៅ</th>
-                    <th>បន្ទប់លេខ</th>
-                    <th>ប្រភេទបន្ទប់</th>
-                    <th>សេវា</th>
-                    <th>តម្លៃបន្ទប់</th>
-                    <th>បង់ប្រាក់ខែបន្ទាប់</th>
-                    <th style="width:15%">សកម្មភាព</th>
+                    <th>@Resources.Content.No</th>
+                    <th>@Resources.Content.Name</th>
+                    <th>@Resources.Content.CheckInDate</th>
+                    <th>@Resources.Content.RoomNo</th>
+                    <th>@Resources.Content.RoomType</th>
+                    <th>@Resources.Content.ServiceCharge</th>
+                    <th>@Resources.Content.RoomPrice</th>
+                    <th>@Resources.Content.PayNextMonth</th>
+                    <th style="width:15%">@Resources.Content.Action</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -40,6 +40,7 @@
 @Html.Partial("_PrintNewInvoice")
 @Html.Partial("_ExchangeRate")
 @Html.Partial("_WEPrice")
+@Html.Partial("_History")
 
 
 @section scripts
@@ -48,6 +49,7 @@
     @Scripts.Render("~/Scripts/Functions/invoice.js")
     @Scripts.Render("~/Scripts/Functions/pirntinvoice.js")
     @Scripts.Render("~/Scripts/Functions/exchangerate.js")
-    @Scripts.Render("~/Scripts/Functions/weprice.js") 
+    @Scripts.Render("~/Scripts/Functions/weprice.js")
+    @Scripts.Render("~/Scripts/Functions/history.js") 
 }
 

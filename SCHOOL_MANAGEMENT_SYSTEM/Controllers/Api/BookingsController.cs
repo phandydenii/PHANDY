@@ -219,7 +219,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                              join g in _context.Guests on b.guestid equals g.id
                              join r in _context.Rooms on b.roomid equals r.id
                              join rt in _context.RoomTypes on r.roomtypeid equals rt.id
-                             where r.id == roomid && b.status=="Active" orderby b.id descending 
+                             where r.id == roomid && g.status=="BOOK" && b.status=="Active" orderby b.id descending 
                              select new BookingV
                              {
                                  id = b.id,

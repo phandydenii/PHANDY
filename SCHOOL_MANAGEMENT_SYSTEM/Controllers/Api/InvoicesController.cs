@@ -681,6 +681,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return ds.Tables[0];
         }
 
+
         [HttpPost]
         //Get : api/CheckIns
         public IHttpActionResult CreateInvoice(InvoiceDto InvoiceDtos)

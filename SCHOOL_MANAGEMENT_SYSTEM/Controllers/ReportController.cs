@@ -1,4 +1,5 @@
 ﻿using iTextSharp.text.pdf;
+using Microsoft.AspNet.Identity;
 using Microsoft.Reporting.WebForms;
 using SCHOOL_MANAGEMENT_SYSTEM.Models;
 using SCHOOL_MANAGEMENT_SYSTEM.ViewModels;
@@ -31,7 +32,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
         }
         public ActionResult Index()
         {
-            
             return View();
         }
 
@@ -123,6 +123,27 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));
             ViewBag.ReportViewer = reportViewer;
             return View("_invoicerpt");
+        }
+
+        [Route("checkin-rpt/{id}")]
+        [System.Web.Mvc.HttpGet]
+        public ActionResult GetCheckInReport(int id)
+        {
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("Select * From CHECK_IN_V where id=" + id, con);
+            adp.Fill(ds);
+
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
+            reportViewer.Width = Unit.Percentage(100);
+            reportViewer.Height = Unit.Percentage(100);
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\INVOICE_REPORT.rdlc";
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));
+            ViewBag.ReportViewer = reportViewer;
+            return View("_checkinrpt");
         }
 
         [Route("invoice-rpt/{id}")]
@@ -285,7 +306,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             ViewBag.ReportViewer = reportViewer;
             return View("_itemlistrpt");
         }
-
 
         [Route("user-list")]
         [System.Web.Mvc.HttpGet]
@@ -665,15 +685,55 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
         }
 
 
-
-
-
-        [Route("test")]
+        [Route("room-list")]
         [System.Web.Mvc.HttpGet]
-        public ActionResult test()
+        public ActionResult _roomlist()
         {
-           
-            return View("_Test");
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from ROOM_LIST", con);
+            adp.Fill(ds);
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
+            reportViewer.Width = Unit.Percentage(100);
+            reportViewer.Height = Unit.Percentage(100);
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ROOM_REPORT.rdlc";
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));
+            ViewBag.ReportViewer = reportViewer;
+            return View("_roomlistrpt");
         }
+
+        [Route("room-list/{status}")]
+        [System.Web.Mvc.HttpGet]
+        public ActionResult _roomlist(string status)
+        {
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
+            SqlDataAdapter adp;
+            if (status == "All")
+            {
+                 adp = new SqlDataAdapter("select * from ROOM_LIST ", con);
+            }
+            else
+            {
+                 adp = new SqlDataAdapter("select * from ROOM_LIST where status='" + status + "'", con);
+            }
+            adp.Fill(ds);
+            ReportViewer reportViewer = new ReportViewer();
+            reportViewer.ProcessingMode = ProcessingMode.Local;
+            reportViewer.SizeToReportContent = true;
+            reportViewer.Width = Unit.Percentage(100);
+            reportViewer.Height = Unit.Percentage(100);
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ROOM_REPORT.rdlc";
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));
+            ViewBag.ReportViewer = reportViewer;
+            reportViewer.ServerReport.Refresh();
+            return View("_roomlistrpt");
+        }
+
+
     }
 }

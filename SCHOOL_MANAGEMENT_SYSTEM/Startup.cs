@@ -9,16 +9,16 @@ namespace SCHOOL_MANAGEMENT_SYSTEM
 {
     public partial class Startup
     {
+        ApplicationDbContext context = new ApplicationDbContext();
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
             createRolesandUsers();
+            createRolse();
         }
 
         private void createRolesandUsers()
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
@@ -61,15 +61,57 @@ namespace SCHOOL_MANAGEMENT_SYSTEM
 
             }
 
+           
+        } 
+        private void createRolse()
+        {
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
             // creating Creating Employee role     
             if (!roleManager.RoleExists("Manage Other Expense"))
             {
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Manage Other Expense";
                 roleManager.Create(role);
+            }
 
+            if (!roleManager.RoleExists("Manage Floor"))
+            {
+                role.Name = "Manage Floor";
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("Manae Room Type"))
+            {
+                role.Name = "Manae Room Type";
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("Manage Room Item"))
+            {
+                role.Name = "Manage Room Item";
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("Block Room"))
+            {
+                role.Name = "Block Room";
+                roleManager.Create(role);
+            }
+            if (!roleManager.RoleExists("Cancel Booking"))
+            {
+                role.Name = "Cancel Booking";
+                roleManager.Create(role);
+            }
+            if (!roleManager.RoleExists("Manage Check In"))
+            {
+                role.Name = "Manage Check In";
+                roleManager.Create(role);
+            }
+            if (!roleManager.RoleExists("Manage CheckOut"))
+            {
+                role.Name = "Manage CheckOut";
+                roleManager.Create(role);
             }
         }
-   
     }
 }

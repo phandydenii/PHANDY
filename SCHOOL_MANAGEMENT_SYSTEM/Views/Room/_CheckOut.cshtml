@@ -1,14 +1,14 @@
 ﻿<div class="modal fade" data-backdrop="static" data-keyboard="false" id="CheckOutModal" tabindex="-1" role="dialog" aria-labelledby="CheckOutModal" aria-hidden="true">
-    <div class="modal-dialog " role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="OnCloseCheckOut()"><span class="glyphicon glyphicon-remove"></span></button>
-                <b class="modal-title" style="color: darkblue;">@Resources.Content.CheckOut</b>
+                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="CloseForm()"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.CheckOut</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <input id="checkoutid" name="checkoutid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <input id="chinid" name="chinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <input id="rmid" name="rmid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
@@ -33,31 +33,35 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="rmprice">តម្លៃបន្ទប់</label>
-                            <input id="rmprice" readonly="readonly" name="rmprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="rmprice">តម្លៃបន្ទប់</label>
+                                    <input id="rmprice" readonly="readonly" name="rmprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="totalroomprice">តម្លៃបន្ទប់</label>
+                                    <input id="totalroomprice" name="totalroomprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                </div>
+                            </div>
                         </div>
+                       
                         <div class="form-group">
                             <label for="svprice">បង់ថ្លៃសេវា</label>
                             <input id="svprice" readonly="readonly" name="svprice" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
-                        <div class="form-group">
-                            <label class="control-label" for="grandtotal">សរុប</label>
-                            <input id="grandtotal" name="grandtotal" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" for="paybefor">បង់មុនចំនួន</label>
-                            <input id="paybefor" name="paybefor" readonly="readonly" placeholder="0" value="0" type="number" class="form-control input-sm">
-                        </div>
+                        
                         
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="row">
                             <input id="waterid" name="waterid" type="text" style="display: none;" value="" class="form-control" />
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="wstartrecords">គីឡូទឺកចាស់</label>
-                                    <input id="wstartrecords" readonly="readonly" name="wstartrecords" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                    <label for="wstart">គីឡូទឺកចាស់</label>
+                                    <input id="wstart" readonly="readonly" name="wstart" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -71,8 +75,8 @@
                             <input id="powerid" name="powerid" type="text" style="display: none;" value="" class="form-control" />
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="estartrecords">គីឡូភ្លើងចាស់</label>
-                                    <input id="estartrecords" readonly="readonly" name="estartrecords" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                                    <label for="estart">គីឡូភ្លើងចាស់</label>
+                                    <input id="estart" readonly="readonly" name="estart" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -82,38 +86,48 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="wtotal">សរុបថ្លៃទឹក</label>
-                                    <input id="wtotal" readonly="readonly" name="wtotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="etotal">សរុបថ្លៃភ្លើង</label>
-                                    <input id="etotal" readonly="readonly" name="etotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label class="control-label" for="paybefor">បង់មុនចំនួន</label>
+                            <input id="paybefor" name="paybefor" readonly="readonly" placeholder="0" value="0" type="number" class="form-control input-sm">
                         </div>
+                        
+
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="wtotal">សរុបថ្លៃទឹក</label>
+                            <input id="wtotal" readonly="readonly" name="wtotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label for="etotal">សរុបថ្លៃភ្លើង</label>
+                            <input id="etotal" readonly="readonly" name="etotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="grandtotal">សរុប</label>
+                            <input id="grandtotal" name="grandtotal" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
+                        </div>                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label" for="returnamount">ត្រលប់វិញចំនួន</label>
                             <input id="returnamount" name="returnamount" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
                         </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label" for="totalpayment">ប្រាក់សរុបត្រូវបង់</label>
                             <input id="totalpayment" name="totalpayment" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
-                        </div>   
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label" for="paydollar">សាច់ប្រាក់ជាដុល្លា</label>
                             <input id="paydollar" name="paydollar" placeholder="0.00" value="0" type="number" class="form-control input-sm">
                         </div> 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label class="control-label" for="payriel">សាច់ប្រាក់ជារៀល</label>
                             <input id="payriel" name="payriel" placeholder="0.00" value="0" type="number" class="form-control input-sm">
@@ -147,12 +161,12 @@
     //Insert WE
     function CreatetWaterElectricUsage() {
         var data = new FormData();
-        data.append("checkinid", $('#chinid').val());
+        data.append("guestid", $("#gid").val());
         data.append("startdate", $('#startdatechout').val());
         data.append("enddate", $('#enddatechout').val());
-        data.append("wstartrecord", $('#wstartrecords').val());
+        data.append("wstartrecord", $('#wstart').val());
         data.append("wendrecord", $('#wendrecords').val());
-        data.append("estartrecord", $('#estartrecords').val());
+        data.append("estartrecord", $('#estart').val());
         data.append("eendrecord", $('#eendrecords').val());
         $.ajax({
             url: "/api/waterelectricusages",
@@ -161,7 +175,7 @@
             processData: false,
             data: data,
             success: function (result) {
-                CreateCheckOut(result);
+                InsertCheckOut(result);
             },
             error: function (errormesage) {
                 toastr.error("Electric usage insert faild!", "Server Respond");
@@ -169,16 +183,12 @@
             }
         });
     }
-
-    function CreateCheckOut(id) {
-        if ($('#paydollar').val() == 0) {
-            $('#paydollar').focus()
-            return false;
-        }
+    function InsertCheckOut(id) {
         var data = {
             guestid: $('#gid').val(),
             roomid: $('#rmid').val(),            
             weusageid: id,
+            totalroomprice: $('#totalroomprice').val(),
             total: $('#grandtotal').val(),
             paybefor: $('#paybefor').val(),
             returnamount: $('#returnamount').val(),
@@ -201,31 +211,6 @@
             },
             error: function (errormesage) {
                 toastr.error("This checkout is exist in Database", "Server Respond");
-                return false;
-            }
-
-        });
-    }
-
-    function CreateCheckOutDetail(id) {
-        var data = new FormData();
-        data.append("checkoutid", id);
-
-        data.append("guestid", $('#gid').val());
-        data.append("fromdate", $('#startdatechout').val());
-        data.append("todate", $('#enddatechout').val());
-        $.ajax({
-            url: "/api/checkoutdetails",
-            type: "POST",
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function (result) {
-                toastr.success("Check out successfully.", "Server Response");
-                window.location.reload(true);
-            },
-            error: function (errormesage) {
-                toastr.error("This check out detail is exist in Database", "Server Respond");
                 return false;
             }
 
@@ -262,7 +247,7 @@
     }
     function RecordWaterChange() {
         var wendrecords = document.getElementById('wendrecords').value;
-        var wstartrecords = document.getElementById('wstartrecords').value;
+        var wstartrecords = document.getElementById('wstart').value;
         var wtotal = ((parseFloat(wendrecords) - parseFloat(wstartrecords)) * parseFloat($('#wprice').val())) / parseFloat($('#exrate').val());
         if (wtotal <= 0) {
             alert('Faild!');
@@ -274,7 +259,7 @@
     }
     function RecordElectricChange() {
         var eendrecords = document.getElementById('eendrecords').value;
-        var estartrecords = document.getElementById('estartrecords').value;
+        var estartrecords = document.getElementById('estart').value;
         var etotal = ((parseFloat(eendrecords) - parseFloat(estartrecords)) * parseFloat($('#pprice').val())) / parseFloat($('#exrate').val());
         if (etotal <= 0) {
             alert('Faild!');
@@ -289,68 +274,21 @@
         var watertotal = document.getElementById('wtotal').value;
         var eletrictotal = document.getElementById('etotal').value;
         var roomprice = document.getElementById('rmprice').value;
+        var totalroomprice = document.getElementById('totalroomprice').value;
         var servicecharge = document.getElementById('svprice').value;
         var totalpaybefor = document.getElementById('paybefor').value;
 
-        var grandtotal = parseFloat(watertotal) + parseFloat(eletrictotal) + parseFloat(roomprice) + parseFloat(servicecharge);
+        var grandtotal = parseFloat(watertotal) + parseFloat(eletrictotal) + parseFloat(totalroomprice) + parseFloat(servicecharge);
         $('#grandtotal').val(grandtotal.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         $('#grandtotalkh').val((grandtotal * parseFloat($('#exrate').val())).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
 
         var totalreturn = grandtotal - parseFloat(totalpaybefor);
         if (totalreturn >= 0) {
             $('#totalpayment').val(totalreturn.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+            $('#totalpayment').addClass('');
         } else {
             $('#returnamount').val((totalreturn * -1).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         }
-    }
-
-
-    function InsertPowerCheckOut() {
-        var data = new FormData();
-        data.append("checkinid", $('#chinid').val());
-        data.append("predate", $('#startdatechout').val());
-        data.append("prerecord", $('#estartrecords').val());
-        data.append("currentdate", $('#enddatechout').val());
-        data.append("currentrecord", $('#eendrecords').val());
-
-        $.ajax({
-            type: "POST",
-            url: "/api/electrics",
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function (result) {
-                //
-            },
-            error: function (errormesage) {
-                toastr.error("Water usage insert faild!", "Server Respond");
-                return false;
-            }
-
-        });
-    }
-    function InsertWaterCheckOut() {
-        var data = new FormData();
-        data.append("checkinid", $('#chinid').val());
-        data.append("predate", $('#startdatechout').val());
-        data.append("prerecord", $('#wstartrecords').val());
-        data.append("currentdate", $('#enddatechout').val());
-        data.append("currentrecord", $('#wendrecords').val());
-
-        $.ajax({
-            type: "POST",
-            url: "/api/waterusage",
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function (result) {
-                InsertCheckOut();
-            },
-            error: function (errormesage) {
-                toastr.error("Water usage insert faild!", "Server Respond");
-                return false;
-            }
-        });
     }
 
 </script>

@@ -12,7 +12,7 @@
                 <Value>បញ្ជីបន្ទប់</Value>
                 <Style>
                   <FontFamily>khmer os muol light</FontFamily>
-                  <FontSize>14pt</FontSize>
+                  <FontSize>12pt</FontSize>
                   <TextDecoration>Underline</TextDecoration>
                 </Style>
               </TextRun>
@@ -24,9 +24,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.05471cm</Top>
-        <Left>6.83855cm</Left>
+        <Left>0.54016cm</Left>
         <Height>0.97042cm</Height>
-        <Width>7.52707cm</Width>
+        <Width>19.93417cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -41,25 +41,25 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.23542cm</Width>
+              <Width>2.36393cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.89687cm</Width>
+              <Width>3.02538cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.26729cm</Width>
+              <Width>3.3958cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.89688cm</Width>
+              <Width>3.02539cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.62851cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.73813cm</Width>
+              <Width>2.86664cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>2.62851cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -279,7 +279,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>ថ្លៃសេវ៉ា</Value>
+                              <Value>ស្ថានភាព</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -318,7 +318,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!id.Value</Value>
+                              <Value>=rownumber(nothing)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -493,21 +493,21 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="servicecharge">
+                    <Textbox Name="status">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!servicecharge.Value</Value>
+                              <Value>=Fields!status.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>servicecharge</rd:DefaultName>
+                      <rd:DefaultName>status</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -548,9 +548,9 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet1</DataSetName>
         <Top>1.13096cm</Top>
-        <Left>1.01641cm</Left>
+        <Left>0.54016cm</Left>
         <Height>1.35875cm</Height>
-        <Width>19.03459cm</Width>
+        <Width>19.93416cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -586,7 +586,7 @@
         <Top>2.63082cm</Top>
         <Left>12.57745cm</Left>
         <Height>0.6cm</Height>
-        <Width>7.47355cm</Width>
+        <Width>7.89688cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -616,10 +616,10 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>រ៉ូសឡានី អាផាត់ម៉ិន</Value>
+                  <Value>រ៉ូសឡានី អាផាតម៉ិន</Value>
                   <Style>
                     <FontFamily>Khmer OS Muol Light</FontFamily>
-                    <FontSize>12pt</FontSize>
+                    <FontSize>14pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -645,9 +645,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.25563cm</Top>
-          <Left>6.83855cm</Left>
-          <Height>1.31437cm</Height>
-          <Width>7.52707cm</Width>
+          <Left>0.54016cm</Left>
+          <Height>1.47312cm</Height>
+          <Width>19.93417cm</Width>
           <Style>
             <Border>
               <Style>None</Style>

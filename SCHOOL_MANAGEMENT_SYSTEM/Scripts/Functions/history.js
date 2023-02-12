@@ -1,16 +1,15 @@
 ﻿$(document).ready(function () {
     $('#HistoryModal').on('show.bs.modal', function () {
-        $('#rowhide').hide();
-        GetGuestHistory();
+        GetHistoryInvoice($('#guestid').val());
     });
     
 });
 
-var tableHistory = [];
-function GetGuestHistory() {
-    tableHistory = $('#tableHistory').dataTable({
+function GetHistoryInvoice(id) {
+    alert(id);
+    $('#tableHistory').dataTable({
         ajax: {
-            url: "/api/invoice_v_by_guestid/" + $('#guestid').val(),
+            url: "/api/invoice_v_by_guestid/" + id,
             dataSrc: ""
         },
         columns:
@@ -59,12 +58,10 @@ function GetGuestHistory() {
                 },
                 {
                     data: "id",
-
                     render: function (data) {
-
-                        return "<button OnClick='OnEditRoom (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>"
-                        + "<button OnClick='OnDeleteRoom (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span></button>"
-                        ;
+                        return "<button OnClick='OnEditInvHistory (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>"
+                            + "<button OnClick='OnDeleteInvoiceHistory (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span></button>"
+                            ;
 
                     }
                 }
@@ -74,10 +71,12 @@ function GetGuestHistory() {
 
     });
 }
-
-function OnEditRoom() {
-    $('#rowhide').show();
+function Close() {
+    window.location.reload(true);
 }
-function OnDeleteRoom() {
-    $('#rowhide').hide();
+
+
+function OnEditInvHistory() {
+    $("#HistoryModal").modal('hide');
+    $("#PaymentModal").modal('show');
 }

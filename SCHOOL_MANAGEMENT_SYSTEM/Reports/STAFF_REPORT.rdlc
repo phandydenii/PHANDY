@@ -12,7 +12,7 @@
                 <Value>បញ្ជីបុគ្កលិក</Value>
                 <Style>
                   <FontFamily>khmer os muol light</FontFamily>
-                  <FontSize>14pt</FontSize>
+                  <FontSize>12pt</FontSize>
                   <TextDecoration>Underline</TextDecoration>
                 </Style>
               </TextRun>
@@ -24,9 +24,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.10583cm</Top>
-        <Left>6.87272cm</Left>
+        <Left>0.57891cm</Left>
         <Height>0.97042cm</Height>
-        <Width>7.52707cm</Width>
+        <Width>19.90567cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -347,7 +347,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!id.Value</Value>
+                              <Value>=rownumber(nothing)</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -608,7 +608,7 @@
         <Top>1.18209cm</Top>
         <Left>0.57891cm</Left>
         <Height>1.35875cm</Height>
-        <Width>19.90567cm</Width>
+        <Width>19.90568cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -623,7 +623,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Printe Date: </Value>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -641,7 +641,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox46</rd:DefaultName>
-        <Top>2.67656cm</Top>
+        <Top>5.31068cm</Top>
         <Left>12.93198cm</Left>
         <Height>0.6cm</Height>
         <Width>7.5526cm</Width>
@@ -656,14 +656,61 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Line Name="Line1">
+        <Top>4.49902cm</Top>
+        <Left>16.84687cm</Left>
+        <Height>0cm</Height>
+        <Width>3.63771cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+        </Style>
+      </Line>
+      <Textbox Name="Textbox3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>អ្នកបង្កើត</Value>
+                <Style>
+                  <FontFamily>Khmer OS Battambang</FontFamily>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox3</rd:DefaultName>
+        <Top>4.5343cm</Top>
+        <Left>16.84687cm</Left>
+        <Height>0.70583cm</Height>
+        <Width>3.63771cm</Width>
+        <ZIndex>4</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>3.86292cm</Height>
+    <Height>6.35cm</Height>
     <Style />
   </Body>
   <Width>21.2725cm</Width>
   <Page>
     <PageHeader>
-      <Height>1.71979cm</Height>
+      <Height>1.96687cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -674,10 +721,10 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>រ៉ូសឡានី អាផាត់ម៉ិន</Value>
+                  <Value>រ៉ូសឡានី អាផាតម៉ិន</Value>
                   <Style>
                     <FontFamily>Khmer OS Muol Light</FontFamily>
-                    <FontSize>12pt</FontSize>
+                    <FontSize>14pt</FontSize>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -702,10 +749,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.26886cm</Top>
-          <Left>6.87272cm</Left>
-          <Height>1.31437cm</Height>
-          <Width>7.52707cm</Width>
+          <Top>0.49375cm</Top>
+          <Left>0.57892cm</Left>
+          <Height>1.47312cm</Height>
+          <Width>19.90567cm</Width>
           <Style>
             <Border>
               <Style>None</Style>

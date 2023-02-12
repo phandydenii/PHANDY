@@ -5,6 +5,26 @@
 }
 <div class="container-fluid">
     <div class="row">
+        <div class="col-md-2">
+            <label>ស្ថានភាព</label>
+            <div class="form-group">
+                <select class="form-control input-sm" id="status">
+                    <option value="All">----- All -----</option>
+                    <option value="FREE">----- Free -----</option>
+                    <option value="BOOK">----- Book -----</option>
+                    <option value="CHECK-IN">----- Check In -----</option>
+                    <option value="BLOCK">----- Block -----</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <label>&nbsp;</label>
+            <div class="form-group">
+                <a class="btn btn-success btn-sm" style='margin-top:0px' onclick="PreviewRoomList()"> @Resources.Content.Preview</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div id="" class="col-md-12">
             @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer, new { @style = "width: 100%; height: 95%" })
         </div>
@@ -12,3 +32,12 @@
 </div>
 
 
+@section scripts
+{
+    <script>
+        function PreviewRoomList() {
+          var status = $("#status").val();
+          window.location = "/room-list/"+ status;
+       }
+    </script>
+}

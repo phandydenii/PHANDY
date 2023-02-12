@@ -10,7 +10,6 @@
 ///========OnPaymentAction Button====
 function OnPaymentAction() {
     var action = document.getElementById('SavePaymentbtn').innerText;
-    if (action == "Save") {
         var data = new FormData();
         data.append("grandtotal", $("#totalpay").val());
         data.append("totalriel", $("#totalpaykh").val());
@@ -19,7 +18,11 @@ function OnPaymentAction() {
         data.append("note", $("#note").val());
         data.append("payriel", $("#payriel").val());
         data.append("paydollar", $("#paydollar").val());
-        data.append("paid", true);
+        if (SavePaymentbtn == "Save") {
+            data.append("paid", true);
+        } else {
+            data.append("paid", false);
+        }
 
         $.ajax({
             type: "PUT",
@@ -36,35 +39,6 @@ function OnPaymentAction() {
 
             }
         });
-    } else {
-        var data = new FormData();
-        data.append("grandtotal", $("#totalpay").val());
-        data.append("totalriel", $("#totalpaykh").val());
-        data.append("totaldollar", $("#totalpay").val());
-        data.append("totalother", $("#servicecharge").val());
-        data.append("note", $("#note").val());
-        data.append("payriel", $("#payriel").val());
-        data.append("paydollar", $("#paydollar").val());
-        data.append("paid", false);
-
-        $.ajax({
-            type: "PUT",
-            url: "/api/invoices/" + $("#id").val(),
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function (result) {
-                UpdateWaterElectric();
-                toastr.success("Updaate Invoice successfully!.", "Server Response");
-                window.location = "invoice-report/" + $("#id").val();
-            },
-            error: function (errormesage) {
-                toastr.error("Print invoice faild...!", "Server Respond");
-
-            }
-        });
-    }
-
 };
 
 function UpdateWaterElectric() {

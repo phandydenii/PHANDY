@@ -9,7 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>រ៉ូសឡានី អាផាត់ម៉ិន</Value>
+                <Value>រ៉ូសឡានី អាផាតម៉ិន</Value>
                 <Style>
                   <FontFamily>Khmer OS Muol Light</FontFamily>
                   <FontSize>12pt</FontSize>
@@ -116,18 +116,6 @@
           <PaddingRight>2pt</PaddingRight>
         </Style>
       </Textbox>
-      <Line Name="Line1">
-        <Top>0.36916cm</Top>
-        <Left>14.76058cm</Left>
-        <Height>19.28938cm</Height>
-        <Width>0cm</Width>
-        <ZIndex>3</ZIndex>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-        </Style>
-      </Line>
       <Image Name="Image1">
         <Source>Embedded</Source>
         <Value>RL</Value>
@@ -136,7 +124,7 @@
         <Left>0.55245cm</Left>
         <Height>1.87042cm</Height>
         <Width>2.47896cm</Width>
-        <ZIndex>4</ZIndex>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -182,7 +170,7 @@
         <Left>3.12005cm</Left>
         <Height>1.19934cm</Height>
         <Width>7.52708cm</Width>
-        <ZIndex>5</ZIndex>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -211,7 +199,7 @@
         <Left>0.55244cm</Left>
         <Height>0.67938cm</Height>
         <Width>1.9973cm</Width>
-        <ZIndex>6</ZIndex>
+        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -238,7 +226,7 @@
         <Left>7.37397cm</Left>
         <Height>0.67938cm</Height>
         <Width>2.06488cm</Width>
-        <ZIndex>7</ZIndex>
+        <ZIndex>6</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -266,7 +254,7 @@
         <Left>0.55244cm</Left>
         <Height>0.67938cm</Height>
         <Width>1.9973cm</Width>
-        <ZIndex>8</ZIndex>
+        <ZIndex>7</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -285,7 +273,9 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
@@ -293,7 +283,7 @@
         <Left>7.37397cm</Left>
         <Height>0.6441cm</Height>
         <Width>2.06488cm</Width>
-        <ZIndex>9</ZIndex>
+        <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -320,7 +310,7 @@
         <Left>0.55244cm</Left>
         <Height>0.67938cm</Height>
         <Width>3.70057cm</Width>
-        <ZIndex>10</ZIndex>
+        <ZIndex>9</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -349,7 +339,7 @@
         <Left>4.28829cm</Left>
         <Height>0.67938cm</Height>
         <Width>3.05041cm</Width>
-        <ZIndex>11</ZIndex>
+        <ZIndex>10</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -380,7 +370,7 @@
         <Left>9.48478cm</Left>
         <Height>0.67938cm</Height>
         <Width>3.39068cm</Width>
-        <ZIndex>12</ZIndex>
+        <ZIndex>11</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -411,7 +401,7 @@
         <Left>7.40925cm</Left>
         <Height>0.67938cm</Height>
         <Width>1.48463cm</Width>
-        <ZIndex>13</ZIndex>
+        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -439,7 +429,7 @@
         <Left>12.98812cm</Left>
         <Height>0.67938cm</Height>
         <Width>1.04366cm</Width>
-        <ZIndex>14</ZIndex>
+        <ZIndex>13</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -467,35 +457,7 @@
         <Left>0.55244cm</Left>
         <Height>0.65292cm</Height>
         <Width>3.70057cm</Width>
-        <ZIndex>15</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox16">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ហេតុផលនៃការចំណាយ៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>12.36598cm</Top>
-        <Left>0.55244cm</Left>
-        <Height>0.70584cm</Height>
-        <Width>3.70057cm</Width>
-        <ZIndex>16</ZIndex>
+        <ZIndex>14</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -523,7 +485,7 @@
         <Left>0.55244cm</Left>
         <Height>0.49417cm</Height>
         <Width>1.9973cm</Width>
-        <ZIndex>17</ZIndex>
+        <ZIndex>15</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -551,7 +513,7 @@
         <Left>7.37396cm</Left>
         <Height>0.49417cm</Height>
         <Width>2.06489cm</Width>
-        <ZIndex>18</ZIndex>
+        <ZIndex>16</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -575,11 +537,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>14.26301cm</Top>
+        <Top>12.99301cm</Top>
         <Left>0.55244cm</Left>
         <Height>0.49417cm</Height>
         <Width>1.29286cm</Width>
-        <ZIndex>19</ZIndex>
+        <ZIndex>17</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -607,7 +569,7 @@
         <Left>0.55244cm</Left>
         <Height>0.49417cm</Height>
         <Width>1.9973cm</Width>
-        <ZIndex>20</ZIndex>
+        <ZIndex>18</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -635,7 +597,7 @@
         <Left>7.37397cm</Left>
         <Height>0.45889cm</Height>
         <Width>6.61572cm</Width>
-        <ZIndex>21</ZIndex>
+        <ZIndex>19</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -658,11 +620,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>13.63654cm</Top>
+        <Top>12.36654cm</Top>
         <Left>0.55244cm</Left>
         <Height>0.62646cm</Height>
         <Width>1.29286cm</Width>
-        <ZIndex>22</ZIndex>
+        <ZIndex>20</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -690,7 +652,7 @@
         <Left>0.55244cm</Left>
         <Height>0.49417cm</Height>
         <Width>3.70057cm</Width>
-        <ZIndex>23</ZIndex>
+        <ZIndex>21</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -720,7 +682,7 @@
         <Left>7.40925cm</Left>
         <Height>0.49417cm</Height>
         <Width>1.48463cm</Width>
-        <ZIndex>24</ZIndex>
+        <ZIndex>22</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -733,7 +695,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>RIEL</Value>
+                <Value>Reil</Value>
                 <Style>
                   <FontFamily>khmer os battambang</FontFamily>
                   <FontSize>8pt</FontSize>
@@ -748,7 +710,7 @@
         <Left>12.98812cm</Left>
         <Height>0.49417cm</Height>
         <Width>1.04366cm</Width>
-        <ZIndex>25</ZIndex>
+        <ZIndex>23</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -776,97 +738,7 @@
         <Left>0.55244cm</Left>
         <Height>0.49417cm</Height>
         <Width>3.70057cm</Width>
-        <ZIndex>26</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox27">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Reasion of payment</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>13.07182cm</Top>
-        <Left>0.55244cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>3.70057cm</Width>
-        <ZIndex>27</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox31">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>អនុម័តដោយ</Value>
-                <Style>
-                  <FontFamily>khmer os muol light</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>16.35931cm</Top>
-        <Left>0.57349cm</Left>
-        <Height>0.70583cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>28</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox28">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Approved by</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>17.06515cm</Top>
-        <Left>0.57349cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>2.47896cm</Width>
-        <ZIndex>29</ZIndex>
+        <ZIndex>24</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -892,11 +764,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>16.35931cm</Top>
+        <Top>16.04181cm</Top>
         <Left>11.05553cm</Left>
         <Height>0.70583cm</Height>
         <Width>2.97625cm</Width>
-        <ZIndex>30</ZIndex>
+        <ZIndex>25</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -926,11 +798,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>17.06515cm</Top>
+        <Top>16.74765cm</Top>
         <Left>11.05553cm</Left>
         <Height>0.49417cm</Height>
         <Width>2.95521cm</Width>
-        <ZIndex>31</ZIndex>
+        <ZIndex>26</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -956,11 +828,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>16.35932cm</Top>
-        <Left>6.14492cm</Left>
+        <Top>16.04182cm</Top>
+        <Left>0.82183cm</Left>
         <Height>0.70583cm</Height>
         <Width>2.5cm</Width>
-        <ZIndex>32</ZIndex>
+        <ZIndex>27</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -990,11 +862,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>17.06516cm</Top>
-        <Left>6.14492cm</Left>
+        <Top>16.74766cm</Top>
+        <Left>0.82183cm</Left>
         <Height>0.49417cm</Height>
         <Width>2.47896cm</Width>
-        <ZIndex>33</ZIndex>
+        <ZIndex>28</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1002,11 +874,11 @@
         </Style>
       </Textbox>
       <Line Name="Line2">
-        <Top>16.35932cm</Top>
-        <Left>5.91763cm</Left>
+        <Top>16.04182cm</Top>
+        <Left>0.59454cm</Left>
         <Height>0cm</Height>
         <Width>2.97625cm</Width>
-        <ZIndex>34</ZIndex>
+        <ZIndex>29</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1014,213 +886,23 @@
         </Style>
       </Line>
       <Line Name="Line3">
-        <Top>16.35931cm</Top>
+        <Top>16.04181cm</Top>
         <Left>11.05553cm</Left>
         <Height>0cm</Height>
         <Width>2.97625cm</Width>
-        <ZIndex>35</ZIndex>
+        <ZIndex>30</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
           </Border>
         </Style>
       </Line>
-      <Textbox Name="Textbox4">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>រ៉ូសឡានី អាផាត់ម៉ិន</Value>
-                <Style>
-                  <FontFamily>Khmer OS Muol Light</FontFamily>
-                  <FontSize>12pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ROSELANY APARTMENT</Value>
-                <Style>
-                  <FontFamily>arial</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>0.36916cm</Top>
-        <Left>18.95735cm</Left>
-        <Height>1.31437cm</Height>
-        <Width>5.64853cm</Width>
-        <ZIndex>36</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox35">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>អាស័យដ្ឋាន៖ ផ្លូវ២០០២ ភូមិត្រពាំងឈូក សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ</Value>
-                <Style>
-                  <FontFamily>Khmer OS Battambang</FontFamily>
-                  <FontSize>9pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>1.71881cm</Top>
-        <Left>18.95734cm</Left>
-        <Height>1.17327cm</Height>
-        <Width>5.64854cm</Width>
-        <ZIndex>37</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox36">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>លេខទូរសព្ទ៖​ 012 88 11 79 / 086 88 11 79</Value>
-                <Style>
-                  <FontFamily>Khmer OS Battambang</FontFamily>
-                  <FontSize>9pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>2.92735cm</Top>
-        <Left>18.00485cm</Left>
-        <Height>0.60001cm</Height>
-        <Width>7.52708cm</Width>
-        <ZIndex>38</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-        </Style>
-      </Textbox>
-      <Image Name="Image2">
-        <Source>Embedded</Source>
-        <Value>RL</Value>
-        <Sizing>FitProportional</Sizing>
-        <Top>0.36916cm</Top>
-        <Left>15.43725cm</Left>
-        <Height>1.87042cm</Height>
-        <Width>2.47896cm</Width>
-        <ZIndex>39</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Image>
-      <Textbox Name="Textbox37">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>សក្ខីបត្របចំណាយ</Value>
-                <Style>
-                  <FontFamily>Khmer OS Muol Light</FontFamily>
-                  <FontSize>11pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Payment Voucher</Value>
-                <Style>
-                  <FontFamily>arial</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>3.63319cm</Top>
-        <Left>18.00485cm</Left>
-        <Height>1.20018cm</Height>
-        <Width>7.52708cm</Width>
-        <ZIndex>40</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-        </Style>
-      </Textbox>
       <Line Name="Line6">
         <Top>3.5282cm</Top>
         <Left>0.59454cm</Left>
         <Height>0cm</Height>
         <Width>13.43724cm</Width>
-        <ZIndex>41</ZIndex>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-        </Style>
-      </Line>
-      <Line Name="Line7">
-        <Top>3.5282cm</Top>
-        <Left>15.43725cm</Left>
-        <Height>0cm</Height>
-        <Width>13.43725cm</Width>
-        <ZIndex>42</ZIndex>
+        <ZIndex>31</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -1249,7 +931,7 @@
         <Left>2.62029cm</Left>
         <Height>0.67938cm</Height>
         <Width>4.64785cm</Width>
-        <ZIndex>43</ZIndex>
+        <ZIndex>32</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1279,7 +961,7 @@
         <Left>2.58501cm</Left>
         <Height>0.67938cm</Height>
         <Width>4.68312cm</Width>
-        <ZIndex>44</ZIndex>
+        <ZIndex>33</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1309,7 +991,7 @@
         <Left>9.48478cm</Left>
         <Height>0.67938cm</Height>
         <Width>4.5049cm</Width>
-        <ZIndex>45</ZIndex>
+        <ZIndex>34</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1339,7 +1021,7 @@
         <Left>9.48478cm</Left>
         <Height>0.67938cm</Height>
         <Width>4.5049cm</Width>
-        <ZIndex>46</ZIndex>
+        <ZIndex>35</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1369,37 +1051,7 @@
         <Left>4.28829cm</Left>
         <Height>0.67938cm</Height>
         <Width>9.70139cm</Width>
-        <ZIndex>47</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox43">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>បើកប្រាក់ខែបុគ្គលិក</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>12.39244cm</Top>
-        <Left>4.28829cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>9.70139cm</Width>
-        <ZIndex>48</ZIndex>
+        <ZIndex>36</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1413,23 +1065,29 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontFamily>khmer os battambang</FontFamily>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=Fields!note.Value</Value>
                 <Style>
                   <FontFamily>khmer os battambang</FontFamily>
                 </Style>
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Center</TextAlign>
+              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>13.63655cm</Top>
+        <Top>12.36655cm</Top>
         <Left>1.88058cm</Left>
         <Height>0.67938cm</Height>
         <Width>12.1091cm</Width>
-        <ZIndex>49</ZIndex>
+        <ZIndex>37</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1457,7 +1115,7 @@
         <Left>0.5735cm</Left>
         <Height>0.67938cm</Height>
         <Width>1.9973cm</Width>
-        <ZIndex>50</ZIndex>
+        <ZIndex>38</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1476,7 +1134,9 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
@@ -1484,7 +1144,7 @@
         <Left>7.39503cm</Left>
         <Height>0.67938cm</Height>
         <Width>2.06488cm</Width>
-        <ZIndex>51</ZIndex>
+        <ZIndex>39</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1512,7 +1172,7 @@
         <Left>0.5735cm</Left>
         <Height>0.49417cm</Height>
         <Width>1.9973cm</Width>
-        <ZIndex>52</ZIndex>
+        <ZIndex>40</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1532,7 +1192,9 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
@@ -1540,7 +1202,7 @@
         <Left>7.39502cm</Left>
         <Height>0.49417cm</Height>
         <Width>2.06489cm</Width>
-        <ZIndex>53</ZIndex>
+        <ZIndex>41</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1569,7 +1231,7 @@
         <Left>2.64135cm</Left>
         <Height>0.67938cm</Height>
         <Width>4.64785cm</Width>
-        <ZIndex>54</ZIndex>
+        <ZIndex>42</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1599,1221 +1261,7 @@
         <Left>9.50584cm</Left>
         <Height>0.67938cm</Height>
         <Width>4.5049cm</Width>
-        <ZIndex>55</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox45">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>បើឱ្យឈ្មោះ ៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>6.18252cm</Top>
-        <Left>15.39908cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>1.9973cm</Width>
-        <ZIndex>56</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox46">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>អក្សរឡាតាំង៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>6.18252cm</Top>
-        <Left>22.22061cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>2.06488cm</Width>
-        <ZIndex>57</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox47">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ភេទ ៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>7.39135cm</Top>
-        <Left>15.39908cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>1.9973cm</Width>
-        <ZIndex>58</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox48">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>លេខទូរសព្ទ៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>7.39135cm</Top>
-        <Left>22.22061cm</Left>
-        <Height>0.6441cm</Height>
-        <Width>2.06488cm</Width>
-        <ZIndex>59</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox49">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ចំនួនទឹកប្រាក់ជាលេខ៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>9.79135cm</Top>
-        <Left>15.44118cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>3.70057cm</Width>
-        <ZIndex>60</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox50">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!totalsalary.Value</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>9.79135cm</Top>
-        <Left>19.17703cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>3.05041cm</Width>
-        <ZIndex>61</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox51">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>1,000,000</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>9.79135cm</Top>
-        <Left>24.37352cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>3.39068cm</Width>
-        <ZIndex>62</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox52">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ដុល្លា</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>9.75607cm</Top>
-        <Left>22.29799cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>1.48463cm</Width>
-        <ZIndex>63</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox53">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>រៀល</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>9.75607cm</Top>
-        <Left>27.87686cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>1.04366cm</Width>
-        <ZIndex>64</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox54">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ចំនួនទឹកប្រាក់ជាអក្សរ៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>11.00018cm</Top>
-        <Left>15.44118cm</Left>
-        <Height>0.65292cm</Height>
-        <Width>3.70057cm</Width>
-        <ZIndex>65</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox55">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ហេតុផលនៃការចំណាយ៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>12.18254cm</Top>
-        <Left>15.44118cm</Left>
-        <Height>0.70584cm</Height>
-        <Width>3.70057cm</Width>
-        <ZIndex>66</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox56">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Paid to</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>6.8619cm</Top>
-        <Left>15.39908cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>1.9973cm</Width>
-        <ZIndex>67</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox57">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Name in English</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>6.8619cm</Top>
-        <Left>22.2206cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>2.06489cm</Width>
-        <ZIndex>68</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox58">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Other</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>14.07957cm</Top>
-        <Left>15.44118cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>1.29286cm</Width>
-        <ZIndex>69</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox59">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Sex</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>8.07072cm</Top>
-        <Left>15.39908cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>1.9973cm</Width>
-        <ZIndex>70</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox61">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Telephone Number</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>8.106cm</Top>
-        <Left>22.22061cm</Left>
-        <Height>0.45889cm</Height>
-        <Width>6.61572cm</Width>
-        <ZIndex>71</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox62">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ផ្សេងៗ៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>13.4531cm</Top>
-        <Left>15.44118cm</Left>
-        <Height>0.62646cm</Height>
-        <Width>1.29286cm</Width>
-        <ZIndex>72</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox63">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Amount in figure</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>10.47073cm</Top>
-        <Left>15.44118cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>3.70057cm</Width>
-        <ZIndex>73</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox64">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>USD</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>10.47073cm</Top>
-        <Left>22.29799cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>1.48463cm</Width>
-        <ZIndex>74</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox65">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>RIEL</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>10.43545cm</Top>
-        <Left>27.87686cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>1.04366cm</Width>
-        <ZIndex>75</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox66">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Amount in Words</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>11.65309cm</Top>
-        <Left>15.44118cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>3.70057cm</Width>
-        <ZIndex>76</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox67">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Reasion of payment</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>12.88838cm</Top>
-        <Left>15.44118cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>3.70057cm</Width>
-        <ZIndex>77</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox68">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>អនុម័តដោយ</Value>
-                <Style>
-                  <FontFamily>khmer os muol light</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>16.17587cm</Top>
-        <Left>15.46223cm</Left>
-        <Height>0.70583cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>78</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox69">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Approved by</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>16.88171cm</Top>
-        <Left>15.46223cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>2.47896cm</Width>
-        <ZIndex>79</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox70">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>អ្នកទទួលប្រាក់</Value>
-                <Style>
-                  <FontFamily>khmer os muol light</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>16.17587cm</Top>
-        <Left>25.94427cm</Left>
-        <Height>0.70583cm</Height>
-        <Width>2.97625cm</Width>
-        <ZIndex>80</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox71">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Receive's Signature</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>16.88171cm</Top>
-        <Left>25.94427cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>2.95521cm</Width>
-        <ZIndex>81</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox72">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>បេឡាធិការ</Value>
-                <Style>
-                  <FontFamily>khmer os muol light</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox31</rd:DefaultName>
-        <Top>16.17588cm</Top>
-        <Left>21.03366cm</Left>
-        <Height>0.70583cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>82</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox73">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Cash's Signature</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>16.88172cm</Top>
-        <Left>21.03366cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>2.47896cm</Width>
-        <ZIndex>83</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Line Name="Line4">
-        <Top>16.17588cm</Top>
-        <Left>20.80637cm</Left>
-        <Height>0cm</Height>
-        <Width>2.97625cm</Width>
-        <ZIndex>84</ZIndex>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-        </Style>
-      </Line>
-      <Line Name="Line5">
-        <Top>16.17587cm</Top>
-        <Left>25.94427cm</Left>
-        <Height>0cm</Height>
-        <Width>2.97625cm</Width>
-        <ZIndex>85</ZIndex>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-        </Style>
-      </Line>
-      <Textbox Name="Textbox74">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!namekh.Value</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>6.18252cm</Top>
-        <Left>17.46693cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>4.64785cm</Width>
-        <ZIndex>86</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox75">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!sex.Value</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>7.39135cm</Top>
-        <Left>17.43165cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>4.68312cm</Width>
-        <ZIndex>87</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox76">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!name.Value</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>6.18252cm</Top>
-        <Left>24.33142cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>4.5049cm</Width>
-        <ZIndex>88</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox77">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!phone.Value</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>7.39135cm</Top>
-        <Left>24.33142cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>4.5049cm</Width>
-        <ZIndex>89</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox78">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ពីររយហាសិបដុល្លាគត់</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>11.00018cm</Top>
-        <Left>19.17703cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>9.70139cm</Width>
-        <ZIndex>90</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox79">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>បើកប្រាក់ខែបុគ្គលិក</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>12.209cm</Top>
-        <Left>19.17703cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>9.70139cm</Width>
-        <ZIndex>91</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox80">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>13.4531cm</Top>
-        <Left>16.76932cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>12.1091cm</Width>
-        <ZIndex>92</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox87">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>វិក័យបត្រ៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>4.97369cm</Top>
-        <Left>15.42014cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>1.9973cm</Width>
-        <ZIndex>93</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox88">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>កាលបរិច្ឆេទ៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>4.97369cm</Top>
-        <Left>22.24167cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>2.06488cm</Width>
-        <ZIndex>94</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox89">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Incoie No</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>5.65307cm</Top>
-        <Left>15.42014cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>1.9973cm</Width>
-        <ZIndex>95</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox90">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Invoice Date</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>5.65307cm</Top>
-        <Left>22.24166cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>2.06489cm</Width>
-        <ZIndex>96</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox91">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!no.Value</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>4.97369cm</Top>
-        <Left>17.48799cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>4.64785cm</Width>
-        <ZIndex>97</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox92">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!date.Value</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>4.97369cm</Top>
-        <Left>24.35248cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>4.5049cm</Width>
-        <ZIndex>98</ZIndex>
+        <ZIndex>43</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2841,7 +1289,7 @@
         <Left>0.53822cm</Left>
         <Height>0.67938cm</Height>
         <Width>3.70057cm</Width>
-        <ZIndex>99</ZIndex>
+        <ZIndex>44</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2870,7 +1318,7 @@
         <Left>4.27407cm</Left>
         <Height>0.67938cm</Height>
         <Width>3.05041cm</Width>
-        <ZIndex>100</ZIndex>
+        <ZIndex>45</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2901,7 +1349,7 @@
         <Left>9.47056cm</Left>
         <Height>0.67938cm</Height>
         <Width>4.51912cm</Width>
-        <ZIndex>101</ZIndex>
+        <ZIndex>46</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2923,7 +1371,7 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Center</TextAlign>
+              <TextAlign>Right</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
@@ -2932,7 +1380,7 @@
         <Left>7.39503cm</Left>
         <Height>0.67938cm</Height>
         <Width>2.00497cm</Width>
-        <ZIndex>102</ZIndex>
+        <ZIndex>47</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2960,7 +1408,7 @@
         <Left>0.53822cm</Left>
         <Height>0.49417cm</Height>
         <Width>3.70057cm</Width>
-        <ZIndex>103</ZIndex>
+        <ZIndex>48</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2981,7 +1429,7 @@
               </TextRun>
             </TextRuns>
             <Style>
-              <TextAlign>Center</TextAlign>
+              <TextAlign>Right</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>
@@ -2989,184 +1437,8 @@
         <Top>9.41007cm</Top>
         <Left>7.39503cm</Left>
         <Height>0.49417cm</Height>
-        <Width>1.48463cm</Width>
-        <ZIndex>104</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox95">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ប្រាក់លើកទឹកចិត្ត៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>8.54724cm</Top>
-        <Left>15.38485cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>3.70057cm</Width>
-        <ZIndex>105</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox98">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!bonus.Value</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>8.54724cm</Top>
-        <Left>19.1207cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>3.05041cm</Width>
-        <ZIndex>106</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox99">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Fields!penanty.Value</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>8.54724cm</Top>
-        <Left>24.31719cm</Left>
-        <Height>0.67938cm</Height>
-        <Width>4.51912cm</Width>
-        <ZIndex>107</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <BackgroundColor>LightGrey</BackgroundColor>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox100">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>ពិន័យ៖</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>8.51196cm</Top>
-        <Left>22.24166cm</Left>
-        <Height>0.67938cm</Height>
         <Width>2.00497cm</Width>
-        <ZIndex>108</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox101">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Bonus</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>9.22662cm</Top>
-        <Left>15.38485cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>3.70057cm</Width>
-        <ZIndex>109</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox102">
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Penanty</Value>
-                <Style>
-                  <FontFamily>khmer os battambang</FontFamily>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>9.22662cm</Top>
-        <Left>22.24166cm</Left>
-        <Height>0.49417cm</Height>
-        <Width>1.48463cm</Width>
-        <ZIndex>110</ZIndex>
+        <ZIndex>49</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -3174,10 +1446,10 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>19.65854cm</Height>
+    <Height>17.88583cm</Height>
     <Style />
   </Body>
-  <Width>28.95641cm</Width>
+  <Width>14.58954cm</Width>
   <Page>
     <PageHeight>21cm</PageHeight>
     <PageWidth>29.7cm</PageWidth>

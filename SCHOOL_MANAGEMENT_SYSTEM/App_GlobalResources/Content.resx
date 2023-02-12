@@ -438,4 +438,82 @@
   <data name="LogOut" xml:space="preserve">
     <value>Log Out</value>
   </data>
+  <data name="BlockRoom" xml:space="preserve">
+    <value>Block​ Room</value>
+  </data>
+  <data name="Building" xml:space="preserve">
+    <value>Building</value>
+  </data>
+  <data name="ExchangeRate" xml:space="preserve">
+    <value>Exchange​ Rate</value>
+  </data>
+  <data name="Floor" xml:space="preserve">
+    <value>Floor</value>
+  </data>
+  <data name="PayNextMonth" xml:space="preserve">
+    <value>Pay Next ​Month</value>
+  </data>
+  <data name="RoomKey" xml:space="preserve">
+    <value>Room Key</value>
+  </data>
+  <data name="RoomPrice" xml:space="preserve">
+    <value>Room Price</value>
+  </data>
+  <data name="RoomTypeKh" xml:space="preserve">
+    <value>Room Type Khmer</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="Passport" xml:space="preserve">
+    <value>Passport</value>
+  </data>
+  <data name="PayDollar" xml:space="preserve">
+    <value>Pay Dollar</value>
+  </data>
+  <data name="PayRiel" xml:space="preserve">
+    <value>Pay Reil</value>
+  </data>
+  <data name="Child" xml:space="preserve">
+    <value>Child</value>
+  </data>
+  <data name="ElectricStartRecord" xml:space="preserve">
+    <value>Electric Start Record</value>
+  </data>
+  <data name="Man" xml:space="preserve">
+    <value>Man</value>
+  </data>
+  <data name="PayForRoom" xml:space="preserve">
+    <value>Pay for Room</value>
+  </data>
+  <data name="WaterStartRecord" xml:space="preserve">
+    <value>Water Start Record</value>
+  </data>
+  <data name="Woman" xml:space="preserve">
+    <value>Woman</value>
+  </data>
+  <data name="CheckInNow" xml:space="preserve">
+    <value>ចូលស្នាក់នៅឥឡូវ</value>
+  </data>
+  <data name="TotalRoomPrice" xml:space="preserve">
+    <value>Total Room Price</value>
+  </data>
+  <data name="EEndRecord" xml:space="preserve">
+    <value>Electric End Record</value>
+  </data>
+  <data name="TotalElectric" xml:space="preserve">
+    <value>Total Electric</value>
+  </data>
+  <data name="TotalPaymentRiel" xml:space="preserve">
+    <value>Total Payment Riel</value>
+  </data>
+  <data name="TotalWater" xml:space="preserve">
+    <value>Total Water</value>
+  </data>
+  <data name="WEndRecord" xml:space="preserve">
+    <value>Water End Record</value>
+  </data>
 </root>
