@@ -167,7 +167,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
 
-            SqlCommand requestcommand = new SqlCommand("update waterelectricusage_tbl set wendrecord='" + wendrecord + "',eendrecord='" + eendrecord + "' where id=" + id, conx);
+            SqlCommand requestcommand = new SqlCommand("update waterelectricusage_tbl set wendrecord='" + wendrecord + "',eendrecord='" + eendrecord + "',enddate='"+enddate+"' where id=" + id, conx);
             try
             {
                 conx.Open();
@@ -178,6 +178,20 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 throw ex;
             }
             return Ok();
+        }
+
+        [HttpDelete]
+        //PUT : /api/Items/{id}
+        public IHttpActionResult DeleteItem(int id)
+        {
+
+            var ItemInDb = _context.WaterEletricUsages.SingleOrDefault(c => c.id == id);
+            if (ItemInDb == null)
+                return NotFound();
+            _context.WaterEletricUsages.Remove(ItemInDb);
+            _context.SaveChanges();
+
+            return Ok(new { });
         }
     }
 }

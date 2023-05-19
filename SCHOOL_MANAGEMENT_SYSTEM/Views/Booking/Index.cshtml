@@ -3,25 +3,26 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="container-fluid">
     <h4 style="color: darkblue;" id="lblbook"><b>@Resources.Content.ManageBook</b></h4>
-    @*<button type="button" id="btnPayment" onclick="OnBookingAction()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:100px" data-toggle="modal" data-target="#BookingModal">Book Now</button>*@
     <hr />
     <div class="row">
         <div class="col-md-2">
             <label>@Resources.Content.Status</label>
             <div class="form-group">
                 <select class="form-control input-sm" id="status">
-                    <option value="Active">----- @Resources.Content.Booking -----</option>
+                    <option value="All">----- @Resources.Content.All -----</option>
+                    <option value="Book">----- @Resources.Content.Booking -----</option>
                     <option value="Cancel">----- @Resources.Content.CancelBooking -----</option>
                     <option value="Expire">----- @Resources.Content.Expire -----</option>
-                    <option value="All">----- @Resources.Content.All -----</option>
                 </select>
             </div>
+
+        </div>
+        <div class="col-md-10">
+            <a href="#" onclick="OnAddBooking()" class="btn btn-info btn-sm pull-right" type="button" data-toggle="modal" data-target="#BookModal" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> @Resources.Content.Book</a>
         </div>
     </div>
-
     <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableBooking">
         <thead>
             <tr>
@@ -31,9 +32,9 @@
                 <th>@Resources.Content.RoomType</th>
                 <th>@Resources.Content.Total</th>
                 <th>@Resources.Content.ServiceCharge</th>
+                <th>@Resources.Content.BookingDate</th>
                 <th>@Resources.Content.CheckInDate</th>
                 <th>@Resources.Content.ExpireDate</th>
-                <th>@Resources.Content.BookingDate</th>
                 <th>@Resources.Content.Action</th>
             </tr>
         </thead>
@@ -41,6 +42,7 @@
     </table>
 </div>
 @Html.Partial("_Booking")
+@Html.Partial("_CheckIn")
 
 @section scripts{
     @Scripts.Render("~/Scripts/Functions/booking.js")

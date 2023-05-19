@@ -9,18 +9,20 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <input id="roomitemid" name="roomitemid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <div class="form-group">
                             <label for="iroomid">@Resources.Content.RoomNo</label>
                             <select class="form-control input-sm" id="iroomid">
-                                <option value="0">------Please Choose Room------</option>
+                                <option value="0">-Select Room-</option>
                                 @foreach (var room in Model.Rooms)
                                 {
                                     <option value=@room.id>@room.room_no</option>
                                 }
                             </select>
                         </div>
+                    </div>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="itemid">@Resources.Content.Item</label>
                             <select class="form-control input-sm" id="itemid">
@@ -31,18 +33,21 @@
                                 }
                             </select>
                         </div>
-                       
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label for="iprice">@Resources.Content.Price</label>
                             <input id="iprice" name="iprice" placeholder="$0.00" onfocus="this.select();" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
-                        <label>&nbsp;</label>
-                        <button type="button" id="btnSaveRoomItem" name="btnSaveRoomItem" onclick="RoomItmAction()" class="btn btn-info btn-block btn-sm">Add New</button>
                     </div>
                 </div>
-                
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnAddNewRoomItem" onclick="AddNewRoomItem()" class="btn btn-primary btn-block btn-sm pull-right" style="width:100px"><span class='glyphicon glyphicon-plus'></span> @Resources.Content.AddNew</button>
+                        <button type="button" id="btnSaveRoomItem" onclick="SaveRoomItem()" class="btn btn-info btn-block btn-sm pull-right" style="width:100px;display:none"><span class='glyphicon glyphicon-save'></span> @Resources.Content.Save</button>
+                        <button type="button" id="btnUpdateRoomItem" onclick="UpdateRoomItem()" class="btn btn-success btn-block btn-sm pull-right" style="width:100px;display:none"><span class='glyphicon glyphicon-refresh'></span> @Resources.Content.Update</button>
+                    </div>
+                </div>
                 <hr />
                 <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tblRoomItem">
                     <thead>

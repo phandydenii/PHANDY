@@ -206,7 +206,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                  passport = g.passport,
                                  gueststatus = g.status
 
-                             }).ToList();
+                             }).SingleOrDefault();
 
             return Ok(getBookin);
         }
@@ -219,7 +219,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                              join g in _context.Guests on b.guestid equals g.id
                              join r in _context.Rooms on b.roomid equals r.id
                              join rt in _context.RoomTypes on r.roomtypeid equals rt.id
-                             where r.id == roomid && g.status=="BOOK" && b.status=="Active" orderby b.id descending 
+                             where r.id == roomid && g.status=="Book" && b.status=="Book"
                              select new BookingV
                              {
                                  id = b.id,
@@ -250,7 +250,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                  passport = g.passport,
                                  gueststatus = g.status
 
-                             }).Take(1);
+                             }).SingleOrDefault();
 
             return Ok(getBookin);
         }
@@ -299,7 +299,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             BookinInDb.updateby= User.Identity.GetUserId();
             BookinInDb.updatedate = DateTime.Today;
             BookinInDb.exchangeid = int.Parse(eid);
-            BookinInDb.status = "Active";
+            BookinInDb.status = "Book";
 
             _context.Bookings.Add(BookinInDb);
             _context.SaveChanges();
@@ -331,8 +331,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             da.Fill(dt);
             string eid = dt.Rows[0][0].ToString();
 
-            if (!ModelState.IsValid)
-                return BadRequest();
+           
 
             var BookingInDb = _context.Bookings.SingleOrDefault(c => c.id == id);
             Mapper.Map(BookinDtos, BookingInDb);

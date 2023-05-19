@@ -1,7 +1,11 @@
-﻿$(document).ready(function () {
+﻿function ManagePosition() {
+    $("#PositionModal").modal('show');
+    document.getElementById('btnPosition').style.display = 'block';
+    document.getElementById('btnUpdatePosition').style.display = 'none';
+}
 
+$(document).ready(function () {
     $('#PositionModal').on('show.bs.modal', function () {
-
         GetPosition();
         document.getElementById('positionname').disabled = true;
         document.getElementById('positionnamekh').disabled = true;
@@ -41,110 +45,107 @@ function GetPosition() {
 
 
 function PositionAction() {
-    var action = '';
-    action = document.getElementById('btnPosition').innerText;
-    if (action == "Add New") {
-        document.getElementById('btnPosition').innerText = "Save";
+    if ($("#btnPosition").val() == "Add") {
+        document.getElementById("btnPosition").value = "Save";
         document.getElementById('positionname').disabled = false;
         document.getElementById('positionnamekh').disabled = false;
+        
         $('#positionname').val('');
         $('#positionnamekh').val('');
         $('#positionname').focus();
 
-    } else if (action == "Save") {
+    } else if ($("#btnPosition").val() == "Save") {
         if ($('#positionname').val().trim() == "") {
             $('#positionname').css('border-color', 'red');
             $('#positionname').focus();
-            toastr.info('Please enter Position Name.', "Server Response")
-        } else {
-            $('#positionname').css('border-color', '#cccccc');
-            if ($('#positionnamekh').val().trim() == "") {
-                $('#positionnamekh').css('border-color', 'red');
-                $('#positionnamekh').focus();
-                toastr.info('Please enter Position Name English.', "Server Response")
-            } else {
-                $('#positionnamekh').css('border-color', '#cccccc');
-            }
-                var dataSave = {
-                    positionname: $('#positionname').val(),
-                    positionnamekh: $('#positionnamekh').val(),
-                    status: $('#status').val(),
-                };
-
-                $.ajax({
-                    url: "/api/position",
-                    data: JSON.stringify(dataSave),
-                    type: "POST",
-                    contentType: "application/json;charset=utf-8",
-                    datatype: "json",
-                    success: function (result) {
-                        toastr.success("Position has been created successfully.", "Server Response");
-                        tablePosition.ajax.reload();
-                        document.getElementById('btnPosition').innerText = "Add New";
-                        $('#positionname').val('');
-                        document.getElementById('positionname').disabled = true;
-                        document.getElementById('positionnamekh').disabled = true;
-                        document.getElementById('status').disabled = true;
-                    },
-                    error: function (errormessage) {
-                        toastr.error("This Position is already exists in Database", "Service Response");
-                    }
-                })
-            }
+            return false;
+        } 
+        if ($('#positionnamekh').val().trim() == "") {
+            $('#positionnamekh').css('border-color', 'red');
+            $('#positionnamekh').focus();
+            return false;
+        } 
+            
         
-    } else if (action == "Update") {
-        if ($('#positionname').val().trim() == "") {
-            $('#positionname').css('border-color', 'red');
-            $('#positionname').focus();
-            toastr.info('Please enter position .', "Server Response")
-        } else {
-            $('#positionname').css('border-color', '#cccccc');
-            if ($('#positionnamekh').val().trim() == "") {
-                $('#positionnamekh').css('border-color', 'red');
-                $('#positionnamekh').focus();
-                toastr.info('Please enter Position Name English.', "Server Response")
-            } else {
-                $('#positionnamekh').css('border-color', '#cccccc');
+        var dataSave = {
+            positionname: $('#positionname').val(),
+            positionnamekh: $('#positionnamekh').val(),
+            status: 'True',
+        };
+
+        $.ajax({
+            url: "/api/position",
+            data: JSON.stringify(dataSave),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            datatype: "json",
+            success: function (result) {
+                toastr.success("Position has been created successfully.", "Server Response");
+                tablePosition.ajax.reload();
+                document.getElementById('btnPosition').innerText = "Add New";
+                $('#positionname').val('');
+                document.getElementById('positionname').disabled = true;
+                document.getElementById('positionnamekh').disabled = true;
+                document.getElementById('status').disabled = true;
+            },
+            error: function (errormessage) {
+                toastr.error("This Position is already exists in Database", "Service Response");
             }
-
-            var data = {
-                id: $('#positionid').val(),
-                positionname: $('#positionname').val(),
-                positionnamekh: $('#positionnamekh').val(),
-                status: $('#status').val(),
-            };
-
-            //console.log(data);
-
-            $.ajax({
-                url: "/api/position/" + data.id,
-                data: JSON.stringify(data),
-                type: "PUT",
-                contentType: "application/json;charset=utf-8",
-                datatype: "json",
-                success: function (result) {
-                    toastr.success("Position has been update successfully.", "Server Response");
-                    tablePosition.ajax.reload();
-                    document.getElementById('btnPosition').innerText = "Add New";
-                    $('#positionname').val('');
-                    $('#positionnamekh').val('');
-                    document.getElementById('positionname').disabled = true;
-                    document.getElementById('positionnamekh').disabled = true;
-                    document.getElementById('status').disabled = true;
-                },
-                error: function (errormessage) {
-                    toastr.error("This Position is already exists in Database", "Service Response");
-                }
-            })
-        }
+        })
     }
+}
 
+function UpdateAction() {
+    if ($('#positionname').val().trim() == "") {
+        $('#positionname').css('border-color', 'red');
+        $('#positionname').focus();
+        toastr.info('Please enter position .', "Server Response")
+    } else {
+        $('#positionname').css('border-color', '#cccccc');
+        if ($('#positionnamekh').val().trim() == "") {
+            $('#positionnamekh').css('border-color', 'red');
+            $('#positionnamekh').focus();
+            toastr.info('Please enter Position Name English.', "Server Response")
+        } else {
+            $('#positionnamekh').css('border-color', '#cccccc');
+        }
+
+        var data = {
+            id: $('#positionid').val(),
+            positionname: $('#positionname').val(),
+            positionnamekh: $('#positionnamekh').val(),
+            status: 'True',
+        };
+
+        //console.log(data);
+
+        $.ajax({
+            url: "/api/position/" + data.id,
+            data: JSON.stringify(data),
+            type: "PUT",
+            contentType: "application/json;charset=utf-8",
+            datatype: "json",
+            success: function (result) {
+                toastr.success("Position has been update successfully.", "Server Response");
+                tablePosition.ajax.reload();
+                document.getElementById('btnPosition').innerText = "Add New";
+                $('#positionname').val('');
+                $('#positionnamekh').val('');
+                document.getElementById('positionname').disabled = true;
+                document.getElementById('positionnamekh').disabled = true;
+            },
+            error: function (errormessage) {
+                toastr.error("This Position is already exists in Database", "Service Response");
+            }
+        })
+    }
 }
 
 
 
-
 function PositionEdit(id) {
+    document.getElementById('btnPosition').style.display = 'none';
+    document.getElementById('btnUpdatePosition').style.display = 'block';
     $.ajax({
         url: "/api/position/" + id,
         type: "GET",

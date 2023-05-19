@@ -11,7 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-
+using System.Data.Entity;
 namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 {
     public class CheckOutsController : ApiController
@@ -30,8 +30,30 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetCheckOuts()
         {
-            var getBuilding = _context.CheckOuts.ToList().Select(Mapper.Map<CheckOut, CheckOutDto>);
+            var getBuilding = _context.CheckOuts.Include(g => g.guest).ToList().Select(Mapper.Map<CheckOut, CheckOutDto>);
             return Ok(getBuilding);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetCheckOutsById(int id)
+        {
+            var getBuilding = _context.CheckOuts.Where(c => c.id==id).SingleOrDefault();
+            return Ok(getBuilding);
+        }
+
+        [HttpGet]
+        [Route("api/checkout-v/{id}")]
+        //Get : api/Buildings
+        public object GetByID(int id)
+        {
+            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
+
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from CHECK_OUT_V where id=" + id, conx);
+            adp.Fill(ds);
+            return ds.Tables[0];
         }
 
         [HttpGet]
@@ -49,17 +71,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return ds.Tables[0];
         }
 
-
         [HttpPost]
         //Get : api/CheckIns
         public IHttpActionResult CreateCheckOut(CheckOutDto CheckOutDto)
         {
             DataTable ds = new DataTable();
-            DataTable ds1 = new DataTable();
-            DataTable ds2 = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-
             SqlDataAdapter adp = new SqlDataAdapter("select top 1 id from ExchangeRates where IsDeleted=0 order by id desc", conx);
             adp.Fill(ds);
             string exid = ds.Rows[0][0].ToString();
@@ -90,6 +108,42 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                 throw ex;
             }
             return Ok(checkInMaxID);
+        }
+
+
+        [HttpPut]
+        //Get : api/CheckIns
+        public IHttpActionResult PutCheckOut(int id,CheckOutDto CheckOutDtos)
+        {
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select top 1 id from ExchangeRates where IsDeleted=0 order by id desc", conx);
+            adp.Fill(ds);
+            string exid = ds.Rows[0][0].ToString();
+
+            var checkOutInDB = _context.CheckOuts.SingleOrDefault(c => c.id == id);
+            if (checkOutInDB == null)
+                return BadRequest();
+            Mapper.Map(CheckOutDtos, checkOutInDB);
+            checkOutInDB.userid = User.Identity.GetUserId();
+            checkOutInDB.exchangeid = int.Parse(exid);
+            _context.SaveChanges();
+            return Ok(CheckOutDtos);
+        }
+
+        [HttpDelete]
+        //PUT : /api/Items/{id}
+        public IHttpActionResult DeleteItem(int id)
+        {
+
+            var ItemInDb = _context.CheckOuts.SingleOrDefault(c => c.id == id);
+            if (ItemInDb == null)
+                return NotFound();
+            _context.CheckOuts.Remove(ItemInDb);
+            _context.SaveChanges();
+
+            return Ok(new { });
         }
     }
 }

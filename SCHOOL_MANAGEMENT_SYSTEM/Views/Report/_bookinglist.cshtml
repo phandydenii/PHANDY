@@ -6,15 +6,15 @@
 <div class="container-fluid">
     <div class="row">       
         <div class="col-md-2">
-            <label>ចាប់ពី</label>
+            <label>@Resources.Content.FromDate</label>
             <input id="dateStart" name="dateStart" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Payment Date" />
         </div>
         <div class="col-md-2">
-            <label>ដល់</label>
+            <label>@Resources.Content.ToDate</label>
             <input id="dateEnd" name="dateEnd" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Payment Date" />
         </div>
         <div class="col-md-2">
-            <label>ស្ថានភាព</label>
+            <label>@Resources.Content.Status</label>
             <div class="form-group">
                 <select class="form-control input-sm" id="status">
                     <option value="Active">----- កក់រួច -----</option>
@@ -26,7 +26,7 @@
         <div class="col-md-2">
             <label>&nbsp;</label>
             <div  class="form-group">
-                <a class="btn btn-success btn-sm" style='margin-top:0px' onclick="PreViewBookingList()"> បង្ហាញ</a>
+                <a class="btn btn-success btn-sm" style='margin-top:0px' onclick="PreViewBookingList()"> @Resources.Content.Search</a>
             </div>
         </div>
     </div>

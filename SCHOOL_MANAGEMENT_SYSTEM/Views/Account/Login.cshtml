@@ -12,16 +12,16 @@
     @Scripts.Render("~/bundles/modernizr")
     <style>
         body, html {
-          height: 100%;
-          width:100%;
-         margin:0;
+            height: 100%;
+            width: 100%;
+            margin: 0;
         }
 
         .hero-image {
             background-image: url("../../Images/background.jpg");
             height: 100%;
-            width:95%;
-            margin:0;
+            width: 95%;
+            margin: 0;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -33,11 +33,11 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary" style="margin-top:20%;border-radius:25px">
                 @*<div class="panel-heading">
-                    <h3 class="panel-title text-center">Admin Login</h3>
-                </div>*@
+                        <h3 class="panel-title text-center">Admin Login</h3>
+                    </div>*@
                 <div class="panel-body">
                     <div class="col-md-6">
-                        <img src="~/Images/RL_2022_12_14_00_22_21.jpg" height="300" width="300"/>
+                        <img src="~/Images/RL_2022_12_14_00_22_21.jpg" height="40%" width="100%" style="margin-top:15px"/>
                     </div>
                     <div class="col-md-6">
                         <section id="loginForm">
@@ -48,36 +48,36 @@
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         @Html.LabelFor(m => m.Email)
-                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-sm" })
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-md-12">
                                         @Html.LabelFor(m => m.Password)
-                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control input-sm" })
                                     </div>
                                 </div>
                                 @*<div class="form-group">
-                                    <div class="col-md-12">
-                                        @Html.LabelFor(m => m.ConfirmPassword)
-                                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm password" })
-                                    </div>
-                                </div>*@
+                                        <div class="col-md-12">
+                                            @Html.LabelFor(m => m.ConfirmPassword)
+                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", @placeholder = "Confirm password" })
+                                        </div>
+                                    </div>*@
                                 @*<div class="form-group">
-                                <div class="col-md-12">
-                                    <label for="loginPassword">SecurityCode</label>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="input-group">
-                                        <span style="padding: 0;" class="input-group-addon"><img alt="" src="~/Account/captcha" /></span>
-                                        @Html.TextBoxFor(model => model.SecurityCode, new { @autofocus = "autofocus", @class = "form-control focus", @placeholder = "Enter the security code" })
-                                    </div>
-                                </div>
-                            </div>*@
+                                        <div class="col-md-12">
+                                            <label for="loginPassword">SecurityCode</label>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="input-group">
+                                                <span style="padding: 0;" class="input-group-addon"><img alt="" src="~/Account/captcha" /></span>
+                                                @Html.TextBoxFor(model => model.SecurityCode, new { @autofocus = "autofocus", @class = "form-control focus", @placeholder = "Enter the security code" })
+                                            </div>
+                                        </div>
+                                    </div>*@
                                 <div class="form-group">
                                     <div class="col-md-12">
-                                        
-                                        <input type="submit" value="Log in" class="btn btn-primary btn-block" />
+
+                                        <input type="submit" value="Log in" class="btn btn-primary btn-block btn-sm" />
                                     </div>
                                 </div>
                                 <div class="form-group text-center">
@@ -85,7 +85,7 @@
                                 </div>
                             }
                         </section>
-                    </div>                   
+                    </div>
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
         public IEnumerable<Floor> Floors { get; set; }
         public IEnumerable<Room> Rooms { get; set; }
         public IEnumerable<Room> ListRoomFree { get; set; }
+        public IEnumerable<Room> ListRoomFreeAndBook { get; set; }
         public IEnumerable<Room> ListRoomBook { get; set; }
         public IEnumerable<Item> Items { get; set; }
 

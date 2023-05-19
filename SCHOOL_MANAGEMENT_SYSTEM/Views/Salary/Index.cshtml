@@ -7,22 +7,22 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-6">
-            <h4 style="color: darkblue;">គ្រប់គ្រងប្រាក់ខែបុគ្គលិក</h4>
+            <h4 style="color: darkblue;">@Resources.Content.Salary</h4>
         </div>
         <div class="col-md-6">
-            <a href="#" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#StaffSalaryModal" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> កំណត់</a>
-            <a href="#" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#PositionModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> គ្រប់គ្រងតួនាទី</a>
+            <a href="#" class="btn btn-success btn-sm pull-right" onclick="AddSalary()" style="margin-right:5px;"><span class="glyphicon glyphicon-cog"></span> @Resources.Content.AddNew</a>
+            @*<a href="#" class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#PositionModal" style="margin-right:5px;"><span class="glyphicon glyphicon-plus-sign"></span> គ្រប់គ្រងតួនាទី</a>*@
         </div>
     </div>
     <hr />
     <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableSalary">
         <thead>
             <tr>
-                <th>លេខ</th>
-                <th>ឈ្មោះ</th>
-                <th>ឈ្មោះជាភាសាខ្មែរ</th>
-                <th>ប្រាក់ខែ</th>
-                <th>ស្ថានភាព</th>
+                <th>@Resources.Content.No</th>
+                <th>@Resources.Content.Name</th>
+                <th>@Resources.Content.NameKh</th>
+                <th>@Resources.Content.Salary</th>
+                <th>@Resources.Content.Status</th>
             </tr>
         </thead>
         <tbody></tbody>

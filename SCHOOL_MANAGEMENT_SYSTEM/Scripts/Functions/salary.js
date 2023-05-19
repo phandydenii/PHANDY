@@ -1,18 +1,22 @@
-﻿$(document).ready(function () {
+﻿
+function AddSalary() {
+    $("#StaffSalaryModal").modal('show');
+    $('#btnSaveManageSalary').show();
+    $('#btnUpdateSalary').hide();
+}
 
+$(document).ready(function () {
     $(document).ajaxStart(function () {
         $('#loadingGif').addClass('show');
     }).ajaxStop(function () {
         $('#loadingGif').removeClass('show');
     });
     GetSalary();
-
 })
 
 var tableSalary = [];
-toastr.optionsOverride = 'positionclass = "toast-bottom-right"';
-toastr.options.positionClass = 'toast-bottom-right';
-
+//toastr.options.positionClass = 'toast-top-center';
+toastr.options.progressBar = true;
 function GetSalary() {
     //alert("Hello");
     tableSalary = $('#tableSalary').DataTable({
@@ -37,8 +41,8 @@ function GetSalary() {
             {
                 data: "id",
                 render: function (data) {
-                    return "<button onclick='SalaryEdit(" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px;'>Edit</button>"
-                        +  "<button onclick='SalaryDelete(" + data + ")' class='btn btn-danger btn-xs'>Delete</button>";
+                    return "<button onclick='SalaryEdit(" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px;'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                        + "<button onclick='SalaryDelete(" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Delete</button>";
                 }
             }
         ],
@@ -48,9 +52,65 @@ function GetSalary() {
     });
 }
 
+function SaveManageSalary() {
+    if ($('#staffid').val() == "") {
+        $('#staffid').focus();
+        return false;
+    }
+    var data = {
+        staffid: $('#staffid').val(),
+        salary: $('#salary').val(),
+        note: $('#note').val(),
+    };
+    $.ajax({
+        url: "/api/salaries",
+        data: JSON.stringify(data),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            toastr.success("Insert record successfully!", "Server Respond");
+            window.location.reload(true);
+
+        },
+        error: function (errormesage) {
+            $('#itemcharge').focus();
+            toastr.error("Inser record faild!", "Server Respond")
+        }
+    });
+}
+
+function UpdateSalaryd() {
+    if($('#staffid').val() == ""){
+        $('#staffid').focus();
+        return false;
+    }
+
+    var data = new FormData();
+    data.append("staffid", $("#staffid").val());
+    data.append("salary", $("#salary").val());
+    data.append("note", $("#note").val());
+    $.ajax({
+        type: "PUT",
+        url: "/api/salaries/" + $('#salaryid').val(),
+        contentType: false,
+        processData: false,
+        data: data,
+        success: function (result) {
+            toastr.success("Insert record successfully.", "Server Response");
+            window.location.reload(true);
+        },
+        error: function (error) {
+            console.log(error);
+            toastr.error("Record Already Exists!.", "Server Response");
+        }
+    });
+}
+
 function SalaryEdit(id) {
     $("#StaffSalaryModal").modal('show');
-    document.getElementById('btnSaveManageSalary').innerText = "Update";
+    $('#btnSaveManageSalary').hide();
+    $('#btnUpdateSalary').show();
     $.ajax({
         url: "/api/salaries/" + id,
         type: "GET",
@@ -101,4 +161,8 @@ function SalaryDelete(id) {
             }
         }
     });
+}
+
+function CloseStaffSalary() {
+    window.location.reload(true);
 }

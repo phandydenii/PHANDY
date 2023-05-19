@@ -12,28 +12,19 @@
                     <div class="col-md-6">
                         <input id="positionid" name="positionid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <div class="form-group">
-                            <label for="positionname">Position​</label>
+                            <label for="positionname">@Resources.Content.Name</label>
                             <input id="positionname" name="positionname" placeholder="Enter Position" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="positionnamekh">Position Khmer</label>
+                            <label for="positionnamekh">@Resources.Content.NameKh</label>
                             <input id="positionnamekh" name="positionnamekh" placeholder="Enter Position Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-group"​​ hidden="hidden">
-                            <label for="status" >Status</label>
-                            <select id="status" name="status" class="form-control input-sm" style="min-width: 100%">
-                                <option>True</option>
-                                <option>False</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <label>&nbsp;</label>
-                        <button type="button" id="btnPosition" onclick="PositionAction()" class="btn btn-info btn-block btn-sm">Add New</button>
+                        <button type="button" id="btnPosition" onclick="PositionAction()" class="btn btn-info btn-block btn-sm" value="Add">@Resources.Content.AddNew</button>
+                        <button type="button" id="btnUpdatePosition" onclick="UpdateAction()" class="btn btn-success btn-block btn-sm">@Resources.Content.Update</button>
                     </div>
                 </div>
                 <hr />
@@ -42,10 +33,10 @@
                         <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="positionTable">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Position</th>
-                                    <th>Position Khmer</th>
-                                    <th>Action</th>
+                                    <th>@Resources.Content.No</th>
+                                    <th>@Resources.Content.Name</th>
+                                    <th>@Resources.Content.NameKh</th>
+                                    <th>@Resources.Content.Action</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

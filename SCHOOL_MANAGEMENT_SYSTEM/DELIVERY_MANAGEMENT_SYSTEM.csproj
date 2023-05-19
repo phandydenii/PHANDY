@@ -129,32 +129,33 @@
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.2012.Runtime.11.0.3452.0\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.140.1000.523\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.140.1000.523\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.140.1000.523\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.2012.Runtime.11.0.3452.0\lib\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.140.1000.523\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebDesign, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.140.1000.523\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.ReportViewer.2012.Runtime.11.0.3452.0\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.140.1000.523\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.140.1000.523\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -171,8 +172,8 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ReportViewerForMvc, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ReportViewerForMvc.1.0.1\lib\net45\ReportViewerForMvc.dll</HintPath>
+    <Reference Include="ReportViewerForMvc, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReportViewerForMvc14.140.1000.523\lib\net45\ReportViewerForMvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -599,7 +600,7 @@
     <Content Include="Content\select2\css\bootstrap-select.min.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
-    <Content Include="favicon.ico" />
+    <Content Include="favicon1.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -625,15 +626,15 @@
     <Content Include="Images\user.png" />
     <Content Include="Images\utility.png" />
     <Content Include="Images\wallpaper.jpg" />
+    <Content Include="Readme.txt" />
     <Content Include="ReportViewerWebForm.aspx" />
+    <Content Include="favicon.ico" />
     <Content Include="Scripts\bootbox.all.js" />
     <Content Include="Scripts\bootbox.all.min.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.locales.js" />
     <Content Include="Scripts\bootbox.locales.min.js" />
     <Content Include="Scripts\bootbox.min.js" />
-    <Content Include="Scripts\bootstrap-notify.js" />
-    <Content Include="Scripts\bootstrap-notify.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\DataTables\css\semanticui.scss" />
@@ -646,56 +647,36 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\select2\css\bootstrap-select.css.map" />
     <Content Include="fonts\KhmerOSmuollight.ttf" />
+    <Content Include="libman.json" />
     <None Include="Properties\PublishProfiles\DIAMOND.pubxml" />
     <None Include="Properties\PublishProfiles\ESEN.pubxml" />
-    <Content Include="Scripts\Functions\appropriate.js" />
-    <Content Include="Scripts\Functions\bonus.js" />
     <Content Include="Scripts\Functions\booking.js" />
     <Content Include="Scripts\Functions\building.js" />
-    <Content Include="Scripts\Functions\category.js" />
     <Content Include="Scripts\Functions\checkin.js" />
     <Content Include="Scripts\Functions\checkinnow.js" />
     <Content Include="Scripts\Functions\checkout.js" />
     <Content Include="Scripts\Functions\checkoutdetail.js" />
-    <Content Include="Scripts\Functions\collectmoney.js" />
-    <Content Include="Scripts\Functions\bankaccount.js" />
     <Content Include="Scripts\Functions\exchangerate.js" />
     <Content Include="Scripts\Functions\floor.js" />
     <Content Include="Scripts\Functions\guest.js" />
     <Content Include="Scripts\Functions\history.js" />
-    <Content Include="Scripts\Functions\howtoUse.js" />
-    <Content Include="Scripts\Functions\feedback.js" />
+    <Content Include="Scripts\Functions\invoicehistory.js" />
     <Content Include="Scripts\Functions\item.js" />
     <Content Include="Scripts\Functions\items.js" />
-    <Content Include="Scripts\Functions\paymentMethod.js" />
+    <Content Include="Scripts\Functions\payment.js" />
     <Content Include="Scripts\Functions\payslip.js" />
     <Content Include="Scripts\Functions\pirntinvoice.js" />
-    <Content Include="Scripts\Functions\pricing.js" />
-    <Content Include="Scripts\Functions\condition.js" />
-    <Content Include="Scripts\Functions\course.js" />
-    <Content Include="Scripts\Functions\education.js" />
-    <Content Include="Scripts\Functions\emergency.js" />
-    <Content Include="Scripts\Functions\employee.js" />
     <Content Include="Scripts\Functions\expensetype.js" />
-    <Content Include="Scripts\Functions\grade.js" />
     <Content Include="Scripts\Functions\invoice.js" />
-    <Content Include="Scripts\Functions\location.js" />
     <Content Include="Scripts\Functions\otherexpense.js" />
-    <Content Include="Scripts\Functions\parrentstudent.js" />
     <Content Include="Scripts\Functions\positions.js" />
     <Content Include="Scripts\Functions\product.js" />
-    <Content Include="Scripts\Functions\register.js" />
     <Content Include="Scripts\Functions\roomdetail.js" />
     <Content Include="Scripts\Functions\room.js" />
     <Content Include="Scripts\Functions\roomitems.js" />
     <Content Include="Scripts\Functions\roomtypes.js" />
     <Content Include="Scripts\Functions\salary.js" />
-    <Content Include="Scripts\Functions\shift.js" />
-    <Content Include="Scripts\Functions\showroom.js" />
     <Content Include="Scripts\Functions\staffs.js" />
-    <Content Include="Scripts\Functions\student.js" />
-    <Content Include="Scripts\Functions\studylanguage.js" />
-    <Content Include="Scripts\Functions\studyperiod.js" />
     <Content Include="App_GlobalResources\Content.km.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Content.km.designer.cs</LastGenOutput>
@@ -704,26 +685,6 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Content.Designer.cs</LastGenOutput>
     </Content>
-    <EmbeddedResource Include="Reports\BOOKING_LIST.rdlc" />
-    <EmbeddedResource Include="Reports\BOOK_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\CHECKIN_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\CHECKOUT_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\CHECK_IN_LIST.rdlc" />
-    <EmbeddedResource Include="Reports\CHECK_OUT_LIST.rdlc" />
-    <EmbeddedResource Include="Reports\GUEST_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\INCOME_LIST.rdlc" />
-    <EmbeddedResource Include="Reports\INVOICE_LIST.rdlc" />
-    <EmbeddedResource Include="Reports\INVOICE_LIST_NOT_PAID.rdlc" />
-    <EmbeddedResource Include="Reports\CHECK_IN_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\INVOICE_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\ITEM_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\OTHER_EXPENSE.rdlc" />
-    <EmbeddedResource Include="Reports\PAYMENT_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\PAYSLIP_LIST.rdlc" />
-    <EmbeddedResource Include="Reports\PAYSLIP_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\ROOM_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\STAFF_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\USER_REPORT.rdlc" />
     <Content Include="RLDataSet.xsc">
       <DependentUpon>RLDataSet.xsd</DependentUpon>
     </Content>
@@ -824,10 +785,6 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
-    <Content Include="Scripts\Functions\branch.js" />
-    <Content Include="Scripts\Functions\department.js" />
-    <Content Include="Scripts\Functions\employees.js" />
-    <Content Include="Scripts\Functions\parrent.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\report-js\js\bootstrap.bundle.min.js" />
     <Content Include="Scripts\report-js\js\coming-soon.js" />
@@ -1094,6 +1051,8 @@
     <Content Include="Views\CheckIn\_PayDamages.cshtml" />
     <Content Include="Views\Booking\_Booking.cshtml" />
     <Content Include="Views\CheckIn\_History.cshtml" />
+    <Content Include="Views\Booking\_CheckIn.cshtml" />
+    <Content Include="Views\CheckIn\_CheckOut.cshtml" />
     <None Include="Views\CheckIn\_PrintNewInvoice.cshtml" />
     <Content Include="Views\Invoice\_Payment.cshtml" />
     <Content Include="Views\Invoice\_PrintNewInvoice.cshtml" />
@@ -1130,6 +1089,7 @@
     <Content Include="Views\Report\_incomelist.cshtml" />
     <Content Include="Views\Report\_checkinrpt.cshtml" />
     <Content Include="Views\Invoice\_History.cshtml" />
+    <Content Include="Views\CheckOut\_CheckOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1142,13 +1102,31 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\Report1.rdlc" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\Functions\customer.js" />
+    <EmbeddedResource Include="Reports\BOOKING_LIST.rdlc" />
+    <EmbeddedResource Include="Reports\BOOK_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\CHECKIN_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\CHECKOUT_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\CHECK_IN_LIST.rdlc" />
+    <EmbeddedResource Include="Reports\CHECK_IN_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\CHECK_OUT_LIST.rdlc" />
+    <EmbeddedResource Include="Reports\GUEST_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\INCOME_LIST.rdlc" />
+    <EmbeddedResource Include="Reports\INVOICE_LIST.rdlc" />
+    <EmbeddedResource Include="Reports\INVOICE_LIST_NOT_PAID.rdlc" />
+    <EmbeddedResource Include="Reports\INVOICE_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\ITEM_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\OTHER_EXPENSE.rdlc" />
+    <EmbeddedResource Include="Reports\PAYMENT_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\PAYSLIP_LIST.rdlc" />
+    <EmbeddedResource Include="Reports\PAYSLIP_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\Report1.rdlc" />
+    <EmbeddedResource Include="Reports\Report2.rdlc" />
+    <EmbeddedResource Include="Reports\ROOM_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\STAFF_REPORT.rdlc" />
+    <EmbeddedResource Include="Reports\USER_REPORT.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

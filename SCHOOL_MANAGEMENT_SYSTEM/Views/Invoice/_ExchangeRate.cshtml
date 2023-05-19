@@ -4,9 +4,9 @@
         <div class="modal-content">
             <div id="LoadingGif"></div>
             <div class="modal-header">
-                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">
+                <button onclick="CloseModal()" type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true">
                     <span class="glyphicon glyphicon-remove"></span>
-</button>
+                </button>
                 <h4 class="modal-title text-center" style="color: darkblue"><b>@Resources.Content.ManageExchaneRate</b></h4>
             </div>
             <div class="modal-body">
@@ -14,15 +14,16 @@
                     <div class="col-md-12">
                         <input type="text" hidden value="" />
                         <div class="form-group">
-                            <label for="rate">Rate</label>
-                            <input id="rateid" name="rateid" type="text" value="" class="form-control input-sm hidden" />
-                            <input id="rate" name="rate" type="number" value="0" class="form-control input-sm" placeholder="Enter Rate's Price'" />
+                            <label for="rate">@Resources.Content.ExchangeRate</label>
+                            <input id="rateid" name="rateid" type="text" value="0" class="form-control input-sm hidden" />
+                            <input id="rate" onfocus="this.select();" name="rate" type="number" value="0" class="form-control input-sm" placeholder="Enter Rate's Price'" />
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" id="btnRate" onclick="RateAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                        <button type="button" id="btnRateAdd" onclick="AddRateAction();" class="btn btn-primary btn-block btn-sm pull-right" style="width:100px"><span class='glyphicon glyphicon-plus'></span>  @Resources.Content.AddNew</button>
+                        <button type="button" id="btnRateSave" onclick="SaveRateAction();" style="display: none; width: 100px"   class="btn btn-info btn-block btn-sm pull-right" ><span class='glyphicon glyphicon-save'></span>  @Resources.Content.Save</button>
                     </div>
                 </div>
                 <hr />
@@ -31,10 +32,10 @@
                         <table id="tableRate" class="table table-hover table-bordered table-condensed table-striped" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Date</th>
-                                    <th>Rate</th>
-                                    <th>Action</th>
+                                    <th>@Resources.Content.No</th>
+                                    <th>@Resources.Content.Date</th>
+                                    <th>@Resources.Content.ExchangeRate</th>
+                                    <th>@Resources.Content.Action</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

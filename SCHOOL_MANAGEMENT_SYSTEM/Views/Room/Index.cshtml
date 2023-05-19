@@ -334,13 +334,13 @@
                     $("#roomprice").text(result.price + '$');
                     $("#rmky").text(result.roomkey);
                     $("#roomstatus").text(result.status);
-                    
+
                     if (result.status == "BOOK") {
                         book(b);
                         document.getElementById('btnBook').style.display = "none";
                         document.getElementById('btnPayment').style.display = "none";
                         document.getElementById('btnBlock').style.display = "none";
-                        document.getElementById('btnCheckInNow').style.display = "none";
+                        //document.getElementById('btnCheckInNow').style.display = "none";
                         document.getElementById('btnCheckOut').style.display = "none";
                         document.getElementById('btnUnBlock').style.display = "none";
                         $("#sms").text('This room is booking!');
@@ -353,11 +353,9 @@
                         document.getElementById('btnPayment').style.display = "none";
                         document.getElementById('btnBlock').style.display = "none";
                         document.getElementById('btnCancelBooking').style.display = "none";
-                        document.getElementById('btnCheckInNow').style.display = "none";
+                        //document.getElementById('btnCheckInNow').style.display = "none";
+                        document.getElementById('BlockNote').style.display = "block";
                         $("#BlockNote").text("This room has been block...! " + result.note);
-                        //$("#sms").text('This has been block!');
-                        //$('#class').addClass('alert alert-dismissible alert-danger alert-block pull-left');
-                        //$(".badge").attr('style', 'background-color: #dddddd');
                     } else if (result.status == "FREE") {
                         document.getElementById('btnCheckOut').style.display = "none";
                         document.getElementById('btnPayment').style.display = "none";
@@ -370,7 +368,7 @@
                         document.getElementById('btnBlock').style.display = "none";
                         document.getElementById('btnBook').style.display = "none";
                         document.getElementById('btnCheckIn').style.display = "none";
-                        document.getElementById('btnCheckInNow').style.display = "none";
+                        //document.getElementById('btnCheckInNow').style.display = "none";
                         document.getElementById('btnCancelBooking').style.display = "none";
                         document.getElementById('btnUnBlock').style.display = "none";
                         $(".badge").attr('style', 'background-color: #c71c22');
@@ -392,9 +390,19 @@
             datatype: "json",
             success: function (result) {
                 $("#bookingid").val(result.id);
-                $.each(result, function (key, value) {
-                    //alert(value.id);
-                    $("#bookingid").val(value.id);
+                $("#guestid").val(result.guestid);
+                $('#guestlist').append("<li class='list-group-item'>@Resources.Content.Name <span class='pull-right' style='color:darkblue'>" + result.name + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.NameKh <span class='pull-right' style='color:darkblue'>" + result.namekh + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.Sex <span class='pull-right' style='color:darkblue'>" + result.sex + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.Phone <span class='pull-right' style='color:darkblue'>" + result.phone + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.BookingDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(result.bookingdate)).format('DD-MMM-YYYY') + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.No <span class='pull-right' style='color:darkblue'>" + result.id + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.Total <span class='pull-right' style='color:darkblue'>" + result.total +" $"+"</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.CheckInDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(result.checkindate)).format('DD-MMM-YYYY')+ "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.ExpireDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(result.expirecheckindate)).format('DD-MMM-YYYY')+ "</span></li>"
+
+                    );
+                @*$.each(result, function (key, value) {
                     $("#guestid").val(value.guestid);
                     $('#guestlist').append("<li class='list-group-item'>@Resources.Content.Name <span class='pull-right' style='color:darkblue'>" +value.name + "</span></li>"
                                          + "<li class='list-group-item'>@Resources.Content.NameKh <span class='pull-right' style='color:darkblue'>" + value.namekh + "</span></li>"
@@ -407,7 +415,7 @@
                                          + "<li class='list-group-item'>@Resources.Content.ExpireDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.expirecheckindate)).format('DD-MMM-YYYY')+ "</span></li>"
 
                     );
-                });
+                });*@
             },
             error: function (errormessage) {
                 toastr.error("No Record Select!", "Service Response");
@@ -422,26 +430,18 @@
             contentType: "application/json;charset=utf-8",
             datatype: "json",
             success: function (result) {
-                $.each(result, function (key, value) {
-                    //alert(value.id);
-                    $("#guestid").val(value.guestid);
-                    $("#roomid").val(value.roomid);
-                    $("#checkinid").val(value.id);
-                    $('#guestlist').append("<li class='list-group-item'>@Resources.Content.Name <span class='pull-right' style='color:darkblue'>" + value.name + "</span></li>"
-                                          + "<li class='list-group-item'>@Resources.Content.NameKh <span class='pull-right' style='color:darkblue'>" + value.namekh + "</span></li>"
-                                          + "<li class='list-group-item'>@Resources.Content.Sex <span class='pull-right' style='color:darkblue'>" + value.sex + "</span></li>"
-                                          + "<li class='list-group-item'>@Resources.Content.Phone <span class='pull-right' style='color:darkblue'>" + value.phone + "</span></li>"
-                                          + "<li class='list-group-item'>@Resources.Content.Man <span class='pull-right' style='color:darkblue'>" + value.man + "</span></li>"
-                                          + "<li class='list-group-item'>@Resources.Content.Woman <span class='pull-right' style='color:darkblue'>" + value.women + "</span></li>"
-                                          + "<li class='list-group-item'>@Resources.Content.Child <span class='pull-right' style='color:darkblue'>" + value.child + "</span></li>"
-                                          + "<li class='list-group-item'>@Resources.Content.CheckInDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.checkindate)).format('DD-MMM-YYYY') + "</span></li>"
-                                          + "<li class='list-group-item'>@Resources.Content.StartDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.startdate)).format('DD-MMM-YYYY')  + "</span></li>"
-                                          + "<li class='list-group-item'>@Resources.Content.EndDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(value.enddate)).format('DD-MMM-YYYY') + "</span></li>"
-
-                                          );
-
-                });
-
+                $("#guestid").val(result.guestid);
+                $("#roomid").val(result.roomid);
+                $("#checkinid").val(result.id);
+                $('#guestlist').append("<li class='list-group-item'>@Resources.Content.Name <span class='pull-right' style='color:darkblue'>" + result.name + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.NameKh <span class='pull-right' style='color:darkblue'>" + result.namekh + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.Sex <span class='pull-right' style='color:darkblue'>" + result.sex + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.Phone <span class='pull-right' style='color:darkblue'>" + result.phone + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.Man <span class='pull-right' style='color:darkblue'>" + result.man + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.Woman <span class='pull-right' style='color:darkblue'>" + result.women + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.Child <span class='pull-right' style='color:darkblue'>" + result.child + "</span></li>"
+                    + "<li class='list-group-item'>@Resources.Content.CheckInDate <span class='pull-right' style='color:darkblue'>" + moment(new Date(result.checkindate)).format('DD-MMM-YYYY') + "</span></li>"
+                );
             },
             error: function (errormessage) {
                 toastr.error("No Record Select!", "Service Response");

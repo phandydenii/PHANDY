@@ -50,8 +50,8 @@ function GetRoom() {
                 {
                     data: "id",
                     render: function (data) {
-                        return "<button OnClick='OnEditRoom (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                            + "<button OnClick='DeleteRoom (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span> Delete</button>"                           
+                        return "<button OnClick='OnEditRoom (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>"
+                            + "<button OnClick='DeleteRoom (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span></button>"                           
                             ;
                     }
                 }
@@ -64,90 +64,87 @@ function GetRoom() {
 function OnCloseRoomModal() {
     window.location.reload(true);
 }
-
+function AddRoomAction() {
+    document.getElementById('btnUpdateRoom').style.display = "none";
+    document.getElementById('btnAddRoom').style.display = "none";
+    document.getElementById('btnSaveRoom').style.display = "block";
+    EnableControlRoom();
+    $('#roomno').focus();
+}
 //Save  
 function RoomAction() {
-    var action = '';
-    action = document.getElementById('btnSaveRoom').innerText;
-
-    if (action == "Add New") {
-        document.getElementById('btnSaveRoom').innerText = 'Save';
-        EnableControlRoom();
-        $('#roomno').focus();
-        //$('#Roomdate').val(moment().format('YYYY-MM-DD'));
+    var isValid = ValidationFormRoom();
+    if (isValid == false) {
+        return false;
     }
-    else if (action == "Save") {
-        var isValid = ValidationFormRoom();
-        if (isValid == false) {
-            return false;
+
+    var data = {
+        room_no: $('#roomno').val(),
+        roomtypeid: $('#roomtypeid').val(),
+        floorid: $('#floorid').val(),
+        servicecharge: $('#servicecharge').val(),
+        price: $('#price').val(),
+        roomkey: $('#roomkey').val(),
+        status: $('#roomstatus').val(),
+    };
+
+
+    $.ajax({
+        url: "/api/Rooms",
+        data: JSON.stringify(data),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            toastr.success("New Room has been Created", "Server Respond");
+            $('#tableRoom').DataTable().ajax.reload();
+        },
+        error: function (errormesage) {
+            $('#RoomName').focus();
+            toastr.error("This Name is exist in Database", "Server Respond")
         }
 
-        var data = {
-            room_no: $('#roomno').val(),
-            roomtypeid: $('#roomtypeid').val(),
-            floorid: $('#floorid').val(),
-            servicecharge: $('#servicecharge').val(),
-            price: $('#price').val(),
-            roomkey: $('#roomkey').val(),
-            status: $('#roomstatus').val(),
-        };
+    });
+}
+
+function UpdateRoomAction() {
+    var data = {
+        id: $('#Roomid').val(),
+        room_no: $('#roomno').val(),
+        roomtypeid: $('#roomtypeid').val(),
+        floorid: $('#floorid').val(),
+        servicecharge: $('#servicecharge').val(),
+        price: $('#price').val(),
+        roomkey: $('#roomkey').val(),
+        status: $('#roomstatus').val(),
+
+    };
 
 
-        $.ajax({
-            url: "/api/Rooms",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("New Room has been Created", "Server Respond");
-                $('#tableRoom').DataTable().ajax.reload();
-            },
-            error: function (errormesage) {
-                $('#RoomName').focus();
-                toastr.error("This Name is exist in Database", "Server Respond")
-            }
-
-        });
-
-    } else if (action == "Update") {
-
-        var data = {
-            id: $('#Roomid').val(),
-            room_no: $('#roomno').val(),
-            roomtypeid: $('#roomtypeid').val(),
-            floorid: $('#floorid').val(),
-            servicecharge: $('#servicecharge').val(),
-            price: $('#price').val(),
-            roomkey: $('#roomkey').val(),
-            status: $('#roomstatus').val(),
-
-        };
-
-
-        $.ajax({
-            url: "/api/Rooms/" + data.id,
-            data: JSON.stringify(data),
-            type: "PUT",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("Room has been Updated", "Server Respond");
-                $('#tableRoom').DataTable().ajax.reload();
-                document.getElementById('btnSaveRoom').innerText = "Add New";
-                DisableControlRoom();
-                ClearControlRoom();
-            },
-            error: function (errormesage) {
-                toastr.error("Room hasn't Updated in Database", "Server Respond")
-            }
-        });
-    }
+    $.ajax({
+        url: "/api/Rooms/" + data.id,
+        data: JSON.stringify(data),
+        type: "PUT",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            toastr.success("Room has been Updated", "Server Respond");
+            $('#tableRoom').DataTable().ajax.reload();
+            document.getElementById('btnSaveRoom').innerText = "Add New";
+            DisableControlRoom();
+            ClearControlRoom();
+        },
+        error: function (errormesage) {
+            toastr.error("Room hasn't Updated in Database", "Server Respond")
+        }
+    });
 }
 
 function OnEditRoom(id) {
     EnableControlRoom();
-    document.getElementById('btnSaveRoom').innerText = "Update";
+    document.getElementById('btnUpdateRoom').style.display = "block";
+    document.getElementById('btnAddRoom').style.display = "none";
+    document.getElementById('btnSaveRoom').style.display = "none";
 
     $.ajax({
         url: "/api/Rooms/" + id,

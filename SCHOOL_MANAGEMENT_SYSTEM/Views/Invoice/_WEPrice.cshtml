@@ -12,20 +12,21 @@
                     <input id="wepid" name="wepid" type="text" value="" class="form-control input-sm hidden" />
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="waterprice">តម្លៃទឹក</label>
-                            <input id="waterprice" name="waterprice" type="number" value="0" class="form-control input-sm" placeholder="Enter Rate's Price'" />
+                            <label for="waterprice">@Resources.Content.WaterPrice</label>
+                            <input onfocus="this.select();" id="waterprice" name="waterprice" type="number" value="0" class="form-control input-sm" placeholder="Enter Rate's Price'" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="electricprice">តម្លៃភ្លើង</label>
-                            <input id="electricprice" name="electricprice" type="number" value="0" class="form-control input-sm" placeholder="Enter Rate's Price'" />
+                            <label for="electricprice">@Resources.Content.ElectricPrice</label>
+                            <input onfocus="this.select();" id="electricprice" name="electricprice" type="number" value="0" class="form-control input-sm" placeholder="Enter Rate's Price'" />
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" id="btnWEAction" onclick="AddWaterEletric();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                        <button type="button" id="btnAddWE" onclick="AddNew();" class="btn btn-primary btn-block btn-sm pull-right" style="width:100px"><span class='glyphicon glyphicon-plus'></span>  @Resources.Content.AddNew</button>
+                        <button type="button" id="btnSaveWE" onclick="SaveWaterEletric();" class="btn btn-info btn-block btn-sm pull-right" style="display:none;width:100px"><span class='glyphicon glyphicon-save'></span>  @Resources.Content.Save</button>
                     </div>
                 </div>
                 <hr />
@@ -34,10 +35,11 @@
                         <table id="tableWEPrice" class="table table-hover table-bordered table-condensed table-striped" style="width: 100%;">
                             <thead>
                                 <tr>
-                                    <th>Id</th>
-                                    <th>Date</th>
-                                    <th>Water Price</th>
-                                    <th>Electrict Price</th>
+                                    <th>@Resources.Content.No</th>
+                                    <th>@Resources.Content.Date</th>
+                                    <th>@Resources.Content.WaterPrice</th>
+                                    <th>@Resources.Content.ElectricPrice</th>
+                                    <th>@Resources.Content.Action</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>

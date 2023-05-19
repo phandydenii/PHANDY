@@ -41,15 +41,14 @@
 @Html.Partial("_ExchangeRate")
 @Html.Partial("_WEPrice")
 @Html.Partial("_History")
-
-
 @section scripts
 {
     @Scripts.Render("~/Scripts/moment.min.js")
     @Scripts.Render("~/Scripts/Functions/invoice.js")
-    @Scripts.Render("~/Scripts/Functions/pirntinvoice.js")
     @Scripts.Render("~/Scripts/Functions/exchangerate.js")
     @Scripts.Render("~/Scripts/Functions/weprice.js")
-    @Scripts.Render("~/Scripts/Functions/history.js") 
+   @* @Scripts.Render("~/Scripts/Functions/payment.js")*@
+    @Scripts.Render("~/Scripts/Functions/history.js")
+    @*@Scripts.Render("~/Scripts/Functions/pirntinvoice.js")*@
 }
 

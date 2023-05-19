@@ -10,5 +10,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.ViewModels
     {
         public IEnumerable<Position> Positions { get; set; }
         public IEnumerable<Staff> StaffList { get; set; }
+        public List<Staff> staffs { get; set; }
     }
 }

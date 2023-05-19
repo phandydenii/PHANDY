@@ -1499,7 +1499,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!waterprice.Value</Value>
+                              <Value>=Format(CDec(Fields!waterprice.Value),"00")+"៛"</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -1507,7 +1507,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox103</rd:DefaultName>
@@ -1837,7 +1839,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!electricprice.Value</Value>
+                              <Value>=Format(CDec(Fields!electricprice.Value),"00")+"៛"</Value>
                               <Style>
                                 <FontFamily>khmer os battambang</FontFamily>
                                 <FontSize>9pt</FontSize>
@@ -1845,7 +1847,9 @@
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox156</rd:DefaultName>
@@ -2917,7 +2921,7 @@
     <Height>18.98927cm</Height>
     <Style />
   </Body>
-  <Width>14.75176cm</Width>
+  <Width>14.22732cm</Width>
   <Page>
     <PageHeight>21cm</PageHeight>
     <PageWidth>14.8cm</PageWidth>

@@ -516,4 +516,40 @@
   <data name="WEndRecord" xml:space="preserve">
     <value>Water End Record</value>
   </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>Copyright</value>
+  </data>
+  <data name="PrepareBy" xml:space="preserve">
+    <value>PREPARE BY BBU STUDENT</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="GrandTotal" xml:space="preserve">
+    <value>Grand Total</value>
+  </data>
+  <data name="GrandTotalRiel" xml:space="preserve">
+    <value>Grand Total Riel</value>
+  </data>
+  <data name="ChangeRoom" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="ElectricPrice" xml:space="preserve">
+    <value>Electric Price</value>
+  </data>
+  <data name="WaterPrice" xml:space="preserve">
+    <value>Water Price</value>
+  </data>
 </root>

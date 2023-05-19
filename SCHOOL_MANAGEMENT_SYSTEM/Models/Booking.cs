@@ -28,7 +28,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Models
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime? updatedate { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
         public string updateby { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]

@@ -18,27 +18,27 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="namekh">ឈ្មោះភ្ញៀវជាភាសាខ្មែរ</label>
+                                    <label for="namekh">@Resources.Content.NameKh</label>
                                     <input id="namekh" name="namekh" placeholder="Enter Guest Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%;font-family:'Khmer OS Battambang'" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">ឈ្មោះភ្ញៀវ</label>
+                                    <label for="name">@Resources.Content.Name</label>
                                     <input id="name" name="name" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                         
                                 <div class="form-group">
-                                    <label for="gsex">ភេទ</label>
+                                    <label for="gsex">@Resources.Content.Sex</label>
                                     <select class="form-control input-sm" id="gsex">
-                                        <option>Male</option>
-                                        <option>Female</option>
+                                        <option value="Male">@Resources.Content.Male</option>
+                                        <option value="Female">@Resources.Content.Female</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="dob">ថ្ងៃខែឆ្នាំកំណើត</label>
+                                    <label for="dob">@Resources.Content.DOB</label>
                                     <input id="dob" name="dob" type="date" value="" class="form-control input-sm" placeholder="Choose Datetime" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="addr">អាស័យដ្ឋាន</label>
+                                    <label for="addr">@Resources.Content.Address</label>
                                     <input id="addr" name="addr" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>  
@@ -49,23 +49,23 @@
                             <div class="col-md-12">
                                 <input id="datenow" name="datenow" style="display: none;" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" />
                                 <div class="form-group">
-                                    <label for="national">សញ្ជាតិ</label>
+                                    <label for="national">@Resources.Content.Nationality</label>
                                     <input id="national" name="national" placeholder="Enter Nationality" type="text" value="Khmer" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">លេខទូរសព្ទ</label>
+                                    <label for="phone">@Resources.Content.Phone</label>
                                     <input id="phone" name="phone" placeholder="Enter Phone" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="gemail">អ៊ីម៉ែល</label>
+                                    <label for="gemail">@Resources.Content.Email</label>
                                     <input id="gemail" name="gemail" placeholder="Enter Email" type="email" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="gssn">លេខអត្តសញ្ញាណប័ណ្ណ</label>
+                                    <label for="gssn">@Resources.Content.SSN</label>
                                     <input id="gssn" name="ssn" placeholder="Enter Social Security Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="gpassport">លិខិតឆ្លងដែន</label>
+                                    <label for="gpassport">@Resources.Content.Passport</label>
                                     <input id="gpassport" name="passport" placeholder="Enter Passport Number" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="frmbookroomid">លេខបន្ទប់</label>
+                                    <label for="frmbookroomid">@Resources.Content.RoomNo</label>
                                     <select class="form-control input-sm" id="chnowroomid" disabled>
                                         @foreach (var room in Model.ListRoomFree)
                                         {
@@ -86,13 +86,13 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="roomprices">តម្លៃបន្ទប់</label>
+                                            <label for="roomprices">@Resources.Content.RoomPrice</label>
                                             <input id="roomprices" name="roomprices" readonly="readonly" onfocus="this.select();" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label" for="payforrooms">បង់ថ្លៃបន្ទប់</label>
+                                            <label class="control-label" for="payforrooms">@Resources.Content.PayForRoom</label>
                                             <input id="payforrooms" name="payforrooms" onfocus="this.select();" readonly="readonly" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
                                         </div>
                                     </div>
@@ -100,30 +100,30 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="paydollar">បង់ជាដុល្លា</label>
+                                            <label for="paydollar">@Resources.Content.PayDollar</label>
                                             <input id="paydollar" name="paydollar"  onfocus="this.select();" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label" for="payriel">បង់ជារៀល</label>
+                                            <label class="control-label" for="payriel">@Resources.Content.PayRiel</label>
                                             <input id="payriel" name="payriel" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="row">
-                                    <input id="checkindate" readonly="readonly" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%;display:none" />
+                                    <input id="checkindate"  name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%"/>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label" for="estartrecords">លេខកុងទ័រភ្លើង</label>
+                                            <label class="control-label" for="estartrecords">@Resources.Content.ElectricStartRecord</label>
                                             <input id="estartrecords" name="estartrecords" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label class="control-label" for="wstartrecords">លេខកុងទ័រទឹក</label>
+                                            <label class="control-label" for="wstartrecords">@Resources.Content.WaterStartRecord</label>
                                             <input id="wstartrecords" name="wstartrecords" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
                                         </div>
                                     </div>
@@ -131,19 +131,19 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="numman">បុរស</label>
+                                            <label for="numman">@Resources.Content.Man</label>
                                             <input id="numman" name="numman" onfocus="this.select();" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="numwomen">ស្ត្រី</label>
+                                            <label for="numwomen">@Resources.Content.Woman</label>
                                             <input id="numwomen" name="numwomen" onfocus="this.select();" placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="numchild">ក្មេងៗ</label>
+                                            <label for="numchild">@Resources.Content.Child</label>
                                             <input id="numchild" name="numchild" onfocus="this.select();" placeholder="Enter number of child" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
@@ -154,9 +154,119 @@
                 </div>
             </div>
             <div class="modal-footer">              
-                <button type="button" id="btnCheckOut" onclick="Test();" data-dismiss="modal" class="btn btn-danger btn-sm" style="margin-left:10px;width:100px">Cancel</button>
-                <button type="button" id="btnSaveCheckIn" onclick="OnSaveCheckInNow()" class="btn btn-info btn-sm" style="margin-left:10px;width:100px">Save</button>
+                <button type="button" id="btnCheckOut" onclick="Test();" data-dismiss="modal" class="btn btn-danger btn-sm" style="margin-left:10px;width:100px">@Resources.Content.Cancel</button>
+                <button type="button" id="btnSaveCheckIn" onclick="OnSaveCheckInNow()" class="btn btn-info btn-sm" style="margin-left:10px;width:100px">@Resources.Content.Save</button>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+
+    function OnSaveCheckInNow() {
+        var data = new FormData();
+        data.append("name", $("#name").val());
+        data.append("namekh", $("#namekh").val());
+        data.append("sex", $("#gsex").val());
+        data.append("dob", $("#dob").val());
+        data.append("address", $("#addr").val());
+        data.append("nationality", $("#national").val());
+        data.append("phone", $("#phone").val());
+        data.append("email", $("#gemail").val());
+        data.append("ssn", $("#gssn").val());
+        data.append("passport", $("#gpassport").val());
+        data.append("status", 'CHECK-IN');
+        $.ajax({
+            type: "POST",
+            url: "/api/guests",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                CheckInNow(result);
+                InsertWEUsage(result);
+                $('#guestid').val(result);
+            },
+            error: function (error) {
+                //console.log(error);
+                toastr.error("Please check all selected field!.", "Server Response");
+            }
+        });
+
+    }
+
+    function CheckInNow(gid) {
+        var data = {
+            roomid: $('#chnowroomid').val(),
+            guestid: gid,
+            child: $('#numchild').val(),
+            man: $('#numman').val(),
+            women: $('#numwomen').val(),
+            payforroom: $('#payforrooms').val(),
+            paydollar: $('#paydollar').val(),
+            payriel: $('#payriel').val(),
+        };
+        $.ajax({
+            url: "/api/checkins",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                UpdateRoomStatus();
+            },
+            error: function (errormesage) {
+                toastr.error("This Name Guest is exist in Database", "Server Respond");
+                return false;
+            }
+        });
+    }
+
+
+
+
+    function InsertWEUsage(id) {
+
+        var data = new FormData();
+        data.append("guestid", id);
+        data.append("startdate", $('#checkindate').val());
+        data.append("enddate", $('#checkindate').val());
+        data.append("wstartrecord", $('#wstartrecords').val());
+        data.append("wendrecord", $('#wstartrecords').val());
+        data.append("estartrecord", $('#estartrecords').val());
+        data.append("eendrecord", $('#estartrecords').val());
+        $.ajax({
+            type: "POST",
+            url: "/api/waterelectricusages",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                toastr.success("Check In successfully.", "Server Response");
+                window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Electric usage insert faild!", "Server Respond");
+                return false;
+            }
+        });
+    }
+
+    function UpdateRoomStatus() {
+        $.ajax({
+            type: "PUT",
+            url: "/api/updateroomstatus/" + $("#chnowroomid").val() + "/CHECK-IN",
+            contentType: false,
+            processData: false,
+            // data: status,
+            success: function (result) {
+                //toastr.success("Room Status has been Update successfully.", "Server Response");
+            },
+            error: function (error) {
+                toastr.error("Update room status fail!", "Server Response");
+            }
+        });
+    }
+
+
+</script>

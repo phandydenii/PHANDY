@@ -62,7 +62,13 @@ function GetPaySlipList() {
 
 function SaveStaffAction() {
     var action = document.getElementById('btnSaveStaff').innerText;
-    if(action=="Save"){
+    if (action == "Save") {
+        if ($("#staffid").val() == 0) {
+            $("#staffid").focus();
+            toastr.info("Please select staff!", "Server Respond")
+            return false;
+        }
+
         var data = new FormData();
         data.append("staffid", $("#staffid").val());
         data.append("salary", $("#salary").val());
@@ -175,62 +181,5 @@ function DeletePaySlip(id) {
                 });
             }
         }
-    });
-}
-
-function StaffChange() {
-    tablePaySlip = $('#TablePaySlip').dataTable({
-        ajax: {
-            url: "/api/payslipbystaff/1/" + this.value,
-            dataSrc: ""
-        },
-        columns:
-            [
-                {
-                    data: "id"
-                },
-                {
-                    data: "date",
-                    render: function (data) {
-                        return moment(new Date(data)).format('DD-MMM-YYYY');
-                    }
-
-                },
-                {
-                    data: "staff.name"
-                },
-                {
-                    data: "staff.namekh"
-                },
-                {
-                    data: "salary"
-                },
-                {
-                    data: "vat"
-                },
-                {
-                    data: "penanty"
-                },
-                {
-                    data: "bonus"
-                },
-                {
-                    data: "totalsalary"
-                },
-                {
-                    data: "note"
-                },
-                {
-                    data: "id",
-                    render: function (data) {
-                        return "<button OnClick='EditPaySlip (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
-                            "<button OnClick='DeletePaySlip (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Delete</button>";
-                    }
-                }
-            ],
-        destroy: true,
-        "order": [[0, "desc"]],
-        "info": false
-
     });
 }

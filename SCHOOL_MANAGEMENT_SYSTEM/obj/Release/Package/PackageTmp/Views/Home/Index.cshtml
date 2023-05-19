@@ -21,7 +21,6 @@
                                 <div class="col-md-6">
                                     <p class="title text-center"><b>@Resources.Content.TotalGuest</b></p>
                                     <h2 class="text-center">@Model.TotalGuest</h2>
-
                                 </div>
                             </div>
                             <div class="row">
@@ -29,33 +28,8 @@
                                     <h4 class="text-center"><b>@Resources.Content.ManageGuest</b></h4>
                                 </div>
                             </div>
-
                         </div>
-                    </div>
-                        @*<section class="panel panel-featured-left panel-featured-primary">
-                            
-                            <div class="panel-body" style="background-color:gainsboro">
-                                
-                                <div class="widget-summary">
-                                    <div class="widget-summary-col text-center">
-                                        <div class="summary">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <img class="img-circle" src="~/Images/guest.png" alt="Generic placeholder image" width="120" height="120">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="title"><b>@Resources.Content.TotalGuest</b></p>
-                                                    <h2>@Model.TotalGuest</h2>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "Guest")';">@Resources.Content.ManageGuest</button>
-                        </section>*@
-                    
+                    </div>                   
                 }
 
                 @if (User.IsInRole("Manage Staff"))
@@ -69,7 +43,6 @@
                                 <div class="col-md-6">
                                     <p class="title text-center"><b>@Resources.Content.TotalStaff</b></p>
                                     <h2 class="text-center">@Model.TotalStaff</h2>
-
                                 </div>
                             </div>
                             <div class="row">
@@ -77,31 +50,8 @@
                                     <h4 class="text-center"><b>@Resources.Content.ManageStaff</b></h4>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    @*<div class="col-md-3 col-lg-3 col-xl-3" style="margin-bottom:10px">
-                        <section class="panel panel-featured-left panel-featured-primary">
-                            <div class="panel-body" style="background-color:gainsboro">
-                                <div class="widget-summary">
-                                    <div class="widget-summary-col text-center">
-                                        <div class="summary">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <img class="img-circle" src="~/Images/employee.png" alt="Generic placeholder image" width="120" height="120">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="title"><b>@Resources.Content.TotalStaff</b></p>
-                                                    <h2>@Model.TotalStaff</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "Staff")';">@Resources.Content.ManageStaff</button>
-                        </section>
-                    </div>*@
                 }
                 @if (User.IsInRole("Manage Room"))
                 {
@@ -114,7 +64,6 @@
                                 <div class="col-md-6">
                                     <p class="title text-center"><b>@Resources.Content.TotalRoom</b></p>
                                     <h2 class="text-center">@Model.TotalRoom</h2>
-
                                 </div>
                             </div>
                             <div class="row">
@@ -122,31 +71,8 @@
                                     <h4 class="text-center"><b>@Resources.Content.ManageRoom</b></h4>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    @*<div class="col-md-3 col-lg-3 col-xl-3" style="margin-bottom:10px">
-                        <section class="panel panel-featured-left panel-featured-primary">
-                            <div class="panel-body" style="background-color:gainsboro">
-                                <div class="widget-summary">
-                                    <div class="widget-summary-col text-center">
-                                        <div class="summary">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <img class="img-circle" src="~/Images/room.png" alt="Generic placeholder image" width="120" height="120">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="title"><b>@Resources.Content.TotalRoom</b></p>
-                                                    <h2>@Model.TotalRoom</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "Room")';">@Resources.Content.ManageRoom</button>
-                        </section>
-                    </div>*@
                 }
                 @if (User.IsInRole("Manage Utility"))
                 {
@@ -159,7 +85,6 @@
                                 <div class="col-md-6">
                                     <p class="title text-center"><b>@Resources.Content.TotalItem</b></p>
                                     <h2 class="text-center">@Model.TotalItem</h2>
-
                                 </div>
                             </div>
                             <div class="row">
@@ -167,31 +92,8 @@
                                     <h4 class="text-center"><b>@Resources.Content.ManageItem</b></h4>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    @*<div class="col-md-3 col-lg-3 col-xl-3" style="margin-bottom:10px">
-                        <section class="panel panel-featured-left panel-featured-primary">
-                            <div class="panel-body" style="background-color:gainsboro">
-                                <div class="widget-summary">
-                                    <div class="widget-summary-col text-center">
-                                        <div class="summary">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <img class="img-circle" src="~/Images/utility.png" alt="Generic placeholder image" width="120" height="120">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="title"><b>@Resources.Content.TotalItem</b></p>
-                                                    <h2>@Model.TotalItem</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "Item")';">@Resources.Content.ManageItem</button>
-                        </section>
-                    </div>*@
                 }
                 @if (User.IsInRole("Manage Booking"))
                 {
@@ -204,7 +106,6 @@
                                 <div class="col-md-6">
                                     <p class="title text-center"><b>@Resources.Content.TotalBook</b></p>
                                     <h2 class="text-center">@Model.TotalBook</h2>
-
                                 </div>
                             </div>
                             <div class="row">
@@ -212,31 +113,8 @@
                                     <h4 class="text-center"><b>@Resources.Content.ManageBook</b></h4>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    @*<div class="col-md-3 col-lg-3 col-xl-3" style="margin-top:10px">
-                        <section class="panel panel-featured-left panel-featured-primary">
-                            <div class="panel-body" style="background-color:gainsboro">
-                                <div class="widget-summary">
-                                    <div class="widget-summary-col text-center">
-                                        <div class="summary">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <img class="img-circle" src="~/Images/booking.png" alt="Generic placeholder image" width="120" height="120">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="title"><b>@Resources.Content.TotalBook</b></p>
-                                                    <h2>@Model.TotalBook</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "Booking")';">@Resources.Content.ManageBook</button>
-                        </section>
-                    </div>*@
                 }
                 @if (User.IsInRole("Manage Expense"))
                 {
@@ -249,7 +127,6 @@
                                 <div class="col-md-6">
                                     <p class="title text-center"><b>@Resources.Content.TotalCheckIn</b></p>
                                     <h2 class="text-center">@Model.TotalcheckIn</h2>
-
                                 </div>
                             </div>
                             <div class="row">
@@ -257,31 +134,8 @@
                                     <h4 class="text-center"><b>@Resources.Content.ManageCheckIn</b></h4>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    @*<div class="col-md-3 col-lg-3 col-xl-3" style="margin-top:10px">
-                        <section class="panel panel-featured-left panel-featured-primary">
-                            <div class="panel-body" style="background-color:gainsboro">
-                                <div class="widget-summary">
-                                    <div class="widget-summary-col text-center">
-                                        <div class="summary">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <img class="img-circle" src="~/Images/Check-In.png" alt="Generic placeholder image" width="120" height="120">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="title"><b>@Resources.Content.TotalCheckIn</b></p>
-                                                    <h2>@Model.TotalcheckIn</h2>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "CheckIn")';">@Resources.Content.ManageCheckIn</button>
-                        </section>
-                    </div>*@
                 }
                 @if (User.IsInRole("Manage Payment"))
                 {
@@ -294,7 +148,6 @@
                                 <div class="col-md-6">
                                     <p class="title text-center"><b>@Resources.Content.ManagePayment</b></p>
                                     <h2 class="text-center"></h2>
-
                                 </div>
                             </div>
                             <div class="row">
@@ -302,31 +155,8 @@
                                     <h4 class="text-center"><b>@Resources.Content.ManagePayment</b></h4>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    @*<div class="col-md-3 col-lg-3 col-xl-3" style="margin-top:10px">
-                        <section class="panel panel-featured-left panel-featured-primary">
-                            <div class="panel-body" style="background-color:gainsboro">
-                                <div class="widget-summary">
-                                    <div class="widget-summary-col text-center">
-                                        <div class="summary">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <img class="img-circle" src="~/Images/expends.png" alt="Generic placeholder image" width="120" height="120">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="title"><b>@Resources.Content.ManagePayment</b></p>
-                                                    <p class="title"><b></b></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary col-md-12" onclick="window.location.href='@Url.Action("Index", "Invoice")';">@Resources.Content.ManagePayment</button>
-                        </section>
-                    </div>*@
                 }
                 
                 @if (User.IsInRole("Manage Other Expense"))
@@ -340,7 +170,6 @@
                                 <div class="col-md-6">
                                     <p class="title text-center"><b>@Resources.Content.OtherExpense</b></p>
                                     <h2 class="text-center"></h2>
-
                                 </div>
                             </div>
                             <div class="row">
@@ -348,31 +177,8 @@
                                     <h4 class="text-center"><b>@Resources.Content.ManageOtherExpense</b></h4>
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    @*<div class="col-md-3 col-lg-3 col-xl-3" style="margin-top:10px">
-                        <section class="panel panel-featured-left panel-featured-primary">
-                            <div class="panel-body" style="background-color:gainsboro">
-                                <div class="widget-summary">
-                                    <div class="widget-summary-col text-center">
-                                        <div class="summary">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <img class="img-circle" src="~/Images/receipt.png" alt="Generic placeholder image" width="120" height="120">
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <p class="title"><b>@Resources.Content.OtherExpense</b></p>
-                                                    
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary col-md-12"​​ onclick="window.location.href='@Url.Action("Index", "OtherExpense")';">@Resources.Content.ManageOtherExpense</button>
-                        </section>
-                    </div>*@
                 }
             </div>
         </div>

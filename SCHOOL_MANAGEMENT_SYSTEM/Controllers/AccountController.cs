@@ -302,8 +302,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
-                {
+                //if (user != null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                if (user != null)
+                    {
                     string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     //await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
@@ -323,8 +324,17 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
                     smtp.EnableSsl = true;
                     smtp.Credentials = new System.Net.NetworkCredential("phandy010@gmail.com", "vpvsvqigrcingkbk");
                     smtp.Send(mm);
-                    ViewBag.Message = "The mail has been sent to " + model.Email + "successfuly";
-                    return RedirectToAction("ForgotPasswordConfirmation", "Account");
+                    ViewBag.data = "The mail has been sent to " + model.Email + " successfuly";
+                    ViewBag.sms = "Please check your email to reset your password.";
+                    ViewBag.status = "Success";
+                    return View("ForgotPasswordConfirmation");
+                }
+                else
+                {
+                    ViewBag.status = "Invalid";
+                    ViewBag.data = "Server Respond";
+                    ViewBag.sms = "Invalid gmail address!";
+                    return View();
                 }
             }
 

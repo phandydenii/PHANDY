@@ -3,6 +3,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
 using SCHOOL_MANAGEMENT_SYSTEM.Models;
+using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 [assembly: OwinStartupAttribute(typeof(SCHOOL_MANAGEMENT_SYSTEM.Startup))]
 namespace SCHOOL_MANAGEMENT_SYSTEM
@@ -13,8 +17,9 @@ namespace SCHOOL_MANAGEMENT_SYSTEM
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
-            createRolesandUsers();
             createRolse();
+            createRolesandUsers();
+            auto();
         }
 
         private void createRolesandUsers()
@@ -22,33 +27,22 @@ namespace SCHOOL_MANAGEMENT_SYSTEM
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-
             // In Startup iam creating first Admin Role and creating a default Admin User     
-            if (!roleManager.RoleExists("Admin"))
+            if (roleManager.RoleExists("Admin"))
             {
-
-                // first we create Admin rool    
-                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                role.Name = "Admin";
-                roleManager.Create(role);
-
-                //Here we create a Admin super user who will maintain the website                   
-
                 var user = new ApplicationUser();
-                user.UserName = "admin@gmail.com";
+                user.UserName = "phandy010@gmail.com";
                 user.BrandId = 1;
                 user.Sex = "Male";
-                user.FullName = "Admin";
-                user.Email = "admin@gmail.com";
-                string userPWD = "Admin.@930323";
-
+                user.FullName = "Phan Dy";
+                user.Email = "phandy010@gmail.com";
+                string userPWD = "Dyadmin.@930323";
                 var chkUser = UserManager.Create(user, userPWD);
 
                 //Add default User to Role Admin    
                 if (chkUser.Succeeded)
                 {
-                    var result1 = UserManager.AddToRole(user.Id, "Admin");
-
+                    UserManager.AddToRole(user.Id, "Admin");
                 }
             }
 
@@ -67,7 +61,18 @@ namespace SCHOOL_MANAGEMENT_SYSTEM
         {
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-            // creating Creating Employee role     
+            // creating Creating Employee role
+            if (!roleManager.RoleExists("Admin"))
+            {
+                role.Name = "Admin";
+                roleManager.Create(role);
+            }
+            if (!roleManager.RoleExists("Manage User"))
+            {
+                role.Name = "Manage User";
+                roleManager.Create(role);
+            }
+
             if (!roleManager.RoleExists("Manage Other Expense"))
             {
                 role.Name = "Manage Other Expense";
@@ -111,6 +116,43 @@ namespace SCHOOL_MANAGEMENT_SYSTEM
             {
                 role.Name = "Manage CheckOut";
                 roleManager.Create(role);
+            }
+        }
+    
+
+        private void auto()
+        {
+            DataTable dt = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select booking_tbl.id,roomid,guest_tbl.id as guestid from booking_tbl inner join guest_tbl on guest_tbl.id=booking_tbl.guestid where expiredate<=FORMAT (getdate(), 'yyyy-MM-dd') and guest_tbl.status='Book' and booking_tbl.status='Book'", conx);
+
+            adp.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    var id = row["id"].ToString();
+                    var roomid = row["roomid"].ToString();
+                    var guestid = row["guestid"].ToString();
+
+                    SqlCommand cmd = new SqlCommand("update booking_tbl set status='Expire' where id=" + int.Parse(id), conx);
+                    SqlCommand cmd1 = new SqlCommand("update room_tbl set status='FREE' where id=" + int.Parse(roomid), conx);
+                    SqlCommand cmd2 = new SqlCommand("update guest_tbl set status='Expire' where id=" + int.Parse(guestid), conx);
+                    try
+                    {
+                        conx.Open();
+                        cmd.ExecuteNonQuery();
+                        cmd1.ExecuteNonQuery();
+                        cmd2.ExecuteNonQuery();
+                        conx.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+
             }
         }
     }

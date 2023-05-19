@@ -68,16 +68,14 @@ namespace Camtopjobs.Controllers.Api
 
         // PUT api/parent/5
         [HttpPut]
-        public IHttpActionResult UpdateExchageRate(int id, ExchangeRateDto exchageRateDto)
+        public IHttpActionResult UpdateExchageRate(int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
             var exchageRateInDb = _context.Exchanges.SingleOrDefault(c => c.id == id);
-            exchageRateInDb.date = DateTime.Today;
-
-            Mapper.Map(exchageRateDto, exchageRateInDb);
+            exchageRateInDb.IsDeleted = true;
             _context.SaveChanges();
-            return Ok(exchageRateDto);
+            return Ok();
         }
 
         // DELETE api/parent/5

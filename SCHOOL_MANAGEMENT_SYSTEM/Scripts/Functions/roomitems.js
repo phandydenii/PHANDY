@@ -41,88 +41,84 @@ function GetRoomItem() {
     });
 }
 
+function AddNewRoomItem() {
+    document.getElementById('btnAddNewRoomItem').style.display = "none";
+    document.getElementById('btnSaveRoomItem').style.display = "block";
+    document.getElementById('btnUpdateRoomItem').style.display = "none";
+    EnableControlRoomItem();
+}
 
 //Save  
-function RoomItmAction() {
-    
-    var action = '';
-    action = document.getElementById('btnSaveRoomItem').innerText;
-
-    if (action == "Add New") {
-        document.getElementById('btnSaveRoomItem').innerText = 'Save';
-        EnableControlRoomItem();
-        $('#rmid').focus();
-
+function SaveRoomItem() {
+    if ($("#iroomid").val() == 0) {
+        $("#iroomid").focus();
+        return false;
     }
-    else if (action == "Save") {
-        if ($("#iroomid").val() == 0) {
-            $("#iroomid").focus();
-            return false;
+    if ($("#itemid").val() == 0) {
+        $("#itemid").focus();
+        return false;
+    }
+
+    var data = {
+        roomid: $('#iroomid').val(),
+        itemid: $('#itemid').val(),
+        price: $('#iprice').val(),
+    };
+    $.ajax({
+        url: "/api/roomdetails",
+        data: JSON.stringify(data),
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            toastr.success("Insert data successfully.", "Server Respond");
+            $('#tblRoomItem').DataTable().ajax.reload();
+            DisableControlRoomItem();
+            ClearControlRoomItem();
+            $("#itemid").val() == 0;
+            $("#iroomid").val() == 0
+        },
+        error: function (errormesage) {
+            $('#roomid').focus();
+            toastr.error("Inser data faild.", "Server Respond")
         }
+    });    
+}
 
-        if ($("#itemid").val() == 0) {
-            $("#itemid").focus();
-            return false;
+function UpdateRoomItem() {
+    var data = {
+        id: $('#roomitemid').val(),
+        roomid: $('#iroomid').val(),
+        itemid: $('#itemid').val(),
+        price: $('#iprice').val(),
+    };
+    $.ajax({
+        url: "/api/roomdetails/" + data.id,
+        data: JSON.stringify(data),
+        type: "PUT",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            toastr.success("RoomType has been Updated", "Server Respond");
+            $('#tblRoomItem').DataTable().ajax.reload();
+            DisableControlRoomItem()
+            ClearControlRoomItem();
+
+            document.getElementById('btnAddNewRoomItem').style.display = "block";
+            document.getElementById('btnSaveRoomItem').style.display = "none";
+            document.getElementById('btnUpdateRoomItem').style.display = "none";
+        },
+        error: function (errormesage) {
+            toastr.error("RoomType hasn't Updated in Database", "Server Respond")
         }
-        var data = new FormData();
-        data.append("roomid", $("#iroomid").val());
-        data.append("itemid", $("#itemid").val());
-        data.append("price", $("#iprice").val());
-
-        $.ajax({
-            type: "POST",
-            url: "/api/roomdetails",
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function (result) {
-                toastr.success("New record has been created!", "Server Respond");
-                $('#tblRoomItem').DataTable().ajax.reload();
-                document.getElementById('btnSaveRoomItem').innerText = "Add New";
-                DisableControlRoomItem();
-                ClearControlRoomItem();
-                $("#itemid").val() == 0;
-                $("#iroomid").val() == 0
-            },
-            error: function (errormesage) {
-                $('#roomid').focus();
-                toastr.error("This Name is exist in Database", "Server Respond")
-            }
-
-        });
-
-    }
-    else if (action === "Update") {
-        var data = {
-            id: $('#roomitemid').val(),
-            roomid: $('#iroomid').val(),
-            itemid: $('#itemid').val(),
-            price: $('#iprice').val(),
-        };
-        $.ajax({
-            url: "/api/roomdetails/" + data.id,
-            data: JSON.stringify(data),
-            type: "PUT",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("RoomType has been Updated", "Server Respond");
-                $('#tblRoomItem').DataTable().ajax.reload();
-                document.getElementById('btnSaveRoomItem').innerText = "Add New";
-                DisableControlRoomItem()
-                ClearControlRoomItem();
-            },
-            error: function (errormesage) {
-                toastr.error("RoomType hasn't Updated in Database", "Server Respond")
-            }
-        });
-    }
+    });
 }
 
 function OnRoomItemEdit(id) {
+    document.getElementById('btnAddNewRoomItem').style.display = "none";
+    document.getElementById('btnSaveRoomItem').style.display = "none";
+    document.getElementById('btnUpdateRoomItem').style.display = "block";
     EnableControlRoomItem();
-    action = document.getElementById('btnSaveRoomItem').innerText = "Update";
-
     $.ajax({
         url: "/api/roomdetails/"+id,
         type: "GET",

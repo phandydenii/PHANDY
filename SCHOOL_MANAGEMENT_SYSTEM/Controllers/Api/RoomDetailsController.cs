@@ -129,29 +129,19 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             return Ok(getRoom);
 
         }
+        
         [HttpPost]
         //Get : api/Rooms
-        public IHttpActionResult CreateRoomDetail()
+        public IHttpActionResult CreateRoomDetail(RoomDetailDto roomDetailDto)
         {
-            var roomid = HttpContext.Current.Request.Form["roomid"];
-            var itemid = HttpContext.Current.Request.Form["itemid"];
-            var price = HttpContext.Current.Request.Form["price"];
-
-            var roomDetailDto = new RoomDetailDto()
-            {
-                roomid=int.Parse(roomid),
-                itemid=int.Parse(itemid),
-                price=decimal.Parse(price),
-            };
-
+            if (!ModelState.IsValid)
+                return BadRequest();
 
             var RoomDetailInDb = Mapper.Map<RoomDetailDto, RoomDetail>(roomDetailDto);
             _context.RoomDetails.Add(RoomDetailInDb);
             _context.SaveChanges();
-
             roomDetailDto.id = RoomDetailInDb.id;
-
-            return Ok();
+            return Created(new Uri(Request.RequestUri + "/" + RoomDetailInDb.id), roomDetailDto);
         }
         [HttpPut]
         public IHttpActionResult UpdateRoomDetail(int id, RoomDetailDto RoomDetailDtos)

@@ -35,7 +35,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             DataTable dt = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection conx = new SqlConnection(connectionString);
-            SqlDataAdapter adp = new SqlDataAdapter("select booking_tbl.id,roomid,guest_tbl.id as guestid from booking_tbl inner join guest_tbl on guest_tbl.id=booking_tbl.guestid where expiredate<=FORMAT (getdate(), 'yyyy-MM-dd') and guest_tbl.status='BOOK' and booking_tbl.status='Active'", conx);
+            SqlDataAdapter adp = new SqlDataAdapter("select booking_tbl.id,roomid,guest_tbl.id as guestid from booking_tbl inner join guest_tbl on guest_tbl.id=booking_tbl.guestid where expiredate<=FORMAT (getdate(), 'yyyy-MM-dd') and guest_tbl.status='Book' and booking_tbl.status='Book'", conx);
 
             adp.Fill(dt);
             if (dt.Rows.Count > 0)
@@ -48,11 +48,13 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
 
                     SqlCommand cmd = new SqlCommand("update booking_tbl set status='Expire' where id=" + int.Parse(id), conx);
                     SqlCommand cmd1 = new SqlCommand("update room_tbl set status='FREE' where id=" + int.Parse(roomid), conx);
+                    SqlCommand cmd2 = new SqlCommand("update guest_tbl set status='Expire' where id=" + int.Parse(guestid), conx);
                     try
                     {
                         conx.Open();
                         cmd.ExecuteNonQuery();
                         cmd1.ExecuteNonQuery();
+                        cmd2.ExecuteNonQuery();
                         conx.Close();
                     }
                     catch (Exception ex)
@@ -76,17 +78,5 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             };
             return View(countModel);
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-        public ActionResult Contact()
-        {
-            return View();
-        }
-
     }
 }

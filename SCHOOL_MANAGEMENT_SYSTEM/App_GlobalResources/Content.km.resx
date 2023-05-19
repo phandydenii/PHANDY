@@ -262,7 +262,7 @@
     <value>គ្រប់គ្រងប្រភេទបន្ទប់</value>
   </data>
   <data name="RAMS" xml:space="preserve">
-    <value>ប្រព័ន្ធគ្រប់គ្រង រ៉ូសឡានី អាផាត់ម៉ិន</value>
+    <value>ប្រព័ន្ធគ្រប់គ្រង អាផាតម៉ិន រ៉ូសឡានី</value>
   </data>
   <data name="RoomDetail" xml:space="preserve">
     <value>ពត៌មានបន្ទប់លំអិត</value>
@@ -301,7 +301,7 @@
     <value>ថ្ងៃកក់</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>ចាកចេញ</value>
+    <value>បោះបង់</value>
   </data>
   <data name="CancelBooking" xml:space="preserve">
     <value>បោះបង់ការកក់</value>
@@ -512,5 +512,44 @@
   </data>
   <data name="WEndRecord" xml:space="preserve">
     <value>គីឡូទឹកថ្មី</value>
+  </data>
+  <data name="Copyright" xml:space="preserve">
+    <value>រក្សាសិទ្ធ</value>
+  </data>
+  <data name="PrepareBy" xml:space="preserve">
+    <value>រៀបចំដោយ ក្រុមនិស្សិតសាកលវិទ្យាល័យបៀលប្រាយ</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>ចាប់ពីថ្ថៃ</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>ដល់ថ្ថៃ</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>ស្ត្រី</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>ប្រុស</value>
+  </data>
+  <data name="Photo" xml:space="preserve">
+    <value>រូបភាព</value>
+  </data>
+  <data name="PositionKhmer" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GrandTotal" xml:space="preserve">
+    <value>សរុប</value>
+  </data>
+  <data name="GrandTotalRiel" xml:space="preserve">
+    <value>សរុបប្រាក់រៀល</value>
+  </data>
+  <data name="ChangeRoom" xml:space="preserve">
+    <value>ប្តូរបន្ទប់</value>
+  </data>
+  <data name="ElectricPrice" xml:space="preserve">
+    <value>ថ្លៃភ្លើង</value>
+  </data>
+  <data name="WaterPrice" xml:space="preserve">
+    <value>ថ្លៃទឹក</value>
   </data>
 </root>

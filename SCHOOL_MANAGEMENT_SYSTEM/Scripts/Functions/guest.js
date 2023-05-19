@@ -42,13 +42,31 @@ function GetGuest() {
                 data: "email"
             },
             {
-                data: "status"
+                data: "status",
+                render: function (data) {
+                    if (data == "Book") {
+                        return "<span class='label label-warning'><span class='glyphicon glyphicon-ok'></span> Book</span>";
+                    } else if (data == "CheckIn") {
+                        return "<span class='label label-danger'><span class='glyphicon glyphicon-log-in'></span> Check In</span>";
+                    } else if (data == "Expire") {
+                        return "<span class='label label-default'><span class='glyphicon glyphicon-ban-circle'></span> Expire</span>";
+                    } else if (data == "Cancel") {
+                        return "<span class='label label-default'><span class='glyphicon glyphicon-minus-sign'></span> Cancel</span>";
+                    } else {
+                        return "<span class='label label-success'><span class='glyphicon glyphicon-log-out'></span> Check Out</span>";
+                    }
+                    
+                },
             },
             {
                 data: "id",
-                render: function (data) {
-                    return "<button onclick='GuestEdit(" + data + ")' class='btn btn-warning btn-xs' style='border-width: 0px; width: 65px; margin-right: 5px;margin-top:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                    ;
+                render: function (data, type, row) {
+                    if (row.status == "CheckIn") {
+                        return "<button onclick='GuestEdit(" + data + ")' class='btn btn-warning btn-xs' style='border-width: 0px; width: 65px; margin-right: 5px;margin-top:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                            ;
+                    } else {
+                        return "";
+                    }
                 },
                 "width": "130px"
             }

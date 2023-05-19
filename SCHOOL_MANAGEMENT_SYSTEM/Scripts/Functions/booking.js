@@ -1,10 +1,33 @@
 ﻿$(document).ready(function () {
-    GetBooking("Active");
+    GetBooking("All");
 });
 var tableBooking = [];
 $('#status').on('change', function () {
     GetBooking(this.value);
 });
+
+/////On Change 
+$('#frmbookroomid').on('change', function () {
+    GetRoomPrice(this.value);
+});
+$('#changeroomid').on('change', function () {
+    GetRoomPrice(this.value);
+
+});
+function GetRoomPrice(id) {
+    $.ajax({
+        url: "/api/rooms/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (result) {
+            $("#roompriceb").val(result.price);
+        },
+        error: function (errormessage) {
+            toastr.error("No Record Select!", "Service Response");
+        }
+    });
+}
 
 function GetBooking(status) {
     tableBooking = $('#tableBooking').dataTable({
@@ -33,6 +56,12 @@ function GetBooking(status) {
                     data: "servicecharge"
                 },
                 {
+                    data: "bookingdate",
+                    render: function (data) {
+                        return moment(new Date(data)).format('DD-MMM-YYYY');
+                    }
+                },
+                {
                     data: "checkindate",
                     render: function (data) {
                     return moment(new Date(data)).format('DD-MMM-YYYY');
@@ -45,34 +74,49 @@ function GetBooking(status) {
                     }
                 },
                 {
-                    data: "bookingdate",
-                    render: function (data) {
-                        return moment(new Date(data)).format('DD-MMM-YYYY');
-                    }
-                },
-                {
                     data: "id",
                     render: function (data, type, row) {
-                        //return "<button OnClick='BookingEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
-                        //               "<button OnClick='CancelBooking (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Cancel</button>";
-
-                        if (row.gueststatus == "CHECK-IN") {
-                            return "<span class='glyphicon glyphicon-ok'>";
-                        } else {
-                            if (row.bookstatus == "Expire") {
-                                return "<span class='label label-danger'><span class='glyphicon glyphicon-ok'></span> Expire</span>";
-                            } else if (row.bookstatus == "Active") {
-                                return "<button OnClick='BookingEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
-                                       "<button OnClick='CancelBooking (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Cancel</button>";
-                            } else if (row.bookstatus == "Cancel") {
-                                return "<span class='label label-danger'><span class='glyphicon glyphicon-ok'></span> Cancel</span>";
-                            }
+                        //if (row.gueststatus == "CheckIn") {
+                        //    return "<span class='label label-danger'><span class='glyphicon glyphicon-ok'></span> Active</span>";
+                        //} else {
+                        //    if (row.bookstatus == "Expire") {
+                        //        return "<span class='label label-danger'><span class='glyphicon glyphicon-ban-circle'></span> Expire</span>";
+                        //    } else if (row.bookstatus == "Book") {
+                        //        return "<button OnClick='BookingEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
+                        //            "<button OnClick='CancelBooking (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-minus-sign'></span> Cancel</button>" +
+                        //            "<button OnClick='CheckIn (" + data + ")' class='btn btn-info btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-in'></span> Check In</button>";
+                        //    } else if (row.bookstatus == "Cancel") {
+                        //        return "<span class='label label-danger'><span class='glyphicon glyphicon-minus-sign'></span> Cancel</span>";
+                        //    }
+                        //}
+                        if (row.bookstatus == "Book") {
+                            return "<button OnClick='BookingEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
+                                "<button OnClick='CancelBooking (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-minus-sign'></span> Cancel</button>" +
+                                "<button OnClick='CheckIn (" + data + ")' class='btn btn-info btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-in'></span> Check In</button>";
+                        } else if (row.bookstatus == "Expire") {
+                            return "<span class='label label-danger'><span class='glyphicon glyphicon-ban-circle'></span> Expire</span>";
+                        } else if (row.bookstatus == "Cancel") {
+                            return "<span class='label label-warning'><span class='glyphicon glyphicon-minus-sign'></span> Cancel</span>";
+                        } else if (row.bookstatus == "Active") {
+                            return "";
                         }
-                        
                     }
                 }
             ],
         destroy: true,
+    });
+}
+
+function OnAddBooking() {
+    $("#frmbookroomid").show();
+    $('#rmid').hide();
+    $('#changeroomid').hide();
+    document.getElementById("AddBook").style.display = "block";
+    $.get("/api/bookinginvoiceno", function (data) {
+        $('#bookingno').val(data);
+    });
+    $.get("/api/ExchangeRates/1/2", function (data) {
+        $("#exrate").val(data.rate);
     });
 }
 
@@ -86,15 +130,30 @@ $('#RoomIdChange').on('change', function () {
     }
 });
 
-
-
-function OnBookingAction() {
-    $("#BookingModal").modal('show');
-    $.get("/api/bookinginvoiceno", function (data) {
-        $('#bookingno').val(data);
+//On Check In
+function CheckIn(id) {
+    $("#CheckInModal").modal("show");
+    $.ajax({
+        url: "/api/booking_v/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (result) {
+            $("#bookid").val(result.id);
+            $("#guestidchin").val(result.guestid);
+            //$("#chroomid").val(result.roomid);
+            $("#roompricech").val(result.roomprice);
+            $("#payforroom").val(result.roomprice);
+            $("#prepaid").val(result.roomprice / 2);
+            $("#paydollar").val(result.roomprice + (result.roomprice / 2));
+        },
+        error: function (errormessage) {
+            toastr.error("No Record Select!", "Service Response");
+        }
     });
+
     $.get("/api/ExchangeRates/1/2", function (data) {
-        $("#exchagerate").text(data.rate + " រៀល");
+        $("#exrate").val(data.rate);
     });
 }
 
@@ -209,7 +268,12 @@ function UpdateRoomBook() {
 }
 
 function BookingEdit(id) {
-    $("#BookingModal").modal('show');
+    $("#BookModal").modal('show');
+    $("#frmbookroomid").hide();
+    document.getElementById("lblCheckRoom").style.display = "block";
+    document.getElementById("UpdateBook").style.display = "block";
+
+
     $.ajax({
         url: "/api/bookings/" + id,
         type: "GET",
@@ -219,21 +283,34 @@ function BookingEdit(id) {
             var checkindate = moment(result.checkindate).format("YYYY-MM-DD");
             var expiredate = moment(result.expiredate).format("YYYY-MM-DD");
             var bookingdate = moment(result.bookingdate).format("YYYY-MM-DD");
+            var bookingno = "RL"+("000000" + result.id).slice(-6);
             $('#bookid').val(result.id);
+            $('#bookingno').val(bookingno);
             $('#bookingdate').val(bookingdate);
             $('#checkindate').val(checkindate);
             $('#expiredate').val(expiredate);
-            $('#roomid').val(result.roomid);
-            $('#roomprice').val(result.room.price);
-            $('#guestid').val(result.guestid);
-            $('#guestname').val(result.guest.name);
+            $('#rmid').val(result.roomid);
+            $('#roompriceb').val(result.room.price);
             $('#totalbooking').val(result.total);
             $('#paydollarbooking').val(result.paydollar);
             $('#payreilbooking').val(result.payriel);
             $('#note').val(result.note);
-            $('#status').val(result.status);
             $('#userid').val(result.userid);
+
             
+            $('#guestid').val(result.guestid);
+            $('#guestname').val(result.guest.name);
+            $('#gnamekh').val(result.guest.namekh);
+            $('#gsex').val(result.guest.sex);
+            var dr = moment(result.guest.dob).format("YYYY-MM-DD");
+            $("#dob").val(dr);
+            $('#address').val(result.guest.address);
+            $('#nationality').val(result.guest.nationality);
+            $('#phonenumber').val(result.guest.phone);
+            $('#email').val(result.guest.email);
+            $('#ssn').val(result.guest.ssn);
+            $('#passport').val(result.guest.passport);
+            //$('#status').val(result.status);
         },
         error: function (errormessage) {
             toastr.error("Load Record Error", "Service Response");
@@ -241,59 +318,9 @@ function BookingEdit(id) {
     });
 }
 
-function UpdateBooking() {
-    if ($('#totalbooking').val() == "") {
-        $('#totalbooking').focus()
-        return false;
-    }
-
-    var data = {
-        id: $('#bookid').val(),
-        bookingdate: $('#bookingdate').val(),
-        guestid: $('#guestid').val(),
-        roomid: $('#roomid').val(),
-        total: $('#totalbooking').val(),
-        paydollar: $('#paydollarbooking').val(),
-        payriel: $('#payrielbooking').val(),
-        checkindate: $('#checkindate').val(),
-        expiredate: $('#expiredate').val(),
-        note: $('#note').val(),
-        status: $('#status').val(),
-    };
-
-    $.ajax({
-        url: "/api/bookings/"+data.id,
-        data: JSON.stringify(data),
-        type: "PUT",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            toastr.success("Update record successfully!", "Service Response");
-            window.location = "booking-rpt/" + data.id;
-        },
-        error: function (errormesage) {
-            toastr.error("This Booking ID is exist in Database", "Server Respond");
-            return false;
-        }
-    });
-}
-
-function UpdateRoomStatus(id,status) { 
-    $.ajax({
-        type: "PUT",
-        url: "/api/updateroomstatus/" + id + "/"+status,
-        contentType: false,
-        processData: false,
-        success: function (result) {
-            //toastr.success("Room Status has been Update successfully.", "Server Response");
-        },
-        error: function (error) {
-            toastr.error("Update room status fail!", "Server Response");
-        }
-    });  
-}
-
 function CancelBooking(id) {
+    var gid;
+    var rid;
     $.ajax({
         url: "/api/bookings/" + id,
         type: "GET",
@@ -301,6 +328,8 @@ function CancelBooking(id) {
         datatype: "json",
         success: function (result) {
             $('#roomid').val(result.roomid);
+            rid = result.roomid;
+            gid = result.guestid;
         },
         error: function (errormessage) {
             toastr.error("Load Record Error", "Service Response");
@@ -338,7 +367,7 @@ function CancelBooking(id) {
 
                 $.ajax({
                     type: "PUT",
-                    url: "/api/updateroomstatus/" + $('#roomid').val() + "/FREE",
+                    url: "/api/updateroomstatus/" + rid + "/FREE",
                     contentType: false,
                     processData: false,
                     // data: status,
@@ -349,26 +378,95 @@ function CancelBooking(id) {
                         toastr.error("Unblock room fail!", "Server Response");
                     }
                 });
+
+                $.ajax({
+                    type: "PUT",
+                    url: "/api/updategueststatus/" + gid + "/Cancel",
+                    contentType: false,
+                    processData: false,
+                    // data: status,
+                    success: function (result) {
+                    },
+                    error: function (error) {
+                        toastr.error("Update room status fail!", "Server Response");
+                    }
+                });
             }
         }
-    })  
+    })
 }
 
-function UpdateRoomStatusBook(id) {
-    $.ajax({
-        type: "PUT",
-        url: "/api/updateroomstatus/" + id + "/FREE",
-        contentType: false,
-        processData: false,
-        // data: status,
-        success: function (result) {
-            //toastr.success("Room Status has been Update successfully.", "Server Response");
-        },
-        error: function (error) {
-            toastr.error("Update room status fail!", "Server Response");
-        }
-    });
-}
+
+
+
+///======///
+//function UpdateBooking() {
+//    if ($('#totalbooking').val() == "") {
+//        $('#totalbooking').focus()
+//        return false;
+//    }
+
+//    var data = {
+//        id: $('#bookid').val(),
+//        bookingdate: $('#bookingdate').val(),
+//        guestid: $('#guestid').val(),
+//        roomid: $('#roomid').val(),
+//        total: $('#totalbooking').val(),
+//        paydollar: $('#paydollarbooking').val(),
+//        payriel: $('#payrielbooking').val(),
+//        checkindate: $('#checkindate').val(),
+//        expiredate: $('#expiredate').val(),
+//        note: $('#note').val(),
+//        status: $('#status').val(),
+//    };
+
+//    $.ajax({
+//        url: "/api/bookings/"+data.id,
+//        data: JSON.stringify(data),
+//        type: "PUT",
+//        contentType: "application/json;charset=utf-8",
+//        dataType: "json",
+//        success: function (result) {
+//            toastr.success("Update record successfully!", "Service Response");
+//            window.location = "booking-rpt/" + data.id;
+//        },
+//        error: function (errormesage) {
+//            toastr.error("This Booking ID is exist in Database", "Server Respond");
+//            return false;
+//        }
+//    });
+//}
+
+//function UpdateRoomStatus(id,status) { 
+//    $.ajax({
+//        type: "PUT",
+//        url: "/api/updateroomstatus/" + id + "/"+status,
+//        contentType: false,
+//        processData: false,
+//        success: function (result) {
+//            //toastr.success("Room Status has been Update successfully.", "Server Response");
+//        },
+//        error: function (error) {
+//            toastr.error("Update room status fail!", "Server Response");
+//        }
+//    });  
+//}
+
+//function UpdateRoomStatusBook(id) {
+//    $.ajax({
+//        type: "PUT",
+//        url: "/api/updateroomstatus/" + id + "/FREE",
+//        contentType: false,
+//        processData: false,
+//        // data: status,
+//        success: function (result) {
+//            //toastr.success("Room Status has been Update successfully.", "Server Response");
+//        },
+//        error: function (error) {
+//            toastr.error("Update room status fail!", "Server Response");
+//        }
+//    });
+//}
 
 function CloseBook() {
     window.location.reload(true);

@@ -20,18 +20,19 @@
                 <th>@Resources.Content.RoomNo</th>
                 <th>@Resources.Content.RoomType</th>
                 <th>@Resources.Content.PrePaid</th>
+                <th>@Resources.Content.Man</th>
+                <th>@Resources.Content.Woman</th>
+                <th>@Resources.Content.Child</th>
                 @*<th>ស្ថានភាព</th>*@
-                <th style="width:15%">@Resources.Content.Action</th>
+                <th style="width:20%">@Resources.Content.Action</th>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
 </div>
 
-@*@Html.Partial("_PrintNewInvoice")*@
 @Html.Partial("_CheckIn")
-@Html.Partial("_Paydamages")
-@Html.Partial("_PrintNewInvoice")
+@Html.Partial("_CheckOut")
 @Html.Partial("_History")
 
 
@@ -41,4 +42,3 @@
     @*@Scripts.Render("~/Scripts/Functions/history.js")*@
 }
 
- 

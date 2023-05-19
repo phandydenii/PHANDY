@@ -163,6 +163,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         }
 
         [HttpDelete]
+        [Route("api/deletewe/{id}")]
         //PUT : /api/Building/{id}
         public IHttpActionResult DeletePowerUsage(int id)
         {

@@ -64,6 +64,8 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             {
                 Rooms = _context.Rooms.ToList(),
                 GuestList = _context.Guests.ToList(),
+                ListRoomBook = _context.Rooms.Where(c => c.status == "BOOK").ToList(),
+                ListRoomFree = _context.Rooms.Where(c => c.status == "FREE").ToList(),
             };
 
             return View(roomViewModel);

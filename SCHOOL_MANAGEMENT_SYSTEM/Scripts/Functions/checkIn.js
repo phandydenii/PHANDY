@@ -41,10 +41,20 @@ function GetCheckInDetail() {
                     data: "payforroom",
                 },
                 {
+                    data: "man"
+                },
+                {
+                    data: "women"
+                },
+                {
+                    data: "child",
+                },
+                {
                     data: "id",
                     render: function (data, type, row) {
                         return   "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                            + "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"
+                               /*+ "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"*/
+                            + "<button onclick='CheckOut(" + row.id + " ," + row.guestid + " , " + row.roomid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
                         ;    
                     }
                 }
@@ -121,12 +131,6 @@ function GuestHistory(id) {
 
     });
 }
-function OnEditInvHistory() {
-    $('#rowhide').show();
-}
-function OnDeleteInvoiceHistory() {
-    $('#rowhide').hide();
-}
 
 function CheckInEdit(id) {
     $("#CheckInModal").modal("show");
@@ -167,8 +171,7 @@ function CheckInEdit(id) {
         }
     });
 }
-
-function SaveCheckIn() {  
+function UpdateCheckIn() {
     var data = {
         id: $('#checkinid').val(),
         checkindate: $('#checkindate').val(),
@@ -198,7 +201,53 @@ function SaveCheckIn() {
         }
     });
 }
-//Update WE
+function CheckOut(id,gid, rid) {
+    $("#CheckOutModal").modal("show");
+    $.ajax({
+        url: "/api/checkin_v/" + id,
+        type: "GET",
+        contentType: "application/json;charset=utf-8",
+        datatype: "json",
+        success: function (result) {
+            $("#chinid").val(result[0].id);
+            $("#gid").val(result[0].guestid);
+            $("#rmid").val(result[0].roomid);
+            var stdate = moment(result[0].enddate).format("YYYY-MM-DD");
+
+            const EndDate = new Date();
+            const StartDate = new Date(result[0].enddate);
+            const oneDay = 1000 * 60 * 60 * 24;
+            const start = Date.UTC(EndDate.getFullYear(), EndDate.getMonth(), EndDate.getDate());
+            const end = Date.UTC(StartDate.getFullYear(), StartDate.getMonth(), StartDate.getDate());
+            var countday = (start-end) / oneDay;
+
+
+            var totalday = countday;
+            if (countday >= 30) {
+                totalday = 30;
+            }
+            $("#startdatechout").val(stdate);
+            $("#wstart").val(result[0].wendrecord);
+            $("#estart").val(result[0].eendrecord);
+            $("#rmprice").val(result[0].price);
+            $("#svprice").val(result[0].servicecharge);
+            $("#paybefor").val(result[0].price + result[0].prepaid);
+            $("#totalroomprice").val((result[0].price / 30 * parseInt(totalday)).toFixed(2));
+        },
+        error: function (errormessage) {
+            toastr.error("No Record Select!", "Service Response");
+        }
+    });
+    $.get("/api/WEPrice/1/2", function (data) {
+        $("#wpid").val(data.id);
+        $("#wprice").val(data.waterprice);
+        $("#pprice").val(data.electricprice);
+    });
+    $.get("/api/ExchangeRates/1/2", function (data) {
+        $("#exrate").val(data.rate);
+        $("#lblExchangeRate").text("1 $ = " + data.rate + " រៀល");
+    });
+}
 function UpdateWaterElectricUsage(id) {
     var data = new FormData();
     data.append("wstartrecord", $('#wrecord').val());

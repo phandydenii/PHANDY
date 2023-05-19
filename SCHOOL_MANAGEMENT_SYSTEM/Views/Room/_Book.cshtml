@@ -99,36 +99,36 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="totalbooking">@Resources.Content.Total</label>
-                                            <input onchange="TotalBook()" id="totalbooking" name="totalbooking" onfocus="this.select();" placeholder="$0.00" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <input oninput="TotalBook()" id="totalbooking" name="totalbooking" onfocus="this.select();" placeholder="$0.00" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="paydollarbooking">@Resources.Content.PayDollar</label>
-                                            <input onchange="ChangePayBook()" id="paydollarbooking" name="paydollarbooking" onfocus="this.select();" placeholder="$0.00" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <input oninput="ChangePayBook()" id="paydollarbooking" name="paydollarbooking" onfocus="this.select();" placeholder="$0.00" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
                                             <label for="payreilbooking">@Resources.Content.PayRiel</label>
-                                            <input  id="payreilbooking" name="payreilbooking" placeholder="00" onfocus="this.select();" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                            <input  id="payreilbooking" readonly="readonly" name="payreilbooking" placeholder="00" onfocus="this.select();" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
                                             <label for="checkindate">@Resources.Content.CheckInDate</label>
-                                            <input id="checkindate" name="checkindate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
+                                            <input id="checkindate" name="checkindate" type="date" value="" class="form-control input-sm" placeholder="Choose Datetime" />
                                         </div>
                                         <div class="form-group">
                                             <label for="expiredate">@Resources.Content.ExpireDate</label>
-                                            <input id="expiredate" name="expiredate" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
+                                            <input id="expiredate" onselect="ChangeExpierDate()" name="expiredate" type="date" value="" class="form-control input-sm" placeholder="Choose Datetime" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label for="bookingnote">កត់ត្រា</label>
+                                            <label for="bookingnote">@Resources.Content.Note</label>
                                             <input id="bookingnote" name="bookingnote" placeholder="Note" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                         </div>
                                         <div class="form-group">
-                                            <label style="display:none">អត្រាប្តូរប្រាក់ <span style="color:blue">1$=</span></label><label style="color:blue;display:none" id="exchagerate">​</label>
+                                            <label style="display:none">@Resources.Content.ExchangeRate <span style="color:blue">1$=</span></label><label style="color:blue;display:none" id="exchagerate">​</label>
                                         </div>
                                     </div>
                                 </div>
@@ -147,9 +147,24 @@
 </div>
 
 <script>
+    function ChangeExpierDate() {
+        var expiredate = document.getElementById('expiredate');
+        const EndDate = new Date();
+        const StartDate = new Date(expiredate);
+        const oneDay = 1000 * 60 * 60 * 24;
+        const start = Date.UTC(EndDate.getFullYear(), EndDate.getMonth(), EndDate.getDate());
+        const end = Date.UTC(StartDate.getFullYear(), StartDate.getMonth(), StartDate.getDate());
+        var countday = (start - end) / oneDay;
+        if (countday <= 0) {
+            toastr.error("Input expire date incorrect!.", "Server Response");
+            return false;
+        }
+
+    }
     function TotalBook() {
         var a = $('#totalbooking').val();
         $('#paydollarbooking').val(a);
+        $('#payreilbooking').val(0);
     }
     function ChangePayBook(){
         var a =parseFloat($('#totalbooking').val());
@@ -175,15 +190,25 @@
 
     ///Insert Guest
     function CreateGuest() {
-
-        if ($("#guestname").val() == ""){
-            $("#guestname").focus()
-            return false;
-        }
         if ($("#gnamekh").val() == "") {
             $("#gnamekh").focus()
             return false;
         }
+        //if ($("#guestname").val() == ""){
+        //    $("#guestname").focus()
+        //    return false;
+        //}
+        
+        if ($("#checkindate").val() == "") {
+            $("#checkindate").focus()
+            return false;
+        }
+        if ($("#expiredate").val() == "") {
+            $("#expiredate").focus()
+            return false;
+        }
+        
+
         var data = new FormData();
         data.append("name", $("#guestname").val());
         data.append("namekh", $("#gnamekh").val());
@@ -195,7 +220,7 @@
         data.append("email", $("#email").val());
         data.append("ssn", $("#ssn").val());
         data.append("passport", $("#passport").val());
-        data.append("status", 'BOOK');
+        data.append("status", 'Book');
         $.ajax({
             type: "POST",
             url: "/api/guests",

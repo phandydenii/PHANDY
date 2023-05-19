@@ -22,13 +22,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="startdatechout">ចាប់ផ្តើម</label>
+                                    <label for="startdatechout">@Resources.Content.StartDate</label>
                                     <input id="startdatechout" readonly="readonly" name="startdatechout" type="date" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="enddatechout">ដល់ថ្ងៃ</label>
+                                    <label for="enddatechout">@Resources.Content.EndDate</label>
                                     <input id="enddatechout" readonly="readonly" name="enddatechout" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
@@ -36,20 +36,20 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="rmprice">តម្លៃបន្ទប់</label>
+                                    <label for="rmprice">@Resources.Content.RoomPrice</label>
                                     <input id="rmprice" readonly="readonly" name="rmprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="totalroomprice">តម្លៃបន្ទប់</label>
+                                    <label for="totalroomprice">@Resources.Content.TotalRoomPrice</label>
                                     <input id="totalroomprice" name="totalroomprice" placeholder="Enter Address" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                         </div>
                        
                         <div class="form-group">
-                            <label for="svprice">បង់ថ្លៃសេវា</label>
+                            <label for="svprice">@Resources.Content.ServiceCharge</label>
                             <input id="svprice" readonly="readonly" name="svprice" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         
@@ -60,13 +60,13 @@
                             <input id="waterid" name="waterid" type="text" style="display: none;" value="" class="form-control" />
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="wstart">គីឡូទឺកចាស់</label>
+                                    <label for="wstart">@Resources.Content.WaterStartRecord</label>
                                     <input id="wstart" readonly="readonly" name="wstart" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="wendrecords">គីឡូទឺកថ្មី</label>
+                                    <label for="wendrecords">@Resources.Content.WEndRecord</label>
                                     <input id="wendrecords" onfocus="this.select();" onchange="RecordWaterChange();" name="wendrecords" placeholder="" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
@@ -75,19 +75,19 @@
                             <input id="powerid" name="powerid" type="text" style="display: none;" value="" class="form-control" />
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="estart">គីឡូភ្លើងចាស់</label>
+                                    <label for="estart">@Resources.Content.ElectricStartRecord</label>
                                     <input id="estart" readonly="readonly" name="estart" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="eendrecords">គីឡូភ្លើងថ្មី</label>
+                                    <label for="eendrecords">@Resources.Content.EEndRecord</label>
                                     <input id="eendrecords" onfocus="this.select();" onchange="RecordElectricChange()" name="eendrecords" placeholder="Enter Phone" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="paybefor">បង់មុនចំនួន</label>
+                            <label class="control-label" for="paybefor">@Resources.Content.PrePaid</label>
                             <input id="paybefor" name="paybefor" readonly="readonly" placeholder="0" value="0" type="number" class="form-control input-sm">
                         </div>
                         
@@ -95,15 +95,15 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label for="wtotal">សរុបថ្លៃទឹក</label>
+                            <label for="wtotal">@Resources.Content.TotalWater</label>
                             <input id="wtotal" readonly="readonly" name="wtotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
-                            <label for="etotal">សរុបថ្លៃភ្លើង</label>
+                            <label for="etotal">@Resources.Content.TotalElectric</label>
                             <input id="etotal" readonly="readonly" name="etotal" placeholder="Enter Phone" type="text" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="grandtotal">សរុប</label>
+                            <label class="control-label" for="grandtotal">@Resources.Content.Total</label>
                             <input id="grandtotal" name="grandtotal" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
                         </div>                       
                     </div>
@@ -111,33 +111,33 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="control-label" for="returnamount">ត្រលប់វិញចំនួន</label>
+                            <label class="control-label" for="returnamount">@Resources.Content.ReturnAmount</label>
                             <input id="returnamount" name="returnamount" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="control-label" for="totalpayment">ប្រាក់សរុបត្រូវបង់</label>
+                            <label class="control-label" for="totalpayment">@Resources.Content.TotalPayment</label>
                             <input id="totalpayment" name="totalpayment" readonly="readonly" placeholder="0.00" value="0" type="number" class="form-control input-sm">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="control-label" for="paydollar">សាច់ប្រាក់ជាដុល្លា</label>
-                            <input id="paydollar" name="paydollar" placeholder="0.00" value="0" type="number" class="form-control input-sm">
+                            <label class="control-label" for="paydollars">@Resources.Content.PayDollar</label>
+                            <input id="paydollars" onfocus="this.select();" name="paydollars" placeholder="0.00" value="0" type="number" class="form-control input-sm">
                         </div> 
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="control-label" for="payriel">សាច់ប្រាក់ជារៀល</label>
-                            <input id="payriel" name="payriel" placeholder="0.00" value="0" type="number" class="form-control input-sm">
+                            <label class="control-label" for="payriels">@Resources.Content.PayRiel</label>
+                            <input id="payriels" onfocus="this.select();" name="payriels" placeholder="0.00" value="0" type="number" class="form-control input-sm">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="control-label" for="description">ពណ៌នា</label>
+                            <label class="control-label" for="description">@Resources.Content.Note</label>
                             <input id="description" name="description" placeholder="Description" value="" type="text" class="form-control input-sm">
                         </div>
                     </div>
@@ -193,8 +193,8 @@
             paybefor: $('#paybefor').val(),
             returnamount: $('#returnamount').val(),
             totalpayment: $('#totalpayment').val(),
-            paydollar: $('#paydollar').val(),
-            payriel: $('#payriel').val(),
+            paydollar: $('#paydollars').val(),
+            payriel: $('#payriels').val(),
             description: $('#description').val(),
         };
         $.ajax({
@@ -234,7 +234,7 @@
     function UpdateStatusGuest() {
         $.ajax({
             type: "PUT",
-            url: "/api/updategueststatus/" + $("#guestid").val() + "/CHECK-OUT",
+            url: "/api/updategueststatus/" + $("#gid").val() + "/CheckOut",
             contentType: false,
             processData: false,
             // data: status,
@@ -286,9 +286,27 @@
         if (totalreturn >= 0) {
             $('#totalpayment').val(totalreturn.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
             $('#totalpayment').addClass('');
+            $('#returnamount').val(0);
+
+            $('#paydollars').val(totalreturn.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         } else {
             $('#returnamount').val((totalreturn * -1).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+            $('#totalpayment').val(0);
+
+            $('#paydollars').val((totalreturn * -1).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         }
     }
-
+    function ChangPayDollar() {
+        var exrate = document.getElementById('exrate').value;
+        var paydollars = parseFloat($('#paydollars').val());
+        var totalpayment = parseFloat($('#totalpayment').val());
+        var returnamount = parseFloat($('#returnamount').val());
+        if (totalpayment > 0) {
+            var result = (totalpayment - paydollars) * exrate;
+            $('#payriels').val(result.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        } else {
+            var result = (returnamount - paydollars) * exrate;
+            $('#payriels').val(result.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+        }
+    }
 </script>

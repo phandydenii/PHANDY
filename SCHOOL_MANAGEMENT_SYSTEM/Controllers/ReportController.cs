@@ -35,48 +35,6 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             return View();
         }
 
-        public ActionResult ExportToPDF()
-        {
-            //Report  
-            ReportViewer reportViewer = new ReportViewer();
-
-            reportViewer.ProcessingMode = ProcessingMode.Local;
-            reportViewer.LocalReport.ReportPath = Server.MapPath(@"~\Report1.rdlc");
-
-            //Byte  
-            Warning[] warnings;
-            string[] streamids;
-            string mimeType, encoding, filenameExtension;
-
-            byte[] bytes = reportViewer.LocalReport.Render("Pdf", null, out mimeType, out encoding, out filenameExtension, out streamids, out warnings);
-
-            //File  
-            string FileName = "Test_" + DateTime.Now.Ticks.ToString() + ".pdf";
-            string FilePath = HttpContext.Server.MapPath(@"~\TempFiles\") + FileName;
-
-            //create and set PdfReader  
-            PdfReader reader = new PdfReader(bytes);
-            FileStream output = new FileStream(FilePath, FileMode.Create);
-
-            string Agent = HttpContext.Request.Headers["User-Agent"].ToString();
-
-            //create and set PdfStamper  
-            PdfStamper pdfStamper = new PdfStamper(reader, output, '0', true);
-
-            if (Agent.Contains("Firefox"))
-                pdfStamper.JavaScript = "var res = app.loaded('var pp = this.getPrintParams();pp.interactive = pp.constants.interactionLevel.full;this.print(pp);');";
-            else
-                pdfStamper.JavaScript = "var res = app.setTimeOut('var pp = this.getPrintParams();pp.interactive = pp.constants.interactionLevel.full;this.print(pp);', 200);";
-
-            pdfStamper.FormFlattening = false;
-            pdfStamper.Close();
-            reader.Close();
-
-            //return file path  
-            string FilePathReturn = @"TempFiles/" + FileName;
-            return Content(FilePathReturn);
-        }
-
         [Route("check-out-report/{id}")]
         [System.Web.Mvc.HttpGet]
         public ActionResult GetCheckOutReport(string id)
@@ -92,10 +50,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             reportViewer.SizeToReportContent = true;
             reportViewer.Width = Unit.Percentage(100);
             reportViewer.Height = Unit.Percentage(100);
-            //ReportParameter qrCODE = new ReportParameter("qrCODE", base64String);
-            //reportViewer.LocalReport.EnableExternalImages = true;
             reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\CHECKOUT_REPORT.rdlc";
-            //reportViewer.LocalReport.SetParameters(new ReportParameter[] { staffname, from, to, khmerDate, khmerYear, qrCODE });
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));
             ViewBag.ReportViewer = reportViewer;
             return View("_checkout");
@@ -341,16 +296,17 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             SqlConnection con = new SqlConnection(connectionString);
             SqlDataAdapter adp = new SqlDataAdapter("Select * From PaySlip_V where id=" + id, con);
             adp.Fill(ds);
-
+            string amount = ds.Rows[0]["totalsalary"].ToString();
+            string a = ConvertAmount(double.Parse(amount));
             ReportViewer reportViewer = new ReportViewer();
             reportViewer.ProcessingMode = ProcessingMode.Local;
             reportViewer.SizeToReportContent = true;
             reportViewer.Width = Unit.Percentage(100);
             reportViewer.Height = Unit.Percentage(100);
-            //ReportParameter qrCODE = new ReportParameter("qrCODE", base64String);
-            //reportViewer.LocalReport.EnableExternalImages = true;
+            ReportParameter pamountinword = new ReportParameter("amountinword", a);
+            reportViewer.LocalReport.EnableExternalImages = true;
             reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\PAYSLIP_REPORT.rdlc";
-            //reportViewer.LocalReport.SetParameters(new ReportParameter[] { staffname, from, to, khmerDate, khmerYear, qrCODE });
+            reportViewer.LocalReport.SetParameters(new ReportParameter[] { pamountinword});
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", ds));
             ViewBag.ReportViewer = reportViewer;
             return View("_payslip");
@@ -734,6 +690,107 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers
             return View("_roomlistrpt");
         }
 
+        public static String ConvertAmount(double amount)
+        {
+            try
+            {
+                Int64 amount_int = (Int64)amount;
+                Int64 amount_dec = (Int64)Math.Round((amount - (double)(amount_int)) * 100);
+                if (amount_dec == 0)
+                {
+                    return NumberToWords(amount_int) + "ដុល្លាគត់";
+                }
+                else
+                {
+                    return NumberToWords(amount_int) + "ដុល្លា និង" + NumberToWords(amount_dec) + "សេន";
+                }
+            }
+            catch (Exception )
+            {
+                // TODO: handle exception  
+            }
+            return "";
+        }
+        public static string NumberToWords(Int64 number)
+        {
+            if (number == 0)
+                return "សូន្យ";
 
+            if (number < 0)
+                return "ដក" + NumberToWords(Math.Abs(number));
+
+            string words = "";
+
+            if ((number / 1000000) > 0)
+            {
+                words += NumberToWords(number / 1000000) + "លាន";
+                number %= 1000000;
+            }
+
+            if ((number / 100000) > 0)
+            {
+                words += NumberToWords(number / 100000) + "សែន";
+                number %= 100000;
+            }
+
+            if ((number / 10000) > 0)
+            {
+                words += NumberToWords(number / 10000) + "ម៉ឺន";
+                number %= 10000;
+            }
+
+            if ((number / 1000) > 0)
+            {
+                words += NumberToWords(number / 1000) + "ពាន់";
+                number %= 1000;
+            }
+
+            if ((number / 100) > 0)
+            {
+                words += NumberToWords(number / 100) + "រយ";
+                number %= 100;
+            }
+
+            if (number > 0)
+            {
+                var unitsMap = new[] { "សួន្យ", "មួយ", "ពីរ", "បី", "បួន", "ប្រាំ", "ប្រាំមួយ", "ប្រាំពីរ", "ប្រាំបី", "ប្រាំបួន" };
+                var tensMap = new[] { "សូន្យ", "ដប់", "ម្ភៃ", "សាមសិប", "សែសិប", "ហាសិប", "ហុកសិប", "ចិតសិប", "ប៉ែតសិប", "កៅសិប" };
+
+                if (number < 10)
+                    words += unitsMap[number];
+                else
+                {
+                    words += tensMap[number / 10];
+                    if ((number % 10) > 0)
+                        words += unitsMap[number % 10];
+                }
+            }
+
+            return words;
+        }
+
+
+        public static string GetFullDateKhmer(DateTime strInput)
+        {
+
+            string[] arrEnglish = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+            string[] arrKhmer =  { "០", "១", "២", "៣", "៤", "៥", "៦", "៧", "៨", "៩"};
+            string[] arrMonth = { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+            string[] arrMonthKh = { "មករា", "កុម្ភៈ", "មីនា", "មេសា", "ឧសភា", "មិថុនា", "កក្កដា", "សីហា", "កញ្ញា", "តុលា", "វិច្ឆិកា", "ធ្នូ"};
+
+            string TextShow = strInput.ToString("dd-MMM-yyyy").Replace("-", " ");
+
+            for (int j=0; j== arrKhmer.Length - 1; j++)
+            {
+                TextShow = TextShow.Replace(arrEnglish[j], arrKhmer[j]);
+            }
+
+            for (int i = 0; i == arrMonth.Length - 1; i++)
+            {
+                TextShow = TextShow.Replace(arrMonth[i], arrMonthKh[i]);
+            }
+
+            return TextShow;
+        }
     }
 }

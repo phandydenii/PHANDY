@@ -4,16 +4,17 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" onclick="CloseStaffSalary()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal">បិទ</button>
-                <b class="modal-title" style="color: darkblue;">កំណត់ប្រាក់ខែបុគ្គលិក</b>
+                <button type="button" onclick="CloseStaffSalary()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b>@Resources.Content.Salary</b></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <input id="salaryid" name="salaryid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="staffid">បុគ្គលិក</label>
+                            <label for="staffid">@Resources.Content.Staff</label>
                             <select class="form-control input-sm" id="staffid">
+                                <option value="">---Please select staff----</option>
                                 @foreach (var item in Model.StaffList)
                                 {
                                     <option value=@item.id>@item.name</option>
@@ -23,103 +24,20 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="salary">ប្រាក់ខែ​</label>
-                            <input id="salary" name="salary" placeholder="Enter Position" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                            <label for="salary">@Resources.Content.Salary</label>
+                            <input id="salary" name="salary" placeholder="Enter Position" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                 </div> 
                 <div class="form-group">
-                    <label for="note">ចំណាំ​</label>
+                    <label for="note">@Resources.Content.Note</label>
                     <input id="note" name="note" placeholder="Enter Position" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                 </div>
              </div>
-             <div class="modal-footer">
-                <button type="button" id="btnSaveManageSalary" onclick="SaveManageSalary();" class="btn btn-info btn-block btn-sm">Save</button>
-             </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSaveManageSalary" onclick="SaveManageSalary();" class="btn btn-info btn-block btn-sm">@Resources.Content.Save</button>
+                <button type="button" id="btnUpdateSalary" onclick="UpdateSalaryd();" class="btn btn-success btn-block btn-sm">@Resources.Content.Update</button>
+            </div>
         </div>
     </div>
 </div>
-
-
-<script>
-    function CloseStaffSalary() {
-        window.location.reload(true);
-    }
-    function SaveManageSalary() {
-        var action = document.getElementById('btnSaveManageSalary').innerText;
-        if (action == "Save") {
-            InsertSalary();
-        } else if(action=="Update"){
-            var data = new FormData();
-            data.append("staffid", $("#staffid").val());
-            data.append("salary", $("#salary").val());
-            data.append("note", $("#note").val());
-            $.ajax({
-                type: "PUT",
-                url: "/api/salaries/" + $('#salaryid').val(),
-                contentType: false,
-                processData: false,
-                data: data,
-                success: function (result) {
-                    toastr.success("Insert record successfully.", "Server Response");
-                    window.location.reload(true);
-                },
-                error: function (error) {
-                    console.log(error);
-                    toastr.error("Record Already Exists!.", "Server Response");
-                }
-            });
-        }
-    }
-    function InsertSalary() {
-        var data = {
-            staffid: $('#staffid').val(),
-            salary: $('#salary').val(),
-            note: $('#note').val(),
-        };
-        
-
-        $.ajax({
-            url: "/api/salaries",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("Insert record successfully!", "Server Respond");
-                window.location.reload(true);
-
-            },
-            error: function (errormesage) {
-                $('#itemcharge').focus();
-                toastr.error("Inser record faild!", "Server Respond")
-            }
-        });
-    }
-
-    function UpdateSalary() {
-       // alert("ID =" + $('#id').val());
-        var data = {
-            id: $('#id').val(),
-            staffid: $('#itemcharge').val(),
-            salary: $('#salary').val(),
-            note: $('#note').val(),
-        };
-        console.log(data);
-        $.ajax({
-            url: "/api/salaries/" + data.id,
-            data: JSON.stringify(data),
-            type: "PUT",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("Update record successfully!", "Server Respond");
-                window.location.reload(true);
-            },
-            error: function (errormesage) {
-                $('#itemcharge').focus();
-                toastr.error("Update record faild!", "Server Respond")
-            }
-        });
-    }
-</script>

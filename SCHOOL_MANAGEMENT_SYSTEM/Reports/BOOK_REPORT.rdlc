@@ -689,6 +689,13 @@
                   <FontSize>9pt</FontSize>
                 </Style>
               </TextRun>
+              <TextRun>
+                <Value>=Fields!note.Value</Value>
+                <Style>
+                  <FontFamily>Khmer os battambang</FontFamily>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
             </TextRuns>
             <Style />
           </Paragraph>

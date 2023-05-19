@@ -10,7 +10,9 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6">
-                        <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />                    
+                        <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <input id="exrate" name="exrate" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                        <input id="bookid" name="bookid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <div class="form-group">
                             <label for="chroomid">@Resources.Content.RoomNo</label>
                             <select class="form-control input-sm" id="chroomid" disabled>
@@ -37,17 +39,17 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="payforroom">@Resources.Content.PayForRoom</label>
-                                    <input id="payforroom" name="payforroom" placeholder="0.00" value="0" onfocus="this.select();" type="number" class="form-control input-sm">
+                                    <input id="payforroom" readonly="readonly" name="payforroom" placeholder="0.00" value="0" onfocus="this.select();" type="number" class="form-control input-sm">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="prepaid">@Resources.Content.PrePaid</label>
-                                    <input id="prepaid" name="prepaid" placeholder="0.00" value="0" onfocus="this.select();" type="number" class="form-control input-sm">
+                                    <input id="prepaid" oninput="ChangePrepaid()" name="prepaid" placeholder="0.00" value="0" onfocus="this.select();" type="number" class="form-control input-sm">
                                 </div>
                             </div>
                         </div>
-                                              
+
                     </div>
                     <div class="col-md-6">
                         <input id="datenow" name="datenow" style="display: none;" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Choose Datetime" />
@@ -62,11 +64,11 @@
                         </div>
                         <div class="form-group">
                             <label for="paydollar">@Resources.Content.PayDollar</label>
-                            <input id="paydollar" name="paydollar" onfocus="this.select();" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                            <input id="paydollar" oninput="PayDollarChange()" name="paydollar" onfocus="this.select();" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="payriel">@Resources.Content.PayRiel</label>
-                            <input id="payriel" name="payriel" onfocus="this.select();" placeholder="Enter current number" value="0" type="number" class="form-control input-sm">
+                            <input id="payriel" readonly="readonly" name="payriel" onfocus="this.select();" placeholder="Enter current number" value="0" type="text" class="form-control input-sm">
                         </div>
                     </div>
                 </div>
@@ -90,10 +92,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal-footer">                  
-                    <button type="button" id="btnSaveCheckIn" onclick="CheckInAction()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:15%">Save</button>
-                    <button type="button" id="btnTest" onclick="OnCloseCheckIn()" class="btn btn-danger btn-sm pull-right" style="width:15%">Cancel</button>                   
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnTest" onclick="OnCloseCheckIn()" class="btn btn-danger btn-sm pull-right" style="width: 15%; margin-left: 5px;">@Resources.Content.Cancel</button>
+                <button type="button" id="btnSaveCheckIn" onclick="CheckInAction()" class="btn btn-info btn-sm pull-right" style="width:15%">@Resources.Content.Save</button>
             </div>
         </div>
     </div>
@@ -103,6 +105,7 @@
 <script>
     function OnCloseCheckIn() {
         window.location.reload(true);
+        
     }
     function CheckInAction() {
         var data = {
@@ -123,7 +126,10 @@
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             success: function (result) {
-                CreatetWaterElectricCheckIn($('#guestidchin').val());
+                CreatetWaterElectricCheckIn(data.guestid);
+                GuestStatusUpdate(data.guestid);
+                UpdateStatusRoom();
+                UpdateBookingAcitve();
             },
             error: function (errormesage) {
                 toastr.error("This Name Guest is exist in Database", "Server Respond");
@@ -136,8 +142,8 @@
     function CreatetWaterElectricCheckIn(id) {
         var data = new FormData();
         data.append("guestid", id);
-        data.append("startdate", $('#checkindate').val());
-        data.append("enddate", $('#checkindate').val());
+        data.append("startdate", $('#datenow').val());
+        data.append("enddate", $('#datenow').val());
         data.append("wstartrecord", $('#wstartrecord').val());
         data.append("wendrecord", $('#wstartrecord').val());
         data.append("estartrecord", $('#estartrecord').val());
@@ -149,37 +155,12 @@
             processData: false,
             data: data,
             success: function (result) {
-                //CreateInvoice();
-                UpdateStatusRoom();
-                UpdateGuestStatus();
                 toastr.success("Check In successfully.", "Server Response");
                 window.location.reload(true);
             },
             error: function (errormesage) {
                 toastr.error("Electric usage insert faild!", "Server Respond");
                 return false;
-            }
-        });
-    }
-
-  
-    function CreateInvoice() {
-        var data = {
-            guestid: $('#guestidchin').val(),
-            roomid: $('#chroomid').val(),
-        };
-        $.ajax({
-            url: "/api/invoices",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("Check In successfully.", "Server Response");
-                window.location.reload(true);
-            },
-            error: function (errormesage) {
-                toastr.error("Create invoice faild...!" + errormesage, "Server Respond");
             }
         });
     }
@@ -197,10 +178,10 @@
             }
         });
     }
-    function UpdateGuestStatus() {
+    function GuestStatusUpdate(id) {
         $.ajax({
             type: "PUT",
-            url: "/api/updategueststatus/" + $("#guestidchin").val() + "/CHECK-IN",
+            url: "/api/updategueststatus/" + id + "/CheckIn",
             contentType: false,
             processData: false,
             // data: status,
@@ -211,54 +192,35 @@
             }
         });
     }
-
-
-
-    function InsertPowerUsage(id) {
-        var data = new FormData();
-        data.append("checkinid", id);
-        data.append("predate", $('#datenow').val());
-        data.append("prerecord", $('#powerprerecord').val());
-        data.append("currentdate", $('#datenow').val());
-        data.append("currentrecord", $('#powerprerecord').val());
+    function UpdateBookingAcitve() {
         $.ajax({
-            url: "/api/electrics",
-            type: "POST",
+            type: "PUT",
+            url: "/api/bookingstatus/" + $("#bookid").val() + "/Active",
             contentType: false,
             processData: false,
-            data: data,
+            // data: status,
             success: function (result) {
-
+                //toastr.success("Booking has been update successfully.", "Server Response");
             },
-            error: function (errormesage) {
-                toastr.error("Power usage insert faild!", "Server Respond");
-                return false;
+            error: function (error) {
+                toastr.error("Unblock room fail!", "Server Response");
             }
-
         });
     }
-    function InsertWaterUsage(id) {
-        var data = new FormData();
-        data.append("checkinid", id);
-        data.append("predate", $('#datenow').val());
-        data.append("prerecord", $('#waterprerecord').val());
-        data.append("currentdate", $('#datenow').val());
-        data.append("currentrecord", $('#waterprerecord').val());
-        $.ajax({
-            url: "/api/waterusage",
-            type: "POST",
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function (result) {
-                InsertInvoice();
-                //window.location.reload(true);
-            },
-            error: function (errormesage) {
-                toastr.error("Water usage insert faild!", "Server Respond");
-                return false;
-            }
-        });
+
+    function ChangePrepaid() {
+        var payforroom = parseFloat($('#payforroom').val());
+        var prepaid = parseFloat($('#prepaid').val());
+        $('#paydollar').val(payforroom + prepaid);
+        $('#payriel').val(0);
+    }
+    function PayDollarChange() {
+        var payforroom = parseFloat($('#payforroom').val());
+        var prepaid = parseFloat($('#prepaid').val());
+        var paydollar = parseFloat($('#paydollar').val());
+        var exrate = parseFloat($('#exrate').val());
+        var total = (payforroom + prepaid - paydollar) * exrate;
+        $('#payriel').val(total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
     }
 </script>
 

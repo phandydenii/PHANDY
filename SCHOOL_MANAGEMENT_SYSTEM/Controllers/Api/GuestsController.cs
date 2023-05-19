@@ -186,6 +186,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
             return Ok(new { });
         }
+
     }
 }
 

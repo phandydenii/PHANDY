@@ -19,21 +19,21 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="name">ឈ្មោះជាអក្សរឡាតាំង</label>
+                            <label for="name">@Resources.Content.Name</label>
                             <input id="name" name="name" readonly="readonly" placeholder="Enter number of name" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
-                            <label for="namekh">ឈ្មោះជាអក្សរខ្មែរ</label>
+                            <label for="namekh">@Resources.Content.NameKh</label>
                             <input id="namekh" name="namekh" readonly="readonly" placeholder="Enter number of name khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="wrecord">គីឡូទឹកចាស់</label>
+                            <label for="wrecord">@Resources.Content.WaterStartRecord</label>
                             <input id="wrecord" name="wrecord" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
                         <div class="form-group">
-                            <label for="precord">គីឡូភ្លើងចាស់</label>
+                            <label for="precord">@Resources.Content.ElectricStartRecord</label>
                             <input id="precord" name="precord" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
                     </div>
@@ -42,26 +42,26 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <div class="form-group">
-                                <label for="payforroom">បង់ថ្លៃបន្ទប់</label>
+                                <label for="payforroom">@Resources.Content.PayForRoom</label>
                                 <input id="payforroom" name="payforroom" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="man">បុរស</label>
+                            <label for="man">@Resources.Content.Man</label>
                             <input id="man" name="man" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="women">ស្ត្រី</label>
+                            <label for="women">@Resources.Content.Woman</label>
                             <input id="women" name="women" placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="child">ក្មេងៗ</label>
+                            <label for="child">@Resources.Content.Child</label>
                             <input id="child" name="child" placeholder="Enter number of child" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
                     </div>
@@ -70,7 +70,8 @@
             </div>
             <div class="modal-footer">               
                 <div class="form-group">
-                    <button type="button" id="btnSaveCheckIn" onclick="SaveCheckIn();" class="btn btn-info pull-right btn-sm">Update</button>
+                    <button type="button" id="btnTest" onclick="Close()" class="btn btn-danger btn-sm pull-right" style="margin-left: 10px; width: 15%"><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Cancel</button>
+                    <button type="button" id="btnSaveCheckIn" onclick="UpdateCheckIn();" class="btn btn-success pull-right btn-sm" style="margin-left: 10px; width: 15%"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
                 </div>                
             </div>
         </div>

@@ -209,7 +209,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                               join g in _context.Guests on c.guestid equals g.id
                               join f in _context.Floors on r.floorid equals f.id
                               join b in _context.Buildings on f.buildingid equals b.id
-                              where r.id == roomid && g.status== "CHECK-IN"
+                              where r.id == roomid && g.status== "CheckIn"
                               select new CheckInV
                               {
                                   id = c.id,
@@ -242,7 +242,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
                                   checkindate = c.checkindate,
                                   startdate = c.startdate,
                                   enddate = c.enddate
-                              }).ToList();
+                              }).SingleOrDefault();
             return Ok(getCheckIn);
         }
 

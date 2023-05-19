@@ -25,7 +25,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetLastExchange()
         {
-            var exchageRates = _context.WEPrices.OrderByDescending(c => c.id).ToList();
+            var exchageRates = _context.WEPrices.Where(c => c.IsDeleted == false).OrderByDescending(c => c.id);
             return Ok(exchageRates);
         }
         [HttpGet]
@@ -38,7 +38,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         [Route("api/WEPrice/{a}/{b}")]
         public IHttpActionResult GetLastExchange(int a, int b)
         {
-            var exchageRates = _context.WEPrices.OrderByDescending(c => c.id).FirstOrDefault(c => c.IsDeleted == false);
+            var exchageRates = _context.WEPrices.OrderByDescending(c => c.id).FirstOrDefault(w => w.IsDeleted == false);
             return Ok(exchageRates);
         }
 
@@ -59,16 +59,14 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
 
         // PUT api/parent/5
         [HttpPut]
-        public IHttpActionResult UpdateExchageRate(int id, WEPriceDto wepriceDtos)
+        public IHttpActionResult UpdateExchageRate(int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
             var exchageRateInDb = _context.WEPrices.SingleOrDefault(c => c.id == id);
-            exchageRateInDb.date = DateTime.Today;
-
-            Mapper.Map(wepriceDtos, exchageRateInDb);
+            exchageRateInDb.IsDeleted = true;
             _context.SaveChanges();
-            return Ok(wepriceDtos);
+            return Ok();
         }
     }
 }

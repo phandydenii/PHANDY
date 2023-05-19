@@ -27,6 +27,23 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             _context.Dispose();
         }
 
+
+        [HttpGet]
+        [Route("api/roomfree/{id}")]
+        public IHttpActionResult GetMaxID(int id)
+        {
+            //For Get Max PaymentNo +1
+            DataTable ds = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            SqlConnection conx = new SqlConnection(connectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("select * from room_tbl where status='FREE' or id='"+id+"'", conx);
+            adp.Fill(ds);
+            return Ok(ds.Rows[0][0]);
+        }
+
+
+
+
         [HttpGet]
         [Route("api/invmaxid")]
         public IHttpActionResult GetInvoiceMaxID()
