@@ -56,32 +56,23 @@ function GetCheckInDetail() {
                         } else {
                             return moment(new Date(data)).format('DD-MMM-YYYY');
                         }
-                        
                     }
                 },
                 {
                     data: "checkinid",
                     render: function (data, type, row) {
-                        const now = new Date(Date.now());
-                        const now1 = new Date(data.enddate);
-                        const counday = parseInt(now.getDate()) - parseInt(now1.getDate());
-
-                        
-
                         if (parseFloat(row.action) > 0) {
-                                return "<button OnClick='OnPaymentNow (" + row.action + ")' class='btn btn-info btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Payment Now</button>"
-                                    + "<button OnClick='OnEdtInvoice (" + row.action + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                                    + "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"
-                                    ;
-                            
+                            return "<button OnClick='OnPaymentNow (" + row.action + ")' class='btn btn-info btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Payment Now</button>"
+                                + "<button OnClick='OnEdtInvoice (" + row.action + ")' class='btn btn-primary btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                                + "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"
+                                ;                          
                         } else if (row.action == '') {
                             return "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"
                                 ;
                         } else {
-                                return "<button OnClick='OnPrintInvoice (" + data + "," + row.guestid + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Print Invoice</button>"
-                                    + "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"
-                                    ;
-                            
+                            return "<button OnClick='OnPrintInvoice (" + data + "," + row.guestid + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-list-alt'></span> Print Invoice</button>"
+                                + "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"
+                                ;
                         }
                     }
                 }

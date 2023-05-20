@@ -4,7 +4,7 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="OnCloseCheckIn();"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="function close(){window.location.reload(true)};close()"><span class="glyphicon glyphicon-remove"></span></button>
                 <h4 class="modal-title text-center" style="color: darkblue;"><b>@Resources.Content.CheckIn</b></h4>
             </div>
             <div class="modal-body">
@@ -94,8 +94,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnSaveCheckIn" onclick="CheckInAction()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:15%"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
-                <button type="button" id="btnTest" onclick="OnCloseCheckIn()" class="btn btn-danger btn-sm pull-right" style="width:15%"><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Cancel</button>
+                <button type="button" id="btnTest" onclick="function close(){window.location.reload(true)};close()" class="btn btn-danger btn-sm pull-right" style="margin-left: 5px; width: 15%"><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Close</button>
+                <button type="button" id="btnSaveCheckIn" onclick="CheckInAction()" class="btn btn-info btn-sm pull-right" style="width:15%"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
             </div>
         </div>
     </div>
@@ -103,9 +103,6 @@
 
 
 <script>
-    function OnCloseCheckIn() {
-        window.location.reload(true);
-    }
     function CheckInAction() {
         if ($("#estartrecord").val() == "") {
             $("#estartrecord").focus()
@@ -151,7 +148,6 @@
 
         });
     }
-
     function WaterElectricCheckIn(id) {
         var data = new FormData();
         data.append("guestid", id);

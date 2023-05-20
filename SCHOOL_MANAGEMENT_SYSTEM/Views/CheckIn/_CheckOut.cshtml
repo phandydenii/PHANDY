@@ -3,7 +3,7 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="CloseForm()"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="function close(){window.location.reload(true)};close()"><span class="glyphicon glyphicon-remove"></span></button>
                 <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.CheckOut</b></h4>
             </div>
             <div class="modal-body">
@@ -67,7 +67,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="wendrecords">@Resources.Content.WEndRecord</label>
-                                    <input id="wendrecords" onfocus="this.select();" onchange="RecordWaterChange();" name="wendrecords" placeholder="" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                    <input id="wendrecords" onfocus="this.select();" oninput="RecordWaterChange();" name="wendrecords" placeholder="" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="eendrecords">@Resources.Content.EEndRecord</label>
-                                    <input id="eendrecords" onfocus="this.select();" onchange="RecordElectricChange()" name="eendrecords" placeholder="Enter Phone" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                                    <input id="eendrecords" onfocus="this.select();" oninput="RecordElectricChange()" name="eendrecords" placeholder="Enter Phone" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnClose" onclick="CloseForm();" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px"><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Cancel</button>
+                <button type="button" id="btnClose" onclick="function close(){window.location.reload(true)};close()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px"><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Close</button>
                 <button type="button" id="btnSaveCheckOut" onclick="CheckOutAction()" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
 
             </div>
@@ -153,9 +153,6 @@
 </div>
 
 <script>
-    function CloseForm() {
-        window.location.reload(true);
-    }
     function CheckOutAction() {
         CreatetWaterElectricUsage();
     }

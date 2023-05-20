@@ -412,7 +412,7 @@
     <value>សរុបប្រាក់ត្រូវបង់</value>
   </data>
   <data name="UnBlock" xml:space="preserve">
-    <value>ដំណើរការបន្ទប់</value>
+    <value>បើកបន្ទប់</value>
   </data>
   <data name="Update" xml:space="preserve">
     <value>កែប្រែរ</value>
@@ -551,5 +551,26 @@
   </data>
   <data name="WaterPrice" xml:space="preserve">
     <value>ថ្លៃទឹក</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>បិទ</value>
+  </data>
+  <data name="ManagePayslip" xml:space="preserve">
+    <value>គ្រប់គ្រងការបើកប្រាក់ខែ</value>
+  </data>
+  <data name="Bonus" xml:space="preserve">
+    <value>ប្រាក់លើកទឹកចិត្ត</value>
+  </data>
+  <data name="Penanty" xml:space="preserve">
+    <value>ពិន័យ</value>
+  </data>
+  <data name="Vat" xml:space="preserve">
+    <value>ពន្ធ</value>
+  </data>
+  <data name="TotalSalaray" xml:space="preserve">
+    <value>សរុបប្រាក់ខែ</value>
+  </data>
+  <data name="AttacheInvoice" xml:space="preserve">
+    <value>ភ្ជាប់វិក័យបត្រ</value>
   </data>
 </root>

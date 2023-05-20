@@ -48,8 +48,8 @@ function GetPaySlipList() {
                 {
                     data: "id",
                     render: function (data) {
-                        return "<button OnClick='EditPaySlip (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
-                            "<button OnClick='DeletePaySlip (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Delete</button>";
+                        return "<button OnClick='EditPaySlip (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>" +
+                            "<button OnClick='DeletePaySlip (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span></button>";
                     }
                 }
             ],
@@ -60,74 +60,13 @@ function GetPaySlipList() {
     });
 }
 
-function SaveStaffAction() {
-    var action = document.getElementById('btnSaveStaff').innerText;
-    if (action == "Save") {
-        if ($("#staffid").val() == 0) {
-            $("#staffid").focus();
-            toastr.info("Please select staff!", "Server Respond")
-            return false;
-        }
-
-        var data = new FormData();
-        data.append("staffid", $("#staffid").val());
-        data.append("salary", $("#salary").val());
-        data.append("vat", $("#vat").val());
-        data.append("penanty", $("#penanty").val());
-        data.append("bonus", $("#bonus").val());
-        data.append("note", $("#note").val());
-        data.append("totalsalary", $("#totalsalary").val());
-        $.ajax({
-            type: "POST",
-            url: "/api/payslips",
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function (result) {
-                toastr.success("Insert record successfully.", "Server Response");
-                $('#PaySlipModal').modal('hide');
-                window.location = "/payslip-rpt/" + result;
-                tablePaySlip.DataTable().ajax.reload();
-            },
-            error: function (error) {
-                console.log(error);
-                toastr.error("Record Already Exists!.", "Server Response");
-            }
-        });
-    } else if (action == "Update") {
-        var data = new FormData();
-        data.append("staffid", $("#staffid").val());
-        data.append("salary", $("#salary").val());
-        data.append("vat", $("#vat").val());
-        data.append("penanty", $("#penanty").val());
-        data.append("bonus", $("#bonus").val());
-        data.append("note", $("#note").val());
-        data.append("totalsalary", $("#totalsalary").val());
-        $.ajax({
-            type: "PUT",
-            url: "/api/payslips/" + $('#payslipid').val(),
-            contentType: false,
-            processData: false,
-            data: data,
-            success: function (result) {
-                toastr.success("Insert record successfully.", "Server Response");
-                $('#PaySlipModal').modal('hide');
-                window.location = "/payslip-rpt/" + $('#payslipid').val();
-                tablePaySlip.DataTable().ajax.reload();
-            },
-            error: function (error) {
-                console.log(error);
-                toastr.error("Record Already Exists!.", "Server Response");
-            }
-        });
-    }
-    
+function CreatePaySlip() {
+    $('#PaySlipModal').modal('show');
+    document.getElementById('btnSaveStaff').style.display = "block";
+    document.getElementById('btnUpdateStaff').style.display = "none";
 }
 
 function EditPaySlip(id) {
-    $('#PaySlipModal').modal('show');
-    $('#payslipid').val(id);
-    document.getElementById('btnSaveStaff').innerText = "Update";
     $.ajax({
         url: "/api/payslips/"+id,
         type: "GET",
@@ -142,7 +81,11 @@ function EditPaySlip(id) {
             $('#bonus').val(result.bonus);
             $('#totalsalary').val(result.totalsalary);
             $('#note').val(result.note);
-            
+
+            document.getElementById('btnSaveStaff').style.display = "none";
+            document.getElementById('btnUpdateStaff').style.display = "block";
+            $('#PaySlipModal').modal('show');
+            $('#payslipid').val(id);
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
@@ -155,13 +98,13 @@ function DeletePaySlip(id) {
         title: "",
         message: "<h3>Are you sure want to delete record "+id+" ?</h3>",
         buttons: {
-            confirm: {
-                label: 'Yes',
-                className: 'btn-success btn-sm'
-            },
             cancel: {
                 label: 'No',
                 className: 'btn-danger btn-sm'
+            },
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success btn-sm'
             }
         },
         callback: function (result) {

@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div id="loadingGif"></div>
             <div class="modal-header">
-                <button type="button" onclick="CloseExpenseType();" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" onclick="function close(){window.location.reload(true)};close()" class="btn-danger btn-xs pull-right" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
                 <h4 class="modal-title text-center" style="color: darkblue;"><b>@Resources.Content.ManageExpenseType</b></h4>
             </div>
             <div class="modal-body">
@@ -12,28 +12,27 @@
                         <div class="form-group">
                             <input type="text" hidden value="" />
                             <input id="idtype" name="idtype" type="text" value="" class="form-control input-sm hidden" placeholder="Enter ID" />
-                            <label for="typename">ប្រភេទចំណាយ</label>
+                            <label for="typename">@Resources.Content.ExpenseType</label>
                             <input id="typename" name="typename" type="text" value="" class="form-control input-sm" placeholder="Enter Category Name" />
                         </div>
                     </div>
-                </div>
-
+                </div> 
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" id="btnExpenseType" onclick="ExpenseTypeAction();" class="btn btn-primary btn-block btn-sm">Add New</button>
+                        <button type="button" id="btnAddExpenseType" onclick="AddExpenseTypeAction();" class="btn btn-primary btn-block btn-sm"><span class="glyphicon glyphicon-plus"></span> @Resources.Content.AddNew</button>
+                        <button type="button" id="btnSaveExpenseType" onclick="SaveExpenseTypeAction();" style="display:none" class="btn btn-info btn-block btn-sm"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
+                        <button type="button" id="btnUpdateExpenseType" onclick="UpdateExpenseTypeAction();" style="display:none" class="btn btn-success btn-block btn-sm"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
                     </div>
-                </div>
-
-                <hr />
-
+                </div> 
+                <hr /> 
                 <div class="row">
                     <div class="col-md-12">
                         <table id="expensetypeTable" class="table-hover table-bordered table-condensed table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    @*<td>Id</td>*@
-                                    <td>ប្រភេទចំណាយ</td>
-                                    <td>សកម្មភាព</td>
+                                    <td>@Resources.Content.No</td>
+                                    <td>@Resources.Content.ExpenseType</td>
+                                    <td>@Resources.Content.Action</td>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -44,6 +43,81 @@
         </div>
     </div>
 </div>
+<script>
+    function AddExpenseTypeAction() {
+        document.getElementById('btnAddExpenseType').style.display = "none";
+        document.getElementById('btnSaveExpenseType').style.display = "block";
+        document.getElementById('btnUpdateExpenseType').style.display = "none";
+        document.getElementById('typename').disabled = false;
+        $('#typename').focus();
+    }
 
+    function SaveExpenseTypeAction() {
+        if ($('#typename').val().trim() == "") {
+            $('#typename').css('border-color', 'red');
+            $('#typename').focus();
+            toastr.info('Please enter Department Name.', "Server Response")
+        } else {
+            $('#typename').css('border-color', '#cccccc');
+
+            var dataSave = {
+                typename: $('#typename').val()
+            };
+
+            $.ajax({
+                url: "/api/ExpenseType",
+                data: JSON.stringify(dataSave),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                datatype: "json",
+                success: function (result) {
+                    toastr.success("ExpenseType has been created successfully.", "Server Response");
+                    tableDepartment.ajax.reload();
+                    document.getElementById('btnExpenseType').innerText = "Add New";
+                    $('#typename').val('');
+                    document.getElementById('typename').disabled = true;
+                },
+                error: function (errormessage) {
+                    toastr.error("This ExpenseType is already exists in Database", "Service Response");
+                }
+            })
+        }
+    }
+
+    function UpdateExpenseTypeAction() {
+        if ($('#typename').val().trim() == "") {
+            $('#typename').css('border-color', 'red');
+            $('#typename').focus();
+            toastr.info('Please enter Category Name.', "Server Response")
+        } else {
+            $('#typename').css('border-color', '#cccccc');
+
+            var data = {
+                id: $('#idtype').val(),
+                typename: $('#typename').val()
+            };
+
+            //console.log(data);
+
+            $.ajax({
+                url: "/api/ExpenseType/" + data.id,
+                data: JSON.stringify(data),
+                type: "PUT",
+                contentType: "application/json;charset=utf-8",
+                datatype: "json",
+                success: function (result) {
+                    toastr.success("ExpenseType has been update successfully.", "Server Response");
+                    tableDepartment.ajax.reload();
+                    document.getElementById('btnExpenseType').innerText = "Add New";
+                    $('#typename').val('');
+                    document.getElementById('typename').disabled = true;
+                },
+                error: function (errormessage) {
+                    toastr.error("This ExpenseType is already exists in Database", "Service Response");
+                }
+            })
+        }
+    }
+</script>
 
 

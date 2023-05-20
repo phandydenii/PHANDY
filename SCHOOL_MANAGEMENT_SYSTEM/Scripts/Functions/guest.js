@@ -61,23 +61,21 @@ function GetGuest() {
             {
                 data: "id",
                 render: function (data, type, row) {
-                    if (row.status == "CheckIn") {
+                    if (row.status == "CheckIn" || row.status == "Book") {
                         return "<button onclick='GuestEdit(" + data + ")' class='btn btn-warning btn-xs' style='border-width: 0px; width: 65px; margin-right: 5px;margin-top:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
+                            + "<button onclick='AddRelative(" + data + ")' class='btn btn-primary btn-xs' style='border-width: 0px; width: 65px; margin-right: 5px;margin-top:5px'><span class='glyphicon glyphicon-option-vertical'></span> More</button>"
                             ;
                     } else {
                         return "";
                     }
                 },
-                "width": "130px"
             }
         ],
         destroy: true,
         "info": false
     });
 }
-function CloseGuest() {
-    window.location.reload(true);
-}
+
 
 var tableHistory = [];
 function GuestHistory(id) {
@@ -129,7 +127,8 @@ function GuestHistory(id) {
                 {
                     data: "grandtotal",
                     render: function (data) {
-                        return data.toFixed(2);
+                        return data.toFixed(2) + "<button OnClick='OnEditRoom (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>"
+                            + "<button OnClick='OnDeleteRoom (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span></button>";
                     }
                 },
                 {
@@ -147,42 +146,11 @@ function GuestHistory(id) {
 
     });
 }
-function OnEditRoom() {
-    $('#rowhide').show();
+
+function AddRelative() {
+    $("#HistoryModal").modal('show');
 }
-function OnDeleteRoom() {
-    $('#rowhide').hide();
-}
-function UpdateGuest() {
-    var data = {
-        id: $('#guestid').val(),
-        name: $('#name').val(),
-        namekh: $('#namekh').val(),
-        sex: $('#sex').val(),
-        dob: $('#dob').val(),
-        address: $('#address').val(),
-        nationality: $('#national').val(),
-        phone: $('#phone').val(),
-        email: $('#email').val(),
-        ssn: $('#ssn').val(),
-        passport: $('#passport').val(),
-        status: $('#status').val(),
-    };
-    $.ajax({
-        url: "/api/Guests/" + data.id,
-        data: JSON.stringify(data),
-        type: "PUT",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {         
-            toastr.success("Updated successfully.", "Server Response");
-            window.location.reload(true);
-        },
-        error: function (errormessage) {
-            toastr.error("Update Guest faild.", "Server Response");
-        }
-    });
-}
+
 function GuestEdit(id) {
     $("#GuestModal").modal('show');
     $.ajax({
@@ -210,90 +178,4 @@ function GuestEdit(id) {
         }
     });
 }
-function GuestDelete(id) {
-    bootbox.confirm({
-        title: "",
-        message: "Are you sure want to delete this?",
-        button: {
-            cancel: {
-                label: "Cancel",
-                ClassName: "btn-default",
-            },
-            confirm: {
-                label: "Delete",
-                ClassName: "btn-danger"
-            }
-        },
-        callback: function (result) {
-            if (result) {
-                $.ajax({
-                    url: "/api/Guests/" + id,
-                    type: "DELETE",
-                    contentType: "application/json;charset=utf-8",
-                    datatype: "json",
-                    success: function (result) {
-                        $('#tableGuest').DataTable().ajax.reload();
 
-                        toastr.success("Guest Deleted successfully!", "Service Response");
-                    },
-                    error: function (errormessage) {
-                        toastr.error("Guest Can't be Deleted", "Service Response");
-                    }
-                });
-            }
-        }
-    });
-}
-
-
-
-function DisableControll() {
-    document.getElementById('fname').disabled = true;
-    document.getElementById('lname').disabled = true;
-    document.getElementById('fullname').disabled = true;
-    document.getElementById('gender').disabled = true;
-    document.getElementById('dob').disabled = true;
-    document.getElementById('address').disabled = true;
-    document.getElementById('nationality').disabled = true;
-    document.getElementById('phone').disabled = true;
-    document.getElementById('email').disabled = true;
-    document.getElementById('note').disabled = true;
-    document.getElementById('status').disabled = true;
-}
-function EnableControlGuest() {
-    document.getElementById('fname').disabled = false;
-    document.getElementById('lname').disabled = false;
-    document.getElementById('fullname').disabled = false;
-    document.getElementById('gender').disabled = false;
-    document.getElementById('dob').disabled = false;
-    document.getElementById('address').disabled = false;
-    document.getElementById('nationality').disabled = false;
-    document.getElementById('phone').disabled = false;
-    document.getElementById('email').disabled = false;
-    document.getElementById('note').disabled = false;
-    document.getElementById('status').disabled = false;
-}
-function ClearControlGuest() {
-    $('#fname').val('');
-    $('#lname').val('');
-    $('#fullname').val('');
-    $('#gender').val('');
-    $('#dob').val('');
-    $('#address').val('');
-    $('#nationality').val('');
-    $('#phone').val('');
-    $('#email').val('');
-    $('#gender').val('');
-    $('#note').val('');
-    $('#status').val('');
-}
-function AddnewGuestAction() {
-    document.getElementById('btnSaveGuest').innerText = "Add New";
-    ClearControlGuest();
-}
-function CloseHistory() {
-    window.location.reload(true);
-}
-function CloseGuest() {
-    window.location.reload(true);
-}

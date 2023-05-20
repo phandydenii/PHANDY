@@ -4,7 +4,7 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="function close(){window.location.reload(true)};close()"><span class="glyphicon glyphicon-remove"></span></button>
                 <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.Building</b></h4>
             </div>
             <div class="modal-body">
@@ -26,11 +26,13 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" id="btnSaveBuilding" onclick="BuildingAction();" class="btn btn-info btn-block btn-sm">Add New</button>
+                        <button type="button" id="btnAddBuilding" onclick="AddBuildingAction();" style="width:100px" class="btn btn-primary btn-block btn-sm pull-right"><span class="glyphicon glyphicon-plus"></span> @Resources.Content.AddNew</button>
+                        <button type="button" id="btnSaveBuilding" onclick="SaveBuildingAction();" style="width:100px;display:none" class="btn btn-info btn-block btn-sm pull-right"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
+                        <button type="button" id="btnUpdateBuilding" onclick="UpdateBuildingAction();" style="width:100px;display:none" class="btn btn-success btn-block btn-sm pull-right"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
                     </div>
                 </div>
                 <hr />
-                <div class="row">
+                <div class="row"> 
                     <div class="col-md-12">
                         <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableBuilding">
                             <thead>
@@ -38,7 +40,7 @@
                                     <th>@Resources.Content.No</th>
                                     <th>@Resources.Content.Name</th>
                                     <th>@Resources.Content.NameKh</th>
-                                    <th>@Resources.Content.Action</th>
+                                    <th style="width:10%">@Resources.Content.Action</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -51,5 +53,74 @@
 
     </div>
 </div>
+<script>
+    function AddBuildingAction() {
+        document.getElementById('btnAddBuilding').style.display = "none";
+        document.getElementById('btnSaveBuilding').style.display = "block";
+        document.getElementById('btnUpdateBuilding').style.display = "none";
+        document.getElementById('buildingname').readOnly = false;
+        document.getElementById('buildingnamekh').readOnly = false;
+        $('#buildingname').val('');
+        $('#buildingnamekh').val('');
+        $('#buildingname').focus();
+    }
 
+    function SaveBuildingAction() {
+        var res = validateForm();
+        if (res == false) {
+            return false;
+        }
+
+        var data = {
+            buildingname: $('#buildingname').val(),
+            buildingnamekh: $('#buildingnamekh').val(),
+        };
+        $.ajax({
+            url: "/api/buildings",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                toastr.success("Insert record successfully!", "Server Respond")
+                tableBuilding.DataTable().ajax.reload();
+            },
+            error: function (errormesage) {
+                toastr.error("Insert record faild...!" + errormesage, "Server Respond");
+            }
+        });
+    }
+    function UpdateBuildingAction() {
+        var res = validateForm();
+        if (res == false) {
+            return false;
+        }
+
+        var data = {
+            id: $('#buildingid').val(),
+            buildingname: $('#buildingname').val(),
+            buildingnamekh: $('#buildingnamekh').val(),
+        };
+        $.ajax({
+            url: "/api/buildings/" + data.id,
+            data: JSON.stringify(data),
+            type: "PUT",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                tableBuilding.DataTable().ajax.reload();
+                toastr.success("Update record successfully!", "Server Respond")
+                document.getElementById('btnSaveBuilding').innerText = "Add New";
+                document.getElementById('buildingname').readOnly = true;
+                document.getElementById('buildingnamekh').readOnly = true;
+                $('#buildingname').val('');
+                $('#buildingnamekh').val('');
+            },
+            error: function (errormesage) {
+                toastr.error("Update record faild...!" + errormesage, "Server Respond");
+            }
+        });
+    }
+</script>
 

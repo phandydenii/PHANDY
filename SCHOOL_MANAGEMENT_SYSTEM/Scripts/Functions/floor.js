@@ -32,8 +32,8 @@ function GetFloor() {
                 {
                     data: "id",
                     render: function (data) {
-                        return "<button OnClick='FloorEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
-                               "<button OnClick='FloorDelete (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Delete</button>";
+                        return "<button OnClick='FloorEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>" +
+                               "<button OnClick='FloorDelete (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span></button>";
                     }
                 }
             ],
@@ -44,84 +44,11 @@ function GetFloor() {
     });
 }
 
-//Save  
-function FloorAction() {
-    var action = '';
-    action = document.getElementById('btnSaveFloor').innerText;
-
-    if (action == "Add New") {
-        document.getElementById('btnSaveFloor').innerText = 'Save';
-        EnableFloorControl();
-        $('#floorno').focus();
-    }
-    else if (action === "Save") {
-        var res = ValidationFormFloor();
-        if (res == false) {
-            return false;
-        }
-
-
-        var data = {
-            floor_no: $('#floorno').val(),
-            buildingid: $('#buildingid').val(),
-        };
-
-        $.ajax({
-            url: "/api/Floors",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("New Floor has been Created", "Server Respond");
-                $('#dtFloor').DataTable().ajax.reload();
-                // $('#customerName').val('');
-                //$("#FloorModal").modal('hide');
-                document.getElementById('btnSaveFloor').innerText = "Add New";
-                DisableFloorControl();
-                ClearFloorControl();
-            },
-            error: function (errormesage) {
-                $('#FloorName').focus();
-                toastr.error("This Name is exist in Database", "Server Respond")
-            }
-
-        });
-
-    } else if (action == "Update") {
-        var res = ValidationFormFloor();
-        if (res == false) {
-            return false;
-        }
-
-        var data = {
-            id: $('#Floorid').val(),
-            floor_no: $('#floorno').val(),
-            buildingid: $('#buildingid').val(),
-        };
-        $.ajax({
-            url: "/api/Floors/" + data.id,
-            data: JSON.stringify(data),
-            type: "PUT",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("Update record successully!", "Server Respond");
-                $('#dtFloor').DataTable().ajax.reload();
-                document.getElementById('btnSaveFloor').innerText = "Add New";
-                DisableFloorControl();
-                ClearFloorControl();
-            },
-            error: function (errormesage) {
-                toastr.error("Update record faild!", "Server Respond")
-            }
-        });
-    }
-}
-
 function FloorEdit(id) {
     EnableFloorControl();
-    action = document.getElementById('btnSaveFloor').innerText = "Update";
+    document.getElementById('btnAddFloor').style.display = "none";
+    document.getElementById('btnSaveFloor').style.display = "none";
+    document.getElementById('btnUpdateFloor').style.display = "block";
     $.ajax({
         url: "/api/floors/" + id,
         type: "GET",
@@ -211,9 +138,5 @@ function ValidationFormFloor() {
     return isValid;
 }
 
-
-function OnCloseFloor() {
-    window.location.reload(true);
-}
 
 

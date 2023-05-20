@@ -1,0 +1,127 @@
+﻿
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="StaffSalaryModal" tabindex="-1" role="dialog" aria-labelledby="StaffSalaryModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div id="divLoadingModal"></div>
+        <div class="modal-content">
+            <div class="modal-header clearfix">
+                <button type="button" onclick="function close(){window.location.reload(true)};close()" class="btn btn-danger btn-xs pull-right"  ><span class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b>@Resources.Content.Salary</b></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <input id="salaryid" name="salaryid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="staffid">@Resources.Content.Staff</label>
+                            <select class="form-control input-sm" id="staffid">
+                                <option value="">---Please select staff----</option>
+                                @foreach (var item in Model.StaffList)
+                                {
+                                    <option value=@item.id>@item.name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="salary">@Resources.Content.Salary</label>
+                            <input id="salary" name="salary" placeholder="Enter Position" type="number" value="0" class="form-control input-sm" style="min-width: 100%" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="note">@Resources.Content.Note</label>
+                    <input id="note" name="note" placeholder="Enter Position" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="btnAddManageSalary" onclick="AddManageSalary();" class="btn btn-primary btn-block btn-sm"><span class="glyphicon glyphicon-plus"></span> @Resources.Content.AddNew</button>
+                        <button type="button" id="btnSaveManageSalary" onclick="SaveManageSalary();" style="display:none" class="btn btn-info btn-block btn-sm"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
+                        <button type="button" id="btnUpdateSalary" onclick="UpdateSalaryd();" style="display:none" class="btn btn-success btn-block btn-sm"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
+                    </div>
+                </div>
+                <hr />
+                <table class="table-hover table-bordered table-condensed table-striped" style="width:100%" id="tableSalary">
+                    <thead>
+                        <tr>
+                            <th>@Resources.Content.No</th>
+                            <th>@Resources.Content.Name</th>
+                            <th>@Resources.Content.NameKh</th>
+                            <th>@Resources.Content.Salary</th>
+                            <th style="width:10%">@Resources.Content.Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+    function AddManageSalary() {
+        document.getElementById('btnAddManageSalary').style.display = "none";
+        document.getElementById('btnSaveManageSalary').style.display = "block";
+        document.getElementById('btnUpdateSalary').style.display = "none";
+
+        document.getElementById('staffid').disabled = false;
+        document.getElementById('salary').disabled = false;
+        document.getElementById('note').disabled = false;
+
+    }
+
+    function SaveManageSalary() {
+        if ($('#staffid').val() == "") {
+            $('#staffid').focus();
+            return false;
+        }
+        var data = {
+            staffid: $('#staffid').val(),
+            salary: $('#salary').val(),
+            note: $('#note').val(),
+        };
+        $.ajax({
+            url: "/api/salaries",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                toastr.success("Insert record successfully!", "Server Respond");
+                window.location.reload(true);
+            },
+            error: function (errormesage) {
+                $('#itemcharge').focus();
+                toastr.error("Inser record faild!", "Server Respond")
+            }
+        });
+    }
+
+    function UpdateSalaryd() {
+        if ($('#staffid').val() == "") {
+            $('#staffid').focus();
+            return false;
+        }
+
+        var data = new FormData();
+        data.append("staffid", $("#staffid").val());
+        data.append("salary", $("#salary").val());
+        data.append("note", $("#note").val());
+        $.ajax({
+            type: "PUT",
+            url: "/api/salaries/" + $('#salaryid').val(),
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                toastr.success("Insert record successfully.", "Server Response");
+                window.location.reload(true);
+            },
+            error: function (error) {
+                console.log(error);
+                toastr.error("Record Already Exists!.", "Server Response");
+            }
+        });
+    }
+</script>

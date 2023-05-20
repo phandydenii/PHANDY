@@ -4,7 +4,7 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" onclick="CloseItem()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" onclick="function close(){window.location.reload(true)};close()" class="btn btn-danger btn-xs pull-right" ><span class="glyphicon glyphicon-remove"></span></button>
                 <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.ManageItem</b></h4>
             </div>
             <div class="modal-body">
@@ -33,9 +33,9 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="col-md-12">
-                                <button type="button" id="btnSaveItem" onclick="OnItemAction()" class="btn btn-info btn-block btn-sm">Add New</button>
-                            </div>
+                            <button type="button" id="btnAddItem" onclick="AddItemAction()" class="btn btn-primary btn-block btn-sm"><span class="glyphicon glyphicon-plus"></span> @Resources.Content.AddNew</button>
+                            <button type="button" id="btnSaveItem" onclick="SaveItemAction()" style="display:none" class="btn btn-info btn-block btn-sm"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
+                            <button type="button" id="btnUpdateItem" onclick="UpdateItemAction()" style="display:none" class="btn btn-success btn-block btn-sm"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
                         </div>
                     </div>
                 </div>
@@ -46,8 +46,78 @@
 </div>
 
 <script>
-    function CloseItem() {
-        window.location.reload(true);
+    function AddItemAction() {
+        document.getElementById('btnAddItem').style.display = "none";
+        document.getElementById('btnSaveItem').style.display = "block";
+        document.getElementById('btnUpdateItem').style.display = "none";
+        EnableControlItem();
+        $('#itemname').focus();
+    }
+
+    function SaveItemAction() {
+        var res = ValidationFormItem();
+        if (res == false) {
+            return false;
+        }
+        var data = {
+            itemname: $('#itemname').val(),
+            itemnamekh: $('#itemnamekh').val(),
+            price: $('#prices').val(),
+            remark: $('#remark').val(),
+            status: true,
+        };
+        $.ajax({
+            url: "/api/Items",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                toastr.success("New Item has been Created", "Server Respond");
+                $('#tableItem').DataTable().ajax.reload();
+                document.getElementById('btnSaveItem').innerText = "Add New";
+                DisableControlItem();
+                ClearControlItem();
+            },
+            error: function (errormesage) {
+                $('#ItemName').focus();
+                toastr.error("This Name is exist in Database", "Server Respond")
+            }
+
+        });
+    }
+
+    function UpdateItemAction() {
+        var res = ValidationFormItem();
+        if (res == false) {
+            return false;
+        }
+        var data = {
+            id: $('#Itemid').val(),
+            itemname: $('#itemname').val(),
+            itemnamekh: $('#itemnamekh').val(),
+            price: $('#prices').val(),
+            remark: $('#remark').val(),
+            status: true,
+        };
+        $.ajax({
+            url: "/api/Items/" + data.id,
+            data: JSON.stringify(data),
+            type: "PUT",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                //tableItem.DataTable().ajax.reload();
+                DisableControlItem();
+                ClearControlItem();
+                toastr.success("Item has been Updated", "Server Respond");
+                //$("#ItemModal").modal('hide');
+                window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Item hasn't Updated in Database", "Server Respond")
+            }
+        });
     }
 </script>
 

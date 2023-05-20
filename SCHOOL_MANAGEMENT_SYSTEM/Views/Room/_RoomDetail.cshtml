@@ -10,9 +10,9 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="alert alert-danger" style="display:none">
+                        <div​​ id="alertmsm" class="alert alert-danger" style="display:none">
                             <strong id="BlockNote"></strong>
-                        </div>
+                        </div​​>
                     </div>
                 </div>
                 <div class="row">
@@ -114,7 +114,7 @@
                 
             </div>
             <div class="modal-footer">
-                    <button type="button" id="btnCancel" onclick="OnCnacel()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px" value=""><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Cancel</button>
+                    <button type="button" id="btnCancel" onclick="OnCnacel()" class="btn btn-danger btn-sm pull-right" style="margin-left:10px;width:100px" value=""><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Close</button>
                     <button type="button" id="btnBlock" onclick="OnBlockAction('@User.IsInRole("Block Room")' ? true:false)" class="btn btn-default btn-sm pull-right" style="margin-left:10px;width:100px"><span class="glyphicon glyphicon-ban-circle"></span> @Resources.Content.Block</button>
                     <button type="button" id="btnUnBlock" onclick="OnUnBlockAction('@User.IsInRole("Block Room")' ? true:false)" class="btn btn-info btn-sm pull-right" style="margin-left:10px;width:100px"><span class="glyphicon glyphicon-ban-circle"></span> @Resources.Content.UnBlock</button>
                     <button type="button" id="btnCheckOut" onclick="OnCheckOutAction('@User.IsInRole("Manage CheckOut")' ? true:false)" class="btn btn-warning btn-sm pull-right" style="margin-left:10px;width:100px"><span class="glyphicon glyphicon-log-out"></span> @Resources.Content.CheckOut</button>

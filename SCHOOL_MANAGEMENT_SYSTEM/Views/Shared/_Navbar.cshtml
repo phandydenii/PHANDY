@@ -29,10 +29,7 @@
                                 </li>
                                 <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
                                     <a href="@Url.Action("Index", "Item")">@Resources.Content.Item</a>
-                                </li>
-                                <li class="@((ViewContext.RouteData.Values["Action"].ToString() == "Index" && ViewContext.RouteData.Values["Controller"].ToString() == "") ? "active" : "")">
-                                    <a href="@Url.Action("Index", "Salary")">@Resources.Content.Salary</a>
-                                </li>
+                                </li> 
                             </ul>
                         </li>
                     }

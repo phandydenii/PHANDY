@@ -25,8 +25,8 @@ function GetRoomType() {
                 {
                     data: "id",
                     render: function (data) {
-                        return "<button OnClick='OnEditRoomType (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
-                            "<button OnClick='OnDeleteRoomType (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Delete</button>";
+                        return "<button OnClick='OnEditRoomType (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>" +
+                            "<button OnClick='OnDeleteRoomType (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span></button>";
                     }
                 }
             ],
@@ -37,80 +37,12 @@ function GetRoomType() {
     });
 }
 
-//Save  
-function RoomTypeAction() {
-    var action = '';
-    action = document.getElementById('btnSaveRoomType').innerText;
-
-    if (action == "Add New") {
-        document.getElementById('btnSaveRoomType').innerText = 'Save';
-        EnableControlRoomType();
-        $('#roomtypename').focus();
-
-    }
-    else if (action === "Save") {
-        var res = ValidationFormRoomType();
-        if (res == false) {
-            return false;
-        }
-
-        var data = {
-            roomtypename: $('#roomtypename').val(),
-            roomtypenamekh: $('#roomtypenamekh').val(),
-            note: $('#note').val(),
-        };
-
-        $.ajax({
-            url: "/api/RoomTypes",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("New RoomType has been Created", "Server Respond");
-                $('#tableRoomType').DataTable().ajax.reload();
-                document.getElementById('btnSaveRoomType').innerText = "Add New";
-                DisableControlRoomType();
-                ClearControlRoomType();
-            },
-            error: function (errormesage) {
-                $('#RoomTypeName').focus();
-                toastr.error("This Name is exist in Database", "Server Respond")
-            }
-
-        });
-
-    } else if (action == "Update") {
-        var data = {
-            id: $('#RoomTypeid').val(),
-            roomtypename: $('#roomtypename').val(),
-            roomtypenamekh: $('#roomtypenamekh').val(),
-            note: $('#note').val(),
-        };
-        $.ajax({
-            url: "/api/RoomTypes/" + data.id,
-            data: JSON.stringify(data),
-            type: "PUT",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("RoomType has been Updated", "Server Respond");
-                $('#tableRoomType').DataTable().ajax.reload();
-                document.getElementById('btnSaveRoomType').innerText = "Add New";
-                DisableControlRoomType();
-                ClearControlRoomType();
-            },
-            error: function (errormesage) {
-                toastr.error("RoomType hasn't Updated in Database", "Server Respond")
-            }
-        });
-    }
-}
 
 function OnEditRoomType(id) {
     EnableControlRoomType();
-    action = document.getElementById('btnSaveRoomType').innerText = "Update";
-
+    document.getElementById('btnAddRoomType').style.display = "block";
+    document.getElementById('btnSaveRoomType').style.display = "none";
+    document.getElementById('btnUpdateRoomType').style.display = "block";
     $.ajax({
         url: "/api/RoomTypes/" + id,
         type: "GET",
@@ -167,15 +99,12 @@ function DisableControlRoomType() {
     document.getElementById('roomtypename').disabled = true;
     document.getElementById('roomtypenamekh').disabled = true;
     document.getElementById('note').disabled = true;
-
-
 }
 
 function EnableControlRoomType() {
     document.getElementById('roomtypename').disabled = false;
     document.getElementById('roomtypenamekh').disabled = false;
     document.getElementById('note').disabled = false;
-
 }
 
 function ClearControlRoomType() {
@@ -211,7 +140,6 @@ function ValidationFormRoomType() {
 
         }
     }
-
     return isValid;
 }
 

@@ -61,7 +61,7 @@ function GetHistoryInvoice(id) {
                     data: "id",
                     render: function (data) {
                         return "<button OnClick='OnEditInvHistory (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>"
-                            + "<button OnClick='OnDeleteInvoiceHistory (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span></button>"
+                            //+ "<button OnClick='OnDeleteInvoiceHistory (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span></button>"
                             ;
 
                     }

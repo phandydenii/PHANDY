@@ -142,6 +142,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attache Invoice.
+        /// </summary>
+        internal static string AttacheInvoice {
+            get {
+                return ResourceManager.GetString("AttacheInvoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Block.
         /// </summary>
         internal static string Block {
@@ -156,6 +165,15 @@ namespace Resources {
         internal static string BlockRoom {
             get {
                 return ResourceManager.GetString("BlockRoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bonus.
+        /// </summary>
+        internal static string Bonus {
+            get {
+                return ResourceManager.GetString("Bonus", resourceCulture);
             }
         }
         
@@ -264,6 +282,15 @@ namespace Resources {
         internal static string Child {
             get {
                 return ResourceManager.GetString("Child", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        internal static string Close {
+            get {
+                return ResourceManager.GetString("Close", resourceCulture);
             }
         }
         
@@ -646,6 +673,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage Payslip.
+        /// </summary>
+        internal static string ManagePayslip {
+            get {
+                return ResourceManager.GetString("ManagePayslip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage Position.
         /// </summary>
         internal static string ManagePosition {
@@ -840,6 +876,15 @@ namespace Resources {
         internal static string PaySlip {
             get {
                 return ResourceManager.GetString("PaySlip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Penanty.
+        /// </summary>
+        internal static string Penanty {
+            get {
+                return ResourceManager.GetString("Penanty", resourceCulture);
             }
         }
         
@@ -1249,6 +1294,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Salaray.
+        /// </summary>
+        internal static string TotalSalaray {
+            get {
+                return ResourceManager.GetString("TotalSalaray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Staff.
         /// </summary>
         internal static string TotalStaff {
@@ -1326,6 +1380,15 @@ namespace Resources {
         internal static string UserRoleManagement {
             get {
                 return ResourceManager.GetString("UserRoleManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vat.
+        /// </summary>
+        internal static string Vat {
+            get {
+                return ResourceManager.GetString("Vat", resourceCulture);
             }
         }
         

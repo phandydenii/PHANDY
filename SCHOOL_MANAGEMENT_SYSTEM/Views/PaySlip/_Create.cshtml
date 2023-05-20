@@ -5,7 +5,7 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="Close()" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" class="btn btn-danger btn-xs pull-right" onclick="function close(){window.location.reload(true)};close()" ><span class="glyphicon glyphicon-remove"></span></button>
                 <b class="modal-title text-center" style="color: darkblue;" >@Resources.Content.PaySlip</b>
             </div>
             <div class="modal-body">
@@ -13,7 +13,7 @@
                     <div class="col-md-6">
                         <input id="payslipid" name="payslipid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
                         <div class="form-group">
-                            <label for="staffname">ឈ្មោះបុគ្គលិក</label>
+                            <label for="staffname">@Resources.Content.Staff</label>
                             <select class="form-control input-sm" id="staffid" onchange="ChangeStaff()">
                                 <option value="0">---Select Staff Name----</option>
                                 @foreach (var position in Model.StaffList)
@@ -23,50 +23,110 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="salary">ប្រាក់ខែ</label>
+                            <label for="salary">@Resources.Content.Salary</label>
                             <input id="salary" name="salary" disabled placeholder="Enter Staff Name Khmer" type="number" value="0.00" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
-                            <label for="vat">ពន្ធ</label>
+                            <label for="vat">@Resources.Content.Vat</label>
                             <input onfocus="this.select();" onchange="VatChange()" id="vat" name="vat" placeholder="Enter Staff Name" type="text" value="0.00" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="penanty">ពិន័យ</label>
+                            <label for="penanty">@Resources.Content.Penanty</label>
                             <input onfocus="this.select();" onchange="PenantyChange()" id="penanty" name="penanty" placeholder="Enter Identity No" type="number" value="0.00" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
-                            <label for="bonus">ប្រាក់លើកទឹកចិត្ត</label>
+                            <label for="bonus">@Resources.Content.Bonus</label>
                             <input onfocus="this.select();" onchange="BonusChange()" id="bonus" name="bonus" placeholder="Enter Staff Name Khmer" type="number" value="0.00" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                         <div class="form-group">
-                            <label for="totalsalary">សរុបប្រាក់ខែ</label>
+                            <label for="totalsalary">@Resources.Content.TotalSalaray</label>
                             <input id="totalsalary" name="totalsalary" placeholder="" type="number" value="0.00" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="note">ចំណាំ</label>
+                            <label for="note">@Resources.Content.Note</label>
                             <input id="note" name="note" placeholder="Enter Staff Name Khmer" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
-                    </div>
+                    </div>  
                 </div>
 
                 
             </div>
             <div class="modal-footer">
-               <button type="button" id="btnTest" onclick="CloseModalStaff()" class="btn btn-info btn-danger btn-sm">Cancel</button>
-                <button type="button" id="btnSaveStaff" onclick="SaveStaffAction()" class="btn btn-info btn-sm pull-right">Save</button>
+                <button type="button" id="btnTest" onclick="function close(){window.location.reload(true)};close()" style="margin-left:5px;width:100px" class="btn btn-danger btn-sm pull-right"><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Close</button>
+                <button type="button" id="btnSaveStaff" onclick="SaveStaffAction()" class="btn btn-info btn-sm pull-right" style="width:100px"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
+                <button type="button" id="btnUpdateStaff" onclick="UpdateStaffAction()" class="btn btn-success btn-sm pull-right" style="width:100px"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    function Close() {
-        window.location.reload(true);
+    function SaveStaffAction() {
+        if ($("#staffid").val() == 0) {
+            $("#staffid").focus();
+            toastr.info("Please select staff!", "Server Respond")
+            return false;
+        }
+
+        var data = new FormData();
+        data.append("staffid", $("#staffid").val());
+        data.append("salary", $("#salary").val());
+        data.append("vat", $("#vat").val());
+        data.append("penanty", $("#penanty").val());
+        data.append("bonus", $("#bonus").val());
+        data.append("note", $("#note").val());
+        data.append("totalsalary", $("#totalsalary").val());
+        $.ajax({
+            type: "POST",
+            url: "/api/payslips",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                toastr.success("Insert record successfully.", "Server Response");
+                $('#PaySlipModal').modal('hide');
+                window.location = "/payslip-rpt/" + result;
+                tablePaySlip.DataTable().ajax.reload();
+            },
+            error: function (error) {
+                console.log(error);
+                toastr.error("Record Already Exists!.", "Server Response");
+            }
+        });
     }
+    function UpdateStaffAction() {
+        var data = new FormData();
+        data.append("staffid", $("#staffid").val());
+        data.append("salary", $("#salary").val());
+        data.append("vat", $("#vat").val());
+        data.append("penanty", $("#penanty").val());
+        data.append("bonus", $("#bonus").val());
+        data.append("note", $("#note").val());
+        data.append("totalsalary", $("#totalsalary").val());
+        $.ajax({
+            type: "PUT",
+            url: "/api/payslips/" + $('#payslipid').val(),
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                toastr.success("Insert record successfully.", "Server Response");
+                $('#PaySlipModal').modal('hide');
+                window.location = "/payslip-rpt/" + $('#payslipid').val();
+                tablePaySlip.DataTable().ajax.reload();
+            },
+            error: function (error) {
+                console.log(error);
+                toastr.error("Record Already Exists!.", "Server Response");
+            }
+        });
+    }
+
+
     function ChangeStaff() {
         var staffid = document.getElementById('staffid').value;
         if (staffid == 0) {

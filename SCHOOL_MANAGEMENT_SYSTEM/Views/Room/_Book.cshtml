@@ -4,9 +4,8 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" onclick="CloseBook()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" onclick="function close(){window.location.reload(true)};close()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
                 <h4 class="modal-title text-center" style="color: darkblue;"><b>@Resources.Content.Book</b></h4>
-               
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -138,7 +137,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" onclick="OnCloseBook()" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:5px;width:100px">@Resources.Content.Cancel</button>
+                <button type="button" onclick="function close(){window.location.reload(true)};close()" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:5px;width:100px">@Resources.Content.Cancel</button>
                 <button type="button" onclick="OnBook()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:100px">@Resources.Content.Save</button>
             </div>
         </div>
@@ -173,10 +172,6 @@
         var result = (a-b)*e ;
         $('#payreilbooking').val(result.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
         
-    }
-
-    function CloseBook(){
-        window.location.reload(true);
     }
 
     function OnBook() {

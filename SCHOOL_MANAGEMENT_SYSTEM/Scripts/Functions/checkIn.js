@@ -22,7 +22,7 @@ function GetCheckInDetail() {
                     data: "id"
                 },
                 {
-                    data: "name"
+                    data: "namekh"
                 },
                 {
                     data: "checkindate",
@@ -41,6 +41,9 @@ function GetCheckInDetail() {
                     data: "payforroom",
                 },
                 {
+                    data: "prepaid",
+                },
+                {
                     data: "man"
                 },
                 {
@@ -53,7 +56,6 @@ function GetCheckInDetail() {
                     data: "id",
                     render: function (data, type, row) {
                         return   "<button OnClick='CheckInEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-top:0px'><span class='glyphicon glyphicon-edit'></span> Edit</button>"
-                               /*+ "<button onclick='GuestHistory(" + row.guestid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-list-alt'></span> History</button>"*/
                             + "<button onclick='CheckOut(" + row.id + " ," + row.guestid + " , " + row.roomid + ")' class='btn btn-success btn-xs' style='border-width: 0px;margin-left:5px'><span class='glyphicon glyphicon-log-out'></span> Check Out</button>"
                         ;    
                     }
@@ -61,74 +63,6 @@ function GetCheckInDetail() {
             ],
         
         destroy: true,
-    });
-}
-var tableHistory = [];
-function GuestHistory(id) {
-    $('#HistoryModal').modal('show');
-    $('#guestid').val(id);
-    tableHistory = $('#tableHistory').dataTable({
-        ajax: {
-            url: "/api/invoice_v_by_guestid/" + id,
-            dataSrc: ""
-        },
-        columns:
-            [
-                {
-                    data: "startdate",
-                    render: function (data) {
-                        return moment(new Date(data)).format('DD-MMM-YYYY');
-                    }
-                },
-                {
-                    data: "enddate",
-                    render: function (data) {
-                        return moment(new Date(data)).format('DD-MMM-YYYY');
-                    }
-                },
-                {
-                    data: "waterusage",
-                    render: function (data) {
-                        return data.toFixed(2);
-                    }
-                },
-                {
-                    data: "electricusage",
-                    render: function (data) {
-                        return data.toFixed(2);
-                    }
-                },
-                {
-                    data: "wtotal",
-                    render: function (data) {
-                        return data.toFixed(2);
-                    }
-                },
-                {
-                    data: "etotal",
-                    render: function (data) {
-                        return data.toFixed(2);
-                    }
-                },
-                {
-                    data: "grandtotal",
-                    render: function (data) {
-                        return data.toFixed(2);
-                    }
-                },
-                {
-                    data: "id",
-                    render: function (data) {
-                        return "<button OnClick='OnEditInvHistory (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>"
-                        + "<button OnClick='OnDeleteInvoiceHistory (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-trash'></span></button>"
-                        ;
-
-                    }
-                }
-            ],
-        destroy: true,
-        "order": [[0, "asc"]],
-
     });
 }
 
@@ -165,42 +99,20 @@ function CheckInEdit(id) {
             $('#precord').val(result[0].estartrecord);
             $('#prepaid').val(result[0].prepaid);
             $('#payforroom').val(result[0].payforroom);
+            $('#total').val(result[0].payforroom + result[0].prepaid);
+            $('#paydollar').val(result[0].paydollar);
+            $('#payriel').val(result[0].payriel);
+
+            $.get("/api/ExchangeRates/1/2", function (data) {
+                $("#exrate").val(data.rate);
+            });
         },
         error: function (errormessage) {
             toastr.error("No Record Select!", "Service Response");
         }
     });
 }
-function UpdateCheckIn() {
-    var data = {
-        id: $('#checkinid').val(),
-        checkindate: $('#checkindate').val(),
-        roomid: $('#roomid').val(),
-        guestid: $('#guestid').val(),
-        child: $('#child').val(),
-        man: $('#man').val(),
-        women: $('#women').val(),
-        payforroom: $('#payforroom').val(),
-        startdate: $('#startdate').val(),
-        enddate: $('#enddate').val(),
-        active: false,      
-    };
-    $.ajax({
-        url: "/api/checkins/" + data.id,
-        data: JSON.stringify(data),
-        type: "PUT",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            UpdateWaterElectricUsage($("#weid").val())
-            
-        },
-        error: function (error) {
-            //console.log(error);
-            toastr.error("Please check all selected field!.", "Server Response");
-        }
-    });
-}
+
 function CheckOut(id,gid, rid) {
     $("#CheckOutModal").modal("show");
     $.ajax({
@@ -248,26 +160,5 @@ function CheckOut(id,gid, rid) {
         $("#lblExchangeRate").text("1 $ = " + data.rate + " រៀល");
     });
 }
-function UpdateWaterElectricUsage(id) {
-    var data = new FormData();
-    data.append("wstartrecord", $('#wrecord').val());
-    data.append("estartrecord", $('#precord').val());
-    $.ajax({
-        type: "PUT",
-        url: "/api/updatewestartrecord/" + id,
-        contentType: false,
-        processData: false,
-        data: data,
-        success: function (result) {
-            toastr.success("Update check in successfully!", "Server Respond");
-            window.location.reload(true);
-        },
-        error: function (errormesage) {
-            toastr.error("Electric usage insert faild!", "Server Respond");
-            return false;
-        }
-    });
-}
-function Close() {
-    window.location.reload(true);
-}
+
+

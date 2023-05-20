@@ -73,9 +73,9 @@
             <div class="modal-footer">
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" id="btnTest" onclick="CloseModalStaff()" class="btn btn-info btn-danger pull-right btn-sm" style="margin-left:10px">@Resources.Content.Cancel</button>
-                        <button type="button" id="btnSaveStaff" onclick="SaveStaffAction()" class="btn btn-info pull-right btn-sm" value="Save">@Resources.Content.Save</button>
-                        <button type="button" id="btnUpdateStaff" onclick="UpdateStaffAction()" class="btn btn-success pull-right btn-sm" value="Update">@Resources.Content.Update</button>
+                        <button type="button" id="btnTest" onclick="function close(){window.location.reload(true)};close()"class="btn btn-info btn-danger pull-right btn-sm" style="margin-left:10px;width:100px"><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Close</button>
+                        <button type="button" id="btnSaveStaff" onclick="SaveStaffAction()" class="btn btn-info pull-right btn-sm" value="Save" style="width:100px"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
+                        <button type="button" id="btnUpdateStaff" onclick="UpdateStaffAction()" class="btn btn-success pull-right btn-sm" value="Update" style="width:100px"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
                     </div>
                 </div>
             </div>

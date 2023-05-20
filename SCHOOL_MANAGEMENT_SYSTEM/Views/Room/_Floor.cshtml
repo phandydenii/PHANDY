@@ -4,7 +4,7 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" onclick="OnCloseFloor();" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" onclick="function close(){window.location.reload(true)};close()" class="btn btn-danger btn-xs pull-right"  ><span class="glyphicon glyphicon-remove"></span></button>
                 <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.ManageFloor</b></h4>
             </div>
             <div class="modal-body">
@@ -34,7 +34,9 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="button" id="btnSaveFloor" onclick="FloorAction()" class="btn btn-info btn-block btn-sm">Add New</button>
+                        <button type="button" id="btnAddFloor" onclick="AddFloorAction()" class="btn btn-primary btn-block btn-sm pull-right" style="width:100px"><span class="glyphicon glyphicon-plus"></span> @Resources.Content.AddNew</button>
+                        <button type="button" id="btnSaveFloor" onclick="SaveFloorAction()" class="btn btn-info btn-block btn-sm pull-right" style="display:none;width:100px"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
+                        <button type="button" id="btnUpdateFloor" onclick="UpdateFloorAction()" class="btn btn-success btn-block btn-sm pull-right" style="display:none;width:100px"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
                     </div>
                 </div>
                 <hr />
@@ -46,7 +48,7 @@
                                         <th>@Resources.Content.No</th>
                                         <th>@Resources.Content.Floor</th>
                                         <th>@Resources.Content.Building</th>
-                                        <th>@Resources.Content.Action</th>
+                                        <th style="width:10%">@Resources.Content.Action</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -60,6 +62,73 @@
     </div>
 </div>
 
+<script>
+    function AddFloorAction() {
+        document.getElementById('btnAddFloor').style.display = "none";
+        document.getElementById('btnSaveFloor').style.display = "block";
+        document.getElementById('btnUpdateFloor').style.display = "none";
+        EnableFloorControl();
+        $('#floorno').focus();
+    }
 
+    function SaveFloorAction() {
+        var res = ValidationFormFloor();
+        if (res == false) {
+            return false;
+        }
+        var data = {
+            floor_no: $('#floorno').val(),
+            buildingid: $('#buildingid').val(),
+        };
 
+        $.ajax({
+            url: "/api/Floors",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                toastr.success("New Floor has been Created", "Server Respond");
+                $('#dtFloor').DataTable().ajax.reload();
+                document.getElementById('btnSaveFloor').innerText = "Add New";
+                DisableFloorControl();
+                ClearFloorControl();
+            },
+            error: function (errormesage) {
+                $('#FloorName').focus();
+                toastr.error("This Name is exist in Database", "Server Respond")
+            }
+
+        });
+    }
+
+    function UpdateFloorAction() {
+        var res = ValidationFormFloor();
+        if (res == false) {
+            return false;
+        }
+        var data = {
+            id: $('#Floorid').val(),
+            floor_no: $('#floorno').val(),
+            buildingid: $('#buildingid').val(),
+        };
+        $.ajax({
+            url: "/api/Floors/" + data.id,
+            data: JSON.stringify(data),
+            type: "PUT",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                toastr.success("Update record successully!", "Server Respond");
+                $('#dtFloor').DataTable().ajax.reload();
+                document.getElementById('btnSaveFloor').innerText = "Add New";
+                DisableFloorControl();
+                ClearFloorControl();
+            },
+            error: function (errormesage) {
+                toastr.error("Update record faild!", "Server Respond")
+            }
+        });
+    }
+</script>
 

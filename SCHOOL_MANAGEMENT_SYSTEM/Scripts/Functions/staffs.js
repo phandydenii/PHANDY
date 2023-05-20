@@ -46,8 +46,8 @@ function GetStaff() {
             {
                 data: "id",
                 render: function (data) {
-                    return "<button onclick='EditStaff(" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px;'><span class='glyphicon glyphicon-edit'></span>Edit</button>"
-                        + "<button onclick='DeleteStaff(" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span>Delete</button>";
+                    return "<button onclick='EditStaff(" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px;'><span class='glyphicon glyphicon-edit'></span></button>"
+                        + "<button onclick='DeleteStaff(" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span></button>";
                 }
             }
         ],

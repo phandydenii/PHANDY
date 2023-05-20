@@ -35,8 +35,8 @@ function GetItem() {
                 {
                     data: "id",
                     render: function (data) {
-                        return "<button OnClick='OnEditItem (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
-                            "<button OnClick='ItemDelete (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Delete</button>";
+                        return "<button OnClick='OnEditItem (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>" +
+                            "<button OnClick='ItemDelete (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span></button>";
                     }
                 }
             ],
@@ -52,88 +52,23 @@ function OnItemAction() {
     var action = '';
     action = document.getElementById('btnSaveItem').innerText;
     if (action == "Add New") {
-        document.getElementById('btnSaveItem').innerText = 'Save';
-        EnableControlItem();
-        $('#itemname').focus();
+       
     }
     else if (action == "Save") {
         
-        var res = ValidationFormItem();
-        if (res == false) {
-            return false;
-        }
         
 
-        var data = {
-            itemname: $('#itemname').val(),
-            itemnamekh: $('#itemnamekh').val(),
-            price: $('#prices').val(),
-            remark: $('#remark').val(),
-            status: true,
-
-        };
-
-        $.ajax({
-            url: "/api/Items",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("New Item has been Created", "Server Respond");
-                $('#tableItem').DataTable().ajax.reload();
-                document.getElementById('btnSaveItem').innerText = "Add New";
-                DisableControlItem();
-                ClearControlItem();
-            },
-            error: function (errormesage) {
-                $('#ItemName').focus();
-                toastr.error("This Name is exist in Database", "Server Respond")
-            }
-
-        });
-
     } else if (action == "Update") {
-        var res = ValidationFormItem();
-        if (res == false) {
-            return false;
-        }
-
-        var data = {
-            id: $('#Itemid').val(),
-            itemname: $('#itemname').val(),
-            itemnamekh: $('#itemnamekh').val(),
-            price: $('#prices').val(),
-            remark: $('#remark').val(),
-            status: true,
-        };
-
-
-        $.ajax({
-            url: "/api/Items/" + data.id,
-            data: JSON.stringify(data),
-            type: "PUT",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                //tableItem.DataTable().ajax.reload();
-                DisableControlItem();
-                ClearControlItem();
-                toastr.success("Item has been Updated", "Server Respond");
-                //$("#ItemModal").modal('hide');
-                window.location.reload(true);
-            },
-            error: function (errormesage) {
-                toastr.error("Item hasn't Updated in Database", "Server Respond")
-            }
-        });
+        
     }
 }
 
 function OnEditItem(id) {
     $("#ItemModal").modal('show');
     EnableControlItem();
-    action = document.getElementById('btnSaveItem').innerText = "Update";
+    document.getElementById('btnAddItem').style.display = "none";
+    document.getElementById('btnSaveItem').style.display = "none";
+    document.getElementById('btnUpdateItem').style.display = "block";
     $.ajax({
         url: "/api/Items/" + id,
         type: "GET",

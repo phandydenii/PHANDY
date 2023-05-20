@@ -619,6 +619,7 @@
     <Content Include="Images\Loading.gif" />
     <Content Include="Images\money.jpg" />
     <Content Include="Images\no_image.png" />
+    <Content Include="Images\RL_LOGO.png" />
     <Content Include="Images\receipt.png" />
     <Content Include="Images\report.png" />
     <Content Include="Images\RL_2022_12_14_00_22_21.jpg" />
@@ -628,6 +629,7 @@
     <Content Include="Images\wallpaper.jpg" />
     <Content Include="Readme.txt" />
     <Content Include="ReportViewerWebForm.aspx" />
+    <Content Include="favicon2.ico" />
     <Content Include="favicon.ico" />
     <Content Include="Scripts\bootbox.all.js" />
     <Content Include="Scripts\bootbox.all.min.js" />
@@ -1090,6 +1092,7 @@
     <Content Include="Views\Report\_checkinrpt.cshtml" />
     <Content Include="Views\Invoice\_History.cshtml" />
     <Content Include="Views\CheckOut\_CheckOut.cshtml" />
+    <Content Include="Views\PaySlip\_CreateStaffSalary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1107,7 +1110,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Reports\BOOKING_LIST.rdlc" />
     <EmbeddedResource Include="Reports\BOOK_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\CHECKIN_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\CHECKOUT_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\CHECK_IN_LIST.rdlc" />
     <EmbeddedResource Include="Reports\CHECK_IN_REPORT.rdlc" />
@@ -1119,14 +1121,11 @@
     <EmbeddedResource Include="Reports\INVOICE_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\ITEM_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\OTHER_EXPENSE.rdlc" />
-    <EmbeddedResource Include="Reports\PAYMENT_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\PAYSLIP_LIST.rdlc" />
     <EmbeddedResource Include="Reports\PAYSLIP_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\Report1.rdlc" />
-    <EmbeddedResource Include="Reports\Report2.rdlc" />
     <EmbeddedResource Include="Reports\ROOM_REPORT.rdlc" />
     <EmbeddedResource Include="Reports\STAFF_REPORT.rdlc" />
-    <EmbeddedResource Include="Reports\USER_REPORT.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

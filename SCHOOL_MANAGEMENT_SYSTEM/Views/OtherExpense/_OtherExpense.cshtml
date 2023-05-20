@@ -1,11 +1,10 @@
 ﻿<form id="employee" method="post" enctype="multipart/form-data">
-
     <div class="modal fade" data-backdrop="static" data-keyboard="fale" id="otherexpenseModel" tabindex="-1" role="dialog" aria-labelledby="otherexpenseModel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div id="loadingGif"></div>
                 <div class="modal-header">
-                    <button type="button" class="btn-danger btn-xs pull-right" onclick="CloseFrm()"><span class="glyphicon glyphicon-remove"></span></button>
+                    <button type="button" class="btn-danger btn-xs pull-right" onclick="function close(){window.location.reload(true)};close()"><span class="glyphicon glyphicon-remove"></span></button>
                     <h4 class="modal-title text-center" style="color: darkblue;"><b>@Resources.Content.ManageOtherExpense</b></h4>
                 </div>
                 <div class="modal-body">
@@ -15,12 +14,12 @@
                             <input id="id" name="id" type="text" value="" class="form-control input-sm hidden" placeholder="Enter employeeId" />
 
                             <div class="form-group">
-                                <label for="date">ថ្ងៃខែ</label>
+                                <label for="date">@Resources.Content.Date</label>
                                 <input id="date" name="date" type="date" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control input-sm" placeholder="Enter Product Name" />
 
                             </div>
                             <div class="form-group">
-                                <label for="expensetypeid">ប្រភេទចំណាយ</label>
+                                <label for="expensetypeid">@Resources.Content.ExpenseType</label>
                                 <select class="form-control input-sm" id="expensetypeid">
                                     @foreach (var pos in Model.ExpenseTypes)
                                     {
@@ -29,13 +28,13 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="amount">ចំនួនប្រាក់</label>
-                                <input id="amount" name="amount" type="number" value="" class="form-control input-sm" />
+                                <label for="amount">@Resources.Content.Amount</label>
+                                <input id="amount" name="amount" type="number" value="" class="form-control input-sm"/>
 
                             </div>
                             <div class="form-group">
-                                <label for="note">បរិយាយ</label>
-                                <input id="note" name="note" type="text" value="" class="form-control input-sm" />
+                                <label for="note">@Resources.Content.Note</label>
+                                <input id="note" name="note" type="text" value="" class="form-control input-sm"/>
 
                             </div>
                         </div>
@@ -44,7 +43,7 @@
                                 <img class="center img-responsive img-thumbnail" id="image" src="~/Images/invoice-icon.png" style="width:260px;height:260px" />
                             </div>
                             <div class="form-group">
-                                <label>ភ្ជាប់វិក័យបត្រ</label>
+                                <label>@Resources.Content.AttacheInvoice</label>
                                 <input onchange="readURL(this);" type="file" id="file" />
                                 <input type="hidden" value="" id="file_old" />
                             </div>
@@ -52,11 +51,129 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btnCheckOut" data-dismiss="modal" class="btn btn-danger pull-right btn-sm" style="margin-left:10px">Cancel</button>                 
-                    <button type="button" id="btnOtherExpense" onclick="OtherExpenseAction()" class="btn btn-info pull-right btn-sm">Add New</button>                    
+                    <button type="button" id="btnCheckOut" onclick="function close(){window.location.reload(true)};close()" class="btn btn-danger pull-right btn-sm" style="margin-left:10px;width:100px"><span class="glyphicon glyphicon-remove"></span>​ @Resources.Content.Close</button>
+                    <button type="button" id="btnAddOtherExpense" onclick="AddOtherExpenseAction()" class="btn btn-primary pull-right btn-sm" style="width:100px"><span class="glyphicon glyphicon-plus"></span> @Resources.Content.AddNew</button>
+                    <button type="button" id="btnSaveOtherExpense" onclick="SaveOtherExpenseAction()" class="btn btn-info pull-right btn-sm" style="width:100px;display:none"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
+                    <button type="button" id="btnUpdateOtherExpense" onclick="UpdateOtherExpenseAction()" class="btn btn-success pull-right btn-sm" style="width:100px;display:none"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
                 </div>
             </div>
         </div>
     </div>
 </form>
 
+<script>
+    function AddOtherExpenseAction() {
+        $('#date').val(moment().format('YYYY-MM-DD'));
+        document.getElementById('btnAddOtherExpense').style.display = "none";
+        document.getElementById('btnSaveOtherExpense').style.display = "block";
+        document.getElementById('btnUpdateOtherExpense').style.display = "none";
+        document.getElementById('date').disabled = false;
+        document.getElementById('expensetypeid').disabled = false;
+        document.getElementById('amount').disabled = false;
+        document.getElementById('note').disabled = false;
+        $("#expensetypeid").focus();
+        $("#amount").val(0);
+    }
+
+    function SaveOtherExpenseAction() {
+        var response = Validate();
+        if (response == false) {
+            return false;
+        }
+        var data = new FormData();
+        data.append("date", $("#date").val());
+        data.append("expensetypeid", $("#expensetypeid").val());
+        data.append("amount", $("#amount").val());
+        data.append("note", $("#note").val());
+        var files = $("#file").get(0).files;
+        if (files.length > 0) {
+            data.append("image", files[0]);
+        }
+        $.ajax({
+            type: "POST",
+            url: "/api/OtherExpense",
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                toastr.success("OtherExpense has been created successfully.", "Server Response");
+                tableEmployee.ajax.reload();
+                window.location.reload(true);
+                $('#id').val(result.id);
+                $('#otherexpenseModel').modal('hide');
+
+                document.getElementById('btnOtherExpense').innerText = "Add New";
+                $('#date').val('');
+                $('#expensetypeid').val('');
+                $('#amount').val('0.00');
+                $('#note').val('');
+
+            },
+            error: function (error) {
+                toastr.error("OtherExpense Already Exists!.", "Server Response");
+            }
+        });
+    }
+
+    function UpdateOtherExpenseAction() {
+        var response = Validate();
+        if (response == false) {
+            return false;
+        }
+        var data = new FormData();
+        data.append("id", $('#id'));
+        data.append("date", $("#date").val());
+        data.append("expensetypeid", $("#expensetypeid").val());
+        data.append("amount", $("#amount").val());
+        data.append("note", $("#note").val());
+        var files = $("#file").get(0).files;
+        if (files.length > 0) {
+            data.append("image", files[0]);
+        }
+        $.ajax({
+            type: "PUT",
+            url: "/api/OtherExpense/" + $('#id').val(),
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                toastr.success("OtherExpense has been updated successfully.", "Server Response");
+                tableEmployee.ajax.reload();
+                $('#otherexpenseModel').modal('hide');
+                window.location.reload(true);
+                document.getElementById('btnOtherExpense').innerText = "Add New";
+                $('#date').val('');
+                $('#expensetypeid').val('');
+                $('#amount').val('0.00');
+                $('#note').val('');
+
+            },
+            error: function (error) {
+                toastr.error("OtherExpense Already Exists!.", "Server Response");
+            }
+        });
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#image').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function Validate() {
+        var isValid = true;
+        if ($('#amount').val().trim() == "") {
+            $('#amount').css('border-color', 'red');
+            $('#amount').focus();
+            isValid = false;
+        } else {
+            $('#amount').css('border-color', '#cccccc');
+            $('#amount').focus();
+        }
+        return isValid;
+    }
+</script>

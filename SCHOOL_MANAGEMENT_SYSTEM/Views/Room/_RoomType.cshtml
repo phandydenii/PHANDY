@@ -25,23 +25,21 @@
                             <input id="roomtypenamekh" name="roomtypenamekh" placeholder="Enter Room Type" type="text" value="" class="form-control input-sm" style="min-width: 100%" />
                         </div>
                     </div>
-
                 </div>
                 <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="note">@Resources.Content.Note</label>
-                                <textarea name="note" id="note" rows="1" style="min-width:100%; max-width:100%" class="form-control input-sm" value=""></textarea>
-                            </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="note">@Resources.Content.Note</label>
+                            <textarea name="note" id="note" rows="1" style="min-width:100%; max-width:100%" class="form-control input-sm" value=""></textarea>
                         </div>
-                   
+                    </div>
                 </div>
-
                 <div class="row">
-                        <div class="col-md-12">
-                            <button type="button" id="btnSaveRoomType" onclick="RoomTypeAction()" class="btn btn-info btn-block btn-sm">Add New</button>
-                        </div>
-                    
+                    <div class="col-md-12">
+                        <button type="button" id="btnAddRoomType" onclick="AddRoomType()" class="btn btn-primary btn-block btn-sm pull-right" style="width:100px"><span class="glyphicon glyphicon-plus"></span> @Resources.Content.AddNew</button>
+                        <button type="button" id="btnSaveRoomType" onclick="SaveRoomType()" style="display: none; width: 100px" class="btn btn-info btn-block btn-sm pull-right"><span class="glyphicon glyphicon-save"></span> @Resources.Content.Save</button>
+                        <button type="button" id="btnUpdateRoomType" onclick="UpdateRoomType()" style="display: none; width: 100px" class="btn btn-success btn-block btn-sm pull-right"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
+                    </div>
                 </div>
                 <hr />
                 <div class="row">
@@ -52,19 +50,83 @@
                                         <th>@Resources.Content.No</th>
                                         <th>@Resources.Content.Name</th>
                                         <th>@Resources.Content.NameKh</th>
-                                        <th>@Resources.Content.Action</th>
+                                        <th style="width:10%">@Resources.Content.Action</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
                             </table>
                         </div>
-                   
                 </div>
             </div>
         </div>
-
     </div>
 </div>
+
+<script>
+    function AddRoomType() {
+        document.getElementById('btnAddRoomType').style.display ="block";
+        document.getElementById('btnSaveRoomType').style.display = "block";
+        document.getElementById('btnUpdateRoomType').style.display = "none";
+        ClearControlRoomType();
+    }
+
+    function SaveRoomType() {
+        var data = {
+            roomtypename: $('#roomtypename').val(),
+            roomtypenamekh: $('#roomtypenamekh').val(),
+            note: $('#note').val(),
+        };
+
+        $.ajax({
+            url: "/api/RoomTypes",
+            data: JSON.stringify(data),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                toastr.success("New RoomType has been Created", "Server Respond");
+                $('#tableRoomType').DataTable().ajax.reload();
+                document.getElementById('btnSaveRoomType').innerText = "Add New";
+                DisableControlRoomType();
+                ClearControlRoomType();
+            },
+            error: function (errormesage) {
+                $('#RoomTypeName').focus();
+                toastr.error("This Name is exist in Database", "Server Respond")
+            }
+
+        });
+    }
+
+
+    function UpdateRoomType() {
+        var data = {
+            id: $('#RoomTypeid').val(),
+            roomtypename: $('#roomtypename').val(),
+            roomtypenamekh: $('#roomtypenamekh').val(),
+            note: $('#note').val(),
+        };
+        $.ajax({
+            url: "/api/RoomTypes/" + data.id,
+            data: JSON.stringify(data),
+            type: "PUT",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                toastr.success("RoomType has been Updated", "Server Respond");
+                $('#tableRoomType').DataTable().ajax.reload();
+                document.getElementById('btnSaveRoomType').innerText = "Add New";
+                DisableControlRoomType();
+                ClearControlRoomType();
+            },
+            error: function (errormesage) {
+                toastr.error("RoomType hasn't Updated in Database", "Server Respond")
+            }
+        });
+    }
+
+    
+</script>
 
 
 

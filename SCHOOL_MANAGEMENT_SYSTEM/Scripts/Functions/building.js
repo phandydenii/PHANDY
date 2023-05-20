@@ -33,8 +33,8 @@ function GetBuilding() {
                 {
                     data: "id",
                     render: function (data) {
-                        return "<button OnClick='OnEditBuilding (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
-                               "<button OnClick='OnDeleteBuilding (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span> Delete</button>";
+                        return "<button OnClick='OnEditBuilding (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span></button>" +
+                               "<button OnClick='OnDeleteBuilding (" + data + ")' class='btn btn-danger btn-xs'><span class='glyphicon glyphicon-trash'></span></button>";
                     }
                 }
             ],
@@ -44,83 +44,6 @@ function GetBuilding() {
 
     });
 }
-
-
-function BuildingAction() {
-    var action = '';
-    action = document.getElementById('btnSaveBuilding').innerText;
-
-
-    
-    if (action == "Add New") {
-        document.getElementById('btnSaveBuilding').innerText="Save";
-        document.getElementById('buildingname').readOnly = false;
-        document.getElementById('buildingnamekh').readOnly = false;
-        $('#buildingname').val('');
-        $('#buildingnamekh').val('');
-        $('#buildingname').focus();
-        
-
-    } else if (action == "Save") {
-        var res = validateForm();
-        if (res == false) {
-            return false;
-        }
-
-        var data = {
-            buildingname: $('#buildingname').val(),
-            buildingnamekh: $('#buildingnamekh').val(),
-        };
-        $.ajax({
-            url: "/api/buildings",
-            data: JSON.stringify(data),
-            type: "POST",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-                toastr.success("Insert record successfully!", "Server Respond")
-                tableBuilding.DataTable().ajax.reload();
-            },
-            error: function (errormesage) {
-                toastr.error("Insert record faild...!" + errormesage, "Server Respond");
-            }
-        });
-    } else if (action == "Update") {
-
-        var res = validateForm();
-        if (res == false) {
-            return false;
-        }
-
-        var data = {
-            id: $('#buildingid').val(),
-            buildingname: $('#buildingname').val(),
-            buildingnamekh: $('#buildingnamekh').val(),
-        };
-        $.ajax({
-            url: "/api/buildings/" + data.id,
-            data: JSON.stringify(data),
-            type: "PUT",
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            success: function (result) {
-               
-                tableBuilding.DataTable().ajax.reload();
-                toastr.success("Update record successfully!", "Server Respond")
-                document.getElementById('btnSaveBuilding').innerText = "Add New";
-                document.getElementById('buildingname').readOnly = true;
-                document.getElementById('buildingnamekh').readOnly = true;
-                $('#buildingname').val('');
-                $('#buildingnamekh').val('');
-            },
-            error: function (errormesage) {
-                toastr.error("Update record faild...!" + errormesage, "Server Respond");
-            }
-        });
-    }
-    
-}
-
 
 function OnEditBuilding(id) {
     document.getElementById('btnSaveBuilding').innerText = "Update";

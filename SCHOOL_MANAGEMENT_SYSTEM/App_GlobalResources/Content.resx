@@ -552,4 +552,25 @@
   <data name="WaterPrice" xml:space="preserve">
     <value>Water Price</value>
   </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ManagePayslip" xml:space="preserve">
+    <value>Manage Payslip</value>
+  </data>
+  <data name="Bonus" xml:space="preserve">
+    <value>Bonus</value>
+  </data>
+  <data name="Penanty" xml:space="preserve">
+    <value>Penanty</value>
+  </data>
+  <data name="Vat" xml:space="preserve">
+    <value>Vat</value>
+  </data>
+  <data name="TotalSalaray" xml:space="preserve">
+    <value>Total Salaray</value>
+  </data>
+  <data name="AttacheInvoice" xml:space="preserve">
+    <value>Attache Invoice</value>
+  </data>
 </root>

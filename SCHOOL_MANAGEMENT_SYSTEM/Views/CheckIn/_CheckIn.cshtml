@@ -3,17 +3,18 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" onclick="Close()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
-                <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.CheckIn</b></h4>
+                <button type="button" onclick="function close(){window.location.reload(true)};close()" class="btn btn-danger btn-xs pull-right"><span class="glyphicon glyphicon-remove"></span></button>
+                <h4 class="modal-title text-center" style="color: darkblue;"><b>@Resources.Content.CheckIn</b></h4>
             </div>
 
             <input id="checkinid" name="checkinid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
+            <input id="exrate" name="exrate" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
             <input id="guestid" name="guestid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
             <input id="roomid" name="roomid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
             <input id="weid" name="weid" type="text" style="display: none;" disabled="disabled" value="" class="form-control" />
-            <input id="checkindate" name="checkindate" style="display: none;" type="date"  disabled="disabled" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control" />
-            <input id="startdate" name="startdate" style="display: none;" type="date"  disabled="disabled" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control" />
-            <input id="enddate" name="enddate" style="display: none;" type="date"  disabled="disabled" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+            <input id="checkindate" name="checkindate" style="display: none;" type="date" disabled="disabled" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+            <input id="startdate" name="startdate" style="display: none;" type="date" disabled="disabled" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control" />
+            <input id="enddate" name="enddate" style="display: none;" type="date" disabled="disabled" value="@DateTime.Now.ToString("yyyy'-'MM'-'dd")" class="form-control" />
 
             <div class="modal-body">
                 <div class="row">
@@ -28,52 +29,160 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="wrecord">@Resources.Content.WaterStartRecord</label>
-                            <input id="wrecord" name="wrecord" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="wrecord">@Resources.Content.WaterStartRecord</label>
+                                    <input id="wrecord" name="wrecord" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="precord">@Resources.Content.ElectricStartRecord</label>
+                                    <input id="precord" name="precord" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="precord">@Resources.Content.ElectricStartRecord</label>
-                            <input id="precord" name="precord" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label for="payforroom">@Resources.Content.PayForRoom</label>
+                                        <input oninput="ChangePayForRoom()" onfocus="this.select();" id="payforroom" name="payforroom" placeholder="Enter Guest Name" type="number" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label for="prepaid">@Resources.Content.PrePaid</label>
+                                        <input oninput="ChangePrePaid()" onfocus="this.select();" id="prepaid" name="prepaid" placeholder="Enter Guest Name" type="number" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <div class="form-group">
-                                <label for="payforroom">@Resources.Content.PayForRoom</label>
-                                <input id="payforroom" name="payforroom" onfocus="this.select();" placeholder="Enter Guest Name" type="text" value="" class="form-control input-sm" style="min-width: 100%;text-align:center" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="man">@Resources.Content.Man</label>
                             <input id="man" name="man" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="women">@Resources.Content.Woman</label>
                             <input id="women" name="women" placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label for="child">@Resources.Content.Child</label>
                             <input id="child" name="child" placeholder="Enter number of child" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="total">@Resources.Content.Total</label>
+                            <input id="total" name="total" readonly="readonly" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="paydollar">@Resources.Content.PayDollar</label>
+                            <input id="paydollar" oninput="ChangePayDollar()" onfocus="this.select();" name="paydollar" placeholder="Enter number of man" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="payriel">@Resources.Content.PayRiel</label>
+                            <input   id="payriel" name="payriel" placeholder="Enter number of women" type="number" value="0" class="form-control input-sm" style="min-width: 100%;text-align:center" />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">               
+            <div class="modal-footer">
                 <div class="form-group">
-                    <button type="button" id="btnTest" onclick="Close()" class="btn btn-danger btn-sm pull-right" style="margin-left: 10px; width: 15%"><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Cancel</button>
+                    <button type="button" id="btnTest" onclick="function close(){window.location.reload(true)};close()" class="btn btn-danger btn-sm pull-right" style="margin-left: 10px; width: 15%"><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Cancel</button>
                     <button type="button" id="btnSaveCheckIn" onclick="UpdateCheckIn();" class="btn btn-success pull-right btn-sm" style="margin-left: 10px; width: 15%"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function ChangePayForRoom() {
+        Total($('#payforroom').val(), $('#prepaid').val());
+    }
+    function ChangePrePaid() {
+        Total($('#payforroom').val(), $('#prepaid').val());
+    }
+    function Total(a,b) {
+        $('#total').val(parseFloat(a) + parseFloat(b));
+    }
+
+    function ChangePayDollar() {
+        var total = $('#total').val();
+        var dollar = $('#paydollar').val();
+        var rate = $('#exrate').val();
+        var result = (parseFloat(total) - parseFloat(dollar)) * parseFloat(rate);
+        $('#payriel').val(result)
+    }
+
+    function UpdateCheckIn() {
+        var data = {
+            id: $('#checkinid').val(),
+            checkindate: $('#checkindate').val(),
+            roomid: $('#roomid').val(),
+            guestid: $('#guestid').val(),
+            child: $('#child').val(),
+            man: $('#man').val(),
+            women: $('#women').val(),
+            prepaid: $('#prepaid').val(),
+            payforroom: $('#payforroom').val(),
+            startdate: $('#startdate').val(),
+            enddate: $('#enddate').val(),
+            paydollar: $('#paydollar').val(),
+            payriel: $('#payriel').val(),
+            active: false,
+        };
+        $.ajax({
+            url: "/api/checkins/" + data.id,
+            data: JSON.stringify(data),
+            type: "PUT",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                UpdateWaterElectricUsage($("#weid").val());
+            },
+            error: function (error) {
+                //console.log(error);
+                toastr.error("Please check all selected field!.", "Server Response");
+            }
+        });
+    }
+
+    function UpdateWaterElectricUsage(id) {
+        var data = new FormData();
+        data.append("wstartrecord", $('#wrecord').val());
+        data.append("estartrecord", $('#precord').val());
+        $.ajax({
+            type: "PUT",
+            url: "/api/updatewestartrecord/" + id,
+            contentType: false,
+            processData: false,
+            data: data,
+            success: function (result) {
+                toastr.success("Update check in successfully!", "Server Respond");
+                window.location.reload(true);
+            },
+            error: function (errormesage) {
+                toastr.error("Electric usage insert faild!", "Server Respond");
+                return false;
+            }
+        });
+    }
+</script>

@@ -6,13 +6,11 @@ $('#status').on('change', function () {
     GetBooking(this.value);
 });
 
-/////On Change 
 $('#frmbookroomid').on('change', function () {
     GetRoomPrice(this.value);
 });
 $('#changeroomid').on('change', function () {
     GetRoomPrice(this.value);
-
 });
 function GetRoomPrice(id) {
     $.ajax({
@@ -76,19 +74,6 @@ function GetBooking(status) {
                 {
                     data: "id",
                     render: function (data, type, row) {
-                        //if (row.gueststatus == "CheckIn") {
-                        //    return "<span class='label label-danger'><span class='glyphicon glyphicon-ok'></span> Active</span>";
-                        //} else {
-                        //    if (row.bookstatus == "Expire") {
-                        //        return "<span class='label label-danger'><span class='glyphicon glyphicon-ban-circle'></span> Expire</span>";
-                        //    } else if (row.bookstatus == "Book") {
-                        //        return "<button OnClick='BookingEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
-                        //            "<button OnClick='CancelBooking (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-minus-sign'></span> Cancel</button>" +
-                        //            "<button OnClick='CheckIn (" + data + ")' class='btn btn-info btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-log-in'></span> Check In</button>";
-                        //    } else if (row.bookstatus == "Cancel") {
-                        //        return "<span class='label label-danger'><span class='glyphicon glyphicon-minus-sign'></span> Cancel</span>";
-                        //    }
-                        //}
                         if (row.bookstatus == "Book") {
                             return "<button OnClick='BookingEdit (" + data + ")' class='btn btn-warning btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
                                 "<button OnClick='CancelBooking (" + data + ")' class='btn btn-danger btn-xs' style='margin-right:5px'><span class='glyphicon glyphicon-minus-sign'></span> Cancel</button>" +
@@ -130,7 +115,7 @@ $('#RoomIdChange').on('change', function () {
     }
 });
 
-//On Check In
+//Check In Action
 function CheckIn(id) {
     $("#CheckInModal").modal("show");
     $.ajax({
@@ -161,6 +146,7 @@ function TotalBook() {
     var a = $('#totalbooking').val();
     $('#paydollarbooking').val(a);
 }
+
 function ChangePayBook() {
     var a = parseFloat($('#totalbooking').val());
     var b = parseFloat($('#paydollarbooking').val());
@@ -170,109 +156,12 @@ function ChangePayBook() {
 
 }
 
-function OnBooking() {
-    try {
-        CreateGuest();
-    }
-    catch (e) {
-        toastr.error(e.toString(), "Server Respond")
-    }
-}
-
-///Insert Guest
-function CreateGuest() {
-    if ($("#guestname").val() == "") {
-        $("#guestname").focus()
-        return false;
-    }
-    var data = new FormData();
-    data.append("name", $("#guestname").val());
-    data.append("namekh", $("#gnamekh").val());
-    data.append("sex", $("#gsex").val());
-    data.append("dob", $("#dob").val());
-    data.append("address", $("#address").val());
-    data.append("nationality", $("#nationality").val());
-    data.append("phone", $("#phonenumber").val());
-    data.append("email", $("#email").val());
-    data.append("ssn", $("#ssn").val());
-    data.append("passport", $("#passport").val());
-    data.append("status", 'BOOK');
-    $.ajax({
-        type: "POST",
-        url: "/api/guests",
-        contentType: false,
-        processData: false,
-        data: data,
-        success: function (result) {
-            InsertBooking(result);
-            
-        },
-        error: function (error) {
-            toastr.error("Please check all selected field!.", "Server Response");
-        }
-    });
-}
-
-//Insert Booking
-function InsertBooking(result) {
-    if ($('#totalbooking').val() == "") {
-        $('#totalbooking').focus()
-        return false;
-    }
-
-    var data = {
-        bookingno: $('#bookingno').val(),
-        guestid: result,
-        roomid: $('#RoomIdChange').val(),
-        total: $('#totalbooking').val(),
-        paydollar: $('#paydollarbooking').val(),
-        payriel: $('#payreilbooking').val(),
-        checkindate: $('#checkindate').val(),
-        expiredate: $('#expiredate').val(),
-        note: $('#bookingnote').val(),
-    };
-
-    $.ajax({
-        url: "/api/bookings",
-        data: JSON.stringify(data),
-        type: "POST",
-        contentType: "application/json;charset=utf-8",
-        dataType: "json",
-        success: function (result) {
-            UpdateRoomBook();
-            toastr.success("Book successfully!", "Server Respond");
-            window.location.reload(true);
-            window.location = "booking-rpt/" + result;
-        },
-        error: function (errormesage) {
-            toastr.error("This Booking ID is exist in Database", "Server Respond");
-            return false;
-        }
-    });
-}
-
-function UpdateRoomBook() {
-    $.ajax({
-        type: "PUT",
-        url: "/api/updateroomstatus/" + $("#RoomIdChange").val() + "/BOOK",
-        contentType: false,
-        processData: false,
-        // data: status,
-        success: function (result) {
-            //toastr.success("Room Status has been Update successfully.", "Server Response");
-        },
-        error: function (error) {
-            toastr.error("Update room status fail!", "Server Response");
-        }
-    });
-}
-
+//Edit Booking Action
 function BookingEdit(id) {
     $("#BookModal").modal('show');
     $("#frmbookroomid").hide();
     document.getElementById("lblCheckRoom").style.display = "block";
     document.getElementById("UpdateBook").style.display = "block";
-
 
     $.ajax({
         url: "/api/bookings/" + id,
@@ -317,7 +206,7 @@ function BookingEdit(id) {
         }
     });
 }
-
+///Cancel Booking Action
 function CancelBooking(id) {
     var gid;
     var rid;
@@ -394,80 +283,4 @@ function CancelBooking(id) {
             }
         }
     })
-}
-
-
-
-
-///======///
-//function UpdateBooking() {
-//    if ($('#totalbooking').val() == "") {
-//        $('#totalbooking').focus()
-//        return false;
-//    }
-
-//    var data = {
-//        id: $('#bookid').val(),
-//        bookingdate: $('#bookingdate').val(),
-//        guestid: $('#guestid').val(),
-//        roomid: $('#roomid').val(),
-//        total: $('#totalbooking').val(),
-//        paydollar: $('#paydollarbooking').val(),
-//        payriel: $('#payrielbooking').val(),
-//        checkindate: $('#checkindate').val(),
-//        expiredate: $('#expiredate').val(),
-//        note: $('#note').val(),
-//        status: $('#status').val(),
-//    };
-
-//    $.ajax({
-//        url: "/api/bookings/"+data.id,
-//        data: JSON.stringify(data),
-//        type: "PUT",
-//        contentType: "application/json;charset=utf-8",
-//        dataType: "json",
-//        success: function (result) {
-//            toastr.success("Update record successfully!", "Service Response");
-//            window.location = "booking-rpt/" + data.id;
-//        },
-//        error: function (errormesage) {
-//            toastr.error("This Booking ID is exist in Database", "Server Respond");
-//            return false;
-//        }
-//    });
-//}
-
-//function UpdateRoomStatus(id,status) { 
-//    $.ajax({
-//        type: "PUT",
-//        url: "/api/updateroomstatus/" + id + "/"+status,
-//        contentType: false,
-//        processData: false,
-//        success: function (result) {
-//            //toastr.success("Room Status has been Update successfully.", "Server Response");
-//        },
-//        error: function (error) {
-//            toastr.error("Update room status fail!", "Server Response");
-//        }
-//    });  
-//}
-
-//function UpdateRoomStatusBook(id) {
-//    $.ajax({
-//        type: "PUT",
-//        url: "/api/updateroomstatus/" + id + "/FREE",
-//        contentType: false,
-//        processData: false,
-//        // data: status,
-//        success: function (result) {
-//            //toastr.success("Room Status has been Update successfully.", "Server Response");
-//        },
-//        error: function (error) {
-//            toastr.error("Update room status fail!", "Server Response");
-//        }
-//    });
-//}
-
-function CloseBook() {
-    window.location.reload(true);
 }

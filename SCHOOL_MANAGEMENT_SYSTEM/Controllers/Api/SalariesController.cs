@@ -42,7 +42,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
             if (getStaffById == null)
                 return NotFound();
 
-            return Ok(Mapper.Map<Salary, SalaryDto>(getStaffById));
+            return Ok(getStaffById);
         }
 
         [HttpGet]

@@ -4,7 +4,7 @@
         <div id="divLoadingModal"></div>
         <div class="modal-content">
             <div class="modal-header clearfix">
-                <button type="button" onclick="CloseGuest()" class="btn btn-danger btn-xs pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                <button type="button" onclick="function close(){window.location.reload(true)};close()" class="btn btn-danger btn-xs pull-right" ><span class="glyphicon glyphicon-remove"></span></button>
                 <h4 class="modal-title text-center" style="color: darkblue;"><b >@Resources.Content.UpdateGuest</b></h4>
             </div>
             <div class="modal-body">
@@ -66,9 +66,41 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" id="btnSaveGuest" onclick="UpdateGuest()" class="btn btn-info btn-sm pull-right" style="margin-left:5px;width:100px">@Resources.Content.Update</button>
-                <button type="button" id="btnCheckOut" onclick="OnCloseBook()" data-dismiss="modal" class="btn btn-danger btn-sm pull-right" style="margin-left:5px;width:100px">@Resources.Content.Cancel</button>
+                <button type="button" id="btnCheckOut" onclick="function close(){window.location.reload(true)};close()" class="btn btn-danger btn-sm pull-right" style="margin-left:5px;width:100px"><span class="glyphicon glyphicon-remove"></span> @Resources.Content.Close</button>
+                <button type="button" id="btnSaveGuest" onclick="UpdateGuest()" class="btn btn-success btn-sm pull-right" style="margin-left:5px;width:100px"><span class="glyphicon glyphicon-refresh"></span> @Resources.Content.Update</button>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function UpdateGuest() {
+        var data = {
+            id: $('#guestid').val(),
+            name: $('#name').val(),
+            namekh: $('#namekh').val(),
+            sex: $('#sex').val(),
+            dob: $('#dob').val(),
+            address: $('#address').val(),
+            nationality: $('#national').val(),
+            phone: $('#phone').val(),
+            email: $('#email').val(),
+            ssn: $('#ssn').val(),
+            passport: $('#passport').val(),
+            status: $('#status').val(),
+        };
+        $.ajax({
+            url: "/api/Guests/" + data.id,
+            data: JSON.stringify(data),
+            type: "PUT",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                toastr.success("Updated successfully.", "Server Response");
+                window.location.reload(true);
+            },
+            error: function (errormessage) {
+                toastr.error("Update Guest faild.", "Server Response");
+            }
+        });
+    }
+</script>

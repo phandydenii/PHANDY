@@ -44,7 +44,7 @@ namespace SCHOOL_MANAGEMENT_SYSTEM.Controllers.Api
         [HttpGet]
         public IHttpActionResult GetOtherExpense()
         {
-            var employees = _context.OtherExpenses.Include(c => c.ExpenseTypes).Where(x =>x.date>=DateTime.Now).ToList();
+            var employees = _context.OtherExpenses.Include(c => c.ExpenseTypes).ToList();
             return Ok(employees);
         }
 
